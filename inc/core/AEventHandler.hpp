@@ -1,7 +1,8 @@
 #pragma once
 
-#include <sys/epoll.h>
 #include <stdint.h>
+
+namespace core {
 
 /**
  * @brief Abstract base class defining the interface for event-driven service handlers.
@@ -28,3 +29,5 @@ private:
     AEventHandler(const AEventHandler &);
     AEventHandler &operator=(const AEventHandler &);
 };
+
+} // namespace core

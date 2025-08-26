@@ -1,11 +1,11 @@
+#include "config/ServerConfig.hpp"
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
-#include "Lexer.hpp"
-#include "Parser.hpp"
-#include "ConfigBuilder.hpp"
-#include "ServerConfig.hpp"
+#include "config/Lexer.hpp"
+#include "config/Parser.hpp"
+#include "config/ConfigBuilder.hpp"
 
 using namespace config;
 

@@ -1,11 +1,14 @@
-#include <cerrno> 
+#include "core/Acceptor.hpp"
+
+#include <cerrno>
 #include <cstring>
 #include <iostream>
 #include <sys/socket.h>
-#include "Acceptor.hpp"
-#include "InitiationDispatcher.hpp"
-#include "Reactor.hpp"
-#include "Socket.hpp"
+#include "core/InitiationDispatcher.hpp"
+#include "core/Reactor.hpp"
+#include "core/Socket.hpp"
+
+namespace core {
 
 Acceptor::Acceptor(int port) : socket_(NULL), port_(port) {
     setupListeningSocket();
@@ -49,3 +52,5 @@ void Acceptor::acceptNewConnection() {
     Reactor *clientHandler = new Reactor(clientFd);
     InitiationDispatcher::getInstance().registerHandler(clientHandler);
 }
+
+} // namespace core

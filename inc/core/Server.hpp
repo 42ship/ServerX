@@ -5,6 +5,8 @@
 #include "InitiationDispatcher.hpp"
 #include "Acceptor.hpp"
 
+namespace core {
+
 #define MAX_PORTS 20
 
 /**
@@ -74,7 +76,7 @@ private:
 
     static Server *instance_;
 
-    volatile sig_atomic_t shutdownRequested_; 
+    volatile sig_atomic_t shutdownRequested_;
     void setupAcceptors();
     void setupSignalHandlers();
     void cleanup();
@@ -83,3 +85,5 @@ private:
     Server(const Server &);
     Server &operator=(const Server &);
 };
+
+} // namespace core

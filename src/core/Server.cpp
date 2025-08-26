@@ -1,12 +1,15 @@
-#include <cstring> 
+#include "core/Server.hpp"
+
+#include <cstring>
 #include <iostream>
 #include <signal.h>
 #include <unistd.h>
 #include <vector>
-#include <sys/types.h> 
+#include <sys/types.h>
 #include <sys/wait.h>
-#include "Server.hpp"
-#include "InitiationDispatcher.hpp"
+#include "core/InitiationDispatcher.hpp"
+
+namespace core {
 
 // TODO write the documentation
 // In Server.hpp - this is a DECLARATION
@@ -16,7 +19,8 @@
 Server *Server::instance_ = NULL;
 
 Server::Server()
-    : dispatcher_(InitiationDispatcher::getInstance()), isRunning_(false), shutdownRequested_(false){
+    : dispatcher_(InitiationDispatcher::getInstance()), isRunning_(false),
+      shutdownRequested_(false) {
     instance_ = this;
     setupSignalHandlers();
 }
@@ -160,3 +164,5 @@ void Server::cleanup() {
 
     std::cout << "Cleanup completed" << std::endl;
 }
+
+} // namespace core

@@ -8,7 +8,7 @@ LOGDIR		=	logs
 # =============================== COMPILATION ================================ #
 CXX			=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP
-CXXFLAGS	+=	-I$(HDIR) -I$(HDIR)/config
+CXXFLAGS	+=	-I$(HDIR)
 # ================================== FILES =================================== #
 SRCS		:=	$(shell find $(SDIR) -name "*.cpp")
 OBJS		:=	$(patsubst $(SDIR)/%.cpp,$(ODIR)/%.o,$(SRCS))

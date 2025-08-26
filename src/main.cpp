@@ -1,11 +1,11 @@
-#include "Server.hpp"
+#include "core/Server.hpp"
 #include <iostream>
 #include <exception>
 
 int main(void) {
     std::cout << "Starting production server with signal handling..." << std::endl;
     try {
-        Server server;
+        core::Server server;
         server.start();
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;

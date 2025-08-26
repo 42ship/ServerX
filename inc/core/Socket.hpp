@@ -3,6 +3,8 @@
 #include <netdb.h>
 #include <string>
 
+namespace core {
+
 class Socket {
 public:
     Socket();
@@ -23,3 +25,5 @@ private:
     Socket(Socket const &rhs);
     Socket const &operator=(Socket const &rhs);
 };
+
+} // namespace core

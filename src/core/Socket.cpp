@@ -1,9 +1,12 @@
-#include "Socket.hpp"
+#include "core/Socket.hpp"
+
 #include <arpa/inet.h>
 #include <cerrno>
 #include <cstring>
 #include <stdexcept>
 #include <unistd.h>
+
+namespace core {
 
 Socket::Socket(void) : fd_(-1) {
     std::memset(&addr_, 0, sizeof(addr_));
@@ -68,3 +71,5 @@ void Socket::createAndBind(std::string const &address, int port) {
         throw std::runtime_error("Failed to bind socket: " + std::string(strerror(errno)));
     }
 }
+
+} // namespace core

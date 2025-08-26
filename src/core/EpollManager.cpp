@@ -1,4 +1,6 @@
-#include "EpollManager.hpp"
+#include "core/EpollManager.hpp"
+
+#include <sys/epoll.h>
 #include <iostream>
 #include <stdexcept>
 #include <cstring>
@@ -6,7 +8,9 @@
 #include <cstdio>
 #include <unistd.h>
 
-EpollManager::EpollManager() : epollFd_(-1), isShuttingDown(0)  {
+namespace core {
+
+EpollManager::EpollManager() : epollFd_(-1), isShuttingDown(0) {
     epollFd_ = epoll_create1(0);
     if (epollFd_ < 0) {
         throw std::runtime_error("Failed to create epoll instance: " +
@@ -74,3 +78,5 @@ void EpollManager::requestShutdown() {
 bool EpollManager::getisShuttingDown() const {
     return isShuttingDown != 0;
 }
+
+} // namespace core

@@ -4,6 +4,8 @@
 #include "AEventHandler.hpp"
 #include <map>
 
+namespace core {
+
 /**
  * @brief Centralised event demultiplexer and dispatcher for managing I/O events.
  *
@@ -34,3 +36,5 @@ private:
     InitiationDispatcher(const InitiationDispatcher &);
     InitiationDispatcher &operator=(const InitiationDispatcher &);
 };
+
+} // namespace core

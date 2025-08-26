@@ -1,6 +1,9 @@
-#include "InitiationDispatcher.hpp"
+#include "core/InitiationDispatcher.hpp"
+
 #include <iostream>
-#include "AEventHandler.hpp"
+#include "core/AEventHandler.hpp"
+
+namespace core {
 
 InitiationDispatcher *InitiationDispatcher::instance_ = NULL;
 
@@ -69,3 +72,5 @@ void InitiationDispatcher::requestShutdown() {
 EpollManager &InitiationDispatcher::getEpollManager() {
     return epollManager_;
 }
+
+} // namespace core

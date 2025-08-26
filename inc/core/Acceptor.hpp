@@ -3,6 +3,8 @@
 #include "AEventHandler.hpp"
 #include "Socket.hpp"
 
+namespace core {
+
 /**
  * @brief Acceptor inherent from AEventHandler  as a concrete class that accepts new client
  * connections.
@@ -31,3 +33,5 @@ private:
     Acceptor(const Acceptor &);
     Acceptor &operator=(const Acceptor &);
 };
+
+} // namespace core
