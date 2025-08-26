@@ -1,9 +1,9 @@
 #include "Socket.hpp"
-#include <stdexcept>
-#include <cstring>
-#include <unistd.h>
 #include <arpa/inet.h>
 #include <cerrno>
+#include <cstring>
+#include <stdexcept>
+#include <unistd.h>
 
 Socket::Socket(void) : fd_(-1) {
     std::memset(&addr_, 0, sizeof(addr_));

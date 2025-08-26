@@ -47,6 +47,11 @@ f fclean: clean test_clean
 re: fclean
 	@$(MAKE) all
 
+debug: clean
+	@$(MAKE) -j1 all 2>&1 | while read line; do \
+	echo "$$line"; \
+	done
+
 -include $(DEPS)
 -include $(TEST_DEPS)
 
