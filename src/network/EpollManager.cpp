@@ -1,4 +1,4 @@
-#include "core/EpollManager.hpp"
+#include "network/EpollManager.hpp"
 
 #include <sys/epoll.h>
 #include <iostream>
@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <unistd.h>
 
-namespace core {
+namespace network {
 
 EpollManager::EpollManager() : epollFd_(-1), isShuttingDown(0) {
     epollFd_ = epoll_create1(0);
@@ -79,4 +79,4 @@ bool EpollManager::getisShuttingDown() const {
     return isShuttingDown != 0;
 }
 
-} // namespace core
+} // namespace network

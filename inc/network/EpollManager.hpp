@@ -4,7 +4,7 @@
 #include <sys/epoll.h>
 #include <signal.h>
 
-namespace core {
+namespace network {
 
 /**
  * @brief Synchronous event demultiplexer that wraps Linux epoll for I/O event monitoring.
@@ -36,4 +36,4 @@ private:
     EpollManager &operator=(const EpollManager &other);
 };
 
-} // namespace core
+} // namespace network

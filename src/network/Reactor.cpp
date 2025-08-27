@@ -1,13 +1,13 @@
-#include "core/Reactor.hpp"
+#include "network/Reactor.hpp"
 
 #include <cstring>
 #include <cerrno>
 #include <iostream>
 #include <sys/socket.h>
 #include <unistd.h>
-#include "core/InitiationDispatcher.hpp"
+#include "network/InitiationDispatcher.hpp"
 
-namespace core {
+namespace network {
 
 Reactor::Reactor(int clientFd) : clientFd_(clientFd), readLength_(0), writeLength_(0) {
     memset(readBuffer_, 0, BUFFER_LENGTH);
@@ -67,4 +67,4 @@ void Reactor::handleWrite() {
     InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
 }
 
-} // namespace core
+} // namespace network

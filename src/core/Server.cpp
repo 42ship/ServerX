@@ -7,7 +7,7 @@
 #include <vector>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "core/InitiationDispatcher.hpp"
+#include "network/InitiationDispatcher.hpp"
 
 namespace core {
 
@@ -19,7 +19,7 @@ namespace core {
 Server *Server::instance_ = NULL;
 
 Server::Server()
-    : dispatcher_(InitiationDispatcher::getInstance()), isRunning_(false),
+    : dispatcher_(network::InitiationDispatcher::getInstance()), isRunning_(false), config_(config),
       shutdownRequested_(false) {
     instance_ = this;
     setupSignalHandlers();
@@ -74,7 +74,7 @@ void Server::signalHandler(int sig) {
     write(STDERR_FILENO, "\n", 1);
     if (instance_) {
         instance_->shutdownRequested_ = true;
-        InitiationDispatcher::getInstance().requestShutdown();
+        network::InitiationDispatcher::getInstance().requestShutdown();
     }
 }
 
@@ -145,10 +145,25 @@ bool Server::getisRunning() const {
     return isRunning_;
 }
 
+// void Server::setupAcceptors() {
+//     for (int i = 0; i < MAX_PORTS; ++i) {
+//         int port = BASE_PORT + i;
+//         network::Acceptor *acceptor = new network::Acceptor(port);
+//         acceptors_.push_back(acceptor);
+//         dispatcher_.registerHandler(acceptor);
+//     }
+// }
+
 void Server::setupAcceptors() {
-    for (int i = 0; i < MAX_PORTS; ++i) {
-        int port = BASE_PORT + i;
-        Acceptor *acceptor = new Acceptor(port);
+    const std::vector<config::ServerBlock> &servers = config_.getServer();
+
+    std::set<int> uniquePorts;
+
+    for (size_t i = 0; i < servers.size(); ++i) {
+        uniquePorts.insert(servers[i].port_);
+    }
+    for (std::set<int>::const_iterator it = uniquePorts.begin(); it != uniquePorts.end(); ++it) {
+        network::Acceptor *acceptor = new network::Acceptor(*it);
         acceptors_.push_back(acceptor);
         dispatcher_.registerHandler(acceptor);
     }

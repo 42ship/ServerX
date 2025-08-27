@@ -1,9 +1,9 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "Socket.hpp"
+#include "core/Socket.hpp"
 
-namespace core {
+namespace network {
 
 /**
  * @brief Acceptor inherent from AEventHandler  as a concrete class that accepts new client
@@ -24,7 +24,7 @@ public:
     virtual int getHandle() const;
 
 private:
-    Socket *socket_;
+    core::Socket *socket_;
     int port_;
 
     void setupListeningSocket();
@@ -34,4 +34,4 @@ private:
     Acceptor &operator=(const Acceptor &);
 };
 
-} // namespace core
+} // namespace network

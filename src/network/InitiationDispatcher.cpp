@@ -1,9 +1,9 @@
-#include "core/InitiationDispatcher.hpp"
+#include "network/InitiationDispatcher.hpp"
 
 #include <iostream>
-#include "core/AEventHandler.hpp"
+#include "network/AEventHandler.hpp"
 
-namespace core {
+namespace network {
 
 InitiationDispatcher *InitiationDispatcher::instance_ = NULL;
 
@@ -73,4 +73,4 @@ EpollManager &InitiationDispatcher::getEpollManager() {
     return epollManager_;
 }
 
-} // namespace core
+} // namespace network

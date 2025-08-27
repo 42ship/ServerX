@@ -2,7 +2,7 @@
 
 #include "AEventHandler.hpp"
 
-namespace core {
+namespace network {
 
 #define BUFFER_LENGTH 1024
 
@@ -36,4 +36,4 @@ private:
     Reactor &operator=(const Reactor &);
 };
 
-} // namespace core
+} // namespace network

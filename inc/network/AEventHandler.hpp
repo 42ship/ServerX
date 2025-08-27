@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-namespace core {
+namespace network {
 
 /**
  * @brief Abstract base class defining the interface for event-driven service handlers.
@@ -30,4 +30,4 @@ private:
     AEventHandler &operator=(const AEventHandler &);
 };
 
-} // namespace core
+} // namespace network

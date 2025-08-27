@@ -2,12 +2,13 @@
 
 #include <signal.h>
 #include <vector>
-#include "InitiationDispatcher.hpp"
-#include "Acceptor.hpp"
+#include "network/InitiationDispatcher.hpp"
+#include "network/Acceptor.hpp"
+#include "config/ServerConfig.hpp"
 
 namespace core {
 
-#define MAX_PORTS 20
+#define MAX_PORTS 1
 
 /**
  * @brief High-level server orchestrator that manages the complete server lifecycle.
@@ -59,6 +60,7 @@ namespace core {
 class Server {
 public:
     Server();
+    explicit Server(const config::ServerConfig &config);
     ~Server();
 
     void start();
@@ -69,11 +71,10 @@ public:
     static void signalHandler(int sig);
 
 private:
-    InitiationDispatcher &dispatcher_;
-    std::vector<Acceptor *> acceptors_;
+    network::InitiationDispatcher &dispatcher_;
+    std::vector<network::Acceptor *> acceptors_;
+    const config::ServerConfig &config_;
     bool isRunning_;
-    static const int BASE_PORT = 2000;
-
     static Server *instance_;
 
     volatile sig_atomic_t shutdownRequested_;

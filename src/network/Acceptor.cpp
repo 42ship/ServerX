@@ -1,14 +1,14 @@
-#include "core/Acceptor.hpp"
+#include "network/Acceptor.hpp"
 
 #include <cerrno>
 #include <cstring>
 #include <iostream>
 #include <sys/socket.h>
-#include "core/InitiationDispatcher.hpp"
-#include "core/Reactor.hpp"
+#include "network/InitiationDispatcher.hpp"
+#include "network/Reactor.hpp"
 #include "core/Socket.hpp"
 
-namespace core {
+namespace network {
 
 Acceptor::Acceptor(int port) : socket_(NULL), port_(port) {
     setupListeningSocket();
@@ -19,7 +19,7 @@ Acceptor::~Acceptor() {
 }
 
 void Acceptor::setupListeningSocket() {
-    socket_ = new Socket(port_);
+    socket_ = new core::Socket(port_);
     if (listen(socket_->getFd(), 10) < 0) {
         delete socket_;
         socket_ = NULL;
@@ -53,4 +53,4 @@ void Acceptor::acceptNewConnection() {
     InitiationDispatcher::getInstance().registerHandler(clientHandler);
 }
 
-} // namespace core
+} // namespace network
