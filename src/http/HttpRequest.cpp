@@ -28,9 +28,12 @@ HttpRequest HttpRequest::parse(string const &buffer) {
 
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r) {
     o << "Method: (" << r.method << ")\nUri: (" << r.uri << ")\nVersion: (" << r.version << ")";
-    for (HttpRequest::HeaderMap::const_iterator it = r.headers.begin(); it != r.headers.end();
-         ++it) {
-        o << "\n" << it->first << ": " << it->second;
+    return o;
+}
+
+ostream &operator<<(ostream &o, HttpRequest::HeaderMap const &r) {
+    for (HttpRequest::HeaderMap::const_iterator it = r.begin(); it != r.end(); ++it) {
+        o << it->first << ": " << it->second << "\n";
     }
     return o;
 }

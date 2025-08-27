@@ -6,7 +6,6 @@ namespace config {
 const int ServerBlock::defaultPort_ = 9191;
 const char *ServerBlock::defaultAddress_ = "0.0.0.0";
 
-
 ServerBlock::ServerBlock() : port_(-1) {
     setDefaultPort();
     setDefaultAddress();
@@ -28,12 +27,9 @@ LocationBlock const *ServerBlock::getLocation(std::string const &server_name) co
     return NULL;
 }
 
+// TODO: proper host matching
 bool ServerBlock::matchServerName(std::string const &needle) const {
-    if (serverNames_.empty())
-        return true;
-    if (std::find(serverNames_.begin(), serverNames_.end(), needle) != serverNames_.end())
-        return true;
-    return false;
+    return details::matchServerName(serverNames_, needle);
 }
 
 void ServerBlock::setDefaultPort() {
@@ -42,5 +38,17 @@ void ServerBlock::setDefaultPort() {
 void ServerBlock::setDefaultAddress() {
     address_ = defaultAddress_;
 }
+
+namespace details {
+
+bool matchServerName(std::vector<std::string> const &names, std::string const &s) {
+    if (names.empty())
+        return true;
+    if (std::find(names.begin(), names.end(), s) != names.end())
+        return true;
+    return false;
+}
+
+} // namespace details
 
 } // namespace config

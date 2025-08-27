@@ -31,6 +31,7 @@ public:
 };
 
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r);
+std::ostream &operator<<(std::ostream &o, HttpRequest::HeaderMap const &r);
 
 namespace detail {
 

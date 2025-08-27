@@ -56,4 +56,10 @@ private:
 
 typedef std::vector<ServerBlock> ServerBlockVec;
 
+namespace details {
+
+bool matchServerName(std::vector<std::string> const &, std::string const &);
+
+}
+
 } // namespace config
