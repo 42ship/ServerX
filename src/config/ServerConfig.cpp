@@ -36,7 +36,7 @@ bool ServerConfig::getServer(int port, std::string const &server_name,
         return false;
     for (size_t i = 0; i < servers_.size(); i++) {
         ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(server_name)) {
+        if (block.port_ == port) {
             res = &block;
             return true;
         }
@@ -45,19 +45,6 @@ bool ServerConfig::getServer(int port, std::string const &server_name,
 }
 
 ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
-    if (server_name.empty())
-        return NULL;
-    size_t temp = server_name.find(':');
-    std::string hostname;
-    if (temp != std::string::npos) {
-        hostname = server_name.substr(0, temp);
-    } else
-        hostname = server_name;
-    for (size_t i = 0; i < servers_.size(); i++) {
-        ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(hostname)) {
-            return &block;
-        }
-    }
-    return NULL;
+    ServerBlock const *res = NULL;
+    return (getServer(port, server_name, res), res);
 }

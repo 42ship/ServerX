@@ -116,4 +116,4 @@ DirectivePair Parser::handleDirective() {
     return d;
 }
 
-}
+} // namespace config

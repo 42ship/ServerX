@@ -36,7 +36,6 @@ public:
      * @return A const pointer to the matched LocationBlock, or NULL if no match is found.
      */
     LocationBlock const *getLocation(std::string const &name) const;
-    bool matchServerName(std::string const &) const;
 
 private:
     void setDefaultPort();

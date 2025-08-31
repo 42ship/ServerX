@@ -27,11 +27,6 @@ LocationBlock const *ServerBlock::getLocation(std::string const &server_name) co
     return NULL;
 }
 
-// TODO: proper host matching
-bool ServerBlock::matchServerName(std::string const &needle) const {
-    return details::matchServerName(serverNames_, needle);
-}
-
 void ServerBlock::setDefaultPort() {
     port_ = defaultPort_;
 }

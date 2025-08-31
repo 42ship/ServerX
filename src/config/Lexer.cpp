@@ -119,4 +119,4 @@ void Lexer::printTokens(TokenArray const &tokens) {
     std::cout << std::endl;
 }
 
-}
+} // namespace config
