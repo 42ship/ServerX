@@ -20,6 +20,13 @@ Socket::Socket(std::string const &address, int port) : fd_(-1) {
     createAndBind(address, port);
 }
 
+Socket::Socket(config::ServerBlock const &s) : fd_(-1) {
+    if (s.getAddress().empty()) {
+        createAndBind("0.0.0.0", s.getPort());
+    } else
+        createAndBind(s.getAddress(), s.getPort());
+}
+
 Socket::~Socket(void) {
     if (fd_ > 0)
         close(fd_);

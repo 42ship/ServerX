@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 namespace config {
 
@@ -19,5 +20,7 @@ public:
     std::string root; //!< The root directory for requests matching this location.
     std::vector<std::string> index; //!< The list of index files to search for.
 };
+
+std::ostream &operator<<(std::ostream &o, LocationBlock const &t);
 
 } // namespace config

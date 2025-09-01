@@ -2,6 +2,7 @@
 
 #include "AEventHandler.hpp"
 #include "core/Socket.hpp"
+#include "config/ServerBlock.hpp"
 
 namespace network {
 
@@ -17,14 +18,15 @@ namespace network {
  */
 class Acceptor : public AEventHandler {
 public:
-    explicit Acceptor(int port);
+    Acceptor(int port);
+    Acceptor(config::ServerBlock const &);
     ~Acceptor();
 
     virtual void handleEvent(uint32_t events);
     virtual int getHandle() const;
 
 private:
-    core::Socket *socket_;
+    core::Socket socket_;
     int port_;
 
     void setupListeningSocket();

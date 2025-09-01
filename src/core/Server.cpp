@@ -18,8 +18,8 @@ namespace core {
 // };
 Server *Server::instance_ = NULL;
 
-Server::Server()
-    : dispatcher_(network::InitiationDispatcher::getInstance()), isRunning_(false), config_(config),
+Server::Server(char const *fpath)
+    : config_(fpath), dispatcher_(network::InitiationDispatcher::getInstance()), isRunning_(false),
       shutdownRequested_(false) {
     instance_ = this;
     setupSignalHandlers();
@@ -107,8 +107,7 @@ void Server::start() {
         setupAcceptors();
         isRunning_ = true;
 
-        std::cout << "Server started on ports " << BASE_PORT << " to "
-                  << (BASE_PORT + MAX_PORTS - 1) << std::endl;
+        std::cout << "Server started" << std::endl;
         std::cout << "Send SIGTERM (kill) or SIGINT (Ctrl+C) for graceful shutdown" << std::endl;
         dispatcher_.handleEvents();
         gracefulShutdown();
@@ -155,14 +154,8 @@ bool Server::getisRunning() const {
 // }
 
 void Server::setupAcceptors() {
-    const std::vector<config::ServerBlock> &servers = config_.getServer();
-
-    std::set<int> uniquePorts;
-
-    for (size_t i = 0; i < servers.size(); ++i) {
-        uniquePorts.insert(servers[i].port_);
-    }
-    for (std::set<int>::const_iterator it = uniquePorts.begin(); it != uniquePorts.end(); ++it) {
+    config::ServerBlockVec const &servers = config_.getServers();
+    for (config::ServerBlockVec::const_iterator it = servers.begin(); it != servers.end(); ++it) {
         network::Acceptor *acceptor = new network::Acceptor(*it);
         acceptors_.push_back(acceptor);
         dispatcher_.registerHandler(acceptor);

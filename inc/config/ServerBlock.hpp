@@ -38,6 +38,11 @@ public:
     LocationBlock const *getLocation(std::string const &name) const;
     bool matchServerName(std::string const &) const;
 
+    int getPort() const;
+    std::string const &getAddress() const;
+
+    friend std::ostream &operator<<(std::ostream &o, ServerBlock const &t);
+
 private:
     void setDefaultPort();
     void setDefaultAddress();

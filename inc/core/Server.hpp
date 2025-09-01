@@ -59,8 +59,7 @@ namespace core {
  */
 class Server {
 public:
-    Server();
-    explicit Server(const config::ServerConfig &config);
+    Server(char const *fpath);
     ~Server();
 
     void start();
@@ -71,9 +70,9 @@ public:
     static void signalHandler(int sig);
 
 private:
+    config::ServerConfig const config_;
     network::InitiationDispatcher &dispatcher_;
     std::vector<network::Acceptor *> acceptors_;
-    const config::ServerConfig &config_;
     bool isRunning_;
     static Server *instance_;
 
