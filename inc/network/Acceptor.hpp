@@ -22,14 +22,12 @@ public:
     Acceptor(config::ServerBlock const &);
     ~Acceptor();
 
-    virtual void handleEvent(uint32_t events);
-    virtual int getHandle() const;
+    void handleEvent(uint32_t events);
+    int getHandle() const;
 
 private:
     core::Socket socket_;
-    int port_;
 
-    void setupListeningSocket();
     void acceptNewConnection();
 
     Acceptor(const Acceptor &);

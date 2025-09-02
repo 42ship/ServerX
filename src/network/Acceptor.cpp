@@ -42,7 +42,7 @@ void Acceptor::acceptNewConnection() {
     struct sockaddr_in clientaddr;
     socklen_t len = sizeof(clientaddr);
 
-    int clientFd = accept(socket_.getFd(), (struct sockaddr *)&clientaddr, &len);
+    int clientFd = accept(socket_.getFd(), reinterpret_cast<sockaddr *>(&clientaddr), &len);
     if (clientFd < 0) {
         std::cerr << "Accept error: " << strerror(errno) << std::endl;
         return;

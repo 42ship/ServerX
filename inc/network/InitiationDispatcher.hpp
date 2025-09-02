@@ -31,7 +31,6 @@ private:
 
     EpollManager epollManager_;
     std::map<int, AEventHandler *> handlers_;
-    static InitiationDispatcher *instance_;
 
     InitiationDispatcher(const InitiationDispatcher &);
     InitiationDispatcher &operator=(const InitiationDispatcher &);

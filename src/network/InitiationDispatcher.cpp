@@ -5,13 +5,9 @@
 
 namespace network {
 
-InitiationDispatcher *InitiationDispatcher::instance_ = NULL;
-
 InitiationDispatcher &InitiationDispatcher::getInstance() {
-    if (instance_ == NULL) {
-        instance_ = new InitiationDispatcher();
-    }
-    return *instance_;
+    static InitiationDispatcher instance;
+    return instance;
 }
 
 InitiationDispatcher::InitiationDispatcher() {
