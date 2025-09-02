@@ -1,4 +1,5 @@
 #include "ServerBlock.hpp"
+#include "LocationBlock.hpp"
 #include <algorithm>
 
 namespace config {
@@ -11,20 +12,8 @@ ServerBlock::ServerBlock() : port_(-1) {
     setDefaultAddress();
 }
 
-bool ServerBlock::getLocation(std::string const &name, LocationBlock const *&res) const {
-    std::map<std::string, LocationBlock>::const_iterator it = locations_.find(name);
-    if (it == locations_.end())
-        return false;
-    res = &it->second;
-    return true;
-}
-
-LocationBlock const *ServerBlock::getLocation(std::string const &server_name) const {
-    LocationBlock const *res;
-    if (getLocation(server_name, res)) {
-        return res;
-    }
-    return NULL;
+LocationBlock const *ServerBlock::getLocation(std::string const &path) const {
+    return details::bestMatchLocation(locations_, path);
 }
 
 void ServerBlock::setDefaultPort() {

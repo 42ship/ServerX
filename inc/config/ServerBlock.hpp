@@ -8,6 +8,8 @@
 
 namespace config {
 
+typedef std::map<std::string, LocationBlock> LocationBlockMap;
+
 /**
  * @class ServerBlock
  * @brief Represents a single 'server' block from the configuration file.
@@ -19,15 +21,6 @@ namespace config {
 class ServerBlock {
 public:
     ServerBlock();
-
-    /**
-     * @brief Retrieves the configuration for a specific location path.
-     *
-     * @param name The request path (URI) to match against a location block.
-     * @param[out] res A reference to a pointer that will be set to the matched LocationBlock.
-     * @return True if a matching location is found, false otherwise.
-     */
-    bool getLocation(std::string const &name, LocationBlock const *&res) const;
 
     /**
      * @brief Retrieves the configuration for a specific location path.
@@ -50,7 +43,7 @@ private:
     int port_;
     std::string address_;
     std::vector<std::string> serverNames_; // TODO: Change CTL for performance
-    std::map<std::string, LocationBlock> locations_;
+    LocationBlockMap locations_;
 };
 
 typedef std::vector<ServerBlock> ServerBlockVec;
@@ -58,7 +51,8 @@ typedef std::vector<ServerBlock> ServerBlockVec;
 namespace details {
 
 bool matchServerName(std::vector<std::string> const &, std::string const &);
+LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string const &path);
 
-}
+} // namespace details
 
 } // namespace config

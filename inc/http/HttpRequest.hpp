@@ -23,6 +23,7 @@ public:
     int status;
     utils::HttpMethod method;
     std::string uri;
+    std::string path;
     std::string version;
     HeaderMap headers;
     std::string body;
@@ -33,13 +34,14 @@ public:
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r);
 std::ostream &operator<<(std::ostream &o, HttpRequest::HeaderMap const &r);
 
-namespace detail {
+namespace details {
 
 bool parseStartLine(HttpRequest &r, std::istringstream &s);
 bool parseHeaderLine(std::string line, std::pair<std::string, std::string> &p);
 bool parseHeaders(HttpRequest::HeaderMap &m, std::istringstream &s);
 bool parseBody(HttpRequest &r, std::istringstream &s);
+std::string extractPathFUri(std::string const &uri);
 
-} // namespace detail
+} // namespace details
 
 } // namespace http

@@ -14,15 +14,15 @@ string ResponseBuilder::build(const HttpResponse &response) {
 
     HttpResponse::HeaderMap const &headers = response.headers;
 
+    if (response.body.size() > 0)
+        oss << "Content-Length: " << response.body.size() << "\r\n";
     for (HttpResponse::HeaderMap::const_iterator it = headers.begin(); it != headers.end(); ++it) {
         oss << it->first << ": " << it->second << "\r\n";
     }
-    if (headers.find("Content-Length") == headers.end()) {
-        oss << "Content-Length: " << response.body.size() << "\r\n";
-    }
 
     oss << "\r\n";
-    // TODO: Add body
+    if (response.body.size() > 0)
+        oss.write(&response.body[0], response.body.size());
     return oss.str();
 }
 
