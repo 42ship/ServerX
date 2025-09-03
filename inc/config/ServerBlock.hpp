@@ -20,6 +20,8 @@ typedef std::map<std::string, LocationBlock> LocationBlockMap;
  */
 class ServerBlock {
 public:
+    std::string root;
+
     ServerBlock();
 
     /**

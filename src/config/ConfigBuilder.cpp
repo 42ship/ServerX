@@ -1,6 +1,9 @@
 #include <stdexcept>
 #include "ConfigException.hpp"
 #include "ConfigBuilder.hpp"
+#include "ConfigNode.hpp"
+#include "LocationBlock.hpp"
+#include "ServerBlock.hpp"
 #include "config/utils.hpp"
 
 namespace config {
@@ -11,6 +14,7 @@ ConfigBuilder::ServerHandlerMap const &ConfigBuilder::getServerDirectiveHandlers
         return map;
     map["listen"] = &ConfigBuilder::handleListen;
     map["server_name"] = &ConfigBuilder::handleServerName;
+    map["root"] = &ConfigBuilder::handleRoot;
     return map;
 }
 
@@ -129,6 +133,13 @@ void ConfigBuilder::handleServerName(ServerBlock &cfg, DirectiveArgs const &args
     for (DirectiveArgs::const_iterator it = args.begin(); it != args.end(); ++it) {
         cfg.serverNames_.push_back(*it);
     }
+}
+
+void ConfigBuilder::handleRoot(ServerBlock &cfg, DirectiveArgs const &args) {
+    if (args.size() != 1) {
+        throw ConfigError("Root directive requires exactly 1 argument");
+    }
+    cfg.root = args[0];
 }
 
 void ConfigBuilder::handleRoot(LocationBlock &loc, DirectiveArgs const &args) {
