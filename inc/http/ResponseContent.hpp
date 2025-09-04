@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <string>
+#include "MimeTypes.hpp"
 
 #define MIME_TYPES_PATH "config/mime.types"
 
@@ -32,14 +33,16 @@ public:
      * and determines its MIME type by calling setFileType().
      *
      * @param path Path to the file to be read.
+     * @param mime Pointer to mime tipes object created from @ref MIME_TYPES_PATH file
      */
-    ResponseContent(const char *path);
+    ResponseContent(const char *path, MimeTypes *mime);
 
     /**
      * @brief Constructs the response from raw body content and MIME type.
      *
      * @param body Body content to store.
      * @param type MIME type to associate with the body.
+     *
      */
     ResponseContent(const std::string &body, const std::string &type);
 
@@ -107,8 +110,9 @@ private:
      * "text/plain".
      *
      * @param path Path to the file whose MIME type should be determined.
+     * @param mime Pointer to mime tipes object created from @ref MIME_TYPES_PATH file
      */
-    void setFileType(const std::string &path);
+    void setFileType(const std::string &path, MimeTypes *mime);
 };
 
 } // namespace http

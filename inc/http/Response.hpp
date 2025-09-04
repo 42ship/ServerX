@@ -1,11 +1,13 @@
 #pragma once
 
 #include <string>
-#include <sstream>
 #include "HttpStatus.hpp"
 #include "ResponseContent.hpp"
 
 namespace http {
+
+typedef std::map<std::string, std::string> HeaderMap;
+
 /**
  * @class Response
  * @brief Represents a complete HTTP response message.
@@ -31,7 +33,7 @@ public:
      * @param content     The response body and MIME type.
      * @param connectionType The connection type (e.g., "close").
      */
-    Response(const std::string &httpVersion, const std::string &connectionType,
+    Response(const std::string &httpVersion, const HeaderMap &headers,
              const http::StatusCode &statusCode, const ResponseContent &content);
 
     /**
@@ -61,6 +63,14 @@ public:
     const std::string &getHttpVersion() const;
 
     /**
+     * @brief Gets the HTTP headers of the response
+     * 
+     * @returns Constant reference to the internal HeaderMap 
+     * containing all response headers.
+     */
+    const HeaderMap &getHeaders() const;
+
+    /**
      * @brief Gets the response content (body + MIME type).
      *
      * @return Constant reference to the ResponseContent object.
@@ -75,27 +85,15 @@ public:
     const http::StatusCode &getStatusCode() const;
 
     /**
-     * @brief Converts the response to a string representation.
-     *
-     * Builds the full HTTP response string including headers and body.
-     *
-     * @return The complete HTTP response as a string.
-     */
-    std::string toString() const;
-
-    /**
      * @brief Destructor.
      */
     ~Response();
 
 private:
-    std::string httpVersion_;       /**< HTTP version string, e.g. "HTTP/1.1". */
-    std::string connectionType_;    /**< Connection type, e.g. "close". */
-    http::StatusCode statusCode_;   /**< HTTP status code and reason phrase. */
-    ResponseContent content_;       /**< Response body and its MIME type. */
-    std::ostringstream respStream_; /**< Stream for building the response string. */
-
-    void buildResponseStream();
+    std::string httpVersion_;     /**< HTTP version string, e.g. "HTTP/1.1". */
+    HeaderMap headers_;           /**< HTTP headers */
+    http::StatusCode statusCode_; /**< HTTP status code and reason phrase. */
+    ResponseContent content_;     /**< Response body and its MIME type. */
 };
 
 } // namespace http

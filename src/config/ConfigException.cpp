@@ -1,7 +1,6 @@
 #include "ConfigException.hpp"
 #include <iostream>
 
-
 namespace config {
 
 // TODO: use global variable instead of macro

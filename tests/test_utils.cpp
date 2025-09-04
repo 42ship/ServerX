@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
+#include "test_utils.hpp"
 
 bool removeDirectoryRecursive(const std::string &path) {
     DIR *dir = opendir(path.c_str());
@@ -41,6 +42,12 @@ bool removeDirectoryRecursive(const std::string &path) {
 
 void writeFile(const std::string& content, const char* path) {
     std::ofstream out(path);
+    out << content;
+    out.close();
+}
+
+void writeFile(const std::string &content, const char *path, int mode) {
+    std::ofstream out(path, std::ios_base::openmode(mode));
     out << content;
     out.close();
 }

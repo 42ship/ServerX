@@ -1,12 +1,9 @@
-#include "ResponseSend.hpp"
+#include "http/ResponseSend.hpp"
+
 #include <unistd.h>
 #include <errno.h>
 #include <sys/socket.h>
 #include <iostream>
-
-bool ResponseSend::sendAll(int clientFd, const http::Response &response) {
-    return sendAll(clientFd, response.toString());
-}
 
 bool ResponseSend::sendAll(int clientFd, const std::string &data) {
     size_t sent = 0;

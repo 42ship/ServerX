@@ -1,3 +1,6 @@
+# ==============================
+#  Text and structured formats
+# ==============================
 text/html            html htm
 text/css             css
 text/csv             csv
@@ -5,9 +8,15 @@ text/plain           txt
 application/xml      xml
 application/json     json
 
+# ==============================
+#  JavaScript
+# ==============================
 application/javascript  mjs
 application/javascript  js
 
+# ==============================
+#  Images
+# ==============================
 image/png            png
 image/jpeg           jpg jpeg
 image/gif            gif
@@ -17,24 +26,36 @@ image/x-icon         ico
 image/bmp            bmp
 image/tiff           tif tiff
 
+# ==============================
+#  Audio formats
+# ==============================
 audio/mpeg           mp3
 audio/wav            wav
 audio/ogg            ogg
 audio/mp4            m4a
 audio/flac           flac
 
+# ==============================
+#  Video formats
+# ==============================
 video/mp4            mp4 m4v
 video/webm           webm
 video/ogg            ogv
 video/x-msvideo      avi
 video/quicktime      mov
 
+# ==============================
+#  Fonts
+# ==============================
 font/woff            woff
 font/woff2           woff2
 font/ttf             ttf
 font/otf             otf
 application/vnd.ms-fontobject eot
 
+# ==============================
+#  Archives and documents
+# ==============================
 application/pdf      pdf
 application/zip      zip
 application/x-tar    tar
