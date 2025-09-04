@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <ostream>
 
 namespace http {
 
@@ -23,5 +24,7 @@ public:
     HeaderMap headers;
     std::vector<char> body;
 };
+
+std::ostream &operator<<(std::ostream &o, HttpResponse const &r);
 
 } // namespace http

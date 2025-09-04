@@ -15,6 +15,7 @@ namespace config {
 class ServerConfig {
 public:
     ServerConfig(char const *fpath);
+    ServerConfig(std::string const &);
 
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.

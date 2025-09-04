@@ -36,6 +36,7 @@ private:
 
     void handleListen(ServerBlock &, DirectiveArgs const &);
     void handleServerName(ServerBlock &, DirectiveArgs const &);
+    void handleRoot(ServerBlock &cfg, DirectiveArgs const &args);
     void handleRoot(LocationBlock &, DirectiveArgs const &);
     void handleIndex(LocationBlock &, DirectiveArgs const &);
 };

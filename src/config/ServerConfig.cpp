@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <string>
 
 #include "Lexer.hpp"
 #include "Parser.hpp"
@@ -8,6 +9,12 @@
 #include "ServerConfig.hpp"
 
 using namespace config;
+
+ServerConfig::ServerConfig(std::string const &content) {
+    TokenArray tokens = Lexer::tokenize(content);
+    std::vector<ConfigNode> ir = Parser::parse(tokens);
+    servers_ = ConfigBuilder::build(ir);
+}
 
 ServerConfig::ServerConfig(char const *fpath) {
     std::ifstream file(fpath);
@@ -29,7 +36,7 @@ bool ServerConfig::getServer(int port, std::string const &server_name,
         return false;
     for (size_t i = 0; i < servers_.size(); i++) {
         ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(server_name)) {
+        if (block.port_ == port) {
             res = &block;
             return true;
         }
@@ -38,13 +45,6 @@ bool ServerConfig::getServer(int port, std::string const &server_name,
 }
 
 ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
-    if (server_name.empty())
-        return NULL;
-    for (size_t i = 0; i < servers_.size(); i++) {
-        ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(server_name)) {
-            return &block;
-        }
-    }
-    return NULL;
+    ServerBlock const *res = NULL;
+    return (getServer(port, server_name, res), res);
 }

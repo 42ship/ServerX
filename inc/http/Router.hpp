@@ -26,7 +26,7 @@ public:
      * @return A RouterResult containing the matched handler and config blocks.
      */
     RouterResult route(int port, HttpRequest &request) const {
-        config::ServerBlock const *server = config_.getServer(port, request.headers["host"]);
+        config::ServerBlock const *server = config_.getServer(port, request.headers["Host"]);
         if (request.status != 200) {
             return RouterResult(error_, server);
         }

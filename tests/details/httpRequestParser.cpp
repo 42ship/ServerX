@@ -10,13 +10,13 @@ using namespace utils;
 bool testStartLine(const std::string &line, HttpRequest &req) {
     req = HttpRequest();
     istringstream stream(line);
-    return detail::parseStartLine(req, stream);
+    return details::parseStartLine(req, stream);
 }
 
 bool testHeaders(const std::string &headerBlock, HttpRequest &req) {
     req = HttpRequest(); // Reset for a clean state
     istringstream stream(headerBlock);
-    return detail::parseHeaders(req.headers, stream);
+    return details::parseHeaders(req.headers, stream);
 }
 
 TEST_CASE("HTTP Request Start Line Parsing") {
