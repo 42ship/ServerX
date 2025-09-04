@@ -20,6 +20,7 @@ Status errnoErrorHandling() {
     return INTERNAL_SERVER_ERROR;
 }
 
+// To do handle custom error pages
 Response handleError(HttpRequest const &req, MimeTypes *mime) {
     Status code = errnoErrorHandling();
     if (access(defaultErrorFile, R_OK) == 0) {
@@ -39,10 +40,9 @@ Response handleError(HttpRequest const &req, MimeTypes *mime) {
 Response buildRawResponse(HttpRequest const &req, config::ServerBlock const *s,
                           config::LocationBlock const *l, MimeTypes *mime,
                           const std::string &fileName) {
-    (void)s;
     if (!fileName.empty()) {
         errno = 0;
-        std::string path = l->root + l->path + fileName;
+        std::string path = s->root + l->root + l->path + fileName;
         if (access(path.c_str(), R_OK) == 0) {
             return Response(req.version, req.headers, StatusCode(OK),
                             ResponseContent(path.c_str(), mime));
@@ -72,7 +72,7 @@ Response StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock c
             for (std::vector<std::string>::const_iterator it = l->index.begin();
                  it != l->index.end(); it++) {
                 fileName = *it;
-                std::string tmpPath = l->root + l->path + fileName;
+                std::string tmpPath = s->root + l->root + l->path + fileName;
                 if (access(tmpPath.c_str(), R_OK) == 0)
                     break;
             }

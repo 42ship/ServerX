@@ -23,7 +23,7 @@ TEST_CASE("StaticFileHandler test case")
         const config::ServerBlock *s;
         cfg.getServer(9191, "localhost", s);
         const config::LocationBlock *l;
-        s->getLocation("/", l);
+        l = s->getLocation("/");
         http::Response res;
         res = h1.handle(req, s, l, mime);
         CHECK(res.getStatusCode().getCode() == http::OK);
