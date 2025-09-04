@@ -90,4 +90,5 @@ TEST_CASE("Test MimeTypes Class") {
         std::cerr << "TEST FAILED with exception: " << ex.what() << "\n";
         return ;
     }
+    unlink(kPath.c_str());
 }
