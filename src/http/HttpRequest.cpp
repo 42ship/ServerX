@@ -8,7 +8,7 @@ namespace http {
 
 using namespace details;
 
-HttpRequest::HttpRequest() : status(200) {
+HttpRequest::HttpRequest() : status(OK) {
 }
 
 HttpRequest HttpRequest::parse(string const &buffer) {
@@ -16,7 +16,7 @@ HttpRequest HttpRequest::parse(string const &buffer) {
     istringstream s(buffer);
 
     if (!parseStartLine(res, s) || !parseHeaders(res.headers, s) || !parseBody(res, s)) {
-        res.status = 400;
+        res.status = BAD_REQUEST;
     }
     res.path = extractPathFUri(res.uri);
     return res;

@@ -1,18 +1,26 @@
 #include "http/error_pages.hpp"
+#include <sstream>
+#include <string>
+#include <map>
+#include <utility>
+
+using namespace std;
 
 namespace http {
 
 namespace error_pages {
 
 namespace {
-Response errorPageHtml(const std::string &httpVersion, const HeaderMap &headers,
-                       const StatusCode &code) {
+
+typedef map<Status, vector<char> > ErrorPageCache;
+
+static std::vector<char> createErrorBody(Status code, char const *message) {
     std::ostringstream body;
     body << "<!DOCTYPE html>\n"
          << "<html lang=\"en\">\n"
          << "<head>\n"
          << "    <meta charset=\"UTF-8\" />\n"
-         << "    <title>Error</title>\n"
+         << "    <title>" << message << "</title>\n"
          << "    <style>\n"
          << "        body {\n"
          << "            font-family: system-ui, -apple-system, sans-serif;\n"
@@ -46,24 +54,34 @@ Response errorPageHtml(const std::string &httpVersion, const HeaderMap &headers,
          << "</head>\n"
          << "<body>\n"
          << "  <div class=\"error-container\">\n"
-         << "    <h1>" << code.getCode() << "</h1>\n"
-         << "    <p>" << code.getMessage() << "</p>\n"
+         << "    <h1>" << code << "</h1>\n"
+         << "    <p>" << message << "</p>\n"
          << "  </div>\n"
          << "</body>\n";
+    string const &s = body.str();
+    return vector<char>(s.begin(), s.end());
+}
 
-    return Response(httpVersion, headers, code, ResponseContent(body.str(), "text/html"));
+static vector<char> const &getCacherErrorBody(Status code, char const *message) {
+    static ErrorPageCache cache;
+
+    ErrorPageCache::const_iterator it = cache.find(code);
+    if (it != cache.end()) {
+        return it->second;
+    }
+    cache.insert(make_pair(code, createErrorBody(code, message)));
+    return cache[code];
 }
 } // namespace
-Response notFound(const std::string &httpVersion, const HeaderMap &headers) {
-    return errorPageHtml(httpVersion, headers, StatusCode(NOT_FOUND));
-}
-Response forbidden(const std::string &httpVersion, const HeaderMap &headers) {
 
-    return errorPageHtml(httpVersion, headers, StatusCode(FORBIDDEN));
-}
-Response internalServerError(const std::string &httpVersion, const HeaderMap &headers) {
+HttpResponse generateErrorResponse(Status code, const std::string &httpVersion) {
+    HttpResponse res(code, httpVersion);
 
-    return errorPageHtml(httpVersion, headers, StatusCode(INTERNAL_SERVER_ERROR));
+    std::vector<char> const &body = getCacherErrorBody(code, res.getResponsePhrase());
+    res.setBodyInMemory(body, "text/html");
+    return res;
 }
+
 } // namespace error_pages
+
 } // namespace http

@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <fstream>
+#include <sys/stat.h>
 
 MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
     mimeTypes_ = std::map<std::string, std::string>();
@@ -30,8 +31,7 @@ MimeTypes &MimeTypes::operator=(const MimeTypes &other) {
     return *this;
 }
 
-const std::string MimeTypes::getMimeType(const std::string &extension) {
-    reload();
+const std::string MimeTypes::getMimeType(const std::string &extension) const {
     if (mimeTypes_.size() == 0) {
         return "text/plain";
     }

@@ -10,4 +10,6 @@ std::ostream &operator<<(std::ostream &o, HttpMethod);
 
 HttpMethod matchHttpMethod(std::string const &);
 
+std::string getFileExtension(std::string const &fpath);
+
 } // namespace utils

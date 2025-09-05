@@ -1,10 +1,10 @@
 #pragma once
 
 #include "http/utils.hpp"
+#include "http/HttpStatus.hpp"
 #include <string>
 #include <map>
 #include <ostream>
-#include <sstream>
 
 namespace http {
 
@@ -20,7 +20,7 @@ public:
     HttpRequest();
     typedef std::map<std::string, std::string> HeaderMap;
 
-    int status;
+    http::Status status;
     utils::HttpMethod method;
     std::string uri;
     std::string path;

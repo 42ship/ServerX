@@ -1,4 +1,5 @@
 #include "http/utils.hpp"
+#include <string>
 
 namespace utils {
 
@@ -33,6 +34,14 @@ std::ostream &operator<<(std::ostream &o, HttpMethod m) {
         break;
     }
     return o;
+}
+
+std::string getFileExtension(const std::string &fpath) {
+    size_t dotPos = fpath.find('.');
+    if (dotPos != std::string::npos) {
+        return fpath.substr(dotPos + 1);
+    }
+    return "";
 }
 
 } // namespace utils

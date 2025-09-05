@@ -3,12 +3,11 @@
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "http/HttpRequest.hpp"
-#include "Response.hpp"
+#include "HttpResponse.hpp"
 #include "RouterResult.hpp"
+#include "http/MimeTypes.hpp"
 
 namespace http {
-
-#define defaultErrorFile "errorpage.html"
 
 /**
  * @class IHandler
@@ -26,13 +25,15 @@ public:
      * @param location The matched location configuration context.
      * @return An HttpResponse object representing the result of the handling.
      */
-    virtual Response handle(HttpRequest const &, config::ServerBlock const *,
-                                config::LocationBlock const *, MimeTypes *) const = 0;
+    virtual HttpResponse handle(HttpRequest const &, config::ServerBlock const *,
+                                config::LocationBlock const *) const = 0;
 
     /**
      * @brief Convenience overload to handle a request using a RouterResult.
      */
-    Response handle(HttpRequest const &h, RouterResult const &r, MimeTypes *mime) const;
+    HttpResponse handle(HttpRequest const &h, RouterResult const &r) const {
+        return handle(h, r.server, r.location);
+    }
 };
 
 /**
@@ -40,8 +41,13 @@ public:
  */
 class StaticFileHandler : public IHandler {
 public:
-    Response handle(HttpRequest const &req, config::ServerBlock const *s = NULL,
-                        config::LocationBlock const *l = NULL, MimeTypes *mime = NULL) const;
+    StaticFileHandler(MimeTypes const &);
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+                        config::LocationBlock const *l) const;
+
+private:
+    StaticFileHandler();
+    MimeTypes const &mimeTypes_;
 };
 
 /**
@@ -49,24 +55,24 @@ public:
  */
 class NotFoundHandler : public IHandler {
 public:
-    Response handle(HttpRequest const &req, config::ServerBlock const *s = NULL,
-                        config::LocationBlock const *l = NULL, MimeTypes* mime = NULL) const;
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s = NULL,
+                        config::LocationBlock const *l = NULL) const;
 };
 
 /**
  * @brief Handles the execution of CGI scripts.
  */
 class CGIHandler : public IHandler {
-    Response handle(HttpRequest const &, config::ServerBlock const *s = NULL,
-                        config::LocationBlock const *l = NULL, MimeTypes *mime = NULL) const;
+    HttpResponse handle(HttpRequest const &, config::ServerBlock const *s = NULL,
+                        config::LocationBlock const *l = NULL) const;
 };
 
 /**
  * @brief Handles the execution of CGI scripts.
  */
-class ErrorHandler : public IHandler {
-    Response handle(HttpRequest const &, config::ServerBlock const *s = NULL,
-                        config::LocationBlock const *l = NULL, MimeTypes *mime = NULL) const;
+class DefaultErrorHandler : public IHandler {
+    HttpResponse handle(HttpRequest const &, config::ServerBlock const *s = NULL,
+                        config::LocationBlock const *l = NULL) const;
 };
 
 } // namespace http

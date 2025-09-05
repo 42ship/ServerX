@@ -2,9 +2,7 @@
 
 #include <string>
 #include <map>
-#include <iostream>
-#include <fcntl.h> /* Definition of AT_* constants */
-#include <sys/stat.h>
+#include <time.h>
 
 #define MIME_TYPES_PATH "config/mime.types"
 
@@ -52,7 +50,7 @@ public:
      * @return The corresponding MIME type as a string, or "text/plain"
      *         if the extension is not recognized.
      */
-    const std::string getMimeType(const std::string &extension);
+    const std::string getMimeType(const std::string &extension) const;
 
     ~MimeTypes();
 

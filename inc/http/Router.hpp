@@ -2,6 +2,7 @@
 
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
+#include "http/MimeTypes.hpp"
 #include "http/RouterResult.hpp"
 #include "config/ServerConfig.hpp"
 
@@ -16,7 +17,8 @@ namespace http {
  */
 class Router {
 public:
-    Router(config::ServerConfig const &config) : config_(config) {
+    Router(config::ServerConfig const &config, MimeTypes const &mime)
+        : config_(config), staticFile_(mime) {
     }
 
     /**
@@ -49,7 +51,7 @@ private:
     NotFoundHandler const notFound_;
     StaticFileHandler const staticFile_;
     CGIHandler const cgi_;
-    ErrorHandler const error_;
+    DefaultErrorHandler const error_;
 };
 
 } // namespace http
