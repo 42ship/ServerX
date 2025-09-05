@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include "network/InitiationDispatcher.hpp"
 #include "network/Reactor.hpp"
-#include "core/Socket.hpp"
+#include "network/Socket.hpp"
 #include "config/ServerBlock.hpp"
 
 namespace network {

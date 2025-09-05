@@ -5,6 +5,7 @@
 #include "network/InitiationDispatcher.hpp"
 #include "network/Acceptor.hpp"
 #include "config/ServerConfig.hpp"
+#include "http/MimeTypes.hpp"
 
 namespace core {
 
@@ -75,6 +76,7 @@ private:
     std::vector<network::Acceptor *> acceptors_;
     bool isRunning_;
     static Server *instance_;
+    http::MimeTypes mimeTypes_;
 
     volatile sig_atomic_t shutdownRequested_;
     void setupAcceptors();

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <sys/stat.h>
 
+namespace http {
+
 MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
     mimeTypes_ = std::map<std::string, std::string>();
     rtime_.tv_nsec = 0;
@@ -110,3 +112,5 @@ size_t MimeTypes::findFirstNonSpace(const std::string str, size_t startPos) {
 
 MimeTypes::~MimeTypes() {
 }
+
+} // namespace http

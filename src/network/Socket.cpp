@@ -1,4 +1,4 @@
-#include "core/Socket.hpp"
+#include "network/Socket.hpp"
 
 #include <arpa/inet.h>
 #include <cerrno>
@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <unistd.h>
 
-namespace core {
+namespace network {
 
 Socket::Socket(void) : fd_(-1) {
     std::memset(&addr_, 0, sizeof(addr_));
@@ -79,4 +79,4 @@ void Socket::createAndBind(std::string const &address, int port) {
     }
 }
 
-} // namespace core
+} // namespace network

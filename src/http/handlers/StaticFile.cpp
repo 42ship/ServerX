@@ -52,6 +52,7 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
     }
     if (!(statbuf.st_mode & S_IRUSR))
         return error_pages::generateErrorResponse(FORBIDDEN, req.version);
+    // TODO: Add Body in memory if the file is small
     int fd = open(path.c_str(), O_RDONLY);
     if (fd == -1) {
         return error_pages::generateErrorResponse(INTERNAL_SERVER_ERROR, req.version);

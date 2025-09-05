@@ -4,6 +4,8 @@
 #include <map>
 #include <time.h>
 
+namespace http {
+
 #define MIME_TYPES_PATH "config/mime.types"
 
 class MimeTypes {
@@ -78,3 +80,5 @@ private:
     size_t findFirstSpace(const std::string str);
     size_t findFirstNonSpace(const std::string str, size_t startPos);
 };
+
+} // namespace http

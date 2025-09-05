@@ -4,7 +4,7 @@
 #include <string>
 #include "config/ServerBlock.hpp"
 
-namespace core {
+namespace network {
 
 class Socket {
 public:
@@ -28,4 +28,4 @@ private:
     Socket const &operator=(Socket const &rhs);
 };
 
-} // namespace core
+} // namespace network

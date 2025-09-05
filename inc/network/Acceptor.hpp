@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "core/Socket.hpp"
+#include "network/Socket.hpp"
 #include "config/ServerBlock.hpp"
 
 namespace network {
@@ -26,7 +26,7 @@ public:
     int getHandle() const;
 
 private:
-    core::Socket socket_;
+    Socket socket_;
 
     void acceptNewConnection();
 
