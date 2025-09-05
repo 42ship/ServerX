@@ -1,10 +1,7 @@
-#include <stdexcept>
-#include "ConfigException.hpp"
-#include "ConfigBuilder.hpp"
-#include "ConfigNode.hpp"
-#include "LocationBlock.hpp"
-#include "ServerBlock.hpp"
+#include "config/ConfigBuilder.hpp"
 #include "config/utils.hpp"
+#include "config/ConfigException.hpp"
+#include <stdexcept>
 
 namespace config {
 

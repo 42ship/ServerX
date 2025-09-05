@@ -1,4 +1,5 @@
-#include "Lexer.hpp"
+#include "config/Lexer.hpp"
+
 #include <iostream>
 
 namespace config {

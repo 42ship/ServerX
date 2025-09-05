@@ -1,0 +1,55 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/szhong/code/ServerX/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+Client	./inc/Client.hpp	/^class Client {$/;"	c
+Client	./src/Client.cpp	/^Client::Client(int fd) : fd_(fd), connected_(true) {$/;"	f	class:Client
+EpollManager	./inc/EpollManager.hpp	/^class EpollManager {$/;"	c
+EpollManager	./src/EpollManager.cpp	/^EpollManager::EpollManager() : epollFd_(-1) {$/;"	f	class:EpollManager
+Server	./inc/Server.hpp	/^class Server {$/;"	c
+Server	./src/Server.cpp	/^Server::Server() : listeningSocket_(NULL), isRunning_(false) {$/;"	f	class:Server
+Socket	./inc/Socket.hpp	/^class Socket {$/;"	c
+Socket	./src/Socket.cpp	/^Socket::Socket(int port) : fd_(-1) {$/;"	f	class:Socket
+Socket	./src/Socket.cpp	/^Socket::Socket(std::string const &address, int port) : fd_(-1) {$/;"	f	class:Socket
+Socket	./src/Socket.cpp	/^Socket::Socket(void) : fd_(-1) {$/;"	f	class:Socket
+addFd	./src/EpollManager.cpp	/^void EpollManager::addFd(int fd, uint32_t events) {$/;"	f	class:EpollManager	typeref:typename:void
+addr_	./inc/Socket.hpp	/^    sockaddr_in addr_;$/;"	m	class:Socket	typeref:typename:sockaddr_in
+bindTo	./src/Socket.cpp	/^void Socket::bindTo(int port) {$/;"	f	class:Socket	typeref:typename:void
+bindTo	./src/Socket.cpp	/^void Socket::bindTo(std::string const &address, int port) {$/;"	f	class:Socket	typeref:typename:void
+cleanup	./src/Server.cpp	/^void Server::cleanup() {$/;"	f	class:Server	typeref:typename:void
+clients_	./inc/Server.hpp	/^    std::map<int, Client *> clients_;$/;"	m	class:Server	typeref:typename:std::map<int,Client * >
+connected_	./inc/Client.hpp	/^    bool connected_;$/;"	m	class:Client	typeref:typename:bool
+createAndBind	./src/Socket.cpp	/^void Socket::createAndBind(std::string const &address, int port) {$/;"	f	class:Socket	typeref:typename:void
+disconnect	./src/Client.cpp	/^void Client::disconnect() {$/;"	f	class:Client	typeref:typename:void
+epollFd_	./inc/EpollManager.hpp	/^    int epollFd_;$/;"	m	class:EpollManager	typeref:typename:int
+epollManager_	./inc/Server.hpp	/^    EpollManager epollManager_;$/;"	m	class:Server	typeref:typename:EpollManager
+fd_	./inc/Client.hpp	/^    int fd_;$/;"	m	class:Client	typeref:typename:int
+fd_	./inc/Socket.hpp	/^    int fd_;$/;"	m	class:Socket	typeref:typename:int
+getAddr	./src/Socket.cpp	/^const struct sockaddr_in &Socket::getAddr(void) const {$/;"	f	class:Socket	typeref:typename:const struct sockaddr_in &
+getFd	./src/Socket.cpp	/^int Socket::getFd(void) const {$/;"	f	class:Socket	typeref:typename:int
+handleClientData	./src/Server.cpp	/^void Server::handleClientData(int clientFd) {$/;"	f	class:Server	typeref:typename:void
+handleClientDisconnection	./src/Server.cpp	/^void Server::handleClientDisconnection(int clientFd) {$/;"	f	class:Server	typeref:typename:void
+handleNewConnection	./src/Server.cpp	/^void Server::handleNewConnection() {$/;"	f	class:Server	typeref:typename:void
+isConnected	./src/Client.cpp	/^bool Client::isConnected() const {$/;"	f	class:Client	typeref:typename:bool
+isRunning_	./inc/Server.hpp	/^    bool isRunning_;$/;"	m	class:Server	typeref:typename:bool
+listeningSocket_	./inc/Server.hpp	/^    Socket *listeningSocket_;$/;"	m	class:Server	typeref:typename:Socket *
+main	./src/main.cpp	/^int main(void) {$/;"	f	typeref:typename:int
+modifyFd	./src/EpollManager.cpp	/^void EpollManager::modifyFd(int fd, uint32_t events) {$/;"	f	class:EpollManager	typeref:typename:void
+readData	./src/Client.cpp	/^int Client::readData(char *buffer, size_t size) {$/;"	f	class:Client	typeref:typename:int
+removeFd	./src/EpollManager.cpp	/^void EpollManager::removeFd(int fd) {$/;"	f	class:EpollManager	typeref:typename:void
+run	./src/Server.cpp	/^void Server::run() {$/;"	f	class:Server	typeref:typename:void
+setupSocket	./src/Server.cpp	/^void Server::setupSocket(Socket *socket) {$/;"	f	class:Server	typeref:typename:void
+stop	./src/Server.cpp	/^void Server::stop() {$/;"	f	class:Server	typeref:typename:void
+waitForEvents	./src/EpollManager.cpp	/^int EpollManager::waitForEvents(struct epoll_event *events, int maxEvents, int timeout) {$/;"	f	class:EpollManager	typeref:typename:int
+writeData	./src/Client.cpp	/^int Client::writeData(const char *data, size_t size) {$/;"	f	class:Client	typeref:typename:int
+~Client	./src/Client.cpp	/^Client::~Client() {$/;"	f	class:Client
+~EpollManager	./src/EpollManager.cpp	/^EpollManager::~EpollManager() {$/;"	f	class:EpollManager
+~Server	./src/Server.cpp	/^Server::~Server() {$/;"	f	class:Server
+~Socket	./src/Socket.cpp	/^Socket::~Socket(void) {$/;"	f	class:Socket

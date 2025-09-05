@@ -1,4 +1,5 @@
 #include "config/Parser.hpp"
+
 #include "config/ConfigException.hpp"
 
 namespace config {

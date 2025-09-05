@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 namespace config {
 
@@ -24,5 +25,7 @@ public:
         return !cgi_pass.empty();
     }
 };
+
+std::ostream &operator<<(std::ostream &o, LocationBlock const &t);
 
 } // namespace config

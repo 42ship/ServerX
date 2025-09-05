@@ -2,12 +2,16 @@
 
 #include <netdb.h>
 #include <string>
+#include "config/ServerBlock.hpp"
+
+namespace core {
 
 class Socket {
 public:
     Socket();
-    explicit Socket(int port);
+    Socket(int port);
     Socket(std::string const &address, int port);
+    Socket(config::ServerBlock const &);
     ~Socket();
 
     int getFd(void) const;
@@ -23,3 +27,5 @@ private:
     Socket(Socket const &rhs);
     Socket const &operator=(Socket const &rhs);
 };
+
+} // namespace core

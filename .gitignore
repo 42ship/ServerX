@@ -12,4 +12,9 @@ compile_commands.json
 run_tests
 doxy/
 lib/
+<<<<<<< HEAD
 logs/
+=======
+.vscode/
+log_valgrind/
+>>>>>>> origin/refactor/reactor-design-pattern

@@ -1,14 +1,13 @@
+#include "config/ServerConfig.hpp"
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <string>
+#include "config/Lexer.hpp"
+#include "config/Parser.hpp"
+#include "config/ConfigBuilder.hpp"
 
-#include "Lexer.hpp"
-#include "Parser.hpp"
-#include "ConfigBuilder.hpp"
-#include "ServerConfig.hpp"
-
-using namespace config;
+namespace config {
 
 ServerConfig::ServerConfig(std::string const &content) {
     TokenArray tokens = Lexer::tokenize(content);
@@ -28,23 +27,32 @@ ServerConfig::ServerConfig(char const *fpath) {
     TokenArray tokens = Lexer::tokenize(content);
     std::vector<ConfigNode> ir = Parser::parse(tokens);
     servers_ = ConfigBuilder::build(ir);
+    std::cout << *this << std::endl;
 }
 
-bool ServerConfig::getServer(int port, std::string const &server_name,
-                             ServerBlock const *&res) const {
-    if (server_name.empty())
-        return false;
-    for (size_t i = 0; i < servers_.size(); i++) {
-        ServerBlock const &block = servers_[i];
-        if (block.port_ == port) {
-            res = &block;
-            return true;
-        }
-    }
-    return false;
+ServerBlockVec const &ServerConfig::getServers() const {
+    return servers_;
 }
 
 ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
-    ServerBlock const *res = NULL;
-    return (getServer(port, server_name, res), res);
+    if (server_name.empty())
+        return NULL;
+    for (size_t i = 0; i < servers_.size(); i++) {
+        ServerBlock const &block = servers_[i];
+        if (block.port_ == port) {
+            return &block;
+        }
+    }
+    return NULL;
 }
+
+std::ostream &operator<<(std::ostream &o, ServerConfig const &t) {
+    o << "### Server Configuration Start ###\n\n";
+    for (ServerBlockVec::const_iterator it = t.servers_.begin(); it != t.servers_.end(); ++it) {
+        o << *it << "\n";
+    }
+    o << "### Server Configuration End ###\n";
+    return o;
+}
+
+} // namespace config

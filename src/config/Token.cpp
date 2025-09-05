@@ -1,4 +1,5 @@
-#include "Token.hpp"
+#include "config/Token.hpp"
+
 #include <iostream>
 
 namespace config {
