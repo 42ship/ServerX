@@ -12,28 +12,8 @@ ServerBlock::ServerBlock() : port_(-1) {
     setDefaultAddress();
 }
 
-bool ServerBlock::getLocation(std::string const &name, LocationBlock const *&res) const {
-    std::map<std::string, LocationBlock>::const_iterator it = locations_.find(name);
-    if (it == locations_.end())
-        return false;
-    res = &it->second;
-    return true;
-}
-
-LocationBlock const *ServerBlock::getLocation(std::string const &server_name) const {
-    LocationBlock const *res;
-    if (getLocation(server_name, res)) {
-        return res;
-    }
-    return NULL;
-}
-
-bool ServerBlock::matchServerName(std::string const &needle) const {
-    if (serverNames_.empty())
-        return true;
-    if (std::find(serverNames_.begin(), serverNames_.end(), needle) != serverNames_.end())
-        return true;
-    return false;
+LocationBlock const *ServerBlock::getLocation(std::string const &path) const {
+    return details::bestMatchLocation(locations_, path);
 }
 
 void ServerBlock::setDefaultPort() {
@@ -68,5 +48,17 @@ std::ostream &operator<<(std::ostream &o, ServerBlock const &t) {
     o << "}\n";
     return o;
 }
+
+namespace details {
+
+bool matchServerName(std::vector<std::string> const &names, std::string const &s) {
+    if (names.empty())
+        return true;
+    if (std::find(names.begin(), names.end(), s) != names.end())
+        return true;
+    return false;
+}
+
+} // namespace details
 
 } // namespace config
