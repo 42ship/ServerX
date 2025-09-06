@@ -45,7 +45,9 @@ HttpResponse::HttpResponse(Status code, std::string const &httpVersion)
 }
 
 HttpResponse::HttpResponse(HttpResponse const &rhs)
-    : httpVersion_(rhs.httpVersion_), statusCode_(rhs.statusCode_), headers_(rhs.headers_),
+    : httpVersion_(rhs.httpVersion_),
+      statusCode_(rhs.statusCode_),
+      headers_(rhs.headers_),
       bodyType_(rhs.bodyType_) {
     if (bodyType_ == BODY_IN_MEMORY) {
         inMemoryBody = rhs.inMemoryBody;
@@ -55,6 +57,25 @@ HttpResponse::HttpResponse(HttpResponse const &rhs)
         fileBody = rhs.fileBody;
     else if (bodyType_ == BODY_FROM_CGI)
         cgiBody = rhs.cgiBody;
+}
+
+HttpResponse const &HttpResponse::operator=(HttpResponse const &rhs) {
+    if (this == &rhs)
+        return *this;
+    cleanupBody();
+    httpVersion_ = rhs.httpVersion_;
+    statusCode_ = rhs.statusCode_;
+    headers_ = rhs.headers_;
+    bodyType_ = rhs.bodyType_;
+    if (rhs.bodyType_ == BODY_IN_MEMORY) {
+        inMemoryBody = rhs.inMemoryBody;
+        if (inMemoryBody.data != NULL)
+            inMemoryBody.data = new std::vector<char>(*rhs.inMemoryBody.data);
+    } else if (rhs.bodyType_ == BODY_FROM_FILE)
+        fileBody = rhs.fileBody;
+    else if (rhs.bodyType_ == BODY_FROM_CGI)
+        cgiBody = rhs.cgiBody;
+    return *this;
 }
 
 HttpResponse::~HttpResponse() {

@@ -1,7 +1,6 @@
 #include "network/EpollManager.hpp"
 
 #include <sys/epoll.h>
-#include <iostream>
 #include <stdexcept>
 #include <cstring>
 #include <cerrno>
@@ -52,23 +51,7 @@ void EpollManager::modifyFd(int fd, uint32_t events) {
 
 // TODO research on the industry standard what the best timeout should I set up for is
 int EpollManager::waitForEvents(struct epoll_event *events, int maxEvents, int timeout) {
-    while (!isShuttingDown) {
-        int result = epoll_wait(epollFd_, events, maxEvents, timeout);
-
-        if (result > 0) {
-            return result;
-        } else if (result == 0) {
-            // need to set up a timeout for shutdown flag and continue
-            continue;
-        } else if (errno == EINTR) {
-            std::cout << "epoll_wait interrupted by signal" << std::endl;
-            continue;
-        } else {
-            return result;
-        }
-    }
-    std::cout << "Shutdown requested, exiting event loop" << std::endl;
-    return 0;
+    return epoll_wait(epollFd_, events, maxEvents, timeout);
 }
 
 void EpollManager::requestShutdown() {

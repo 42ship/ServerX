@@ -2,6 +2,7 @@
 
 #include <signal.h>
 #include <vector>
+#include "http/Router.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "network/Acceptor.hpp"
 #include "config/ServerConfig.hpp"
@@ -71,14 +72,16 @@ public:
     static void signalHandler(int sig);
 
 private:
-    config::ServerConfig const config_;
-    network::InitiationDispatcher &dispatcher_;
-    std::vector<network::Acceptor *> acceptors_;
+    volatile sig_atomic_t shutdownRequested_;
     bool isRunning_;
     static Server *instance_;
-    http::MimeTypes mimeTypes_;
+    std::vector<network::Acceptor *> acceptors_;
 
-    volatile sig_atomic_t shutdownRequested_;
+    config::ServerConfig const config_;
+    network::InitiationDispatcher &dispatcher_;
+    http::MimeTypes mimeTypes_;
+    http::Router router_;
+
     void setupAcceptors();
     void setupSignalHandlers();
     void cleanup();

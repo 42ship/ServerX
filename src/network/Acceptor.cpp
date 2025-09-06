@@ -4,6 +4,7 @@
 #include <cstring>
 #include <iostream>
 #include <sys/socket.h>
+#include "http/Router.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "network/Reactor.hpp"
 #include "network/Socket.hpp"
@@ -11,18 +12,19 @@
 
 namespace network {
 
-Acceptor::Acceptor(int port) : socket_(port) {
+Acceptor::Acceptor(int port, http::Router const &router)
+    : socket_(port), port_(port), router_(router) {
     if (listen(socket_.getFd(), 10) < 0) {
         throw std::runtime_error("Failed to listen on socket: " + std::string(strerror(errno)));
     }
-    std::cout << "Listening on port " << port << std::endl;
 }
 
-Acceptor::Acceptor(config::ServerBlock const &s) : socket_(s) {
+Acceptor::Acceptor(config::ServerBlock const &s, http::Router const &router)
+    : socket_(s), router_(router) {
     if (listen(socket_.getFd(), 10) < 0) {
         throw std::runtime_error("Failed to listen on socket: " + std::string(strerror(errno)));
     }
-    std::cout << "Listening on port " << s.getPort() << std::endl;
+    port_ = s.getPort();
 }
 
 Acceptor::~Acceptor() {
@@ -47,9 +49,7 @@ void Acceptor::acceptNewConnection() {
         std::cerr << "Accept error: " << strerror(errno) << std::endl;
         return;
     }
-    std::cout << "Accept finished: " << clientFd << std::endl;
-
-    Reactor *clientHandler = new Reactor(clientFd);
+    Reactor *clientHandler = new Reactor(clientFd, port_, router_);
     InitiationDispatcher::getInstance().registerHandler(clientHandler);
 }
 

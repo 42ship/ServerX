@@ -1,10 +1,13 @@
 #pragma once
 
 #include "AEventHandler.hpp"
+#include "http/Router.hpp"
+#include "http/HttpResponse.hpp"
+#include <cstddef>
 
 namespace network {
 
-#define BUFFER_LENGTH 1024
+enum ReadState { READING_HEADERS, READING_BODY, REQUEST_READY };
 
 /**
  * @brief Concrete event handler that manages I/O operations for a connected client.
@@ -16,24 +19,33 @@ namespace network {
  */
 class Reactor : public AEventHandler {
 public:
-    explicit Reactor(int clientFd);
+    Reactor(int clientFd, int port, http::Router const &);
     ~Reactor();
 
     virtual void handleEvent(uint32_t events);
     virtual int getHandle() const;
 
 private:
+    Reactor(const Reactor &);
+    Reactor &operator=(const Reactor &);
+
     int clientFd_;
-    char readBuffer_[BUFFER_LENGTH];
-    int readLength_;
-    char writeBuffer_[BUFFER_LENGTH];
-    int writeLength_;
+    int port_;
+    ReadState state_;
+    http::Router const &router_;
+    http::HttpResponse response_;
+
+    std::string buffer_;
+    size_t bodyStart_;
+    size_t contentLength_;
+    size_t bodyBytesRead_;
 
     void handleRead();
     void handleWrite();
-
-    Reactor(const Reactor &);
-    Reactor &operator=(const Reactor &);
+    void tryParseHeaders();
+    void processRequest();
+    void cleanup();
+    bool sendAll(char const *, size_t len);
 };
 
 } // namespace network

@@ -7,7 +7,9 @@
 #include <vector>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "http/Router.hpp"
 #include "network/InitiationDispatcher.hpp"
+#include "utils/Logger.hpp"
 
 namespace core {
 
@@ -19,16 +21,22 @@ namespace core {
 Server *Server::instance_ = NULL;
 
 Server::Server(char const *fpath)
-    : config_(fpath), dispatcher_(network::InitiationDispatcher::getInstance()), isRunning_(false),
-      shutdownRequested_(false) {
+    : shutdownRequested_(false),
+      isRunning_(false),
+      config_(fpath),
+      dispatcher_(network::InitiationDispatcher::getInstance()),
+      router_(config_, mimeTypes_) {
     instance_ = this;
     setupSignalHandlers();
+    LOG_INFO("Server instance created.");
 }
 
 Server::~Server() {
     cleanup();
     instance_ = NULL;
+    LOG_INFO("Server instance destroyed.");
 }
+
 void Server::setupSignalHandlers() {
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
@@ -49,77 +57,40 @@ void Server::setupSignalHandlers() {
         throw std::runtime_error("Failed to install SIGHUP handler");
     }
     signal(SIGPIPE, SIG_IGN);
-    std::cout << "Signal handlers installed successfully" << std::endl;
+    LOG_DEBUG("Signal handlers installed.");
 }
 
 void Server::signalHandler(int sig) {
-    const char *signame;
-
-    switch (sig) {
-    case SIGTERM:
-        signame = "SIGTERM";
-        break;
-    case SIGINT:
-        signame = "SIGINT";
-        break;
-    case SIGHUP:
-        signame = "SIGHUP";
-        break;
-    default:
-        signame = "UNKNOWN";
-        break;
-    }
-    write(STDERR_FILENO, "Received signal: ", 17);
-    write(STDERR_FILENO, signame, strlen(signame));
-    write(STDERR_FILENO, "\n", 1);
     if (instance_) {
+        LOG_INFO("Signal " << sig << " received. Initiating graceful shutdown.");
         instance_->shutdownRequested_ = true;
         network::InitiationDispatcher::getInstance().requestShutdown();
     }
 }
 
-// TODO SIGHUP
-void Server::handleSignal(int sig) {
-    std::cout << "Processing signal: " << sig << std::endl;
-
-    switch (sig) {
-    case SIGTERM:
-    case SIGINT:
-        std::cout << "Graceful shutdown requested" << std::endl;
-        gracefulShutdown();
-        break;
-    case SIGHUP:
-        std::cout << "Configuration reload requested (not implemented)" << std::endl;
-        break;
-    default:
-        std::cout << "Unhandled signal: " << sig << std::endl;
-        break;
-    }
-}
-
 void Server::start() {
     if (isRunning_) {
-        std::cout << "Server is already running" << std::endl;
+        LOG_WARN("Server::start() called, but server is already running.");
         return;
     }
-    std::cout << "Starting server..." << std::endl;
+    LOG_INFO("Starting server...");
     try {
         setupAcceptors();
         isRunning_ = true;
 
-        std::cout << "Server started" << std::endl;
-        std::cout << "Send SIGTERM (kill) or SIGINT (Ctrl+C) for graceful shutdown" << std::endl;
+        LOG_INFO("Server is now running. Waiting for events...");
+        LOG_INFO("Send SIGTERM (kill) or SIGINT (Ctrl+C) for graceful shutdown.");
         dispatcher_.handleEvents();
         gracefulShutdown();
     } catch (const std::exception &e) {
-        std::cerr << "Server startup failed: " << e.what() << std::endl;
+        LOG_ERROR("Server startup failed: " << e.what());
         cleanup();
         throw;
     }
 }
 
 void Server::stop() {
-    std::cout << "Stop requested" << std::endl;
+    LOG_INFO("Server::stop() called.");
     shutdownRequested_ = true;
     dispatcher_.requestShutdown();
 }
@@ -128,49 +99,32 @@ void Server::gracefulShutdown() {
     if (!isRunning_) {
         return;
     }
-    std::cout << "Performing graceful shutdown..." << std::endl;
-    std::cout << "Stopping acceptors..." << std::endl;
-    for (size_t i = 0; i < acceptors_.size(); ++i) {
-        dispatcher_.removeHandler(acceptors_[i]->getHandle());
-    }
-    std::cout << "Waiting for existing connections to finish..." << std::endl;
-    sleep(2);
+    LOG_INFO("Performing graceful shutdown...");
     cleanup();
     isRunning_ = false;
-    std::cout << "Graceful shutdown completed" << std::endl;
+    LOG_INFO("Server shutdown complete.");
 }
 
 bool Server::getisRunning() const {
     return isRunning_;
 }
 
-// void Server::setupAcceptors() {
-//     for (int i = 0; i < MAX_PORTS; ++i) {
-//         int port = BASE_PORT + i;
-//         network::Acceptor *acceptor = new network::Acceptor(port);
-//         acceptors_.push_back(acceptor);
-//         dispatcher_.registerHandler(acceptor);
-//     }
-// }
-
 void Server::setupAcceptors() {
+    LOG_INFO("Setting up server listeners (acceptors)...");
     config::ServerBlockVec const &servers = config_.getServers();
     for (config::ServerBlockVec::const_iterator it = servers.begin(); it != servers.end(); ++it) {
-        network::Acceptor *acceptor = new network::Acceptor(*it);
-        acceptors_.push_back(acceptor);
+        network::Acceptor *acceptor = new network::Acceptor(*it, router_);
         dispatcher_.registerHandler(acceptor);
+        LOG_INFO("Listening on port " << it->getPort());
     }
 }
 
 void Server::cleanup() {
-    std::cout << "Cleaning up resources..." << std::endl;
-
-    for (size_t i = 0; i < acceptors_.size(); ++i) {
-        delete acceptors_[i];
+    for (std::vector<network::Acceptor *>::iterator it = acceptors_.begin(); it != acceptors_.end();
+         ++it) {
+        dispatcher_.removeHandler((*it)->getHandle());
     }
     acceptors_.clear();
-
-    std::cout << "Cleanup completed" << std::endl;
 }
 
 } // namespace core

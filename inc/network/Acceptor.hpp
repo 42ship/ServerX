@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AEventHandler.hpp"
+#include "http/Router.hpp"
 #include "network/Socket.hpp"
 #include "config/ServerBlock.hpp"
 
@@ -18,8 +19,8 @@ namespace network {
  */
 class Acceptor : public AEventHandler {
 public:
-    Acceptor(int port);
-    Acceptor(config::ServerBlock const &);
+    Acceptor(int port, http::Router const &);
+    Acceptor(config::ServerBlock const &, http::Router const &);
     ~Acceptor();
 
     void handleEvent(uint32_t events);
@@ -27,6 +28,8 @@ public:
 
 private:
     Socket socket_;
+    int port_;
+    http::Router const &router_;
 
     void acceptNewConnection();
 

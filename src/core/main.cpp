@@ -1,21 +1,20 @@
 #include "config/ConfigException.hpp"
 #include "core/Server.hpp"
-#include <iostream>
+#include "utils/Logger.hpp"
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        std::cerr << "Error: Config file should be provided" << std::endl;
+        LOG_ERROR("Config file should be provided");
         return 1;
     }
     try {
         core::Server server(argv[1]);
         server.start();
     } catch (config::ConfigException const &e) {
-        std::cerr << e.what() << std::endl;
+        LOG_ERROR(e.what());
         return 2;
     } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        LOG_ERROR(e.what());
         return 3;
     }
-    std::cout << "Server shutdown complete" << std::endl;
 }
