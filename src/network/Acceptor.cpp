@@ -1,5 +1,6 @@
 #include "network/Acceptor.hpp"
 
+#include <fcntl.h>
 #include <cerrno>
 #include <cstring>
 #include <iostream>
@@ -49,6 +50,8 @@ void Acceptor::acceptNewConnection() {
         std::cerr << "Accept error: " << strerror(errno) << std::endl;
         return;
     }
+    int flags = fcntl(clientFd, F_GETFL, 0);
+    fcntl(clientFd, F_SETFL, flags | O_NONBLOCK);
     Reactor *clientHandler = new Reactor(clientFd, port_, router_);
     InitiationDispatcher::getInstance().registerHandler(clientHandler);
 }
