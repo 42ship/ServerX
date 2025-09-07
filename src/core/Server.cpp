@@ -115,6 +115,7 @@ void Server::setupAcceptors() {
     for (config::ServerBlockVec::const_iterator it = servers.begin(); it != servers.end(); ++it) {
         network::Acceptor *acceptor = new network::Acceptor(*it, router_);
         dispatcher_.registerHandler(acceptor);
+        acceptors_.push_back(acceptor);
         LOG_INFO("Listening on port " << it->getPort());
     }
 }

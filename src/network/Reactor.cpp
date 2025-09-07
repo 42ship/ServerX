@@ -1,32 +1,38 @@
 #include "network/Reactor.hpp"
 
-#include <cstddef>
-#include <cstdlib>
-#include <cstring>
-#include <cerrno>
-#include <iostream>
-#include <string>
-#include <sys/socket.h>
-#include <unistd.h>
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
 #include "http/Router.hpp"
 #include "http/RouterResult.hpp"
 #include "network/InitiationDispatcher.hpp"
+#include "utils/Logger.hpp"
+#include <cerrno>
+#include <cstddef>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <iostream>
+#include <string>
+#include <sys/socket.h>
+#include <unistd.h>
 
 namespace network {
 
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), state_(READING_HEADERS), router_(router) {
+    : clientFd_(clientFd), port_(port), router_(router), responseBuffer_(8192) {
+    resetForNewRequest();
+    LOG_INFO("New connection accepted on fd: " << clientFd_);
 }
 
 Reactor::~Reactor() {
+    LOG_INFO("Closing connection on fd: " << clientFd_);
     if (clientFd_ >= 0) {
         close(clientFd_);
     }
 }
 
-void Reactor::cleanup() {
+void Reactor::closeConnection() {
+    LOG_INFO("Cleaning up handler for fd: " << clientFd_);
     InitiationDispatcher::getInstance().removeHandler(clientFd_);
 }
 
@@ -43,96 +49,147 @@ int Reactor::getHandle() const {
     return clientFd_;
 }
 
-// TODO review recv_cb function logic
 void Reactor::handleRead() {
-    char read_buffer[8192];
+    LOG_TRACE("Handling read event on fd: " << clientFd_);
+    char read_buffer[IO_BUFFER_SIZE];
 
-    int count = recv(clientFd_, read_buffer, 8192, 0);
+    int count = recv(clientFd_, read_buffer, IO_BUFFER_SIZE, 0);
     if (count <= 0) {
-        if (count < 0 && (errno != EAGAIN && errno != EWOULDBLOCK)) {
-            std::cerr << "Recv error: " << strerror(errno) << std::endl;
+        if (count == 0) {
+            LOG_INFO("Client disconnected on fd: " << clientFd_);
+        } else if (errno != EAGAIN && errno != EWOULDBLOCK) {
+            LOG_ERROR("Recv error on fd " << clientFd_ << ": " << strerror(errno));
         }
-        cleanup();
+        closeConnection();
         return;
     }
-    buffer_.insert(buffer_.end(), read_buffer, read_buffer + count);
-    if (state_ == READING_HEADERS) {
+    LOG_DEBUG("Received " << count << " bytes from fd: " << clientFd_);
+    requestBuffer_.insert(requestBuffer_.end(), read_buffer, read_buffer + count);
+    if (requestState_ == READING_HEADERS) {
         tryParseHeaders();
     }
-    if (state_ == READING_BODY) {
-        if (buffer_.size() - bodyStart_ >= contentLength_)
-            state_ = REQUEST_READY;
+    if (requestState_ == READING_BODY) {
+        if (requestBuffer_.size() - bodyStart_ >= contentLength_)
+            requestState_ = REQUEST_READY;
     }
-    if (state_ == REQUEST_READY) {
-        processRequest();
+    if (requestState_ == REQUEST_READY) {
+        LOG_INFO("Request fully received on fd: " << clientFd_ << ", processing...");
+        generateResponse();
     }
 }
 
 void Reactor::tryParseHeaders() {
-    bodyStart_ = buffer_.find("\r\n\r\n", 0, 4);
+    bodyStart_ = requestBuffer_.find("\r\n\r\n", 0, 4);
 
     if (bodyStart_ != std::string::npos) {
+        LOG_DEBUG("Headers parsed for fd: " << clientFd_);
         bodyStart_ += 4;
-        state_ = READING_BODY;
+        requestState_ = READING_BODY;
 
         static const std::string cl_key = "Content-Length: ";
-        size_t pos = buffer_.find(cl_key);
+        size_t pos = requestBuffer_.find(cl_key);
         if (pos != std::string::npos) {
-            contentLength_ = std::strtol(buffer_.c_str() + pos + cl_key.length(), NULL, 10);
+            contentLength_ = std::strtol(requestBuffer_.c_str() + pos + cl_key.length(), NULL, 10);
         } else
             contentLength_ = 0;
+        LOG_DEBUG("Request body size: " << contentLength_ << " bytes on fd: " << clientFd_);
     }
 }
 
-void Reactor::processRequest() {
-    http::HttpRequest request = http::HttpRequest::parse(buffer_);
+void Reactor::generateResponse() {
+    http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
     http::RouterResult result = router_.route(port_, request);
     response_ = result.handler.handle(request, result);
+
+    std::string const &headers = response_.buildHeaders();
+    responseBuffer_.assign(headers.begin(), headers.end());
+
+    if (response_.getBodyType() == http::BODY_IN_MEMORY && response_.inMemoryBody.data) {
+        responseBuffer_.insert(responseBuffer_.end(), response_.inMemoryBody.data->begin(),
+                               response_.inMemoryBody.data->end());
+    }
+    LOG_INFO("Generated response for fd: " << clientFd_ << " status: " << response_.getStatus());
+    responseState_ = SENDING;
+    sentResponseBytes_ = 0;
     InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLOUT);
 }
 
-// TODO review send_cb function logic
 void Reactor::handleWrite() {
-    std::string const &headers = response_.buildHeaders();
-    sendAll(headers.c_str(), headers.size());
-    switch (response_.getBodyType()) {
-    case http::BODY_NONE: {
-        break;
+    if (responseState_ == NOT_READY)
+        return;
+    if (sentResponseBytes_ < responseBuffer_.size()) {
+        LOG_TRACE("Sending response chunk to fd: " << clientFd_);
+        if (!sendResponseBuffer())
+            return;
     }
-    case http::BODY_IN_MEMORY: {
-        sendAll(&(*response_.inMemoryBody.data)[0], response_.inMemoryBody.data->size());
-        break;
+    if (sentResponseBytes_ == responseBuffer_.size()) {
+        clearResponseBuffer();
+        if (response_.getBodyType() == http::BODY_FROM_FILE) {
+            responseBuffer_.resize(IO_BUFFER_SIZE);
+            ssize_t bytes_read =
+                read(response_.fileBody.fd, responseBuffer_.data(), responseBuffer_.size());
+            if (bytes_read > 0) {
+                LOG_DEBUG("Read " << bytes_read << " bytes from file for fd: " << clientFd_);
+                responseBuffer_.resize(bytes_read);
+                if (!sendResponseBuffer())
+                    return;
+            } else {
+                if (bytes_read < 0) {
+                    LOG_ERROR("File read error for fd " << clientFd_ << ": " << strerror(errno));
+                } else {
+                    LOG_INFO("Finished streaming file to fd: " << clientFd_);
+                }
+                close(response_.fileBody.fd);
+                responseState_ = SENT;
+            }
+        } else
+            responseState_ = SENT;
     }
-    case http::BODY_FROM_FILE: {
-        char buffer[8192];
-        ssize_t bytes_read;
-        while ((bytes_read = read(response_.fileBody.fd, buffer, sizeof(buffer))) > 0) {
-            if (!sendAll(buffer, bytes_read))
-                break;
-        }
-        close(response_.fileBody.fd);
-        break;
-    }
-    case http::BODY_FROM_CGI: {
-        break;
-    }
-    }
+    if (responseState_ != SENT)
+        return;
+    LOG_INFO("Response fully sent to fd: " << clientFd_);
     if (response_.getHeaders()["Connection"] == "keep-alive") {
+        LOG_INFO("Keep-alive enabled. Resetting state for fd: " << clientFd_);
         InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
-        state_ = READING_HEADERS;
+        resetForNewRequest();
     } else
-        cleanup();
+        closeConnection();
 }
 
-bool Reactor::sendAll(char const *s, size_t len) {
-    size_t sent = 0;
-    while (sent < len) {
-        ssize_t just_sent = send(clientFd_, s + sent, len - sent, 0);
-        if (just_sent < 0)
-            return false;
-        sent += just_sent;
+bool Reactor::sendResponseBuffer() {
+    if (sentResponseBytes_ >= responseBuffer_.size()) {
+        return true; // Nothing to send
     }
+    ssize_t sent = ::send(clientFd_, responseBuffer_.data() + sentResponseBytes_,
+                          responseBuffer_.size() - sentResponseBytes_, 0);
+    if (sent < 0) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            LOG_TRACE("Send buffer is full for fd " << clientFd_ << ", will try again later.");
+        } else {
+            LOG_ERROR("Send error on fd " << clientFd_ << ": " << strerror(errno));
+            closeConnection();
+        }
+        return false;
+    }
+    sentResponseBytes_ += sent;
+    LOG_DEBUG("Sent " << sent << " bytes to fd: " << clientFd_);
     return true;
+}
+
+void Reactor::clearResponseBuffer() {
+    responseBuffer_.clear();
+    sentResponseBytes_ = 0;
+}
+
+void Reactor::resetForNewRequest() {
+    requestBuffer_.clear();
+    responseBuffer_.clear();
+    sentResponseBytes_ = 0;
+    contentLength_ = 0;
+    bodyStart_ = 0;
+    requestState_ = READING_HEADERS;
+    responseState_ = NOT_READY;
+    response_ = http::HttpResponse();
 }
 
 } // namespace network

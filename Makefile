@@ -7,7 +7,7 @@ SDIR		=	src
 LOGDIR		=	logs
 # =============================== COMPILATION ================================ #
 CXX			=	c++
-CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP -g3
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP -g3 -Og
 CXXFLAGS	+=	-I$(HDIR)
 # ================================== FILES =================================== #
 SRCS		:=	$(shell find $(SDIR) -name "*.cpp")
@@ -37,6 +37,8 @@ r run:
 	@./$(NAME) $(ARGS)
 
 rr rerun: clean r
+
+release: all
 
 c clean:
 	@rm -rf $(ODIR)
