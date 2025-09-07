@@ -5,6 +5,12 @@
 
 namespace utils {
 
+#ifdef LOGLEVEL
+LogLevel Logger::threashold_ = LOGLEVEL;
+#else
+LogLevel Logger::threashold_ = TRACE;
+#endif
+
 namespace {
 
 #define RESET "\033[0m"
@@ -23,8 +29,6 @@ char const *getTimeStamp() {
 
 } // namespace
 
-LogLevel Logger::threashold_ = TRACE;
-
 void Logger::log(LogLevel lvl, const std::string &msg) {
     if (lvl < threashold_)
         return;
@@ -37,12 +41,16 @@ void Logger::log(LogLevel lvl, const std::string &msg) {
     case TRACE: s = "TRACE";    color = GRAY;   break;
     case DEBUG: s = "DEBUG";    color = GRAY;   break;
     case INFO:  s = "INFO";     color = GREEN;  break;
-    case WARN:  s = "WARN";     color = YELLOW; break;
+    case WARNING:  s = "WARNING";     color = YELLOW; break;
     case ERROR: s = "ERROR";    color = RED;    out = &std::cerr;   break;
     case FATAL: s = "FATAL";    color = PURPLE; out = &std::cerr;   break;
     }
     // clang-format on
     *out << "[" << getTimeStamp() << "] " << color << "[" << s << "]" RESET " " << msg << std::endl;
+}
+
+void Logger::setLevel(LogLevel lvl) {
+    threashold_ = lvl;
 }
 
 } // namespace utils
