@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ServerX — Home</title>
+  <meta name="description" content="ServerX: lightweight server with clean defaults and fast responses." />
+  <link rel="icon" href="/img/favicon.ico" />
+
+  <style>
+    /* === Theme variables: Dark mode default === */
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --muted: #9aa3b2;
+      --text: #e9edf5;
+      --primary: #5b8cff;
+      --primary-press: #3d6cf0;
+      --ring: rgba(91, 140, 255, 0.35);
+      --border: rgba(255,255,255,0.08);
+      --success: #19c37d;
+    }
+
+    /* === Light theme overrides === */
+    body[data-theme="light"] {
+      --bg: #f8f9fb;
+      --card: #ffffff;
+      --muted: #4b5563;
+      --text: #111827;
+      --primary: #2563eb;
+      --primary-press: #1d4ed8;
+      --ring: rgba(37, 99, 235, 0.25);
+      --border: rgba(0,0,0,0.08);
+      --success: #15803d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, var(--ring), transparent 60%),
+                  radial-gradient(1000px 600px at 120% 10%, var(--ring), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    /* === Header with logo, nav, and theme toggle === */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,16,32,0.85), rgba(11,16,32,0.45));
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+    body[data-theme="light"] header {
+      background: rgba(255,255,255,0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), #7aa6ff);
+      box-shadow: 0 6px 18px rgba(91,140,255,0.45);
+      display: grid; place-items: center;
+      font-weight: 800; color: #0b1020;
+    }
+
+    .brand-name {
+      font-weight: 700; letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex; gap: 18px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: 120ms ease;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 14px;
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    /* === Hero section === */
+    .hero {
+      padding: 72px 0 48px;
+      display: grid;
+      gap: 22px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 auto 12px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      font-size: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 44px);
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(16px, 2.5vw, 18px);
+      width: min(760px, 92%);
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px var(--ring); }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: transparent;
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--primary-press); }
+
+    /* === Features section === */
+    .features {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(12, 1fr);
+      margin: 36px 0 12px;
+    }
+
+    .card {
+      grid-column: span 4;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 8px;
+      transition: 150ms ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: #0b1020; font-weight: 700;
+      background: #cfe1ff; border-radius: 999px; padding: 4px 8px;
+      width: fit-content;
+    }
+
+    /* === Status bar === */
+    .status {
+      margin: 28px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(25,195,125,0.08);
+      display: flex; align-items: center; gap: 10px;
+      color: var(--success);
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--success);
+      box-shadow: 0 0 0 6px rgba(25,195,125,0.15);
+    }
+
+    /* === Footer === */
+    footer {
+      margin: 48px 0 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .card { grid-column: span 6; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .card { grid-column: span 12; }
+      .hero { padding-top: 56px; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand" aria-label="ServerX Home">
+        <div class="brand-logo">
+			<img src="/img/logo.png" alt="Company Logo" class="logo">
+		</div>
+        <div class="brand-name">ServerX</div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/status">Status</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+      <!-- Theme toggle button -->
+      <button class="theme-toggle" id="themeToggle">Light Mode</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Fast by default • Secure by design</span>
+      <h1>Deploy clean, predictable responses with ServerX.</h1>
+      <p class="lead">
+        A minimal server foundation with elegant defaults: typed responses, sensible headers,
+        and a polished error page out of the box.
+      </p>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="/get-started">Get Started</a>
+        <a class="btn" href="/docs">Read the Docs</a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <article class="card">
+        <span class="pill">HTTP</span>
+        <h3>Typed responses</h3>
+        <p>Use structured pages and clear headers to keep responses consistent and cache-friendly.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Errors</span>
+        <h3>Elegant error pages</h3>
+        <p>Ship a clean default error page with your brand, ready for 404/500 and more.</p>
+      </article>
+      <article class="card">
+        <span class="pill">DX</span>
+        <h3>Thin, modern API</h3>
+        <p>Small surface area, sensible defaults, and quick extensibility when you need it.</p>
+      </article>
+    </section>
+
+    <!-- Status -->
+    <div class="status">
+      <span class="dot"></span>
+      Server status: All systems operational.
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="container">
+    <span>© 2025 ServerX</span>
+    <span>Made with ❤️ for clean server responses</span>
+  </footer>
+
+  <!-- Theme toggle script -->
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Load saved theme
+    if (localStorage.getItem('theme')) {
+      body.setAttribute('data-theme', localStorage.getItem('theme'));
+      toggleBtn.textContent = body.dataset.theme === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      toggleBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    });
+  </script>
+</body>
+</html>
