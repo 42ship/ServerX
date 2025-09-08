@@ -19,7 +19,7 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
                                        config::LocationBlock const *l) const {
     if (!l || !s)
         return error_pages::generateErrorResponse(NOT_FOUND, req.version);
-    std::string path = (l->root.empty() ? s->root : l->root) + req.uri;
+    std::string path = (l->root.empty() ? s->root : l->root) + (req.uri.substr(l->path.size() - 1));
 
     struct stat statbuf;
     if (stat(path.c_str(), &statbuf) != 0) {
