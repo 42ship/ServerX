@@ -54,6 +54,16 @@ public:
      */
     const std::string getMimeType(const std::string &extension) const;
 
+    /**
+     * @brief Reloads the MIME types from the configuration file.
+     *
+     * This method reads the MIME types file specified by `filePath_` and
+     * populates the `mimeTypes_` map with the latest MIME type definitions.
+     * It updates the `rtime_` to reflect the time of the last successful
+     * reload.
+     */
+    void reload();
+
     ~MimeTypes();
 
 private:
@@ -66,16 +76,6 @@ private:
      * @brief checks if the MIME types file has been modified since the last load.
      */
     bool wasChanged();
-
-    /**
-     * @brief Reloads the MIME types from the configuration file.
-     *
-     * This method reads the MIME types file specified by `filePath_` and
-     * populates the `mimeTypes_` map with the latest MIME type definitions.
-     * It updates the `rtime_` to reflect the time of the last successful
-     * reload.
-     */
-    void reload();
 
     size_t findFirstSpace(const std::string str);
     size_t findFirstNonSpace(const std::string str, size_t startPos);
