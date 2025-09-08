@@ -1,4 +1,5 @@
 #include "config/ServerBlock.hpp"
+#include <iostream>
 
 namespace config {
 namespace details {
@@ -15,7 +16,7 @@ LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string c
             break;
         size_t pos = currentPath.rfind('/', currentPath.size() - 2);
         if (pos != std::string::npos) {
-            currentPath = currentPath.substr(0, pos + 1);
+            currentPath.resize(pos + 1);
         } else
             break;
     }

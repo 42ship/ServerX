@@ -19,7 +19,7 @@ bool parseStartLine(HttpRequest &r, istringstream &s) {
     return 1;
 }
 
-bool parseHeaderLine(string line, pair<string, string> &p) {
+bool parseHeaderLine(string const &line, pair<string, string> &p) {
     size_t column_pos = line.find(':');
     if (column_pos == string::npos)
         return false;
@@ -49,7 +49,7 @@ bool parseHeaders(HttpRequest::HeaderMap &m, istringstream &s) {
     return 1;
 }
 
-bool parseBody(HttpRequest &r, istringstream &s) {
+bool parseBody(HttpRequest const &r, istringstream const &s) {
     (void)r;
     (void)s;
     return 1;

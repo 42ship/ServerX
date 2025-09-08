@@ -37,9 +37,9 @@ std::ostream &operator<<(std::ostream &o, HttpRequest::HeaderMap const &r);
 namespace details {
 
 bool parseStartLine(HttpRequest &r, std::istringstream &s);
-bool parseHeaderLine(std::string line, std::pair<std::string, std::string> &p);
+bool parseHeaderLine(std::string const &line, std::pair<std::string, std::string> &p);
 bool parseHeaders(HttpRequest::HeaderMap &m, std::istringstream &s);
-bool parseBody(HttpRequest &r, std::istringstream &s);
+bool parseBody(HttpRequest const &r, std::istringstream const &s);
 std::string extractPathFUri(std::string const &uri);
 
 } // namespace details
