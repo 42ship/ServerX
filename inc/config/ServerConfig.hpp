@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ostream>
 #include "ServerBlock.hpp"
 
 namespace config {
@@ -15,16 +16,7 @@ namespace config {
 class ServerConfig {
 public:
     ServerConfig(char const *fpath);
-
-    /**
-     * @brief Retrieves the server configuration that best matches a port and server name.
-     *
-     * @param port The port number of the incoming connection.
-     * @param server_name The server name requested by the client (e.g., from the HTTP Host header).
-     * @param[out] res A reference to a pointer that will be updated to the matched ServerBlock.
-     * @return True if a matching ServerBlock was found, false otherwise.
-     */
-    bool getServer(int port, std::string const &server_name, ServerBlock const *&res) const;
+    ServerConfig(std::string const &);
 
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.
@@ -34,6 +26,10 @@ public:
      * @return A const pointer to the matched ServerBlock, or NULL if no match is found.
      */
     ServerBlock const *getServer(int port, std::string const &server_name) const;
+
+    ServerBlockVec const &getServers() const;
+
+    friend std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
 
 private:
     friend class ConfigBuilder;

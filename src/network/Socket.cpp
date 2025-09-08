@@ -1,9 +1,12 @@
-#include "Socket.hpp"
-#include <stdexcept>
-#include <cstring>
-#include <unistd.h>
+#include "network/Socket.hpp"
+
 #include <arpa/inet.h>
 #include <cerrno>
+#include <cstring>
+#include <stdexcept>
+#include <unistd.h>
+
+namespace network {
 
 Socket::Socket(void) : fd_(-1) {
     std::memset(&addr_, 0, sizeof(addr_));
@@ -15,6 +18,13 @@ Socket::Socket(int port) : fd_(-1) {
 
 Socket::Socket(std::string const &address, int port) : fd_(-1) {
     createAndBind(address, port);
+}
+
+Socket::Socket(config::ServerBlock const &s) : fd_(-1) {
+    if (s.getAddress().empty()) {
+        createAndBind("0.0.0.0", s.getPort());
+    } else
+        createAndBind(s.getAddress(), s.getPort());
 }
 
 Socket::~Socket(void) {
@@ -68,3 +78,5 @@ void Socket::createAndBind(std::string const &address, int port) {
         throw std::runtime_error("Failed to bind socket: " + std::string(strerror(errno)));
     }
 }
+
+} // namespace network

@@ -1,4 +1,5 @@
-#include "Lexer.hpp"
+#include "config/Lexer.hpp"
+
 #include <iostream>
 
 namespace config {
@@ -119,4 +120,4 @@ void Lexer::printTokens(TokenArray const &tokens) {
     std::cout << std::endl;
 }
 
-}
+} // namespace config

@@ -1,13 +1,20 @@
+#include "config/ServerConfig.hpp"
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "config/Lexer.hpp"
+#include "config/Parser.hpp"
+#include "config/ConfigBuilder.hpp"
+#include "utils/Logger.hpp"
 
-#include "Lexer.hpp"
-#include "Parser.hpp"
-#include "ConfigBuilder.hpp"
-#include "ServerConfig.hpp"
+namespace config {
 
-using namespace config;
+ServerConfig::ServerConfig(std::string const &content) {
+    TokenArray tokens = Lexer::tokenize(content);
+    std::vector<ConfigNode> ir = Parser::parse(tokens);
+    servers_ = ConfigBuilder::build(ir);
+}
 
 ServerConfig::ServerConfig(char const *fpath) {
     std::ifstream file(fpath);
@@ -21,20 +28,11 @@ ServerConfig::ServerConfig(char const *fpath) {
     TokenArray tokens = Lexer::tokenize(content);
     std::vector<ConfigNode> ir = Parser::parse(tokens);
     servers_ = ConfigBuilder::build(ir);
+    LOG_TRACE(*this);
 }
 
-bool ServerConfig::getServer(int port, std::string const &server_name,
-                             ServerBlock const *&res) const {
-    if (server_name.empty())
-        return false;
-    for (size_t i = 0; i < servers_.size(); i++) {
-        ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(server_name)) {
-            res = &block;
-            return true;
-        }
-    }
-    return false;
+ServerBlockVec const &ServerConfig::getServers() const {
+    return servers_;
 }
 
 ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
@@ -42,9 +40,29 @@ ServerBlock const *ServerConfig::getServer(int port, std::string const &server_n
         return NULL;
     for (size_t i = 0; i < servers_.size(); i++) {
         ServerBlock const &block = servers_[i];
-        if (block.port_ == port && block.matchServerName(server_name)) {
+        if (block.port_ == port) {
             return &block;
         }
     }
     return NULL;
 }
+
+std::ostream &operator<<(std::ostream &o, const ServerConfig &t) {
+    o << "\n######################################\n";
+    o << "#    Server Configuration Summary    #\n";
+    o << "######################################\n\n";
+
+    const ServerBlockVec &servers = t.getServers();
+    o << "Found " << servers.size() << " server block(s).\n\n";
+
+    for (ServerBlockVec::const_iterator it = servers.begin(); it != servers.end(); ++it) {
+        o << *it;
+        if (it + 1 != servers.end()) {
+            o << "\n--------------------------------------\n\n";
+        }
+    }
+
+    o << "\n### End of Configuration ###";
+    return o;
+}
+} // namespace config

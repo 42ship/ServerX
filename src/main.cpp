@@ -1,22 +1,20 @@
-#include <iostream>
-#include <exception>
-#include "ServerConfig.hpp"
-#include "ConfigException.hpp"
+#include "config/ConfigException.hpp"
+#include "core/Server.hpp"
+#include "utils/Logger.hpp"
 
-using config::ServerConfig;
-
-int main(int argc, char const **argv) {
+int main(int argc, char **argv) {
     if (argc < 2) {
-        std::cerr << "Error: Config file should be provided" << std::endl;
+        LOG_ERROR("Config file should be provided");
         return 1;
     }
     try {
-        ServerConfig cfg(argv[1]);
+        core::Server server(argv[1]);
+        server.start();
     } catch (config::ConfigException const &e) {
-        std::cerr << e.what() << std::endl;
-    } 
-    catch (std::exception const &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    };
-    return 0;
+        LOG_ERROR(e.what());
+        return 2;
+    } catch (const std::exception &e) {
+        LOG_ERROR(e.what());
+        return 3;
+    }
 }

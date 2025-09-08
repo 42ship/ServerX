@@ -9,7 +9,7 @@ TEST_CXXFLAGS	=	$(filter-out -Werror, $(CXXFLAGS)) -I$(DOCTEST_DIR) -std=c++17
 
 PROJECT_OBJS_FOR_TESTS	:=	$(filter-out $(ODIR)/main.o, $(OBJS))
 
-DIRS	+=	$(ODIR)/tests
+DIRS	+=	$(sort $(dir $(TEST_OBJS)))
 
 t test: | $(DOCTEST_DIR)
 	@$(FMAKE) build_tests > /dev/null

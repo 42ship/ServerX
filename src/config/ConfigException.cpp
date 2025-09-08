@@ -1,6 +1,6 @@
-#include "ConfigException.hpp"
-#include <iostream>
+#include "config/ConfigException.hpp"
 
+#include <iostream>
 
 namespace config {
 

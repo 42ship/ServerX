@@ -1,8 +1,8 @@
 check:
-	cppcheck --enable=all --inconclusive --suppress=missingIncludeSystem --suppress=missingInclude --std=c++98 src/ inc/
+	cppcheck --enable=all --inconclusive --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unusedFunction --std=c++98 src/ inc/
 
 cdb compiledb:
-	@compiledb make -n $(NAME) build_tests > /dev/null 2>&1
+	@compiledb make -n $(NAME) > /dev/null 2>&1
 
 v valgrind: | $(LOGDIR)
 	@$(VALGRIND) ./$(NAME) $(ARGS)

@@ -1,4 +1,5 @@
 #include "config/Parser.hpp"
+
 #include "config/ConfigException.hpp"
 
 namespace config {
@@ -116,4 +117,4 @@ DirectivePair Parser::handleDirective() {
     return d;
 }
 
-}
+} // namespace config

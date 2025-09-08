@@ -7,8 +7,8 @@ SDIR		=	src
 LOGDIR		=	logs
 # =============================== COMPILATION ================================ #
 CXX			=	c++
-CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP
-CXXFLAGS	+=	-I$(HDIR) -I$(HDIR)/config
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP -g3 -Og
+CXXFLAGS	+=	-I$(HDIR)
 # ================================== FILES =================================== #
 SRCS		:=	$(shell find $(SDIR) -name "*.cpp")
 OBJS		:=	$(patsubst $(SDIR)/%.cpp,$(ODIR)/%.o,$(SRCS))
@@ -38,6 +38,8 @@ r run:
 
 rr rerun: clean r
 
+release: all
+
 c clean:
 	@rm -rf $(ODIR)
 
@@ -46,6 +48,11 @@ f fclean: clean test_clean
 
 re: fclean
 	@$(MAKE) all
+
+debug: clean
+	@$(MAKE) -j1 all 2>&1 | while read line; do \
+	echo "$$line"; \
+	done
 
 -include $(DEPS)
 -include $(TEST_DEPS)

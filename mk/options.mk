@@ -1,5 +1,5 @@
 MAKE		=	@make --no-print-directory
-VALGRIND	=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 --quiet --log-file=$(LOGDIR)/valgrind-%p.log
+VALGRIND	=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 --quiet
 
 JOBS := $(filter -j%,$(MAKEFLAGS))
 
