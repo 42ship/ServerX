@@ -24,7 +24,7 @@ public:
     static void setLevel(LogLevel);
 
 private:
-    static LogLevel threashold_;
+    static LogLevel threshold_;
 };
 
 /**

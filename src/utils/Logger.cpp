@@ -6,9 +6,9 @@
 namespace utils {
 
 #ifdef LOGLEVEL
-LogLevel Logger::threashold_ = LOGLEVEL;
+LogLevel Logger::threshold_ = LOGLEVEL;
 #else
-LogLevel Logger::threashold_ = TRACE;
+LogLevel Logger::threshold_ = TRACE;
 #endif
 
 namespace {
@@ -30,7 +30,7 @@ char const *getTimeStamp() {
 } // namespace
 
 void Logger::log(LogLevel lvl, const std::string &msg) {
-    if (lvl < threashold_)
+    if (lvl < threshold_)
         return;
 
     std::ostream *out = &std::cout;
@@ -50,7 +50,7 @@ void Logger::log(LogLevel lvl, const std::string &msg) {
 }
 
 void Logger::setLevel(LogLevel lvl) {
-    threashold_ = lvl;
+    threshold_ = lvl;
 }
 
 } // namespace utils

@@ -35,7 +35,7 @@ public:
         if (!server) {
             return RouterResult(notFound_);
         }
-        config::LocationBlock const *location = server->getLocation(request.uri);
+        config::LocationBlock const *location = server->getLocation(request.path);
         if (!location) {
             return RouterResult(notFound_, server);
         }

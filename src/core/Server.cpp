@@ -51,9 +51,6 @@ void Server::setupSignalHandlers() {
         throw std::runtime_error("Failed to install SIGINT handler");
     }
     if (sigaction(SIGHUP, &sa, NULL) == -1) {
-        throw std::runtime_error("Failed to install SIGINT handler");
-    }
-    if (sigaction(SIGHUP, &sa, NULL) == -1) {
         throw std::runtime_error("Failed to install SIGHUP handler");
     }
     signal(SIGPIPE, SIG_IGN);

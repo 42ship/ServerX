@@ -24,14 +24,15 @@ bool parseHeaderLine(string const &line, pair<string, string> &p) {
     if (column_pos == string::npos)
         return false;
     size_t key_start = line.find_first_not_of(" \t\r\n");
-    size_t key_end = line.find_last_not_of(" \t\r\n");
+    size_t key_end = line.find_last_not_of(" \t\r\n", column_pos - 1);
     if (key_start == string::npos || key_start > key_end)
         return false;
     size_t value_start = line.find_first_not_of(" \t\r\n", column_pos + 1);
-    if (value_start == string::npos || value_start > key_end)
+    size_t value_end = line.find_last_not_of(" \t\r\n");
+    if (value_start == string::npos || value_start > value_end)
         return false;
     p.first = line.substr(key_start, column_pos - key_start);
-    p.second = line.substr(value_start, key_end - value_start + 1);
+    p.second = line.substr(value_start, value_end - value_start + 1);
     return true;
 }
 

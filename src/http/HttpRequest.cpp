@@ -39,7 +39,7 @@ ostream &operator<<(ostream &o, HttpRequest::HeaderMap const &r) {
 namespace details {
 
 std::string extractPathFUri(std::string const &uri) {
-    return uri.substr(0, uri.find_last_not_of("#?") + 1);
+    return uri.substr(0, uri.find_first_of("#?"));
 }
 
 } // namespace details
