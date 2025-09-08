@@ -17,5 +17,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: doxy/html
-          config_file: doxy/Doxyfile.template 
+          config_file: doxy/Doxyfile.template
+          target_folder: docs
           doxygen_version: 1.14.0
