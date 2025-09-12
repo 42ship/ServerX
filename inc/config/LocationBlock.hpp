@@ -20,7 +20,7 @@ public:
     bool hasCgiPass() const;
 
 private:
-    friend class ConfigBuilder;
+    friend class Mapper;
     std::string path_;
 };
 
