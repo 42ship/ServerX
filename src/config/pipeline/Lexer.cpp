@@ -1,4 +1,4 @@
-#include "config/Lexer.hpp"
+#include "config/pipeline/Lexer.hpp"
 
 #include <iostream>
 

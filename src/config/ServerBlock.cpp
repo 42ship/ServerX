@@ -36,6 +36,7 @@ std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
     o << "    Listen Address: '" << t.getAddress() << "'\n";
     o << "    Port:           " << t.getPort() << "\n";
 
+    /*
     if (!t.serverNames_.empty()) {
         o << "    Server Names:   [";
         const std::vector<std::string> &names = t.serverNames_;
@@ -51,7 +52,7 @@ std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
     if (!t.root.empty()) {
         o << "    Default Root:   '" << t.root << "'\n";
     }
-
+    */
     if (!t.locations_.empty()) {
         o << "\n    Locations Defined (" << t.locations_.size() << "):\n";
         for (std::map<std::string, LocationBlock>::const_iterator it = t.locations_.begin();

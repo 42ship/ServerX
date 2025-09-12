@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ConfigNode.hpp"
+#include "../internal/ConfigNode.hpp"
 #include "Lexer.hpp"
 
 /* GRAMMAR in EBNF

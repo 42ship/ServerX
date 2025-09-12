@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ConfigNode.hpp"
-#include "ServerBlock.hpp"
+#include "../internal/ConfigNode.hpp"
+#include "../ServerBlock.hpp"
 
 namespace config {
 

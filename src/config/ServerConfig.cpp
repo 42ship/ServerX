@@ -3,9 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "config/Lexer.hpp"
-#include "config/Parser.hpp"
-#include "config/ConfigBuilder.hpp"
+#include "config/pipeline/Lexer.hpp"
+#include "config/pipeline/Parser.hpp"
+#include "config/pipeline/ConfigBuilder.hpp"
 #include "utils/Logger.hpp"
 
 namespace config {

@@ -1,10 +1,24 @@
 #include "config/LocationBlock.hpp"
+#include "config/internal/Block.hpp"
 
 namespace config {
 
+std::string const &LocationBlock::getPath() const {
+    return path_;
+}
+
+bool LocationBlock::hasCgiPass() const {
+    return has("cgi_pass");
+}
+
+StringVector const *LocationBlock::getIndexFiles() const {
+    return get("index");
+}
+
 std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
-    o << "    [LocationBlock] Path: " << t.path << "\n";
+    o << "    [LocationBlock] Path: " << t.getPath() << "\n";
     o << "    {\n";
+    /*
     if (!t.root.empty()) {
         o << "        root:  '" << t.root << "'\n";
     }
@@ -18,7 +32,7 @@ std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
             }
         }
         o << "]\n";
-    }
+    }*/
     // Add other location directives here...
     o << "    }\n";
     return o;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Token.hpp"
+#include "../internal/Token.hpp"
 
 namespace config {
 

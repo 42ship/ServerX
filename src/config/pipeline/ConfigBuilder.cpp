@@ -1,6 +1,6 @@
-#include "config/ConfigBuilder.hpp"
-#include "config/utils.hpp"
-#include "config/ConfigException.hpp"
+#include "config/pipeline/ConfigBuilder.hpp"
+#include "config/internal/utils.hpp"
+#include "config/internal/ConfigException.hpp"
 #include <stdexcept>
 
 namespace config {
@@ -78,9 +78,9 @@ void ConfigBuilder::buildLocation(ServerBlock &conf, ConfigNode const &node) {
         throw ConfigError("Location block requires exactly 1 path argument");
     }
     LocationBlock loc;
-    loc.path = node.args[0];
-    if (conf.locations_.count(loc.path) > 0) {
-        issue_warning("Duplicate location '" + loc.path +
+    loc.path_ = node.args[0];
+    if (conf.locations_.count(loc.path_) > 0) {
+        issue_warning("Duplicate location '" + loc.path_ +
                       "' in location block. Ignoring subsequent directives.");
         return;
     }
@@ -95,7 +95,7 @@ void ConfigBuilder::buildLocation(ServerBlock &conf, ConfigNode const &node) {
         }
         (this->*handler->second)(loc, it->second);
     }
-    conf.locations_[loc.path] = loc;
+    conf.locations_[loc.path_] = loc;
 }
 
 void ConfigBuilder::handleListen(ServerBlock &cfg, DirectiveArgs const &args) {
@@ -126,31 +126,25 @@ void ConfigBuilder::handleListen(ServerBlock &cfg, DirectiveArgs const &args) {
 }
 
 void ConfigBuilder::handleServerName(ServerBlock &cfg, DirectiveArgs const &args) {
-    cfg.serverNames_.reserve(cfg.serverNames_.size() + args.size());
-    for (DirectiveArgs::const_iterator it = args.begin(); it != args.end(); ++it) {
-        cfg.serverNames_.push_back(*it);
-    }
+    cfg.directives_["server_names"] = args;
 }
 
 void ConfigBuilder::handleRoot(ServerBlock &cfg, DirectiveArgs const &args) {
     if (args.size() != 1) {
         throw ConfigError("Root directive requires exactly 1 argument");
     }
-    cfg.root = args[0];
+    cfg.directives_["root"] = args;
 }
 
 void ConfigBuilder::handleRoot(LocationBlock &loc, DirectiveArgs const &args) {
     if (args.size() != 1) {
         throw ConfigError("Root directive requires exactly 1 argument");
     }
-    loc.root = args[0];
+    loc.directives_["root"] = args;
 }
 
 void ConfigBuilder::handleIndex(LocationBlock &loc, DirectiveArgs const &args) {
-    loc.index.reserve(args.size());
-    for (DirectiveArgs::const_iterator it = args.begin(); it != args.end(); ++it) {
-        loc.index.push_back(*it);
-    }
+    loc.directives_["index"] = args;
 }
 
 } // namespace config
