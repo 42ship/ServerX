@@ -14,15 +14,15 @@ namespace config {
  */
 class Validator {
 public:
-    static void validate(ServerBlockVec const &servers);
+    static void validate(ServerBlockVec &servers);
 
 private:
-    static void validateServer(ServerBlock const &server);
-    static void validateLocation(LocationBlock const &location);
+    static void validateServer(ServerBlock &server);
+    static void validateLocation(LocationBlock &location);
 
-    static void validateListen(ServerBlock const &server);
-    static void validateRoot(Block const &block);
-    static void validateServerNames(ServerBlock const &server);
+    static void validateListen(ServerBlock &server);
+    static void validateRoot(Block &block);
+    static void validateServerNames(ServerBlock &server);
 };
 
 } // namespace config

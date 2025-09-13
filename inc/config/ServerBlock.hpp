@@ -2,7 +2,6 @@
 
 #include "internal/Block.hpp"
 #include "LocationBlock.hpp"
-#include "pipeline/Mapper.hpp"
 
 namespace config {
 
@@ -35,7 +34,9 @@ private:
     void setDefaultAddress();
 
     friend class ServerConfig;
+    friend class DirectiveHandler;
     friend class Mapper;
+    friend class Validator;
     friend std::ostream &operator<<(std::ostream &o, ServerBlock const &t);
 
     static const int defaultPort_;

@@ -18,9 +18,10 @@ public:
     static ServerBlockVec map(ConfigNodeVec const &nodes);
 
 private:
-    // Helper methods to map specific blocks and directives
-    static void mapServerBlock(ServerBlock &server, ConfigNode const &node);
-    static void mapLocationBlock(LocationBlock &location, ConfigNode const &node);
+    static void mapServerBlock(ServerBlock &, ConfigNode const &);
+    static void mapLocationBlock(LocationBlock &, ConfigNode const &);
+
+    static void handleLocationBlock(ServerBlock &, ConfigNode const &);
 };
 
 } // namespace config

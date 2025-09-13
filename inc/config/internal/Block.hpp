@@ -68,6 +68,8 @@ public:
     }
 
 protected:
+    friend class DirectiveHandler;
+
     DirectiveMap directives_;
 };
 

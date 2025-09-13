@@ -7,7 +7,7 @@ namespace config {
 const int ServerBlock::defaultPort_ = 9191;
 const char *ServerBlock::defaultAddress_ = "0.0.0.0";
 
-ServerBlock::ServerBlock() : port_(-1) {
+ServerBlock::ServerBlock() : port_(defaultPort_), address_(defaultAddress_) {
     setDefaultPort();
     setDefaultAddress();
 }
