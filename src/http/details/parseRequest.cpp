@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include "config/utils.hpp"
+
 using namespace std;
 
 namespace http {
@@ -50,10 +52,23 @@ bool parseHeaders(HttpRequest::HeaderMap &m, istringstream &s) {
     return 1;
 }
 
-bool parseBody(HttpRequest const &r, istringstream const &s) {
-    (void)r;
-    (void)s;
-    return 1;
+bool parseBody(HttpRequest &r, istringstream &s) {
+    std::streampos pos = s.tellg();
+    if (pos == -1) {
+        return false;
+    }
+
+    size_t start = static_cast<size_t>(pos);
+    size_t end;
+    std::string len = r.headers["Content-Length"];
+    if (len == "") {
+        return true;
+    }
+    else {
+        end = utils::fromString<size_t>(len);
+    }
+    r.body = s.str().substr(start, end);
+    return true;
 }
 
 } // namespace details
