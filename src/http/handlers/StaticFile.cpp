@@ -54,6 +54,9 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
         std::string index_path;
         bool found_index = false;
         std::vector<std::string> const *indexes = l->getIndexFiles();
+        if (!indexes) {
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
+        }
         for (size_t i = 0; i < indexes->size(); i++) {
             index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + (*indexes)[i];
             if (access(index_path.c_str(), F_OK) == 0) {
