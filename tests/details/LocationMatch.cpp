@@ -13,19 +13,19 @@ struct LocationTestFixture {
 
     LocationTestFixture() {
         LocationBlock root;
-        root.path = "/";
-        root.root = "/var/www/html";
-        locations[root.path] = root;
+        root.setPath("/");
+        root.add("root", "/var/www/html");
+        locations[root.getPath()] = root;
 
         LocationBlock images;
-        images.path = "/images/";
-        images.root = "/var/www/data/images";
-        locations[images.path] = images;
+        images.setPath("/images/");
+        images.add("root", "/var/www/data/images");
+        locations[images.getPath()] = images;
 
         LocationBlock imagesJpg;
-        imagesJpg.path = "/images/jpg/";
-        imagesJpg.root = "/var/www/data/images/jpg";
-        locations[imagesJpg.path] = imagesJpg;
+        imagesJpg.setPath("/images/jpg/");
+        imagesJpg.add("root", "/var/www/data/images/jpg");
+        locations[imagesJpg.getPath()] = imagesJpg;
     }
 };
 
@@ -36,25 +36,25 @@ TEST_CASE("LocationMatcher: Basic Matches") {
     SUBCASE("Should find an exact match for a directory") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/images/");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/images/");
+        CHECK(result->getPath() == "/images/");
     }
 
     SUBCASE("Should find a prefix match for a file inside a directory") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/images/logo.png");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/images/");
+        CHECK(result->getPath() == "/images/");
     }
 
     SUBCASE("Should fall back to the root location '/' for unmatched paths") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/some/other/path.html");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/");
+        CHECK(result->getPath() == "/");
     }
 
     SUBCASE("Should match the root location '/' exactly") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/");
+        CHECK(result->getPath() == "/");
     }
 }
 
@@ -67,14 +67,14 @@ TEST_CASE("LocationMatcher: Longest Prefix Matching") {
         // The longest match, "/images/jpg/", must be chosen.
         const LocationBlock *result = details::bestMatchLocation(locs, "/images/jpg/summer.jpeg");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/images/jpg/");
-        CHECK(result->root == "/var/www/data/images/jpg");
+        CHECK(result->getPath() == "/images/jpg/");
+        CHECK(result->getRoot() == "/var/www/data/images/jpg");
     }
 
     SUBCASE("Should select '/images/' over '/'") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/images/png/winter.png");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/images/");
+        CHECK(result->getPath() == "/images/");
     }
 }
 
@@ -99,7 +99,7 @@ TEST_CASE("LocationMatcher: Edge Cases") {
     SUBCASE("Should handle an empty request URI by matching the root") {
         const LocationBlock *result = details::bestMatchLocation(locs, "");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/");
+        CHECK(result->getPath() == "/");
     }
 
     SUBCASE("Should correctly handle paths without a trailing slash") {
@@ -107,6 +107,6 @@ TEST_CASE("LocationMatcher: Edge Cases") {
         // It will be shortened to "/" and match the root location.
         const LocationBlock *result = details::bestMatchLocation(locs, "/images");
         REQUIRE(result != NULL);
-        CHECK(result->path == "/");
+        CHECK(result->getPath() == "/");
     }
 }

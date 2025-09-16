@@ -16,6 +16,7 @@ namespace config {
 class LocationBlock : public Block {
 public:
     std::string const &getPath() const;
+    void setPath(std::string const &);
     StringVector const *getIndexFiles() const;
     bool hasCgiPass() const;
 

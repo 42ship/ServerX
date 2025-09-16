@@ -7,6 +7,10 @@ std::string const &LocationBlock::getPath() const {
     return path_;
 }
 
+void LocationBlock::setPath(std::string const &v) {
+    path_ = v;
+}
+
 bool LocationBlock::hasCgiPass() const {
     return has("cgi_pass");
 }
