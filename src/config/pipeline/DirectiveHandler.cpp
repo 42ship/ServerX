@@ -16,6 +16,8 @@ DirectiveHandler::DirectiveHandler() {
     genericHandlers_["root"] = &DirectiveHandler::handleRoot;
 
     serverHandlers_["listen"] = &DirectiveHandler::handleListen;
+
+    // locationHandlers_["blahblah"] = &DirectiveHandler::blahblah;
 }
 
 DirectiveHandler::~DirectiveHandler() {

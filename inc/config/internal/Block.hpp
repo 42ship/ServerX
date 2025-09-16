@@ -36,6 +36,10 @@ public:
         return directives_;
     }
 
+    StringVector const *operator[](std::string const &key) const {
+        return get(key);
+    }
+
     /**
      * @brief Retrieves the arguments for a specific directive.
      * @param key The name of the directive (e.g., "root").
