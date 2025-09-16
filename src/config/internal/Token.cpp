@@ -1,4 +1,4 @@
-#include "config/Token.hpp"
+#include "config/internal/Token.hpp"
 
 #include <iostream>
 

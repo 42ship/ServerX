@@ -3,9 +3,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "config/Lexer.hpp"
-#include "config/Parser.hpp"
-#include "config/ConfigBuilder.hpp"
+#include "config/pipeline/Lexer.hpp"
+#include "config/pipeline/Parser.hpp"
+#include "config/pipeline/Mapper.hpp"
+#include "config/pipeline/Validator.hpp"
 #include "utils/Logger.hpp"
 
 namespace config {
@@ -13,7 +14,9 @@ namespace config {
 ServerConfig::ServerConfig(std::string const &content) {
     TokenArray tokens = Lexer::tokenize(content);
     std::vector<ConfigNode> ir = Parser::parse(tokens);
-    servers_ = ConfigBuilder::build(ir);
+    servers_ = Mapper::map(ir);
+    Validator::validate(servers_);
+    LOG_TRACE(*this);
 }
 
 ServerConfig::ServerConfig(char const *fpath) {
@@ -27,7 +30,8 @@ ServerConfig::ServerConfig(char const *fpath) {
 
     TokenArray tokens = Lexer::tokenize(content);
     std::vector<ConfigNode> ir = Parser::parse(tokens);
-    servers_ = ConfigBuilder::build(ir);
+    servers_ = Mapper::map(ir);
+    Validator::validate(servers_);
     LOG_TRACE(*this);
 }
 

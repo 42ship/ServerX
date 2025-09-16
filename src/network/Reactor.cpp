@@ -55,6 +55,7 @@ void Reactor::handleRead() {
 
     int count = recv(clientFd_, read_buffer, IO_BUFFER_SIZE, 0);
     if (count <= 0) {
+        // NOTE: to remove for evaluation; errno after recv/send is not allowed
         if (count == 0) {
             LOG_INFO("Client disconnected on fd: " << clientFd_);
         } else if (errno != EAGAIN && errno != EWOULDBLOCK) {
@@ -163,6 +164,7 @@ bool Reactor::sendResponseBuffer() {
     ssize_t sent = ::send(clientFd_, responseBuffer_.data() + sentResponseBytes_,
                           responseBuffer_.size() - sentResponseBytes_, 0);
     if (sent < 0) {
+        // NOTE: to remove for evaluation; errno after recv/send is not allowed
         if (errno == EAGAIN || errno == EWOULDBLOCK) {
             LOG_TRACE("Send buffer is full for fd " << clientFd_ << ", will try again later.");
         } else {

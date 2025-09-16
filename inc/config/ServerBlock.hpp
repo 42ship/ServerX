@@ -1,9 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <map>
-
+#include "internal/Block.hpp"
 #include "LocationBlock.hpp"
 
 namespace config {
@@ -18,12 +15,12 @@ typedef std::map<std::string, LocationBlock> LocationBlockMap;
  * location blocks defined within a single server context. It holds settings like
  * the listening port, server names, and a collection of LocationBlock objects.
  */
-class ServerBlock {
+class ServerBlock : public Block {
 public:
-    std::string root;
-
     ServerBlock();
 
+    int getPort() const;
+    std::string const &getAddress() const;
     /**
      * @brief Retrieves the configuration for a specific location path.
      *
@@ -32,24 +29,21 @@ public:
      */
     LocationBlock const *getLocation(std::string const &name) const;
 
-    int getPort() const;
-    std::string const &getAddress() const;
-
-    friend std::ostream &operator<<(std::ostream &o, ServerBlock const &t);
-
 private:
     void setDefaultPort();
     void setDefaultAddress();
 
-    friend class ConfigBuilder;
     friend class ServerConfig;
+    friend class DirectiveHandler;
+    friend class Mapper;
+    friend class Validator;
+    friend std::ostream &operator<<(std::ostream &o, ServerBlock const &t);
 
     static const int defaultPort_;
     static const char *defaultAddress_;
 
     int port_;
     std::string address_;
-    std::vector<std::string> serverNames_; // TODO: Change CTL for performance
     LocationBlockMap locations_;
 };
 
