@@ -58,6 +58,16 @@ public:
         return directives_.find(key) != directives_.end();
     }
 
+    void add(std::string const &key, StringVector const &values) {
+        directives_[key] = values;
+    }
+
+    void add(std::string const &key, std::string const &value) {
+        StringVector v;
+        v.push_back(value);
+        add(key, v);
+    }
+
     // --- Common Directive Accessors ---
 
     /**
