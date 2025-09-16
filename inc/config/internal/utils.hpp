@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "utils/utils.hpp"
 
 namespace utils {
 

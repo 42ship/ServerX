@@ -24,7 +24,7 @@ std::string getPath(HttpRequest const &req, config::ServerBlock const &s,
         root = s.getRoot();
     else
         root = l.getRoot();
-    if (l.getPath() == req.path)
+    if (l.getPath() == req.path && req.path[req.path.length() - 1] != '/')
         path = req.path;
     else
         path = (req.path.substr(l.getPath().size() - 1));
