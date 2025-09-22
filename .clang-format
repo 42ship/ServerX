@@ -8,6 +8,6 @@ AccessModifierOffset: -4
 ContinuationIndentWidth: 4
 # BreakBeforeBraces: Allman
 ColumnLimit: 100
-SortIncludes: false
+SortIncludes: true
 AllowShortFunctionsOnASingleLine: None
 ConstructorInitializerAllOnOneLineOrOnePerLine : true

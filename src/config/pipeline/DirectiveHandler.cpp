@@ -1,9 +1,9 @@
 #include "config/pipeline/DirectiveHandler.hpp"
-#include "config/internal/ConfigException.hpp"
+#include "config/ConfigException.hpp"
+#include "config/LocationBlock.hpp"
+#include "config/ServerBlock.hpp"
 #include "config/internal/Block.hpp"
 #include "config/internal/utils.hpp"
-#include "config/ServerBlock.hpp"
-#include "config/LocationBlock.hpp"
 #include <string>
 
 namespace {

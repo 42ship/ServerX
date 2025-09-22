@@ -1,5 +1,5 @@
 #include "config/pipeline/Validator.hpp"
-#include "config/internal/ConfigException.hpp"
+#include "config/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "utils/Logger.hpp"

@@ -1,6 +1,6 @@
 #include "config/pipeline/Parser.hpp"
 
-#include "config/internal/ConfigException.hpp"
+#include "config/ConfigException.hpp"
 
 namespace config {
 

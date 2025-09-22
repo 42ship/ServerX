@@ -1,4 +1,4 @@
-#include "config/internal/ConfigException.hpp"
+#include "config/ConfigException.hpp"
 
 #include <iostream>
 

@@ -1,9 +1,11 @@
 #pragma once
 
-#include <ostream>
 #include "ServerBlock.hpp"
+#include <ostream>
 
 namespace config {
+
+typedef std::map<int, ServerBlockVec> ServerBlockMap;
 
 /**
  * @class ServerConfig
@@ -27,14 +29,16 @@ public:
      */
     ServerBlock const *getServer(int port, std::string const &server_name) const;
 
-    ServerBlockVec const &getServers() const;
+    ServerBlockMap const &getServersMap() const;
 
     friend std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
 
 private:
     friend class ConfigBuilder;
 
-    ServerBlockVec servers_; // TODO: Change CTL for performance
+    void build(std::string const &content);
+
+    ServerBlockMap servers_;
 };
 
 } // namespace config

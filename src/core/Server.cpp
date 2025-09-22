@@ -1,15 +1,16 @@
 #include "core/Server.hpp"
 
-#include <cstring>
-#include <iostream>
-#include <signal.h>
-#include <unistd.h>
-#include <vector>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "config/ServerConfig.hpp"
 #include "http/Router.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "utils/Logger.hpp"
+#include <cstring>
+#include <iostream>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <vector>
 
 namespace core {
 
@@ -20,10 +21,10 @@ namespace core {
 // };
 Server *Server::instance_ = NULL;
 
-Server::Server(char const *fpath)
+Server::Server(config::ServerConfig const &config)
     : shutdownRequested_(false),
       isRunning_(false),
-      config_(fpath),
+      config_(config),
       dispatcher_(network::InitiationDispatcher::getInstance()),
       router_(config_, mimeTypes_) {
     instance_ = this;
@@ -108,12 +109,21 @@ bool Server::getisRunning() const {
 
 void Server::setupAcceptors() {
     LOG_INFO("Setting up server listeners (acceptors)...");
-    config::ServerBlockVec const &servers = config_.getServers();
-    for (config::ServerBlockVec::const_iterator it = servers.begin(); it != servers.end(); ++it) {
-        network::Acceptor *acceptor = new network::Acceptor(*it, router_);
+    config::ServerBlockMap const &servers = config_.getServersMap();
+    for (config::ServerBlockMap::const_iterator it = servers.begin(); it != servers.end(); ++it) {
+        network::Acceptor *acceptor;
+        if (it->second.size() > 1)
+            // Since we've got multiple servers Listening on same port then default address would be
+            // "0.0.0.0" and all requests would be accepted and virtual server name mathicng would
+            // decide which server block to get
+            acceptor = new network::Acceptor(it->first, router_);
+        else if (it->second.size() == 1)
+            acceptor = new network::Acceptor(it->second[0], router_);
+        else
+            continue;
         dispatcher_.registerHandler(acceptor);
         acceptors_.push_back(acceptor);
-        LOG_INFO("Listening on port " << it->getPort());
+        LOG_INFO("Listening on port " << it->first);
     }
 }
 
