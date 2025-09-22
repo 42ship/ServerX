@@ -3,6 +3,7 @@
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "utils/Logger.hpp"
+#include "utils/utils.hpp"
 
 namespace config {
 
@@ -18,17 +19,26 @@ void Validator::validate(ServerBlockVec &servers) {
 void Validator::validateServer(ServerBlock &b) {
     validateListen(b);
     for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
-        validateLocation(it->second);
+        validateLocation(it->second, b);
     }
 }
 
-void Validator::validateLocation(LocationBlock &b) {
+void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) {
+    locationCompleteRoot(b, server);
     validateRoot(b);
 }
 
 void Validator::validateRoot(Block &b) {
     if (!b.has("root"))
         return;
+    std::string const &root = b.getRoot();
+    char const *error = utils::validateDirectoryPath(root.c_str());
+    if (error) {
+        LOG_WARN("'" << root << "': " << error);
+        return;
+    }
+    if (root[root.length() - 1] != '/')
+        b.setRoot(root + '/');
 }
 
 void Validator::validateListen(ServerBlock &b) {
@@ -43,6 +53,34 @@ void Validator::validateListen(ServerBlock &b) {
 void Validator::validateServerNames(ServerBlock &b) {
     if (!b.has("server_names"))
         return;
+}
+
+// ==============================HELPER FUNCTIONS==============================
+
+void Validator::locationCompleteRoot(LocationBlock &l, ServerBlock const &s) {
+    std::string finalRoot;
+
+    std::string serverRoot = s.getRoot();
+    std::string locationRoot = l.getRoot();
+    if (!locationRoot.empty()) {
+        // root is an absolute path
+        if (locationRoot[0] == '/') {
+            finalRoot = locationRoot;
+        } else { // root is a relative path
+            finalRoot = serverRoot;
+            if (!finalRoot.empty() && finalRoot[finalRoot.length() - 1] != '/') {
+                finalRoot += '/';
+            }
+            finalRoot += locationRoot;
+        }
+    } else {
+        finalRoot = serverRoot;
+    }
+    if (finalRoot.empty()) {
+        issue_warning("Could not determine a root path for location '" + l.getPath() + "'.");
+        return;
+    }
+    l.setRoot(finalRoot);
 }
 
 } // namespace config

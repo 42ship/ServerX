@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace utils {
 
@@ -17,5 +17,7 @@ template <typename T> T fromString(std::string const &str) {
     ss >> ret;
     return ret;
 }
+
+const char *validateDirectoryPath(const char *path);
 
 } // namespace utils

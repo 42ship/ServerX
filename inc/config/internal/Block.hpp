@@ -81,6 +81,14 @@ public:
         return "";
     }
 
+    void setRoot(std::string const &root) {
+        DirectiveMap::iterator it = directives_.find("root");
+        if (it != directives_.end()) {
+            it->second[0] = root;
+        } else
+            add("root", root);
+    }
+
 protected:
     friend class DirectiveHandler;
 
