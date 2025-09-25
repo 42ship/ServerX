@@ -34,8 +34,6 @@ public:
     friend std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
 
 private:
-    friend class ConfigBuilder;
-
     void build(std::string const &content);
 
     ServerBlockMap servers_;

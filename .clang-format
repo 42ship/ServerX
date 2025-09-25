@@ -9,5 +9,4 @@ ContinuationIndentWidth: 4
 # BreakBeforeBraces: Allman
 ColumnLimit: 100
 SortIncludes: true
-AllowShortFunctionsOnASingleLine: None
-ConstructorInitializerAllOnOneLineOrOnePerLine : true
+ConstructorInitializerAllOnOneLineOrOnePerLine: true

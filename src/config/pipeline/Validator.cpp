@@ -18,7 +18,7 @@ void Validator::validate(ServerBlockVec &servers) {
 
 void Validator::validateServer(ServerBlock &b) {
     validateListen(b);
-    for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
+    for (LocationBlockMap::iterator it = b.locations().begin(); it != b.locations().end(); ++it) {
         validateLocation(it->second, b);
     }
 }
@@ -44,7 +44,7 @@ void Validator::validateRoot(Block &b) {
 void Validator::validateListen(ServerBlock &b) {
     if (!b.has("listen")) {
         LOG_WARN("in server block listen is not specified default address: '"
-                 << b.address_ << "' and port: '" << b.port_ << "' is used.");
+                 << b.getAddress() << "' and port: '" << b.getPort() << "' is used.");
         return;
     }
     return;
