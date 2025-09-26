@@ -114,7 +114,7 @@ void Server::setupAcceptors() {
         network::Acceptor *acceptor;
         if (it->second.size() > 1)
             // Since we've got multiple servers Listening on same port then default address would be
-            // "0.0.0.0" and all requests would be accepted and virtual server name mathicng would
+            // "0.0.0.0" and all requests would be accepted and virtual server name matching would
             // decide which server block to get
             acceptor = new network::Acceptor(it->first, router_);
         else if (it->second.size() == 1)

@@ -23,7 +23,6 @@ ServerBlockVec Mapper::map(const ConfigNodeVec &nodes) {
 
 void Mapper::mapServerBlock(ServerBlock &b, ConfigNode const &node) {
     DirectiveHandler::getInstance().process(b, node.directives);
-    // DirectiveHandler::getInstance().process(b, node.directives);
 
     for (size_t i = 0; i < node.children.size(); i++) {
         if (node.children[i].name == "location") {

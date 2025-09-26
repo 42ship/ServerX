@@ -74,11 +74,11 @@ TEST_CASE("Virtual Server Matching (Future Feature)") {
         config::ServerBlock f;
         f.setListen("8080");
         f["server_name"] = {"first.com", "www.first.com"};
-        f.setRoot("root /var/www/first/");
+        f.setRoot("/var/www/first/");
         config::ServerBlock second;
         second.setListen("8080");
         second["server_name"] = {"second.com"};
-        f.setRoot("root /var/www/second/");
+        second.setRoot("/var/www/second/");
         config::ServerConfig sc;
         sc.addServer(f);
         sc.addServer(second);

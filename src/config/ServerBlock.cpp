@@ -31,7 +31,7 @@ void ServerBlock::setListen(std::string const &listenArg) {
         throw ConfigError("Listen directive '" + listenArg + "' has an invalid format.");
     }
     if (!utils::isValidPort(port_str)) {
-        throw ConfigError("Port '" + port_str + "' is not a valid.");
+        throw ConfigError("Port '" + port_str + "' is not valid.");
     }
     port_ = utils::fromString<int>(port_str);
     address_ = address;
