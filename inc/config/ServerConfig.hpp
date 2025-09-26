@@ -17,9 +17,13 @@ typedef std::map<int, ServerBlockVec> ServerBlockMap;
  */
 class ServerConfig {
 public:
-    ServerConfig(char const *fpath);
-    ServerConfig(std::string const &);
+    // ========================= Construction & Destruction =========================
 
+    ServerConfig();
+    ServerConfig(char const *fpath, bool perform_fs_checks = true);
+    ServerConfig(std::string const &content, bool perform_fs_checks = true);
+
+    // ============================== Public Interface ==============================
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.
      *
@@ -28,15 +32,18 @@ public:
      * @return A const pointer to the matched ServerBlock, or NULL if no match is found.
      */
     ServerBlock const *getServer(int port, std::string const &server_name) const;
+    void addServer(ServerBlock const &);
+
+    // ============================== Getters & Setters =============================
 
     ServerBlockMap const &getServersMap() const;
 
-    friend std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
-
 private:
-    void build(std::string const &content);
+    void build(std::string const &content, bool perform_fs_checks);
 
     ServerBlockMap servers_;
 };
+
+std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
 
 } // namespace config

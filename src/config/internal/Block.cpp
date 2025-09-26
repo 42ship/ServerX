@@ -2,27 +2,22 @@
 
 namespace config {
 
-Block::~Block() {
-}
+Block::~Block() {}
 
 /**
  * @brief Provides read-only access to the underlying directive map.
  */
-DirectiveMap const &Block::getDirectives() const {
-    return directives_;
-}
+DirectiveMap const &Block::getDirectives() const { return directives_; }
 
 /**
  * @brief Provides read-write access to the underlying directive map.
  * (Primarily for use by the ConfigBuilder).
  */
-DirectiveMap &Block::getDirectives() {
-    return directives_;
-}
+DirectiveMap &Block::getDirectives() { return directives_; }
 
-StringVector const *Block::operator[](std::string const &key) const {
-    return get(key);
-}
+StringVector const *Block::operator[](std::string const &key) const { return get(key); }
+
+StringVector &Block::operator[](std::string const &key) { return directives_[key]; }
 
 /**
  * @brief Retrieves the arguments for a specific directive.
@@ -38,13 +33,9 @@ StringVector const *Block::get(std::string const &key) const {
 }
 
 /** @brief Checks if a directive exists within the block. */
-bool Block::has(std::string const &key) const {
-    return directives_.find(key) != directives_.end();
-}
+bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
 
-void Block::add(std::string const &key, StringVector const &values) {
-    directives_[key] = values;
-}
+void Block::add(std::string const &key, StringVector const &values) { directives_[key] = values; }
 
 void Block::add(std::string const &key, std::string const &value) {
     StringVector v;

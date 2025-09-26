@@ -12,42 +12,44 @@
 
 namespace config {
 
-ServerConfig::ServerConfig(std::string const &content) {
-    build(content);
+ServerConfig::ServerConfig() {}
+ServerConfig::ServerConfig(std::string const &content, bool perform_fs_checks) {
+    build(content, perform_fs_checks);
 }
 
-ServerConfig::ServerConfig(char const *fpath) {
+ServerConfig::ServerConfig(char const *fpath, bool perform_fs_checks) {
     std::ifstream file(fpath);
     if (!file.is_open()) {
         throw std::runtime_error("Could not open config file.");
     }
     std::stringstream buffer;
     buffer << file.rdbuf();
-    build(buffer.str());
+    build(buffer.str(), perform_fs_checks);
 }
 
-void ServerConfig::build(std::string const &content) {
+void ServerConfig::build(std::string const &content, bool perform_fs_checks) {
     TokenArray tokens = Lexer::tokenize(content);
     std::vector<ConfigNode> ir = Parser::parse(tokens);
     ServerBlockVec servers = Mapper::map(ir);
-    Validator::validate(servers);
+    Validator::validate(servers, perform_fs_checks);
     for (size_t i = 0; i < servers.size(); i++) {
-        servers_[servers[i].getPort()].push_back(servers[i]);
+        addServer(servers[i]);
     }
     LOG_TRACE(*this);
 }
 
-ServerBlockMap const &ServerConfig::getServersMap() const {
-    return servers_;
-}
+ServerBlockMap const &ServerConfig::getServersMap() const { return servers_; }
 
 ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
-    if (server_name.empty())
-        return NULL;
+    (void)server_name;
     ServerBlockMap::const_iterator it = servers_.find(port);
     if (it == servers_.end())
         return NULL;
     return &it->second[0];
+}
+
+void ServerConfig::addServer(ServerBlock const &server) {
+    servers_[server.getPort()].push_back(server);
 }
 
 std::ostream &operator<<(std::ostream &o, const ServerConfig &t) {

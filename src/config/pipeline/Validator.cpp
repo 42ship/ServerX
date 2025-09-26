@@ -7,12 +7,16 @@
 
 namespace config {
 
-void Validator::validate(ServerBlockVec &servers) {
+Validator::Validator() : perform_fs_checks_(true) {}
+Validator::Validator(bool perform_fs_checks) : perform_fs_checks_(perform_fs_checks) {}
+
+void Validator::validate(ServerBlockVec &servers, bool perform_fs_checks) {
+    Validator vl(perform_fs_checks);
     if (servers.empty()) {
         throw ConfigError("at least one server is required in config file");
     }
     for (size_t i = 0; i < servers.size(); i++) {
-        validateServer(servers[i]);
+        vl.validateServer(servers[i]);
     }
 }
 
@@ -32,10 +36,12 @@ void Validator::validateRoot(Block &b) {
     if (!b.has("root"))
         return;
     std::string const &root = b.getRoot();
-    char const *error = utils::validateDirectoryPath(root.c_str());
-    if (error) {
-        LOG_WARN("'" << root << "': " << error);
-        return;
+    if (perform_fs_checks_) {
+        char const *error = utils::validateDirectoryPath(root.c_str());
+        if (error) {
+            LOG_WARN("'" << root << "': " << error);
+            return;
+        }
     }
     if (root[root.length() - 1] != '/')
         b.setRoot(root + '/');
