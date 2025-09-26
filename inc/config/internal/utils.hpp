@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "utils/utils.hpp"
+
 namespace utils {
 
 bool isValidPort(int port);

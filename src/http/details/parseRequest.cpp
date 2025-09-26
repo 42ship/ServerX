@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-#include "config/utils.hpp"
+#include "utils/utils.hpp"
 
 using namespace std;
 

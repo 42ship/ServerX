@@ -2,6 +2,10 @@
 
 #include <string>
 #include <sstream>
+#include <fstream>
+#include <iostream>
+
+namespace utils {
 
 template <typename T> std::string toString(T const &v) {
     std::ostringstream ss;
@@ -15,3 +19,7 @@ template <typename T> T fromString(std::string const &str) {
     ss >> ret;
     return ret;
 }
+
+bool writeFile(const std::string& content, const char* path);
+
+} // namespace utils

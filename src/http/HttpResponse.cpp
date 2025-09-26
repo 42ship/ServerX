@@ -35,13 +35,38 @@ inline const char *getResponsePhrase(Status status) {
     }
 }
 
-} // namespace
-
-HttpResponse::HttpResponse() : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE) {
+inline const char *getJsonResponsePhrase(Status status) {
+    switch (status) {
+    case OK:
+        return "Upload successful";
+    case CREATED:
+        return "File uploaded successfully";
+    case NO_CONTENT:
+        return "\0";
+    case BAD_REQUEST:
+        return "Invalid request format";
+    case UNAUTHORIZED:
+        return "Authentication required";
+    case FORBIDDEN:
+        return "Permission denied";
+    case PAYLOAD_TOO_LARGE:
+        return "File size exceeds the allowed limit";
+    case UNSUPPORTED_MEDIA_TYPE:
+        return "Unsupported file type";
+    case INTERNAL_SERVER_ERROR:
+        return "Internal Server Error";
+    default:
+        return "Unknown";
+    }
 }
 
-HttpResponse::HttpResponse(Status code, std::string const &httpVersion)
-    : httpVersion_(httpVersion), statusCode_(code), bodyType_(BODY_NONE) {
+} // namespace
+
+HttpResponse::HttpResponse() : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDART) {
+}
+
+HttpResponse::HttpResponse(Status code, std::string const &httpVersion, MessageType type)
+    : httpVersion_(httpVersion), statusCode_(code), bodyType_(BODY_NONE), messageType_(type) {
 }
 
 HttpResponse::HttpResponse(HttpResponse const &rhs)
@@ -127,10 +152,6 @@ Status HttpResponse::getStatus() const {
     return statusCode_;
 }
 
-char const *HttpResponse::getResponsePhrase() const {
-    return http::getResponsePhrase(statusCode_);
-}
-
 HeaderMap &HttpResponse::getHeaders() {
     return headers_;
 }
@@ -157,7 +178,7 @@ void HttpResponse::cleanupBody() {
 std::string HttpResponse::buildHeaders() const {
     std::ostringstream oss;
 
-    oss << httpVersion_ << " " << statusCode_ << " " << getResponsePhrase() << "\r\n";
+    oss << httpVersion_ << " " << statusCode_ << " " << generateResponsePhrase() << "\r\n";
     for (HeaderMap::const_iterator it = headers_.begin(); it != headers_.end(); ++it) {
         oss << it->first << ": " << it->second << "\r\n";
     }
@@ -165,9 +186,20 @@ std::string HttpResponse::buildHeaders() const {
     return oss.str();
 }
 
+MessageType HttpResponse::getMessageType() const {
+    return messageType_;
+}
+
+char const *HttpResponse::generateResponsePhrase() const {
+    if (messageType_ == JSON) {
+        return http::getJsonResponsePhrase(statusCode_);
+    }
+    return http::getResponsePhrase(statusCode_);
+}
+
 std::ostream &operator<<(std::ostream &o, HttpResponse const &r) {
     o << "version(" << r.getVersion() << "); status(" << r.getStatus() << "); phrase("
-      << r.getResponsePhrase() << ")";
+      << r.generateResponsePhrase() << ")";
     return o;
 }
 

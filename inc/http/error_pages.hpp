@@ -9,7 +9,7 @@ namespace http {
 namespace error_pages {
 
 HttpResponse generateErrorResponse(Status code, std::string const &httpVersion);
-
+HttpResponse generateJsonErrorResponse(Status code, std::string const &httpVersion);
 } // namespace error_pages
 
 } // namespace http

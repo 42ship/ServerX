@@ -5,6 +5,7 @@ text/html            html htm
 text/css             css
 text/csv             csv
 text/plain           txt
+text/markdown        md
 application/xml      xml
 application/json     json
 

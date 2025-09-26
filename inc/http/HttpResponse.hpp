@@ -25,6 +25,15 @@ enum BodySourceType {
 };
 
 /**
+ * @enum MessageType
+ * @brief Defines the format of the HTTP response status message.
+ */
+enum MessageType {
+    STANDART, ///< Use standard HTTP reason phrase (e.g., "OK", "Not Found")
+    JSON      ///< Use JSON-formatted error message
+};
+
+/**
  * @class HttpResponse
  * @brief A data container for an HTTP response.
  *
@@ -34,7 +43,7 @@ enum BodySourceType {
 class HttpResponse {
 public:
     HttpResponse();
-    HttpResponse(Status code, std::string const &httpVersion);
+    HttpResponse(Status code, std::string const &httpVersion, MessageType type = STANDART);
     HttpResponse(HttpResponse const &);
     HttpResponse const &operator=(HttpResponse const &);
     ~HttpResponse();
@@ -47,12 +56,15 @@ public:
     void setBodyFromCgi(int pipe_fd);
 
     Status getStatus() const;
-    char const *getResponsePhrase() const;
+    // char const *getResponsePhrase() const;
     HeaderMap &getHeaders();
     HeaderMap const &getHeaders() const;
     std::string const &getVersion() const;
     BodySourceType getBodyType() const;
     std::string buildHeaders() const;
+    MessageType getMessageType() const;
+
+    char const *generateResponsePhrase() const;
 
     union {
         /** @brief Details for in-memory bodies. */
@@ -79,6 +91,7 @@ private:
     Status statusCode_;
     HeaderMap headers_;
     BodySourceType bodyType_;
+    MessageType messageType_;
 
     void cleanupBody();
 };

@@ -72,13 +72,40 @@ static vector<char> const &getCacherErrorBody(Status code, char const *message) 
     cache.insert(make_pair(code, createErrorBody(code, message)));
     return cache[code];
 }
+
+static std::vector<char> createJsonErrorBody(Status code, char const *message) {
+    std::ostringstream body;
+    body << "{ \"" << code << "\": \"" << message << "\" }";
+    string const &s = body.str();
+    return vector<char>(s.begin(), s.end());
+}
+
+static vector<char> const &getCacherJsonErrorBody(Status code, char const *message) {
+    static ErrorPageCache cache;
+
+    ErrorPageCache::const_iterator it = cache.find(code);
+    if (it != cache.end()) {
+        return it->second;
+    }
+    cache.insert(make_pair(code, createJsonErrorBody(code, message)));
+    return cache[code];
+}
+
 } // namespace
 
 HttpResponse generateErrorResponse(Status code, const std::string &httpVersion) {
     HttpResponse res(code, httpVersion);
 
-    std::vector<char> const &body = getCacherErrorBody(code, res.getResponsePhrase());
+    std::vector<char> const &body = getCacherErrorBody(code, res.generateResponsePhrase());
     res.setBodyInMemory(body, "text/html");
+    return res;
+}
+
+HttpResponse generateJsonErrorResponse(Status code, const std::string &httpVersion) {
+    HttpResponse res(code, httpVersion, JSON);
+
+    std::vector<char> const &body = getCacherJsonErrorBody(code, res.generateResponsePhrase());
+    res.setBodyInMemory(body, "application/json");
     return res;
 }
 

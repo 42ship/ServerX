@@ -29,6 +29,7 @@ public:
     std::string body;
 
     static HttpRequest parse(std::string const &);
+    std::string getHeader(const std::string& key) const;
 };
 
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r);
