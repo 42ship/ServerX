@@ -49,6 +49,10 @@ inline const char *getJsonResponsePhrase(Status status) {
         return "Authentication required";
     case FORBIDDEN:
         return "Permission denied";
+    case NOT_FOUND:
+        return "Not Found";
+    case LENGTH_REQUIRED:
+        return "Length Required";
     case PAYLOAD_TOO_LARGE:
         return "File size exceeds the allowed limit";
     case UNSUPPORTED_MEDIA_TYPE:

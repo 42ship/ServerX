@@ -17,6 +17,7 @@ enum Status {
     FORBIDDEN = 403,                /** 403 Forbidden — not allowed despite authentication. */
     NOT_FOUND = 404,                /** 404 Not Found — resource not found. */
     METHOD_NOT_ALLOWED = 405,       /** 405 Method Not Allowed — method not permitted. */
+    LENGTH_REQUIRED = 411,          /** 411 Length Required — No Content-Length header */
     PAYLOAD_TOO_LARGE = 413,        /** 413 Payload Too Large — file size exceeds the allowed limit*/
     UNSUPPORTED_MEDIA_TYPE = 415,   /** 415 Unsupported Media Type — unsupported file type*/
 
