@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['serverblockvec_0',['ServerBlockVec',['../namespaceconfig.html#a4508aae42e035db1f7d0e29c8ae0bcf3',1,'config']]],
-  ['serverdirectivehandler_1',['ServerDirectiveHandler',['../classconfig_1_1ConfigBuilder.html#a45d126c07ccab6683563768b4b4e72e6',1,'config::ConfigBuilder']]],
-  ['serverhandlermap_2',['ServerHandlerMap',['../classconfig_1_1ConfigBuilder.html#afce1d7686feb3f3e0f4416ad972f948d',1,'config::ConfigBuilder']]]
+  ['locationblockmap_0',['LocationBlockMap',['../namespaceconfig.html#aedc2742208b5528f82947ef171cc854e',1,'config']]],
+  ['locationhandler_1',['LocationHandler',['../classconfig_1_1DirectiveHandler.html#ae926a64aa288080d1e7c606e04c457c2',1,'config::DirectiveHandler']]],
+  ['locationhandlermap_2',['LocationHandlerMap',['../classconfig_1_1DirectiveHandler.html#a8b1a3de3679610f96c2756002476dd27',1,'config::DirectiveHandler']]]
 ];

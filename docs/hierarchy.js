@@ -4,8 +4,12 @@ var hierarchy =
       [ "network::Acceptor", "classnetwork_1_1Acceptor.html", null ],
       [ "network::Reactor", "classnetwork_1_1Reactor.html", null ]
     ] ],
-    [ "config::ConfigBuilder", "classconfig_1_1ConfigBuilder.html", null ],
+    [ "config::Block", "classconfig_1_1Block.html", [
+      [ "config::LocationBlock", "classconfig_1_1LocationBlock.html", null ],
+      [ "config::ServerBlock", "classconfig_1_1ServerBlock.html", null ]
+    ] ],
     [ "config::ConfigNode", "classconfig_1_1ConfigNode.html", null ],
+    [ "config::DirectiveHandler", "classconfig_1_1DirectiveHandler.html", null ],
     [ "network::EpollManager", "classnetwork_1_1EpollManager.html", null ],
     [ "std::exception", null, [
       [ "config::ConfigException", "classconfig_1_1ConfigException.html", [
@@ -24,15 +28,15 @@ var hierarchy =
     [ "network::InitiationDispatcher", "classnetwork_1_1InitiationDispatcher.html", null ],
     [ "utils::IpInfo", "structutils_1_1IpInfo.html", null ],
     [ "config::Lexer", "classconfig_1_1Lexer.html", null ],
-    [ "config::LocationBlock", "classconfig_1_1LocationBlock.html", null ],
     [ "utils::Logger", "classutils_1_1Logger.html", null ],
+    [ "config::Mapper", "classconfig_1_1Mapper.html", null ],
     [ "http::MimeTypes", "classhttp_1_1MimeTypes.html", null ],
     [ "config::Parser", "classconfig_1_1Parser.html", null ],
     [ "http::Router", "classhttp_1_1Router.html", null ],
     [ "http::RouterResult", "structhttp_1_1RouterResult.html", null ],
     [ "core::Server", "classcore_1_1Server.html", null ],
-    [ "config::ServerBlock", "classconfig_1_1ServerBlock.html", null ],
     [ "config::ServerConfig", "classconfig_1_1ServerConfig.html", null ],
     [ "network::Socket", "classnetwork_1_1Socket.html", null ],
-    [ "config::Token", "structconfig_1_1Token.html", null ]
+    [ "config::Token", "structconfig_1_1Token.html", null ],
+    [ "config::Validator", "classconfig_1_1Validator.html", null ]
 ];

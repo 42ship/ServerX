@@ -27,5 +27,6 @@ var namespaceutils =
     [ "isValidPort", "namespaceutils.html#ad2c7af639c94afbb424737764f3dd555", null ],
     [ "matchHttpMethod", "namespaceutils.html#aeefe6075662814de0a8339de01f610f4", null ],
     [ "operator<<", "namespaceutils.html#a19208ef1e0235ce7f92b682983f0fce7", null ],
-    [ "toString", "namespaceutils.html#aa829fef424a4463ddfc6488b969755a2", null ]
+    [ "toString", "namespaceutils.html#aa829fef424a4463ddfc6488b969755a2", null ],
+    [ "validateDirectoryPath", "namespaceutils.html#a6c6c2490267aaffaecd721402a08351c", null ]
 ];

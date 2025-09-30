@@ -1,8 +1,8 @@
 var classconfig_1_1LocationBlock =
 [
+    [ "getIndexFiles", "classconfig_1_1LocationBlock.html#a1acc9f3f48eeb9580e96528a881ebdd5", null ],
+    [ "getPath", "classconfig_1_1LocationBlock.html#a8eac9924fd5dd8f79b913a0245d2fb11", null ],
     [ "hasCgiPass", "classconfig_1_1LocationBlock.html#afc07c99290008d65485524a23cca16a7", null ],
-    [ "cgi_pass", "classconfig_1_1LocationBlock.html#a947f5d61eaec2a06f3ca998343cc89e7", null ],
-    [ "index", "classconfig_1_1LocationBlock.html#a21730f5aab0ef02eaf4daa94560fc286", null ],
-    [ "path", "classconfig_1_1LocationBlock.html#a671d27a6402e6ee7ea18e4ffc3b19672", null ],
-    [ "root", "classconfig_1_1LocationBlock.html#ae1c768e7c697cc835a4903512a47f104", null ]
+    [ "setPath", "classconfig_1_1LocationBlock.html#a6deebd06c0c84d95381e19f2abf3c175", null ],
+    [ "path_", "classconfig_1_1LocationBlock.html#af0363fe4f136d0bbbbfe8c8433537b0f", null ]
 ];

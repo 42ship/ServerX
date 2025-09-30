@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['epollmanager_0',['EpollManager',['../classnetwork_1_1EpollManager.html',1,'network']]]
+  ['defaulterrorhandler_0',['DefaultErrorHandler',['../classhttp_1_1DefaultErrorHandler.html',1,'http']]],
+  ['directivehandler_1',['DirectiveHandler',['../classconfig_1_1DirectiveHandler.html',1,'config']]]
 ];

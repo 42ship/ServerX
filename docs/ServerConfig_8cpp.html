@@ -92,13 +92,15 @@ $(function(){initNavTree('ServerConfig_8cpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="ServerConfig_8hpp_source.html">config/ServerConfig.hpp</a>&quot;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
-<code>#include &quot;<a class="el" href="Lexer_8hpp_source.html">config/Lexer.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Parser_8hpp_source.html">config/Parser.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ConfigBuilder_8hpp_source.html">config/ConfigBuilder.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ServerBlock_8hpp_source.html">config/ServerBlock.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Lexer_8hpp_source.html">config/pipeline/Lexer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Mapper_8hpp_source.html">config/pipeline/Mapper.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Parser_8hpp_source.html">config/pipeline/Parser.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Validator_8hpp_source.html">config/pipeline/Validator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">utils/Logger.hpp</a>&quot;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -106,7 +108,7 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4f397b12386d27d3fa88c116226572fa" id="r_a4f397b12386d27d3fa88c116226572fa"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconfig.html#a4f397b12386d27d3fa88c116226572fa">config::operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> &amp;t)</td></tr>
+<tr class="memitem:a514862f1d7011814d6abe8fdad15d6c5" id="r_a514862f1d7011814d6abe8fdad15d6c5"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconfig.html#a514862f1d7011814d6abe8fdad15d6c5">config::operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> const &amp;t)</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

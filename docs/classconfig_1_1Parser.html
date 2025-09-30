@@ -128,7 +128,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Performs syntax analysis on a stream of tokens to build a configuration tree. </p>
 <p>The <a class="el" href="classconfig_1_1Parser.html" title="Performs syntax analysis on a stream of tokens to build a configuration tree.">Parser</a> consumes tokens from the <a class="el" href="classconfig_1_1Lexer.html" title="A static utility class that performs lexical analysis on a config string.">Lexer</a> and validates them against a defined grammar. Its primary role is to build a tree of <a class="el" href="classconfig_1_1ConfigNode.html" title="A generic node representing a block in the configuration file.">ConfigNode</a> objects (the IR) that represents the structure of the configuration file. It ensures syntactic correctness but does not validate the meaning of directives.</p>
-<dl class="section note"><dt>Note</dt><dd>This class is responsible for reporting <b>syntax errors</b> (e.g., missing ';'). Semantic errors (e.g., invalid port number) are handled by the <a class="el" href="classconfig_1_1ConfigBuilder.html" title="Constructs the final, strongly-typed configuration from a generic parse tree.">ConfigBuilder</a>. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This class is responsible for reporting <b>syntax errors</b> (e.g., missing ';'). Semantic errors (e.g., invalid port number) are handled by the ConfigBuilder. </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a51b53a62e02542594e520de950cdfacd" name="a51b53a62e02542594e520de950cdfacd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51b53a62e02542594e520de950cdfacd">&#9670;&#160;</a></span>Parser() <span class="overload">[1/2]</span></h2>
@@ -603,8 +603,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>inc/config/<a class="el" href="Parser_8hpp_source.html">Parser.hpp</a></li>
-<li>src/config/<a class="el" href="Parser_8cpp.html">Parser.cpp</a></li>
+<li>inc/config/pipeline/<a class="el" href="Parser_8hpp_source.html">Parser.hpp</a></li>
+<li>src/config/pipeline/<a class="el" href="Parser_8cpp.html">Parser.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

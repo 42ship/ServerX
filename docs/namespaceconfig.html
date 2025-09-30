@@ -98,17 +98,20 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:ConfigBuilder" id="r_ConfigBuilder"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigBuilder.html">ConfigBuilder</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the final, strongly-typed configuration from a generic parse tree.  <a href="classconfig_1_1ConfigBuilder.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Block" id="r_Block"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html">Block</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for configuration blocks like 'server' and 'location'.  <a href="classconfig_1_1Block.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConfigError" id="r_ConfigError"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigError.html">ConfigError</a></td></tr>
 <tr class="memitem:ConfigException" id="r_ConfigException"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigException.html">ConfigException</a></td></tr>
 <tr class="memitem:ConfigNode" id="r_ConfigNode"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigNode.html">ConfigNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic node representing a block in the configuration file.  <a href="classconfig_1_1ConfigNode.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConfigWarning" id="r_ConfigWarning"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigWarning.html">ConfigWarning</a></td></tr>
+<tr class="memitem:DirectiveHandler" id="r_DirectiveHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1DirectiveHandler.html">DirectiveHandler</a></td></tr>
 <tr class="memitem:Lexer" id="r_Lexer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Lexer.html">Lexer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A static utility class that performs lexical analysis on a config string.  <a href="classconfig_1_1Lexer.html#details">More...</a><br /></td></tr>
 <tr class="memitem:LocationBlock" id="r_LocationBlock"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single 'location' block from the configuration file.  <a href="classconfig_1_1LocationBlock.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Mapper" id="r_Mapper"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Mapper.html">Mapper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates a generic <a class="el" href="classconfig_1_1ConfigNode.html" title="A generic node representing a block in the configuration file.">ConfigNode</a> tree into strongly-typed config blocks.  <a href="classconfig_1_1Mapper.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Parser" id="r_Parser"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Parser.html">Parser</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs syntax analysis on a stream of tokens to build a configuration tree.  <a href="classconfig_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ServerBlock" id="r_ServerBlock"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a></td></tr>
@@ -117,18 +120,22 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A strongly-typed data container for a server block's configuration.  <a href="classconfig_1_1ServerConfig.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Token" id="r_Token"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structconfig_1_1Token.html">Token</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single lexical token with a type and a literal value.  <a href="structconfig_1_1Token.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Validator" id="r_Validator"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Validator.html">Validator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs semantic validation on mapped configuration blocks.  <a href="classconfig_1_1Validator.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a0d79bdf5eda5f5127d8bd8a21e1afaf1" id="r_a0d79bdf5eda5f5127d8bd8a21e1afaf1"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a></td></tr>
+<tr class="memitem:adc4ea00539811be31b511a546c211ed0" id="r_adc4ea00539811be31b511a546c211ed0"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a></td></tr>
 <tr class="memitem:a7cef15034761e38ccea32f4648b35f76" id="r_a7cef15034761e38ccea32f4648b35f76"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cef15034761e38ccea32f4648b35f76">DirectiveArgs</a></td></tr>
-<tr class="memitem:a7a30f65d3874890d4a5df1bdbf570ff0" id="r_a7a30f65d3874890d4a5df1bdbf570ff0"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="#a7cef15034761e38ccea32f4648b35f76">DirectiveArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a30f65d3874890d4a5df1bdbf570ff0">DirectiveMap</a></td></tr>
 <tr class="memitem:aaf1dbdee95450593b011b6abc14c5dd4" id="r_aaf1dbdee95450593b011b6abc14c5dd4"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; std::string, <a class="el" href="#a7cef15034761e38ccea32f4648b35f76">DirectiveArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf1dbdee95450593b011b6abc14c5dd4">DirectivePair</a></td></tr>
 <tr class="memitem:a356bb715c9466b2c75feef456a37eff6" id="r_a356bb715c9466b2c75feef456a37eff6"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classconfig_1_1ConfigNode.html">ConfigNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a356bb715c9466b2c75feef456a37eff6">ConfigNodeVec</a></td></tr>
+<tr class="memitem:a830525743715ba0e005be6ca1745ecb0" id="r_a830525743715ba0e005be6ca1745ecb0"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1">config::TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a830525743715ba0e005be6ca1745ecb0">TokenType</a></td></tr>
+<tr class="memitem:a0adb2343a54e41a2eb80d5547d06889b" id="r_a0adb2343a54e41a2eb80d5547d06889b"><td class="memItemLeft" align="right" valign="top">typedef struct config::Token&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0adb2343a54e41a2eb80d5547d06889b">Token</a></td></tr>
 <tr class="memitem:a96998ca09069711fc777babb247d49ec" id="r_a96998ca09069711fc777babb247d49ec"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="structconfig_1_1Token.html">Token</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96998ca09069711fc777babb247d49ec">TokenArray</a></td></tr>
 <tr class="memitem:aedc2742208b5528f82947ef171cc854e" id="r_aedc2742208b5528f82947ef171cc854e"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedc2742208b5528f82947ef171cc854e">LocationBlockMap</a></td></tr>
 <tr class="memitem:a4508aae42e035db1f7d0e29c8ae0bcf3" id="r_a4508aae42e035db1f7d0e29c8ae0bcf3"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">ServerBlockVec</a></td></tr>
-<tr class="memitem:a830525743715ba0e005be6ca1745ecb0" id="r_a830525743715ba0e005be6ca1745ecb0"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1">config::TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a830525743715ba0e005be6ca1745ecb0">TokenType</a></td></tr>
-<tr class="memitem:a0adb2343a54e41a2eb80d5547d06889b" id="r_a0adb2343a54e41a2eb80d5547d06889b"><td class="memItemLeft" align="right" valign="top">typedef struct config::Token&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0adb2343a54e41a2eb80d5547d06889b">Token</a></td></tr>
+<tr class="memitem:a7cc70445712c439111acb4dc2cfd561a" id="r_a7cc70445712c439111acb4dc2cfd561a"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; int, <a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">ServerBlockVec</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cc70445712c439111acb4dc2cfd561a">ServerBlockMap</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -151,11 +158,11 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a43b52aaf79c6da51d1e15ce30e8f43d7" id="r_a43b52aaf79c6da51d1e15ce30e8f43d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43b52aaf79c6da51d1e15ce30e8f43d7">issue_warning</a> (const std::string &amp;msg)</td></tr>
-<tr class="memitem:a8fe6fa7e927772897c525756bc6f409d" id="r_a8fe6fa7e927772897c525756bc6f409d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fe6fa7e927772897c525756bc6f409d">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const &amp;t)</td></tr>
 <tr class="memitem:a3f131a3d8219010366e1b2040a520fa3" id="r_a3f131a3d8219010366e1b2040a520fa3"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f131a3d8219010366e1b2040a520fa3">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="structconfig_1_1Token.html">Token</a> const &amp;t)</td></tr>
 <tr class="memitem:abe8c2125f3982671e553cf443d92aac5" id="r_abe8c2125f3982671e553cf443d92aac5"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe8c2125f3982671e553cf443d92aac5">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1">TokenType</a> const t)</td></tr>
-<tr class="memitem:a127485cd845a03dcc45d2a08c261995a" id="r_a127485cd845a03dcc45d2a08c261995a"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127485cd845a03dcc45d2a08c261995a">operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> &amp;t)</td></tr>
-<tr class="memitem:a4f397b12386d27d3fa88c116226572fa" id="r_a4f397b12386d27d3fa88c116226572fa"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f397b12386d27d3fa88c116226572fa">operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> &amp;t)</td></tr>
+<tr class="memitem:a8fe6fa7e927772897c525756bc6f409d" id="r_a8fe6fa7e927772897c525756bc6f409d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fe6fa7e927772897c525756bc6f409d">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const &amp;t)</td></tr>
+<tr class="memitem:ae5e5d19076966d817ae51062c0895c9d" id="r_ae5e5d19076966d817ae51062c0895c9d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5e5d19076966d817ae51062c0895c9d">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const &amp;t)</td></tr>
+<tr class="memitem:a514862f1d7011814d6abe8fdad15d6c5" id="r_a514862f1d7011814d6abe8fdad15d6c5"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a514862f1d7011814d6abe8fdad15d6c5">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> const &amp;t)</td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a356bb715c9466b2c75feef456a37eff6" name="a356bb715c9466b2c75feef456a37eff6"></a>
@@ -186,14 +193,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a30f65d3874890d4a5df1bdbf570ff0" name="a7a30f65d3874890d4a5df1bdbf570ff0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a30f65d3874890d4a5df1bdbf570ff0">&#9670;&#160;</a></span>DirectiveMap</h2>
+<a id="adc4ea00539811be31b511a546c211ed0" name="adc4ea00539811be31b511a546c211ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc4ea00539811be31b511a546c211ed0">&#9670;&#160;</a></span>DirectiveMap</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::map&lt;std::string, <a class="el" href="#a7cef15034761e38ccea32f4648b35f76">DirectiveArgs</a>&gt; <a class="el" href="#a7a30f65d3874890d4a5df1bdbf570ff0">config::DirectiveMap</a></td>
+          <td class="memname">typedef std::map&lt; std::string, <a class="el" href="#a7cef15034761e38ccea32f4648b35f76">DirectiveArgs</a> &gt; <a class="el" href="#adc4ea00539811be31b511a546c211ed0">config::DirectiveMap</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -228,6 +235,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a7cc70445712c439111acb4dc2cfd561a" name="a7cc70445712c439111acb4dc2cfd561a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc70445712c439111acb4dc2cfd561a">&#9670;&#160;</a></span>ServerBlockMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt;int, <a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">ServerBlockVec</a>&gt; <a class="el" href="#a7cc70445712c439111acb4dc2cfd561a">config::ServerBlockMap</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4508aae42e035db1f7d0e29c8ae0bcf3" name="a4508aae42e035db1f7d0e29c8ae0bcf3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4508aae42e035db1f7d0e29c8ae0bcf3">&#9670;&#160;</a></span>ServerBlockVec</h2>
 
@@ -236,6 +257,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef std::vector&lt;<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a>&gt; <a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">config::ServerBlockVec</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d79bdf5eda5f5127d8bd8a21e1afaf1" name="a0d79bdf5eda5f5127d8bd8a21e1afaf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d79bdf5eda5f5127d8bd8a21e1afaf1">&#9670;&#160;</a></span>StringVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;std::string&gt; <a class="el" href="#a0d79bdf5eda5f5127d8bd8a21e1afaf1">config::StringVector</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -339,50 +374,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a127485cd845a03dcc45d2a08c261995a" name="a127485cd845a03dcc45d2a08c261995a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a127485cd845a03dcc45d2a08c261995a">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; config::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4f397b12386d27d3fa88c116226572fa" name="a4f397b12386d27d3fa88c116226572fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f397b12386d27d3fa88c116226572fa">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; config::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a8fe6fa7e927772897c525756bc6f409d" name="a8fe6fa7e927772897c525756bc6f409d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fe6fa7e927772897c525756bc6f409d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe6fa7e927772897c525756bc6f409d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,6 +389,48 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5e5d19076966d817ae51062c0895c9d" name="ae5e5d19076966d817ae51062c0895c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5e5d19076966d817ae51062c0895c9d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; config::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a514862f1d7011814d6abe8fdad15d6c5" name="a514862f1d7011814d6abe8fdad15d6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a514862f1d7011814d6abe8fdad15d6c5">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; config::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

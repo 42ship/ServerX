@@ -2,6 +2,7 @@ var namespacehttp =
 [
     [ "details", "namespacehttp_1_1details.html", [
       [ "extractPathFUri", "namespacehttp_1_1details.html#a27da418a308bbcdb422bf6682e9c9a1b", null ],
+      [ "getPath", "namespacehttp_1_1details.html#ab18b43f0d1283fc1f3df33ed9f8495fc", null ],
       [ "parseBody", "namespacehttp_1_1details.html#a2361221cc3731b447328ac594e8953fa", null ],
       [ "parseBody", "namespacehttp_1_1details.html#a8c67f59bfe7eda7394744b151deff85f", null ],
       [ "parseHeaderLine", "namespacehttp_1_1details.html#aaebd2ee3c624369dd2fe3af0f73bfba9", null ],

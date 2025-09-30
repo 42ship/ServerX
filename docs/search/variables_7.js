@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['index_0',['index',['../classconfig_1_1LocationBlock.html#a21730f5aab0ef02eaf4daa94560fc286',1,'config::LocationBlock']]],
-  ['inmemorybody_1',['inMemoryBody',['../classhttp_1_1HttpResponse.html#adf01b3f96e3adabb654dc1ea5f1923da',1,'http::HttpResponse']]],
-  ['instance_5f_2',['instance_',['../classcore_1_1Server.html#a6c9bdad2c38ccb2f51fca8185c7e921c',1,'core::Server']]],
-  ['io_5fbuffer_5fsize_3',['IO_BUFFER_SIZE',['../classnetwork_1_1Reactor.html#ae2f06b51c05cf0e91efc4b32374a7738',1,'network::Reactor']]],
-  ['ip_4',['ip',['../structutils_1_1IpInfo.html#abb1762d2c692d6029163c09fe1cc712d',1,'utils::IpInfo']]],
-  ['isrunning_5f_5',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
-  ['isshuttingdown_6',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]]
+  ['handler_0',['handler',['../structhttp_1_1RouterResult.html#a04e762fd849edbdcb37081080c5587ca',1,'http::RouterResult']]],
+  ['handlers_5f_1',['handlers_',['../classnetwork_1_1InitiationDispatcher.html#afe81d52578621191394d29bb5113a40d',1,'network::InitiationDispatcher']]],
+  ['headers_2',['headers',['../classhttp_1_1HttpRequest.html#af4acc71d2601ca96ae770e4e51355979',1,'http::HttpRequest']]],
+  ['headers_5f_3',['headers_',['../classhttp_1_1HttpResponse.html#a0b17ab8fc67a35486045f29a1d4d227d',1,'http::HttpResponse']]],
+  ['httpversion_5f_4',['httpVersion_',['../classhttp_1_1HttpResponse.html#adad96ea5eb647cd226b509c690dcf2d0',1,'http::HttpResponse']]]
 ];

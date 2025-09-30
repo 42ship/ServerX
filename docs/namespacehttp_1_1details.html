@@ -103,6 +103,7 @@ Functions</h2></td></tr>
 <tr class="memitem:affbb0d595486748f9135f558cefd7194" id="r_affbb0d595486748f9135f558cefd7194"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affbb0d595486748f9135f558cefd7194">parseHeaderLine</a> (string const &amp;line, pair&lt; string, string &gt; &amp;p)</td></tr>
 <tr class="memitem:adbb89127ed4950ce2b8d3d181199d777" id="r_adbb89127ed4950ce2b8d3d181199d777"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbb89127ed4950ce2b8d3d181199d777">parseHeaders</a> (<a class="el" href="classhttp_1_1HttpRequest.html#a1f3ff444f3ec01ee9e0d997a14f57b0e">HttpRequest::HeaderMap</a> &amp;m, istringstream &amp;s)</td></tr>
 <tr class="memitem:a2361221cc3731b447328ac594e8953fa" id="r_a2361221cc3731b447328ac594e8953fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2361221cc3731b447328ac594e8953fa">parseBody</a> (<a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;r, istringstream const &amp;s)</td></tr>
+<tr class="memitem:ab18b43f0d1283fc1f3df33ed9f8495fc" id="r_ab18b43f0d1283fc1f3df33ed9f8495fc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab18b43f0d1283fc1f3df33ed9f8495fc">getPath</a> (<a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;req, <a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const &amp;l)</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a27da418a308bbcdb422bf6682e9c9a1b" name="a27da418a308bbcdb422bf6682e9c9a1b"></a>
@@ -116,6 +117,27 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab18b43f0d1283fc1f3df33ed9f8495fc" name="ab18b43f0d1283fc1f3df33ed9f8495fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18b43f0d1283fc1f3df33ed9f8495fc">&#9670;&#160;</a></span>getPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string http::details::getPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>l</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

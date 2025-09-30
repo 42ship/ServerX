@@ -23,13 +23,12 @@ var searchData=
   ['responsestate_20',['ResponseState',['../namespacenetwork.html#aecef2691506037b978e28401f4b52c68',1,'network']]],
   ['responsestate_5f_21',['responseState_',['../classnetwork_1_1Reactor.html#a523e54024e07b782b9782b9e31dc5faf',1,'network::Reactor']]],
   ['right_5fbrace_22',['RIGHT_BRACE',['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac139d3c03f43ee586069c5cf47f7aa24',1,'config']]],
-  ['root_23',['root',['../classconfig_1_1LocationBlock.html#ae1c768e7c697cc835a4903512a47f104',1,'config::LocationBlock::root'],['../classconfig_1_1ServerBlock.html#aca9621dc5e6f78ac86fbe09cb3814fe9',1,'config::ServerBlock::root']]],
-  ['route_24',['route',['../classhttp_1_1Router.html#a252a8360edd0a1737e00f7a468509fed',1,'http::Router']]],
-  ['router_25',['Router',['../classhttp_1_1Router.html',1,'http::Router'],['../classhttp_1_1Router.html#a7418084b589441ea38e54fb19c0937fd',1,'http::Router::Router()']]],
-  ['router_2ehpp_26',['Router.hpp',['../Router_8hpp.html',1,'']]],
-  ['router_5f_27',['router_',['../classcore_1_1Server.html#a23616d5162237f17d26f3b994808fe06',1,'core::Server::router_'],['../classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772',1,'network::Acceptor::router_'],['../classnetwork_1_1Reactor.html#a5e308c0a1536d27fb697a1ae92bb8f49',1,'network::Reactor::router_']]],
-  ['routerresult_28',['RouterResult',['../structhttp_1_1RouterResult.html',1,'http::RouterResult'],['../structhttp_1_1RouterResult.html#a39f17dce926b93d017920fc3b85039b2',1,'http::RouterResult::RouterResult()']]],
-  ['routerresult_2ehpp_29',['RouterResult.hpp',['../RouterResult_8hpp.html',1,'']]],
-  ['rtime_5f_30',['rtime_',['../classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0',1,'http::MimeTypes']]],
-  ['run_31',['run',['../classconfig_1_1Lexer.html#aa515fbd6bc93febfb60c8826d46e9b45',1,'config::Lexer']]]
+  ['route_23',['route',['../classhttp_1_1Router.html#a252a8360edd0a1737e00f7a468509fed',1,'http::Router']]],
+  ['router_24',['Router',['../classhttp_1_1Router.html',1,'http::Router'],['../classhttp_1_1Router.html#a7418084b589441ea38e54fb19c0937fd',1,'http::Router::Router()']]],
+  ['router_2ehpp_25',['Router.hpp',['../Router_8hpp.html',1,'']]],
+  ['router_5f_26',['router_',['../classcore_1_1Server.html#a23616d5162237f17d26f3b994808fe06',1,'core::Server::router_'],['../classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772',1,'network::Acceptor::router_'],['../classnetwork_1_1Reactor.html#a5e308c0a1536d27fb697a1ae92bb8f49',1,'network::Reactor::router_']]],
+  ['routerresult_27',['RouterResult',['../structhttp_1_1RouterResult.html',1,'http::RouterResult'],['../structhttp_1_1RouterResult.html#a39f17dce926b93d017920fc3b85039b2',1,'http::RouterResult::RouterResult()']]],
+  ['routerresult_2ehpp_28',['RouterResult.hpp',['../RouterResult_8hpp.html',1,'']]],
+  ['rtime_5f_29',['rtime_',['../classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0',1,'http::MimeTypes']]],
+  ['run_30',['run',['../classconfig_1_1Lexer.html#aa515fbd6bc93febfb60c8826d46e9b45',1,'config::Lexer']]]
 ];
