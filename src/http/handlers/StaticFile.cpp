@@ -5,30 +5,25 @@
 #include "http/error_pages.hpp"
 #include "http/utils.hpp"
 #include <cstddef>
+#include <errno.h>
 #include <fcntl.h>
 #include <string>
-#include <unistd.h>
 #include <sys/stat.h>
-#include <errno.h>
+#include <unistd.h>
 #include <vector>
 
 namespace http {
 
 namespace details {
 
-std::string getPath(HttpRequest const &req, config::ServerBlock const &s,
-                    config::LocationBlock const &l) {
+std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
     std::string root, path;
 
-    if (l.getRoot().empty())
-        root = s.getRoot();
-    else
-        root = l.getRoot();
-    if (l.getPath() == req.path)
+    if (l.getPath() == req.path && req.path[req.path.length() - 1] != '/')
         path = req.path;
     else
         path = (req.path.substr(l.getPath().size() - 1));
-    return root + path;
+    return l.getRoot() + path;
 }
 } // namespace details
 
@@ -39,7 +34,7 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
                                        config::LocationBlock const *l) const {
     if (!l || !s)
         return error_pages::generateErrorResponse(NOT_FOUND, req.version);
-    std::string path = details::getPath(req, *s, *l);
+    std::string path = details::getPath(req, *l);
     struct stat statbuf;
     if (stat(path.c_str(), &statbuf) != 0) {
         if (errno == ENOENT || errno == ENOTDIR) {
@@ -54,6 +49,9 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
         std::string index_path;
         bool found_index = false;
         std::vector<std::string> const *indexes = l->getIndexFiles();
+        if (!indexes) {
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
+        }
         for (size_t i = 0; i < indexes->size(); i++) {
             index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + (*indexes)[i];
             if (access(index_path.c_str(), F_OK) == 0) {

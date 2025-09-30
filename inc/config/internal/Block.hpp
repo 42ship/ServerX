@@ -18,27 +18,26 @@ typedef std::map<std::string, StringVector> DirectiveMap;
  */
 class Block {
 public:
-    virtual ~Block() {
-    }
+    // ========================= Construction & Destruction =========================
 
-    /**
-     * @brief Provides read-only access to the underlying directive map.
-     */
-    DirectiveMap const &getDirectives() const {
-        return directives_;
-    }
+    virtual ~Block();
 
-    /**
-     * @brief Provides read-write access to the underlying directive map.
-     * (Primarily for use by the ConfigBuilder).
-     */
-    DirectiveMap &getDirectives() {
-        return directives_;
-    }
+    // ============================== Public Interface ==============================
 
-    StringVector const *operator[](std::string const &key) const {
-        return get(key);
-    }
+    /** @brief Checks if a directive exists within the block. */
+    bool has(std::string const &key) const;
+    StringVector const *operator[](std::string const &key) const;
+    StringVector &operator[](std::string const &key);
+    void add(std::string const &key, StringVector const &values);
+    void add(std::string const &key, std::string const &value);
+
+    // ============================== Getters & Setters =============================
+
+    /** @brief Provides read-only access to the underlying directive map. */
+    DirectiveMap const &getDirectives() const;
+
+    /** @brief Provides read-write access to the underlying directive map. */
+    DirectiveMap &getDirectives();
 
     /**
      * @brief Retrieves the arguments for a specific directive.
@@ -46,40 +45,15 @@ public:
      * @return A const pointer to the vector of arguments, or NULL if the
      * directive is not found or has no arguments.
      */
-    StringVector const *get(std::string const &key) const {
-        DirectiveMap::const_iterator it = directives_.find(key);
-        if (it != directives_.end() && !it->second.empty())
-            return &it->second;
-        return NULL;
-    }
-
-    /** @brief Checks if a directive exists within the block. */
-    bool has(std::string const &key) const {
-        return directives_.find(key) != directives_.end();
-    }
-
-    void add(std::string const &key, StringVector const &values) {
-        directives_[key] = values;
-    }
-
-    void add(std::string const &key, std::string const &value) {
-        StringVector v;
-        v.push_back(value);
-        add(key, v);
-    }
-
-    // --- Common Directive Accessors ---
+    StringVector const *get(std::string const &key) const;
 
     /**
      * @brief A convenient, strongly-typed accessor for the 'root' directive.
      * @return The root path if set, otherwise an empty string.
      */
-    std::string getRoot() const {
-        StringVector const *args = get("root");
-        if (args)
-            return (*args)[0];
-        return "";
-    }
+    std::string getRoot() const;
+
+    void setRoot(std::string const &root);
 
 protected:
     friend class DirectiveHandler;

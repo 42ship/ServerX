@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -21,5 +20,7 @@ template <typename T> T fromString(std::string const &str) {
 }
 
 bool writeFile(const std::string& content, const char* path);
+
+const char *validateDirectoryPath(const char *path);
 
 } // namespace utils

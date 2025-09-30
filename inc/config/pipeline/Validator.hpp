@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../ServerBlock.hpp"
 #include "../LocationBlock.hpp"
+#include "../ServerBlock.hpp"
 
 namespace config {
 /**
@@ -14,15 +14,21 @@ namespace config {
  */
 class Validator {
 public:
-    static void validate(ServerBlockVec &servers);
+    static void validate(ServerBlockVec &servers, bool perform_fs_checks = true);
 
 private:
-    static void validateServer(ServerBlock &server);
-    static void validateLocation(LocationBlock &location);
+    Validator();
+    Validator(bool perform_fs_checks = true);
+    void validateServer(ServerBlock &server);
+    void validateLocation(LocationBlock &location, ServerBlock const &server);
 
-    static void validateListen(ServerBlock &server);
-    static void validateRoot(Block &block);
-    static void validateServerNames(ServerBlock &server);
+    void validateListen(ServerBlock &server);
+    void validateRoot(Block &block);
+    void validateServerNames(ServerBlock &server);
+
+    static void locationCompleteRoot(LocationBlock &l, ServerBlock const &s);
+
+    bool perform_fs_checks_;
 };
 
 } // namespace config

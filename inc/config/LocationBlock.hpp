@@ -21,7 +21,6 @@ public:
     bool hasCgiPass() const;
 
 private:
-    friend class Mapper;
     std::string path_;
 };
 
