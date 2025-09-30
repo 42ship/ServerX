@@ -1,9 +1,9 @@
 #pragma once
 
 #include "AEventHandler.hpp"
+#include "config/ServerBlock.hpp"
 #include "http/Router.hpp"
 #include "network/Socket.hpp"
-#include "config/ServerBlock.hpp"
 
 namespace network {
 

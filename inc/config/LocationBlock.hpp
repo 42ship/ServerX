@@ -1,7 +1,6 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include "internal/Block.hpp"
 #include <ostream>
 
 namespace config {
@@ -14,16 +13,15 @@ namespace config {
  * location context. It holds settings such as the document root and index files
  * for a specific URI path.
  */
-class LocationBlock {
+class LocationBlock : public Block {
 public:
-    std::string path; //!< The URI path this location block matches (e.g., "/images/").
-    std::string root; //!< The root directory for requests matching this location.
-    std::vector<std::string> index;    //!< The list of index files to search for.
-    std::vector<std::string> cgi_pass; //!< Path to CGI interpreter and script.
+    std::string const &getPath() const;
+    void setPath(std::string const &);
+    StringVector const *getIndexFiles() const;
+    bool hasCgiPass() const;
 
-    bool hasCgiPass() const {
-        return !cgi_pass.empty();
-    }
+private:
+    std::string path_;
 };
 
 std::ostream &operator<<(std::ostream &o, LocationBlock const &t);

@@ -1,16 +1,14 @@
 #pragma once
 
-#include <signal.h>
-#include <vector>
-#include "http/Router.hpp"
-#include "network/InitiationDispatcher.hpp"
-#include "network/Acceptor.hpp"
 #include "config/ServerConfig.hpp"
 #include "http/MimeTypes.hpp"
+#include "http/Router.hpp"
+#include "network/Acceptor.hpp"
+#include "network/InitiationDispatcher.hpp"
+#include <signal.h>
+#include <vector>
 
 namespace core {
-
-#define MAX_PORTS 1
 
 /**
  * @brief High-level server orchestrator that manages the complete server lifecycle.
@@ -61,7 +59,7 @@ namespace core {
  */
 class Server {
 public:
-    Server(char const *fpath);
+    Server(config::ServerConfig const &);
     ~Server();
 
     void start();
@@ -77,7 +75,7 @@ private:
     static Server *instance_;
     std::vector<network::Acceptor *> acceptors_;
 
-    config::ServerConfig const config_;
+    config::ServerConfig const &config_;
     network::InitiationDispatcher &dispatcher_;
     http::MimeTypes mimeTypes_;
     http::Router router_;

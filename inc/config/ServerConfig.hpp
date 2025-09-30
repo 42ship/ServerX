@@ -1,9 +1,11 @@
 #pragma once
 
-#include <ostream>
 #include "ServerBlock.hpp"
+#include <ostream>
 
 namespace config {
+
+typedef std::map<int, ServerBlockVec> ServerBlockMap;
 
 /**
  * @class ServerConfig
@@ -15,9 +17,13 @@ namespace config {
  */
 class ServerConfig {
 public:
-    ServerConfig(char const *fpath);
-    ServerConfig(std::string const &);
+    // ========================= Construction & Destruction =========================
 
+    ServerConfig();
+    ServerConfig(char const *fpath, bool perform_fs_checks = true);
+    ServerConfig(std::string const &content, bool perform_fs_checks = true);
+
+    // ============================== Public Interface ==============================
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.
      *
@@ -26,15 +32,18 @@ public:
      * @return A const pointer to the matched ServerBlock, or NULL if no match is found.
      */
     ServerBlock const *getServer(int port, std::string const &server_name) const;
+    void addServer(ServerBlock const &);
 
-    ServerBlockVec const &getServers() const;
+    // ============================== Getters & Setters =============================
 
-    friend std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
+    ServerBlockMap const &getServersMap() const;
 
 private:
-    friend class ConfigBuilder;
+    void build(std::string const &content, bool perform_fs_checks);
 
-    ServerBlockVec servers_; // TODO: Change CTL for performance
+    ServerBlockMap servers_;
 };
+
+std::ostream &operator<<(std::ostream &o, ServerConfig const &t);
 
 } // namespace config

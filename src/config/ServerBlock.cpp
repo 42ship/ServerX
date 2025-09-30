@@ -1,33 +1,40 @@
 #include "config/ServerBlock.hpp"
+#include "config/ConfigException.hpp"
+#include "config/internal/utils.hpp"
 
 #include <algorithm>
 
 namespace config {
 
-const int ServerBlock::defaultPort_ = 9191;
-const char *ServerBlock::defaultAddress_ = "0.0.0.0";
+namespace {
+bool parseListen(const std::string &s, std::string &addr_part, std::string &port_part);
+const int defaultPort_ = 9191;
+const char *defaultAddress_ = "0.0.0.0";
+} // namespace
 
-ServerBlock::ServerBlock() : port_(-1) {
-    setDefaultPort();
-    setDefaultAddress();
-}
+ServerBlock::ServerBlock() : port_(defaultPort_), address_(defaultAddress_) {}
 
 LocationBlock const *ServerBlock::getLocation(std::string const &path) const {
     return details::bestMatchLocation(locations_, path);
 }
 
-void ServerBlock::setDefaultPort() {
-    port_ = defaultPort_;
-}
-void ServerBlock::setDefaultAddress() {
-    address_ = defaultAddress_;
+bool ServerBlock::hasLocation(LocationBlock const &b) {
+    return !b.getPath().empty() && locations_.count(b.getPath());
 }
 
-int ServerBlock::getPort() const {
-    return port_;
-}
-std::string const &ServerBlock::getAddress() const {
-    return address_;
+void ServerBlock::addLocation(LocationBlock const &b) { locations_[b.getPath()] = b; }
+
+void ServerBlock::setListen(std::string const &listenArg) {
+    std::string port_str;
+    std::string address;
+    if (!parseListen(listenArg, address, port_str)) {
+        throw ConfigError("Listen directive '" + listenArg + "' has an invalid format.");
+    }
+    if (!utils::isValidPort(port_str)) {
+        throw ConfigError("Port '" + port_str + "' is not valid.");
+    }
+    port_ = utils::fromString<int>(port_str);
+    address_ = address;
 }
 
 std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
@@ -36,26 +43,12 @@ std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
     o << "    Listen Address: '" << t.getAddress() << "'\n";
     o << "    Port:           " << t.getPort() << "\n";
 
-    if (!t.serverNames_.empty()) {
-        o << "    Server Names:   [";
-        const std::vector<std::string> &names = t.serverNames_;
-        for (std::vector<std::string>::const_iterator it = names.begin(); it != names.end(); ++it) {
-            o << "'" << *it << "'";
-            if (it + 1 != names.end()) {
-                o << ", ";
-            }
-        }
-        o << "]\n";
-    }
+    // TODO: add printing for directives
 
-    if (!t.root.empty()) {
-        o << "    Default Root:   '" << t.root << "'\n";
-    }
-
-    if (!t.locations_.empty()) {
-        o << "\n    Locations Defined (" << t.locations_.size() << "):\n";
-        for (std::map<std::string, LocationBlock>::const_iterator it = t.locations_.begin();
-             it != t.locations_.end(); ++it) {
+    if (!t.locations().empty()) {
+        o << "\n    Locations Defined (" << t.locations().size() << "):\n";
+        for (std::map<std::string, LocationBlock>::const_iterator it = t.locations().begin();
+             it != t.locations().end(); ++it) {
             o << it->second;
         }
     }
@@ -63,6 +56,7 @@ std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
     o << "}\n";
     return o;
 }
+
 namespace details {
 
 bool matchServerName(std::vector<std::string> const &names, std::string const &s) {
@@ -74,5 +68,32 @@ bool matchServerName(std::vector<std::string> const &names, std::string const &s
 }
 
 } // namespace details
+
+namespace {
+
+bool parseListen(const std::string &s, std::string &addr_part, std::string &port_part) {
+    if (s.empty())
+        return false;
+
+    size_t cpos = s.find_last_of(':');
+
+    if (cpos == std::string::npos) {
+        bool is_numeric = (s.find_first_not_of("0123456789") == std::string::npos);
+        if (is_numeric) {
+            port_part = s;
+        } else {
+            addr_part = s;
+        }
+    } else {
+        addr_part = s.substr(0, cpos);
+        port_part = s.substr(cpos + 1);
+
+        if (addr_part.empty() || port_part.empty())
+            return false;
+    }
+    return true;
+}
+
+} // namespace
 
 } // namespace config

@@ -1,5 +1,4 @@
 #include "config/ServerBlock.hpp"
-#include <iostream>
 
 namespace config {
 namespace details {

@@ -1,4 +1,5 @@
 #include "config/ConfigException.hpp"
+#include "config/ServerConfig.hpp"
 #include "core/Server.hpp"
 #include "utils/Logger.hpp"
 
@@ -8,7 +9,8 @@ int main(int argc, char **argv) {
         return 1;
     }
     try {
-        core::Server server(argv[1]);
+        config::ServerConfig cfg(argv[1]);
+        core::Server server(cfg);
         server.start();
     } catch (config::ConfigException const &e) {
         LOG_ERROR(e.what());

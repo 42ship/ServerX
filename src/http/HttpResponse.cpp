@@ -1,6 +1,6 @@
 #include "http/HttpStatus.hpp"
 #include "http/HttpResponse.hpp"
-#include "config/utils.hpp"
+#include "config/internal/utils.hpp"
 #include <string>
 #include <sstream>
 
