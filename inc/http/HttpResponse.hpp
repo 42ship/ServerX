@@ -29,7 +29,7 @@ enum BodySourceType {
  * @brief Defines the format of the HTTP response status message.
  */
 enum MessageType {
-    STANDART, ///< Use standard HTTP reason phrase (e.g., "OK", "Not Found")
+    STANDARD, ///< Use standard HTTP reason phrase (e.g., "OK", "Not Found")
     JSON      ///< Use JSON-formatted error message
 };
 
@@ -43,7 +43,7 @@ enum MessageType {
 class HttpResponse {
 public:
     HttpResponse();
-    HttpResponse(Status code, std::string const &httpVersion, MessageType type = STANDART);
+    HttpResponse(Status code, std::string const &httpVersion, MessageType type = STANDARD);
     HttpResponse(HttpResponse const &);
     HttpResponse const &operator=(HttpResponse const &);
     ~HttpResponse();
