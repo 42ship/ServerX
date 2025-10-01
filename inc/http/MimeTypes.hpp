@@ -54,16 +54,15 @@ public:
      */
     const std::string getMimeType(const std::string &extension) const;
 
-        /**
-     * @brief Retrieves the MIME type associated with a given mime extension.
+    /**
+     * @brief Retrieves the file extension associated with a given MIME type.
      *
-     * This method looks up the MIME type corresponding to the provided file
-     * extension in the loaded MIME types map..
+     * This method looks up the file extension corresponding to the provided MIME type
+     * in the loaded MIME types map.
      *
-     * @param extension The file extension (without the leading dot) for which
-     *                  to retrieve the MIME type.
-     * @return The corresponding MIME type as a string, or "text/plain"
-     *         if the extension is not recognized.
+     * @param extension The MIME type for which to retrieve the file extension.
+     * @return The corresponding file extension as a string, or "txt"
+     *         if the MIME type is not recognized.
      */
     const std::string getMimeExt(const std::string &extension) const;
 
