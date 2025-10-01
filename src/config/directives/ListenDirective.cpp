@@ -2,6 +2,7 @@
 #include "config/ConfigException.hpp"
 #include "config/ServerBlock.hpp"
 #include "config/internal/Block.hpp"
+#include "config/internal/utils.hpp"
 #include <string>
 
 namespace config {
@@ -15,13 +16,16 @@ void ListenDirective::process(Block &b, StringVector const &args) const {
     }
 
     if (args.size() != 1) {
-        throw ConfigException("'listen' directive requires exactly one argument.");
-    }
-
-    if (args.size() != 1) {
         throw ConfigError("'listen' directive requires exactly one argument.");
     }
-    serverBlock->setListen(args[0]);
+
+    utils::IpInfo ip_info;
+    if (!utils::extractIpInfo(args[0], ip_info)) {
+        throw ConfigError("'listen' directive '" + args[0] + "' has an invalid format.");
+    }
+
+    serverBlock->setPort((ip_info.port == -1 ? 9191 : ip_info.port));
+    serverBlock->setAddress((ip_info.ip.empty() ? "0.0.0.0" : ip_info.ip));
     b[name_] = args;
 }
 

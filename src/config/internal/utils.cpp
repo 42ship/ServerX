@@ -7,11 +7,6 @@ using namespace std;
 
 namespace utils {
 
-bool isValidIPv4(const char *s) {
-    sockaddr_in sk;
-    return inet_pton(AF_INET, s, &sk.sin_addr) == 1;
-}
-
 bool isValidIPv4(std::string const &s) {
     sockaddr_in sk;
     return !s.empty() && s.size() >= 7 && s.size() <= 15 &&
@@ -27,20 +22,24 @@ bool isValidPort(std::string const &v) {
 bool extractIpInfo(std::string const &s, IpInfo &info) {
     if (s.empty())
         return false;
+    info.ip.clear();
+    info.port = -1;
     size_t cpos = s.find(':');
     if (cpos == string::npos) {
         if (isValidPort(s)) {
-            info.ip.clear();
             info.port = fromString<int>(s);
         } else if (isValidIPv4(s)) {
             info.ip = s;
-            info.port = -1;
+        } else if (s == "localhost") {
+            info.ip = "127.0.0.1";
         } else
             return false;
         return true;
     }
     std::string port_part = s.substr(cpos + 1);
     std::string ip_part = s.substr(0, cpos);
+    if (ip_part == "localhost")
+        ip_part = "127.0.0.1";
     if (!isValidIPv4(ip_part) || !isValidPort(port_part))
         return false;
     info.ip = ip_part;

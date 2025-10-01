@@ -72,11 +72,11 @@ TEST_CASE("ServerConfig Integration") {
 TEST_CASE("Virtual Server Matching (Future Feature)") {
     SUBCASE("Should select server based on server_name") {
         config::ServerBlock f;
-        f.setListen("8080");
+        f.setPort(8080);
         f["server_name"] = {"first.com", "www.first.com"};
         f.setRoot("/var/www/first/");
         config::ServerBlock second;
-        second.setListen("8080");
+        second.setPort(8080);
         second["server_name"] = {"second.com"};
         second.setRoot("/var/www/second/");
         config::ServerConfig sc;
