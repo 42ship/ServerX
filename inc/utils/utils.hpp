@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <sys/stat.h>
 
 namespace utils {
 
@@ -22,5 +23,10 @@ template <typename T> T fromString(std::string const &str) {
 bool writeFile(const std::string& content, const char* path);
 
 const char *validateDirectoryPath(const char *path);
+
+inline bool isDir(const std::string &p) {
+    struct stat st;
+    return ::stat(p.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
+}
 
 } // namespace utils
