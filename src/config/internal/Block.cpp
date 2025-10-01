@@ -3,6 +3,8 @@
 
 namespace config {
 
+Block::Block(std::string const &name) : name_(name) {}
+
 Block::~Block() {}
 
 /**
@@ -56,6 +58,8 @@ std::string Block::getRoot() const {
         return (*args)[0];
     return "";
 }
+
+std::string const &Block::getName() const { return name_; }
 
 void Block::setRoot(std::string const &root) {
     DirectiveMap::iterator it = directives_.find("root");

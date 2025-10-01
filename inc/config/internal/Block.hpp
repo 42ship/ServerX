@@ -20,6 +20,7 @@ class Block {
 public:
     // ========================= Construction & Destruction =========================
 
+    Block(std::string const &name);
     virtual ~Block();
 
     // ============================== Public Interface ==============================
@@ -52,12 +53,14 @@ public:
      * @return The root path if set, otherwise an empty string.
      */
     std::string getRoot() const;
+    std::string const &getName() const;
 
     void setRoot(std::string const &root);
 
 protected:
     friend class DirectiveHandler;
 
+    std::string name_;
     DirectiveMap directives_;
 };
 

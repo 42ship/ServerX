@@ -1,10 +1,12 @@
 #include "config/ServerBlock.hpp"
 #include "config/ConfigException.hpp"
+#include "config/internal/Block.hpp"
 #include "config/internal/utils.hpp"
 #include "utils/IndentManager.hpp"
 #include "utils/utils.hpp"
 
 #include <algorithm>
+#include <utility>
 
 namespace config {
 
@@ -14,7 +16,7 @@ const int defaultPort_ = 9191;
 const char *defaultAddress_ = "0.0.0.0";
 } // namespace
 
-ServerBlock::ServerBlock() : port_(defaultPort_), address_(defaultAddress_) {}
+ServerBlock::ServerBlock() : Block("server"), port_(defaultPort_), address_(defaultAddress_) {}
 
 LocationBlock const *ServerBlock::getLocation(std::string const &path) const {
     return details::bestMatchLocation(locations_, path);
@@ -24,7 +26,11 @@ bool ServerBlock::hasLocation(LocationBlock const &b) {
     return !b.getPath().empty() && locations_.count(b.getPath());
 }
 
-void ServerBlock::addLocation(LocationBlock const &b) { locations_[b.getPath()] = b; }
+void ServerBlock::addLocation(LocationBlock const &b) {
+    std::pair<LocationBlockMap::iterator, bool> result;
+    result = locations_.insert(std::make_pair(b.getPath(), b));
+    result.first->second.setParent(this);
+}
 
 void ServerBlock::setListen(std::string const &listenArg) {
     std::string port_str;

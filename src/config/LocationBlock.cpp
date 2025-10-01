@@ -4,6 +4,8 @@
 
 namespace config {
 
+LocationBlock::LocationBlock() : Block("location"), parent_(NULL) {}
+
 std::string const &LocationBlock::getPath() const { return path_; }
 
 void LocationBlock::setPath(std::string const &v) { path_ = v; }
@@ -11,6 +13,9 @@ void LocationBlock::setPath(std::string const &v) { path_ = v; }
 bool LocationBlock::hasCgiPass() const { return has("cgi_pass"); }
 
 StringVector const *LocationBlock::getIndexFiles() const { return get("index"); }
+
+void LocationBlock::setParent(ServerBlock *parent) { parent_ = parent; }
+ServerBlock *LocationBlock::getParent() { return parent_; }
 
 std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
     o << print_indent << "[LocationBlock] Path: " << t.getPath() << " {\n";
