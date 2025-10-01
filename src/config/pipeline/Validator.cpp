@@ -83,7 +83,7 @@ void Validator::locationCompleteRoot(LocationBlock &l, ServerBlock const &s) {
         finalRoot = serverRoot;
     }
     if (finalRoot.empty()) {
-        issue_warning("Could not determine a root path for location '" + l.getPath() + "'.");
+        LOG_WARN("Could not determine a root path for location '" + l.getPath() + "'.");
         return;
     }
     l.setRoot(finalRoot);

@@ -1,6 +1,7 @@
 #include "config/ServerBlock.hpp"
 #include "config/ConfigException.hpp"
 #include "config/internal/utils.hpp"
+#include "utils/IndentManager.hpp"
 
 #include <algorithm>
 
@@ -40,19 +41,23 @@ void ServerBlock::setListen(std::string const &listenArg) {
 std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
     o << "--- [ServerBlock] --- \n";
     o << "{\n";
-    o << "    Listen Address: '" << t.getAddress() << "'\n";
-    o << "    Port:           " << t.getPort() << "\n";
 
-    // TODO: add printing for directives
+    o << indent;
+
+    o << print_indent << "listen address: '" << t.getAddress() << "'\n";
+    o << print_indent << "port: '" << t.getPort() << "'\n";
+
+    o << static_cast<Block const &>(t);
 
     if (!t.locations().empty()) {
-        o << "\n    Locations Defined (" << t.locations().size() << "):\n";
+        o << "\n" << print_indent << "Locations Defined (" << t.locations().size() << "):\n";
         for (std::map<std::string, LocationBlock>::const_iterator it = t.locations().begin();
              it != t.locations().end(); ++it) {
             o << it->second;
         }
     }
 
+    o << unindent;
     o << "}\n";
     return o;
 }

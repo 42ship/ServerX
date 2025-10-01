@@ -61,4 +61,6 @@ protected:
     DirectiveMap directives_;
 };
 
+std::ostream &operator<<(std::ostream &, Block const &);
+
 } // namespace config

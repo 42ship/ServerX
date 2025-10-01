@@ -1,4 +1,5 @@
 #include "config/internal/Block.hpp"
+#include "utils/IndentManager.hpp"
 
 namespace config {
 
@@ -62,6 +63,18 @@ void Block::setRoot(std::string const &root) {
         it->second[0] = root;
     } else
         add("root", root);
+}
+
+std::ostream &operator<<(std::ostream &o, Block const &b) {
+    DirectiveMap const &m = b.getDirectives();
+    for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
+        o << print_indent << it->first << ":";
+        for (size_t i = 0; i < it->second.size(); i++) {
+            o << " '" << it->second[i] << "'";
+        }
+        o << "\n";
+    }
+    return o;
 }
 
 } // namespace config
