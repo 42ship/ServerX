@@ -3,7 +3,6 @@
 #include <iterator>
 #include <sstream>
 #include <unistd.h>
-#include <sys/stat.h>
 
 #include "http/HttpResponse.hpp"
 #include "http/error_pages.hpp"
@@ -85,67 +84,78 @@ std::string getFilename(HttpRequest const &req, MimeTypes const &mime) {
     std::string disposition = req.getHeader("Content-Disposition");
     if (filename.empty()) {
         if (disposition.empty()) {
-            throw exceptions::BadRequestException();
+            throw exceptions::BadRequestException(
+                "Missing filename (X-Filename or Content-Disposition)");
         } else {
             filename = extractFilename(disposition);
         }
     }
+    if (filename.empty()) {
+        throw exceptions::BadRequestException("Empty filename in Content-Disposition");
+    }
+    size_t index = filename.find_last_of(".");
+    if (index != std::string::npos && index == filename.size() - 1) {
+        throw exceptions::BadRequestException("Invalid filename (trailing dot)");
+    }
+
     std::string contentType = req.getHeader("Content-Type");
+    if (contentType.empty()) {
+        throw exceptions::BadRequestException("Missing Content-Type");
+    }
     if (contentType == "application/octet-stream") {
         return filename;
     }
-    std::string ext = filename.substr(filename.find_last_of(".") + 1);
-    if (contentType.empty()) {
-        throw exceptions::BadRequestException();
-    }
     std::string reqExt = mime.getMimeExt(contentType);
-    if (reqExt.empty()) {
+    if (reqExt.empty() || contentType.find("multipart/form-data") != std::string::npos) {
         throw exceptions::UnsupportedMediaTypeException();
     }
+    std::string ext;
+    if (index != std::string::npos) {
+        ext = filename.substr(index + 1);
+    }
     std::string mimeType = mime.getMimeType(ext);
-    LOG_DEBUG("Content-Type: " + contentType + "MimeType: " + mimeType);
     if (ext == reqExt || contentType == mimeType) {
         return filename;
     }
-    filename = filename.substr(0, filename.find_last_of(".") + 1);
-    return filename + reqExt;
-}
-
-inline bool isDir(const std::string &p) {
-    struct stat st;
-    return ::stat(p.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
+    if (index != std::string::npos) {
+        filename = filename.substr(0, index + 1);
+    }
+    return filename + "." + reqExt;
 }
 
 } // namespace details
 
-static inline bool checkLimit(size_t contentLength, config::ServerBlock const &s)
-{
+static inline Status checkLimit(const std::string &contentLength, config::ServerBlock const &s) {
     const config::StringVector *sv = s.get("upload_file_size");
     if (!sv || sv->empty()) {
-        return true;
+        return OK;
+    }
+    if (contentLength.empty()) {
+        return LENGTH_REQUIRED;
     }
     std::string sUploadFileSize = (*sv)[0];
     size_t uploadFileSize = utils::fromString<size_t>(sUploadFileSize);
+    size_t len = utils::fromString<size_t>(contentLength);
     uploadFileSize = uploadFileSize * 1024 * 1024;
-    if (contentLength > uploadFileSize) {
-        return false;
+    if (len > uploadFileSize) {
+        return PAYLOAD_TOO_LARGE;
     }
-    return true;
+    return OK;
 }
 
-FileUploadHandler::FileUploadHandler(MimeTypes const &mime) : mimeTypes_(mime) {
-}
+FileUploadHandler::FileUploadHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
 HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {
     if (!l) {
         return error_pages::generateJsonErrorResponse(NOT_FOUND, req.version);
     }
+
     std::string path = details::getUploadPath(*s, *l);
     if (path.empty()) {
         return error_pages::generateJsonErrorResponse(METHOD_NOT_ALLOWED, req.version);
     }
-    if (!details::isDir(path)) {
+    if (!utils::isDir(path)) {
         return error_pages::generateJsonErrorResponse(INTERNAL_SERVER_ERROR, req.version);
     }
     if (access(path.c_str(), W_OK | X_OK) == -1) {
@@ -154,9 +164,12 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
         }
         return error_pages::generateJsonErrorResponse(INTERNAL_SERVER_ERROR, req.version);
     }
-    if (!checkLimit(req.body.length(), *s)) {
-        return error_pages::generateJsonErrorResponse(PAYLOAD_TOO_LARGE, req.version);
+
+    Status result = checkLimit(req.getHeader("Content-Length"), *s);
+    if (result != OK) {
+        return error_pages::generateJsonErrorResponse(result, req.version);
     }
+
     std::string filename;
     try {
         filename = details::getFilename(req, mimeTypes_);
@@ -170,10 +183,8 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
         LOG_ERROR(e.what());
         return error_pages::generateJsonErrorResponse(INTERNAL_SERVER_ERROR, req.version);
     }
-    LOG_TRACE("filename: " + filename);
-    path += filename;
 
-    LOG_TRACE("PATH: " + path);
+    path += filename;
     if (!utils::writeFile(req.body, path.c_str())) {
         return error_pages::generateJsonErrorResponse(INTERNAL_SERVER_ERROR, req.version);
     }
