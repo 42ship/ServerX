@@ -66,7 +66,7 @@ inline const char *getJsonResponsePhrase(Status status) {
 
 } // namespace
 
-HttpResponse::HttpResponse() : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDART) {
+HttpResponse::HttpResponse() : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDARD) {
 }
 
 HttpResponse::HttpResponse(Status code, std::string const &httpVersion, MessageType type)
