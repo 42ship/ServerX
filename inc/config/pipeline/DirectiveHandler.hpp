@@ -1,38 +1,38 @@
 #pragma once
 
-#include "../LocationBlock.hpp"
-#include "../ServerBlock.hpp"
+#include "../directives/IDirective.hpp"
 #include "../internal/Block.hpp"
 
 namespace config {
 
+class IDirective;
+
 class DirectiveHandler {
 public:
     static DirectiveHandler &getInstance();
+    ~DirectiveHandler();
 
-    void process(ServerBlock &block, const std::string &key, const StringVector &args);
-    void process(ServerBlock &block, DirectiveMap const &map);
-    void process(LocationBlock &block, const std::string &key, const StringVector &args);
-    void process(LocationBlock &block, DirectiveMap const &map);
+    template <typename T> void process(T &block, std::string const &key, StringVector const &args) {
+        HandlerMap::const_iterator it = handlers_.find(key);
+        if (it != handlers_.end()) {
+            it->second->process(block, args);
+        } else {
+            block.directives_[key] = args;
+        }
+    }
+
+    template <typename T> void process(T &block, DirectiveMap const &map) {
+        for (DirectiveMap::const_iterator it = map.begin(); it != map.end(); ++it) {
+            process(block, it->first, it->second);
+        }
+    }
 
 private:
-    void handleListen(ServerBlock &server, const StringVector &args);
-    void handleRoot(Block &block, const StringVector &args);
-
-    typedef void (DirectiveHandler::*GenericHandler)(Block &, const StringVector &);
-    typedef void (DirectiveHandler::*ServerHandler)(ServerBlock &, const StringVector &);
-    typedef void (DirectiveHandler::*LocationHandler)(LocationBlock &, const StringVector &);
-
-    typedef std::map<std::string, GenericHandler> GenericHandlerMap;
-    typedef std::map<std::string, ServerHandler> ServerHandlerMap;
-    typedef std::map<std::string, LocationHandler> LocationHandlerMap;
-
-    GenericHandlerMap genericHandlers_;
-    ServerHandlerMap serverHandlers_;
-    LocationHandlerMap locationHandlers_;
+    typedef std::map<std::string, IDirective *> HandlerMap;
+    HandlerMap handlers_;
+    void registerHandler(IDirective *h);
 
     DirectiveHandler();
-    ~DirectiveHandler();
     DirectiveHandler(const DirectiveHandler &);
     DirectiveHandler &operator=(const DirectiveHandler &);
 };

@@ -20,4 +20,6 @@ template <typename T> T fromString(std::string const &str) {
 
 const char *validateDirectoryPath(const char *path);
 
+bool isAllDigit(std::string const &s);
+
 } // namespace utils

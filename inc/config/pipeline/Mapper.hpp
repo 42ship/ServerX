@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../internal/ConfigNode.hpp"
-#include "../ServerBlock.hpp"
 #include "../LocationBlock.hpp"
+#include "../ServerBlock.hpp"
+#include "../internal/ConfigNode.hpp"
 
 namespace config {
 
@@ -23,5 +23,9 @@ private:
 
     static void handleLocationBlock(ServerBlock &, ConfigNode const &);
 };
+
+namespace details {
+void completeLocationRoot(LocationBlock &l, ServerBlock const &s);
+}
 
 } // namespace config

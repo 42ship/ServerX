@@ -25,15 +25,6 @@ public:
 
     bool hasLocation(LocationBlock const &);
     void addLocation(LocationBlock const &);
-
-    /**
-     * @brief Parses a listen directive string and sets the address and port.
-     * @param listenArg The raw string argument from the config file (e.g., "8080",
-     * "127.0.0.1:80").
-     * @throws ConfigError if the argument is invalid.
-     */
-    void setListen(std::string const &listenArg);
-
     /**
      * @brief Retrieves the configuration for a specific location path.
      *
@@ -46,7 +37,9 @@ public:
 
     // ============================== Getters & Setters =============================
 
+    void setPort(int port);
     int getPort() const { return port_; }
+    void setAddress(std::string const &address);
     std::string const &getAddress() const { return address_; }
 
 private:

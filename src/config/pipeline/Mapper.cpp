@@ -40,6 +40,7 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
         LOG_WARN("Duplicate location '" << lb.getPath() << "' in location block");
         return;
     }
+    details::completeLocationRoot(lb, b);
     b.addLocation(lb);
 }
 

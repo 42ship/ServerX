@@ -1,7 +1,16 @@
 #include "config/ServerBlock.hpp"
+#include <algorithm>
 
 namespace config {
 namespace details {
+
+bool matchServerName(std::vector<std::string> const &names, std::string const &s) {
+    if (names.empty())
+        return true;
+    if (std::find(names.begin(), names.end(), s) != names.end())
+        return true;
+    return false;
+}
 
 LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string const &path) {
     std::string currentPath = path;

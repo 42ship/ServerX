@@ -72,19 +72,13 @@ void Server::start() {
         return;
     }
     LOG_INFO("Starting server...");
-    try {
-        setupAcceptors();
-        isRunning_ = true;
+    setupAcceptors();
+    isRunning_ = true;
 
-        LOG_INFO("Server is now running. Waiting for events...");
-        LOG_INFO("Send SIGTERM (kill) or SIGINT (Ctrl+C) for graceful shutdown.");
-        dispatcher_.handleEvents();
-        gracefulShutdown();
-    } catch (const std::exception &e) {
-        LOG_ERROR("Server startup failed: " << e.what());
-        cleanup();
-        throw;
-    }
+    LOG_INFO("Server is now running. Waiting for events...");
+    LOG_INFO("Send SIGTERM (kill) or SIGINT (Ctrl+C) for graceful shutdown.");
+    dispatcher_.handleEvents();
+    gracefulShutdown();
 }
 
 void Server::stop() {
@@ -103,9 +97,7 @@ void Server::gracefulShutdown() {
     LOG_INFO("Server shutdown complete.");
 }
 
-bool Server::getisRunning() const {
-    return isRunning_;
-}
+bool Server::getisRunning() const { return isRunning_; }
 
 void Server::setupAcceptors() {
     LOG_INFO("Setting up server listeners (acceptors)...");
