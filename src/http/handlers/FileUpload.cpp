@@ -118,7 +118,7 @@ std::string getFilename(HttpRequest const &req, MimeTypes const &mime) {
         return filename;
     }
     if (index != std::string::npos) {
-        filename = filename.substr(0, index + 1);
+        filename.resize(index + 1);
     }
     return filename + "." + reqExt;
 }
