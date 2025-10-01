@@ -2,6 +2,7 @@
 #include "config/ConfigException.hpp"
 #include "config/internal/utils.hpp"
 #include "utils/IndentManager.hpp"
+#include "utils/utils.hpp"
 
 #include <algorithm>
 

@@ -18,20 +18,10 @@ bool isValidIPv4(std::string const &s) {
            inet_pton(AF_INET, s.c_str(), &sk.sin_addr) == 1;
 }
 
-bool isValidPort(int port) {
-    return (port > 0 && port <= 65535);
-}
+bool isValidPort(int port) { return (port > 0 && port <= 65535); }
 
 bool isValidPort(std::string const &v) {
     return !v.empty() && v.size() <= 5 && isAllDigit(v) && isValidPort(fromString<int>(v));
-}
-
-bool isAllDigit(std::string const &s) {
-    for (string::const_iterator it = s.begin(); it != s.end(); ++it) {
-        if (!::isdigit(*it))
-            return false;
-    }
-    return true;
 }
 
 bool extractIpInfo(std::string const &s, IpInfo &info) {
