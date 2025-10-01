@@ -75,4 +75,15 @@ class DefaultErrorHandler : public IHandler {
                         config::LocationBlock const *l = NULL) const;
 };
 
+class FileUploadHandler : public IHandler {
+public:
+    FileUploadHandler(MimeTypes const &);
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+                        config::LocationBlock const *l) const;
+
+private:
+    FileUploadHandler();
+    MimeTypes const &mimeTypes_;
+};
+
 } // namespace http

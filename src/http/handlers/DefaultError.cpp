@@ -10,6 +10,9 @@ HttpResponse DefaultErrorHandler::handle(HttpRequest const &req, config::ServerB
                                          config::LocationBlock const *l) const {
     (void)s;
     (void)l;
+    if (req.method == utils::POST) {
+        return error_pages::generateJsonErrorResponse(req.status, req.version);
+    }
     return error_pages::generateErrorResponse(req.status, req.version);
 }
 

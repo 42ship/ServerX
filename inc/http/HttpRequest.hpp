@@ -29,6 +29,7 @@ public:
     std::string body;
 
     static HttpRequest parse(std::string const &);
+    std::string getHeader(const std::string& key) const;
 };
 
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r);
@@ -39,7 +40,7 @@ namespace details {
 bool parseStartLine(HttpRequest &r, std::istringstream &s);
 bool parseHeaderLine(std::string const &line, std::pair<std::string, std::string> &p);
 bool parseHeaders(HttpRequest::HeaderMap &m, std::istringstream &s);
-bool parseBody(HttpRequest const &r, std::istringstream const &s);
+bool parseBody(HttpRequest &r, std::istringstream &s);
 std::string extractPathFUri(std::string const &uri);
 
 } // namespace details

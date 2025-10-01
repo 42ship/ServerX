@@ -8,7 +8,7 @@ namespace utils {
 #ifdef LOGLEVEL
 LogLevel Logger::threshold_ = LOGLEVEL;
 #else
-LogLevel Logger::threshold_ = TRACE;
+LogLevel Logger::threshold_ = WARNING;
 #endif
 
 namespace {

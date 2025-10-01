@@ -22,6 +22,15 @@ HttpRequest HttpRequest::parse(string const &buffer) {
     return res;
 }
 
+std::string HttpRequest::getHeader(const std::string &key) const {
+    std::map<std::string, std::string>::const_iterator it = headers.find(key);
+    if (it != headers.end())
+        return it->second;
+    return std::string();
+}
+
+
+
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r) {
     o << "▶️  " << r.method << " " << r.uri << " " << r.version << "\n";
     o << "\tStatus: " << r.status << "\n";

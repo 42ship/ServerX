@@ -1,0 +1,312 @@
+#include "doctest.h"
+
+#include <sys/stat.h>
+#include <unistd.h>
+#include <sstream>
+
+#include "http/HttpRequest.hpp"
+#include "http/MimeTypes.hpp"
+#include "http/Handler.hpp"
+#include "../test_utils.hpp"
+#include "config/ServerConfig.hpp"
+
+using namespace http;
+using namespace utils;
+using namespace std;
+
+static string makeBody() {
+    return string("\r\n"
+                  "<!doctype html>"
+                  "<html lang=\"en\">"
+                  "<head>"
+                  "  <meta charset=\"utf-8\" />"
+                  "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n"
+                  "  <title>Hello World</title>\r\n"
+                  "  <style>\r\n"
+                  "    html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif; }\r\n"
+                  "    .wrap { display: grid; place-items: center; height: 100%; background: #f7f7fb; }\r\n"
+                  "    h1 { font-size: 3rem; margin: 0.2em 0; }\r\n"
+                  "    p { color: #555; margin: 0; }\r\n"
+                  "  </style>\r\n"
+                  "</head>\r\n"
+                  "<body>\r\n"
+                  "  <main class=\"wrap\">\r\n"
+                  "    <div>\r\n"
+                  "      <h1>Hello, World!</h1>\r\n"
+                  "      <p>It works 🎉</p>\r\n"
+                  "    </div>\r\n"
+                  "  </main>\r\n"
+                  "</body>\r\n"
+                  "</html>\r\n");
+}
+
+static string makeRequestTo(const string& path, const string& headers) {
+    return "POST " + path + " HTTP/1.1\r\n" + headers + makeBody();
+}
+
+string getRequest(const string headers)
+{
+    string requestStr = makeBody();
+    return ("POST /img/ HTTP/1.1\r\n" + headers + requestStr);
+}
+
+TEST_CASE("File uploading - 500 when upload dir is missing") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+
+    std::string headers =
+        "X-Filename: test.html\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 664\r\n"
+        "Content-Type: text/html\r\n";
+
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+    const config::ServerBlock* s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock* l = s->getLocation(req.path);
+
+    FileUploadHandler fileUpload(mime);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == INTERNAL_SERVER_ERROR);
+}
+
+TEST_CASE("File uploading - 413 when payload exceeds limit") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    std::string headers =
+        "X-Filename: test.html\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 12346574862\r\n"
+        "Content-Type: text/html\r\n";
+
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+    const config::ServerBlock* s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock* l = s->getLocation(req.path);
+
+    FileUploadHandler fileUpload(mime);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == PAYLOAD_TOO_LARGE);
+
+    removeDirectoryRecursive("test_www");
+}
+
+// 405: location / exists, but without upload_path → Method Not Allowed
+TEST_CASE("File uploading - 405 on location without upload_path") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/www", 0777);
+
+    string headers =
+        "X-Filename: index.html\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 64\r\n"
+        "Content-Type: text/html\r\n";
+    HttpRequest req = HttpRequest::parse(makeRequestTo("/", headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == METHOD_NOT_ALLOWED);
+
+    removeDirectoryRecursive("test_www");
+}
+
+// 403: directory exists, but without write permissions → FORBIDDEN
+TEST_CASE("File uploading - 403 when no write permission on upload dir") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0555); // no write
+
+    string headers =
+        "X-Filename: test.html\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 64\r\n"
+        "Content-Type: text/html\r\n";
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == FORBIDDEN);
+
+    // restore permissions so cleanup works on some systems
+    chmod("test_www/img/uploads", 0755);
+    removeDirectoryRecursive("test_www");
+}
+
+// 411: without Content-Length and not chunked → LENGTH_REQUIRED (chunked currently not supported)
+TEST_CASE("File uploading - 411 when Content-Length missing and not chunked") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    string headers =
+        "X-Filename: test.html\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Type: text/html\r\n";
+    HttpRequest req = HttpRequest::parse(makeRequestTo("/img/", headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == LENGTH_REQUIRED);
+    removeDirectoryRecursive("test_www");
+}
+
+// 415: multipart/form-data (currently not supported)
+TEST_CASE("File uploading - 415 on multipart/form-data") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    string headers =
+        "X-Filename: logo.png\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 64\r\n"
+        "Content-Type: multipart/form-data\r\n";
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == UNSUPPORTED_MEDIA_TYPE);
+    removeDirectoryRecursive("test_www");
+}
+
+// 400: no X-Filename or Content-Disposition
+TEST_CASE("File uploading - 400 when no filename provided") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    string headers =
+        // no X-Filename
+        "Host: localhost:9191\r\n"
+        "Content-Length: 64\r\n"
+        "Content-Type: application/octet-stream\r\n";
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == BAD_REQUEST);
+    removeDirectoryRecursive("test_www");
+}
+
+// 201: Success + check Location header
+TEST_CASE("File uploading - 201 and Location header") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    string headers =
+        "X-Filename: test.bin\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 4\r\n"
+        "Content-Type: application/octet-stream\r\n";
+    HttpRequest req = HttpRequest::parse(makeRequestTo("/img/", headers));
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == CREATED);
+
+    CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
+    CHECK((response.getHeaders().at("Location") == l->getPath() + "test.bin"));
+
+    CHECK(!access("test_www/img/uploads/test.bin", F_OK));
+    unlink("test_www/img/uploads/test.bin");
+    removeDirectoryRecursive("test_www");
+}
+
+// 201: correction of extension under Content-Type: text/html
+TEST_CASE("File uploading - extension correction to .html") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/img", 0777);
+    mkdir("test_www/img/uploads", 0777);
+
+    // X-Filename without extension, Content-Type: text/html → expected page.html or page.htm
+    string headers =
+        "X-Filename: page\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 64\r\n"
+        "Content-Type: text/html\r\n";
+    HttpRequest req = HttpRequest::parse(getRequest(headers));
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+
+    HttpResponse response = fileUpload.handle(req, s, l);
+    CHECK(response.getStatus() == CREATED);
+    CHECK((!access("test_www/img/uploads/page.html", F_OK)
+        || !access("test_www/img/uploads/page.htm", F_OK)));
+    CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
+    CHECK((response.getHeaders().at("Location") == l->getPath() + "page.htm"));
+    unlink("test_www/img/uploads/page.html");
+    removeDirectoryRecursive("test_www");
+}
+
+// 201: absolute upload_path for /upload/ (see. test.conf)
+TEST_CASE("File uploading - absolute upload_path at /upload/") {
+    config::ServerConfig conf("config/test.conf");
+    MimeTypes mime;
+    FileUploadHandler fileUpload(mime);
+
+    mkdir("test_www", 0777);
+    mkdir("test_www/upload", 0777); // absolute path in config points here
+
+    string headers =
+        "X-Filename: foo.bin\r\n"
+        "Host: localhost:9191\r\n"
+        "Content-Length: 3\r\n"
+        "Content-Type: application/octet-stream\r\n";
+    HttpRequest req = HttpRequest::parse(makeRequestTo("/upload/", headers));
+
+    const config::ServerBlock *s = conf.getServer(9191, req.headers["Host"]);
+    const config::LocationBlock *l = s->getLocation(req.path);
+    HttpResponse response = fileUpload.handle(req, s, l);
+
+    CHECK(response.getStatus() == CREATED);
+    CHECK(!access("test_www/upload/foo.bin", F_OK));
+    CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
+    CHECK((response.getHeaders().at("Location") == l->getPath() + "foo.bin"));
+    unlink("test_www/upload/foo.bin");
+    removeDirectoryRecursive("test_www");
+}
