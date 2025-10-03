@@ -8,7 +8,7 @@ namespace config {
 class IDirective {
 public:
     virtual ~IDirective() {}
-    virtual void process(Block &block, StringVector const &args) const = 0;
+    virtual void process(Block &block, ArgumentVector const &args) const = 0;
     virtual std::string const &getName() const = 0;
 };
 

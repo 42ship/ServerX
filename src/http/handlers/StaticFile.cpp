@@ -1,3 +1,4 @@
+#include "config/internal/Block.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
@@ -27,8 +28,7 @@ std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
 }
 } // namespace details
 
-StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {
-}
+StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
 HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {
@@ -48,12 +48,13 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
     if (S_ISDIR(statbuf.st_mode)) {
         std::string index_path;
         bool found_index = false;
-        std::vector<std::string> const *indexes = l->getIndexFiles();
+        config::ArgumentVector const *indexes = l->getIndexFiles();
         if (!indexes) {
             return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         }
         for (size_t i = 0; i < indexes->size(); i++) {
-            index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + (*indexes)[i];
+            index_path =
+                path + (path[path.size() - 1] == '/' ? "" : "/") + (*indexes)[i]->evaluate(req);
             if (access(index_path.c_str(), F_OK) == 0) {
                 found_index = true;
                 path = index_path;

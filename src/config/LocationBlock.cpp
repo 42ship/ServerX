@@ -12,7 +12,7 @@ void LocationBlock::setPath(std::string const &v) { path_ = v; }
 
 bool LocationBlock::hasCgiPass() const { return has("cgi_pass"); }
 
-StringVector const *LocationBlock::getIndexFiles() const { return get("index"); }
+ArgumentVector const *LocationBlock::getIndexFiles() const { return get("index"); }
 
 void LocationBlock::setParent(ServerBlock *parent) { parent_ = parent; }
 ServerBlock *LocationBlock::getParent() { return parent_; }

@@ -1,12 +1,16 @@
 #include "config/pipeline/Parser.hpp"
 
 #include "config/ConfigException.hpp"
+#include "config/arguments/IArgument.hpp"
+#include "config/arguments/Integer.hpp"
+#include "config/arguments/String.hpp"
+#include "config/internal/ConfigNode.hpp"
+#include "config/internal/Token.hpp"
+#include "utils/utils.hpp"
 
 namespace config {
 
-Parser::Parser(TokenArray const &tokens) : tokens_(tokens), pos_(0) {
-    nodes_.reserve(2);
-}
+Parser::Parser(TokenArray const &tokens) : tokens_(tokens), pos_(0) { nodes_.reserve(2); }
 
 std::vector<ConfigNode> Parser::parse(TokenArray const &tokens) {
     Parser parser(tokens);
@@ -14,9 +18,7 @@ std::vector<ConfigNode> Parser::parse(TokenArray const &tokens) {
     return parser.nodes_;
 }
 
-size_t Parser::size() const {
-    return tokens_.size();
-}
+size_t Parser::size() const { return tokens_.size(); }
 
 Token const &Parser::currentToken() const {
     if (pos_ >= size())
@@ -91,7 +93,7 @@ void Parser::handleLocationBlock() {
         throw ConfigError("Expected a location name (identifier)");
 
     ConfigNode node(std::string("location"));
-    node.args.push_back(currentToken().literal);
+    pushTokenTo(node.args);
 
     consumeToken();
     expectToken(LEFT_BRACE);
@@ -110,11 +112,26 @@ DirectivePair Parser::handleDirective() {
     consumeToken();
 
     while (isTokenAValue()) {
-        d.second.push_back(currentToken().literal);
+        pushTokenTo(d.second);
         consumeToken();
     }
     expectToken(SEMICOLON);
     return d;
+}
+
+void Parser::pushTokenTo(DirectiveArgs &args) {
+    IArgument *arg;
+    std::string const &s = currentToken().literal;
+
+    // clang-format off
+    switch (currentToken().type) {
+    case STRING: arg = new String(s); break;
+    case NUMBER: arg = new Integer(utils::fromString<int>(s)); break;
+    default:
+        throw ConfigError("Internal error on pushing token into directive args");
+    }
+    // clang-format on
+    args.push_back(arg);
 }
 
 } // namespace config

@@ -12,7 +12,8 @@ public:
     static DirectiveHandler &getInstance();
     ~DirectiveHandler();
 
-    template <typename T> void process(T &block, std::string const &key, StringVector const &args) {
+    template <typename T>
+    void process(T &block, std::string const &key, ArgumentVector const &args) {
         HandlerMap::const_iterator it = handlers_.find(key);
         if (it != handlers_.end()) {
             it->second->process(block, args);

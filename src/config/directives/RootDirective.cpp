@@ -2,19 +2,21 @@
 #include "config/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
+#include "config/arguments/IArgument.hpp"
+#include "config/internal/Block.hpp"
+#include "config/internal/ValidationUtils.hpp"
 #include <string>
 
 namespace config {
 
 const std::string RootDirective::name_ = "root";
 
-void RootDirective::process(Block &b, StringVector const &args) const {
-    if (args.size() != 1)
-        throw ConfigError("'root' directive requires exactly one argument.");
-    std::string root = args[0];
+void RootDirective::process(Block &b, ArgumentVector const &args) const {
     if (!dynamic_cast<LocationBlock *>(&b) && !dynamic_cast<ServerBlock *>(&b))
         throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.getName());
-
+    EXPECT_ARG_COUNT(args, 1, name_)
+    EXPECT_ARG_TYPE(args[0], ARG_STRING, name_)
+    std::string root = args[0]->getRawValue();
     if (!root.empty() && root[root.length() - 1] != '/')
         root += '/';
     b.setRoot(root);

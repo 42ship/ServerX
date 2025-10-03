@@ -1,12 +1,13 @@
 #pragma once
 
 #include "IDirective.hpp"
+#include "config/internal/Block.hpp"
 
 namespace config {
 
 class RootDirective : public IDirective {
 public:
-    void process(Block &block, StringVector const &args) const;
+    void process(Block &block, ArgumentVector const &args) const;
     std::string const &getName() const { return name_; }
 
 private:

@@ -47,6 +47,7 @@ private:
     bool isTokenAValue() const;
     void displayCurrentToken() const;
     void addDirective(ConfigNode &node, DirectivePair const &pair) const;
+    void pushTokenTo(DirectiveArgs &args);
 
     void handleServerBlock();
     void handleStatement();
