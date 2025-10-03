@@ -9,6 +9,9 @@ public:
     Integer(int val);
     std::string evaluate(http::HttpRequest const &) const;
     int getIntValue() const;
+    ArgumentType getType() const { return ARG_INTEGER; }
+    std::string getRawValue() const { return sValue_; }
+    IArgument *clone() const { return new Integer(*this); }
 
 private:
     int iValue_;

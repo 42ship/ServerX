@@ -6,7 +6,11 @@ namespace config {
 
 class Variable : public IArgument {
 public:
+    Variable(std::string const &s) : varName_(s) {}
     std::string evaluate(http::HttpRequest const &) const;
+    ArgumentType getType() const { return ARG_VARIABLE; }
+    std::string getRawValue() const { return varName_; }
+    IArgument *clone() const { return new Variable(*this); }
 
 private:
     std::string varName_;
