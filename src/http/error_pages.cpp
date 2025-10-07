@@ -1,7 +1,7 @@
 #include "http/error_pages.hpp"
+#include <map>
 #include <sstream>
 #include <string>
-#include <map>
 #include <utility>
 
 using namespace std;
@@ -12,7 +12,16 @@ namespace error_pages {
 
 namespace {
 
+struct Key {
+    Status code;
+    std::string message;
+    bool operator<(Key const &o) const {
+        return (code < o.code) || (code == o.code && message < o.message);
+    }
+};
+
 typedef map<Status, vector<char> > ErrorPageCache;
+typedef map<Key, vector<char> > JsonErrorPageCache;
 
 static std::vector<char> createErrorBody(Status code, char const *message) {
     std::ostringstream body;
@@ -80,15 +89,20 @@ static std::vector<char> createJsonErrorBody(Status code, char const *message) {
     return vector<char>(s.begin(), s.end());
 }
 
-static vector<char> const &getCacherJsonErrorBody(Status code, char const *message) {
-    static ErrorPageCache cache;
+// typedef std::map<Key, std::vector<char> > JsonErrorPageCache;
 
-    ErrorPageCache::const_iterator it = cache.find(code);
-    if (it != cache.end()) {
+static const std::vector<char> &getCacherJsonErrorBody(Status code, const char *message) {
+    static JsonErrorPageCache cache;
+    const char *m = message ? message : "";
+    Key k;
+    k.code = code;
+    k.message = m;
+
+    JsonErrorPageCache::const_iterator it = cache.find(k);
+    if (it != cache.end())
         return it->second;
-    }
-    cache.insert(make_pair(code, createJsonErrorBody(code, message)));
-    return cache[code];
+
+    return cache.insert(std::make_pair(k, createJsonErrorBody(code, m))).first->second;
 }
 
 } // namespace
@@ -101,11 +115,17 @@ HttpResponse generateErrorResponse(Status code, const std::string &httpVersion) 
     return res;
 }
 
-HttpResponse generateJsonErrorResponse(Status code, const std::string &httpVersion) {
+HttpResponse generateJsonErrorResponse(Status code, const std::string &httpVersion,
+                                       std::string message) {
     HttpResponse res(code, httpVersion, JSON);
 
-    std::vector<char> const &body = getCacherJsonErrorBody(code, res.generateResponsePhrase());
+    // Determine which message to use for the cached JSON body
+    const std::string &msg = message.empty() ? std::string(res.generateResponsePhrase()) : message;
+
+    // Get cached JSON body for this code-message combination
+    const std::vector<char> &body = getCacherJsonErrorBody(code, msg.c_str());
     res.setBodyInMemory(body, "application/json");
+
     return res;
 }
 
