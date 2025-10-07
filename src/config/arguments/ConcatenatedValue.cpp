@@ -1,5 +1,6 @@
 #include "config/arguments/ConcatenatedValue.hpp"
 #include "config/arguments/IArgument.hpp"
+#include <cstddef>
 
 namespace config {
 
@@ -15,9 +16,23 @@ void ConcatenatedValue::add(IArgument *arg) {
 }
 
 ConcatenatedValue::ConcatenatedValue(const ConcatenatedValue &other) {
+    variables_.reserve(other.variables_.size());
     for (size_t i = 0; i < other.variables_.size(); ++i) {
         variables_.push_back(other.variables_[i]->clone());
     }
+}
+
+ConcatenatedValue &ConcatenatedValue::operator=(ConcatenatedValue const &other) {
+    if (this == &other)
+        return *this;
+    for (size_t i = 0; i < variables_.size(); ++i) {
+        delete variables_[i];
+    }
+    variables_.reserve(other.variables_.size());
+    for (size_t i = 0; i < other.variables_.size(); ++i) {
+        variables_.push_back(other.variables_[i]->clone());
+    }
+    return *this;
 }
 
 std::string ConcatenatedValue::evaluate(http::HttpRequest const &ctx) const {

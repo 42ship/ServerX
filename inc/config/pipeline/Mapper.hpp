@@ -2,9 +2,11 @@
 
 #include "../LocationBlock.hpp"
 #include "../ServerBlock.hpp"
-#include "../internal/ConfigNode.hpp"
 
 namespace config {
+
+class ConfigNode;
+typedef std::vector<ConfigNode> ConfigNodeVec;
 
 /**
  * @class Mapper

@@ -1,14 +1,13 @@
 #pragma once
 
 #include "config/arguments/IArgument.hpp"
-#include <map>
-#include <string>
-#include <vector>
+#include "config/internal/types.hpp"
+
+namespace http {
+class HttpRequest;
+}
 
 namespace config {
-
-typedef std::vector<ArgumentPtr> ArgumentVector;
-typedef std::map<std::string, ArgumentVector> DirectiveMap;
 
 /**
  * @class Block
@@ -32,6 +31,7 @@ public:
     bool has(std::string const &key) const;
     ArgumentVector const *operator[](std::string const &key) const;
     ArgumentVector &operator[](std::string const &key);
+    void add(std::string const &key, ParsedDirectiveArgs const &values);
     void add(std::string const &key, ArgumentVector const &values);
     void add(std::string const &key, std::string const &value);
 
@@ -50,11 +50,9 @@ public:
      * directive is not found or has no arguments.
      */
     ArgumentVector const *get(std::string const &key) const;
+    std::vector<std::string> get(std::string const &key, http::HttpRequest const &req) const;
+    std::string getFirstEvaluatedString(std::string const &key, http::HttpRequest const &req) const;
 
-    /**
-     * @brief A convenient, strongly-typed accessor for the 'root' directive.
-     * @return The root path if set, otherwise an empty string.
-     */
     std::string getRoot() const;
     std::string const &getName() const;
 

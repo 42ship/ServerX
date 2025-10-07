@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <ostream>
+#include <string>
 
 namespace config {
 
@@ -36,6 +36,9 @@ typedef struct Token {
      * @return True if the token's type is in the array, false otherwise.
      */
     bool isTypeIn(TokenType const arr[], size_t size) const;
+    bool operator<(Token const &) const;
+    bool operator>(Token const &) const;
+
 } Token;
 
 std::ostream &operator<<(std::ostream &o, Token const &t);

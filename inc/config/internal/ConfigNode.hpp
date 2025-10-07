@@ -1,20 +1,8 @@
 #pragma once
 
-#include "config/internal/Token.hpp"
-#include <map>
-#include <string>
-#include <vector>
+#include "types.hpp"
 
 namespace config {
-
-class ConfigNode;
-class IArgument;
-
-typedef IArgument *ArgumentPtr;
-typedef std::vector<ArgumentPtr> DirectiveArgs;
-typedef std::map<std::string, DirectiveArgs> DirectiveMap;
-typedef std::pair<std::string, DirectiveArgs> DirectivePair;
-typedef std::vector<ConfigNode> ConfigNodeVec;
 
 /**
  * @class ConfigNode
@@ -29,8 +17,8 @@ public:
     ConfigNode() { args.reserve(3); };
     ConfigNode(std::string const &conf_name) : name(conf_name) { args.reserve(3); };
     std::string name;
-    DirectiveArgs args;
-    DirectiveMap directives;
+    ParsedDirectiveArgs args;
+    ParsedDirectiveMap directives;
     ConfigNodeVec children;
 };
 

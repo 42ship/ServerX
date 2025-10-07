@@ -1,12 +1,8 @@
 #include "config/pipeline/Parser.hpp"
 
 #include "config/ConfigException.hpp"
-#include "config/arguments/IArgument.hpp"
-#include "config/arguments/Integer.hpp"
-#include "config/arguments/String.hpp"
 #include "config/internal/ConfigNode.hpp"
 #include "config/internal/Token.hpp"
-#include "utils/utils.hpp"
 
 namespace config {
 
@@ -49,11 +45,11 @@ void Parser::expectToken(std::string literal) {
     consumeToken();
 }
 
-void Parser::addDirective(ConfigNode &node, DirectivePair const &pair) const {
-    DirectiveMap::iterator it = node.directives.find(pair.first);
+void Parser::addDirective(ConfigNode &node, ParsedDirectivePair const &pair) const {
+    ParsedDirectiveMap::iterator it = node.directives.find(pair.first);
 
     if (it != node.directives.end()) {
-        DirectiveArgs &ar = it->second;
+        ParsedDirectiveArgs &ar = it->second;
         ar.reserve(ar.size() + pair.second.size());
         ar.insert(ar.end(), pair.second.begin(), pair.second.end());
     } else {
@@ -103,12 +99,12 @@ void Parser::handleLocationBlock() {
     nodes_.back().children.push_back(node);
 }
 
-DirectivePair Parser::handleDirective() {
+ParsedDirectivePair Parser::handleDirective() {
     if (!isTokenAValue())
         throw ConfigError("Expected a directive name (identifier).");
 
-    DirectivePair d;
-    d.first = currentToken().literal;
+    ParsedDirectivePair d;
+    d.first = currentToken();
     consumeToken();
 
     while (isTokenAValue()) {
@@ -119,19 +115,6 @@ DirectivePair Parser::handleDirective() {
     return d;
 }
 
-void Parser::pushTokenTo(DirectiveArgs &args) {
-    IArgument *arg;
-    std::string const &s = currentToken().literal;
-
-    // clang-format off
-    switch (currentToken().type) {
-    case STRING: arg = new String(s); break;
-    case NUMBER: arg = new Integer(utils::fromString<int>(s)); break;
-    default:
-        throw ConfigError("Internal error on pushing token into directive args");
-    }
-    // clang-format on
-    args.push_back(arg);
-}
+void Parser::pushTokenTo(ParsedDirectiveArgs &args) { args.push_back(currentToken()); }
 
 } // namespace config

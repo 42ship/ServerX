@@ -1,12 +1,13 @@
 #pragma once
 
 #include "IArgument.hpp"
-#include <vector>
+#include "config/internal/types.hpp"
 
 namespace config {
 
 class ConcatenatedValue : public IArgument {
 public:
+    ConcatenatedValue() {}
     ~ConcatenatedValue();
     ConcatenatedValue(const ConcatenatedValue &other);
     ConcatenatedValue &operator=(const ConcatenatedValue &other);

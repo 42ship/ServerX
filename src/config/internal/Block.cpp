@@ -1,5 +1,7 @@
 #include "config/internal/Block.hpp"
+#include "config/arguments/ArgumentFactory.hpp"
 #include "config/arguments/String.hpp"
+#include "config/internal/types.hpp"
 #include "utils/IndentManager.hpp"
 
 namespace config {
@@ -64,6 +66,27 @@ ArgumentVector const *Block::operator[](std::string const &key) const { return g
 
 ArgumentVector &Block::operator[](std::string const &key) { return directives_[key]; }
 
+std::vector<std::string> Block::get(std::string const &key, http::HttpRequest const &req) const {
+    ArgumentVector const *argv = get(key);
+    std::vector<std::string> res;
+    if (!argv)
+        return res;
+    res.reserve(argv->size());
+    for (ArgumentVector::const_iterator it = argv->begin(); it != argv->end(); ++argv) {
+        if (*it)
+            res.push_back((*it)->evaluate(req));
+    }
+    return res;
+}
+
+std::string Block::getFirstEvaluatedString(std::string const &key,
+                                           http::HttpRequest const &req) const {
+    ArgumentVector const *argv = get(key);
+    if (!argv || argv->size() <= 0)
+        return "";
+    return argv->front()->evaluate(req);
+}
+
 /**
  * @brief Retrieves the arguments for a specific directive.
  * @param key The name of the directive (e.g., "root").
@@ -86,6 +109,10 @@ void Block::add(std::string const &key, std::string const &value) {
     ArgumentVector v;
     v.push_back(new String(value));
     add(key, v);
+}
+
+void Block::add(std::string const &key, ParsedDirectiveArgs const &args) {
+    add(key, ArgumentFactory::get(args));
 }
 
 // --- Common Directive Accessors ---

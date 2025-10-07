@@ -21,6 +21,4 @@ public:
 
 char const *getArgumentTypeName(ArgumentType);
 
-typedef IArgument *ArgumentPtr;
-
 } // namespace config

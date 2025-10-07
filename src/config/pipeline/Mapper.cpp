@@ -1,9 +1,7 @@
 #include "config/pipeline/Mapper.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
-#include "config/arguments/IArgument.hpp"
 #include "config/internal/ConfigNode.hpp"
-#include "config/internal/ValidationUtils.hpp"
 #include "config/pipeline/DirectiveHandler.hpp"
 #include "utils/Logger.hpp"
 
@@ -47,9 +45,7 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
 }
 
 void Mapper::mapLocationBlock(LocationBlock &b, ConfigNode const &node) {
-    // TODO: Not sure about this
-    EXPECT_ARG_TYPE(node.args[0], ARG_STRING, std::string("location path"))
-    b.setPath(node.args[0]->getRawValue());
+    b.setPath(node.args[0].literal);
     DirectiveHandler::getInstance().process(b, node.directives);
 }
 

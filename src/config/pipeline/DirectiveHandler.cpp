@@ -1,7 +1,6 @@
 #include "config/pipeline/DirectiveHandler.hpp"
 #include "config/directives/IDirective.hpp"
 #include "config/directives/ListenDirective.hpp"
-#include "config/directives/ReturnDirective.hpp"
 #include "config/directives/RootDirective.hpp"
 
 namespace config {
@@ -9,7 +8,6 @@ namespace config {
 DirectiveHandler::DirectiveHandler() {
     registerHandler(new ListenDirective);
     registerHandler(new RootDirective);
-    registerHandler(new ReturnDirective);
 }
 
 void DirectiveHandler::registerHandler(IDirective *h) {
