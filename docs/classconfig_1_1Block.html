@@ -109,6 +109,7 @@ Inheritance diagram for config::Block:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a44c365e4d6ebafb79d7e083697275a8e" id="r_a44c365e4d6ebafb79d7e083697275a8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44c365e4d6ebafb79d7e083697275a8e">Block</a> (std::string const &amp;name)</td></tr>
 <tr class="memitem:a156ceb838b9dd8cd42d2f3b5d08d9ceb" id="r_a156ceb838b9dd8cd42d2f3b5d08d9ceb"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a156ceb838b9dd8cd42d2f3b5d08d9ceb">~Block</a> ()</td></tr>
 <tr class="memitem:afe28262e97bce1adf4e8178f3ef2b7f0" id="r_afe28262e97bce1adf4e8178f3ef2b7f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe28262e97bce1adf4e8178f3ef2b7f0">has</a> (std::string const &amp;key) const</td></tr>
 <tr class="memdesc:afe28262e97bce1adf4e8178f3ef2b7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a directive exists within the block.  <br /></td></tr>
@@ -124,10 +125,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afdb575494199bd8a243faa06495f21ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the arguments for a specific directive.  <br /></td></tr>
 <tr class="memitem:ad776bd260e761c0c7b0dc02a97bb8c56" id="r_ad776bd260e761c0c7b0dc02a97bb8c56"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad776bd260e761c0c7b0dc02a97bb8c56">getRoot</a> () const</td></tr>
 <tr class="memdesc:ad776bd260e761c0c7b0dc02a97bb8c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenient, strongly-typed accessor for the 'root' directive.  <br /></td></tr>
+<tr class="memitem:a5d94d2f03c4f87191e4614f57c496eb3" id="r_a5d94d2f03c4f87191e4614f57c496eb3"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d94d2f03c4f87191e4614f57c496eb3">getName</a> () const</td></tr>
 <tr class="memitem:a6bc8f0a19d34ef2b644d931e648773e4" id="r_a6bc8f0a19d34ef2b644d931e648773e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bc8f0a19d34ef2b644d931e648773e4">setRoot</a> (std::string const &amp;root)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:ab265eb41283d8c5d5a3b311818791967" id="r_ab265eb41283d8c5d5a3b311818791967"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab265eb41283d8c5d5a3b311818791967">name_</a></td></tr>
 <tr class="memitem:a66c593ae9f617ab65ccae5c52467614c" id="r_a66c593ae9f617ab65ccae5c52467614c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c593ae9f617ab65ccae5c52467614c">directives_</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
@@ -138,6 +141,23 @@ Friends</h2></td></tr>
 <div class="textblock"><p>Base class for configuration blocks like 'server' and 'location'. </p>
 <p>This class provides a generic storage mechanism for configuration directives using a map, allowing for high extensibility. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a44c365e4d6ebafb79d7e083697275a8e" name="a44c365e4d6ebafb79d7e083697275a8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c365e4d6ebafb79d7e083697275a8e">&#9670;&#160;</a></span>Block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">config::Block::Block </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a156ceb838b9dd8cd42d2f3b5d08d9ceb" name="a156ceb838b9dd8cd42d2f3b5d08d9ceb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a156ceb838b9dd8cd42d2f3b5d08d9ceb">&#9670;&#160;</a></span>~Block()</h2>
 
@@ -271,6 +291,23 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a5d94d2f03c4f87191e4614f57c496eb3" name="a5d94d2f03c4f87191e4614f57c496eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d94d2f03c4f87191e4614f57c496eb3">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string const  &amp; config::Block::getName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad776bd260e761c0c7b0dc02a97bb8c56" name="ad776bd260e761c0c7b0dc02a97bb8c56"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad776bd260e761c0c7b0dc02a97bb8c56">&#9670;&#160;</a></span>getRoot()</h2>
 
@@ -396,6 +433,28 @@ Friends</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a> config::Block::directives_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab265eb41283d8c5d5a3b311818791967" name="ab265eb41283d8c5d5a3b311818791967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab265eb41283d8c5d5a3b311818791967">&#9670;&#160;</a></span>name_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string config::Block::name_</td>
         </tr>
       </table>
   </td>

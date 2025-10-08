@@ -7,10 +7,14 @@ var annotated_dup =
       [ "ConfigNode", "classconfig_1_1ConfigNode.html", "classconfig_1_1ConfigNode" ],
       [ "ConfigWarning", "classconfig_1_1ConfigWarning.html", "classconfig_1_1ConfigWarning" ],
       [ "DirectiveHandler", "classconfig_1_1DirectiveHandler.html", "classconfig_1_1DirectiveHandler" ],
+      [ "IDirective", "classconfig_1_1IDirective.html", "classconfig_1_1IDirective" ],
       [ "Lexer", "classconfig_1_1Lexer.html", "classconfig_1_1Lexer" ],
+      [ "ListenDirective", "classconfig_1_1ListenDirective.html", "classconfig_1_1ListenDirective" ],
       [ "LocationBlock", "classconfig_1_1LocationBlock.html", "classconfig_1_1LocationBlock" ],
       [ "Mapper", "classconfig_1_1Mapper.html", null ],
       [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
+      [ "ReturnDirective", "classconfig_1_1ReturnDirective.html", "classconfig_1_1ReturnDirective" ],
+      [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
       [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
       [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
       [ "Token", "structconfig_1_1Token.html", "structconfig_1_1Token" ],
@@ -42,5 +46,6 @@ var annotated_dup =
     [ "utils", "namespaceutils.html", [
       [ "IpInfo", "structutils_1_1IpInfo.html", "structutils_1_1IpInfo" ],
       [ "Logger", "classutils_1_1Logger.html", null ]
-    ] ]
+    ] ],
+    [ "IndentManager", "structIndentManager.html", "structIndentManager" ]
 ];

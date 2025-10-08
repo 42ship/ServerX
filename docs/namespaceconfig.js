@@ -2,6 +2,7 @@ var namespaceconfig =
 [
     [ "details", "namespaceconfig_1_1details.html", [
       [ "bestMatchLocation", "namespaceconfig_1_1details.html#a66c025a76ebf25314c629f8b939621f7", null ],
+      [ "completeLocationRoot", "namespaceconfig_1_1details.html#ae0316af89ff9339892a2084d7002b587", null ],
       [ "matchServerName", "namespaceconfig_1_1details.html#a821cbbcacbb3ad8eda492144114f0d31", null ]
     ] ],
     [ "Block", "classconfig_1_1Block.html", "classconfig_1_1Block" ],
@@ -10,10 +11,14 @@ var namespaceconfig =
     [ "ConfigNode", "classconfig_1_1ConfigNode.html", "classconfig_1_1ConfigNode" ],
     [ "ConfigWarning", "classconfig_1_1ConfigWarning.html", "classconfig_1_1ConfigWarning" ],
     [ "DirectiveHandler", "classconfig_1_1DirectiveHandler.html", "classconfig_1_1DirectiveHandler" ],
+    [ "IDirective", "classconfig_1_1IDirective.html", "classconfig_1_1IDirective" ],
     [ "Lexer", "classconfig_1_1Lexer.html", "classconfig_1_1Lexer" ],
+    [ "ListenDirective", "classconfig_1_1ListenDirective.html", "classconfig_1_1ListenDirective" ],
     [ "LocationBlock", "classconfig_1_1LocationBlock.html", "classconfig_1_1LocationBlock" ],
     [ "Mapper", "classconfig_1_1Mapper.html", null ],
     [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
+    [ "ReturnDirective", "classconfig_1_1ReturnDirective.html", "classconfig_1_1ReturnDirective" ],
+    [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
     [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
     [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
     [ "Token", "structconfig_1_1Token.html", "structconfig_1_1Token" ],
@@ -41,6 +46,7 @@ var namespaceconfig =
       [ "END_OF_FILE", "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac9d5105eec9c62f0d81051eb32eb7bd7", null ]
     ] ],
     [ "issue_warning", "namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7", null ],
+    [ "operator<<", "namespaceconfig.html#ab1ff088b3b0f572b79efec49e7645955", null ],
     [ "operator<<", "namespaceconfig.html#a8fe6fa7e927772897c525756bc6f409d", null ],
     [ "operator<<", "namespaceconfig.html#ae5e5d19076966d817ae51062c0895c9d", null ],
     [ "operator<<", "namespaceconfig.html#a514862f1d7011814d6abe8fdad15d6c5", null ],

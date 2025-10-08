@@ -106,14 +106,18 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic node representing a block in the configuration file.  <a href="classconfig_1_1ConfigNode.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConfigWarning" id="r_ConfigWarning"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigWarning.html">ConfigWarning</a></td></tr>
 <tr class="memitem:DirectiveHandler" id="r_DirectiveHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1DirectiveHandler.html">DirectiveHandler</a></td></tr>
+<tr class="memitem:IDirective" id="r_IDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1IDirective.html">IDirective</a></td></tr>
 <tr class="memitem:Lexer" id="r_Lexer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Lexer.html">Lexer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A static utility class that performs lexical analysis on a config string.  <a href="classconfig_1_1Lexer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:ListenDirective" id="r_ListenDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ListenDirective.html">ListenDirective</a></td></tr>
 <tr class="memitem:LocationBlock" id="r_LocationBlock"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single 'location' block from the configuration file.  <a href="classconfig_1_1LocationBlock.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Mapper" id="r_Mapper"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Mapper.html">Mapper</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates a generic <a class="el" href="classconfig_1_1ConfigNode.html" title="A generic node representing a block in the configuration file.">ConfigNode</a> tree into strongly-typed config blocks.  <a href="classconfig_1_1Mapper.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Parser" id="r_Parser"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Parser.html">Parser</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs syntax analysis on a stream of tokens to build a configuration tree.  <a href="classconfig_1_1Parser.html#details">More...</a><br /></td></tr>
+<tr class="memitem:ReturnDirective" id="r_ReturnDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ReturnDirective.html">ReturnDirective</a></td></tr>
+<tr class="memitem:RootDirective" id="r_RootDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1RootDirective.html">RootDirective</a></td></tr>
 <tr class="memitem:ServerBlock" id="r_ServerBlock"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single 'server' block from the configuration file.  <a href="classconfig_1_1ServerBlock.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ServerConfig" id="r_ServerConfig"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ServerConfig.html">ServerConfig</a></td></tr>
@@ -158,6 +162,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a43b52aaf79c6da51d1e15ce30e8f43d7" id="r_a43b52aaf79c6da51d1e15ce30e8f43d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43b52aaf79c6da51d1e15ce30e8f43d7">issue_warning</a> (const std::string &amp;msg)</td></tr>
+<tr class="memitem:ab1ff088b3b0f572b79efec49e7645955" id="r_ab1ff088b3b0f572b79efec49e7645955"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1ff088b3b0f572b79efec49e7645955">operator&lt;&lt;</a> (std::ostream &amp;, <a class="el" href="classconfig_1_1Block.html">Block</a> const &amp;)</td></tr>
 <tr class="memitem:a3f131a3d8219010366e1b2040a520fa3" id="r_a3f131a3d8219010366e1b2040a520fa3"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f131a3d8219010366e1b2040a520fa3">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="structconfig_1_1Token.html">Token</a> const &amp;t)</td></tr>
 <tr class="memitem:abe8c2125f3982671e553cf443d92aac5" id="r_abe8c2125f3982671e553cf443d92aac5"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe8c2125f3982671e553cf443d92aac5">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1">TokenType</a> const t)</td></tr>
 <tr class="memitem:a8fe6fa7e927772897c525756bc6f409d" id="r_a8fe6fa7e927772897c525756bc6f409d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fe6fa7e927772897c525756bc6f409d">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const &amp;t)</td></tr>
@@ -374,8 +379,29 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab1ff088b3b0f572b79efec49e7645955" name="ab1ff088b3b0f572b79efec49e7645955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ff088b3b0f572b79efec49e7645955">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; config::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1Block.html">Block</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a8fe6fa7e927772897c525756bc6f409d" name="a8fe6fa7e927772897c525756bc6f409d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fe6fa7e927772897c525756bc6f409d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe6fa7e927772897c525756bc6f409d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,7 +422,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae5e5d19076966d817ae51062c0895c9d" name="ae5e5d19076966d817ae51062c0895c9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5e5d19076966d817ae51062c0895c9d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5e5d19076966d817ae51062c0895c9d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +443,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a514862f1d7011814d6abe8fdad15d6c5" name="a514862f1d7011814d6abe8fdad15d6c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a514862f1d7011814d6abe8fdad15d6c5">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a514862f1d7011814d6abe8fdad15d6c5">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -438,7 +464,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3f131a3d8219010366e1b2040a520fa3" name="a3f131a3d8219010366e1b2040a520fa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f131a3d8219010366e1b2040a520fa3">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f131a3d8219010366e1b2040a520fa3">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,7 +485,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="abe8c2125f3982671e553cf443d92aac5" name="abe8c2125f3982671e553cf443d92aac5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe8c2125f3982671e553cf443d92aac5">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abe8c2125f3982671e553cf443d92aac5">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

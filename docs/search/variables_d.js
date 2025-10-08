@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['requestbuffer_5f_0',['requestBuffer_',['../classnetwork_1_1Reactor.html#a5d61213c75c95fcca7fc3ec1d794cabe',1,'network::Reactor']]],
-  ['requeststate_5f_1',['requestState_',['../classnetwork_1_1Reactor.html#ae423af7acf3df03a85352177ab72ed32',1,'network::Reactor']]],
-  ['response_5f_2',['response_',['../classnetwork_1_1Reactor.html#ab906944e1ba6a950476ca52f3f02973e',1,'network::Reactor']]],
-  ['responsebuffer_5f_3',['responseBuffer_',['../classnetwork_1_1Reactor.html#ab428818480a469752c82e9e80bab5035',1,'network::Reactor']]],
-  ['responsestate_5f_4',['responseState_',['../classnetwork_1_1Reactor.html#a523e54024e07b782b9782b9e31dc5faf',1,'network::Reactor']]],
-  ['router_5f_5',['router_',['../classcore_1_1Server.html#a23616d5162237f17d26f3b994808fe06',1,'core::Server::router_'],['../classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772',1,'network::Acceptor::router_'],['../classnetwork_1_1Reactor.html#a5e308c0a1536d27fb697a1ae92bb8f49',1,'network::Reactor::router_']]],
-  ['rtime_5f_6',['rtime_',['../classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0',1,'http::MimeTypes']]]
+  ['sent_0',['sent',['../classhttp_1_1HttpResponse.html#a2b53d26d4b9b70b0d146fe9a8bcb461e',1,'http::HttpResponse']]],
+  ['sentresponsebytes_5f_1',['sentResponseBytes_',['../classnetwork_1_1Reactor.html#aaf217b8842f99bcb624357546cb1f47c',1,'network::Reactor']]],
+  ['server_2',['server',['../structhttp_1_1RouterResult.html#adb2828c2148fb983320425d4365dcea9',1,'http::RouterResult']]],
+  ['servers_5f_3',['servers_',['../classconfig_1_1ServerConfig.html#aa81a79c0ca76ab6ef9b74a9f29ad7b65',1,'config::ServerConfig']]],
+  ['shutdownrequested_5f_4',['shutdownRequested_',['../classcore_1_1Server.html#ac1ba97a00f484ffd903f49d38c75c073',1,'core::Server']]],
+  ['socket_5f_5',['socket_',['../classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b',1,'network::Acceptor']]],
+  ['staticfile_5f_6',['staticFile_',['../classhttp_1_1Router.html#a4222594d1ddaad3ed289ec7fcd33bf2c',1,'http::Router']]],
+  ['status_7',['status',['../classhttp_1_1HttpRequest.html#a8ea52ee6598150192982a3a84a6bc4f4',1,'http::HttpRequest']]],
+  ['statuscode_5f_8',['statusCode_',['../classhttp_1_1HttpResponse.html#a5d2297135a50530ee3f5fe56ec9fb51e',1,'http::HttpResponse']]]
 ];

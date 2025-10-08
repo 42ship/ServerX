@@ -4,11 +4,12 @@ var searchData=
   ['cleanupbody_1',['cleanupBody',['../classhttp_1_1HttpResponse.html#aa303eb4524ac9fa9ff5290939e0a183e',1,'http::HttpResponse']]],
   ['clearresponsebuffer_2',['clearResponseBuffer',['../classnetwork_1_1Reactor.html#afc03068a46d9f53f8dc154c659ba4b66',1,'network::Reactor']]],
   ['closeconnection_3',['closeConnection',['../classnetwork_1_1Reactor.html#a8d35835641596be42c9dc00238b3fbb2',1,'network::Reactor']]],
-  ['configerror_4',['ConfigError',['../classconfig_1_1ConfigError.html#a7d28509da3983e7127803ca708f885e9',1,'config::ConfigError']]],
-  ['configexception_5',['ConfigException',['../classconfig_1_1ConfigException.html#af305e0e69f3c0926e029d1f623891f19',1,'config::ConfigException']]],
-  ['confignode_6',['ConfigNode',['../classconfig_1_1ConfigNode.html#ae37c74ec3ff0bc1a6f8005cf7b152ed7',1,'config::ConfigNode::ConfigNode()'],['../classconfig_1_1ConfigNode.html#a9016afe45d4ecd9cc08c10e31f70a8b7',1,'config::ConfigNode::ConfigNode(std::string const &amp;conf_name)']]],
-  ['configwarning_7',['ConfigWarning',['../classconfig_1_1ConfigWarning.html#a399fe4b21f6c482bf85b756dfa7cc284',1,'config::ConfigWarning']]],
-  ['consumetoken_8',['consumeToken',['../classconfig_1_1Parser.html#a6e24bf20a84988fa4e82ad7f5b0d5ad4',1,'config::Parser']]],
-  ['createandbind_9',['createAndBind',['../classnetwork_1_1Socket.html#af77270f52cfd1363dd93ed706ee202cb',1,'network::Socket']]],
-  ['currenttoken_10',['currentToken',['../classconfig_1_1Parser.html#a26b8eee51030c67754c239d65a768cd5',1,'config::Parser']]]
+  ['completelocationroot_4',['completeLocationRoot',['../namespaceconfig_1_1details.html#ae0316af89ff9339892a2084d7002b587',1,'config::details']]],
+  ['configerror_5',['ConfigError',['../classconfig_1_1ConfigError.html#a7d28509da3983e7127803ca708f885e9',1,'config::ConfigError']]],
+  ['configexception_6',['ConfigException',['../classconfig_1_1ConfigException.html#af305e0e69f3c0926e029d1f623891f19',1,'config::ConfigException']]],
+  ['confignode_7',['ConfigNode',['../classconfig_1_1ConfigNode.html#ae37c74ec3ff0bc1a6f8005cf7b152ed7',1,'config::ConfigNode::ConfigNode()'],['../classconfig_1_1ConfigNode.html#a9016afe45d4ecd9cc08c10e31f70a8b7',1,'config::ConfigNode::ConfigNode(std::string const &amp;conf_name)']]],
+  ['configwarning_8',['ConfigWarning',['../classconfig_1_1ConfigWarning.html#a399fe4b21f6c482bf85b756dfa7cc284',1,'config::ConfigWarning']]],
+  ['consumetoken_9',['consumeToken',['../classconfig_1_1Parser.html#a6e24bf20a84988fa4e82ad7f5b0d5ad4',1,'config::Parser']]],
+  ['createandbind_10',['createAndBind',['../classnetwork_1_1Socket.html#af77270f52cfd1363dd93ed706ee202cb',1,'network::Socket']]],
+  ['currenttoken_11',['currentToken',['../classconfig_1_1Parser.html#a26b8eee51030c67754c239d65a768cd5',1,'config::Parser']]]
 ];

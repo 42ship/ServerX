@@ -8,7 +8,8 @@ var classconfig_1_1ServerBlock =
     [ "hasLocation", "classconfig_1_1ServerBlock.html#ad5a805dedcfe94cb99a1da0a8fc0d8be", null ],
     [ "locations", "classconfig_1_1ServerBlock.html#a28252aa356c4da439ecc44d3cfe73103", null ],
     [ "locations", "classconfig_1_1ServerBlock.html#a29bd9a5efc7f256c2da18ade71388553", null ],
-    [ "setListen", "classconfig_1_1ServerBlock.html#a56a005f3259acbdd75cf5212e4cc9cd0", null ],
+    [ "setAddress", "classconfig_1_1ServerBlock.html#ab38751873da5e9c9961d75417002d886", null ],
+    [ "setPort", "classconfig_1_1ServerBlock.html#a2a3626127e0f3186873e4adea484b2d5", null ],
     [ "address_", "classconfig_1_1ServerBlock.html#a0632f3d89d1c59f31a21fbf535646071", null ],
     [ "locations_", "classconfig_1_1ServerBlock.html#a797aa2e0b2b7ed6693aa253bf6b61f6d", null ],
     [ "port_", "classconfig_1_1ServerBlock.html#aba8300041dad367a313e321bd5f65d8e", null ]

@@ -19,12 +19,18 @@ var hierarchy =
     ] ],
     [ "http::HttpRequest", "classhttp_1_1HttpRequest.html", null ],
     [ "http::HttpResponse", "classhttp_1_1HttpResponse.html", null ],
+    [ "config::IDirective", "classconfig_1_1IDirective.html", [
+      [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
+      [ "config::ReturnDirective", "classconfig_1_1ReturnDirective.html", null ],
+      [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]
+    ] ],
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
       [ "http::DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
       [ "http::NotFoundHandler", "classhttp_1_1NotFoundHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],
+    [ "IndentManager", "structIndentManager.html", null ],
     [ "network::InitiationDispatcher", "classnetwork_1_1InitiationDispatcher.html", null ],
     [ "utils::IpInfo", "structutils_1_1IpInfo.html", null ],
     [ "config::Lexer", "classconfig_1_1Lexer.html", null ],

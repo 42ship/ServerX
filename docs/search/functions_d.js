@@ -2,7 +2,7 @@ var searchData=
 [
   ['reactor_0',['Reactor',['../classnetwork_1_1Reactor.html#a09c10dad80064785a7e4d3e153575992',1,'network::Reactor::Reactor(int clientFd, int port, http::Router const &amp;)'],['../classnetwork_1_1Reactor.html#ae169912c0271c15bce2316628bcf040b',1,'network::Reactor::Reactor(const Reactor &amp;)']]],
   ['readchar_1',['readChar',['../classconfig_1_1Lexer.html#afdb1642f3297487e2c5a273515f469f2',1,'config::Lexer']]],
-  ['registerhandler_2',['registerHandler',['../classnetwork_1_1InitiationDispatcher.html#aa7fb7946399df1ff3ffdf7f5232c659e',1,'network::InitiationDispatcher']]],
+  ['registerhandler_2',['registerHandler',['../classconfig_1_1DirectiveHandler.html#a26df619732bfd45c9f75d5202ba4234e',1,'config::DirectiveHandler::registerHandler()'],['../classnetwork_1_1InitiationDispatcher.html#aa7fb7946399df1ff3ffdf7f5232c659e',1,'network::InitiationDispatcher::registerHandler()']]],
   ['reload_3',['reload',['../classhttp_1_1MimeTypes.html#a7f06462b892d5fe17e9a4259abc8bbb6',1,'http::MimeTypes']]],
   ['removefd_4',['removeFd',['../classnetwork_1_1EpollManager.html#aa7462b1479c04fe43cb44d4e47bb810f',1,'network::EpollManager']]],
   ['removehandler_5',['removeHandler',['../classnetwork_1_1InitiationDispatcher.html#ab04fa23c988e972f067c4d4f5aa556ce',1,'network::InitiationDispatcher']]],
