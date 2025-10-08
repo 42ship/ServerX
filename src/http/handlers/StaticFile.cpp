@@ -17,7 +17,7 @@ namespace http {
 namespace details {
 
 std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
-    std::string root, path;
+    std::string path;
 
     if (l.getPath() == req.path && req.path[req.path.length() - 1] != '/')
         path = req.path;
@@ -27,8 +27,7 @@ std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
 }
 } // namespace details
 
-StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {
-}
+StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
 HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {
