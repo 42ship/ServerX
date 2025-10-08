@@ -1,3 +1,4 @@
+#include "common/filesystem.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
@@ -27,8 +28,7 @@ std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
 }
 } // namespace details
 
-StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {
-}
+StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
 HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {

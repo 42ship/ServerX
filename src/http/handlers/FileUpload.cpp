@@ -1,14 +1,9 @@
+#include "common/filesystem.hpp"
 #include "http/Handler.hpp"
-
-#include <iterator>
-#include <limits>
-#include <unistd.h>
-
 #include "http/HttpResponse.hpp"
 #include "http/error_pages.hpp"
 #include "http/utils.hpp"
-#include "utils/Logger.hpp"
-#include "utils/utils.hpp"
+#include <unistd.h>
 
 namespace http {
 
@@ -54,51 +49,6 @@ std::string buildUploadPath(const config::ServerBlock &s, const config::Location
     path += '/';
     return path;
 }
-
-// std::string getFilename(HttpRequest const &req, MimeTypes const &mime) {
-//     std::string filename = req.getHeader("X-Filename");
-//     std::string disposition = req.getHeader("Content-Disposition");
-//     if (filename.empty()) {
-//         if (disposition.empty()) {
-//             throw exceptions::BadRequestException(
-//                 "Missing filename (X-Filename or Content-Disposition)");
-//         } else {
-//             filename = extractFilename(disposition);
-//         }
-//     }
-//     if (filename.empty()) {
-//         throw exceptions::BadRequestException("Empty filename in Content-Disposition");
-//     }
-//     size_t index = filename.find_last_of(".");
-//     if (index != std::string::npos && index == filename.size() - 1) {
-//         throw exceptions::BadRequestException("Invalid filename (trailing dot)");
-//     }
-
-//     std::string contentType = req.getHeader("Content-Type");
-//     if (contentType.empty()) {
-//         throw exceptions::BadRequestException("Missing Content-Type");
-//     }
-//     if (contentType == "application/octet-stream") {
-//         return filename;
-//     }
-
-//     std::string reqExt = mime.getMimeExt(contentType);
-//     if (reqExt.empty() || contentType.find("multipart/form-data") != std::string::npos) {
-//         throw exceptions::UnsupportedMediaTypeException();
-//     }
-//     std::string ext;
-//     if (index != std::string::npos) {
-//         ext = filename.substr(index + 1);
-//     }
-//     std::string mimeType = mime.getMimeType(ext);
-//     if (ext == reqExt || contentType == mimeType) {
-//         return filename;
-//     }
-//     if (index != std::string::npos) {
-//         filename.resize(index + 1);
-//     }
-//     return filename + "." + reqExt;
-// }
 
 } // namespace details
 

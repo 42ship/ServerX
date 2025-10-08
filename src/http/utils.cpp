@@ -1,63 +1,17 @@
 #include "http/utils.hpp"
-
+#include "common/filesystem.hpp"
+#include "common/string.hpp"
+#include "config/internal/Block.hpp"
+#include "http/HttpRequest.hpp"
+#include "http/HttpStatus.hpp"
+#include "http/MimeTypes.hpp"
+#include <errno.h>
 #include <sstream>
 #include <string>
-
-#include "http/HttpRequest.hpp"
-#include "http/MimeTypes.hpp"
-#include "utils/utils.hpp"
+#include <sys/stat.h>
+#include <unistd.h>
 
 namespace utils {
-
-HttpMethod matchHttpMethod(std::string const &s) {
-    if (s == "GET")
-        return GET;
-    if (s == "POST")
-        return POST;
-    if (s == "PUT")
-        return PUT;
-    if (s == "DELETE")
-        return DELETE;
-    return UNKNOWN;
-}
-
-std::ostream &operator<<(std::ostream &o, HttpMethod m) {
-    switch (m) {
-    case GET:
-        o << "GET";
-        break;
-    case POST:
-        o << "POST";
-        break;
-    case PUT:
-        o << "PUT";
-        break;
-    case DELETE:
-        o << "DELETE";
-        break;
-    case UNKNOWN:
-        o << "UNKNOWN";
-        break;
-    }
-    return o;
-}
-
-std::string getFileExtension(const std::string &fpath) {
-    size_t dotPos = fpath.find('.');
-    if (dotPos != std::string::npos) {
-        return fpath.substr(dotPos + 1);
-    }
-    return "";
-}
-
-static std::string trim(const std::string &s) {
-    std::string::size_type start = s.find_first_not_of(" \t");
-    std::string::size_type end = s.find_last_not_of(" \t");
-    if (start == std::string::npos) {
-        return "";
-    }
-    return s.substr(start, end - start + 1);
-}
 
 static std::string extractFilename(const std::string &disposition) {
     std::istringstream ss(disposition);
@@ -144,7 +98,7 @@ ValidationResult validateUploadPath(const std::string &path) {
 }
 
 /** todo: write own or chose better type for check limits */
-ValidationResult checkUploadLimit(const std::string &contentLength, config::ServerBlock const &s) {
+ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s) {
     const config::StringVector *sv = s.get("upload_file_size");
     if (!sv || sv->empty()) {
         return ValidationResult::ok("");

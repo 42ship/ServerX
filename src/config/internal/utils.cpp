@@ -1,5 +1,5 @@
 #include "config/internal/utils.hpp"
-#include "utils/utils.hpp"
+#include "common/string.hpp"
 
 #include <arpa/inet.h>
 
@@ -18,9 +18,7 @@ bool isValidIPv4(std::string const &s) {
            inet_pton(AF_INET, s.c_str(), &sk.sin_addr) == 1;
 }
 
-bool isValidPort(int port) {
-    return (port > 0 && port <= 65535);
-}
+bool isValidPort(int port) { return (port > 0 && port <= 65535); }
 
 bool isValidPort(std::string const &v) {
     return !v.empty() && v.size() <= 5 && isAllDigit(v) && isValidPort(fromString<int>(v));

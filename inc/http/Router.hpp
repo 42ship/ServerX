@@ -1,10 +1,10 @@
 #pragma once
 
+#include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
 #include "http/RouterResult.hpp"
-#include "config/ServerConfig.hpp"
 #include "http/utils.hpp"
 
 namespace http {
@@ -19,8 +19,7 @@ namespace http {
 class Router {
 public:
     Router(config::ServerConfig const &config, MimeTypes const &mime)
-        : config_(config), staticFile_(mime), fileUpload_(mime) {
-    }
+        : config_(config), staticFile_(mime), fileUpload_(mime) {}
 
     /**
      * @brief Determines the correct handler and context for a request.
@@ -42,10 +41,10 @@ public:
         }
         if (location->hasCgiPass())
             return RouterResult(cgi_, server, location);
-        if (request.method == utils::POST) {
+        if (request.method == POST) {
             return RouterResult(fileUpload_, server, location);
         }
-        
+
         return RouterResult(staticFile_, server, location);
     }
 

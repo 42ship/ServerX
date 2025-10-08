@@ -1,6 +1,5 @@
 #include "doctest.h"
 
-#include <sstream>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -11,10 +10,9 @@
 #include "http/MimeTypes.hpp"
 
 using namespace http;
-using namespace utils;
 using namespace std;
 
-config::ServerConfig conf("config/test.conf");
+config::ServerConfig conf("config/test.conf", false);
 
 static string makeBody() {
     return string(
@@ -273,7 +271,7 @@ TEST_CASE("File uploading - 201 and Location header") {
 
 // 201: absolute upload_path for /upload/ (see. test.conf)
 TEST_CASE("File uploading - absolute upload_path at /upload/") {
-    config::ServerConfig conf("config/test.conf");
+    config::ServerConfig conf("config/test.conf", false);
     MimeTypes mime;
     FileUploadHandler fileUpload(mime);
 

@@ -1,8 +1,8 @@
-#include "http/HttpStatus.hpp"
 #include "http/HttpResponse.hpp"
-#include "config/internal/utils.hpp"
-#include <string>
+#include "common/string.hpp"
+#include "http/HttpStatus.hpp"
 #include <sstream>
+#include <string>
 
 namespace http {
 
@@ -66,12 +66,11 @@ inline const char *getJsonResponsePhrase(Status status) {
 
 } // namespace
 
-HttpResponse::HttpResponse() : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDARD) {
-}
+HttpResponse::HttpResponse()
+    : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDARD) {}
 
 HttpResponse::HttpResponse(Status code, std::string const &httpVersion, MessageType type)
-    : httpVersion_(httpVersion), statusCode_(code), bodyType_(BODY_NONE), messageType_(type) {
-}
+    : httpVersion_(httpVersion), statusCode_(code), bodyType_(BODY_NONE), messageType_(type) {}
 
 HttpResponse::HttpResponse(HttpResponse const &rhs)
     : httpVersion_(rhs.httpVersion_),
@@ -107,13 +106,9 @@ HttpResponse const &HttpResponse::operator=(HttpResponse const &rhs) {
     return *this;
 }
 
-HttpResponse::~HttpResponse() {
-    cleanupBody();
-}
+HttpResponse::~HttpResponse() { cleanupBody(); }
 
-void HttpResponse::setStatus(Status s) {
-    statusCode_ = s;
-}
+void HttpResponse::setStatus(Status s) { statusCode_ = s; }
 
 void HttpResponse::setNoBody() {
     cleanupBody();
@@ -152,25 +147,15 @@ void HttpResponse::setBodyFromCgi(int pipe_fd) {
     cgiBody.pipe_fd = pipe_fd;
 }
 
-Status HttpResponse::getStatus() const {
-    return statusCode_;
-}
+Status HttpResponse::getStatus() const { return statusCode_; }
 
-HeaderMap &HttpResponse::getHeaders() {
-    return headers_;
-}
+HeaderMap &HttpResponse::getHeaders() { return headers_; }
 
-HeaderMap const &HttpResponse::getHeaders() const {
-    return headers_;
-}
+HeaderMap const &HttpResponse::getHeaders() const { return headers_; }
 
-std::string const &HttpResponse::getVersion() const {
-    return httpVersion_;
-}
+std::string const &HttpResponse::getVersion() const { return httpVersion_; }
 
-BodySourceType HttpResponse::getBodyType() const {
-    return bodyType_;
-}
+BodySourceType HttpResponse::getBodyType() const { return bodyType_; }
 
 void HttpResponse::cleanupBody() {
     if (bodyType_ == BODY_IN_MEMORY && inMemoryBody.data != NULL) {
@@ -190,9 +175,7 @@ std::string HttpResponse::buildHeaders() const {
     return oss.str();
 }
 
-MessageType HttpResponse::getMessageType() const {
-    return messageType_;
-}
+MessageType HttpResponse::getMessageType() const { return messageType_; }
 
 char const *HttpResponse::generateResponsePhrase() const {
     if (messageType_ == JSON) {

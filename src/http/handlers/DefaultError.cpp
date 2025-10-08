@@ -1,4 +1,5 @@
 #include "http/Handler.hpp"
+#include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
 #include "http/error_pages.hpp"
 
@@ -10,7 +11,7 @@ HttpResponse DefaultErrorHandler::handle(HttpRequest const &req, config::ServerB
                                          config::LocationBlock const *l) const {
     (void)s;
     (void)l;
-    if (req.method == utils::POST) {
+    if (req.method == POST) {
         return error_pages::generateJsonErrorResponse(req.status, req.version);
     }
     return error_pages::generateErrorResponse(req.status, req.version);

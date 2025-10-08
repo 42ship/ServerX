@@ -1,10 +1,9 @@
+#include "common/string.hpp"
 #include "http/HttpRequest.hpp"
+#include <iostream>
 #include <limits>
 #include <sstream>
 #include <string>
-#include <iostream>
-
-#include "utils/utils.hpp"
 
 using namespace std;
 
@@ -15,7 +14,7 @@ bool parseStartLine(HttpRequest &r, istringstream &s) {
     std::string method;
     if (!(s >> method >> r.uri >> r.version))
         return false;
-    r.method = utils::matchHttpMethod(method);
+    r.method = HttpRequest::matchHttpMethod(method);
     // Consume and discard the rest of the current line (e.g., the trailing CRLF).
     s.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return 1;
@@ -62,8 +61,7 @@ bool parseBody(HttpRequest &r, istringstream &s) {
     std::string len = r.headers["Content-Length"];
     if (len == "") {
         return true;
-    }
-    else {
+    } else {
         end = utils::fromString<size_t>(len);
     }
     r.body = s.str().substr(start, end);

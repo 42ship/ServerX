@@ -1,6 +1,6 @@
 #include "http/HttpRequest.hpp"
-#include <sstream>
 #include <ostream>
+#include <sstream>
 
 using namespace std;
 
@@ -8,8 +8,7 @@ namespace http {
 
 using namespace details;
 
-HttpRequest::HttpRequest() : status(OK) {
-}
+HttpRequest::HttpRequest() : status(OK) {}
 
 HttpRequest HttpRequest::parse(string const &buffer) {
     HttpRequest res;
@@ -29,7 +28,32 @@ std::string HttpRequest::getHeader(const std::string &key) const {
     return std::string();
 }
 
+Method HttpRequest::matchHttpMethod(std::string const &s) {
+    if (s == "GET")
+        return GET;
+    if (s == "POST")
+        return POST;
+    if (s == "PUT")
+        return PUT;
+    if (s == "DELETE")
+        return DELETE;
+    return UNKNOWN;
+}
 
+char const *HttpRequest::methodToString(Method m) {
+    switch (m) {
+    case GET:
+        return "GET";
+    case POST:
+        return "POST";
+    case PUT:
+        return "PUT";
+    case DELETE:
+        return "DELETE";
+    default:
+        return "UNKNOWN";
+    }
+}
 
 std::ostream &operator<<(std::ostream &o, HttpRequest const &r) {
     o << "▶️  " << r.method << " " << r.uri << " " << r.version << "\n";
@@ -42,6 +66,11 @@ ostream &operator<<(ostream &o, HttpRequest::HeaderMap const &r) {
     for (HttpRequest::HeaderMap::const_iterator it = r.begin(); it != r.end(); ++it) {
         o << it->first << ": " << it->second << "\n";
     }
+    return o;
+}
+
+std::ostream &operator<<(std::ostream &o, Method m) {
+    o << HttpRequest::methodToString(m);
     return o;
 }
 

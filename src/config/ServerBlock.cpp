@@ -1,4 +1,5 @@
 #include "config/ServerBlock.hpp"
+#include "common/string.hpp"
 #include "config/ConfigException.hpp"
 #include "config/internal/utils.hpp"
 
