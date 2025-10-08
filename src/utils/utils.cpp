@@ -4,6 +4,14 @@
 
 namespace utils {
 
+bool isAllDigit(std::string const &s) {
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        if (!::isdigit(*it))
+            return false;
+    }
+    return true;
+}
+
 const char *validateDirectoryPath(const char *path) {
     if (!path || *path == '\0') {
         return "path cannot be null or empty";

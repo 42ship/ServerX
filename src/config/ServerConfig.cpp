@@ -79,7 +79,7 @@ std::ostream &operator<<(std::ostream &o, const ServerConfig &t) {
         }
     }
 
-    o << "\n\n### End of Configuration ###\n";
+    o << "\n### End of Configuration ###";
     return o;
 }
 
