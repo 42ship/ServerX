@@ -91,9 +91,9 @@ static std::vector<char> createJsonErrorBody(Status code, char const *message) {
 
 // typedef std::map<Key, std::vector<char> > JsonErrorPageCache;
 
-static const std::vector<char> &getCacherJsonErrorBody(Status code, const char *message) {
+static const std::vector<char> &getCacherJsonErrorBody(Status code, const std::string &message) {
     static JsonErrorPageCache cache;
-    const char *m = message ? message : "";
+    const std::string m = !message.empty() ? message : "";
     Key k;
     k.code = code;
     k.message = m;
@@ -102,7 +102,7 @@ static const std::vector<char> &getCacherJsonErrorBody(Status code, const char *
     if (it != cache.end())
         return it->second;
 
-    return cache.insert(std::make_pair(k, createJsonErrorBody(code, m))).first->second;
+    return cache.insert(std::make_pair(k, createJsonErrorBody(code, m.c_str()))).first->second;
 }
 
 } // namespace
@@ -116,14 +116,14 @@ HttpResponse generateErrorResponse(Status code, const std::string &httpVersion) 
 }
 
 HttpResponse generateJsonErrorResponse(Status code, const std::string &httpVersion,
-                                       std::string message) {
+                                       const std::string &message) {
     HttpResponse res(code, httpVersion, JSON);
 
     // Determine which message to use for the cached JSON body
     const std::string &msg = message.empty() ? std::string(res.generateResponsePhrase()) : message;
 
     // Get cached JSON body for this code-message combination
-    const std::vector<char> &body = getCacherJsonErrorBody(code, msg.c_str());
+    const std::vector<char> &body = getCacherJsonErrorBody(code, msg);
     res.setBodyInMemory(body, "application/json");
 
     return res;

@@ -18,7 +18,7 @@ namespace http {
 namespace details {
 
 std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
-    std::string root, path;
+    std::string path;
 
     if (l.getPath() == req.path && req.path[req.path.length() - 1] != '/')
         path = req.path;

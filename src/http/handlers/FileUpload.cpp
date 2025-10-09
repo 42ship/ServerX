@@ -32,7 +32,7 @@ std::string buildUploadPath(const config::ServerBlock &s, const config::Location
     std::string root = s.getRoot();
 
     std::string path;
-    if (!up.empty() && up[0] == '/') {
+    if (up[0] == '/') {
         path = up;
     } else if (!root.empty()) {
         path.reserve(root.size() + 1 + up.size() + 1);
