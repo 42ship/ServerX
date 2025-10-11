@@ -8,17 +8,11 @@
 
 namespace network {
 
-Socket::Socket(void) : fd_(-1) {
-    std::memset(&addr_, 0, sizeof(addr_));
-}
+Socket::Socket(void) : fd_(-1) { std::memset(&addr_, 0, sizeof(addr_)); }
 
-Socket::Socket(int port) : fd_(-1) {
-    createAndBind("0.0.0.0", port);
-}
+Socket::Socket(int port) : fd_(-1) { createAndBind("0.0.0.0", port); }
 
-Socket::Socket(std::string const &address, int port) : fd_(-1) {
-    createAndBind(address, port);
-}
+Socket::Socket(std::string const &address, int port) : fd_(-1) { createAndBind(address, port); }
 
 Socket::Socket(config::ServerBlock const &s) : fd_(-1) {
     if (s.getAddress().empty()) {
@@ -32,17 +26,11 @@ Socket::~Socket(void) {
         close(fd_);
 }
 
-int Socket::getFd(void) const {
-    return fd_;
-}
+int Socket::getFd(void) const { return fd_; }
 
-const struct sockaddr_in &Socket::getAddr(void) const {
-    return addr_;
-}
+const struct sockaddr_in &Socket::getAddr(void) const { return addr_; }
 
-void Socket::bindTo(int port) {
-    bindTo("0.0.0.0", port);
-}
+void Socket::bindTo(int port) { bindTo("0.0.0.0", port); }
 
 void Socket::bindTo(std::string const &address, int port) {
     if (fd_ >= 0) {
@@ -52,7 +40,7 @@ void Socket::bindTo(std::string const &address, int port) {
 }
 
 void Socket::createAndBind(std::string const &address, int port) {
-    if (port < 1024 || port > 65535) {
+    if (port < 0 || port > 65535) {
         throw std::runtime_error("Invalid port number. Port must be between 1024 and 65535");
     }
     fd_ = socket(AF_INET, SOCK_STREAM, 0);

@@ -5,6 +5,7 @@
 
 namespace config {
 
+class ServerBlock;
 /**
  * @class LocationBlock
  * @brief Represents a single 'location' block from the configuration file.
@@ -15,12 +16,17 @@ namespace config {
  */
 class LocationBlock : public Block {
 public:
+    LocationBlock();
     std::string const &getPath() const;
     void setPath(std::string const &);
     StringVector const *getIndexFiles() const;
     bool hasCgiPass() const;
 
+    void setParent(ServerBlock *parent);
+    ServerBlock *getParent();
+
 private:
+    ServerBlock *parent_;
     std::string path_;
 };
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <vector>
-#include <map>
-#include <string>
-#include <ostream>
 #include "HttpStatus.hpp"
+#include <map>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace http {
 
@@ -56,7 +56,6 @@ public:
     void setBodyFromCgi(int pipe_fd);
 
     Status getStatus() const;
-    // char const *getResponsePhrase() const;
     HeaderMap &getHeaders();
     HeaderMap const &getHeaders() const;
     std::string const &getVersion() const;
