@@ -27,8 +27,6 @@ public:
 
     /** @brief Checks if a directive exists within the block. */
     bool has(std::string const &key) const;
-    StringVector const *operator[](std::string const &key) const;
-    StringVector &operator[](std::string const &key);
     void add(std::string const &key, StringVector const &values);
     void add(std::string const &key, std::string const &value);
 

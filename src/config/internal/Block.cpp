@@ -18,10 +18,6 @@ DirectiveMap const &Block::getDirectives() const { return directives_; }
  */
 DirectiveMap &Block::getDirectives() { return directives_; }
 
-StringVector const *Block::operator[](std::string const &key) const { return get(key); }
-
-StringVector &Block::operator[](std::string const &key) { return directives_[key]; }
-
 /**
  * @brief Retrieves the arguments for a specific directive.
  * @param key The name of the directive (e.g., "root").
