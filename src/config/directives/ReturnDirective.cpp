@@ -1,6 +1,6 @@
 #include "config/directives/ReturnDirective.hpp"
+#include "common/string.hpp"
 #include "config/ConfigException.hpp"
-#include "utils/utils.hpp"
 #include <string>
 
 namespace config {

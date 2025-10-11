@@ -1,3 +1,4 @@
+#include "common/filesystem.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"

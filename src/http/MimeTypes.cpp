@@ -10,6 +10,7 @@ namespace http {
 
 MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
     mimeTypes_ = std::map<std::string, std::string>();
+    mimeExt_ = std::map<std::string, std::string>();
     rtime_.tv_nsec = 0;
     rtime_.tv_sec = 0;
     reload();
@@ -20,6 +21,7 @@ MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
 
 MimeTypes::MimeTypes(const MimeTypes &other) {
     mimeTypes_ = other.mimeTypes_;
+    mimeExt_ = other.mimeExt_;
     filePath_ = other.filePath_;
     rtime_ = other.rtime_;
 }
@@ -27,6 +29,7 @@ MimeTypes::MimeTypes(const MimeTypes &other) {
 MimeTypes &MimeTypes::operator=(const MimeTypes &other) {
     if (this != &other) {
         mimeTypes_ = other.mimeTypes_;
+        mimeExt_ = other.mimeExt_;
         filePath_ = other.filePath_;
         rtime_ = other.rtime_;
     }
@@ -42,6 +45,17 @@ const std::string MimeTypes::getMimeType(const std::string &extension) const {
         return it->second;
     }
     return "text/plain";
+}
+
+const std::string MimeTypes::getMimeExt(const std::string &mimeType) const {
+    if (mimeExt_.size() == 0) {
+        return "txt";
+    }
+    std::map<std::string, std::string>::const_iterator it = mimeExt_.find(mimeType);
+    if (it != mimeExt_.end()) {
+        return it->second;
+    }
+    return "txt";
 }
 
 bool MimeTypes::wasChanged() {
@@ -66,6 +80,7 @@ void MimeTypes::reload() {
     // and check if the extension matches any of the defined types
     if (file) {
         mimeTypes_.clear();
+        mimeExt_.clear();
         while (std::getline(file, fileText)) {
             // skip comments
             if (fileText.find_first_of('#') == 0) {
@@ -78,6 +93,7 @@ void MimeTypes::reload() {
             std::string ext;
             while (iss >> ext) {
                 mimeTypes_[ext] = mimeType;
+                mimeExt_[mimeType] = ext;
             }
         }
     }

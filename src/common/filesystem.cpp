@@ -1,15 +1,19 @@
-#include "utils/utils.hpp"
+#include "common/filesystem.hpp"
 #include <cerrno>
+#include <fstream>
 #include <sys/stat.h>
 
 namespace utils {
 
-bool isAllDigit(std::string const &s) {
-    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
-        if (!::isdigit(*it))
-            return false;
+bool writeFile(const std::string &content, const char *path) {
+    std::ofstream out(path, std::ios::binary);
+
+    if (!out.is_open()) {
+        return false;
     }
-    return true;
+    out.write(content.data(), content.size());
+    out.close();
+    return out.good();
 }
 
 const char *validateDirectoryPath(const char *path) {
@@ -33,6 +37,19 @@ const char *validateDirectoryPath(const char *path) {
         return "exists but is not a directory";
     }
     return NULL;
+}
+
+bool isDir(const std::string &p) {
+    struct stat st;
+    return ::stat(p.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
+}
+
+std::string getFileExtension(const std::string &fpath) {
+    size_t dotPos = fpath.find('.');
+    if (dotPos != std::string::npos) {
+        return fpath.substr(dotPos + 1);
+    }
+    return "";
 }
 
 } // namespace utils

@@ -1,15 +1,23 @@
 #pragma once
 
-#include <ostream>
+#include "ValidationResult.hpp"
+#include <string>
+
+namespace config {
+class Block;
+}
+
+namespace http {
+class HttpRequest; // forward decl
+class MimeTypes;   // forward decl
+} // namespace http
 
 namespace utils {
 
-enum HttpMethod { GET, POST, PUT, DELETE, UNKNOWN };
+ValidationResult parseFilename(http::HttpRequest const &req, http::MimeTypes const &mime);
 
-std::ostream &operator<<(std::ostream &o, HttpMethod);
+ValidationResult validateUploadPath(const std::string &path);
 
-HttpMethod matchHttpMethod(std::string const &);
-
-std::string getFileExtension(std::string const &fpath);
+ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s);
 
 } // namespace utils
