@@ -1,7 +1,7 @@
 #include "config/directives/RootDirective.hpp"
-#include "config/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
+#include "config/internal/ConfigException.hpp"
 #include <string>
 
 namespace config {
@@ -13,11 +13,11 @@ void RootDirective::process(Block &b, StringVector const &args) const {
         throw ConfigError("'root' directive requires exactly one argument.");
     std::string root = args[0];
     if (!dynamic_cast<LocationBlock *>(&b) && !dynamic_cast<ServerBlock *>(&b))
-        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.getName());
+        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.name());
 
     if (!root.empty() && root[root.length() - 1] != '/')
         root += '/';
-    b.setRoot(root);
+    b.root(root);
 }
 
 } // namespace config

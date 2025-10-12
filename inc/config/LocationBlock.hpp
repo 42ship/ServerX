@@ -1,11 +1,12 @@
 #pragma once
 
-#include "internal/Block.hpp"
+#include "config/Block.hpp"
 #include <ostream>
 
 namespace config {
 
 class ServerBlock;
+
 /**
  * @class LocationBlock
  * @brief Represents a single 'location' block from the configuration file.
@@ -17,13 +18,20 @@ class ServerBlock;
 class LocationBlock : public Block {
 public:
     LocationBlock();
-    std::string const &getPath() const;
-    void setPath(std::string const &);
-    StringVector const *getIndexFiles() const;
+
+    // ============================== Public Interface ==============================
+
     bool hasCgiPass() const;
 
-    void setParent(ServerBlock *parent);
-    ServerBlock *getParent();
+    // ============================== Getters & Setters =============================
+
+    std::string const &path() const;
+    ServerBlock const *parent();
+
+    // ================================= Fluent API =================================
+
+    LocationBlock &path(std::string const &);
+    LocationBlock &parent(ServerBlock *parent);
 
 private:
     ServerBlock *parent_;

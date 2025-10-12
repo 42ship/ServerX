@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../directives/IDirective.hpp"
-#include "../internal/Block.hpp"
+#include "config/Block.hpp"
+#include "config/directives/IDirective.hpp"
 
 namespace config {
 

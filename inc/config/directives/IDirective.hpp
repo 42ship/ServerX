@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/internal/Block.hpp"
+#include "config/Block.hpp"
 #include <string>
 
 namespace config {
