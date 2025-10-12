@@ -1,10 +1,12 @@
 #pragma once
 
-#include "../directives/IDirective.hpp"
-#include "../internal/Block.hpp"
-#include "../internal/Token.hpp"
+#include "config/Block.hpp"
+#include "config/directives/IDirective.hpp"
+#include "config/internal/Token.hpp"
 
 namespace config {
+
+class IDirective;
 
 class DirectiveHandler {
 public:

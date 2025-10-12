@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../LocationBlock.hpp"
-#include "../ServerBlock.hpp"
+#include "config/LocationBlock.hpp"
+#include "config/ServerBlock.hpp"
+#include "config/internal/ConfigNode.hpp"
 
 namespace config {
 
 class ConfigNode;
-typedef std::vector<ConfigNode> ConfigNodeVec;
 
 /**
  * @class Mapper

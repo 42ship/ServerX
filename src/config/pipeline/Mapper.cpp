@@ -37,7 +37,7 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
 
     mapLocationBlock(lb, node);
     if (b.hasLocation(lb)) {
-        LOG_WARN("Duplicate location '" << lb.getPath() << "' in location block");
+        LOG_WARN("Duplicate location '" << lb.path() << "' in location block");
         return;
     }
     details::completeLocationRoot(lb, b);
@@ -45,7 +45,7 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
 }
 
 void Mapper::mapLocationBlock(LocationBlock &b, ConfigNode const &node) {
-    b.setPath(node.args[0].literal);
+    b.path(node.args[0].literal);
     DirectiveHandler::getInstance().process(b, node.directives);
 }
 

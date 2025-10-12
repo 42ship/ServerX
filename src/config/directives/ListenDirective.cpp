@@ -1,7 +1,7 @@
 #include "config/directives/ListenDirective.hpp"
-#include "config/ConfigException.hpp"
+#include "config/Block.hpp"
 #include "config/ServerBlock.hpp"
-#include "config/internal/Block.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "config/internal/Token.hpp"
 #include "config/internal/ValidationUtils.hpp"
 #include "config/internal/types.hpp"
@@ -15,7 +15,7 @@ const std::string ListenDirective::name_ = "listen";
 void ListenDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
     ServerBlock *serverBlock = dynamic_cast<ServerBlock *>(&b);
     if (!serverBlock) {
-        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.getName());
+        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.name());
     }
 
     EXPECT_ARG_COUNT(args, 1, name_);
@@ -25,8 +25,8 @@ void ListenDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
         throw ConfigError("'listen' directive '" + args[0].literal + "' has an invalid format.");
     }
 
-    serverBlock->setPort((ip_info.port == -1 ? 9191 : ip_info.port));
-    serverBlock->setAddress((ip_info.ip.empty() ? "0.0.0.0" : ip_info.ip));
+    serverBlock->port((ip_info.port == -1 ? 9191 : ip_info.port));
+    serverBlock->address((ip_info.ip.empty() ? "0.0.0.0" : ip_info.ip));
     b.add(name_, args);
 }
 

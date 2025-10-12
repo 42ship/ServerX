@@ -1,4 +1,4 @@
-#include "config/internal/Block.hpp"
+#include "config/Block.hpp"
 #include "config/arguments/ArgumentFactory.hpp"
 #include "config/arguments/String.hpp"
 #include "config/internal/types.hpp"
@@ -51,21 +51,6 @@ Block &Block::operator=(const Block &other) {
     return *this;
 }
 
-/**
- * @brief Provides read-only access to the underlying directive map.
- */
-DirectiveMap const &Block::getDirectives() const { return directives_; }
-
-/**
- * @brief Provides read-write access to the underlying directive map.
- * (Primarily for use by the ConfigBuilder).
- */
-DirectiveMap &Block::getDirectives() { return directives_; }
-
-ArgumentVector const *Block::operator[](std::string const &key) const { return get(key); }
-
-ArgumentVector &Block::operator[](std::string const &key) { return directives_[key]; }
-
 std::vector<std::string> Block::get(std::string const &key, http::HttpRequest const &req) const {
     ArgumentVector const *argv = get(key);
     std::vector<std::string> res;
@@ -87,12 +72,6 @@ std::string Block::getFirstEvaluatedString(std::string const &key,
     return argv->front()->evaluate(req);
 }
 
-/**
- * @brief Retrieves the arguments for a specific directive.
- * @param key The name of the directive (e.g., "root").
- * @return A const pointer to the vector of arguments, or NULL if the
- * directive is not found or has no arguments.
- */
 ArgumentVector const *Block::get(std::string const &key) const {
     DirectiveMap::const_iterator it = directives_.find(key);
     if (it != directives_.end() && !it->second.empty())
@@ -103,34 +82,50 @@ ArgumentVector const *Block::get(std::string const &key) const {
 /** @brief Checks if a directive exists within the block. */
 bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
 
-void Block::add(std::string const &key, ArgumentVector const &values) { directives_[key] = values; }
+Block &Block::add(std::string const &key, ArgumentVector const &values) {
+    directives_[key] = values;
+    return *this;
+}
 
-void Block::add(std::string const &key, std::string const &value) {
+Block &Block::add(std::string const &key, ParsedDirectiveArgs const &args) {
+    add(key, ArgumentFactory::get(args));
+    return *this;
+}
+
+Block &Block::add(std::string const &key, std::vector<std::string> const &value) {
+    if (value.empty())
+        return *this;
+    ArgumentVector v;
+    v.reserve(value.size());
+    for (size_t i = 0; i < value.size(); i++) {
+        v.push_back(new String(value[i]));
+    }
+    add(key, v);
+    return *this;
+}
+
+Block &Block::add(std::string const &key, std::string const &value) {
     ArgumentVector v;
     v.push_back(new String(value));
     add(key, v);
+    return *this;
 }
 
-void Block::add(std::string const &key, ParsedDirectiveArgs const &args) {
-    add(key, ArgumentFactory::get(args));
+Block &Block::add(std::string const &key, std::string const &v1, std::string const &v2) {
+    ArgumentVector v;
+    v.push_back(new String(v1));
+    v.push_back(new String(v2));
+    add(key, v);
+    return *this;
 }
 
-// --- Common Directive Accessors ---
+std::string Block::root() const { return getFirstRawValue("root"); }
 
-/**
- * @brief A convenient, strongly-typed accessor for the 'root' directive.
- * @return The root path if set, otherwise an empty string.
- */
-std::string Block::getRoot() const {
-    ArgumentVector const *args = get("root");
-    if (args)
-        return (*args)[0]->getRawValue();
-    return "";
-}
+std::string const &Block::name() const { return name_; }
 
-std::string const &Block::getName() const { return name_; }
+std::vector<std::string> Block::indexFiles() const { return getRawValues("index"); }
 
-void Block::setRoot(std::string const &root) {
+Block &Block::root(std::string const &root) {
     DirectiveMap::iterator it = directives_.find("root");
     if (it != directives_.end()) {
         String *strArg = dynamic_cast<String *>(it->second[0]);
@@ -142,10 +137,32 @@ void Block::setRoot(std::string const &root) {
         }
     } else
         add("root", root);
+    return *this;
+}
+
+std::vector<std::string> Block::getRawValues(std::string const &key) const {
+    std::vector<std::string> res;
+    ArgumentVector const *matched = get(key);
+    if (!matched) {
+        return res;
+    }
+    res.reserve(matched->size());
+    for (size_t i = 0; i < matched->size(); i++) {
+        res.push_back((*matched)[i]->getRawValue());
+    }
+    return res;
+}
+
+std::string Block::getFirstRawValue(std::string const &key) const {
+    ArgumentVector const *matched = get(key);
+    if (!matched) {
+        return "";
+    }
+    return (*matched)[0]->getRawValue();
 }
 
 std::ostream &operator<<(std::ostream &o, Block const &b) {
-    DirectiveMap const &m = b.getDirectives();
+    DirectiveMap const &m = b.directives_;
     for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
         o << print_indent << it->first << ":";
         for (size_t i = 0; i < it->second.size(); i++) {

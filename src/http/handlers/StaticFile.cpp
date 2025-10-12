@@ -1,4 +1,3 @@
-#include "config/internal/Block.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
@@ -12,20 +11,19 @@
 #include <string>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <vector>
 
 namespace http {
 
 namespace details {
 
 std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
-    std::string root, path;
+    std::string path;
 
-    if (l.getPath() == req.path && req.path[req.path.length() - 1] != '/')
+    if (l.path() == req.path && req.path[req.path.length() - 1] != '/')
         path = req.path;
     else
-        path = (req.path.substr(l.getPath().size() - 1));
-    return l.getRoot() + path;
+        path = (req.path.substr(l.path().size() - 1));
+    return l.path() + path;
 }
 } // namespace details
 
@@ -51,13 +49,9 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
             return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         std::string index_path;
         bool found_index = false;
-        config::ArgumentVector const *indexes = l->getIndexFiles();
-        if (!indexes) {
-            return error_pages::generateErrorResponse(INTERNAL_SERVER_ERROR, req.version);
-        }
-        for (size_t i = 0; i < indexes->size(); i++) {
-            index_path =
-                path + (path[path.size() - 1] == '/' ? "" : "/") + (*indexes)[i]->evaluate(req);
+        std::vector<std::string> const &indexes = l->indexFiles();
+        for (size_t i = 0; i < indexes.size(); i++) {
+            index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + indexes[i];
             if (access(index_path.c_str(), F_OK) == 0) {
                 found_index = true;
                 path = index_path;

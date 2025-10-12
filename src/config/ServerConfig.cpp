@@ -49,7 +49,7 @@ ServerBlock const *ServerConfig::getServer(int port, std::string const &server_n
 }
 
 void ServerConfig::addServer(ServerBlock const &server) {
-    servers_[server.getPort()].push_back(server);
+    servers_[server.port()].push_back(server);
 }
 
 std::ostream &operator<<(std::ostream &o, const ServerConfig &t) {

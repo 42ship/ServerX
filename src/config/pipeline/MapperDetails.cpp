@@ -8,8 +8,8 @@ namespace details {
 void completeLocationRoot(LocationBlock &l, ServerBlock const &s) {
     std::string finalRoot;
 
-    std::string serverRoot = s.getRoot();
-    std::string locationRoot = l.getRoot();
+    std::string serverRoot = s.root();
+    std::string locationRoot = l.root();
     if (!locationRoot.empty()) {
         // root is an absolute path
         if (locationRoot[0] == '/') {
@@ -27,7 +27,7 @@ void completeLocationRoot(LocationBlock &l, ServerBlock const &s) {
     if (finalRoot.empty()) {
         return;
     }
-    l.setRoot(finalRoot);
+    l.root(finalRoot);
 }
 
 } // namespace details

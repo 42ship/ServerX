@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/internal/Block.hpp"
+#include "config/Block.hpp"
 #include "config/internal/types.hpp"
 #include <string>
 
