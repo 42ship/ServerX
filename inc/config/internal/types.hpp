@@ -11,8 +11,8 @@ class ConfigNode;
 class IArgument;
 
 typedef std::vector<Token> ParsedDirectiveArgs;
-typedef std::map<Token, ParsedDirectiveArgs> ParsedDirectiveMap;
-typedef std::pair<Token, ParsedDirectiveArgs> ParsedDirectivePair;
+typedef std::map<std::string, ParsedDirectiveArgs> ParsedDirectiveMap;
+typedef std::pair<std::string, ParsedDirectiveArgs> ParsedDirectivePair;
 typedef std::vector<ConfigNode> ConfigNodeVec;
 
 typedef IArgument *ArgumentPtr;

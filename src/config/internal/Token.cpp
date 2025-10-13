@@ -41,7 +41,4 @@ bool Token::isTypeIn(TokenType const arr[], size_t size) const {
     return false;
 }
 
-bool Token::operator<(Token const &rhs) const { return literal < rhs.literal; }
-bool Token::operator>(Token const &rhs) const { return literal > rhs.literal; }
-
 } // namespace config

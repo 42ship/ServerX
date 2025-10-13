@@ -103,7 +103,7 @@ ParsedDirectivePair Parser::handleDirective() {
         throw ConfigError("Expected a directive name (identifier).");
 
     ParsedDirectivePair d;
-    d.first = currentToken();
+    d.first = currentToken().literal;
     consumeToken();
 
     while (isTokenAValue()) {

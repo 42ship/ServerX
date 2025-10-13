@@ -25,7 +25,7 @@ public:
 
     template <typename T> void process(T &block, ParsedDirectiveMap const &map) {
         for (ParsedDirectiveMap::const_iterator it = map.begin(); it != map.end(); ++it) {
-            process(block, it->first.literal, it->second);
+            process(block, it->first, it->second);
         }
     }
 
