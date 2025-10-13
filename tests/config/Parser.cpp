@@ -1,6 +1,6 @@
 
 #include "config/pipeline/Parser.hpp"
-#include "config/ConfigException.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "config/pipeline/Lexer.hpp"
 #include "doctest.h"
 

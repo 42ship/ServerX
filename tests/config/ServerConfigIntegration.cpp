@@ -1,8 +1,8 @@
 
-#include "config/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "config/ServerConfig.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "doctest.h"
 
 TEST_CASE("ServerConfig Integration") {
