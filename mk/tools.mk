@@ -1,5 +1,6 @@
 check:
-	cppcheck --enable=all --inconclusive --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unusedFunction --std=c++98 src/ inc/
+	@cppcheck --enable=all --inconclusive  --error-exitcode=1 --std=c++98 src/ inc/\
+		--suppress=missingIncludeSystem --suppress=missingInclude --suppress=unusedFunction \
 
 cdb compiledb:
 	@compiledb make -n $(NAME) build_tests > /dev/null 2>&1

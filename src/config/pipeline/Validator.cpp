@@ -28,7 +28,7 @@ void Validator::validateServer(ServerBlock &b) {
 }
 
 void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) {
-    locationCompleteRoot(b, server);
+    (void)server;
     validateRoot(b);
 }
 
@@ -59,34 +59,6 @@ void Validator::validateListen(ServerBlock &b) {
 void Validator::validateServerNames(ServerBlock &b) {
     if (!b.has("server_names"))
         return;
-}
-
-// ==============================HELPER FUNCTIONS==============================
-
-void Validator::locationCompleteRoot(LocationBlock &l, ServerBlock const &s) {
-    std::string finalRoot;
-
-    std::string serverRoot = s.getRoot();
-    std::string locationRoot = l.getRoot();
-    if (!locationRoot.empty()) {
-        // root is an absolute path
-        if (locationRoot[0] == '/') {
-            finalRoot = locationRoot;
-        } else { // root is a relative path
-            finalRoot = serverRoot;
-            if (!finalRoot.empty() && finalRoot[finalRoot.length() - 1] != '/') {
-                finalRoot += '/';
-            }
-            finalRoot += locationRoot;
-        }
-    } else {
-        finalRoot = serverRoot;
-    }
-    if (finalRoot.empty()) {
-        issue_warning("Could not determine a root path for location '" + l.getPath() + "'.");
-        return;
-    }
-    l.setRoot(finalRoot);
 }
 
 } // namespace config

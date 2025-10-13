@@ -11,4 +11,12 @@ std::string trim(const std::string &s) {
     return s.substr(start, end - start + 1);
 }
 
+bool isAllDigit(std::string const &s) {
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        if (!::isdigit(*it))
+            return false;
+    }
+    return true;
+}
+
 } // namespace utils
