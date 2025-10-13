@@ -5,6 +5,7 @@
 #include "http/HttpRequest.hpp"
 #include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
+#include "utils/Logger.hpp"
 #include <errno.h>
 #include <sstream>
 #include <string>
@@ -13,22 +14,22 @@
 
 namespace utils {
 
-static std::string extractFilename(const std::string &disposition) {
-    std::istringstream ss(disposition);
+std::string extractHeaderParam(const std::string &str, const std::string &toFind) {
+    std::istringstream ss(str);
     std::string token;
 
     while (std::getline(ss, token, ';')) {
         token = trim(token);
-        std::string::size_type pos = token.find("filename=");
+        std::string::size_type pos = token.find(toFind);
         if (pos != std::string::npos) {
-            std::string filename = token.substr(pos + 9); // 9 = strlen("filename=")
-            if (!filename.empty() && filename[0] == '"') {
-                filename.erase(0, 1);
+            std::string line = token.substr(pos + toFind.length());
+            if (!line.empty() && line[0] == '"') {
+                line.erase(0, 1);
             }
-            if (!filename.empty() && filename[filename.size() - 1] == '"') {
-                filename.erase(filename.size() - 1);
+            if (!line.empty() && line[line.size() - 1] == '"') {
+                line.erase(line.size() - 1);
             }
-            return filename;
+            return line;
         }
     }
     return "";
@@ -42,7 +43,7 @@ ValidationResult parseFilename(http::HttpRequest const &req, http::MimeTypes con
             return ValidationResult::fail(http::BAD_REQUEST,
                                           "Missing filename (X-Filename or Content-Disposition)");
         } else {
-            filename = extractFilename(disposition);
+            filename = extractHeaderParam(disposition, "filename=");
         }
     }
     if (filename.empty()) {
@@ -99,14 +100,15 @@ ValidationResult validateUploadPath(const std::string &path) {
 
 /** todo: write own or chose better type for check limits */
 ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s) {
+    if (contentLength.empty()){
+        return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");
+    }
+
     const config::StringVector *sv = s.get("upload_file_size");
     if (!sv || sv->empty()) {
         return ValidationResult::ok("");
     }
-    if (contentLength.empty()) {
-        return ValidationResult::fail(http::LENGTH_REQUIRED,
-                                      "Content-Length header is required for uploads");
-    }
+
     std::string sUploadFileSize = (*sv)[0];
     size_t uploadFileSize = fromString<size_t>(sUploadFileSize);
     size_t len = fromString<size_t>(contentLength);
@@ -114,6 +116,14 @@ ValidationResult checkUploadLimit(const std::string &contentLength, config::Bloc
     if (len > uploadFileSize) {
         return utils::ValidationResult::fail(http::PAYLOAD_TOO_LARGE,
                                              "Payload exceeds configured upload_file_size");
+    }
+    return utils::ValidationResult::ok("");
+}
+
+ValidationResult checkContentLength(std::string contentLen)
+{
+    if (contentLen.empty()){
+        return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");
     }
     return utils::ValidationResult::ok("");
 }

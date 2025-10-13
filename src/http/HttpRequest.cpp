@@ -10,6 +10,18 @@ using namespace details;
 
 HttpRequest::HttpRequest() : status(OK) {}
 
+HttpRequest& HttpRequest::operator=(HttpRequest const &req) {
+    status = req.status;
+    method = req.method;
+    uri = req.uri;
+    path = req.path;
+    version = req.version;
+    headers = req.headers;
+    body = req.body;
+    
+    return *this;
+}
+
 HttpRequest HttpRequest::parse(string const &buffer) {
     HttpRequest res;
     istringstream s(buffer);

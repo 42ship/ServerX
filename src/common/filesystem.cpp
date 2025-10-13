@@ -12,9 +12,29 @@ bool writeFile(const std::string &content, const char *path) {
         return false;
     }
     out.write(content.data(), content.size());
+    bool success = out.good();
     out.close();
-    return out.good();
+    return success;
 }
+
+bool writeFile(const std::string &content, const char *path, size_t start, size_t end) {
+    if (start >= content.length() || end <= start) {
+        return false;
+    }
+
+    size_t length = std::min(end - start, content.length() - start);
+
+    std::ofstream out(path, std::ios::binary);
+    if (!out.is_open()) {
+        return false;
+    }
+
+    out.write(content.data() + start, static_cast<std::streamsize>(length));
+    bool success = out.good();
+    out.close();
+    return success;
+}
+
 
 const char *validateDirectoryPath(const char *path) {
     if (!path || *path == '\0') {

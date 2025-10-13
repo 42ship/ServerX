@@ -21,7 +21,8 @@ enum Status {
     PAYLOAD_TOO_LARGE = 413,        /** 413 Payload Too Large — file size exceeds the allowed limit*/
     UNSUPPORTED_MEDIA_TYPE = 415,   /** 415 Unsupported Media Type — unsupported file type*/
 
-    INTERNAL_SERVER_ERROR = 500 /** 500 Internal Server Error — server-side failure. */
+    INTERNAL_SERVER_ERROR = 500,    /** 500 Internal Server Error — server-side failure. */
+    NOT_IMPLEMENTED = 501           /** 501 Not Implemented — the server does not support the functionality required to fulfill the request.*/
 };
 
 } // namespace http

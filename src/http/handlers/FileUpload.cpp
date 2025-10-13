@@ -4,6 +4,7 @@
 #include "http/error_pages.hpp"
 #include "http/utils.hpp"
 #include <unistd.h>
+#include <sstream>
 
 namespace http {
 
@@ -54,6 +55,34 @@ std::string buildUploadPath(const config::ServerBlock &s, const config::Location
 
 FileUploadHandler::FileUploadHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
+HttpResponse FileUploadHandler::handleMultipartFormData(HttpRequest const &req, config::ServerBlock const *s,
+                                            config::LocationBlock const *l) const {
+    std::string boundary = utils::extractHeaderParam(req.getHeader("Content-Type"), "boundary=");
+    if (boundary.empty()) {
+        return error_pages::generateJsonErrorResponse(BAD_REQUEST, req.version, "Missing or invalid boundary parameter in Content-Type header");
+    }
+
+    boundary = "--" + boundary;
+    std::istringstream stream(req.body);
+
+    HttpResponse firstRes;
+    for (HttpRequest multiReq = details::parse(stream, boundary); stream.good() ; multiReq = details::parse(stream, boundary))
+    {
+        multiReq.uri = req.uri;
+        multiReq.version = req.version;
+        multiReq.headers["Content-Length"] = req.getHeader("Content-Length");
+        multiReq.path = req.path;
+        HttpResponse res = handle(multiReq, s, l);
+        if (firstRes.getBodyType() == BODY_NONE) {
+            firstRes = res;
+        }
+        if (res.getStatus() != CREATED) {
+            return res;
+        }
+    }
+    return firstRes;
+}
+
 HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {
     if (!l) {
@@ -67,9 +96,26 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
         return error_pages::generateJsonErrorResponse(vup.status, req.version, vup.message);
     }
 
-    utils::ValidationResult lim = utils::checkUploadLimit(req.getHeader("Content-Length"), *s);
+    std::string transferEncoding = req.getHeader("Transfer-Encoding");
+    if (!transferEncoding.empty() && transferEncoding.find("chunked") != std::string::npos) {
+        return error_pages::generateJsonErrorResponse(
+            http::NOT_IMPLEMENTED, req.version, "Transfer-Encoding: chunked is not supported");
+    }
+
+    std::string contentLen = req.getHeader("Content-Length");
+    utils::ValidationResult len = utils::checkContentLength(contentLen);
+    if (!len.result) {
+        return error_pages::generateJsonErrorResponse(len.status, req.version, len.message);
+    }
+
+    utils::ValidationResult lim = utils::checkUploadLimit(contentLen, *s);
     if (!lim.result) {
         return error_pages::generateJsonErrorResponse(lim.status, req.version, lim.message);
+    }
+
+    std::string contentType = req.getHeader("Content-Type");
+    if (contentType.find("multipart/form-data") != std::string::npos) {
+        return handleMultipartFormData(req, s, l);
     }
 
     utils::ValidationResult pf = utils::parseFilename(req, mimeTypes_);

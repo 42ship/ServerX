@@ -19,6 +19,7 @@ enum Method { GET, POST, PUT, DELETE, UNKNOWN };
 class HttpRequest {
 public:
     HttpRequest();
+    HttpRequest& operator=(HttpRequest const &req);
     typedef std::map<std::string, std::string> HeaderMap;
 
     http::Status status;
