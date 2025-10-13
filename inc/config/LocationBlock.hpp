@@ -26,7 +26,7 @@ public:
     // ============================== Getters & Setters =============================
 
     std::string const &path() const;
-    ServerBlock const *parent();
+    ServerBlock const *parent() const;
 
     // ================================= Fluent API =================================
 

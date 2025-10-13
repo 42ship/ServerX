@@ -20,7 +20,7 @@ LocationBlock &LocationBlock::parent(ServerBlock *parent) {
     return *this;
 }
 
-ServerBlock const *LocationBlock::parent() { return parent_; }
+ServerBlock const *LocationBlock::parent() const { return parent_; }
 
 std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
     o << print_indent << "[LocationBlock] Path: " << t.path() << " {\n";
