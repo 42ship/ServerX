@@ -10,6 +10,8 @@ using namespace details;
 
 HttpRequest::HttpRequest() : status(OK) {}
 
+HttpRequest::HttpRequest(HttpRequest const &req) : status(req.status), method(req.method), uri(req.uri), path(req.path), version(req.version), headers(req.headers), body(req.body) {}
+
 HttpRequest& HttpRequest::operator=(HttpRequest const &req) {
     status = req.status;
     method = req.method;
