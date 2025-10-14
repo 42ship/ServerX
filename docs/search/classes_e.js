@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validator_0',['Validator',['../classconfig_1_1Validator.html',1,'config']]]
+  ['token_0',['Token',['../structconfig_1_1Token.html',1,'config']]]
 ];

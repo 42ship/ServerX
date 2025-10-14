@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httpmethod_0',['HttpMethod',['../namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77',1,'utils']]]
+  ['loglevel_0',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
 ];

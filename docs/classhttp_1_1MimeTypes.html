@@ -104,6 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae44d2165f959305827829c2dbe07334c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <br /></td></tr>
 <tr class="memitem:a0d0957922052bc8f4fbba45166ce7703" id="r_a0d0957922052bc8f4fbba45166ce7703"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d0957922052bc8f4fbba45166ce7703">getMimeType</a> (const std::string &amp;extension) const</td></tr>
 <tr class="memdesc:a0d0957922052bc8f4fbba45166ce7703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the MIME type associated with a given file extension.  <br /></td></tr>
+<tr class="memitem:ab1b592e39592ae83fc99c1960225496a" id="r_ab1b592e39592ae83fc99c1960225496a"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1b592e39592ae83fc99c1960225496a">getMimeExt</a> (const std::string &amp;extension) const</td></tr>
+<tr class="memdesc:ab1b592e39592ae83fc99c1960225496a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file extension associated with a given MIME type.  <br /></td></tr>
 <tr class="memitem:a7f06462b892d5fe17e9a4259abc8bbb6" id="r_a7f06462b892d5fe17e9a4259abc8bbb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f06462b892d5fe17e9a4259abc8bbb6">reload</a> ()</td></tr>
 <tr class="memdesc:a7f06462b892d5fe17e9a4259abc8bbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reloads the MIME types from the configuration file.  <br /></td></tr>
 <tr class="memitem:aee7d7ceeb76fc7222194175b2a259a2c" id="r_aee7d7ceeb76fc7222194175b2a259a2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee7d7ceeb76fc7222194175b2a259a2c">~MimeTypes</a> ()</td></tr>
@@ -118,6 +120,7 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa83501be3086303528b56d0a7436fcff" id="r_aa83501be3086303528b56d0a7436fcff"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa83501be3086303528b56d0a7436fcff">mimeTypes_</a></td></tr>
+<tr class="memitem:a0d9384e09a4ec6a6d49d26194d9092b5" id="r_a0d9384e09a4ec6a6d49d26194d9092b5"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d9384e09a4ec6a6d49d26194d9092b5">mimeExt_</a></td></tr>
 <tr class="memitem:a662260f92f72a7acd8f0946913ef475f" id="r_a662260f92f72a7acd8f0946913ef475f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a662260f92f72a7acd8f0946913ef475f">filePath_</a></td></tr>
 <tr class="memitem:a8221f68aff924ff3c576aa4d56eab6d0" id="r_a8221f68aff924ff3c576aa4d56eab6d0"><td class="memItemLeft" align="right" valign="top">struct timespec&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8221f68aff924ff3c576aa4d56eab6d0">rtime_</a></td></tr>
 </table>
@@ -246,6 +249,33 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ab1b592e39592ae83fc99c1960225496a" name="ab1b592e39592ae83fc99c1960225496a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b592e39592ae83fc99c1960225496a">&#9670;&#160;</a></span>getMimeExt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string http::MimeTypes::getMimeExt </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>extension</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the file extension associated with a given MIME type. </p>
+<p>This method looks up the file extension corresponding to the provided MIME type in the loaded MIME types map.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extension</td><td>The MIME type for which to retrieve the file extension. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The corresponding file extension as a string, or "txt" if the MIME type is not recognized. </dd></dl>
+
+</div>
+</div>
 <a id="a0d0957922052bc8f4fbba45166ce7703" name="a0d0957922052bc8f4fbba45166ce7703"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d0957922052bc8f4fbba45166ce7703">&#9670;&#160;</a></span>getMimeType()</h2>
 
@@ -359,6 +389,28 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::string http::MimeTypes::filePath_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d9384e09a4ec6a6d49d26194d9092b5" name="a0d9384e09a4ec6a6d49d26194d9092b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d9384e09a4ec6a6d49d26194d9092b5">&#9670;&#160;</a></span>mimeExt_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, std::string&gt; http::MimeTypes::mimeExt_</td>
         </tr>
       </table>
   </td>

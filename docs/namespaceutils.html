@@ -96,18 +96,11 @@ $(function(){initNavTree('namespaceutils.html','',''); });
 Classes</h2></td></tr>
 <tr class="memitem:IpInfo" id="r_IpInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils_1_1IpInfo.html">IpInfo</a></td></tr>
 <tr class="memitem:Logger" id="r_Logger"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html">Logger</a></td></tr>
+<tr class="memitem:ValidationResult" id="r_ValidationResult"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the result of a validation or parsing operation.  <a href="structutils_1_1ValidationResult.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a8680ef830ac25c4bdfba19e3a18ccb77" id="r_a8680ef830ac25c4bdfba19e3a18ccb77"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a> { <br />
-&#160;&#160;<a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77a4f9c44e0a8a82d97581a0071ec9fc73d">GET</a>
-, <a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77afc1583d08c4ec5077f970d33a361e759">POST</a>
-, <a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77a2d5d53dd693a659f854a229217bfdb1a">PUT</a>
-, <a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77ae5f6a7eb8b9cc97ed11d310716eabb4b">DELETE</a>
-, <br />
-&#160;&#160;<a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77a10b0cc1c2bb66d72729f86221df773d2">UNKNOWN</a>
-<br />
- }</td></tr>
 <tr class="memitem:a6b50893705cf2a59daf6b680304017dd" id="r_a6b50893705cf2a59daf6b680304017dd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b50893705cf2a59daf6b680304017dd">LogLevel</a> { <br />
 &#160;&#160;<a class="el" href="#a6b50893705cf2a59daf6b680304017dda074a3bb991ceb4ae30b93dbcabebd102">TRACE</a>
 , <a class="el" href="#a6b50893705cf2a59daf6b680304017dda087a901d96567025629ccddc56a29f61">DEBUG</a>
@@ -122,43 +115,29 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a3d05e7b02679c837b285e83b5915eba6" id="r_a3d05e7b02679c837b285e83b5915eba6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d05e7b02679c837b285e83b5915eba6">writeFile</a> (const std::string &amp;content, const char *path)</td></tr>
+<tr class="memitem:af07de80d1aa5d787fa115cec01cbe813" id="r_af07de80d1aa5d787fa115cec01cbe813"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af07de80d1aa5d787fa115cec01cbe813">isDir</a> (const std::string &amp;p)</td></tr>
+<tr class="memitem:a6c6c2490267aaffaecd721402a08351c" id="r_a6c6c2490267aaffaecd721402a08351c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c6c2490267aaffaecd721402a08351c">validateDirectoryPath</a> (const char *path)</td></tr>
+<tr class="memitem:ad66d7d2997cbd52649e7f6026f53dfb3" id="r_ad66d7d2997cbd52649e7f6026f53dfb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad66d7d2997cbd52649e7f6026f53dfb3">getFileExtension</a> (const std::string &amp;fpath)</td></tr>
+<tr class="memitem:aa829fef424a4463ddfc6488b969755a2" id="r_aa829fef424a4463ddfc6488b969755a2"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:aa829fef424a4463ddfc6488b969755a2 template"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa829fef424a4463ddfc6488b969755a2">toString</a> (T const &amp;v)</td></tr>
+<tr class="memitem:a15e8dba46eff72c11f43b82c2b4d36d4" id="r_a15e8dba46eff72c11f43b82c2b4d36d4"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a15e8dba46eff72c11f43b82c2b4d36d4 template"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e8dba46eff72c11f43b82c2b4d36d4">fromString</a> (std::string const &amp;str)</td></tr>
+<tr class="memitem:a935df850f81594becc164936220efa39" id="r_a935df850f81594becc164936220efa39"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a935df850f81594becc164936220efa39">trim</a> (const std::string &amp;s)</td></tr>
+<tr class="memitem:ac83bcb19796dfe193c69d38695f1d906" id="r_ac83bcb19796dfe193c69d38695f1d906"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83bcb19796dfe193c69d38695f1d906">isAllDigit</a> (std::string const &amp;s)</td></tr>
 <tr class="memitem:af996b680f7f75212aeeb13cf855a916d" id="r_af996b680f7f75212aeeb13cf855a916d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af996b680f7f75212aeeb13cf855a916d">isValidPort</a> (int port)</td></tr>
 <tr class="memitem:ad2c7af639c94afbb424737764f3dd555" id="r_ad2c7af639c94afbb424737764f3dd555"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2c7af639c94afbb424737764f3dd555">isValidPort</a> (std::string const &amp;)</td></tr>
 <tr class="memitem:aedbc0638b66531360317f908d4ff9eed" id="r_aedbc0638b66531360317f908d4ff9eed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedbc0638b66531360317f908d4ff9eed">isValidIPv4</a> (char const *)</td></tr>
 <tr class="memitem:a81dd67800f9537cafe72ff917dbf388f" id="r_a81dd67800f9537cafe72ff917dbf388f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81dd67800f9537cafe72ff917dbf388f">isValidIPv4</a> (std::string const &amp;)</td></tr>
 <tr class="memitem:a5199a40a0e3a421bfc0cb04e8286ee59" id="r_a5199a40a0e3a421bfc0cb04e8286ee59"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5199a40a0e3a421bfc0cb04e8286ee59">extractIpInfo</a> (std::string const &amp;, <a class="el" href="structutils_1_1IpInfo.html">IpInfo</a> &amp;)</td></tr>
-<tr class="memitem:a19208ef1e0235ce7f92b682983f0fce7" id="r_a19208ef1e0235ce7f92b682983f0fce7"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19208ef1e0235ce7f92b682983f0fce7">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a>)</td></tr>
-<tr class="memitem:aeefe6075662814de0a8339de01f610f4" id="r_aeefe6075662814de0a8339de01f610f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeefe6075662814de0a8339de01f610f4">matchHttpMethod</a> (std::string const &amp;)</td></tr>
-<tr class="memitem:a203dd67f023ac6309e168edbb7da5c6a" id="r_a203dd67f023ac6309e168edbb7da5c6a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a203dd67f023ac6309e168edbb7da5c6a">getFileExtension</a> (std::string const &amp;fpath)</td></tr>
-<tr class="memitem:aa829fef424a4463ddfc6488b969755a2" id="r_aa829fef424a4463ddfc6488b969755a2"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
-<tr class="memitem:aa829fef424a4463ddfc6488b969755a2 template"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa829fef424a4463ddfc6488b969755a2">toString</a> (T const &amp;v)</td></tr>
-<tr class="memitem:a15e8dba46eff72c11f43b82c2b4d36d4" id="r_a15e8dba46eff72c11f43b82c2b4d36d4"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a15e8dba46eff72c11f43b82c2b4d36d4 template"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e8dba46eff72c11f43b82c2b4d36d4">fromString</a> (std::string const &amp;str)</td></tr>
-<tr class="memitem:a6c6c2490267aaffaecd721402a08351c" id="r_a6c6c2490267aaffaecd721402a08351c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c6c2490267aaffaecd721402a08351c">validateDirectoryPath</a> (const char *path)</td></tr>
-<tr class="memitem:ac83bcb19796dfe193c69d38695f1d906" id="r_ac83bcb19796dfe193c69d38695f1d906"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83bcb19796dfe193c69d38695f1d906">isAllDigit</a> (std::string const &amp;s)</td></tr>
+<tr class="memitem:a347d73b07f59618c1a38f9e21226ca5d" id="r_a347d73b07f59618c1a38f9e21226ca5d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a347d73b07f59618c1a38f9e21226ca5d">extractHeaderParam</a> (const std::string &amp;str, const std::string &amp;toFind)</td></tr>
+<tr class="memitem:af99a304b8b25a5fb9799f69692d0234e" id="r_af99a304b8b25a5fb9799f69692d0234e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af99a304b8b25a5fb9799f69692d0234e">parseFilename</a> (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req, <a class="el" href="classhttp_1_1MimeTypes.html">http::MimeTypes</a> const &amp;mime)</td></tr>
+<tr class="memitem:a6bde84553f6b49432985dcb333a073d5" id="r_a6bde84553f6b49432985dcb333a073d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bde84553f6b49432985dcb333a073d5">validateUploadPath</a> (const std::string &amp;path)</td></tr>
+<tr class="memitem:acc6c5ed355b3c43d157fe244285b5c9c" id="r_acc6c5ed355b3c43d157fe244285b5c9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc6c5ed355b3c43d157fe244285b5c9c">checkUploadLimit</a> (const std::string &amp;contentLength, <a class="el" href="classconfig_1_1Block.html">config::Block</a> const &amp;s)</td></tr>
+<tr class="memitem:ac7f96ae05cf77b01c7228e90f37f1ca0" id="r_ac7f96ae05cf77b01c7228e90f37f1ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7f96ae05cf77b01c7228e90f37f1ca0">checkContentLength</a> (std::string const &amp;contentLen)</td></tr>
+<tr class="memitem:ad9d889fe7abcae9ea28a4fd4c5a35b0e" id="r_ad9d889fe7abcae9ea28a4fd4c5a35b0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9d889fe7abcae9ea28a4fd4c5a35b0e">writeFile</a> (const std::string &amp;content, const char *path, size_t start, size_t end)</td></tr>
 </table>
 <a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
-<a id="a8680ef830ac25c4bdfba19e3a18ccb77" name="a8680ef830ac25c4bdfba19e3a18ccb77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8680ef830ac25c4bdfba19e3a18ccb77">&#9670;&#160;</a></span>HttpMethod</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">utils::HttpMethod</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8680ef830ac25c4bdfba19e3a18ccb77a4f9c44e0a8a82d97581a0071ec9fc73d" name="a8680ef830ac25c4bdfba19e3a18ccb77a4f9c44e0a8a82d97581a0071ec9fc73d"></a>GET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8680ef830ac25c4bdfba19e3a18ccb77afc1583d08c4ec5077f970d33a361e759" name="a8680ef830ac25c4bdfba19e3a18ccb77afc1583d08c4ec5077f970d33a361e759"></a>POST&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8680ef830ac25c4bdfba19e3a18ccb77a2d5d53dd693a659f854a229217bfdb1a" name="a8680ef830ac25c4bdfba19e3a18ccb77a2d5d53dd693a659f854a229217bfdb1a"></a>PUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8680ef830ac25c4bdfba19e3a18ccb77ae5f6a7eb8b9cc97ed11d310716eabb4b" name="a8680ef830ac25c4bdfba19e3a18ccb77ae5f6a7eb8b9cc97ed11d310716eabb4b"></a>DELETE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8680ef830ac25c4bdfba19e3a18ccb77a10b0cc1c2bb66d72729f86221df773d2" name="a8680ef830ac25c4bdfba19e3a18ccb77a10b0cc1c2bb66d72729f86221df773d2"></a>UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
 <a id="a6b50893705cf2a59daf6b680304017dd" name="a6b50893705cf2a59daf6b680304017dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b50893705cf2a59daf6b680304017dd">&#9670;&#160;</a></span>LogLevel</h2>
 
@@ -190,6 +169,66 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ac7f96ae05cf77b01c7228e90f37f1ca0" name="ac7f96ae05cf77b01c7228e90f37f1ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f96ae05cf77b01c7228e90f37f1ca0">&#9670;&#160;</a></span>checkContentLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a> utils::checkContentLength </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>contentLen</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc6c5ed355b3c43d157fe244285b5c9c" name="acc6c5ed355b3c43d157fe244285b5c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6c5ed355b3c43d157fe244285b5c9c">&#9670;&#160;</a></span>checkUploadLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a> utils::checkUploadLimit </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>contentLength</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1Block.html">config::Block</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>todo: write own or chose better type for check limits </p>
+
+</div>
+</div>
+<a id="a347d73b07f59618c1a38f9e21226ca5d" name="a347d73b07f59618c1a38f9e21226ca5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a347d73b07f59618c1a38f9e21226ca5d">&#9670;&#160;</a></span>extractHeaderParam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string utils::extractHeaderParam </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>toFind</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5199a40a0e3a421bfc0cb04e8286ee59" name="a5199a40a0e3a421bfc0cb04e8286ee59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5199a40a0e3a421bfc0cb04e8286ee59">&#9670;&#160;</a></span>extractIpInfo()</h2>
 
@@ -230,8 +269,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a203dd67f023ac6309e168edbb7da5c6a" name="a203dd67f023ac6309e168edbb7da5c6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a203dd67f023ac6309e168edbb7da5c6a">&#9670;&#160;</a></span>getFileExtension()</h2>
+<a id="ad66d7d2997cbd52649e7f6026f53dfb3" name="ad66d7d2997cbd52649e7f6026f53dfb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad66d7d2997cbd52649e7f6026f53dfb3">&#9670;&#160;</a></span>getFileExtension()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +278,7 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">std::string utils::getFileExtension </td>
           <td>(</td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>fpath</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fpath</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -257,6 +296,23 @@ template&lt;typename T&gt; </div>
           <td class="memname">bool utils::isAllDigit </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af07de80d1aa5d787fa115cec01cbe813" name="af07de80d1aa5d787fa115cec01cbe813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af07de80d1aa5d787fa115cec01cbe813">&#9670;&#160;</a></span>isDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::isDir </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -332,38 +388,21 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="aeefe6075662814de0a8339de01f610f4" name="aeefe6075662814de0a8339de01f610f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeefe6075662814de0a8339de01f610f4">&#9670;&#160;</a></span>matchHttpMethod()</h2>
+<a id="af99a304b8b25a5fb9799f69692d0234e" name="af99a304b8b25a5fb9799f69692d0234e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af99a304b8b25a5fb9799f69692d0234e">&#9670;&#160;</a></span>parseFilename()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a> utils::matchHttpMethod </td>
+          <td class="memname"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a> utils::parseFilename </td>
           <td>(</td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a19208ef1e0235ce7f92b682983f0fce7" name="a19208ef1e0235ce7f92b682983f0fce7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19208ef1e0235ce7f92b682983f0fce7">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; utils::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a></td>          <td class="paramname"><span class="paramname"><em>m</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1MimeTypes.html">http::MimeTypes</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>mime</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -389,6 +428,23 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
+<a id="a935df850f81594becc164936220efa39" name="a935df850f81594becc164936220efa39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a935df850f81594becc164936220efa39">&#9670;&#160;</a></span>trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string utils::trim </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6c6c2490267aaffaecd721402a08351c" name="a6c6c2490267aaffaecd721402a08351c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c6c2490267aaffaecd721402a08351c">&#9670;&#160;</a></span>validateDirectoryPath()</h2>
 
@@ -400,6 +456,75 @@ template&lt;typename T&gt; </div>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6bde84553f6b49432985dcb333a073d5" name="a6bde84553f6b49432985dcb333a073d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bde84553f6b49432985dcb333a073d5">&#9670;&#160;</a></span>validateUploadPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a> utils::validateUploadPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d05e7b02679c837b285e83b5915eba6" name="a3d05e7b02679c837b285e83b5915eba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d05e7b02679c837b285e83b5915eba6">&#9670;&#160;</a></span>writeFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::writeFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d889fe7abcae9ea28a4fd4c5a35b0e" name="ad9d889fe7abcae9ea28a4fd4c5a35b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d889fe7abcae9ea28a4fd4c5a35b0e">&#9670;&#160;</a></span>writeFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::writeFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>end</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

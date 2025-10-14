@@ -8,5 +8,6 @@ var dir_8790a556eb51fcdc104df0b6976396f1 =
     [ "MimeTypes.hpp", "MimeTypes_8hpp.html", "MimeTypes_8hpp" ],
     [ "Router.hpp", "Router_8hpp.html", "Router_8hpp" ],
     [ "RouterResult.hpp", "RouterResult_8hpp.html", "RouterResult_8hpp" ],
-    [ "utils.hpp", "http_2utils_8hpp.html", "http_2utils_8hpp" ]
+    [ "utils.hpp", "http_2utils_8hpp.html", "http_2utils_8hpp" ],
+    [ "ValidationResult.hpp", "ValidationResult_8hpp.html", "ValidationResult_8hpp" ]
 ];

@@ -15,5 +15,6 @@ var searchData=
   ['bodystart_5f_12',['bodyStart_',['../classnetwork_1_1Reactor.html#a20cdbcfc897c89ec3e5fa84e6eb7fc1b',1,'network::Reactor']]],
   ['bodytype_5f_13',['bodyType_',['../classhttp_1_1HttpResponse.html#ac6c323e7cf0b82b54b540cdbf3463200',1,'http::HttpResponse']]],
   ['build_14',['build',['../classconfig_1_1ServerConfig.html#a3473c5a76661237c71420348fa9040c0',1,'config::ServerConfig']]],
-  ['buildheaders_15',['buildHeaders',['../classhttp_1_1HttpResponse.html#af15168fc96029b15b370fbfd4419f590',1,'http::HttpResponse']]]
+  ['buildheaders_15',['buildHeaders',['../classhttp_1_1HttpResponse.html#af15168fc96029b15b370fbfd4419f590',1,'http::HttpResponse']]],
+  ['builduploadpath_16',['buildUploadPath',['../namespacehttp_1_1details.html#aec73525a1a6d2f037599b91b70964b94',1,'http::details']]]
 ];

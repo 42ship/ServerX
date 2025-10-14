@@ -21,12 +21,12 @@ var hierarchy =
     [ "http::HttpResponse", "classhttp_1_1HttpResponse.html", null ],
     [ "config::IDirective", "classconfig_1_1IDirective.html", [
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
-      [ "config::ReturnDirective", "classconfig_1_1ReturnDirective.html", null ],
       [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]
     ] ],
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
       [ "http::DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
+      [ "http::FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
       [ "http::NotFoundHandler", "classhttp_1_1NotFoundHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],
@@ -44,5 +44,6 @@ var hierarchy =
     [ "config::ServerConfig", "classconfig_1_1ServerConfig.html", null ],
     [ "network::Socket", "classnetwork_1_1Socket.html", null ],
     [ "config::Token", "structconfig_1_1Token.html", null ],
+    [ "utils::ValidationResult", "structutils_1_1ValidationResult.html", null ],
     [ "config::Validator", "classconfig_1_1Validator.html", null ]
 ];

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['reading_5fbody_0',['READING_BODY',['../namespacenetwork.html#aaaec8168c304b28c9d428837848abae4a7b9ff537543116c2f4aa0399a5511862',1,'network']]],
-  ['reading_5fheaders_1',['READING_HEADERS',['../namespacenetwork.html#aaaec8168c304b28c9d428837848abae4a6b8c56ac0c2a72e55bd7163ddba893f5',1,'network']]],
-  ['request_5fready_2',['REQUEST_READY',['../namespacenetwork.html#aaaec8168c304b28c9d428837848abae4a6a309d002ea09e66d42f150a144510a2',1,'network']]],
-  ['right_5fbrace_3',['RIGHT_BRACE',['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac139d3c03f43ee586069c5cf47f7aa24',1,'config']]]
+  ['payload_5ftoo_5flarge_0',['PAYLOAD_TOO_LARGE',['../namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a',1,'http']]],
+  ['post_1',['POST',['../namespacehttp.html#ad6f0ed7c44035f65821fa7509a03d4cfa451d3d8d46675b86802c405f179e92ab',1,'http']]],
+  ['put_2',['PUT',['../namespacehttp.html#ad6f0ed7c44035f65821fa7509a03d4cfa1224c995870beafdb255dddd58f75064',1,'http']]]
 ];

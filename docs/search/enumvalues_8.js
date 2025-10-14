@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['left_5fbrace_0',['LEFT_BRACE',['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a0cca954d27408fbf9af9268e14878b94',1,'config']]]
+  ['json_0',['JSON',['../namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337ac0b6bfeb64f847fde16a8765a9e9e84b',1,'http']]]
 ];

@@ -13,7 +13,6 @@ var annotated_dup =
       [ "LocationBlock", "classconfig_1_1LocationBlock.html", "classconfig_1_1LocationBlock" ],
       [ "Mapper", "classconfig_1_1Mapper.html", null ],
       [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
-      [ "ReturnDirective", "classconfig_1_1ReturnDirective.html", "classconfig_1_1ReturnDirective" ],
       [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
       [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
       [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
@@ -26,6 +25,7 @@ var annotated_dup =
     [ "http", "namespacehttp.html", [
       [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", "classhttp_1_1DefaultErrorHandler" ],
+      [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", "classhttp_1_1FileUploadHandler" ],
       [ "HttpRequest", "classhttp_1_1HttpRequest.html", "classhttp_1_1HttpRequest" ],
       [ "HttpResponse", "classhttp_1_1HttpResponse.html", "classhttp_1_1HttpResponse" ],
       [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
@@ -45,7 +45,8 @@ var annotated_dup =
     ] ],
     [ "utils", "namespaceutils.html", [
       [ "IpInfo", "structutils_1_1IpInfo.html", "structutils_1_1IpInfo" ],
-      [ "Logger", "classutils_1_1Logger.html", null ]
+      [ "Logger", "classutils_1_1Logger.html", null ],
+      [ "ValidationResult", "structutils_1_1ValidationResult.html", "structutils_1_1ValidationResult" ]
     ] ],
     [ "IndentManager", "structIndentManager.html", "structIndentManager" ]
 ];

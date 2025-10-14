@@ -1,7 +1,18 @@
 var searchData=
 [
-  ['waitforevents_0',['waitForEvents',['../classnetwork_1_1EpollManager.html#abb424308981f68a5c9275d6a4b9cbbd8',1,'network::EpollManager']]],
-  ['warning_1',['WARNING',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dda72917d38b2eb1fd35e0fca694058f5a9',1,'utils']]],
-  ['waschanged_2',['wasChanged',['../classhttp_1_1MimeTypes.html#a7e2ee8e38e606ea29e99b6beea22fba4',1,'http::MimeTypes']]],
-  ['what_3',['what',['../classconfig_1_1ConfigException.html#a610b22206f7d1e65879ce1bc4dd3844a',1,'config::ConfigException']]]
+  ['validate_0',['validate',['../classconfig_1_1Validator.html#a16d2ab336a78d329662722be84dd1eb6',1,'config::Validator']]],
+  ['validatedirectorypath_1',['validateDirectoryPath',['../namespaceutils.html#a6c6c2490267aaffaecd721402a08351c',1,'utils']]],
+  ['validatelisten_2',['validateListen',['../classconfig_1_1Validator.html#ad41c08af0f0c1b949799ce6e69c3a063',1,'config::Validator']]],
+  ['validatelocation_3',['validateLocation',['../classconfig_1_1Validator.html#aae805000f6d7d88e034593ef0f250a5a',1,'config::Validator']]],
+  ['validateroot_4',['validateRoot',['../classconfig_1_1Validator.html#a128efd79010ccb0fb3ff84bb22fb52d8',1,'config::Validator']]],
+  ['validateserver_5',['validateServer',['../classconfig_1_1Validator.html#aabac1fe3ec9df1bf46d5eaecada357d4',1,'config::Validator']]],
+  ['validateservernames_6',['validateServerNames',['../classconfig_1_1Validator.html#a16c69d8865ce8f3269338ed68b596bf3',1,'config::Validator']]],
+  ['validateuploadpath_7',['validateUploadPath',['../namespaceutils.html#a6bde84553f6b49432985dcb333a073d5',1,'utils']]],
+  ['validationresult_8',['ValidationResult',['../structutils_1_1ValidationResult.html',1,'utils']]],
+  ['validationresult_2ehpp_9',['ValidationResult.hpp',['../ValidationResult_8hpp.html',1,'']]],
+  ['validator_10',['Validator',['../classconfig_1_1Validator.html',1,'config::Validator'],['../classconfig_1_1ServerBlock.html#a5929181addf27f130c7f8f99eeba3256',1,'config::ServerBlock::Validator()'],['../classconfig_1_1Validator.html#a4e1794a9ee1f4b4d891b8968a8a56dd5',1,'config::Validator::Validator()'],['../classconfig_1_1Validator.html#a07747fd25f6a480339b58a48e9858bd1',1,'config::Validator::Validator(bool perform_fs_checks=true)']]],
+  ['validator_2ecpp_11',['Validator.cpp',['../Validator_8cpp.html',1,'']]],
+  ['validator_2ehpp_12',['Validator.hpp',['../Validator_8hpp.html',1,'']]],
+  ['value_13',['value',['../structutils_1_1ValidationResult.html#a02d2452e860b816b2c04bea6eb159229',1,'utils::ValidationResult']]],
+  ['version_14',['version',['../classhttp_1_1HttpRequest.html#a798bd27b874448f7fa96d8de82700886',1,'http::HttpRequest']]]
 ];

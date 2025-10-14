@@ -91,31 +91,24 @@ $(function(){initNavTree('http_2utils_8hpp.html','',''); });
   <div class="headertitle"><div class="title">utils.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;ostream&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="ValidationResult_8hpp_source.html">ValidationResult.hpp</a>&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div>
 <p><a href="http_2utils_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:config" id="r_config"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconfig.html">config</a></td></tr>
+<tr class="memitem:http" id="r_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp.html">http</a></td></tr>
 <tr class="memitem:utils" id="r_utils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a8680ef830ac25c4bdfba19e3a18ccb77" id="r_a8680ef830ac25c4bdfba19e3a18ccb77"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77">utils::HttpMethod</a> { <br />
-&#160;&#160;<a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77a4f9c44e0a8a82d97581a0071ec9fc73d">utils::GET</a>
-, <a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77afc1583d08c4ec5077f970d33a361e759">utils::POST</a>
-, <a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77a2d5d53dd693a659f854a229217bfdb1a">utils::PUT</a>
-, <a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77ae5f6a7eb8b9cc97ed11d310716eabb4b">utils::DELETE</a>
-, <br />
-&#160;&#160;<a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77a10b0cc1c2bb66d72729f86221df773d2">utils::UNKNOWN</a>
-<br />
- }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a19208ef1e0235ce7f92b682983f0fce7" id="r_a19208ef1e0235ce7f92b682983f0fce7"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a19208ef1e0235ce7f92b682983f0fce7">utils::operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a>)</td></tr>
-<tr class="memitem:aeefe6075662814de0a8339de01f610f4" id="r_aeefe6075662814de0a8339de01f610f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceutils.html#a8680ef830ac25c4bdfba19e3a18ccb77">HttpMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#aeefe6075662814de0a8339de01f610f4">utils::matchHttpMethod</a> (std::string const &amp;)</td></tr>
-<tr class="memitem:a203dd67f023ac6309e168edbb7da5c6a" id="r_a203dd67f023ac6309e168edbb7da5c6a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a203dd67f023ac6309e168edbb7da5c6a">utils::getFileExtension</a> (std::string const &amp;fpath)</td></tr>
+<tr class="memitem:a347d73b07f59618c1a38f9e21226ca5d" id="r_a347d73b07f59618c1a38f9e21226ca5d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a347d73b07f59618c1a38f9e21226ca5d">utils::extractHeaderParam</a> (const std::string &amp;str, const std::string &amp;toFind)</td></tr>
+<tr class="memitem:af99a304b8b25a5fb9799f69692d0234e" id="r_af99a304b8b25a5fb9799f69692d0234e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#af99a304b8b25a5fb9799f69692d0234e">utils::parseFilename</a> (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req, <a class="el" href="classhttp_1_1MimeTypes.html">http::MimeTypes</a> const &amp;mime)</td></tr>
+<tr class="memitem:a6bde84553f6b49432985dcb333a073d5" id="r_a6bde84553f6b49432985dcb333a073d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a6bde84553f6b49432985dcb333a073d5">utils::validateUploadPath</a> (const std::string &amp;path)</td></tr>
+<tr class="memitem:acc6c5ed355b3c43d157fe244285b5c9c" id="r_acc6c5ed355b3c43d157fe244285b5c9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#acc6c5ed355b3c43d157fe244285b5c9c">utils::checkUploadLimit</a> (const std::string &amp;contentLength, <a class="el" href="classconfig_1_1Block.html">config::Block</a> const &amp;s)</td></tr>
+<tr class="memitem:ac7f96ae05cf77b01c7228e90f37f1ca0" id="r_ac7f96ae05cf77b01c7228e90f37f1ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ac7f96ae05cf77b01c7228e90f37f1ca0">utils::checkContentLength</a> (std::string const &amp;contentLen)</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

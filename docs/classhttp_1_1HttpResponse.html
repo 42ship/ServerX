@@ -100,7 +100,7 @@ $(function(){initNavTree('classhttp_1_1HttpResponse.html','','classhttp_1_1HttpR
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a51ebd3634530824e0ca09763a04618fe" id="r_a51ebd3634530824e0ca09763a04618fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51ebd3634530824e0ca09763a04618fe">HttpResponse</a> ()</td></tr>
-<tr class="memitem:acb98652f47da31ad2b2ac49beec2813d" id="r_acb98652f47da31ad2b2ac49beec2813d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb98652f47da31ad2b2ac49beec2813d">HttpResponse</a> (<a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a> code, std::string const &amp;httpVersion)</td></tr>
+<tr class="memitem:a7176870deb554ae46c9304ffb8a0cab1" id="r_a7176870deb554ae46c9304ffb8a0cab1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7176870deb554ae46c9304ffb8a0cab1">HttpResponse</a> (<a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a> code, std::string const &amp;httpVersion, <a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a> type=<a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337a14b9d9d66f20934c8b8bd576225c4f0e">STANDARD</a>)</td></tr>
 <tr class="memitem:ab57d35bfa675bfd39330737fe453eadd" id="r_ab57d35bfa675bfd39330737fe453eadd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab57d35bfa675bfd39330737fe453eadd">HttpResponse</a> (<a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> const &amp;)</td></tr>
 <tr class="memitem:aaecc2c3bdb73c13f739bf187e74f434b" id="r_aaecc2c3bdb73c13f739bf187e74f434b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaecc2c3bdb73c13f739bf187e74f434b">operator=</a> (<a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> const &amp;)</td></tr>
 <tr class="memitem:addd7ec77ea6731cdcf35b2d6f601eb76" id="r_addd7ec77ea6731cdcf35b2d6f601eb76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addd7ec77ea6731cdcf35b2d6f601eb76">~HttpResponse</a> ()</td></tr>
@@ -111,12 +111,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1cdc24ba796f0c7d0d2681c34846b2db" id="r_a1cdc24ba796f0c7d0d2681c34846b2db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cdc24ba796f0c7d0d2681c34846b2db">setBodyFromFile</a> (int <a class="el" href="#ac41df8c1a180594465e4a094a6819101">fd</a>, size_t size, std::string const &amp;mimeType)</td></tr>
 <tr class="memitem:a2c6a0a39d21cc55a0298b27b805746b6" id="r_a2c6a0a39d21cc55a0298b27b805746b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c6a0a39d21cc55a0298b27b805746b6">setBodyFromCgi</a> (int <a class="el" href="#a492c227b2ad0c9b2f0436bbeda28f028">pipe_fd</a>)</td></tr>
 <tr class="memitem:a1126f9e4a8c9f5a61d9bb43edf6755e6" id="r_a1126f9e4a8c9f5a61d9bb43edf6755e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1126f9e4a8c9f5a61d9bb43edf6755e6">getStatus</a> () const</td></tr>
-<tr class="memitem:a1e78edddbc00c5e53559dbd1fe60fa37" id="r_a1e78edddbc00c5e53559dbd1fe60fa37"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e78edddbc00c5e53559dbd1fe60fa37">getResponsePhrase</a> () const</td></tr>
 <tr class="memitem:a2ad896745c4ef953d24388d570137411" id="r_a2ad896745c4ef953d24388d570137411"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#acb1f63951de702c14448a9074beb8c0e">HeaderMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ad896745c4ef953d24388d570137411">getHeaders</a> ()</td></tr>
 <tr class="memitem:a0264cbb658576f95d0c8eff40735658e" id="r_a0264cbb658576f95d0c8eff40735658e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#acb1f63951de702c14448a9074beb8c0e">HeaderMap</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0264cbb658576f95d0c8eff40735658e">getHeaders</a> () const</td></tr>
 <tr class="memitem:afe3e4ba687bf759f25b9c2cb76e1a3a7" id="r_afe3e4ba687bf759f25b9c2cb76e1a3a7"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe3e4ba687bf759f25b9c2cb76e1a3a7">getVersion</a> () const</td></tr>
 <tr class="memitem:a68132e06b1c5206a133d3841b03d791d" id="r_a68132e06b1c5206a133d3841b03d791d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a5caa6e20e143ddd3996b64f29fcc4c57">BodySourceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68132e06b1c5206a133d3841b03d791d">getBodyType</a> () const</td></tr>
 <tr class="memitem:af15168fc96029b15b370fbfd4419f590" id="r_af15168fc96029b15b370fbfd4419f590"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af15168fc96029b15b370fbfd4419f590">buildHeaders</a> () const</td></tr>
+<tr class="memitem:a2993a7d617fc8ca71580e2ab035d40c0" id="r_a2993a7d617fc8ca71580e2ab035d40c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2993a7d617fc8ca71580e2ab035d40c0">getMessageType</a> () const</td></tr>
+<tr class="memitem:ae8b13bce574958c8b5fee72c9131b65c" id="r_ae8b13bce574958c8b5fee72c9131b65c"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8b13bce574958c8b5fee72c9131b65c">generateResponsePhrase</a> () const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -148,6 +149,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a5d2297135a50530ee3f5fe56ec9fb51e" id="r_a5d2297135a50530ee3f5fe56ec9fb51e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d2297135a50530ee3f5fe56ec9fb51e">statusCode_</a></td></tr>
 <tr class="memitem:a0b17ab8fc67a35486045f29a1d4d227d" id="r_a0b17ab8fc67a35486045f29a1d4d227d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#acb1f63951de702c14448a9074beb8c0e">HeaderMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b17ab8fc67a35486045f29a1d4d227d">headers_</a></td></tr>
 <tr class="memitem:ac6c323e7cf0b82b54b540cdbf3463200" id="r_ac6c323e7cf0b82b54b540cdbf3463200"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a5caa6e20e143ddd3996b64f29fcc4c57">BodySourceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c323e7cf0b82b54b540cdbf3463200">bodyType_</a></td></tr>
+<tr class="memitem:abd035f972d0032e4b74184fe43e9ef7e" id="r_abd035f972d0032e4b74184fe43e9ef7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd035f972d0032e4b74184fe43e9ef7e">messageType_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A data container for an HTTP response. </p>
@@ -170,8 +172,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="acb98652f47da31ad2b2ac49beec2813d" name="acb98652f47da31ad2b2ac49beec2813d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb98652f47da31ad2b2ac49beec2813d">&#9670;&#160;</a></span>HttpResponse() <span class="overload">[2/3]</span></h2>
+<a id="a7176870deb554ae46c9304ffb8a0cab1" name="a7176870deb554ae46c9304ffb8a0cab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7176870deb554ae46c9304ffb8a0cab1">&#9670;&#160;</a></span>HttpResponse() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,7 +186,12 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>httpVersion</em></span>&#160;)</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>httpVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337a14b9d9d66f20934c8b8bd576225c4f0e">STANDARD</a></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -268,6 +275,23 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ae8b13bce574958c8b5fee72c9131b65c" name="ae8b13bce574958c8b5fee72c9131b65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b13bce574958c8b5fee72c9131b65c">&#9670;&#160;</a></span>generateResponsePhrase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const  * http::HttpResponse::generateResponsePhrase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a68132e06b1c5206a133d3841b03d791d" name="a68132e06b1c5206a133d3841b03d791d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a68132e06b1c5206a133d3841b03d791d">&#9670;&#160;</a></span>getBodyType()</h2>
 
@@ -319,14 +343,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1e78edddbc00c5e53559dbd1fe60fa37" name="a1e78edddbc00c5e53559dbd1fe60fa37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e78edddbc00c5e53559dbd1fe60fa37">&#9670;&#160;</a></span>getResponsePhrase()</h2>
+<a id="a2993a7d617fc8ca71580e2ab035d40c0" name="a2993a7d617fc8ca71580e2ab035d40c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2993a7d617fc8ca71580e2ab035d40c0">&#9670;&#160;</a></span>getMessageType()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char const  * http::HttpResponse::getResponsePhrase </td>
+          <td class="memname"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a> http::HttpResponse::getMessageType </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -662,6 +686,28 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Details for in-memory bodies. </p>
+
+</div>
+</div>
+<a id="abd035f972d0032e4b74184fe43e9ef7e" name="abd035f972d0032e4b74184fe43e9ef7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd035f972d0032e4b74184fe43e9ef7e">&#9670;&#160;</a></span>messageType_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337">MessageType</a> http::HttpResponse::messageType_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

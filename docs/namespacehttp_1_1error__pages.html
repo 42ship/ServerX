@@ -95,6 +95,9 @@ $(function(){initNavTree('namespacehttp_1_1error__pages.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aecba3d890d08962e6c398c908d0d16ed" id="r_aecba3d890d08962e6c398c908d0d16ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecba3d890d08962e6c398c908d0d16ed">generateErrorResponse</a> (<a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a> code, std::string const &amp;httpVersion)</td></tr>
+<tr class="memdesc:aecba3d890d08962e6c398c908d0d16ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a standard HTML error response for a given HTTP status code.  <br /></td></tr>
+<tr class="memitem:a2a791bf11e6a37de3d7f96cef8e35e55" id="r_a2a791bf11e6a37de3d7f96cef8e35e55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a791bf11e6a37de3d7f96cef8e35e55">generateJsonErrorResponse</a> (<a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a> code, std::string const &amp;httpVersion, const std::string &amp;message=&quot;&quot;)</td></tr>
+<tr class="memdesc:a2a791bf11e6a37de3d7f96cef8e35e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a JSON error response with optional custom message.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="aecba3d890d08962e6c398c908d0d16ed" name="aecba3d890d08962e6c398c908d0d16ed"></a>
@@ -115,6 +118,56 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generates a standard HTML error response for a given HTTP status code. </p>
+<p>This function constructs an HTTP response containing a basic HTML error page with the appropriate status line and reason phrase. <br  />
+ It is typically used for plain-text or HTML-based responses (e.g. 404, 500).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The HTTP status code (e.g. NOT_FOUND, INTERNAL_SERVER_ERROR). </td></tr>
+    <tr><td class="paramname">httpVersion</td><td>The HTTP version string (e.g. "HTTP/1.1"). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="classhttp_1_1HttpResponse.html" title="A data container for an HTTP response.">HttpResponse</a> object representing the error response. </dd></dl>
+
+</div>
+</div>
+<a id="a2a791bf11e6a37de3d7f96cef8e35e55" name="a2a791bf11e6a37de3d7f96cef8e35e55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a791bf11e6a37de3d7f96cef8e35e55">&#9670;&#160;</a></span>generateJsonErrorResponse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> http::error_pages::generateJsonErrorResponse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0">Status</a></td>          <td class="paramname"><span class="paramname"><em>code</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>httpVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates a JSON error response with optional custom message. </p>
+<p>Uses a cached JSON body for the given status code and message. If no custom message is provided, the standard HTTP reason phrase (e.g. "Not Found") will be used instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The HTTP status code (e.g. BAD_REQUEST, NOT_FOUND). </td></tr>
+    <tr><td class="paramname">httpVersion</td><td>The HTTP version string (e.g. "HTTP/1.1"). </td></tr>
+    <tr><td class="paramname">message</td><td>Optional custom message providing more error details. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="classhttp_1_1HttpResponse.html" title="A data container for an HTTP response.">HttpResponse</a> object containing a JSON error body. </dd></dl>
 
 </div>
 </div>

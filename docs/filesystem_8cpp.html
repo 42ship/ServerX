@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Webserv: inc/config/directives/ReturnDirective.hpp File Reference</title>
+<title>Webserv: src/common/filesystem.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('ReturnDirective_8hpp.html','',''); });
+$(function(){initNavTree('filesystem_8cpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,20 +88,25 @@ $(function(){initNavTree('ReturnDirective_8hpp.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ReturnDirective.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">filesystem.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="IDirective_8hpp_source.html">IDirective.hpp</a>&quot;</code><br />
-</div>
-<p><a href="ReturnDirective_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:config_3A_3AReturnDirective" id="r_config_3A_3AReturnDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ReturnDirective.html">config::ReturnDirective</a></td></tr>
-</table><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="filesystem_8hpp_source.html">common/filesystem.hpp</a>&quot;</code><br />
+<code>#include &lt;cerrno&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:config" id="r_config"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconfig.html">config</a></td></tr>
+<tr class="memitem:utils" id="r_utils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a3d05e7b02679c837b285e83b5915eba6" id="r_a3d05e7b02679c837b285e83b5915eba6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a3d05e7b02679c837b285e83b5915eba6">utils::writeFile</a> (const std::string &amp;content, const char *path)</td></tr>
+<tr class="memitem:ad9d889fe7abcae9ea28a4fd4c5a35b0e" id="r_ad9d889fe7abcae9ea28a4fd4c5a35b0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad9d889fe7abcae9ea28a4fd4c5a35b0e">utils::writeFile</a> (const std::string &amp;content, const char *path, size_t start, size_t end)</td></tr>
+<tr class="memitem:a6c6c2490267aaffaecd721402a08351c" id="r_a6c6c2490267aaffaecd721402a08351c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a6c6c2490267aaffaecd721402a08351c">utils::validateDirectoryPath</a> (const char *path)</td></tr>
+<tr class="memitem:af07de80d1aa5d787fa115cec01cbe813" id="r_af07de80d1aa5d787fa115cec01cbe813"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#af07de80d1aa5d787fa115cec01cbe813">utils::isDir</a> (const std::string &amp;p)</td></tr>
+<tr class="memitem:ad66d7d2997cbd52649e7f6026f53dfb3" id="r_ad66d7d2997cbd52649e7f6026f53dfb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3">utils::getFileExtension</a> (const std::string &amp;fpath)</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -116,7 +121,7 @@ Namespaces</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a href="dir_0a9a34a78e759ecf4f0e53c9465c841e.html">config</a></li><li class="navelem"><a href="dir_b7e6bf9535c33775e8ea3abf1e3f40f5.html">directives</a></li><li class="navelem"><a href="ReturnDirective_8hpp.html">ReturnDirective.hpp</a></li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a href="filesystem_8cpp.html">filesystem.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

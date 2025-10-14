@@ -8,5 +8,9 @@ var HttpResponse_8hpp =
       [ "http::BODY_FROM_FILE", "namespacehttp.html#a5caa6e20e143ddd3996b64f29fcc4c57a8039dd904c1bfdc14406ed483432e10e", null ],
       [ "http::BODY_FROM_CGI", "namespacehttp.html#a5caa6e20e143ddd3996b64f29fcc4c57a9bd6ba16f1d878a9d720f4a0e8ae1790", null ]
     ] ],
+    [ "http::MessageType", "namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337", [
+      [ "http::STANDARD", "namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337a14b9d9d66f20934c8b8bd576225c4f0e", null ],
+      [ "http::JSON", "namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337ac0b6bfeb64f847fde16a8765a9e9e84b", null ]
+    ] ],
     [ "http::operator<<", "namespacehttp.html#a939a44b90b681599587179009668655a", null ]
 ];

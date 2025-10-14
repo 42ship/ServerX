@@ -21,12 +21,13 @@ var searchData=
   ['ip_18',['ip',['../structutils_1_1IpInfo.html#abb1762d2c692d6029163c09fe1cc712d',1,'utils::IpInfo']]],
   ['ipinfo_19',['IpInfo',['../structutils_1_1IpInfo.html',1,'utils']]],
   ['isalldigit_20',['isAllDigit',['../namespaceutils.html#ac83bcb19796dfe193c69d38695f1d906',1,'utils']]],
-  ['ispunctuation_21',['isPunctuation',['../classconfig_1_1Lexer.html#aa26b33e0e93966ac2ddbbdf1ff44922f',1,'config::Lexer']]],
-  ['isrunning_5f_22',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
-  ['isshuttingdown_23',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
-  ['issue_5fwarning_24',['issue_warning',['../namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7',1,'config']]],
-  ['istokenavalue_25',['isTokenAValue',['../classconfig_1_1Parser.html#a10b311d3aeb068cb260d17697a44f7a2',1,'config::Parser']]],
-  ['istypein_26',['isTypeIn',['../structconfig_1_1Token.html#a9e3b17e602f4467ef3b317b092d5d034',1,'config::Token']]],
-  ['isvalidipv4_27',['isValidIPv4',['../namespaceutils.html#aedbc0638b66531360317f908d4ff9eed',1,'utils::isValidIPv4(char const *)'],['../namespaceutils.html#a81dd67800f9537cafe72ff917dbf388f',1,'utils::isValidIPv4(std::string const &amp;)']]],
-  ['isvalidport_28',['isValidPort',['../namespaceutils.html#af996b680f7f75212aeeb13cf855a916d',1,'utils::isValidPort(int port)'],['../namespaceutils.html#ad2c7af639c94afbb424737764f3dd555',1,'utils::isValidPort(std::string const &amp;)']]]
+  ['isdir_21',['isDir',['../namespaceutils.html#af07de80d1aa5d787fa115cec01cbe813',1,'utils']]],
+  ['ispunctuation_22',['isPunctuation',['../classconfig_1_1Lexer.html#aa26b33e0e93966ac2ddbbdf1ff44922f',1,'config::Lexer']]],
+  ['isrunning_5f_23',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
+  ['isshuttingdown_24',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
+  ['issue_5fwarning_25',['issue_warning',['../namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7',1,'config']]],
+  ['istokenavalue_26',['isTokenAValue',['../classconfig_1_1Parser.html#a10b311d3aeb068cb260d17697a44f7a2',1,'config::Parser']]],
+  ['istypein_27',['isTypeIn',['../structconfig_1_1Token.html#a9e3b17e602f4467ef3b317b092d5d034',1,'config::Token']]],
+  ['isvalidipv4_28',['isValidIPv4',['../namespaceutils.html#aedbc0638b66531360317f908d4ff9eed',1,'utils::isValidIPv4(char const *)'],['../namespaceutils.html#a81dd67800f9537cafe72ff917dbf388f',1,'utils::isValidIPv4(std::string const &amp;)']]],
+  ['isvalidport_29',['isValidPort',['../namespaceutils.html#af996b680f7f75212aeeb13cf855a916d',1,'utils::isValidPort(int port)'],['../namespaceutils.html#ad2c7af639c94afbb424737764f3dd555',1,'utils::isValidPort(std::string const &amp;)']]]
 ];
