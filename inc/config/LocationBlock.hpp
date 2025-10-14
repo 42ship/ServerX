@@ -21,21 +21,45 @@ public:
 
     // ============================== Public Interface ==============================
 
+    /**
+     * @brief Checks if a 'cgi_pass' directive is configured for this location.
+     * @return True if 'cgi_pass' is present, false otherwise.
+     */
     bool hasCgiPass() const;
 
     // ============================== Getters & Setters =============================
 
+    /**
+     * @brief Gets the URI path that this location block matches.
+     * @return A constant reference to the path string.
+     */
     std::string const &path() const;
-    ServerBlock const *parent();
+
+    /**
+     * @brief Gets a pointer to the parent ServerBlock.
+     * @return A constant pointer to the parent server configuration block.
+     */
+    ServerBlock const *parent() const;
 
     // ================================= Fluent API =================================
 
+    /**
+     * @brief Sets the URI path for this location using a fluent interface.
+     * @param p The path to set (e.g., "/images/").
+     * @return A reference to the LocationBlock object for chaining.
+     */
     LocationBlock &path(std::string const &);
+
+    /**
+     * @brief Sets the parent ServerBlock for this location.
+     * @param p A pointer to the parent ServerBlock.
+     * @return A reference to the LocationBlock object for chaining.
+     */
     LocationBlock &parent(ServerBlock *parent);
 
 private:
-    ServerBlock *parent_;
-    std::string path_;
+    ServerBlock *parent_; //!< Pointer to the parent ServerBlock.
+    std::string path_;    //!< The URI path this location matches.
 };
 
 std::ostream &operator<<(std::ostream &o, LocationBlock const &t);
