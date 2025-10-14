@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../LocationBlock.hpp"
-#include "../ServerBlock.hpp"
-#include "../internal/ConfigNode.hpp"
+#include "config/LocationBlock.hpp"
+#include "config/ServerBlock.hpp"
+#include "config/internal/ConfigNode.hpp"
 
 namespace config {
 

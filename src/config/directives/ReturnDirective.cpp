@@ -1,5 +1,5 @@
 #include "config/directives/ReturnDirective.hpp"
-#include "config/ConfigException.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "utils/utils.hpp"
 #include <string>
 

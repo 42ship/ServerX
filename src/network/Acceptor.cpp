@@ -1,15 +1,15 @@
 #include "network/Acceptor.hpp"
 
-#include <fcntl.h>
-#include <cerrno>
-#include <cstring>
-#include <iostream>
-#include <sys/socket.h>
+#include "config/ServerBlock.hpp"
 #include "http/Router.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "network/Reactor.hpp"
 #include "network/Socket.hpp"
-#include "config/ServerBlock.hpp"
+#include <cerrno>
+#include <cstring>
+#include <fcntl.h>
+#include <iostream>
+#include <sys/socket.h>
 
 namespace network {
 
@@ -25,11 +25,10 @@ Acceptor::Acceptor(config::ServerBlock const &s, http::Router const &router)
     if (listen(socket_.getFd(), 10) < 0) {
         throw std::runtime_error("Failed to listen on socket: " + std::string(strerror(errno)));
     }
-    port_ = s.getPort();
+    port_ = s.port();
 }
 
-Acceptor::~Acceptor() {
-}
+Acceptor::~Acceptor() {}
 
 void Acceptor::handleEvent(uint32_t events) {
     if (events & EPOLLIN) {
@@ -37,9 +36,7 @@ void Acceptor::handleEvent(uint32_t events) {
     }
 }
 
-int Acceptor::getHandle() const {
-    return socket_.getFd();
-}
+int Acceptor::getHandle() const { return socket_.getFd(); }
 
 void Acceptor::acceptNewConnection() {
     struct sockaddr_in clientaddr;

@@ -1,10 +1,10 @@
 #pragma once
 
+#include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
 #include "http/RouterResult.hpp"
-#include "config/ServerConfig.hpp"
 
 namespace http {
 
@@ -18,8 +18,7 @@ namespace http {
 class Router {
 public:
     Router(config::ServerConfig const &config, MimeTypes const &mime)
-        : config_(config), staticFile_(mime) {
-    }
+        : config_(config), staticFile_(mime) {}
 
     /**
      * @brief Determines the correct handler and context for a request.
@@ -35,7 +34,7 @@ public:
         if (!server) {
             return RouterResult(notFound_);
         }
-        config::LocationBlock const *location = server->getLocation(request.path);
+        config::LocationBlock const *location = server->matchLocation(request.path);
         if (!location) {
             return RouterResult(notFound_, server);
         }
