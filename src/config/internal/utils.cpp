@@ -1,5 +1,5 @@
 #include "config/internal/utils.hpp"
-#include "utils/utils.hpp"
+#include "common/string.hpp"
 
 #include <arpa/inet.h>
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <sstream>
-#include <string>
 
 namespace utils {
 
@@ -17,8 +16,7 @@ template <typename T> T fromString(std::string const &str) {
     ss >> ret;
     return ret;
 }
-
-const char *validateDirectoryPath(const char *path);
+std::string trim(const std::string &s);
 
 bool isAllDigit(std::string const &s);
 
