@@ -1,6 +1,7 @@
 #pragma once
 
 #include "config/ServerConfig.hpp"
+#include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
@@ -35,7 +36,7 @@ public:
         if (!server) {
             return RouterResult(notFound_);
         }
-        config::LocationBlock const *location = server->getLocation(request.path);
+        config::LocationBlock const *location = server->matchLocation(request.path);
         if (!location) {
             return RouterResult(notFound_, server);
         }

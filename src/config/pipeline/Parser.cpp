@@ -1,12 +1,9 @@
 #include "config/pipeline/Parser.hpp"
-
-#include "config/ConfigException.hpp"
+#include "config/internal/ConfigException.hpp"
 
 namespace config {
 
-Parser::Parser(TokenArray const &tokens) : tokens_(tokens), pos_(0) {
-    nodes_.reserve(2);
-}
+Parser::Parser(TokenArray const &tokens) : tokens_(tokens), pos_(0) { nodes_.reserve(2); }
 
 std::vector<ConfigNode> Parser::parse(TokenArray const &tokens) {
     Parser parser(tokens);
@@ -14,9 +11,7 @@ std::vector<ConfigNode> Parser::parse(TokenArray const &tokens) {
     return parser.nodes_;
 }
 
-size_t Parser::size() const {
-    return tokens_.size();
-}
+size_t Parser::size() const { return tokens_.size(); }
 
 Token const &Parser::currentToken() const {
     if (pos_ >= size())

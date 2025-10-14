@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #include "../test_utils.hpp"
-#include "config/ConfigException.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
@@ -71,7 +71,7 @@ inline UploadRequestContext makeUploadRequest(config::ServerConfig &conf,
 
     ctx.req = http::HttpRequest::parse(makeRequestTo(requestTo, headers));
     ctx.server = conf.getServer(9191, ctx.req.headers["Host"]);
-    ctx.location = ctx.server->getLocation(ctx.req.path);
+    ctx.location = ctx.server->matchLocation(ctx.req.path);
 
     return ctx;
 }
@@ -335,7 +335,7 @@ TEST_CASE("File uploading - 201 and Location header") {
                                   "Content-Length: 4\r\n"
                                   "Content-Type: application/octet-stream\r\n");
             HttpResponse response = fileUpload.handle(ctx.req, ctx.server, ctx.location);
-            string location = ctx.location->getPath() + "uploads/" + "test.bin";
+            string location = ctx.location->path() + "uploads/" + "test.bin";
 
             CHECK(response.getStatus() == CREATED);
             CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
@@ -353,7 +353,7 @@ TEST_CASE("File uploading - 201 and Location header") {
                                   "Content-Length: 4\r\n"
                                   "Content-Type: application/octet-stream\r\n");
             HttpResponse response = fileUpload.handle(ctx.req, ctx.server, ctx.location);
-            string location = ctx.location->getPath() + "uploads/" + "test.bin";
+            string location = ctx.location->path() + "uploads/" + "test.bin";
 
             CHECK(response.getStatus() == CREATED);
             CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
@@ -397,7 +397,7 @@ TEST_CASE("File uploading - 201 and Location header") {
 //     CHECK((!access("test_www/img/uploads/page.html", F_OK)
 //         || !access("test_www/img/uploads/page.htm", F_OK)));
 //     CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
-//     CHECK((response.getHeaders().at("Location") == l->getPath() + "page.htm"));
+//     CHECK((response.getHeaders().at("Location") == l->path() + "page.htm"));
 //     unlink("test_www/img/uploads/page.html");
 //     removeDirectoryRecursive("test_www");
 // }
@@ -420,7 +420,7 @@ TEST_CASE("File uploading - absolute upload_path at /upload/") {
                                   "Content-Length: 4\r\n"
                                   "Content-Type: application/octet-stream\r\n");
             HttpResponse response = fileUpload.handle(ctx.req, ctx.server, ctx.location);
-            string location = ctx.location->getPath() + "foo.bin";
+            string location = ctx.location->path() + "foo.bin";
 
             CHECK(response.getStatus() == CREATED);
             CHECK(response.getHeaders().find("Location") != response.getHeaders().end());
@@ -438,7 +438,7 @@ TEST_CASE("File uploading - absolute upload_path at /upload/") {
                                   "Content-Length: 4\r\n"
                                   "Content-Type: application/octet-stream\r\n");
             HttpResponse response = fileUpload.handle(ctx.req, ctx.server, ctx.location);
-            string location = ctx.location->getPath() + "foo.bin";
+            string location = ctx.location->path() + "foo.bin";
 
             CHECK(response.getStatus() == CREATED);
             CHECK(response.getHeaders().find("Location") != response.getHeaders().end());

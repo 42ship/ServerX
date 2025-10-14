@@ -1,8 +1,9 @@
 #include "config/pipeline/Validator.hpp"
 #include "common/filesystem.hpp"
-#include "config/ConfigException.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "utils/Logger.hpp"
 
 namespace config {
@@ -22,7 +23,7 @@ void Validator::validate(ServerBlockVec &servers, bool perform_fs_checks) {
 
 void Validator::validateServer(ServerBlock &b) {
     validateListen(b);
-    for (LocationBlockMap::iterator it = b.locations().begin(); it != b.locations().end(); ++it) {
+    for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
         validateLocation(it->second, b);
     }
 }
@@ -35,7 +36,7 @@ void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) {
 void Validator::validateRoot(Block &b) {
     if (!b.has("root"))
         return;
-    std::string const &root = b.getRoot();
+    std::string const &root = b.root();
     if (perform_fs_checks_) {
         char const *error = utils::validateDirectoryPath(root.c_str());
         if (error) {
@@ -44,13 +45,13 @@ void Validator::validateRoot(Block &b) {
         }
     }
     if (root[root.length() - 1] != '/')
-        b.setRoot(root + '/');
+        b.root(root + '/');
 }
 
 void Validator::validateListen(ServerBlock &b) {
     if (!b.has("listen")) {
         LOG_WARN("in server block listen is not specified default address: '"
-                 << b.getAddress() << "' and port: '" << b.getPort() << "' is used.");
+                 << b.address() << "' and port: '" << b.port() << "' is used.");
         return;
     }
     return;

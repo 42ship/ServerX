@@ -1,8 +1,8 @@
 
-#include "config/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "config/ServerConfig.hpp"
+#include "config/internal/ConfigException.hpp"
 #include "doctest.h"
 
 TEST_CASE("ServerConfig Integration") {
@@ -24,16 +24,16 @@ TEST_CASE("ServerConfig Integration") {
         const config::ServerBlock *sb = sc.getServer(9191, "");
 
         REQUIRE(sb);
-        CHECK(sb->getPort() == 9191);
-        CHECK(sb->getRoot() == ""); // Root is not defined at server level
+        CHECK(sb->port() == 9191);
+        CHECK(sb->root() == ""); // Root is not defined at server level
 
-        const config::LocationBlock *root_loc = sb->getLocation("/");
+        const config::LocationBlock *root_loc = sb->matchLocation("/");
         REQUIRE(root_loc != NULL);
-        CHECK(root_loc->getRoot() == "website/html/");
+        CHECK(root_loc->root() == "website/html/");
 
-        const config::LocationBlock *img_loc = sb->getLocation("/img/logo.png");
+        const config::LocationBlock *img_loc = sb->matchLocation("/img/logo.png");
         REQUIRE(img_loc != NULL);
-        CHECK(img_loc->getRoot() == "website/img/");
+        CHECK(img_loc->root() == "website/img/");
     }
 
     SUBCASE("Should correctly combine server and location root paths") {
@@ -52,15 +52,15 @@ TEST_CASE("ServerConfig Integration") {
         const config::ServerBlock *sb = sc.getServer(8000, "");
 
         REQUIRE(sb != NULL);
-        CHECK(sb->getRoot() == "/var/www/");
+        CHECK(sb->root() == "/var/www/");
 
-        const config::LocationBlock *relative_loc = sb->getLocation("/site/index.html");
+        const config::LocationBlock *relative_loc = sb->matchLocation("/site/index.html");
         REQUIRE(relative_loc != NULL);
-        CHECK(relative_loc->getRoot() == "/var/www/relative_path/");
+        CHECK(relative_loc->root() == "/var/www/relative_path/");
 
-        const config::LocationBlock *absolute_loc = sb->getLocation("/absolute/config.txt");
+        const config::LocationBlock *absolute_loc = sb->matchLocation("/absolute/config.txt");
         REQUIRE(absolute_loc != NULL);
-        CHECK(absolute_loc->getRoot() == "/etc/nginx/");
+        CHECK(absolute_loc->root() == "/etc/nginx/");
     }
 
     SUBCASE("Should throw on invalid semantic value in config file") {
@@ -72,13 +72,12 @@ TEST_CASE("ServerConfig Integration") {
 TEST_CASE("Virtual Server Matching (Future Feature)") {
     SUBCASE("Should select server based on server_name") {
         config::ServerBlock f;
-        f.setPort(8080);
-        f["server_name"] = {"first.com", "www.first.com"};
-        f.setRoot("/var/www/first/");
+        f.port(8080).root("/var/www/first/");
+        f.add("server_name", "first.com");
+        f.add("server_name", "www.first.com");
         config::ServerBlock second;
-        second.setPort(8080);
-        second["server_name"] = {"second.com"};
-        second.setRoot("/var/www/second/");
+        second.port(8080).root("/var/www/second/");
+        f.add("server_name", "second.com");
         config::ServerConfig sc;
         sc.addServer(f);
         sc.addServer(second);

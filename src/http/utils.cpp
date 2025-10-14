@@ -1,7 +1,7 @@
 #include "http/utils.hpp"
 #include "common/filesystem.hpp"
 #include "common/string.hpp"
-#include "config/internal/Block.hpp"
+#include "config/Block.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
@@ -104,12 +104,14 @@ ValidationResult checkUploadLimit(const std::string &contentLength, config::Bloc
         return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");
     }
 
-    const config::StringVector *sv = s.get("upload_file_size");
-    if (!sv || sv->empty()) {
+    if (!s.has("upload_file_size")) {
         return ValidationResult::ok("");
     }
-
-    std::string sUploadFileSize = (*sv)[0];
+    const config::StringVector &sv = s.get("upload_file_size");
+    if (sv.empty()) {
+        return ValidationResult::ok("");
+    }
+    std::string sUploadFileSize = sv[0];
     size_t uploadFileSize = fromString<size_t>(sUploadFileSize);
     size_t len = fromString<size_t>(contentLength);
     uploadFileSize = uploadFileSize * 1024 * 1024;

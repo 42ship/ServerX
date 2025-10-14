@@ -20,28 +20,55 @@ public:
     // ========================= Construction & Destruction =========================
 
     ServerConfig();
+
+    /**
+     * @brief Constructs and builds the configuration from a file path.
+     * @param fpath Path to the configuration file.
+     * @param perform_fs_checks If true, validates that file paths in the config exist.
+     */
     ServerConfig(char const *fpath, bool perform_fs_checks = true);
+
+    /**
+     * @brief Constructs and builds the configuration from a string.
+     * @param content A string containing the full configuration.
+     * @param perform_fs_checks If true, validates that file paths in the config exist.
+     */
     ServerConfig(std::string const &content, bool perform_fs_checks = true);
 
     // ============================== Public Interface ==============================
+
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.
-     *
      * @param port The port number of the incoming connection.
-     * @param server_name The server name requested by the client.
+     * @param server_name The server name from the client's 'Host' header.
      * @return A const pointer to the matched ServerBlock, or NULL if no match is found.
      */
     ServerBlock const *getServer(int port, std::string const &server_name) const;
-    void addServer(ServerBlock const &);
+
+    /**
+     * @brief Adds a ServerBlock to the configuration.
+     * @param server The ServerBlock to add.
+     */
+    void addServer(ServerBlock const &server);
 
     // ============================== Getters & Setters =============================
 
+    /**
+     * @brief Gets read-only access to the map of server blocks.
+     * @return A constant reference to the server block map.
+     */
     ServerBlockMap const &getServersMap() const;
 
 private:
+    /**
+     * @internal
+     * @brief Orchestrates the configuration parsing pipeline.
+     * @param content The raw configuration string to parse.
+     * @param perform_fs_checks Passed down to the validator.
+     */
     void build(std::string const &content, bool perform_fs_checks);
 
-    ServerBlockMap servers_;
+    ServerBlockMap servers_; //!< Map of server blocks, keyed by port number.
 };
 
 std::ostream &operator<<(std::ostream &o, ServerConfig const &t);

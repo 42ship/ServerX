@@ -11,12 +11,16 @@ namespace http {
 namespace details {
 
 std::string getUploadPath(const config::LocationBlock &l) {
-    const config::StringVector *pv = l.get("upload_path");
-    if (!pv || pv->empty()) {
+    if (!l.has("upload_path")) {
         return "";
     }
 
-    const std::string &path = (*pv)[0];
+    const config::StringVector &v = l.get("upload_path");
+    if (v.empty()) {
+        return "";
+    }
+
+    const std::string &path = v[0];
     if (path.empty()) {
         return "";
     }
@@ -30,7 +34,7 @@ std::string buildUploadPath(const config::ServerBlock &s, const config::Location
         return "";
     }
 
-    std::string root = s.getRoot();
+    std::string root = s.root();
 
     std::string path;
     if (up[0] == '/') {
@@ -130,7 +134,7 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
     }
 
     HttpResponse res(CREATED, req.version);
-    std::string loc = l->getPath();
+    std::string loc = l->path();
     if (!loc.empty() && loc[loc.size() - 1] != '/')
         loc += '/';
     // todo: refactor creating location header
