@@ -5,7 +5,6 @@
 #include "http/HttpRequest.hpp"
 #include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
-#include "utils/Logger.hpp"
 #include <errno.h>
 #include <sstream>
 #include <string>
@@ -52,6 +51,9 @@ ValidationResult parseFilename(http::HttpRequest const &req, http::MimeTypes con
     size_t index = filename.find_last_of(".");
     if (index != std::string::npos && index == filename.size() - 1) {
         return ValidationResult::fail(http::BAD_REQUEST, "Invalid filename (trailing dot)");
+    }
+    if (filename.find("./") != std::string::npos) {
+        return ValidationResult::fail(http::BAD_REQUEST, "Invalid filename (directory traverse)");
     }
 
     std::string contentType = req.getHeader("Content-Type");
@@ -100,8 +102,9 @@ ValidationResult validateUploadPath(const std::string &path) {
 
 /** todo: write own or chose better type for check limits */
 ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s) {
-    if (contentLength.empty()){
-        return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");
+    if (contentLength.empty()) {
+        return utils::ValidationResult::fail(http::LENGTH_REQUIRED,
+                                             "Content-Length header is required for uploads");
     }
 
     if (!s.has("upload_file_size")) {
@@ -122,10 +125,10 @@ ValidationResult checkUploadLimit(const std::string &contentLength, config::Bloc
     return utils::ValidationResult::ok("");
 }
 
-ValidationResult checkContentLength(std::string const &contentLen)
-{
-    if (contentLen.empty()){
-        return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");
+ValidationResult checkContentLength(std::string const &contentLen) {
+    if (contentLen.empty()) {
+        return utils::ValidationResult::fail(http::LENGTH_REQUIRED,
+                                             "Content-Length header is required for uploads");
     }
     return utils::ValidationResult::ok("");
 }
