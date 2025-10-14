@@ -120,7 +120,7 @@ ValidationResult checkUploadLimit(const std::string &contentLength, config::Bloc
     return utils::ValidationResult::ok("");
 }
 
-ValidationResult checkContentLength(std::string contentLen)
+ValidationResult checkContentLength(std::string const &contentLen)
 {
     if (contentLen.empty()){
         return utils::ValidationResult::fail(http::LENGTH_REQUIRED, "Content-Length header is required for uploads");

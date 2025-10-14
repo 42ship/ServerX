@@ -22,6 +22,6 @@ ValidationResult validateUploadPath(const std::string &path);
 
 ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s);
 
-ValidationResult checkContentLength(std::string contentLen);
+ValidationResult checkContentLength(std::string const &contentLen);
 
 } // namespace utils
