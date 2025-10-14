@@ -2,10 +2,11 @@ var searchData=
 [
   ['acceptnewconnection_0',['acceptNewConnection',['../classnetwork_1_1Acceptor.html#ad81a98c321b850b5519ef62f9ba4b67c',1,'network::Acceptor']]],
   ['acceptor_1',['Acceptor',['../classnetwork_1_1Acceptor.html#aa5d8bbce3eae6560ddb9eedbf09d6456',1,'network::Acceptor::Acceptor(int port, http::Router const &amp;)'],['../classnetwork_1_1Acceptor.html#a003c6483d9728593d6c716c802f00ff4',1,'network::Acceptor::Acceptor(config::ServerBlock const &amp;, http::Router const &amp;)'],['../classnetwork_1_1Acceptor.html#a7878190766d8ac52934e588c00185d96',1,'network::Acceptor::Acceptor(const Acceptor &amp;)']]],
-  ['add_2',['add',['../classconfig_1_1Block.html#af560db4e0f324534b0bc512daeac8e90',1,'config::Block::add(std::string const &amp;key, StringVector const &amp;values)'],['../classconfig_1_1Block.html#a6a18f68e1121f99d27e88657cf467747',1,'config::Block::add(std::string const &amp;key, std::string const &amp;value)']]],
+  ['add_2',['add',['../classconfig_1_1Block.html#a1058e323eba8ad1cb53b9e715a5c6aac',1,'config::Block::add(std::string const &amp;key, StringVector const &amp;)'],['../classconfig_1_1Block.html#a27e2794fdb4ae90baf1b6f4a7ed53b7c',1,'config::Block::add(std::string const &amp;key, std::string const &amp;)'],['../classconfig_1_1Block.html#a247b3f0dfdd68c22e547663cb2e3a368',1,'config::Block::add(std::string const &amp;key, std::string const &amp;, std::string const &amp;)']]],
   ['adddirective_3',['addDirective',['../classconfig_1_1Parser.html#a18ed563a6b2b92c9703bb6a9a04ed751',1,'config::Parser']]],
   ['addfd_4',['addFd',['../classnetwork_1_1EpollManager.html#a00318900650786f6077aa1cc966c90d9',1,'network::EpollManager']]],
   ['addlocation_5',['addLocation',['../classconfig_1_1ServerBlock.html#ab3f55c45b06ad4cdd20990a509656ca4',1,'config::ServerBlock']]],
-  ['addserver_6',['addServer',['../classconfig_1_1ServerConfig.html#a2ddcf017e20c1166e8f9af558580e5dc',1,'config::ServerConfig']]],
-  ['aeventhandler_7',['AEventHandler',['../classnetwork_1_1AEventHandler.html#af152ba17a18d2f9c9f8ae784fead0617',1,'network::AEventHandler::AEventHandler()'],['../classnetwork_1_1AEventHandler.html#aec58fcf5c23d5299663567aba63de035',1,'network::AEventHandler::AEventHandler(const AEventHandler &amp;)']]]
+  ['address_6',['address',['../classconfig_1_1ServerBlock.html#abdd6a3baaaab8fb4d9a8aa0a1b04c759',1,'config::ServerBlock::address() const'],['../classconfig_1_1ServerBlock.html#a2e5253d9f64f76781b29dd1c4260c2ca',1,'config::ServerBlock::address(std::string const &amp;address)']]],
+  ['addserver_7',['addServer',['../classconfig_1_1ServerConfig.html#a04ea97c78b723c23e02bb1e65cb99796',1,'config::ServerConfig']]],
+  ['aeventhandler_8',['AEventHandler',['../classnetwork_1_1AEventHandler.html#af152ba17a18d2f9c9f8ae784fead0617',1,'network::AEventHandler::AEventHandler()'],['../classnetwork_1_1AEventHandler.html#aec58fcf5c23d5299663567aba63de035',1,'network::AEventHandler::AEventHandler(const AEventHandler &amp;)']]]
 ];

@@ -101,11 +101,15 @@ $(function(){initNavTree('classconfig_1_1ServerConfig.html','','classconfig_1_1S
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aafe5eeed7ab4acbe58227a2ab8370f25" id="r_aafe5eeed7ab4acbe58227a2ab8370f25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafe5eeed7ab4acbe58227a2ab8370f25">ServerConfig</a> ()</td></tr>
 <tr class="memitem:a62e813f86654adeee4b4762bc79d9e93" id="r_a62e813f86654adeee4b4762bc79d9e93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62e813f86654adeee4b4762bc79d9e93">ServerConfig</a> (char const *fpath, bool perform_fs_checks=true)</td></tr>
+<tr class="memdesc:a62e813f86654adeee4b4762bc79d9e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and builds the configuration from a file path.  <br /></td></tr>
 <tr class="memitem:acabda31333d22e92f7018924600a2431" id="r_acabda31333d22e92f7018924600a2431"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acabda31333d22e92f7018924600a2431">ServerConfig</a> (std::string const &amp;content, bool perform_fs_checks=true)</td></tr>
+<tr class="memdesc:acabda31333d22e92f7018924600a2431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and builds the configuration from a string.  <br /></td></tr>
 <tr class="memitem:af63bd3c26dd1303ae1a47b2d09117869" id="r_af63bd3c26dd1303ae1a47b2d09117869"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af63bd3c26dd1303ae1a47b2d09117869">getServer</a> (int port, std::string const &amp;server_name) const</td></tr>
 <tr class="memdesc:af63bd3c26dd1303ae1a47b2d09117869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the server configuration that best matches a port and server name.  <br /></td></tr>
-<tr class="memitem:a2ddcf017e20c1166e8f9af558580e5dc" id="r_a2ddcf017e20c1166e8f9af558580e5dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ddcf017e20c1166e8f9af558580e5dc">addServer</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const &amp;)</td></tr>
+<tr class="memitem:a04ea97c78b723c23e02bb1e65cb99796" id="r_a04ea97c78b723c23e02bb1e65cb99796"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04ea97c78b723c23e02bb1e65cb99796">addServer</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const &amp;server)</td></tr>
+<tr class="memdesc:a04ea97c78b723c23e02bb1e65cb99796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> to the configuration.  <br /></td></tr>
 <tr class="memitem:a9f03a0388fe689730e4ce60bbdc8b0b8" id="r_a9f03a0388fe689730e4ce60bbdc8b0b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a7cc70445712c439111acb4dc2cfd561a">ServerBlockMap</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f03a0388fe689730e4ce60bbdc8b0b8">getServersMap</a> () const</td></tr>
+<tr class="memdesc:a9f03a0388fe689730e4ce60bbdc8b0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets read-only access to the map of server blocks.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -114,6 +118,7 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa81a79c0ca76ab6ef9b74a9f29ad7b65" id="r_aa81a79c0ca76ab6ef9b74a9f29ad7b65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a7cc70445712c439111acb4dc2cfd561a">ServerBlockMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa81a79c0ca76ab6ef9b74a9f29ad7b65">servers_</a></td></tr>
+<tr class="memdesc:aa81a79c0ca76ab6ef9b74a9f29ad7b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of server blocks, keyed by port number.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A strongly-typed data container for a server block's configuration. </p>
@@ -155,6 +160,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs and builds the configuration from a file path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fpath</td><td>Path to the configuration file. </td></tr>
+    <tr><td class="paramname">perform_fs_checks</td><td>If true, validates that file paths in the config exist. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="acabda31333d22e92f7018924600a2431" name="acabda31333d22e92f7018924600a2431"></a>
@@ -176,11 +190,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs and builds the configuration from a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">content</td><td>A string containing the full configuration. </td></tr>
+    <tr><td class="paramname">perform_fs_checks</td><td>If true, validates that file paths in the config exist. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a2ddcf017e20c1166e8f9af558580e5dc" name="a2ddcf017e20c1166e8f9af558580e5dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ddcf017e20c1166e8f9af558580e5dc">&#9670;&#160;</a></span>addServer()</h2>
+<a id="a04ea97c78b723c23e02bb1e65cb99796" name="a04ea97c78b723c23e02bb1e65cb99796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ea97c78b723c23e02bb1e65cb99796">&#9670;&#160;</a></span>addServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,6 +216,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> to the configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td>The <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -248,7 +279,7 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td>The port number of the incoming connection. </td></tr>
-    <tr><td class="paramname">server_name</td><td>The server name requested by the client. </td></tr>
+    <tr><td class="paramname">server_name</td><td>The server name from the client's 'Host' header. </td></tr>
   </table>
   </dd>
 </dl>
@@ -270,6 +301,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets read-only access to the map of server blocks. </p>
+<dl class="section return"><dt>Returns</dt><dd>A constant reference to the server block map. </dd></dl>
 
 </div>
 </div>
@@ -293,6 +327,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Map of server blocks, keyed by port number. </p>
 
 </div>
 </div>

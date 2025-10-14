@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Webserv: config::IDirective Class Reference</title>
+<title>Webserv: config::IDirective Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,9 +88,12 @@ $(function(){initNavTree('classconfig_1_1IDirective.html','','classconfig_1_1IDi
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">config::IDirective Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">config::IDirective Interface Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines the contract for a configuration directive handler.  
+ <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="IDirective_8hpp_source.html">IDirective.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -108,10 +111,16 @@ Inheritance diagram for config::IDirective:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fd870847e9f5e96c5637613678d425a" id="r_a5fd870847e9f5e96c5637613678d425a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fd870847e9f5e96c5637613678d425a">~IDirective</a> ()</td></tr>
+<tr class="memdesc:a5fd870847e9f5e96c5637613678d425a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 <tr class="memitem:a4a0c9c11888e2f17804dac2b28acbf72" id="r_a4a0c9c11888e2f17804dac2b28acbf72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a0c9c11888e2f17804dac2b28acbf72">process</a> (<a class="el" href="classconfig_1_1Block.html">Block</a> &amp;block, <a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;args) const =0</td></tr>
+<tr class="memdesc:a4a0c9c11888e2f17804dac2b28acbf72"><td class="mdescLeft">&#160;</td><td class="mdescRight">The primary logic for processing the directive's arguments.  <br /></td></tr>
 <tr class="memitem:a1fd2e6f32c1cbb56069ebae685649ce9" id="r_a1fd2e6f32c1cbb56069ebae685649ce9"><td class="memItemLeft" align="right" valign="top">virtual std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fd2e6f32c1cbb56069ebae685649ce9">getName</a> () const =0</td></tr>
+<tr class="memdesc:a1fd2e6f32c1cbb56069ebae685649ce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the directive.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines the contract for a configuration directive handler. </p>
+<p>This interface uses the Strategy Pattern to encapsulate the logic for processing a specific directive (e.g., 'listen', 'root') from the configuration file. Each concrete directive class will implement this interface to handle its specific syntax and validation. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5fd870847e9f5e96c5637613678d425a" name="a5fd870847e9f5e96c5637613678d425a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5fd870847e9f5e96c5637613678d425a">&#9670;&#160;</a></span>~IDirective()</h2>
 
@@ -134,6 +143,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Virtual destructor. </p>
 
 </div>
 </div>
@@ -160,6 +171,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the name of the directive. </p>
+<dl class="section return"><dt>Returns</dt><dd>A constant reference to the directive's name (e.g., "listen"). </dd></dl>
 
 <p>Implemented in <a class="el" href="classconfig_1_1ListenDirective.html#a95b9251847de5e2aaa921b4fd6de1cfa">config::ListenDirective</a>, <a class="el" href="classconfig_1_1ReturnDirective.html#a1e00b03a1a65137d601c1af591aa2126">config::ReturnDirective</a>, and <a class="el" href="classconfig_1_1RootDirective.html#ac174fc689612fcd6d473ace99f63d2df">config::RootDirective</a>.</p>
 
@@ -192,11 +206,20 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The primary logic for processing the directive's arguments. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The configuration block (<a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> or <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a>) to modify. </td></tr>
+    <tr><td class="paramname">args</td><td>The vector of string arguments for the directive. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="classconfig_1_1ListenDirective.html#a04d289ac95618ac3272b75287d94471f">config::ListenDirective</a>, <a class="el" href="classconfig_1_1ReturnDirective.html#ad42aad13f7791209f452503a639e806c">config::ReturnDirective</a>, and <a class="el" href="classconfig_1_1RootDirective.html#ae5778ca18a4ce5f86dab15a62779c112">config::RootDirective</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this interface was generated from the following file:<ul>
 <li>inc/config/directives/<a class="el" href="IDirective_8hpp_source.html">IDirective.hpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -109,42 +109,52 @@ Inheritance diagram for config::LocationBlock:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a636a009cd7843c903f143fe58bd3f3ff" id="r_a636a009cd7843c903f143fe58bd3f3ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a636a009cd7843c903f143fe58bd3f3ff">LocationBlock</a> ()</td></tr>
-<tr class="memitem:a8eac9924fd5dd8f79b913a0245d2fb11" id="r_a8eac9924fd5dd8f79b913a0245d2fb11"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eac9924fd5dd8f79b913a0245d2fb11">getPath</a> () const</td></tr>
-<tr class="memitem:a6deebd06c0c84d95381e19f2abf3c175" id="r_a6deebd06c0c84d95381e19f2abf3c175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6deebd06c0c84d95381e19f2abf3c175">setPath</a> (std::string const &amp;)</td></tr>
-<tr class="memitem:a1acc9f3f48eeb9580e96528a881ebdd5" id="r_a1acc9f3f48eeb9580e96528a881ebdd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1acc9f3f48eeb9580e96528a881ebdd5">getIndexFiles</a> () const</td></tr>
 <tr class="memitem:afc07c99290008d65485524a23cca16a7" id="r_afc07c99290008d65485524a23cca16a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc07c99290008d65485524a23cca16a7">hasCgiPass</a> () const</td></tr>
-<tr class="memitem:aacc933f1eb96b3868e966e3606ec17ad" id="r_aacc933f1eb96b3868e966e3606ec17ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacc933f1eb96b3868e966e3606ec17ad">setParent</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *parent)</td></tr>
-<tr class="memitem:ae6955d6fc8cd258cc5ec0b1883903d0c" id="r_ae6955d6fc8cd258cc5ec0b1883903d0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6955d6fc8cd258cc5ec0b1883903d0c">getParent</a> ()</td></tr>
+<tr class="memdesc:afc07c99290008d65485524a23cca16a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a 'cgi_pass' directive is configured for this location.  <br /></td></tr>
+<tr class="memitem:acef625fe935d344dd42f3aa9327a00eb" id="r_acef625fe935d344dd42f3aa9327a00eb"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acef625fe935d344dd42f3aa9327a00eb">path</a> () const</td></tr>
+<tr class="memdesc:acef625fe935d344dd42f3aa9327a00eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the URI path that this location block matches.  <br /></td></tr>
+<tr class="memitem:ad020019d6a0cf5bd7e9b583f69d37188" id="r_ad020019d6a0cf5bd7e9b583f69d37188"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad020019d6a0cf5bd7e9b583f69d37188">parent</a> () const</td></tr>
+<tr class="memdesc:ad020019d6a0cf5bd7e9b583f69d37188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>.  <br /></td></tr>
+<tr class="memitem:a8bc9f93b8f98cb0afc22f25cb004c235" id="r_a8bc9f93b8f98cb0afc22f25cb004c235"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bc9f93b8f98cb0afc22f25cb004c235">path</a> (std::string const &amp;)</td></tr>
+<tr class="memdesc:a8bc9f93b8f98cb0afc22f25cb004c235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the URI path for this location using a fluent interface.  <br /></td></tr>
+<tr class="memitem:a05555b584af5f7d4fe8ddaacbf4a266e" id="r_a05555b584af5f7d4fe8ddaacbf4a266e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05555b584af5f7d4fe8ddaacbf4a266e">parent</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *parent)</td></tr>
+<tr class="memdesc:a05555b584af5f7d4fe8ddaacbf4a266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> for this location.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classconfig_1_1Block"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classconfig_1_1Block')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classconfig_1_1Block.html">config::Block</a></td></tr>
-<tr class="memitem:a44c365e4d6ebafb79d7e083697275a8e inherit pub_methods_classconfig_1_1Block" id="r_a44c365e4d6ebafb79d7e083697275a8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a44c365e4d6ebafb79d7e083697275a8e">Block</a> (std::string const &amp;name)</td></tr>
+<tr class="memitem:a44c365e4d6ebafb79d7e083697275a8e inherit pub_methods_classconfig_1_1Block" id="r_a44c365e4d6ebafb79d7e083697275a8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a44c365e4d6ebafb79d7e083697275a8e">Block</a> (std::string const &amp;<a class="el" href="classconfig_1_1Block.html#a08dab6e47c7311f7836ccd96de814316">name</a>)</td></tr>
 <tr class="memitem:a156ceb838b9dd8cd42d2f3b5d08d9ceb inherit pub_methods_classconfig_1_1Block" id="r_a156ceb838b9dd8cd42d2f3b5d08d9ceb"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a156ceb838b9dd8cd42d2f3b5d08d9ceb">~Block</a> ()</td></tr>
 <tr class="memitem:afe28262e97bce1adf4e8178f3ef2b7f0 inherit pub_methods_classconfig_1_1Block" id="r_afe28262e97bce1adf4e8178f3ef2b7f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#afe28262e97bce1adf4e8178f3ef2b7f0">has</a> (std::string const &amp;key) const</td></tr>
 <tr class="memdesc:afe28262e97bce1adf4e8178f3ef2b7f0 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a directive exists within the block.  <br /></td></tr>
-<tr class="memitem:a3a424f92423a2287dd1ed734bad3bc94 inherit pub_methods_classconfig_1_1Block" id="r_a3a424f92423a2287dd1ed734bad3bc94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a3a424f92423a2287dd1ed734bad3bc94">operator[]</a> (std::string const &amp;key) const</td></tr>
-<tr class="memitem:aae82fb7626078b900815231cf365abc7 inherit pub_methods_classconfig_1_1Block" id="r_aae82fb7626078b900815231cf365abc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#aae82fb7626078b900815231cf365abc7">operator[]</a> (std::string const &amp;key)</td></tr>
-<tr class="memitem:af560db4e0f324534b0bc512daeac8e90 inherit pub_methods_classconfig_1_1Block" id="r_af560db4e0f324534b0bc512daeac8e90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#af560db4e0f324534b0bc512daeac8e90">add</a> (std::string const &amp;key, <a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;values)</td></tr>
-<tr class="memitem:a6a18f68e1121f99d27e88657cf467747 inherit pub_methods_classconfig_1_1Block" id="r_a6a18f68e1121f99d27e88657cf467747"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a6a18f68e1121f99d27e88657cf467747">add</a> (std::string const &amp;key, std::string const &amp;value)</td></tr>
-<tr class="memitem:a576795c043f5ec8992459a5baa2c56fd inherit pub_methods_classconfig_1_1Block" id="r_a576795c043f5ec8992459a5baa2c56fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a576795c043f5ec8992459a5baa2c56fd">getDirectives</a> () const</td></tr>
-<tr class="memdesc:a576795c043f5ec8992459a5baa2c56fd inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides read-only access to the underlying directive map.  <br /></td></tr>
-<tr class="memitem:a3775ca3895bc09fe0271e585e8a7716a inherit pub_methods_classconfig_1_1Block" id="r_a3775ca3895bc09fe0271e585e8a7716a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a3775ca3895bc09fe0271e585e8a7716a">getDirectives</a> ()</td></tr>
-<tr class="memdesc:a3775ca3895bc09fe0271e585e8a7716a inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides read-write access to the underlying directive map.  <br /></td></tr>
-<tr class="memitem:afdb575494199bd8a243faa06495f21ce inherit pub_methods_classconfig_1_1Block" id="r_afdb575494199bd8a243faa06495f21ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#afdb575494199bd8a243faa06495f21ce">get</a> (std::string const &amp;key) const</td></tr>
-<tr class="memdesc:afdb575494199bd8a243faa06495f21ce inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the arguments for a specific directive.  <br /></td></tr>
-<tr class="memitem:ad776bd260e761c0c7b0dc02a97bb8c56 inherit pub_methods_classconfig_1_1Block" id="r_ad776bd260e761c0c7b0dc02a97bb8c56"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#ad776bd260e761c0c7b0dc02a97bb8c56">getRoot</a> () const</td></tr>
-<tr class="memdesc:ad776bd260e761c0c7b0dc02a97bb8c56 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenient, strongly-typed accessor for the 'root' directive.  <br /></td></tr>
-<tr class="memitem:a5d94d2f03c4f87191e4614f57c496eb3 inherit pub_methods_classconfig_1_1Block" id="r_a5d94d2f03c4f87191e4614f57c496eb3"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a5d94d2f03c4f87191e4614f57c496eb3">getName</a> () const</td></tr>
-<tr class="memitem:a6bc8f0a19d34ef2b644d931e648773e4 inherit pub_methods_classconfig_1_1Block" id="r_a6bc8f0a19d34ef2b644d931e648773e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a6bc8f0a19d34ef2b644d931e648773e4">setRoot</a> (std::string const &amp;root)</td></tr>
+<tr class="memitem:a1d8ed3e54e99f6e7e69d73231415296a inherit pub_methods_classconfig_1_1Block" id="r_a1d8ed3e54e99f6e7e69d73231415296a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a1d8ed3e54e99f6e7e69d73231415296a">get</a> (std::string const &amp;key) const</td></tr>
+<tr class="memdesc:a1d8ed3e54e99f6e7e69d73231415296a inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely gets the values for a directive.  <br /></td></tr>
+<tr class="memitem:a1058e323eba8ad1cb53b9e715a5c6aac inherit pub_methods_classconfig_1_1Block" id="r_a1058e323eba8ad1cb53b9e715a5c6aac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a1058e323eba8ad1cb53b9e715a5c6aac">add</a> (std::string const &amp;key, <a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;)</td></tr>
+<tr class="memdesc:a1058e323eba8ad1cb53b9e715a5c6aac inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.  <br /></td></tr>
+<tr class="memitem:a27e2794fdb4ae90baf1b6f4a7ed53b7c inherit pub_methods_classconfig_1_1Block" id="r_a27e2794fdb4ae90baf1b6f4a7ed53b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a27e2794fdb4ae90baf1b6f4a7ed53b7c">add</a> (std::string const &amp;key, std::string const &amp;)</td></tr>
+<tr class="memdesc:a27e2794fdb4ae90baf1b6f4a7ed53b7c inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.     <br /></td></tr>
+<tr class="memitem:a247b3f0dfdd68c22e547663cb2e3a368 inherit pub_methods_classconfig_1_1Block" id="r_a247b3f0dfdd68c22e547663cb2e3a368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a247b3f0dfdd68c22e547663cb2e3a368">add</a> (std::string const &amp;key, std::string const &amp;, std::string const &amp;)</td></tr>
+<tr class="memdesc:a247b3f0dfdd68c22e547663cb2e3a368 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.     <br /></td></tr>
+<tr class="memitem:a08dab6e47c7311f7836ccd96de814316 inherit pub_methods_classconfig_1_1Block" id="r_a08dab6e47c7311f7836ccd96de814316"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a08dab6e47c7311f7836ccd96de814316">name</a> () const</td></tr>
+<tr class="memdesc:a08dab6e47c7311f7836ccd96de814316 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the block.  <br /></td></tr>
+<tr class="memitem:a9c86d895aa2e66a70d0c922779f039d5 inherit pub_methods_classconfig_1_1Block" id="r_a9c86d895aa2e66a70d0c922779f039d5"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a9c86d895aa2e66a70d0c922779f039d5">root</a> () const</td></tr>
+<tr class="memdesc:a9c86d895aa2e66a70d0c922779f039d5 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root path directive.  <br /></td></tr>
+<tr class="memitem:a13dfc726a78750f7cf4d52026cf55508 inherit pub_methods_classconfig_1_1Block" id="r_a13dfc726a78750f7cf4d52026cf55508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a13dfc726a78750f7cf4d52026cf55508">indexFiles</a> () const</td></tr>
+<tr class="memdesc:a13dfc726a78750f7cf4d52026cf55508 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index files directive.  <br /></td></tr>
+<tr class="memitem:af456a8a04ee6da8db4ec3c661c578267 inherit pub_methods_classconfig_1_1Block" id="r_af456a8a04ee6da8db4ec3c661c578267"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#af456a8a04ee6da8db4ec3c661c578267">root</a> (std::string const &amp;)</td></tr>
+<tr class="memdesc:af456a8a04ee6da8db4ec3c661c578267 inherit pub_methods_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the root directive using a fluent interface.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:abe1bc502b5c78f0728564c9a3c91118f" id="r_abe1bc502b5c78f0728564c9a3c91118f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe1bc502b5c78f0728564c9a3c91118f">parent_</a></td></tr>
+<tr class="memdesc:abe1bc502b5c78f0728564c9a3c91118f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>.  <br /></td></tr>
 <tr class="memitem:af0363fe4f136d0bbbbfe8c8433537b0f" id="r_af0363fe4f136d0bbbbfe8c8433537b0f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0363fe4f136d0bbbbfe8c8433537b0f">path_</a></td></tr>
+<tr class="memdesc:af0363fe4f136d0bbbbfe8c8433537b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URI path this location matches.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classconfig_1_1Block"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classconfig_1_1Block')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classconfig_1_1Block.html">config::Block</a></td></tr>
 <tr class="memitem:ab265eb41283d8c5d5a3b311818791967 inherit pro_attribs_classconfig_1_1Block" id="r_ab265eb41283d8c5d5a3b311818791967"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#ab265eb41283d8c5d5a3b311818791967">name_</a></td></tr>
+<tr class="memdesc:ab265eb41283d8c5d5a3b311818791967 inherit pro_attribs_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the block (e.g., "server", "location").  <br /></td></tr>
 <tr class="memitem:a66c593ae9f617ab65ccae5c52467614c inherit pro_attribs_classconfig_1_1Block" id="r_a66c593ae9f617ab65ccae5c52467614c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html#a66c593ae9f617ab65ccae5c52467614c">directives_</a></td></tr>
+<tr class="memdesc:a66c593ae9f617ab65ccae5c52467614c inherit pro_attribs_classconfig_1_1Block"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map storing directive names and their values.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a single 'location' block from the configuration file. </p>
@@ -168,57 +178,6 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a1acc9f3f48eeb9580e96528a881ebdd5" name="a1acc9f3f48eeb9580e96528a881ebdd5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1acc9f3f48eeb9580e96528a881ebdd5">&#9670;&#160;</a></span>getIndexFiles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const  * config::LocationBlock::getIndexFiles </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae6955d6fc8cd258cc5ec0b1883903d0c" name="ae6955d6fc8cd258cc5ec0b1883903d0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6955d6fc8cd258cc5ec0b1883903d0c">&#9670;&#160;</a></span>getParent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> * config::LocationBlock::getParent </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8eac9924fd5dd8f79b913a0245d2fb11" name="a8eac9924fd5dd8f79b913a0245d2fb11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8eac9924fd5dd8f79b913a0245d2fb11">&#9670;&#160;</a></span>getPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string const  &amp; config::LocationBlock::getPath </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="afc07c99290008d65485524a23cca16a7" name="afc07c99290008d65485524a23cca16a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc07c99290008d65485524a23cca16a7">&#9670;&#160;</a></span>hasCgiPass()</h2>
 
@@ -234,16 +193,39 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if a 'cgi_pass' directive is configured for this location. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if 'cgi_pass' is present, false otherwise. </dd></dl>
+
 </div>
 </div>
-<a id="aacc933f1eb96b3868e966e3606ec17ad" name="aacc933f1eb96b3868e966e3606ec17ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacc933f1eb96b3868e966e3606ec17ad">&#9670;&#160;</a></span>setParent()</h2>
+<a id="ad020019d6a0cf5bd7e9b583f69d37188" name="ad020019d6a0cf5bd7e9b583f69d37188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad020019d6a0cf5bd7e9b583f69d37188">&#9670;&#160;</a></span>parent() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void config::LocationBlock::setParent </td>
+          <td class="memname"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const  * config::LocationBlock::parent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>A constant pointer to the parent server configuration block. </dd></dl>
+
+</div>
+</div>
+<a id="a05555b584af5f7d4fe8ddaacbf4a266e" name="a05555b584af5f7d4fe8ddaacbf4a266e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05555b584af5f7d4fe8ddaacbf4a266e">&#9670;&#160;</a></span>parent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp; config::LocationBlock::parent </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span></td><td>)</td>
           <td></td>
@@ -251,22 +233,60 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> for this location. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>A pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a> object for chaining. </dd></dl>
+
 </div>
 </div>
-<a id="a6deebd06c0c84d95381e19f2abf3c175" name="a6deebd06c0c84d95381e19f2abf3c175"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6deebd06c0c84d95381e19f2abf3c175">&#9670;&#160;</a></span>setPath()</h2>
+<a id="acef625fe935d344dd42f3aa9327a00eb" name="acef625fe935d344dd42f3aa9327a00eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acef625fe935d344dd42f3aa9327a00eb">&#9670;&#160;</a></span>path() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void config::LocationBlock::setPath </td>
+          <td class="memname">std::string const  &amp; config::LocationBlock::path </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the URI path that this location block matches. </p>
+<dl class="section return"><dt>Returns</dt><dd>A constant reference to the path string. </dd></dl>
+
+</div>
+</div>
+<a id="a8bc9f93b8f98cb0afc22f25cb004c235" name="a8bc9f93b8f98cb0afc22f25cb004c235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bc9f93b8f98cb0afc22f25cb004c235">&#9670;&#160;</a></span>path() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp; config::LocationBlock::path </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the URI path for this location using a fluent interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The path to set (e.g., "/images/"). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a> object for chaining. </dd></dl>
 
 </div>
 </div>
@@ -291,6 +311,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>. </p>
+
 </div>
 </div>
 <a id="af0363fe4f136d0bbbbfe8c8433537b0f" name="af0363fe4f136d0bbbbfe8c8433537b0f"></a>
@@ -312,6 +334,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The URI path this location matches. </p>
 
 </div>
 </div>

@@ -46,9 +46,9 @@ var namespaceconfig =
       [ "END_OF_FILE", "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac9d5105eec9c62f0d81051eb32eb7bd7", null ]
     ] ],
     [ "issue_warning", "namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7", null ],
-    [ "operator<<", "namespaceconfig.html#ab1ff088b3b0f572b79efec49e7645955", null ],
+    [ "operator<<", "namespaceconfig.html#a67658bb36afc00976da33f5d76501deb", null ],
+    [ "operator<<", "namespaceconfig.html#a127485cd845a03dcc45d2a08c261995a", null ],
     [ "operator<<", "namespaceconfig.html#a8fe6fa7e927772897c525756bc6f409d", null ],
-    [ "operator<<", "namespaceconfig.html#ae5e5d19076966d817ae51062c0895c9d", null ],
     [ "operator<<", "namespaceconfig.html#a514862f1d7011814d6abe8fdad15d6c5", null ],
     [ "operator<<", "namespaceconfig.html#a3f131a3d8219010366e1b2040a520fa3", null ],
     [ "operator<<", "namespaceconfig.html#abe8c2125f3982671e553cf443d92aac5", null ]

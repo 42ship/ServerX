@@ -1,9 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"classhttp_1_1HttpResponse.html#a7fc54543dc8ef53da97695df6707cce3":[0,0,2,5,20],
-"classhttp_1_1HttpResponse.html#a7fc54543dc8ef53da97695df6707cce3":[1,0,2,3,20],
-"classhttp_1_1HttpResponse.html#aa303eb4524ac9fa9ff5290939e0a183e":[0,0,2,5,5],
-"classhttp_1_1HttpResponse.html#aa303eb4524ac9fa9ff5290939e0a183e":[1,0,2,3,5],
 "classhttp_1_1HttpResponse.html#aaecc2c3bdb73c13f739bf187e74f434b":[0,0,2,5,12],
 "classhttp_1_1HttpResponse.html#aaecc2c3bdb73c13f739bf187e74f434b":[1,0,2,3,12],
 "classhttp_1_1HttpResponse.html#ab57d35bfa675bfd39330737fe453eadd":[0,0,2,5,2],
@@ -249,5 +245,9 @@ var NAVTREEINDEX2 =
 "classnetwork_1_1Socket.html#aa15f7d7fe23693d8378a8697b6c38e62":[0,0,3,5,2],
 "classnetwork_1_1Socket.html#aa15f7d7fe23693d8378a8697b6c38e62":[1,0,3,5,2],
 "classnetwork_1_1Socket.html#aa75dad33763690a5f196e985b1d7a9a8":[0,0,3,5,6],
-"classnetwork_1_1Socket.html#aa75dad33763690a5f196e985b1d7a9a8":[1,0,3,5,6]
+"classnetwork_1_1Socket.html#aa75dad33763690a5f196e985b1d7a9a8":[1,0,3,5,6],
+"classnetwork_1_1Socket.html#aaafea43dc2dbd578b9ac18203f1b0284":[0,0,3,5,5],
+"classnetwork_1_1Socket.html#aaafea43dc2dbd578b9ac18203f1b0284":[1,0,3,5,5],
+"classnetwork_1_1Socket.html#ac28603c29e6c79332d762a2c827c6af6":[0,0,3,5,10],
+"classnetwork_1_1Socket.html#ac28603c29e6c79332d762a2c827c6af6":[1,0,3,5,10]
 };

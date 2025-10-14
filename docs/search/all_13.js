@@ -7,7 +7,7 @@ var searchData=
   ['validateroot_4',['validateRoot',['../classconfig_1_1Validator.html#a128efd79010ccb0fb3ff84bb22fb52d8',1,'config::Validator']]],
   ['validateserver_5',['validateServer',['../classconfig_1_1Validator.html#aabac1fe3ec9df1bf46d5eaecada357d4',1,'config::Validator']]],
   ['validateservernames_6',['validateServerNames',['../classconfig_1_1Validator.html#a16c69d8865ce8f3269338ed68b596bf3',1,'config::Validator']]],
-  ['validator_7',['Validator',['../classconfig_1_1Validator.html',1,'config::Validator'],['../classconfig_1_1Validator.html#a4e1794a9ee1f4b4d891b8968a8a56dd5',1,'config::Validator::Validator()'],['../classconfig_1_1Validator.html#a07747fd25f6a480339b58a48e9858bd1',1,'config::Validator::Validator(bool perform_fs_checks=true)']]],
+  ['validator_7',['Validator',['../classconfig_1_1Validator.html',1,'config::Validator'],['../classconfig_1_1ServerBlock.html#a5929181addf27f130c7f8f99eeba3256',1,'config::ServerBlock::Validator()'],['../classconfig_1_1Validator.html#a4e1794a9ee1f4b4d891b8968a8a56dd5',1,'config::Validator::Validator()'],['../classconfig_1_1Validator.html#a07747fd25f6a480339b58a48e9858bd1',1,'config::Validator::Validator(bool perform_fs_checks=true)']]],
   ['validator_2ecpp_8',['Validator.cpp',['../Validator_8cpp.html',1,'']]],
   ['validator_2ehpp_9',['Validator.hpp',['../Validator_8hpp.html',1,'']]],
   ['version_10',['version',['../classhttp_1_1HttpRequest.html#a798bd27b874448f7fa96d8de82700886',1,'http::HttpRequest']]]
