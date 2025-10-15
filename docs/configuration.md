@@ -20,3 +20,5 @@ which they can be used.
 | [`server_name`](./directives/server_name.md) | `server`             | Sets the names of the virtual server.        |
 | [`root`](./directives/root.md)               | `server`, `location` | Sets the root directory for requests.        |
 | [`index`](./directives/index.md)             | `location`           | ---                                          |
+| [`upload_path`](./directives/upload_path.md) | `location` | Sets the upload directory for incoming file requests. |
+| [`upload_file_size`](./directives/upload_file_size.md) | `server` | Defines the maximum allowed upload size in MiB. |
