@@ -12,10 +12,12 @@ var searchData=
   ['setstatus_9',['setStatus',['../classhttp_1_1HttpResponse.html#a38b6a2a7aeb380cfa6be4390392bb269',1,'http::HttpResponse']]],
   ['setupacceptors_10',['setupAcceptors',['../classcore_1_1Server.html#a55aa0b8cd87298bdcf7ea8c8321efe5e',1,'core::Server']]],
   ['setupsignalhandlers_11',['setupSignalHandlers',['../classcore_1_1Server.html#aaff8b717160b6531ccc0754552e6b7f9',1,'core::Server']]],
-  ['signalhandler_12',['signalHandler',['../classcore_1_1Server.html#a8cf41aa2907c08071fe386a3dec097f2',1,'core::Server']]],
-  ['size_13',['size',['../classconfig_1_1Parser.html#abd5aad88bb54b320efa8cd1dc79483d5',1,'config::Parser']]],
-  ['socket_14',['Socket',['../classnetwork_1_1Socket.html#a3b1f307869d71c52bd2b609007d8d086',1,'network::Socket::Socket()'],['../classnetwork_1_1Socket.html#a70aa05bcb9dadb67be429e80b6ae1a15',1,'network::Socket::Socket(int port)'],['../classnetwork_1_1Socket.html#aa15f7d7fe23693d8378a8697b6c38e62',1,'network::Socket::Socket(std::string const &amp;address, int port)'],['../classnetwork_1_1Socket.html#a0d487c7f507763d659a7887ddee287c3',1,'network::Socket::Socket(config::ServerBlock const &amp;)'],['../classnetwork_1_1Socket.html#aaafea43dc2dbd578b9ac18203f1b0284',1,'network::Socket::Socket(Socket const &amp;rhs)']]],
-  ['start_15',['start',['../classcore_1_1Server.html#af0dea2fd6a43d0953801232c50fb118c',1,'core::Server']]],
-  ['staticfilehandler_16',['StaticFileHandler',['../classhttp_1_1StaticFileHandler.html#aa3901731bd12300c866eefd420443df5',1,'http::StaticFileHandler::StaticFileHandler(MimeTypes const &amp;)'],['../classhttp_1_1StaticFileHandler.html#a8dc120547e374b4b0a337949884924c2',1,'http::StaticFileHandler::StaticFileHandler()']]],
-  ['stop_17',['stop',['../classcore_1_1Server.html#aa57116097b6c904d29b0aea470fc68e5',1,'core::Server']]]
+  ['setvalue_12',['setValue',['../classconfig_1_1String.html#a03109d6e09c28ac316ca954810eac119',1,'config::String']]],
+  ['signalhandler_13',['signalHandler',['../classcore_1_1Server.html#a8cf41aa2907c08071fe386a3dec097f2',1,'core::Server']]],
+  ['size_14',['size',['../classconfig_1_1Parser.html#abd5aad88bb54b320efa8cd1dc79483d5',1,'config::Parser']]],
+  ['socket_15',['Socket',['../classnetwork_1_1Socket.html#a3b1f307869d71c52bd2b609007d8d086',1,'network::Socket::Socket()'],['../classnetwork_1_1Socket.html#a70aa05bcb9dadb67be429e80b6ae1a15',1,'network::Socket::Socket(int port)'],['../classnetwork_1_1Socket.html#aa15f7d7fe23693d8378a8697b6c38e62',1,'network::Socket::Socket(std::string const &amp;address, int port)'],['../classnetwork_1_1Socket.html#a0d487c7f507763d659a7887ddee287c3',1,'network::Socket::Socket(config::ServerBlock const &amp;)'],['../classnetwork_1_1Socket.html#aaafea43dc2dbd578b9ac18203f1b0284',1,'network::Socket::Socket(Socket const &amp;rhs)']]],
+  ['start_16',['start',['../classcore_1_1Server.html#af0dea2fd6a43d0953801232c50fb118c',1,'core::Server']]],
+  ['staticfilehandler_17',['StaticFileHandler',['../classhttp_1_1StaticFileHandler.html#aa3901731bd12300c866eefd420443df5',1,'http::StaticFileHandler::StaticFileHandler(MimeTypes const &amp;)'],['../classhttp_1_1StaticFileHandler.html#a8dc120547e374b4b0a337949884924c2',1,'http::StaticFileHandler::StaticFileHandler()']]],
+  ['stop_18',['stop',['../classcore_1_1Server.html#aa57116097b6c904d29b0aea470fc68e5',1,'core::Server']]],
+  ['string_19',['String',['../classconfig_1_1String.html#a5ae32adf3c1daee612a9600feaa1da23',1,'config::String']]]
 ];

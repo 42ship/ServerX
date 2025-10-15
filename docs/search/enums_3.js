@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['requeststate_0',['RequestState',['../namespacenetwork.html#aaaec8168c304b28c9d428837848abae4',1,'network']]],
-  ['responsestate_1',['ResponseState',['../namespacenetwork.html#aecef2691506037b978e28401f4b52c68',1,'network']]]
+  ['messagetype_0',['MessageType',['../namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337',1,'http']]],
+  ['method_1',['Method',['../namespacehttp.html#ad6f0ed7c44035f65821fa7509a03d4cf',1,'http']]]
 ];

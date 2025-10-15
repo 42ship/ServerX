@@ -3,7 +3,7 @@ var searchData=
   ['bad_5frequest_0',['BAD_REQUEST',['../namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a3c7a4281c4fc1905c67373fe3234d5cb',1,'http']]],
   ['bestmatchlocation_1',['bestMatchLocation',['../namespaceconfig_1_1details.html#a66c025a76ebf25314c629f8b939621f7',1,'config::details']]],
   ['bindto_2',['bindTo',['../classnetwork_1_1Socket.html#aa75dad33763690a5f196e985b1d7a9a8',1,'network::Socket::bindTo(int port)'],['../classnetwork_1_1Socket.html#accef9fab839c3d59f52ea518f5880aa8',1,'network::Socket::bindTo(std::string const &amp;address, int port)']]],
-  ['block_3',['Block',['../classconfig_1_1Block.html',1,'config::Block'],['../classconfig_1_1Block.html#a44c365e4d6ebafb79d7e083697275a8e',1,'config::Block::Block()']]],
+  ['block_3',['Block',['../classconfig_1_1Block.html',1,'config::Block'],['../classconfig_1_1Block.html#a44c365e4d6ebafb79d7e083697275a8e',1,'config::Block::Block(std::string const &amp;name)'],['../classconfig_1_1Block.html#a1cf03950e8e61ba1670cbc6b51986c84',1,'config::Block::Block(const Block &amp;other)']]],
   ['block_2ecpp_4',['Block.cpp',['../Block_8cpp.html',1,'']]],
   ['block_2ehpp_5',['Block.hpp',['../Block_8hpp.html',1,'']]],
   ['body_6',['body',['../classhttp_1_1HttpRequest.html#ae0ef42f05e041c74025a75a44724fdb9',1,'http::HttpRequest']]],

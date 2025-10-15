@@ -8,5 +8,6 @@ var searchData=
   ['socket_5f_5',['socket_',['../classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b',1,'network::Acceptor']]],
   ['staticfile_5f_6',['staticFile_',['../classhttp_1_1Router.html#a4222594d1ddaad3ed289ec7fcd33bf2c',1,'http::Router']]],
   ['status_7',['status',['../classhttp_1_1HttpRequest.html#a8ea52ee6598150192982a3a84a6bc4f4',1,'http::HttpRequest::status'],['../structutils_1_1ValidationResult.html#a2cfd966fc8016e7a7260d5db8ab45667',1,'utils::ValidationResult::status']]],
-  ['statuscode_5f_8',['statusCode_',['../classhttp_1_1HttpResponse.html#a5d2297135a50530ee3f5fe56ec9fb51e',1,'http::HttpResponse']]]
+  ['statuscode_5f_8',['statusCode_',['../classhttp_1_1HttpResponse.html#a5d2297135a50530ee3f5fe56ec9fb51e',1,'http::HttpResponse']]],
+  ['svalue_5f_9',['sValue_',['../classconfig_1_1Integer.html#ae3476c2692e7449fc5abbf0ef96b662f',1,'config::Integer']]]
 ];

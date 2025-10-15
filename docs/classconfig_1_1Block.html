@@ -110,36 +110,46 @@ Inheritance diagram for config::Block:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a44c365e4d6ebafb79d7e083697275a8e" id="r_a44c365e4d6ebafb79d7e083697275a8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44c365e4d6ebafb79d7e083697275a8e">Block</a> (std::string const &amp;<a class="el" href="#a08dab6e47c7311f7836ccd96de814316">name</a>)</td></tr>
+<tr class="memitem:a1cf03950e8e61ba1670cbc6b51986c84" id="r_a1cf03950e8e61ba1670cbc6b51986c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cf03950e8e61ba1670cbc6b51986c84">Block</a> (const <a class="el" href="classconfig_1_1Block.html">Block</a> &amp;other)</td></tr>
+<tr class="memitem:a9b930c300d568d12a7989acc07c68f85" id="r_a9b930c300d568d12a7989acc07c68f85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b930c300d568d12a7989acc07c68f85">operator=</a> (const <a class="el" href="classconfig_1_1Block.html">Block</a> &amp;other)</td></tr>
 <tr class="memitem:a156ceb838b9dd8cd42d2f3b5d08d9ceb" id="r_a156ceb838b9dd8cd42d2f3b5d08d9ceb"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a156ceb838b9dd8cd42d2f3b5d08d9ceb">~Block</a> ()</td></tr>
 <tr class="memitem:afe28262e97bce1adf4e8178f3ef2b7f0" id="r_afe28262e97bce1adf4e8178f3ef2b7f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe28262e97bce1adf4e8178f3ef2b7f0">has</a> (std::string const &amp;key) const</td></tr>
 <tr class="memdesc:afe28262e97bce1adf4e8178f3ef2b7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a directive exists within the block.  <br /></td></tr>
-<tr class="memitem:a1d8ed3e54e99f6e7e69d73231415296a" id="r_a1d8ed3e54e99f6e7e69d73231415296a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d8ed3e54e99f6e7e69d73231415296a">get</a> (std::string const &amp;key) const</td></tr>
-<tr class="memdesc:a1d8ed3e54e99f6e7e69d73231415296a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely gets the values for a directive.  <br /></td></tr>
-<tr class="memitem:a1058e323eba8ad1cb53b9e715a5c6aac" id="r_a1058e323eba8ad1cb53b9e715a5c6aac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1058e323eba8ad1cb53b9e715a5c6aac">add</a> (std::string const &amp;key, <a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;)</td></tr>
-<tr class="memdesc:a1058e323eba8ad1cb53b9e715a5c6aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.  <br /></td></tr>
+<tr class="memitem:a335a3ae9b902de612b4d286641cac8bf" id="r_a335a3ae9b902de612b4d286641cac8bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a42fe9edda5280a58720172bbf71a2c83">ArgumentVector</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a335a3ae9b902de612b4d286641cac8bf">get</a> (std::string const &amp;key) const</td></tr>
+<tr class="memdesc:a335a3ae9b902de612b4d286641cac8bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely gets the values for a directive.  <br /></td></tr>
+<tr class="memitem:ad6ccc59770d915feaeac3b75f13f4d39" id="r_ad6ccc59770d915feaeac3b75f13f4d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6ccc59770d915feaeac3b75f13f4d39">add</a> (std::string const &amp;key, std::vector&lt; std::string &gt; const &amp;)</td></tr>
+<tr class="memdesc:ad6ccc59770d915feaeac3b75f13f4d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.  <br /></td></tr>
 <tr class="memitem:a27e2794fdb4ae90baf1b6f4a7ed53b7c" id="r_a27e2794fdb4ae90baf1b6f4a7ed53b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27e2794fdb4ae90baf1b6f4a7ed53b7c">add</a> (std::string const &amp;key, std::string const &amp;)</td></tr>
-<tr class="memdesc:a27e2794fdb4ae90baf1b6f4a7ed53b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.     <br /></td></tr>
 <tr class="memitem:a247b3f0dfdd68c22e547663cb2e3a368" id="r_a247b3f0dfdd68c22e547663cb2e3a368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a247b3f0dfdd68c22e547663cb2e3a368">add</a> (std::string const &amp;key, std::string const &amp;, std::string const &amp;)</td></tr>
-<tr class="memdesc:a247b3f0dfdd68c22e547663cb2e3a368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directive with multiple values.     <br /></td></tr>
+<tr class="memitem:a36404f2a6fee6a9abc85b8f8eb4a940d" id="r_a36404f2a6fee6a9abc85b8f8eb4a940d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36404f2a6fee6a9abc85b8f8eb4a940d">getRawValues</a> (std::string const &amp;key) const</td></tr>
+<tr class="memitem:aa4763ef01d6763886e016a288c98c2fc" id="r_aa4763ef01d6763886e016a288c98c2fc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4763ef01d6763886e016a288c98c2fc">getFirstRawValue</a> (std::string const &amp;key) const</td></tr>
+<tr class="memitem:ab43c3ce7c8630607f45ee5d0810979a4" id="r_ab43c3ce7c8630607f45ee5d0810979a4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab43c3ce7c8630607f45ee5d0810979a4">get</a> (std::string const &amp;key, <a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req) const</td></tr>
+<tr class="memitem:a5b9356d33af27fe0a25888508821e24f" id="r_a5b9356d33af27fe0a25888508821e24f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b9356d33af27fe0a25888508821e24f">getFirstEvaluatedString</a> (std::string const &amp;key, <a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req) const</td></tr>
 <tr class="memitem:a08dab6e47c7311f7836ccd96de814316" id="r_a08dab6e47c7311f7836ccd96de814316"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08dab6e47c7311f7836ccd96de814316">name</a> () const</td></tr>
 <tr class="memdesc:a08dab6e47c7311f7836ccd96de814316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the block.  <br /></td></tr>
-<tr class="memitem:a9c86d895aa2e66a70d0c922779f039d5" id="r_a9c86d895aa2e66a70d0c922779f039d5"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c86d895aa2e66a70d0c922779f039d5">root</a> () const</td></tr>
-<tr class="memdesc:a9c86d895aa2e66a70d0c922779f039d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root path directive.  <br /></td></tr>
-<tr class="memitem:a13dfc726a78750f7cf4d52026cf55508" id="r_a13dfc726a78750f7cf4d52026cf55508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13dfc726a78750f7cf4d52026cf55508">indexFiles</a> () const</td></tr>
-<tr class="memdesc:a13dfc726a78750f7cf4d52026cf55508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index files directive.  <br /></td></tr>
+<tr class="memitem:a10ffd4385056006951501fc15d052a9e" id="r_a10ffd4385056006951501fc15d052a9e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10ffd4385056006951501fc15d052a9e">root</a> () const</td></tr>
+<tr class="memdesc:a10ffd4385056006951501fc15d052a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root path directive.  <br /></td></tr>
+<tr class="memitem:ac2dece454bd5dfa379b5563f65c18dad" id="r_ac2dece454bd5dfa379b5563f65c18dad"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2dece454bd5dfa379b5563f65c18dad">indexFiles</a> () const</td></tr>
+<tr class="memdesc:ac2dece454bd5dfa379b5563f65c18dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index files directive.  <br /></td></tr>
 <tr class="memitem:af456a8a04ee6da8db4ec3c661c578267" id="r_af456a8a04ee6da8db4ec3c661c578267"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af456a8a04ee6da8db4ec3c661c578267">root</a> (std::string const &amp;)</td></tr>
 <tr class="memdesc:af456a8a04ee6da8db4ec3c661c578267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the root directive using a fluent interface.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a103ceaeb5d1baa2681a64f8bf4c7caba" id="r_a103ceaeb5d1baa2681a64f8bf4c7caba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a103ceaeb5d1baa2681a64f8bf4c7caba">add</a> (std::string const &amp;key, <a class="el" href="namespaceconfig.html#a1fb3fd027affd58ff9cb112084f3f419">ParsedDirectiveArgs</a> const &amp;values)</td></tr>
+<tr class="memitem:a45b087542a5739103b1a2dc8791a4865" id="r_a45b087542a5739103b1a2dc8791a4865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45b087542a5739103b1a2dc8791a4865">add</a> (std::string const &amp;key, <a class="el" href="namespaceconfig.html#a42fe9edda5280a58720172bbf71a2c83">ArgumentVector</a> const &amp;values)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ab265eb41283d8c5d5a3b311818791967" id="r_ab265eb41283d8c5d5a3b311818791967"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab265eb41283d8c5d5a3b311818791967">name_</a></td></tr>
 <tr class="memdesc:ab265eb41283d8c5d5a3b311818791967"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the block (e.g., "server", "location").  <br /></td></tr>
-<tr class="memitem:a66c593ae9f617ab65ccae5c52467614c" id="r_a66c593ae9f617ab65ccae5c52467614c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c593ae9f617ab65ccae5c52467614c">directives_</a></td></tr>
+<tr class="memitem:a66c593ae9f617ab65ccae5c52467614c" id="r_a66c593ae9f617ab65ccae5c52467614c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#af84dbd7147ca68f1dbb08472f16061d6">DirectiveMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c593ae9f617ab65ccae5c52467614c">directives_</a></td></tr>
 <tr class="memdesc:a66c593ae9f617ab65ccae5c52467614c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map storing directive names and their values.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:acd6d2184abdfa6af6822eb42bc62f612" id="r_acd6d2184abdfa6af6822eb42bc62f612"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd6d2184abdfa6af6822eb42bc62f612">DirectiveHandler</a></td></tr>
+<tr class="memitem:a2a3e6fbfc8479272d09aaa82bdcf59e4" id="r_a2a3e6fbfc8479272d09aaa82bdcf59e4"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a3e6fbfc8479272d09aaa82bdcf59e4">ListenDirective</a></td></tr>
 <tr class="memitem:ade9718a29a0b4aa18692f45b1a8a41c2" id="r_ade9718a29a0b4aa18692f45b1a8a41c2"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade9718a29a0b4aa18692f45b1a8a41c2">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1Block.html">Block</a> const &amp;b)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
@@ -147,7 +157,7 @@ Friends</h2></td></tr>
 <p>This class provides a generic storage mechanism for configuration directives using a map, allowing for high extensibility. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a44c365e4d6ebafb79d7e083697275a8e" name="a44c365e4d6ebafb79d7e083697275a8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44c365e4d6ebafb79d7e083697275a8e">&#9670;&#160;</a></span>Block()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c365e4d6ebafb79d7e083697275a8e">&#9670;&#160;</a></span>Block() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,6 +166,23 @@ Friends</h2></td></tr>
           <td class="memname">config::Block::Block </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cf03950e8e61ba1670cbc6b51986c84" name="a1cf03950e8e61ba1670cbc6b51986c84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf03950e8e61ba1670cbc6b51986c84">&#9670;&#160;</a></span>Block() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">config::Block::Block </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classconfig_1_1Block.html">Block</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -189,8 +216,66 @@ Friends</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a45b087542a5739103b1a2dc8791a4865" name="a45b087542a5739103b1a2dc8791a4865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45b087542a5739103b1a2dc8791a4865">&#9670;&#160;</a></span>add() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp; config::Block::add </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceconfig.html#a42fe9edda5280a58720172bbf71a2c83">ArgumentVector</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a103ceaeb5d1baa2681a64f8bf4c7caba" name="a103ceaeb5d1baa2681a64f8bf4c7caba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a103ceaeb5d1baa2681a64f8bf4c7caba">&#9670;&#160;</a></span>add() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp; config::Block::add </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceconfig.html#a1fb3fd027affd58ff9cb112084f3f419">ParsedDirectiveArgs</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a27e2794fdb4ae90baf1b6f4a7ed53b7c" name="a27e2794fdb4ae90baf1b6f4a7ed53b7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27e2794fdb4ae90baf1b6f4a7ed53b7c">&#9670;&#160;</a></span>add() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e2794fdb4ae90baf1b6f4a7ed53b7c">&#9670;&#160;</a></span>add() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,20 +293,12 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a directive with multiple values.    </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The name of the directive. </td></tr>
-    <tr><td class="paramname">values</td><td>A vector of string values. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1Block.html" title="Base class for configuration blocks like &#39;server&#39; and &#39;location&#39;.">Block</a> object for chaining.    </dd></dl>
+<p></p>
 
 </div>
 </div>
 <a id="a247b3f0dfdd68c22e547663cb2e3a368" name="a247b3f0dfdd68c22e547663cb2e3a368"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a247b3f0dfdd68c22e547663cb2e3a368">&#9670;&#160;</a></span>add() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a247b3f0dfdd68c22e547663cb2e3a368">&#9670;&#160;</a></span>add() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,20 +321,12 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a directive with multiple values.    </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The name of the directive. </td></tr>
-    <tr><td class="paramname">values</td><td>A vector of string values. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1Block.html" title="Base class for configuration blocks like &#39;server&#39; and &#39;location&#39;.">Block</a> object for chaining.    </dd></dl>
+<p></p>
 
 </div>
 </div>
-<a id="a1058e323eba8ad1cb53b9e715a5c6aac" name="a1058e323eba8ad1cb53b9e715a5c6aac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1058e323eba8ad1cb53b9e715a5c6aac">&#9670;&#160;</a></span>add() <span class="overload">[3/3]</span></h2>
+<a id="ad6ccc59770d915feaeac3b75f13f4d39" name="ad6ccc59770d915feaeac3b75f13f4d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6ccc59770d915feaeac3b75f13f4d39">&#9670;&#160;</a></span>add() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +339,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -287,14 +356,14 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a1d8ed3e54e99f6e7e69d73231415296a" name="a1d8ed3e54e99f6e7e69d73231415296a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d8ed3e54e99f6e7e69d73231415296a">&#9670;&#160;</a></span>get()</h2>
+<a id="a335a3ae9b902de612b4d286641cac8bf" name="a335a3ae9b902de612b4d286641cac8bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335a3ae9b902de612b4d286641cac8bf">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const  &amp; config::Block::get </td>
+          <td class="memname"><a class="el" href="namespaceconfig.html#a42fe9edda5280a58720172bbf71a2c83">ArgumentVector</a> const  &amp; config::Block::get </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
@@ -327,6 +396,82 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="ab43c3ce7c8630607f45ee5d0810979a4" name="ab43c3ce7c8630607f45ee5d0810979a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab43c3ce7c8630607f45ee5d0810979a4">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; config::Block::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b9356d33af27fe0a25888508821e24f" name="a5b9356d33af27fe0a25888508821e24f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9356d33af27fe0a25888508821e24f">&#9670;&#160;</a></span>getFirstEvaluatedString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string config::Block::getFirstEvaluatedString </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4763ef01d6763886e016a288c98c2fc" name="aa4763ef01d6763886e016a288c98c2fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4763ef01d6763886e016a288c98c2fc">&#9670;&#160;</a></span>getFirstRawValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string config::Block::getFirstRawValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36404f2a6fee6a9abc85b8f8eb4a940d" name="a36404f2a6fee6a9abc85b8f8eb4a940d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36404f2a6fee6a9abc85b8f8eb4a940d">&#9670;&#160;</a></span>getRawValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; config::Block::getRawValues </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afe28262e97bce1adf4e8178f3ef2b7f0" name="afe28262e97bce1adf4e8178f3ef2b7f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe28262e97bce1adf4e8178f3ef2b7f0">&#9670;&#160;</a></span>has()</h2>
 
@@ -353,14 +498,14 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a13dfc726a78750f7cf4d52026cf55508" name="a13dfc726a78750f7cf4d52026cf55508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13dfc726a78750f7cf4d52026cf55508">&#9670;&#160;</a></span>indexFiles()</h2>
+<a id="ac2dece454bd5dfa379b5563f65c18dad" name="ac2dece454bd5dfa379b5563f65c18dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2dece454bd5dfa379b5563f65c18dad">&#9670;&#160;</a></span>indexFiles()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1">StringVector</a> const  &amp; config::Block::indexFiles </td>
+          <td class="memname">std::vector&lt; std::string &gt; config::Block::indexFiles </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -393,14 +538,31 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a9c86d895aa2e66a70d0c922779f039d5" name="a9c86d895aa2e66a70d0c922779f039d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c86d895aa2e66a70d0c922779f039d5">&#9670;&#160;</a></span>root() <span class="overload">[1/2]</span></h2>
+<a id="a9b930c300d568d12a7989acc07c68f85" name="a9b930c300d568d12a7989acc07c68f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b930c300d568d12a7989acc07c68f85">&#9670;&#160;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string const  &amp; config::Block::root </td>
+          <td class="memname"><a class="el" href="classconfig_1_1Block.html">Block</a> &amp; config::Block::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classconfig_1_1Block.html">Block</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10ffd4385056006951501fc15d052a9e" name="a10ffd4385056006951501fc15d052a9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10ffd4385056006951501fc15d052a9e">&#9670;&#160;</a></span>root() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string config::Block::root </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -462,6 +624,28 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a2a3e6fbfc8479272d09aaa82bdcf59e4" name="a2a3e6fbfc8479272d09aaa82bdcf59e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a3e6fbfc8479272d09aaa82bdcf59e4">&#9670;&#160;</a></span>ListenDirective</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classconfig_1_1ListenDirective.html">ListenDirective</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ade9718a29a0b4aa18692f45b1a8a41c2" name="ade9718a29a0b4aa18692f45b1a8a41c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ade9718a29a0b4aa18692f45b1a8a41c2">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
 
@@ -502,7 +686,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceconfig.html#adc4ea00539811be31b511a546c211ed0">DirectiveMap</a> config::Block::directives_</td>
+          <td class="memname"><a class="el" href="namespaceconfig.html#af84dbd7147ca68f1dbb08472f16061d6">DirectiveMap</a> config::Block::directives_</td>
         </tr>
       </table>
   </td>

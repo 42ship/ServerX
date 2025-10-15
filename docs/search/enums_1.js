@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglevel_0',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
+  ['bodysourcetype_0',['BodySourceType',['../namespacehttp.html#a5caa6e20e143ddd3996b64f29fcc4c57',1,'http']]]
 ];

@@ -1,13 +1,17 @@
 var annotated_dup =
 [
     [ "config", "namespaceconfig.html", [
+      [ "ArgumentFactory", "classconfig_1_1ArgumentFactory.html", null ],
       [ "Block", "classconfig_1_1Block.html", "classconfig_1_1Block" ],
+      [ "ConcatenatedValue", "classconfig_1_1ConcatenatedValue.html", "classconfig_1_1ConcatenatedValue" ],
       [ "ConfigError", "classconfig_1_1ConfigError.html", "classconfig_1_1ConfigError" ],
       [ "ConfigException", "classconfig_1_1ConfigException.html", "classconfig_1_1ConfigException" ],
       [ "ConfigNode", "classconfig_1_1ConfigNode.html", "classconfig_1_1ConfigNode" ],
       [ "ConfigWarning", "classconfig_1_1ConfigWarning.html", "classconfig_1_1ConfigWarning" ],
       [ "DirectiveHandler", "classconfig_1_1DirectiveHandler.html", "classconfig_1_1DirectiveHandler" ],
+      [ "IArgument", "classconfig_1_1IArgument.html", "classconfig_1_1IArgument" ],
       [ "IDirective", "classconfig_1_1IDirective.html", "classconfig_1_1IDirective" ],
+      [ "Integer", "classconfig_1_1Integer.html", "classconfig_1_1Integer" ],
       [ "Lexer", "classconfig_1_1Lexer.html", "classconfig_1_1Lexer" ],
       [ "ListenDirective", "classconfig_1_1ListenDirective.html", "classconfig_1_1ListenDirective" ],
       [ "LocationBlock", "classconfig_1_1LocationBlock.html", "classconfig_1_1LocationBlock" ],
@@ -16,8 +20,10 @@ var annotated_dup =
       [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
       [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
       [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
+      [ "String", "classconfig_1_1String.html", "classconfig_1_1String" ],
       [ "Token", "structconfig_1_1Token.html", "structconfig_1_1Token" ],
-      [ "Validator", "classconfig_1_1Validator.html", "classconfig_1_1Validator" ]
+      [ "Validator", "classconfig_1_1Validator.html", "classconfig_1_1Validator" ],
+      [ "Variable", "classconfig_1_1Variable.html", "classconfig_1_1Variable" ]
     ] ],
     [ "core", "namespacecore.html", [
       [ "Server", "classcore_1_1Server.html", "classcore_1_1Server" ]

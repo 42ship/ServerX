@@ -11,5 +11,6 @@ var searchData=
   ['socket_2ehpp_8',['Socket.hpp',['../Socket_8hpp.html',1,'']]],
   ['staticfile_2ecpp_9',['StaticFile.cpp',['../StaticFile_8cpp.html',1,'']]],
   ['string_2ecpp_10',['string.cpp',['../string_8cpp.html',1,'']]],
-  ['string_2ehpp_11',['string.hpp',['../string_8hpp.html',1,'']]]
+  ['string_2ehpp_11',['String.hpp',['../String_8hpp.html',1,'']]],
+  ['string_2ehpp_12',['string.hpp',['../string_8hpp.html',1,'']]]
 ];

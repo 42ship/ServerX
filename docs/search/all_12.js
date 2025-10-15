@@ -13,5 +13,6 @@ var searchData=
   ['trace_10',['TRACE',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dda074a3bb991ceb4ae30b93dbcabebd102',1,'utils']]],
   ['trim_11',['trim',['../namespaceutils.html#a935df850f81594becc164936220efa39',1,'utils']]],
   ['tryparseheaders_12',['tryParseHeaders',['../classnetwork_1_1Reactor.html#a4b5f53fe2ac867f0b2aef140d00cebca',1,'network::Reactor']]],
-  ['type_13',['type',['../structconfig_1_1Token.html#a33f0fd3dd2d23bc7e0fa675d2e757ddf',1,'config::Token']]]
+  ['type_13',['type',['../structconfig_1_1Token.html#a33f0fd3dd2d23bc7e0fa675d2e757ddf',1,'config::Token']]],
+  ['types_2ehpp_14',['types.hpp',['../types_8hpp.html',1,'']]]
 ];

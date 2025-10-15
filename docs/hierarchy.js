@@ -4,6 +4,7 @@ var hierarchy =
       [ "network::Acceptor", "classnetwork_1_1Acceptor.html", null ],
       [ "network::Reactor", "classnetwork_1_1Reactor.html", null ]
     ] ],
+    [ "config::ArgumentFactory", "classconfig_1_1ArgumentFactory.html", null ],
     [ "config::Block", "classconfig_1_1Block.html", [
       [ "config::LocationBlock", "classconfig_1_1LocationBlock.html", null ],
       [ "config::ServerBlock", "classconfig_1_1ServerBlock.html", null ]
@@ -19,6 +20,12 @@ var hierarchy =
     ] ],
     [ "http::HttpRequest", "classhttp_1_1HttpRequest.html", null ],
     [ "http::HttpResponse", "classhttp_1_1HttpResponse.html", null ],
+    [ "config::IArgument", "classconfig_1_1IArgument.html", [
+      [ "config::ConcatenatedValue", "classconfig_1_1ConcatenatedValue.html", null ],
+      [ "config::Integer", "classconfig_1_1Integer.html", null ],
+      [ "config::String", "classconfig_1_1String.html", null ],
+      [ "config::Variable", "classconfig_1_1Variable.html", null ]
+    ] ],
     [ "config::IDirective", "classconfig_1_1IDirective.html", [
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
       [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]

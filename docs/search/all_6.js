@@ -14,5 +14,7 @@ var searchData=
   ['findfirstnonspace_11',['findFirstNonSpace',['../classhttp_1_1MimeTypes.html#a25a3a04e61f4ac3fba309b176efd6adf',1,'http::MimeTypes']]],
   ['findfirstspace_12',['findFirstSpace',['../classhttp_1_1MimeTypes.html#ae61c9def126398a0bd5d0544bfa60de7',1,'http::MimeTypes']]],
   ['forbidden_13',['FORBIDDEN',['../namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7',1,'http']]],
-  ['fromstring_14',['fromString',['../namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4',1,'utils']]]
+  ['fromstring_14',['fromString',['../namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4',1,'utils']]],
+  ['funcmap_15',['FuncMap',['../namespaceconfig.html#aa8c68ac53942e8956025bf4392a4a888',1,'config']]],
+  ['funcvar_16',['FuncVar',['../namespaceconfig.html#a02800564188ba0e19fb0147041c9c5f1',1,'config']]]
 ];

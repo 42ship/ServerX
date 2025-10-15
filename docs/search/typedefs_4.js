@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['serverblockmap_0',['ServerBlockMap',['../namespaceconfig.html#a7cc70445712c439111acb4dc2cfd561a',1,'config']]],
-  ['serverblockvec_1',['ServerBlockVec',['../namespaceconfig.html#a4508aae42e035db1f7d0e29c8ae0bcf3',1,'config']]],
-  ['stringvector_2',['StringVector',['../namespaceconfig.html#a0d79bdf5eda5f5127d8bd8a21e1afaf1',1,'config']]]
+  ['handlermap_0',['HandlerMap',['../classconfig_1_1DirectiveHandler.html#aca344fc2183e8daa5e881c8287c3b253',1,'config::DirectiveHandler']]],
+  ['headermap_1',['HeaderMap',['../classhttp_1_1HttpRequest.html#a1f3ff444f3ec01ee9e0d997a14f57b0e',1,'http::HttpRequest::HeaderMap'],['../namespacehttp.html#acb1f63951de702c14448a9074beb8c0e',1,'http::HeaderMap']]]
 ];
