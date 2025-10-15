@@ -2,6 +2,7 @@
 #include "common/filesystem.hpp"
 #include "common/string.hpp"
 #include "config/Block.hpp"
+#include "config/LocationBlock.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
@@ -130,6 +131,16 @@ ValidationResult checkContentLength(std::string const &contentLen) {
                                              "Content-Length header is required for uploads");
     }
     return utils::ValidationResult::ok("");
+}
+
+std::string getPath(http::HttpRequest const &req, config::LocationBlock const &l) {
+    std::string path;
+
+    if (l.path() == req.path && req.path[req.path.length() - 1] != '/')
+        path = req.path;
+    else
+        path = (req.path.substr(l.path().size()));
+    return l.root() + path;
 }
 
 } // namespace utils

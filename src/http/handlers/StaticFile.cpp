@@ -15,27 +15,13 @@
 
 namespace http {
 
-namespace details {
-
-std::string getPath(HttpRequest const &req, config::LocationBlock const &l) {
-    std::string path;
-
-    if (l.path() == req.path && req.path[req.path.length() - 1] != '/')
-        path = req.path;
-    else
-        path = (req.path.substr(l.path().size()));
-    return l.root() + path;
-}
-
-} // namespace details
-
 StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
 HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
                                        config::LocationBlock const *l) const {
     if (!l || !s)
         return error_pages::generateErrorResponse(NOT_FOUND, req.version);
-    std::string path = details::getPath(req, *l);
+    std::string path = utils::getPath(req, *l);
     struct stat statbuf;
     if (stat(path.c_str(), &statbuf) != 0) {
         if (errno == ENOENT || errno == ENOTDIR) {

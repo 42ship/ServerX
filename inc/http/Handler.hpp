@@ -84,13 +84,18 @@ public:
 private:
     FileUploadHandler();
     HttpResponse handleMultipartFormData(HttpRequest const &req, config::ServerBlock const *s,
-                                            config::LocationBlock const *l) const;
+                                         config::LocationBlock const *l) const;
     MimeTypes const &mimeTypes_;
 };
 
-namespace details {
-    HttpRequest parse(std::istringstream &s, const std::string &boundary);
-}
+class FileDeleteHandler : public IHandler {
+public:
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+                        config::LocationBlock const *l) const;
+};
 
+namespace details {
+HttpRequest parse(std::istringstream &s, const std::string &boundary);
+}
 
 } // namespace http
