@@ -46,12 +46,13 @@ private:
     void expectToken(std::string literal);
     bool isTokenAValue() const;
     void displayCurrentToken() const;
-    void addDirective(ConfigNode &node, DirectivePair const &pair) const;
+    void addDirective(ConfigNode &node, ParsedDirectivePair const &pair) const;
+    void pushTokenTo(ParsedDirectiveArgs &args);
 
     void handleServerBlock();
     void handleStatement();
     void handleLocationBlock();
-    DirectivePair handleDirective();
+    ParsedDirectivePair handleDirective();
 };
 
 } // namespace config

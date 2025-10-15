@@ -45,7 +45,7 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
 }
 
 void Mapper::mapLocationBlock(LocationBlock &b, ConfigNode const &node) {
-    b.path(node.args[0]);
+    b.path(node.args[0].literal);
     DirectiveHandler::getInstance().process(b, node.directives);
 }
 

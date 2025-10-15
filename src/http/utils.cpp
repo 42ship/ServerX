@@ -108,13 +108,12 @@ ValidationResult checkUploadLimit(const std::string &contentLength, config::Bloc
     }
 
     if (!s.has("upload_file_size")) {
-        return ValidationResult::ok("");
+        return ValidationResult::ok();
     }
-    const config::StringVector &sv = s.get("upload_file_size");
-    if (sv.empty()) {
-        return ValidationResult::ok("");
+    std::string sUploadFileSize = s.getFirstRawValue("upload_file_size");
+    if (sUploadFileSize.empty()) {
+        return ValidationResult::ok();
     }
-    std::string sUploadFileSize = sv[0];
     size_t uploadFileSize = fromString<size_t>(sUploadFileSize);
     size_t len = fromString<size_t>(contentLength);
     uploadFileSize = uploadFileSize * 1024 * 1024;

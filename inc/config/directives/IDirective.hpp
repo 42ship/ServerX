@@ -1,6 +1,7 @@
 #pragma once
 
 #include "config/Block.hpp"
+#include "config/internal/types.hpp"
 #include <string>
 
 namespace config {
@@ -26,7 +27,7 @@ public:
      * @param block The configuration block (ServerBlock or LocationBlock) to modify.
      * @param args The vector of string arguments for the directive.
      */
-    virtual void process(Block &block, StringVector const &args) const = 0;
+    virtual void process(Block &block, ParsedDirectiveArgs const &args) const = 0;
 
     /**
      * @brief Gets the name of the directive.

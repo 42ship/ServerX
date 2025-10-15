@@ -22,16 +22,16 @@ TEST_CASE("Parser") {
         CHECK(server.name == "server");
         CHECK(server.directives.size() == 2);
         CHECK(server.directives.at("listen").size() == 1);
-        CHECK(server.directives.at("listen")[0] == "8080");
+        CHECK(server.directives.at("listen")[0].literal == "8080");
         CHECK(server.children.size() == 1);
 
         config::ConfigNode const &loc = server.children[0];
         CHECK(loc.name == "location");
         CHECK(loc.args.size() == 1);
-        CHECK(loc.args[0] == "/");
+        CHECK(loc.args[0].literal == "/");
         CHECK(loc.directives.size() == 2);
         CHECK(loc.directives.at("index").size() == 2);
-        CHECK(loc.directives.at("index")[1] == "index.htm");
+        CHECK(loc.directives.at("index")[1].literal == "index.htm");
     }
 
     SUBCASE("Should parse multiple server blocks") {
@@ -39,8 +39,8 @@ TEST_CASE("Parser") {
         config::TokenArray tokens = config::Lexer::tokenize(MULTI_SERVER);
         config::ConfigNodeVec nodes = config::Parser::parse(tokens);
         CHECK(nodes.size() == 2);
-        CHECK(nodes[0].directives.at("listen")[0] == "80");
-        CHECK(nodes[1].directives.at("listen")[0] == "443");
+        CHECK(nodes[0].directives.at("listen")[0].literal == "80");
+        CHECK(nodes[1].directives.at("listen")[0].literal == "443");
     }
 
     SUBCASE("Should throw on missing semicolon") {

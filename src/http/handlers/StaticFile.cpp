@@ -2,6 +2,7 @@
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
+#include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
 #include "http/error_pages.hpp"
 #include "http/utils.hpp"
@@ -46,9 +47,11 @@ HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlo
         }
     }
     if (S_ISDIR(statbuf.st_mode)) {
+        if (!l->has("index"))
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         std::string index_path;
         bool found_index = false;
-        config::StringVector const &indexes = l->indexFiles();
+        std::vector<std::string> const &indexes = l->indexFiles();
         for (size_t i = 0; i < indexes.size(); i++) {
             index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + indexes[i];
             if (access(index_path.c_str(), F_OK) == 0) {

@@ -6,7 +6,7 @@ namespace config {
 
 class RootDirective : public IDirective {
 public:
-    void process(Block &block, StringVector const &args) const;
+    void process(Block &block, ParsedDirectiveArgs const &args) const;
     std::string const &getName() const { return name_; }
 
 private:

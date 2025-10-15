@@ -1,6 +1,5 @@
 #include "config/pipeline/Validator.hpp"
 #include "common/filesystem.hpp"
-#include "config/internal/ConfigException.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "config/internal/ConfigException.hpp"

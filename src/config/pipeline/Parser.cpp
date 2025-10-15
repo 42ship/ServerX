@@ -1,5 +1,7 @@
 #include "config/pipeline/Parser.hpp"
 #include "config/internal/ConfigException.hpp"
+#include "config/internal/ConfigNode.hpp"
+#include "config/internal/Token.hpp"
 
 namespace config {
 
@@ -42,11 +44,11 @@ void Parser::expectToken(std::string literal) {
     consumeToken();
 }
 
-void Parser::addDirective(ConfigNode &node, DirectivePair const &pair) const {
-    DirectiveMap::iterator it = node.directives.find(pair.first);
+void Parser::addDirective(ConfigNode &node, ParsedDirectivePair const &pair) const {
+    ParsedDirectiveMap::iterator it = node.directives.find(pair.first);
 
     if (it != node.directives.end()) {
-        DirectiveArgs &ar = it->second;
+        ParsedDirectiveArgs &ar = it->second;
         ar.reserve(ar.size() + pair.second.size());
         ar.insert(ar.end(), pair.second.begin(), pair.second.end());
     } else {
@@ -86,7 +88,7 @@ void Parser::handleLocationBlock() {
         throw ConfigError("Expected a location name (identifier)");
 
     ConfigNode node(std::string("location"));
-    node.args.push_back(currentToken().literal);
+    pushTokenTo(node.args);
 
     consumeToken();
     expectToken(LEFT_BRACE);
@@ -96,20 +98,22 @@ void Parser::handleLocationBlock() {
     nodes_.back().children.push_back(node);
 }
 
-DirectivePair Parser::handleDirective() {
+ParsedDirectivePair Parser::handleDirective() {
     if (!isTokenAValue())
         throw ConfigError("Expected a directive name (identifier).");
 
-    DirectivePair d;
+    ParsedDirectivePair d;
     d.first = currentToken().literal;
     consumeToken();
 
     while (isTokenAValue()) {
-        d.second.push_back(currentToken().literal);
+        pushTokenTo(d.second);
         consumeToken();
     }
     expectToken(SEMICOLON);
     return d;
 }
+
+void Parser::pushTokenTo(ParsedDirectiveArgs &args) { args.push_back(currentToken()); }
 
 } // namespace config

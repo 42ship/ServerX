@@ -1,7 +1,6 @@
 #pragma once
 
 #include "config/ServerConfig.hpp"
-#include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"

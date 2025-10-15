@@ -6,6 +6,8 @@
 
 namespace config {
 
+class ConfigNode;
+
 /**
  * @class Mapper
  * @brief Translates a generic ConfigNode tree into strongly-typed config blocks.

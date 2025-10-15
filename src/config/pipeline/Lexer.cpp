@@ -1,5 +1,4 @@
 #include "config/pipeline/Lexer.hpp"
-
 #include <iostream>
 
 namespace config {
@@ -43,9 +42,7 @@ void Lexer::handleComment() {
         readChar();
 }
 
-void Lexer::handleUnknown() {
-    pushToken(UNKNOWN, ch_);
-}
+void Lexer::handleUnknown() { pushToken(UNKNOWN, ch_); }
 
 void Lexer::handlePunctuation() {
     if (ch_ == '#')
@@ -61,9 +58,7 @@ void Lexer::handlePunctuation() {
     readChar();
 }
 
-bool Lexer::isPunctuation() {
-    return ch_ == '#' || ch_ == '{' || ch_ == '}' || ch_ == ';';
-}
+bool Lexer::isPunctuation() { return ch_ == '#' || ch_ == '{' || ch_ == '}' || ch_ == ';'; }
 
 bool Lexer::handleValue() {
     size_t start_pos = pos_ - 1;

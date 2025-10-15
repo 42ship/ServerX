@@ -3,8 +3,8 @@
 #include "http/HttpResponse.hpp"
 #include "http/error_pages.hpp"
 #include "http/utils.hpp"
-#include <unistd.h>
 #include <sstream>
+#include <unistd.h>
 
 namespace http {
 
@@ -14,17 +14,7 @@ std::string getUploadPath(const config::LocationBlock &l) {
     if (!l.has("upload_path")) {
         return "";
     }
-
-    const config::StringVector &v = l.get("upload_path");
-    if (v.empty()) {
-        return "";
-    }
-
-    const std::string &path = v[0];
-    if (path.empty()) {
-        return "";
-    }
-    return path;
+    return l.getFirstRawValue("upload_path");
 }
 
 std::string buildUploadPath(const config::ServerBlock &s, const config::LocationBlock &l) {
@@ -59,19 +49,22 @@ std::string buildUploadPath(const config::ServerBlock &s, const config::Location
 
 FileUploadHandler::FileUploadHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
-HttpResponse FileUploadHandler::handleMultipartFormData(HttpRequest const &req, config::ServerBlock const *s,
-                                            config::LocationBlock const *l) const {
+HttpResponse FileUploadHandler::handleMultipartFormData(HttpRequest const &req,
+                                                        config::ServerBlock const *s,
+                                                        config::LocationBlock const *l) const {
     std::string boundary = utils::extractHeaderParam(req.getHeader("Content-Type"), "boundary=");
     if (boundary.empty()) {
-        return error_pages::generateJsonErrorResponse(BAD_REQUEST, req.version, "Missing or invalid boundary parameter in Content-Type header");
+        return error_pages::generateJsonErrorResponse(
+            BAD_REQUEST, req.version,
+            "Missing or invalid boundary parameter in Content-Type header");
     }
 
     boundary = "--" + boundary;
     std::istringstream stream(req.body);
 
     HttpResponse firstRes;
-    for (HttpRequest multiReq = details::parse(stream, boundary); stream.good() ; multiReq = details::parse(stream, boundary))
-    {
+    for (HttpRequest multiReq = details::parse(stream, boundary); stream.good();
+         multiReq = details::parse(stream, boundary)) {
         multiReq.uri = req.uri;
         multiReq.version = req.version;
         multiReq.headers["Content-Length"] = req.getHeader("Content-Length");

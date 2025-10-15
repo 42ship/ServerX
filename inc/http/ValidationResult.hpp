@@ -36,6 +36,9 @@ struct ValidationResult {
         return vr;
     }
 
+    /// @brief Creates a successful validation result.
+    static ValidationResult ok() { return ok(""); }
+
     /// @brief Creates a failed validation result.
     static ValidationResult fail(http::Status s, const std::string &msg) {
         ValidationResult vr;

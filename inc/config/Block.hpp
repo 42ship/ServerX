@@ -1,13 +1,9 @@
 #pragma once
 
-#include <map>
-#include <string>
-#include <vector>
+#include "config/arguments/IArgument.hpp"
+#include "config/internal/types.hpp"
 
 namespace config {
-
-typedef std::vector<std::string> StringVector;
-typedef std::map<std::string, StringVector> DirectiveMap;
 
 /**
  * @class Block
@@ -18,9 +14,9 @@ typedef std::map<std::string, StringVector> DirectiveMap;
  */
 class Block {
 public:
-    // ========================= Construction & Destruction =========================
-
     Block(std::string const &name);
+    Block(const Block &other);
+    Block &operator=(const Block &other);
     virtual ~Block();
 
     // ============================== Public Interface ==============================
@@ -38,7 +34,7 @@ public:
      * @return A constant reference to the vector of directive values.
      * @throws std::out_of_range If the directive is not found.
      */
-    StringVector const &get(std::string const &key) const;
+    ArgumentVector const &get(std::string const &key) const;
 
     /**
      * @brief Adds a directive with multiple values.
@@ -46,13 +42,20 @@ public:
      * @param values A vector of string values.
      * @return A reference to the Block object for chaining.
      */
-    Block &add(std::string const &key, StringVector const &);
+    Block &add(std::string const &key, std::vector<std::string> const &);
     /** @copydoc add(std::string const &, StringVector const &) */
     Block &add(std::string const &key, std::string const &);
     /** @copydoc add(std::string const &, StringVector const &) */
     Block &add(std::string const &key, std::string const &, std::string const &);
 
+    std::vector<std::string> getRawValues(std::string const &key) const;
+
+    std::string getFirstRawValue(std::string const &key) const;
+
     // ============================== Getters & Setters =============================
+
+    std::vector<std::string> get(std::string const &key, http::HttpRequest const &req) const;
+    std::string getFirstEvaluatedString(std::string const &key, http::HttpRequest const &req) const;
 
     /**
      * @brief Gets the name of the block.
@@ -64,13 +67,13 @@ public:
      * @brief Gets the root path directive.
      * @return The root path string, or an empty string if not set.
      */
-    std::string const &root() const;
+    std::string root() const;
 
     /**
      * @brief Gets the index files directive.
      * @return A vector of index file names.
      */
-    StringVector const &indexFiles() const;
+    std::vector<std::string> indexFiles() const;
 
     // ================================= Fluent API =================================
 
@@ -81,13 +84,15 @@ public:
      */
     Block &root(std::string const &);
 
-    friend std::ostream &operator<<(std::ostream &, Block const &);
-
 protected:
-    friend class DirectiveHandler;
+    Block &add(std::string const &key, ParsedDirectiveArgs const &values);
+    Block &add(std::string const &key, ArgumentVector const &values);
 
     std::string name_;        //!< The name of the block (e.g., "server", "location").
     DirectiveMap directives_; //!< Map storing directive names and their values.
+    friend class DirectiveHandler;
+    friend std::ostream &operator<<(std::ostream &, Block const &);
+    friend class ListenDirective;
 };
 
 } // namespace config
