@@ -4,6 +4,7 @@
 #include "http/HttpResponse.hpp"
 #include "http/Router.hpp"
 #include "http/RouterResult.hpp"
+#include "http/error_pages.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
@@ -21,18 +22,18 @@ namespace network {
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
     : clientFd_(clientFd), port_(port), router_(router), responseBuffer_(8192) {
     resetForNewRequest();
-    LOG_INFO("New connection accepted on fd: " << clientFd_);
+    LOG_TRACE("New connection accepted on fd: " << clientFd_);
 }
 
 Reactor::~Reactor() {
-    LOG_INFO("Closing connection on fd: " << clientFd_);
+    LOG_TRACE("Closing connection on fd: " << clientFd_);
     if (clientFd_ >= 0) {
         close(clientFd_);
     }
 }
 
 void Reactor::closeConnection() {
-    LOG_INFO("Cleaning up handler for fd: " << clientFd_);
+    LOG_TRACE("Cleaning up handler for fd: " << clientFd_);
     InitiationDispatcher::getInstance().removeHandler(clientFd_);
 }
 
@@ -45,9 +46,7 @@ void Reactor::handleEvent(uint32_t events) {
     }
 }
 
-int Reactor::getHandle() const {
-    return clientFd_;
-}
+int Reactor::getHandle() const { return clientFd_; }
 
 void Reactor::handleRead() {
     LOG_TRACE("Handling read event on fd: " << clientFd_);
@@ -74,7 +73,7 @@ void Reactor::handleRead() {
             requestState_ = REQUEST_READY;
     }
     if (requestState_ == REQUEST_READY) {
-        LOG_INFO("Request fully received on fd: " << clientFd_ << ", processing...");
+        LOG_TRACE("Request fully received on fd: " << clientFd_ << ", processing...");
         generateResponse();
     }
 }
@@ -98,9 +97,19 @@ void Reactor::tryParseHeaders() {
 }
 
 void Reactor::generateResponse() {
-    http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
-    http::RouterResult result = router_.route(port_, request);
-    response_ = result.handler.handle(request, result);
+    try {
+        http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
+        http::RouterResult result = router_.route(port_, request);
+        response_ = result.handler.handle(request, result);
+    } catch (std::exception const &e) {
+        LOG_ERROR("Reactor::generateResponse(): " << e.what());
+        response_ =
+            http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
+    } catch (...) {
+        LOG_ERROR("Reactor::generateResponse(): \"Internal server error\"");
+        response_ =
+            http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
+    }
 
     std::string const &headers = response_.buildHeaders();
     responseBuffer_.assign(headers.begin(), headers.end());
@@ -109,7 +118,7 @@ void Reactor::generateResponse() {
         responseBuffer_.insert(responseBuffer_.end(), response_.inMemoryBody.data->begin(),
                                response_.inMemoryBody.data->end());
     }
-    LOG_INFO("Generated response for fd: " << clientFd_ << " status: " << response_.getStatus());
+    LOG_DEBUG("Generated response for fd: " << clientFd_ << " status: " << response_.getStatus());
     responseState_ = SENDING;
     sentResponseBytes_ = 0;
     InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLOUT);
@@ -138,7 +147,7 @@ void Reactor::handleWrite() {
                 if (bytes_read < 0) {
                     LOG_ERROR("File read error for fd " << clientFd_ << ": " << strerror(errno));
                 } else {
-                    LOG_INFO("Finished streaming file to fd: " << clientFd_);
+                    LOG_DEBUG("Finished streaming file to fd: " << clientFd_);
                 }
                 close(response_.fileBody.fd);
                 responseState_ = SENT;
@@ -148,9 +157,9 @@ void Reactor::handleWrite() {
     }
     if (responseState_ != SENT)
         return;
-    LOG_INFO("Response fully sent to fd: " << clientFd_);
+    LOG_DEBUG("Response fully sent to fd: " << clientFd_);
     if (response_.getHeaders()["Connection"] == "keep-alive") {
-        LOG_INFO("Keep-alive enabled. Resetting state for fd: " << clientFd_);
+        LOG_DEBUG("Keep-alive enabled. Resetting state for fd: " << clientFd_);
         InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
         resetForNewRequest();
     } else

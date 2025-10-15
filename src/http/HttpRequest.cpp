@@ -1,4 +1,5 @@
 #include "http/HttpRequest.hpp"
+#include "http/HttpStatus.hpp"
 #include <ostream>
 #include <sstream>
 
@@ -10,9 +11,16 @@ using namespace details;
 
 HttpRequest::HttpRequest() : status(OK) {}
 
-HttpRequest::HttpRequest(HttpRequest const &req) : status(req.status), method(req.method), uri(req.uri), path(req.path), version(req.version), headers(req.headers), body(req.body) {}
+HttpRequest::HttpRequest(HttpRequest const &req)
+    : status(req.status),
+      method(req.method),
+      uri(req.uri),
+      path(req.path),
+      version(req.version),
+      headers(req.headers),
+      body(req.body) {}
 
-HttpRequest& HttpRequest::operator=(HttpRequest const &req) {
+HttpRequest &HttpRequest::operator=(HttpRequest const &req) {
     status = req.status;
     method = req.method;
     uri = req.uri;
@@ -20,18 +28,23 @@ HttpRequest& HttpRequest::operator=(HttpRequest const &req) {
     version = req.version;
     headers = req.headers;
     body = req.body;
-    
+
     return *this;
+}
+
+bool parsePath(HttpRequest &res) {
+    res.path = extractPathFUri(res.uri);
+    return res.path.find("./") == std::string::npos;
 }
 
 HttpRequest HttpRequest::parse(string const &buffer) {
     HttpRequest res;
     istringstream s(buffer);
 
-    if (!parseStartLine(res, s) || !parseHeaders(res.headers, s) || !parseBody(res, s)) {
+    if (!parseStartLine(res, s) || !parsePath(res) || !parseHeaders(res.headers, s) ||
+        !parseBody(res, s)) {
         res.status = BAD_REQUEST;
     }
-    res.path = extractPathFUri(res.uri);
     return res;
 }
 
