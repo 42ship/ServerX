@@ -69,5 +69,6 @@ var namespacehttp =
     [ "operator<<", "namespacehttp.html#a3a7625cb4ea5c5e66bcab1670d07e72b", null ],
     [ "operator<<", "namespacehttp.html#a73c10827cfd143e094a3a9ce713d2156", null ],
     [ "operator<<", "namespacehttp.html#a939a44b90b681599587179009668655a", null ],
-    [ "operator<<", "namespacehttp.html#a8c01811275e40489995684028ff03ac4", null ]
+    [ "operator<<", "namespacehttp.html#a8c01811275e40489995684028ff03ac4", null ],
+    [ "parsePath", "namespacehttp.html#a737493e173baedb67273c5be586a6f73", null ]
 ];
