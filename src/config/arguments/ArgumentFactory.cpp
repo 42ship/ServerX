@@ -1,4 +1,5 @@
 #include "config/arguments/ArgumentFactory.hpp"
+#include "common/string.hpp"
 #include "config/arguments/ConcatenatedValue.hpp"
 #include "config/arguments/Integer.hpp"
 #include "config/arguments/String.hpp"
@@ -6,7 +7,6 @@
 #include "config/internal/ConfigException.hpp"
 #include "config/internal/Token.hpp"
 #include "config/internal/types.hpp"
-#include "utils/utils.hpp"
 #include <string>
 
 namespace config {

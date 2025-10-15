@@ -34,7 +34,7 @@ public:
      * @return A constant reference to the vector of directive values.
      * @throws std::out_of_range If the directive is not found.
      */
-    ArgumentVector const *get(std::string const &key) const;
+    ArgumentVector const &get(std::string const &key) const;
 
     /**
      * @brief Adds a directive with multiple values.
@@ -47,6 +47,10 @@ public:
     Block &add(std::string const &key, std::string const &);
     /** @copydoc add(std::string const &, StringVector const &) */
     Block &add(std::string const &key, std::string const &, std::string const &);
+
+    std::vector<std::string> getRawValues(std::string const &key) const;
+
+    std::string getFirstRawValue(std::string const &key) const;
 
     // ============================== Getters & Setters =============================
 
@@ -83,8 +87,6 @@ public:
 protected:
     Block &add(std::string const &key, ParsedDirectiveArgs const &values);
     Block &add(std::string const &key, ArgumentVector const &values);
-    std::vector<std::string> getRawValues(std::string const &key) const;
-    std::string getFirstRawValue(std::string const &key) const;
 
     std::string name_;        //!< The name of the block (e.g., "server", "location").
     DirectiveMap directives_; //!< Map storing directive names and their values.

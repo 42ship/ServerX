@@ -3,6 +3,7 @@
 #include "config/arguments/String.hpp"
 #include "config/internal/types.hpp"
 #include "utils/IndentManager.hpp"
+#include <stdexcept>
 
 namespace config {
 
@@ -52,12 +53,10 @@ Block &Block::operator=(const Block &other) {
 }
 
 std::vector<std::string> Block::get(std::string const &key, http::HttpRequest const &req) const {
-    ArgumentVector const *argv = get(key);
+    ArgumentVector const &argv = get(key);
     std::vector<std::string> res;
-    if (!argv)
-        return res;
-    res.reserve(argv->size());
-    for (ArgumentVector::const_iterator it = argv->begin(); it != argv->end(); ++argv) {
+    res.reserve(argv.size());
+    for (ArgumentVector::const_iterator it = argv.begin(); it != argv.end(); ++it) {
         if (*it)
             res.push_back((*it)->evaluate(req));
     }
@@ -66,17 +65,24 @@ std::vector<std::string> Block::get(std::string const &key, http::HttpRequest co
 
 std::string Block::getFirstEvaluatedString(std::string const &key,
                                            http::HttpRequest const &req) const {
-    ArgumentVector const *argv = get(key);
-    if (!argv || argv->size() <= 0)
+    ArgumentVector const &argv = get(key);
+    if (argv.empty()) {
         return "";
-    return argv->front()->evaluate(req);
+    }
+    return argv.front()->evaluate(req);
 }
 
-ArgumentVector const *Block::get(std::string const &key) const {
+/**
+ * @brief Retrieves the arguments for a specific directive.
+ * @param key The name of the directive (e.g., "root").
+ * @return A const pointer to the vector of arguments, or NULL if the
+ * directive is not found or has no arguments.
+ */
+ArgumentVector const &Block::get(std::string const &key) const {
     DirectiveMap::const_iterator it = directives_.find(key);
     if (it != directives_.end() && !it->second.empty())
-        return &it->second;
-    return NULL;
+        return it->second;
+    throw std::out_of_range(key);
 }
 
 /** @brief Checks if a directive exists within the block. */
@@ -119,7 +125,7 @@ Block &Block::add(std::string const &key, std::string const &v1, std::string con
     return *this;
 }
 
-std::string Block::root() const { return getFirstRawValue("root"); }
+std::string Block::root() const { return has("root") ? getFirstRawValue("root") : ""; }
 
 std::string const &Block::name() const { return name_; }
 
@@ -142,23 +148,17 @@ Block &Block::root(std::string const &root) {
 
 std::vector<std::string> Block::getRawValues(std::string const &key) const {
     std::vector<std::string> res;
-    ArgumentVector const *matched = get(key);
-    if (!matched) {
-        return res;
-    }
-    res.reserve(matched->size());
-    for (size_t i = 0; i < matched->size(); i++) {
-        res.push_back((*matched)[i]->getRawValue());
+    ArgumentVector const &matched = get(key);
+    res.reserve(matched.size());
+    for (size_t i = 0; i < matched.size(); i++) {
+        res.push_back(matched[i]->getRawValue());
     }
     return res;
 }
 
 std::string Block::getFirstRawValue(std::string const &key) const {
-    ArgumentVector const *matched = get(key);
-    if (!matched) {
-        return "";
-    }
-    return (*matched)[0]->getRawValue();
+    ArgumentVector const &matched = get(key);
+    return matched[0]->getRawValue();
 }
 
 std::ostream &operator<<(std::ostream &o, Block const &b) {

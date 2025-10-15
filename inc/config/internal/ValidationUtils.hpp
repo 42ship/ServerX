@@ -1,8 +1,8 @@
 #pragma once
 
+#include "common/string.hpp"
 #include "config/internal/ConfigException.hpp"
 #include "config/internal/Token.hpp"
-#include "utils/utils.hpp"
 
 /**
  * @def EXPECT_ARG_COUNT(args, expected, name)
