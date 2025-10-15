@@ -89,6 +89,12 @@ ArgumentVector const &Block::get(std::string const &key) const {
 bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
 
 Block &Block::add(std::string const &key, ArgumentVector const &values) {
+    DirectiveMap::const_iterator it = directives_.find(key);
+    if (it != directives_.end()) {
+        for (size_t i = 0; i < it->second.size(); i++) {
+            delete it->second[i];
+        }
+    }
     directives_[key] = values;
     return *this;
 }
