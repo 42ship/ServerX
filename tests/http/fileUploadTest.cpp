@@ -9,22 +9,19 @@
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
-#include "utils/Logger.hpp"
+#include "utils/Logger.hpp" 
 
 using namespace http;
 using namespace std;
 
 // Simple struct to hold request + config pointers
 struct UploadRequestContext {
-    http::HttpRequest req;
+    HttpRequest req;
     const config::ServerBlock *server;
     const config::LocationBlock *location;
 };
 
 const char *filename = "config/test.conf";
-
-// config::ServerConfig conf(filename, false);
-// config::ServerConfig sc()
 
 static string makeBody() {
     return string(
@@ -56,11 +53,6 @@ static string makeBody() {
 
 static string makeRequestTo(const string &path, const string &headers) {
     return "POST " + path + " HTTP/1.1\r\n" + headers + makeBody();
-}
-
-string getRequest(const string headers) {
-    string requestStr = makeBody();
-    return ("POST /img/ HTTP/1.1\r\n" + headers + requestStr);
 }
 
 // Helper that builds a request and finds corresponding server & location
