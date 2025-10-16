@@ -35,9 +35,9 @@ std::string extractHeaderParam(const std::string &str, const std::string &toFind
 }
 
 ValidationResult parseFilename(http::HttpRequest const &req, http::MimeTypes const &mime) {
-    std::string filename = req.getHeader("X-Filename");
-    std::string disposition = req.getHeader("Content-Disposition");
+    std::string filename = req.headers.get("X-Filename");
     if (filename.empty()) {
+        std::string disposition = req.headers.get("Content-Disposition");
         if (disposition.empty()) {
             return ValidationResult::fail(http::BAD_REQUEST,
                                           "Missing filename (X-Filename or Content-Disposition)");
@@ -56,7 +56,7 @@ ValidationResult parseFilename(http::HttpRequest const &req, http::MimeTypes con
         return ValidationResult::fail(http::BAD_REQUEST, "Invalid filename (directory traverse)");
     }
 
-    std::string contentType = req.getHeader("Content-Type");
+    std::string contentType = req.headers.get("Content-Type");
     if (contentType.empty()) {
         return ValidationResult::fail(http::BAD_REQUEST, "Missing Content-Type");
     }

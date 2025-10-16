@@ -41,18 +41,11 @@ HttpRequest HttpRequest::parse(string const &buffer) {
     HttpRequest res;
     istringstream s(buffer);
 
-    if (!parseStartLine(res, s) || !parsePath(res) || !parseHeaders(res.headers, s) ||
-        !parseBody(res, s)) {
+    if (!parseStartLine(res, s) || !parsePath(res) || !parseBody(res, s)) {
         res.status = BAD_REQUEST;
     }
+    res.headers = Headers::parse(s);
     return res;
-}
-
-std::string HttpRequest::getHeader(const std::string &key) const {
-    std::map<std::string, std::string>::const_iterator it = headers.find(key);
-    if (it != headers.end())
-        return it->second;
-    return std::string();
 }
 
 Method HttpRequest::matchHttpMethod(std::string const &s) {

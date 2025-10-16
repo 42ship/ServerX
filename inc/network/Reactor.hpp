@@ -1,8 +1,9 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "http/Router.hpp"
+#include "http/Headers.hpp"
 #include "http/HttpResponse.hpp"
+#include "http/Router.hpp"
 #include <sys/types.h>
 #include <vector>
 
@@ -35,6 +36,7 @@ private:
     int clientFd_;
     int port_;
     http::Router const &router_;
+    http::Headers requestHeaders_;
     http::HttpResponse response_; //!< The HTTP response being prepared/sent.
 
     // --- Request State ---

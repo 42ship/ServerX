@@ -85,13 +85,8 @@ void Reactor::tryParseHeaders() {
         LOG_DEBUG("Headers parsed for fd: " << clientFd_);
         bodyStart_ += 4;
         requestState_ = READING_BODY;
-
-        static const std::string cl_key = "Content-Length: ";
-        size_t pos = requestBuffer_.find(cl_key);
-        if (pos != std::string::npos) {
-            contentLength_ = std::strtol(requestBuffer_.c_str() + pos + cl_key.length(), NULL, 10);
-        } else
-            contentLength_ = 0;
+        requestHeaders_ = http::Headers::parse(requestBuffer_);
+        contentLength_ = requestHeaders_.getConentLength();
         LOG_DEBUG("Request body size: " << contentLength_ << " bytes on fd: " << clientFd_);
     }
 }

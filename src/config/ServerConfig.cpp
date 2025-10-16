@@ -1,10 +1,10 @@
 #include "config/ServerConfig.hpp"
-
 #include "config/ServerBlock.hpp"
 #include "config/pipeline/Lexer.hpp"
 #include "config/pipeline/Mapper.hpp"
 #include "config/pipeline/Parser.hpp"
 #include "config/pipeline/Validator.hpp"
+#include "http/HttpRequest.hpp"
 #include "utils/Logger.hpp"
 #include <fstream>
 #include <iostream>
@@ -40,8 +40,8 @@ void ServerConfig::build(std::string const &content, bool perform_fs_checks) {
 
 ServerBlockMap const &ServerConfig::getServersMap() const { return servers_; }
 
-ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
-    (void)server_name;
+ServerBlock const *ServerConfig::getServer(int port, http::HttpRequest const &req) const {
+    (void)req;
     ServerBlockMap::const_iterator it = servers_.find(port);
     if (it == servers_.end())
         return NULL;

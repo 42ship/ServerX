@@ -52,7 +52,7 @@ FileUploadHandler::FileUploadHandler(MimeTypes const &mime) : mimeTypes_(mime) {
 HttpResponse FileUploadHandler::handleMultipartFormData(HttpRequest const &req,
                                                         config::ServerBlock const *s,
                                                         config::LocationBlock const *l) const {
-    std::string boundary = utils::extractHeaderParam(req.getHeader("Content-Type"), "boundary=");
+    std::string boundary = utils::extractHeaderParam(req.headers.get("Content-Type"), "boundary=");
     if (boundary.empty()) {
         return error_pages::generateJsonErrorResponse(
             BAD_REQUEST, req.version,
@@ -67,7 +67,7 @@ HttpResponse FileUploadHandler::handleMultipartFormData(HttpRequest const &req,
          multiReq = details::parse(stream, boundary)) {
         multiReq.uri = req.uri;
         multiReq.version = req.version;
-        multiReq.headers["Content-Length"] = req.getHeader("Content-Length");
+        multiReq.headers.add("Content-Length", req.headers.get("Content-Length"));
         multiReq.path = req.path;
         HttpResponse res = handle(multiReq, s, l);
         if (firstRes.getBodyType() == BODY_NONE) {
@@ -93,13 +93,13 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
         return error_pages::generateJsonErrorResponse(vup.status, req.version, vup.message);
     }
 
-    std::string transferEncoding = req.getHeader("Transfer-Encoding");
+    std::string transferEncoding = req.headers.get("Transfer-Encoding");
     if (!transferEncoding.empty() && transferEncoding.find("chunked") != std::string::npos) {
         return error_pages::generateJsonErrorResponse(
             http::NOT_IMPLEMENTED, req.version, "Transfer-Encoding: chunked is not supported");
     }
 
-    std::string contentLen = req.getHeader("Content-Length");
+    std::string contentLen = req.headers.get("Content-Length");
     utils::ValidationResult len = utils::checkContentLength(contentLen);
     if (!len.result) {
         return error_pages::generateJsonErrorResponse(len.status, req.version, len.message);
@@ -110,7 +110,7 @@ HttpResponse FileUploadHandler::handle(HttpRequest const &req, config::ServerBlo
         return error_pages::generateJsonErrorResponse(lim.status, req.version, lim.message);
     }
 
-    std::string contentType = req.getHeader("Content-Type");
+    std::string contentType = req.headers.get("Content-Type");
     if (contentType.find("multipart/form-data") != std::string::npos) {
         return handleMultipartFormData(req, s, l);
     }

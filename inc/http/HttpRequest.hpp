@@ -1,5 +1,6 @@
 #pragma once
 
+#include "http/Headers.hpp"
 #include "http/HttpStatus.hpp"
 #include <map>
 #include <ostream>
@@ -20,7 +21,7 @@ class HttpRequest {
 public:
     HttpRequest();
     HttpRequest(HttpRequest const &req);
-    HttpRequest& operator=(HttpRequest const &req);
+    HttpRequest &operator=(HttpRequest const &req);
     typedef std::map<std::string, std::string> HeaderMap;
 
     http::Status status;
@@ -28,11 +29,10 @@ public:
     std::string uri;
     std::string path;
     std::string version;
-    HeaderMap headers;
+    Headers headers;
     std::string body;
 
     static HttpRequest parse(std::string const &);
-    std::string getHeader(const std::string &key) const;
 
     static Method matchHttpMethod(std::string const &s);
     static char const *methodToString(Method);

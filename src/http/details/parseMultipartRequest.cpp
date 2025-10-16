@@ -1,20 +1,15 @@
 #include "http/Handler.hpp"
-
-#include <iostream>
-#include <limits>
-#include <sstream>
-#include <ostream>
-#include <string>
-
 #include "http/HttpRequest.hpp"
-#include "common/string.hpp"
-#include "utils/Logger.hpp"
+#include <iostream>
+#include <sstream>
+#include <string>
 
 namespace http {
 
 namespace details {
 
-bool parseBody(HttpRequest &r, std::istringstream &s, const std::string &marker /* "--"+boundary */) {
+bool parseBody(HttpRequest &r, std::istringstream &s,
+               const std::string &marker /* "--"+boundary */) {
     std::streampos pos = s.tellg();
     if (pos == std::streampos(-1)) {
         return false;
@@ -42,12 +37,13 @@ HttpRequest parse(std::istringstream &s, const std::string &boundary) {
     std::string tmp;
     // remove boundary from begin
     getline(s, tmp);
-    if (!parseHeaders(res.headers, s) || !parseBody(res, s, boundary)) {
+    res.headers = Headers::parse(s);
+    if (!parseBody(res, s, boundary)) {
         res.status = INTERNAL_SERVER_ERROR;
     }
     return res;
 }
 
-}
+} // namespace details
 
 } // namespace http
