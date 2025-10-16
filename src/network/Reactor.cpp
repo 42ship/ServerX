@@ -98,6 +98,7 @@ void Reactor::tryParseHeaders() {
 
 void Reactor::generateResponse() {
     try {
+        LOG_DEBUG(requestBuffer_);
         http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
         http::RouterResult result = router_.route(port_, request);
         response_ = result.handler.handle(request, result);

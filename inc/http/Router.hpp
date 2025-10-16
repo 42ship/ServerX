@@ -43,6 +43,8 @@ public:
             return RouterResult(cgi_, server, location);
         if (request.method == POST) {
             return RouterResult(fileUpload_, server, location);
+        } else if (request.method == DELETE) {
+            return RouterResult(fileDelete_, server, location);
         }
 
         return RouterResult(staticFile_, server, location);
@@ -55,6 +57,7 @@ private:
     NotFoundHandler const notFound_;
     StaticFileHandler const staticFile_;
     FileUploadHandler const fileUpload_;
+    FileDeleteHandler const fileDelete_;
     CGIHandler const cgi_;
     DefaultErrorHandler const error_;
 };
