@@ -33,6 +33,7 @@ var hierarchy =
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
       [ "http::DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
+      [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "http::FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
       [ "http::NotFoundHandler", "classhttp_1_1NotFoundHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]

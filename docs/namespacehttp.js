@@ -3,7 +3,6 @@ var namespacehttp =
     [ "details", "namespacehttp_1_1details.html", [
       [ "buildUploadPath", "namespacehttp_1_1details.html#aec73525a1a6d2f037599b91b70964b94", null ],
       [ "extractPathFUri", "namespacehttp_1_1details.html#a27da418a308bbcdb422bf6682e9c9a1b", null ],
-      [ "getPath", "namespacehttp_1_1details.html#ab18b43f0d1283fc1f3df33ed9f8495fc", null ],
       [ "getUploadPath", "namespacehttp_1_1details.html#ad2d6eada00b9b79e727c5e7681b88f22", null ],
       [ "parse", "namespacehttp_1_1details.html#a0a12f783285f8611aab97f4c80e2d630", null ],
       [ "parseBody", "namespacehttp_1_1details.html#a480c54e0e07af885858c8241bcbee370", null ],
@@ -22,6 +21,7 @@ var namespacehttp =
     ] ],
     [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
     [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", "classhttp_1_1DefaultErrorHandler" ],
+    [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", "classhttp_1_1FileDeleteHandler" ],
     [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", "classhttp_1_1FileUploadHandler" ],
     [ "HttpRequest", "classhttp_1_1HttpRequest.html", "classhttp_1_1HttpRequest" ],
     [ "HttpResponse", "classhttp_1_1HttpResponse.html", "classhttp_1_1HttpResponse" ],
@@ -59,6 +59,7 @@ var namespacehttp =
       [ "FORBIDDEN", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7", null ],
       [ "NOT_FOUND", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c", null ],
       [ "METHOD_NOT_ALLOWED", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad", null ],
+      [ "CONFLICT", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a0102681b664612b47f268b7b25b455f3", null ],
       [ "LENGTH_REQUIRED", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f", null ],
       [ "PAYLOAD_TOO_LARGE", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a", null ],
       [ "UNSUPPORTED_MEDIA_TYPE", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Webserv: Member List</title>
+<title>Webserv: src/http/handlers/FileDeleteHandler.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('classhttp_1_1Router.html','',''); });
+$(function(){initNavTree('FileDeleteHandler_8cpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,27 +88,38 @@ $(function(){initNavTree('classhttp_1_1Router.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">http::Router Member List</div></div>
+  <div class="headertitle"><div class="title">FileDeleteHandler.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="classhttp_1_1Router.html">http::Router</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a17e5de9f740a0bb8d25121208871ea91">cgi_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classhttp_1_1Router.html#aa8e689276f0349ab727da075b7ab9560">config_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a1dcd0cfd7bbd097a778c11294c692f09">error_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a8f22f1e3d00b01f0a2ba0ec9261b1c54">fileDelete_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a6398c7a408a55b6d4d5d6aa4d85ecc98">fileUpload_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classhttp_1_1Router.html#ac143a1660caa5424180846d8d1e3c746">notFound_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a252a8360edd0a1737e00f7a468509fed">route</a>(int port, HttpRequest &amp;request) const</td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a7418084b589441ea38e54fb19c0937fd">Router</a>(config::ServerConfig const &amp;config, MimeTypes const &amp;mime)</td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classhttp_1_1Router.html#a4222594d1ddaad3ed289ec7fcd33bf2c">staticFile_</a></td><td class="entry"><a class="el" href="classhttp_1_1Router.html">http::Router</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-</table></div><!-- contents -->
+<div class="textblock"><code>#include &quot;<a class="el" href="Handler_8hpp_source.html">http/Handler.hpp</a>&quot;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="error__pages_8hpp_source.html">http/error_pages.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="http_2utils_8hpp_source.html">http/utils.hpp</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:http" id="r_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp.html">http</a></td></tr>
+</table>
+</div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_2d29d7dff7c7baf1180920f6796c23ae.html">http</a></li><li class="navelem"><a href="dir_b9d9aab42d3c1a225371a56899e3642a.html">handlers</a></li><li class="navelem"><a href="FileDeleteHandler_8cpp.html">FileDeleteHandler.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

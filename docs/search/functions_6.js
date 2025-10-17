@@ -25,7 +25,7 @@ var searchData=
   ['getmimeext_22',['getMimeExt',['../classhttp_1_1MimeTypes.html#ab1b592e39592ae83fc99c1960225496a',1,'http::MimeTypes']]],
   ['getmimetype_23',['getMimeType',['../classhttp_1_1MimeTypes.html#a0d0957922052bc8f4fbba45166ce7703',1,'http::MimeTypes']]],
   ['getname_24',['getName',['../classconfig_1_1IDirective.html#a1fd2e6f32c1cbb56069ebae685649ce9',1,'config::IDirective::getName()'],['../classconfig_1_1ListenDirective.html#a95b9251847de5e2aaa921b4fd6de1cfa',1,'config::ListenDirective::getName()'],['../classconfig_1_1RootDirective.html#ac174fc689612fcd6d473ace99f63d2df',1,'config::RootDirective::getName()']]],
-  ['getpath_25',['getPath',['../namespacehttp_1_1details.html#ab18b43f0d1283fc1f3df33ed9f8495fc',1,'http::details']]],
+  ['getpath_25',['getPath',['../namespaceutils.html#a0c98edffff2a69e512c3d408a8d69dd0',1,'utils']]],
   ['getrawvalue_26',['getRawValue',['../classconfig_1_1ConcatenatedValue.html#aa2f992bcbc6fa369771e217737b420e2',1,'config::ConcatenatedValue::getRawValue()'],['../classconfig_1_1IArgument.html#a8b976ed11f0db4bf020521d3b7032d3e',1,'config::IArgument::getRawValue()'],['../classconfig_1_1Integer.html#a883aff99bf8fd01355ca964f3fb09aba',1,'config::Integer::getRawValue()'],['../classconfig_1_1String.html#aff108562a0fdac1c3b056b24d340c500',1,'config::String::getRawValue()'],['../classconfig_1_1Variable.html#a6188923c7db213b14467e9a23399cda1',1,'config::Variable::getRawValue()']]],
   ['getrawvalues_27',['getRawValues',['../classconfig_1_1Block.html#a36404f2a6fee6a9abc85b8f8eb4a940d',1,'config::Block']]],
   ['getserver_28',['getServer',['../classconfig_1_1ServerConfig.html#af63bd3c26dd1303ae1a47b2d09117869',1,'config::ServerConfig']]],

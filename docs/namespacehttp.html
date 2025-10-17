@@ -103,6 +103,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the execution of CGI scripts.  <a href="classhttp_1_1CGIHandler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DefaultErrorHandler" id="r_DefaultErrorHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1DefaultErrorHandler.html">DefaultErrorHandler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the execution of CGI scripts.  <a href="classhttp_1_1DefaultErrorHandler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FileDeleteHandler" id="r_FileDeleteHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileDeleteHandler.html">FileDeleteHandler</a></td></tr>
 <tr class="memitem:FileUploadHandler" id="r_FileUploadHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileUploadHandler.html">FileUploadHandler</a></td></tr>
 <tr class="memitem:HttpRequest" id="r_HttpRequest"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A data container for a parsed HTTP request.  <a href="classhttp_1_1HttpRequest.html#details">More...</a><br /></td></tr>
@@ -156,12 +157,13 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7">FORBIDDEN</a> = 403
 , <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c">NOT_FOUND</a> = 404
 , <br />
-&#160;&#160;<a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad">METHOD_NOT_ALLOWED</a> = 405
+&#160;&#160;<a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad">METHOD_NOT_ALLOWED</a>
+, <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a0102681b664612b47f268b7b25b455f3">CONFLICT</a> = 409
 , <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f">LENGTH_REQUIRED</a> = 411
 , <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a">PAYLOAD_TOO_LARGE</a> = 413
-, <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b">UNSUPPORTED_MEDIA_TYPE</a> = 415
 , <br />
-&#160;&#160;<a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba">INTERNAL_SERVER_ERROR</a> = 500
+&#160;&#160;<a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b">UNSUPPORTED_MEDIA_TYPE</a> = 415
+, <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba">INTERNAL_SERVER_ERROR</a> = 500
 , <a class="el" href="#ae22c16bb068430dc979b817d248bc4d0afbf6e492480c6d18842a60c27cb04702">NOT_IMPLEMENTED</a> = 501
 <br />
  }</td></tr>
@@ -279,29 +281,31 @@ Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0ace8bd8e364919b329d851fd49423d8cc" name="ae22c16bb068430dc979b817d248bc4d0ace8bd8e364919b329d851fd49423d8cc"></a>OK&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a55ec2403fcca929391dbb044ffed5e85" name="ae22c16bb068430dc979b817d248bc4d0a55ec2403fcca929391dbb044ffed5e85"></a>CREATED&#160;</td><td class="fielddoc"><p>200 OK — request succeeded. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0ada040cfaa65857ae3be3676c276fc87a" name="ae22c16bb068430dc979b817d248bc4d0ada040cfaa65857ae3be3676c276fc87a"></a>ACCEPTED&#160;</td><td class="fielddoc"><p>201 Created — resource created. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0ada040cfaa65857ae3be3676c276fc87a" name="ae22c16bb068430dc979b817d248bc4d0ada040cfaa65857ae3be3676c276fc87a"></a>ACCEPTED&#160;</td><td class="fielddoc"><p>201 Created — resource created successfully. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a1f8808bf48e47d5ded8dd2093dc6401a" name="ae22c16bb068430dc979b817d248bc4d0a1f8808bf48e47d5ded8dd2093dc6401a"></a>NO_CONTENT&#160;</td><td class="fielddoc"><p>202 Accepted — processing pending. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a1f8808bf48e47d5ded8dd2093dc6401a" name="ae22c16bb068430dc979b817d248bc4d0a1f8808bf48e47d5ded8dd2093dc6401a"></a>NO_CONTENT&#160;</td><td class="fielddoc"><p>202 Accepted — request accepted for processing, but not yet completed. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a3c7a4281c4fc1905c67373fe3234d5cb" name="ae22c16bb068430dc979b817d248bc4d0a3c7a4281c4fc1905c67373fe3234d5cb"></a>BAD_REQUEST&#160;</td><td class="fielddoc"><p>204 No Content — successful, no body. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a3c7a4281c4fc1905c67373fe3234d5cb" name="ae22c16bb068430dc979b817d248bc4d0a3c7a4281c4fc1905c67373fe3234d5cb"></a>BAD_REQUEST&#160;</td><td class="fielddoc"><p>204 No Content — request succeeded, no response body. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a3d7d9fa1fdefebf6853cb2a1bdb7ed45" name="ae22c16bb068430dc979b817d248bc4d0a3d7d9fa1fdefebf6853cb2a1bdb7ed45"></a>UNAUTHORIZED&#160;</td><td class="fielddoc"><p>400 Bad Request — malformed syntax. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a3d7d9fa1fdefebf6853cb2a1bdb7ed45" name="ae22c16bb068430dc979b817d248bc4d0a3d7d9fa1fdefebf6853cb2a1bdb7ed45"></a>UNAUTHORIZED&#160;</td><td class="fielddoc"><p>400 Bad Request — malformed request syntax or invalid parameters. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7" name="ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7"></a>FORBIDDEN&#160;</td><td class="fielddoc"><p>401 Unauthorized — authentication required/failed. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7" name="ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7"></a>FORBIDDEN&#160;</td><td class="fielddoc"><p>401 Unauthorized — authentication required or has failed. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c" name="ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c"></a>NOT_FOUND&#160;</td><td class="fielddoc"><p>403 Forbidden — not allowed despite authentication. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c" name="ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c"></a>NOT_FOUND&#160;</td><td class="fielddoc"><p>403 Forbidden — client is authenticated but not permitted to perform this action. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad" name="ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad"></a>METHOD_NOT_ALLOWED&#160;</td><td class="fielddoc"><p>404 Not Found — resource not found. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad" name="ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad"></a>METHOD_NOT_ALLOWED&#160;</td><td class="fielddoc"><p>404 Not Found — requested resource does not exist. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f" name="ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f"></a>LENGTH_REQUIRED&#160;</td><td class="fielddoc"><p>405 <a class="el" href="#ad6f0ed7c44035f65821fa7509a03d4cf">Method</a> Not Allowed — method not permitted. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a0102681b664612b47f268b7b25b455f3" name="ae22c16bb068430dc979b817d248bc4d0a0102681b664612b47f268b7b25b455f3"></a>CONFLICT&#160;</td><td class="fielddoc"><p>405 <a class="el" href="#ad6f0ed7c44035f65821fa7509a03d4cf">Method</a> Not Allowed — HTTP method not permitted for this resource. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a" name="ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a"></a>PAYLOAD_TOO_LARGE&#160;</td><td class="fielddoc"><p>411 Length Required — No Content-Length header </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f" name="ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f"></a>LENGTH_REQUIRED&#160;</td><td class="fielddoc"><p>409 Conflict — request could not be completed due to a resource conflict (e.g., non-empty directory on DELETE). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b" name="ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b"></a>UNSUPPORTED_MEDIA_TYPE&#160;</td><td class="fielddoc"><p>413 Payload Too Large — file size exceeds the allowed limit </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a" name="ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a"></a>PAYLOAD_TOO_LARGE&#160;</td><td class="fielddoc"><p>411 Length Required — missing Content-Length header for a request that requires it. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba" name="ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba"></a>INTERNAL_SERVER_ERROR&#160;</td><td class="fielddoc"><p>415 Unsupported Media Type — unsupported file type </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b" name="ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b"></a>UNSUPPORTED_MEDIA_TYPE&#160;</td><td class="fielddoc"><p>413 Payload Too Large — request body exceeds configured limit. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0afbf6e492480c6d18842a60c27cb04702" name="ae22c16bb068430dc979b817d248bc4d0afbf6e492480c6d18842a60c27cb04702"></a>NOT_IMPLEMENTED&#160;</td><td class="fielddoc"><p>500 Internal Server Error — server-side failure. </p>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba" name="ae22c16bb068430dc979b817d248bc4d0a8bed57973a8cc88394fe713a7a4c2cba"></a>INTERNAL_SERVER_ERROR&#160;</td><td class="fielddoc"><p>415 Unsupported Media Type — request entity format is not supported by the server. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae22c16bb068430dc979b817d248bc4d0afbf6e492480c6d18842a60c27cb04702" name="ae22c16bb068430dc979b817d248bc4d0afbf6e492480c6d18842a60c27cb04702"></a>NOT_IMPLEMENTED&#160;</td><td class="fielddoc"><p>500 Internal Server Error — generic server-side failure. </p>
 </td></tr>
 </table>
 

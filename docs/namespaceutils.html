@@ -135,6 +135,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a6bde84553f6b49432985dcb333a073d5" id="r_a6bde84553f6b49432985dcb333a073d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bde84553f6b49432985dcb333a073d5">validateUploadPath</a> (const std::string &amp;path)</td></tr>
 <tr class="memitem:acc6c5ed355b3c43d157fe244285b5c9c" id="r_acc6c5ed355b3c43d157fe244285b5c9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc6c5ed355b3c43d157fe244285b5c9c">checkUploadLimit</a> (const std::string &amp;contentLength, <a class="el" href="classconfig_1_1Block.html">config::Block</a> const &amp;s)</td></tr>
 <tr class="memitem:ac7f96ae05cf77b01c7228e90f37f1ca0" id="r_ac7f96ae05cf77b01c7228e90f37f1ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutils_1_1ValidationResult.html">ValidationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7f96ae05cf77b01c7228e90f37f1ca0">checkContentLength</a> (std::string const &amp;contentLen)</td></tr>
+<tr class="memitem:a0c98edffff2a69e512c3d408a8d69dd0" id="r_a0c98edffff2a69e512c3d408a8d69dd0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c98edffff2a69e512c3d408a8d69dd0">getPath</a> (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req, <a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const &amp;l)</td></tr>
 <tr class="memitem:ad9d889fe7abcae9ea28a4fd4c5a35b0e" id="r_ad9d889fe7abcae9ea28a4fd4c5a35b0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9d889fe7abcae9ea28a4fd4c5a35b0e">writeFile</a> (const std::string &amp;content, const char *path, size_t start, size_t end)</td></tr>
 </table>
 <a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
@@ -280,6 +281,27 @@ template&lt;typename T&gt; </div>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fpath</em></span></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c98edffff2a69e512c3d408a8d69dd0" name="a0c98edffff2a69e512c3d408a8d69dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c98edffff2a69e512c3d408a8d69dd0">&#9670;&#160;</a></span>getPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string utils::getPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>l</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

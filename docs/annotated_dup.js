@@ -31,6 +31,7 @@ var annotated_dup =
     [ "http", "namespacehttp.html", [
       [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", "classhttp_1_1DefaultErrorHandler" ],
+      [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", "classhttp_1_1FileDeleteHandler" ],
       [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", "classhttp_1_1FileUploadHandler" ],
       [ "HttpRequest", "classhttp_1_1HttpRequest.html", "classhttp_1_1HttpRequest" ],
       [ "HttpResponse", "classhttp_1_1HttpResponse.html", "classhttp_1_1HttpResponse" ],

@@ -10,6 +10,7 @@ var HttpStatus_8hpp =
       [ "http::FORBIDDEN", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0aa7fc75a70dfcdabcdda77d353a9424a7", null ],
       [ "http::NOT_FOUND", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a144f7cef2e3efe6d823debdf4e62b10c", null ],
       [ "http::METHOD_NOT_ALLOWED", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a951e17c8b8b27ee06ced2f743295c2ad", null ],
+      [ "http::CONFLICT", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a0102681b664612b47f268b7b25b455f3", null ],
       [ "http::LENGTH_REQUIRED", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a99433d071bad8a0f316f89d915e3a65f", null ],
       [ "http::PAYLOAD_TOO_LARGE", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0ae0967dfd6179bfd162129b973a2acf8a", null ],
       [ "http::UNSUPPORTED_MEDIA_TYPE", "namespacehttp.html#ae22c16bb068430dc979b817d248bc4d0a032b28c11dba5740005c00c42e23ee9b", null ],

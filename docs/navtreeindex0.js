@@ -31,7 +31,8 @@ var NAVTREEINDEX0 =
 "EpollManager_8cpp.html":[2,0,1,4,2],
 "EpollManager_8hpp.html":[2,0,0,4,2],
 "EpollManager_8hpp_source.html":[2,0,0,4,2],
-"FileUpload_8cpp.html":[2,0,1,3,1,2],
+"FileDeleteHandler_8cpp.html":[2,0,1,3,1,2],
+"FileUpload_8cpp.html":[2,0,1,3,1,3],
 "Handler_8hpp.html":[2,0,0,3,1],
 "Handler_8hpp_source.html":[2,0,0,3,1],
 "HttpRequest_8cpp.html":[2,0,1,3,3],
@@ -96,7 +97,7 @@ var NAVTREEINDEX0 =
 "MimeTypes_8hpp.html":[2,0,0,3,5],
 "MimeTypes_8hpp.html#ac55834f6ad742d8ce844f424862a1498":[2,0,0,3,5,1],
 "MimeTypes_8hpp_source.html":[2,0,0,3,5],
-"NotFound_8cpp.html":[2,0,1,3,1,3],
+"NotFound_8cpp.html":[2,0,1,3,1,4],
 "Parser_8cpp.html":[2,0,1,1,3,4],
 "Parser_8hpp.html":[2,0,0,1,3,3],
 "Parser_8hpp_source.html":[2,0,0,1,3,3],
@@ -123,7 +124,7 @@ var NAVTREEINDEX0 =
 "Socket_8cpp.html":[2,0,1,4,5],
 "Socket_8hpp.html":[2,0,0,4,5],
 "Socket_8hpp_source.html":[2,0,0,4,5],
-"StaticFile_8cpp.html":[2,0,1,3,1,4],
+"StaticFile_8cpp.html":[2,0,1,3,1,5],
 "String_8hpp.html":[2,0,0,1,0,4],
 "String_8hpp_source.html":[2,0,0,1,0,4],
 "Token_8cpp.html":[2,0,1,1,2,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classconfig_1_1ConfigWarning.html#a399fe4b21f6c482bf85b756dfa7cc284":[0,0,0,7,0],
 "classconfig_1_1ConfigWarning.html#a399fe4b21f6c482bf85b756dfa7cc284":[1,0,0,6,0],
 "classconfig_1_1DirectiveHandler.html":[0,0,0,8],
-"classconfig_1_1DirectiveHandler.html":[1,0,0,7],
-"classconfig_1_1DirectiveHandler.html#a0df0811d6a9114ae8b7a04b35f8bd33b":[0,0,0,8,6]
+"classconfig_1_1DirectiveHandler.html":[1,0,0,7]
 };
