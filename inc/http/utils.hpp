@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ValidationResult.hpp"
+#include "config/LocationBlock.hpp"
 #include <string>
 
 namespace config {
@@ -23,5 +24,7 @@ ValidationResult validateUploadPath(const std::string &path);
 ValidationResult checkUploadLimit(const std::string &contentLength, config::Block const &s);
 
 ValidationResult checkContentLength(std::string const &contentLen);
+
+std::string getPath(http::HttpRequest const &req, config::LocationBlock const &l);
 
 } // namespace utils
