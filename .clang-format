@@ -1,0 +1,12 @@
+# .clang-format
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: Cpp03
+IndentWidth: 4
+UseTab: Never
+AccessModifierOffset: -4
+ContinuationIndentWidth: 4
+# BreakBeforeBraces: Allman
+ColumnLimit: 100
+SortIncludes: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: true

@@ -74,13 +74,15 @@ private:
         startLine_ = RequestLine::parse(buffer_);
         contentLength_ = headers_.getConentLength();
         isContentChunked_ = headers_.isContentChunked();
-        // In future integrate with ServerConfig to check if it's expected and allowed
+        // In future integrate with ServerConfig to check if it's expected and
+        // allowed
         isBodyExpected_ = true;
     }
 
     void handleBody(char const *chunk, size_t size) {
         if (!isBodyExpected_) {
-            // TODO: make some sort of error that Router may use to give a correct handler
+            // TODO: make some sort of error that Router may use to give a correct
+            // handler
             return;
         }
         if (!buffer_.empty()) {
@@ -99,5 +101,10 @@ A: Currently in order to properly handle clinet's body we need to know this:
     1) Whether the body is allowed for  the current request
     2) The size of incoming body
     3) If the body is chuncked it needs to be handled properly
+Plan to solve this:
+    1) Set the global max body size and use it for all incoming bodies
+    2) Check if the body is allowed with the provided headers
+    3) In router will check the max allowed body size for the incoming request
+using specific location 4)
 
  * */

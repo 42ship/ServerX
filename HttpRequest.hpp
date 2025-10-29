@@ -8,4 +8,6 @@ public:
     RequestLine requestLine;
     http::Headers headers;
     void *body; // In future have body class
+    class LocationBlock const *location;
+    class ServerBlock const *server;
 };
