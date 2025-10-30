@@ -1,10 +1,9 @@
 #pragma once
 
+#include "HttpResponse.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "http/HttpRequest.hpp"
-#include "HttpResponse.hpp"
-#include "RouterResult.hpp"
 #include "http/MimeTypes.hpp"
 
 namespace http {
@@ -18,6 +17,9 @@ namespace http {
 class IHandler {
 public:
     virtual ~IHandler() {};
+    void handle(HttpRequest const &, HttpResponse &);
+};
+#if 0
     /**
      * @brief The primary handler logic entry point.
      * @param request The client's HTTP request.
@@ -35,12 +37,15 @@ public:
         return handle(h, r.server, r.location);
     }
 };
+#endif
 
 /**
  * @brief Handles serving static files from the filesystem.
  */
 class StaticFileHandler : public IHandler {
 public:
+};
+#if 0
     StaticFileHandler(MimeTypes const &);
     HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
                         config::LocationBlock const *l) const;
@@ -97,5 +102,6 @@ public:
 namespace details {
 HttpRequest parse(std::istringstream &s, const std::string &boundary);
 }
+#endif
 
 } // namespace http

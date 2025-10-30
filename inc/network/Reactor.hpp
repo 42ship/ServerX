@@ -1,14 +1,14 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "http/Router.hpp"
 #include "http/HttpResponse.hpp"
+#include "http/RequestParser.hpp"
+#include "http/Router.hpp"
 #include <sys/types.h>
 #include <vector>
 
 namespace network {
 
-enum RequestState { READING_HEADERS, READING_BODY, REQUEST_READY };
 enum ResponseState { NOT_READY, SENDING, SENT };
 
 /**
@@ -37,11 +37,14 @@ private:
     http::Router const &router_;
     http::HttpResponse response_; //!< The HTTP response being prepared/sent.
 
+    http::RequestParser reqParser_;
+#if 0
     // --- Request State ---
     RequestState requestState_; //!< The current state of request parsing.
     std::string requestBuffer_; //!< Buffer for incoming request data.
     size_t bodyStart_;          //!< Start position of the body in requestBuffer_.
     size_t contentLength_;      //!< Expected length of the request body.
+#endif
 
     // --- Response State ---
     std::vector<char> responseBuffer_; //!< Buffer for the outgoing response.
@@ -56,8 +59,10 @@ private:
     void handleRead();
     /// @brief Handles outgoing data on the socket.
     void handleWrite();
+#if 0
     /// @brief Attempts to parse headers from the request buffer.
     void tryParseHeaders();
+#endif
     /// @brief Processes a fully parsed request to generate a response.
     void generateResponse();
     /// @brief Sends the contents of the response buffer. @return False on fatal error.

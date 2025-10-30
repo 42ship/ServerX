@@ -25,8 +25,10 @@ Server::Server(config::ServerConfig const &config)
     : shutdownRequested_(false),
       isRunning_(false),
       config_(config),
-      dispatcher_(network::InitiationDispatcher::getInstance()),
+      dispatcher_(network::InitiationDispatcher::getInstance()) {
+#if 0
       router_(config_, mimeTypes_) {
+#endif
     instance_ = this;
     setupSignalHandlers();
     LOG_INFO("Server instance created.");

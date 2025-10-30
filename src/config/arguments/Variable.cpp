@@ -16,10 +16,7 @@ std::string Variable::evaluate(http::HttpRequest const &req) const {
     return it->second(req);
 }
 
-std::string HostFunc(http::HttpRequest const &req) {
-    http::HttpRequest::HeaderMap::const_iterator it = req.headers.find("Host");
-    return (it == req.headers.end() ? "" : it->second);
-}
+std::string HostFunc(http::HttpRequest const &req) { return req.headers.get("Host"); }
 
 FuncMap const &getMap() {
     static FuncMap map;

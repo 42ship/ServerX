@@ -1,9 +1,7 @@
 #include "network/Reactor.hpp"
-
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
 #include "http/Router.hpp"
-#include "http/RouterResult.hpp"
 #include "http/error_pages.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "utils/Logger.hpp"
@@ -20,7 +18,7 @@
 namespace network {
 
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), router_(router), responseBuffer_(8192) {
+    : clientFd_(clientFd), port_(port), router_(router), reqParser_(8192), responseBuffer_(8192) {
     resetForNewRequest();
     LOG_TRACE("New connection accepted on fd: " << clientFd_);
 }
@@ -64,6 +62,14 @@ void Reactor::handleRead() {
         return;
     }
     LOG_DEBUG("Received " << count << " bytes from fd: " << clientFd_);
+    http::RequestParser::RequestState state = reqParser_.addIncomingChunk(read_buffer, count);
+    if (state == http::RequestParser::REQUEST_READY || state == http::RequestParser::ERROR) {
+        generateResponse();
+    } else if (state == http::RequestParser::HEADERS_READY) {
+        // TODO: validate things
+        reqParser_.proceedReadingBody();
+    }
+#if 0
     requestBuffer_.insert(requestBuffer_.end(), read_buffer, read_buffer + count);
     if (requestState_ == READING_HEADERS) {
         tryParseHeaders();
@@ -76,8 +82,10 @@ void Reactor::handleRead() {
         LOG_TRACE("Request fully received on fd: " << clientFd_ << ", processing...");
         generateResponse();
     }
+#endif
 }
 
+#if 0
 void Reactor::tryParseHeaders() {
     bodyStart_ = requestBuffer_.find("\r\n\r\n", 0, 4);
 
@@ -95,8 +103,10 @@ void Reactor::tryParseHeaders() {
         LOG_DEBUG("Request body size: " << contentLength_ << " bytes on fd: " << clientFd_);
     }
 }
+#endif
 
 void Reactor::generateResponse() {
+#if 0
     try {
         LOG_DEBUG(requestBuffer_);
         http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
@@ -111,6 +121,8 @@ void Reactor::generateResponse() {
         response_ =
             http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
     }
+#endif
+    router_.route(port_, reqParser_.getRequestContext());
 
     std::string const &headers = response_.buildHeaders();
     responseBuffer_.assign(headers.begin(), headers.end());
@@ -194,12 +206,14 @@ void Reactor::clearResponseBuffer() {
 }
 
 void Reactor::resetForNewRequest() {
-    requestBuffer_.clear();
     responseBuffer_.clear();
     sentResponseBytes_ = 0;
+#if 0
+    requestBuffer_.clear();
     contentLength_ = 0;
     bodyStart_ = 0;
     requestState_ = READING_HEADERS;
+#endif
     responseState_ = NOT_READY;
     response_ = http::HttpResponse();
 }

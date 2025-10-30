@@ -4,7 +4,6 @@
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
-#include "http/RouterResult.hpp"
 #include "http/utils.hpp"
 
 namespace http {
@@ -18,6 +17,15 @@ namespace http {
  */
 class Router {
 public:
+    IHandler const &route(int port, HttpRequest &request) const {
+        (void)port;
+        (void)request;
+        return staticFile_;
+    }
+
+private:
+    StaticFileHandler const staticFile_;
+#if 0
     Router(config::ServerConfig const &config, MimeTypes const &mime)
         : config_(config), staticFile_(mime), fileUpload_(mime) {}
 
@@ -48,7 +56,7 @@ public:
         }
 
         return RouterResult(staticFile_, server, location);
-    }
+}
 
 private:
     config::ServerConfig const &config_;
@@ -60,6 +68,7 @@ private:
     FileDeleteHandler const fileDelete_;
     CGIHandler const cgi_;
     DefaultErrorHandler const error_;
+#endif
 };
 
 } // namespace http

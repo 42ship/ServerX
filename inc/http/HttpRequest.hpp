@@ -1,5 +1,27 @@
 #pragma once
 
+#include "http/Headers.hpp"
+#include "http/RequestLine.hpp"
+
+namespace config {
+class LocationBlock;
+class ServerBlock;
+} // namespace config
+
+namespace http {
+
+class HttpRequest {
+public:
+    RequestLine requestLine;
+    http::Headers headers;
+    void *body; // In future have body class
+    config::LocationBlock const *location;
+    config::ServerBlock const *server;
+};
+
+} // namespace http
+
+#if 0
 #include "http/HttpStatus.hpp"
 #include <map>
 #include <ostream>
@@ -20,7 +42,7 @@ class HttpRequest {
 public:
     HttpRequest();
     HttpRequest(HttpRequest const &req);
-    HttpRequest& operator=(HttpRequest const &req);
+    HttpRequest &operator=(HttpRequest const &req);
     typedef std::map<std::string, std::string> HeaderMap;
 
     http::Status status;
@@ -53,3 +75,5 @@ std::string extractPathFUri(std::string const &uri);
 } // namespace details
 
 } // namespace http
+
+#endif
