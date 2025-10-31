@@ -17,7 +17,7 @@ namespace http {
 class IHandler {
 public:
     virtual ~IHandler() {};
-    void handle(HttpRequest const &, HttpResponse &);
+    virtual void handle(HttpRequest const &, HttpResponse &) = 0;
 };
 #if 0
     /**
@@ -44,15 +44,17 @@ public:
  */
 class StaticFileHandler : public IHandler {
 public:
-};
-#if 0
     StaticFileHandler(MimeTypes const &);
-    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
-                        config::LocationBlock const *l) const;
+    void handle(HttpRequest const &, HttpResponse &);
 
 private:
     StaticFileHandler();
     MimeTypes const &mimeTypes_;
+};
+#if 0
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+                        config::LocationBlock const *l) const;
+
 };
 
 /**

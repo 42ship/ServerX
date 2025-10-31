@@ -45,6 +45,8 @@ public:
 
     Headers &clear();
 
+    Headers &erase(std::string const &key);
+
     /// @brief Parses a raw string into a Headers object.
     static Headers parse(std::string &);
 

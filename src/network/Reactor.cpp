@@ -1,8 +1,7 @@
 #include "network/Reactor.hpp"
-#include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
+#include "http/ResponseBody.hpp"
 #include "http/Router.hpp"
-#include "http/error_pages.hpp"
 #include "network/InitiationDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
@@ -18,7 +17,7 @@
 namespace network {
 
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), router_(router), reqParser_(8192), responseBuffer_(8192) {
+    : clientFd_(clientFd), port_(port), router_(router), reqParser_(8192) {
     resetForNewRequest();
     LOG_TRACE("New connection accepted on fd: " << clientFd_);
 }
@@ -69,61 +68,11 @@ void Reactor::handleRead() {
         // TODO: validate things
         reqParser_.proceedReadingBody();
     }
-#if 0
-    requestBuffer_.insert(requestBuffer_.end(), read_buffer, read_buffer + count);
-    if (requestState_ == READING_HEADERS) {
-        tryParseHeaders();
-    }
-    if (requestState_ == READING_BODY) {
-        if (requestBuffer_.size() - bodyStart_ >= contentLength_)
-            requestState_ = REQUEST_READY;
-    }
-    if (requestState_ == REQUEST_READY) {
-        LOG_TRACE("Request fully received on fd: " << clientFd_ << ", processing...");
-        generateResponse();
-    }
-#endif
 }
-
-#if 0
-void Reactor::tryParseHeaders() {
-    bodyStart_ = requestBuffer_.find("\r\n\r\n", 0, 4);
-
-    if (bodyStart_ != std::string::npos) {
-        LOG_DEBUG("Headers parsed for fd: " << clientFd_);
-        bodyStart_ += 4;
-        requestState_ = READING_BODY;
-
-        static const std::string cl_key = "Content-Length: ";
-        size_t pos = requestBuffer_.find(cl_key);
-        if (pos != std::string::npos) {
-            contentLength_ = std::strtol(requestBuffer_.c_str() + pos + cl_key.length(), NULL, 10);
-        } else
-            contentLength_ = 0;
-        LOG_DEBUG("Request body size: " << contentLength_ << " bytes on fd: " << clientFd_);
-    }
-}
-#endif
 
 void Reactor::generateResponse() {
-#if 0
-    try {
-        LOG_DEBUG(requestBuffer_);
-        http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
-        http::RouterResult result = router_.route(port_, request);
-        response_ = result.handler.handle(request, result);
-    } catch (std::exception const &e) {
-        LOG_ERROR("Reactor::generateResponse(): " << e.what());
-        response_ =
-            http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
-    } catch (...) {
-        LOG_ERROR("Reactor::generateResponse(): \"Internal server error\"");
-        response_ =
-            http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
-    }
-#endif
     router_.route(port_, reqParser_.getRequestContext());
-
+#if 0
     std::string const &headers = response_.buildHeaders();
     responseBuffer_.assign(headers.begin(), headers.end());
 
@@ -132,90 +81,83 @@ void Reactor::generateResponse() {
                                response_.inMemoryBody.data->end());
     }
     LOG_DEBUG("Generated response for fd: " << clientFd_ << " status: " << response_.getStatus());
-    responseState_ = SENDING;
-    sentResponseBytes_ = 0;
+#endif
     InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLOUT);
 }
 
 void Reactor::handleWrite() {
-    if (responseState_ == NOT_READY)
-        return;
-    if (sentResponseBytes_ < responseBuffer_.size()) {
-        LOG_TRACE("Sending response chunk to fd: " << clientFd_);
-        if (!sendResponseBuffer())
-            return;
+    SendBuffer::SendStatus status = rspBuffer_.send(clientFd_);
+
+    if (status == SendBuffer::SEND_ERROR) {
+        return closeConnection();
     }
-    if (sentResponseBytes_ == responseBuffer_.size()) {
-        clearResponseBuffer();
-        if (response_.getBodyType() == http::BODY_FROM_FILE) {
-            responseBuffer_.resize(IO_BUFFER_SIZE);
-            ssize_t bytes_read =
-                read(response_.fileBody.fd, responseBuffer_.data(), responseBuffer_.size());
-            if (bytes_read > 0) {
-                LOG_DEBUG("Read " << bytes_read << " bytes from file for fd: " << clientFd_);
-                responseBuffer_.resize(bytes_read);
-                if (!sendResponseBuffer())
-                    return;
-            } else {
-                if (bytes_read < 0) {
-                    LOG_ERROR("File read error for fd " << clientFd_ << ": " << strerror(errno));
-                } else {
-                    LOG_DEBUG("Finished streaming file to fd: " << clientFd_);
-                }
-                close(response_.fileBody.fd);
-                responseState_ = SENT;
-            }
-        } else
-            responseState_ = SENT;
-    }
-    if (responseState_ != SENT)
+    if (status == SendBuffer::SEND_AGAIN) {
         return;
-    LOG_DEBUG("Response fully sent to fd: " << clientFd_);
-    if (response_.getHeaders()["Connection"] == "keep-alive") {
-        LOG_DEBUG("Keep-alive enabled. Resetting state for fd: " << clientFd_);
+    }
+    if (status != SendBuffer::SEND_DONE) {
+        return;
+    }
+    rspBuffer_.reset();
+    http::IResponseBody *body = response_.body;
+    if (!body || body->isDone()) {
+        return finalizeConnection();
+    }
+    ssize_t read = body->read(rspBuffer_.buffer.data(), rspBuffer_.buffer.capacity());
+    if (read <= 0) {
+        return finalizeConnection();
+    }
+    rspBuffer_.buffer.resize(read);
+    status = rspBuffer_.send(clientFd_);
+    if (status == SendBuffer::SEND_ERROR) {
+        return closeConnection();
+    }
+}
+
+void Reactor::finalizeConnection() {
+    if (response_.headers.get("Connection") == "keep-alive") {
         InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
         resetForNewRequest();
     } else
         closeConnection();
 }
 
-bool Reactor::sendResponseBuffer() {
-    if (sentResponseBytes_ >= responseBuffer_.size()) {
-        return true; // Nothing to send
-    }
-    ssize_t sent = ::send(clientFd_, responseBuffer_.data() + sentResponseBytes_,
-                          responseBuffer_.size() - sentResponseBytes_, 0);
-    if (sent < 0) {
-        // NOTE: to remove for evaluation; errno after recv/send is not allowed
-        if (errno == EAGAIN || errno == EWOULDBLOCK) {
-            LOG_TRACE("Send buffer is full for fd " << clientFd_ << ", will try again later.");
-        } else {
-            LOG_ERROR("Send error on fd " << clientFd_ << ": " << strerror(errno));
-            closeConnection();
-        }
-        return false;
-    }
-    sentResponseBytes_ += sent;
-    LOG_DEBUG("Sent " << sent << " bytes to fd: " << clientFd_);
-    return true;
+Reactor::SendBuffer::SendBuffer(size_t initialCapacity) : sent(0) {
+    buffer.reserve(initialCapacity);
 }
 
-void Reactor::clearResponseBuffer() {
-    responseBuffer_.clear();
-    sentResponseBytes_ = 0;
+void Reactor::SendBuffer::reset() {
+    buffer.clear();
+    sent = 0;
+}
+
+bool Reactor::SendBuffer::isFullySent() { return sent == buffer.size(); }
+
+Reactor::SendBuffer::SendStatus Reactor::SendBuffer::send(int clientFd) {
+    if (isFullySent())
+        return SEND_DONE;
+    size_t bytes_to_send = buffer.size() - sent;
+    ssize_t bytes_sent = ::send(clientFd, buffer.data() + sent, bytes_to_send, 0);
+    if (bytes_sent < 0) {
+        // NOTE: to remove for evaluation; errno after recv/send is not allowed
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            LOG_TRACE("Send buffer is full for fd " << clientFd << ", will try again later.");
+            return SEND_AGAIN;
+        }
+        LOG_ERROR("Send error on fd " << clientFd << ": " << strerror(errno));
+        return SEND_ERROR;
+    }
+    bytes_sent += bytes_to_send;
+    return (isFullySent() ? SEND_DONE : SEND_AGAIN);
 }
 
 void Reactor::resetForNewRequest() {
-    responseBuffer_.clear();
-    sentResponseBytes_ = 0;
+    rspBuffer_.reset();
+    reqParser_.reset();
 #if 0
-    requestBuffer_.clear();
-    contentLength_ = 0;
-    bodyStart_ = 0;
-    requestState_ = READING_HEADERS;
+    // TODO:
+    response_.clear();
+    request_.clear();
 #endif
-    responseState_ = NOT_READY;
-    response_ = http::HttpResponse();
 }
 
 } // namespace network

@@ -4,7 +4,6 @@
 #include "http/Handler.hpp"
 #include "http/HttpRequest.hpp"
 #include "http/MimeTypes.hpp"
-#include "http/utils.hpp"
 
 namespace http {
 

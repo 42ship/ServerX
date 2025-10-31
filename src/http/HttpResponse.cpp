@@ -1,11 +1,41 @@
 #include "http/HttpResponse.hpp"
 #include "common/string.hpp"
-#include "http/HttpStatus.hpp"
-#include <sstream>
 #include <string>
 
 namespace http {
 
+HttpResponse::HttpResponse() : body(NULL) {}
+HttpResponse::~HttpResponse() { delete body; }
+
+void HttpResponse::setNoBody() {
+    delete body;
+    body = new NoBody;
+    headers.erase("Content-Length");
+    headers.erase("Content-Type");
+}
+
+void HttpResponse::setBodyInMemory(std::string const &data, std::string const &contentType) {
+    delete body;
+    body = new BodyInMemory(data);
+    headers.add("Content-Length", utils::toString(body->size()));
+    headers.add("Content-Type", contentType);
+}
+
+void HttpResponse::setBodyFromFile(std::string const &fpath, std::string const &contentType) {
+    delete body;
+    body = new FileBody(fpath);
+    headers.add("Content-Length", utils::toString(body->size()));
+    headers.add("Content-Type", contentType);
+}
+
+void HttpResponse::setBodyFromCgi(int pipeFd, std::string const &firstChunk) {
+    delete body;
+    body = new BodyFromCgi;
+    (void)pipeFd;
+    (void)firstChunk;
+}
+
+#if 0
 namespace {
 
 inline const char *getResponsePhrase(Status status) {
@@ -66,92 +96,9 @@ inline const char *getJsonResponsePhrase(Status status) {
 
 } // namespace
 
-HttpResponse::HttpResponse()
-    : statusCode_(INTERNAL_SERVER_ERROR), bodyType_(BODY_NONE), messageType_(STANDARD) {}
-
-HttpResponse::HttpResponse(Status code, std::string const &httpVersion, MessageType type)
-    : httpVersion_(httpVersion), statusCode_(code), bodyType_(BODY_NONE), messageType_(type) {}
-
-HttpResponse::HttpResponse(HttpResponse const &rhs)
-    : httpVersion_(rhs.httpVersion_),
-      statusCode_(rhs.statusCode_),
-      headers_(rhs.headers_),
-      bodyType_(rhs.bodyType_) {
-    if (bodyType_ == BODY_IN_MEMORY) {
-        inMemoryBody = rhs.inMemoryBody;
-        if (inMemoryBody.data != NULL)
-            inMemoryBody.data = new std::vector<char>(*rhs.inMemoryBody.data);
-    } else if (bodyType_ == BODY_FROM_FILE)
-        fileBody = rhs.fileBody;
-    else if (bodyType_ == BODY_FROM_CGI)
-        cgiBody = rhs.cgiBody;
-}
-
-HttpResponse const &HttpResponse::operator=(HttpResponse const &rhs) {
-    if (this == &rhs)
-        return *this;
-    cleanupBody();
-    httpVersion_ = rhs.httpVersion_;
-    statusCode_ = rhs.statusCode_;
-    headers_ = rhs.headers_;
-    bodyType_ = rhs.bodyType_;
-    if (rhs.bodyType_ == BODY_IN_MEMORY) {
-        inMemoryBody = rhs.inMemoryBody;
-        if (inMemoryBody.data != NULL)
-            inMemoryBody.data = new std::vector<char>(*rhs.inMemoryBody.data);
-    } else if (rhs.bodyType_ == BODY_FROM_FILE)
-        fileBody = rhs.fileBody;
-    else if (rhs.bodyType_ == BODY_FROM_CGI)
-        cgiBody = rhs.cgiBody;
-    return *this;
-}
-
-HttpResponse::~HttpResponse() { cleanupBody(); }
-
 void HttpResponse::setStatus(Status s) { statusCode_ = s; }
 
-void HttpResponse::setNoBody() {
-    cleanupBody();
-    bodyType_ = BODY_NONE;
-    statusCode_ = NO_CONTENT;
-    headers_.erase("Content-Length");
-    headers_.erase("Content-Type");
-}
-
-void HttpResponse::setBodyInMemory(std::vector<char> const &body, std::string const &mimeType) {
-    cleanupBody();
-    bodyType_ = BODY_IN_MEMORY;
-    inMemoryBody.data = new std::vector<char>(body);
-    inMemoryBody.sent = 0;
-    headers_["Content-Length"] = utils::toString(body.size());
-    headers_["Content-Type"] = mimeType;
-}
-
-void HttpResponse::setBodyFromFile(int fd, size_t size) {
-    cleanupBody();
-    bodyType_ = BODY_FROM_FILE;
-    fileBody.fd = fd;
-    fileBody.sent = 0;
-    fileBody.totalSize = size;
-    headers_["Content-Length"] = utils::toString(size);
-}
-
-void HttpResponse::setBodyFromFile(int fd, size_t size, std::string const &mimeType) {
-    setBodyFromFile(fd, size);
-    headers_["Content-Type"] = mimeType;
-}
-
-void HttpResponse::setBodyFromCgi(int pipe_fd) {
-    cleanupBody();
-    bodyType_ = BODY_FROM_CGI;
-    cgiBody.pipe_fd = pipe_fd;
-}
-
 Status HttpResponse::getStatus() const { return statusCode_; }
-
-HeaderMap &HttpResponse::getHeaders() { return headers_; }
-
-HeaderMap const &HttpResponse::getHeaders() const { return headers_; }
 
 std::string const &HttpResponse::getVersion() const { return httpVersion_; }
 
@@ -189,5 +136,6 @@ std::ostream &operator<<(std::ostream &o, HttpResponse const &r) {
       << r.generateResponsePhrase() << ")";
     return o;
 }
+#endif
 
 } // namespace http

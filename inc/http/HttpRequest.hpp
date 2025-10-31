@@ -1,7 +1,6 @@
 #pragma once
 
 #include "http/Headers.hpp"
-#include "http/RequestLine.hpp"
 
 namespace config {
 class LocationBlock;
@@ -10,9 +9,23 @@ class ServerBlock;
 
 namespace http {
 
+class RequestStartLine {
+public:
+    enum Method { GET, POST, PUT, DELETE, UNKNOWN };
+
+    Method method;
+    std::string uri;
+    std::string path;
+    std::string version;
+
+    static RequestStartLine parse(std::string const &line);
+    static Method matchHttpMethod(std::string const &s);
+    static char const *methodToString(Method m);
+};
+
 class HttpRequest {
 public:
-    RequestLine requestLine;
+    RequestStartLine requestLine;
     http::Headers headers;
     void *body; // In future have body class
     config::LocationBlock const *location;

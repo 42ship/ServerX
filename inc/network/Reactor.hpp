@@ -38,18 +38,20 @@ private:
     http::HttpResponse response_; //!< The HTTP response being prepared/sent.
 
     http::RequestParser reqParser_;
-#if 0
-    // --- Request State ---
-    RequestState requestState_; //!< The current state of request parsing.
-    std::string requestBuffer_; //!< Buffer for incoming request data.
-    size_t bodyStart_;          //!< Start position of the body in requestBuffer_.
-    size_t contentLength_;      //!< Expected length of the request body.
-#endif
 
     // --- Response State ---
-    std::vector<char> responseBuffer_; //!< Buffer for the outgoing response.
-    ResponseState responseState_;      //!< The current state of response sending.
-    size_t sentResponseBytes_;         //!< Number of bytes sent from responseBuffer_.
+    struct SendBuffer {
+        SendBuffer(size_t initialCapacity = IO_BUFFER_SIZE);
+
+        std::vector<char> buffer;
+        size_t sent;
+
+        void reset();
+        bool isFullySent();
+        enum SendStatus { SEND_DONE, SEND_AGAIN, SEND_ERROR };
+        SendStatus send(int clientFd);
+    };
+    SendBuffer rspBuffer_;
 
     // --- Constants ---
     static const size_t IO_BUFFER_SIZE = 8192; //!< Size for read/write chunks.
@@ -59,20 +61,14 @@ private:
     void handleRead();
     /// @brief Handles outgoing data on the socket.
     void handleWrite();
-#if 0
-    /// @brief Attempts to parse headers from the request buffer.
-    void tryParseHeaders();
-#endif
     /// @brief Processes a fully parsed request to generate a response.
     void generateResponse();
-    /// @brief Sends the contents of the response buffer. @return False on fatal error.
-    bool sendResponseBuffer();
-    /// @brief Clears the response buffer and resets sent byte count.
-    void clearResponseBuffer();
     /// @brief Resets the reactor state for a new request (keep-alive).
     void resetForNewRequest();
     /// @brief Closes the connection and removes it from the dispatcher.
     void closeConnection();
+
+    void finalizeConnection();
 };
 
 } // namespace network

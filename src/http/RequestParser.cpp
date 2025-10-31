@@ -1,7 +1,6 @@
 #include "http/RequestParser.hpp"
 #include "common/filesystem.hpp"
 #include "http/Headers.hpp"
-#include "http/RequestLine.hpp"
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -19,7 +18,7 @@ RequestParser::RequestParser(size_t maxContentSize)
 }
 
 void RequestParser::reset() {
-    startLine_.method = RequestLine::UNKNOWN;
+    startLine_.method = RequestStartLine::UNKNOWN;
     state_ = READING_HEADERS;
     contentLength_ = 0;
     contentLength_ = 0;
@@ -35,7 +34,7 @@ void RequestParser::reset() {
 
 RequestParser::RequestState RequestParser::getState() const { return state_; }
 size_t RequestParser::getContentLength() const { return contentLength_; }
-RequestLine const &RequestParser::getStartLine() const { return startLine_; }
+RequestStartLine const &RequestParser::getStartLine() const { return startLine_; }
 http::Headers const &RequestParser::getHeaders() const { return headers_; }
 
 HttpRequest &RequestParser::getRequestContext() { return reqContext_; }
@@ -83,8 +82,8 @@ void RequestParser::readHeaders() {
     if (contentStartInBuffer_ == std::string::npos)
         return;
 
-    startLine_ = RequestLine::parse(buffer_);
-    if (startLine_.method == RequestLine::UNKNOWN) {
+    startLine_ = RequestStartLine::parse(buffer_);
+    if (startLine_.method == RequestStartLine::UNKNOWN) {
         state_ = ERROR;
         return;
     }

@@ -1,5 +1,5 @@
-#include "common/string.hpp"
 #include "http/Headers.hpp"
+#include "common/string.hpp"
 #include <algorithm>
 #include <sstream>
 
@@ -79,6 +79,11 @@ bool Headers::isContentChunked() const {
 
 Headers &Headers::clear() {
     map_.clear();
+    return *this;
+}
+
+Headers &Headers::erase(std::string const &key) {
+    map_.erase(normalizeKey(key));
     return *this;
 }
 

@@ -1,8 +1,7 @@
 
-#include "HttpRequest.hpp"
 #include "common/filesystem.hpp"
 #include "http/Headers.hpp"
-#include "http/RequestLine.hpp"
+#include "http/HttpRequest.hpp"
 #include <string>
 #include <sys/types.h>
 #include <unistd.h>
@@ -18,7 +17,7 @@ public:
     void reset();
     RequestState getState() const;
     size_t getContentLength() const;
-    RequestLine const &getStartLine() const;
+    RequestStartLine const &getStartLine() const;
     http::Headers const &getHeaders() const;
     RequestParser &proceedReadingBody();
     RequestParser &setMaxContentSize(size_t size);
@@ -48,7 +47,7 @@ private:
 
     // Final objects
     HttpRequest reqContext_;
-    RequestLine &startLine_;
+    RequestStartLine &startLine_;
     http::Headers &headers_;
     utils::TempFile bodyFile_;
     // Final objects

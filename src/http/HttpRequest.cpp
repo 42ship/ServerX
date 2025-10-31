@@ -1,11 +1,11 @@
-#include "http/RequestLine.hpp"
+#include "http/HttpRequest.hpp"
 #include <limits>
 #include <sstream>
 
 namespace http {
 
-RequestLine RequestLine::parse(std::string const &line) {
-    RequestLine rl;
+RequestStartLine RequestStartLine::parse(std::string const &line) {
+    RequestStartLine rl;
     std::string method;
     std::istringstream s(line);
     if (!(s >> method >> rl.uri >> rl.version))
@@ -15,7 +15,7 @@ RequestLine RequestLine::parse(std::string const &line) {
     s.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return rl;
 }
-RequestLine::Method RequestLine::matchHttpMethod(std::string const &s) {
+RequestStartLine::Method RequestStartLine::matchHttpMethod(std::string const &s) {
     if (s == "GET")
         return GET;
     if (s == "POST")
@@ -24,10 +24,10 @@ RequestLine::Method RequestLine::matchHttpMethod(std::string const &s) {
         return PUT;
     if (s == "DELETE")
         return DELETE;
-    return RequestLine::UNKNOWN;
+    return RequestStartLine::UNKNOWN;
 }
 
-char const *RequestLine::methodToString(Method m) {
+char const *RequestStartLine::methodToString(Method m) {
     switch (m) {
     case GET:
         return "GET";
