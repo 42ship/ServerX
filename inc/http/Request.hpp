@@ -1,6 +1,8 @@
 #pragma once
 
 #include "http/Headers.hpp"
+#include "http/HttpStatus.hpp"
+#include <aio.h>
 
 namespace config {
 class LocationBlock;
@@ -69,6 +71,8 @@ public:
      */
     void clear();
 
+    ssize_t getMaxAllowedContentSize() const;
+
     // --- Public Read-only Accessors ---
 
     /**
@@ -123,6 +127,18 @@ public:
 
     // IRequestBody const *body() const; // Will be added later
 
+    /**
+     * @brief Sets the response status and automatically syncs the reason phrase.
+     * @param statusCode The HttpStatus enum value (e.g., NOT_FOUND).
+     * @return A reference to this object for chaining.
+     */
+    Request &status(HttpStatus statusCode);
+
+    /**
+     * @brief Gets the current status code.
+     */
+    HttpStatus status() const;
+
 protected:
     friend class RequestParser;
     friend class Router;
@@ -139,6 +155,7 @@ private:
     void *body_; // In future have body class
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
+    HttpStatus status_;
 };
 
 } // namespace http

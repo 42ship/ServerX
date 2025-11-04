@@ -9,7 +9,7 @@ namespace http {
 #if 0
 typedef map<Key, vector<char> > JsonErrorPageCache;
 
-static std::string createJsonErrorBody(ResponseStatus code, char const *message) {
+static std::string createJsonErrorBody(HttpStatus code, char const *message) {
     std::ostringstream body;
     body << "{ \"" << code << "\": \"" << message << "\" }";
     return body.str();

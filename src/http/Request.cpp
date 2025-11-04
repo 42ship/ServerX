@@ -1,4 +1,6 @@
 #include "http/Request.hpp"
+#include "config/LocationBlock.hpp"
+#include "config/ServerBlock.hpp"
 #include <sstream>
 
 namespace http {
@@ -57,7 +59,7 @@ char const *RequestStartLine::methodToString(Method m) {
     }
 }
 
-Request::Request() : body_(NULL), location_(NULL), server_(NULL) {}
+Request::Request() : body_(NULL), location_(NULL), server_(NULL), status_(OK) {}
 
 bool Request::wantsJson() const { return headers_.get("Accept") == "application/json"; }
 
@@ -69,6 +71,15 @@ void Request::clear() {
     requestLine_.version.clear();
     location_ = NULL;
     server_ = NULL;
+    status_ = OK;
+}
+
+ssize_t Request::getMaxAllowedContentSize() const {
+    if (location_ && location_->has("max_body_size"))
+        return location_->maxBodySize();
+    if (server_ && server_->has("max_body_size"))
+        return server_->maxBodySize();
+    return -1;
 }
 
 // clang-format off
@@ -86,6 +97,8 @@ Request &Request::server(config::ServerBlock const *server) {server_ = server;re
 Request &Request::method(RequestStartLine::Method method) {requestLine_.method = method;return *this;}
 Request &Request::uri(std::string const &uri) {requestLine_.uri = uri;return *this;}
 Request &Request::version(std::string const &version) {requestLine_.version= version;return *this;}
+Request &Request::status(HttpStatus status) { status_ = status; return *this; }
+HttpStatus Request::status() const { return status_; }
 // clang-format on
 
 } // namespace http

@@ -99,8 +99,7 @@ void TempFile::close() {
         fd_ = -1;
     }
     if (!filePath_.empty()) {
-        // unlink(filePath_.c_str());
-        std::cout << filePath_ << std::endl;
+        unlink(filePath_.c_str());
         filePath_.clear();
     }
 }

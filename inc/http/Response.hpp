@@ -1,7 +1,7 @@
 #pragma once
 
 #include "http/Headers.hpp"
-#include "http/ResponseStatus.hpp"
+#include "http/HttpStatus.hpp"
 #include <vector>
 
 namespace http {
@@ -18,7 +18,7 @@ public:
     ResponseStartLine();
 
     std::string protocol;      //!< The HTTP protocol version (e.g., "HTTP/1.1").
-    ResponseStatus statusCode; //!< The numerical status code (e.g., 200, 404).
+    HttpStatus statusCode; //!< The numerical status code (e.g., 200, 404).
     std::string reasonPhrase;  //!< The human-readable reason (e.g., "OK", "Not Found").
 };
 
@@ -104,18 +104,18 @@ public:
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.
-     * @param statusCode The ResponseStatus enum value (e.g., NOT_FOUND).
+     * @param statusCode The HttpStatus enum value (e.g., NOT_FOUND).
      * @return A reference to this object for chaining.
      */
-    Response &status(ResponseStatus statusCode);
+    Response &status(HttpStatus statusCode);
 
-    /** @copydoc status(ResponseStatus statusCode) */
-    Response &status(ResponseStatus statusCode, std::string const &customError);
+    /** @copydoc status(HttpStatus statusCode) */
+    Response &status(HttpStatus statusCode, std::string const &customError);
 
     /**
      * @brief Gets the current status code.
      */
-    ResponseStatus status() const;
+    HttpStatus status() const;
 
     /**
      * @brief Gets the current protocol string (e.g., "HTTP/1.1").
@@ -139,7 +139,7 @@ private:
     /**
      * @brief Internal: maps a Status enum to its standard string.
      */
-    static char const *getReasonPhrase_(ResponseStatus status);
+    static char const *getReasonPhrase_(HttpStatus status);
 
     ResponseStartLine startLine_;
     Headers headers_;

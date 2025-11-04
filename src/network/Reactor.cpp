@@ -12,7 +12,10 @@
 namespace network {
 
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), router_(router), reqParser_(request_, IO_BUFFER_SIZE) {
+    : clientFd_(clientFd),
+      port_(port),
+      router_(router),
+      reqParser_(request_, IO_BUFFER_SIZE, IO_BUFFER_SIZE) {
     resetForNewRequest();
     LOG_TRACE("Reactor::Reactor(" << clientFd_ << "," << port_ << "): new connection accepted");
 }
@@ -40,6 +43,24 @@ void Reactor::handleEvent(uint32_t events) {
 
 int Reactor::getHandle() const { return clientFd_; }
 
+void Reactor::handleRequestParsingState(http::RequestParser::RequestState state) {
+    if (state == http::RequestParser::ERROR) {
+        LOG_DEBUG("Reactor::handleRead(" << clientFd_
+                                         << "): state=ERROR, generating error response");
+        return generateResponse();
+    }
+    if (state == http::RequestParser::HEADERS_READY) {
+        LOG_DEBUG("Reactor::handleRead(" << clientFd_
+                                         << "): state=HEADERS_READY, matching location");
+        router_.matchServerAndLocation(port_, request_);
+        reqParser_.setMaxContentSize(request_.getMaxAllowedContentSize());
+        handleRequestParsingState(reqParser_.proceedReadingBody());
+    }
+    if (state == http::RequestParser::REQUEST_READY) {
+        generateResponse();
+    }
+}
+
 void Reactor::handleRead() {
     char read_buffer[IO_BUFFER_SIZE];
 
@@ -55,22 +76,7 @@ void Reactor::handleRead() {
         closeConnection();
         return;
     }
-    http::RequestParser::RequestState state = reqParser_.addIncomingChunk(read_buffer, count);
-
-    if (state == http::RequestParser::ERROR) {
-        LOG_DEBUG("Reactor::handleRead(" << clientFd_ << "): state=ERROR, closing connection");
-        return closeConnection();
-    } else if (state == http::RequestParser::HEADERS_READY) {
-        LOG_DEBUG("Reactor::handleRead(" << clientFd_
-                                         << "): state=HEADERS_READY, matching location");
-        // TODO: validate things
-        // This matchServerAndLocation will be useful for the reqParser because if there is a body
-        // it would use it to identify the specific body limit but it's not yet implemented
-        router_.matchServerAndLocation(port_, request_);
-        reqParser_.proceedReadingBody();
-    } else if (state == http::RequestParser::REQUEST_READY) {
-        generateResponse();
-    }
+    handleRequestParsingState(reqParser_.addIncomingChunk(read_buffer, count));
 }
 
 void Reactor::generateResponse() {

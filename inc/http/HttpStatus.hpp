@@ -6,7 +6,7 @@ namespace http {
  * @enum Status
  * @brief Enumeration of common HTTP status codes.
  */
-enum ResponseStatus {
+enum HttpStatus {
     OK = 200,         /** 200 OK — request succeeded. */
     CREATED = 201,    /** 201 Created — resource created successfully. */
     ACCEPTED = 202,   /** 202 Accepted — request accepted for processing, but not yet completed. */

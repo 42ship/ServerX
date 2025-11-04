@@ -34,7 +34,6 @@ ssize_t FileBody::read(char *buffer, size_t size) {
     if (fd_ == -1)
         return 0;
     ssize_t read = ::read(fd_, buffer, size);
-    std::cout << read << std::endl;
     sent_ += read;
     return read;
 }

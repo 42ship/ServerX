@@ -39,7 +39,10 @@ void Router::matchServerAndLocation(int port, Request &request) const {
 void Router::dispatch(int port, Request &request, Response &response) const {
     LOG_DEBUG("Router::dispatch(" << port << ", " << request.method() << " " << request.uri()
                                   << "): dispatching request");
-    matchServerAndLocation(port, request);
+    if (request.status() >= 400) {
+        response.status(request.status());
+        return handleError(request, response);
+    }
     try {
         executeHandler(request, response);
     } catch (std::exception const &e) {

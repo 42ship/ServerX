@@ -1,8 +1,8 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "http/Response.hpp"
 #include "http/RequestParser.hpp"
+#include "http/Response.hpp"
 #include "http/Router.hpp"
 #include <sys/types.h>
 #include <vector>
@@ -69,6 +69,8 @@ private:
     void closeConnection();
 
     void finalizeConnection();
+
+    void handleRequestParsingState(http::RequestParser::RequestState state);
 };
 
 } // namespace network

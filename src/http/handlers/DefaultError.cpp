@@ -8,9 +8,9 @@
 
 namespace http {
 
-typedef std::map<ResponseStatus, std::string> ErrorPageCache;
+typedef std::map<HttpStatus, std::string> ErrorPageCache;
 
-static std::string createErrorBody(ResponseStatus code, char const *message) {
+static std::string createErrorBody(HttpStatus code, char const *message) {
     std::ostringstream body;
     body << "<!DOCTYPE html>\n"
          << "<html lang=\"en\">\n"
@@ -57,7 +57,7 @@ static std::string createErrorBody(ResponseStatus code, char const *message) {
     return body.str();
 }
 
-static std::string const &getCacherErrorBody(ResponseStatus code, char const *message) {
+static std::string const &getCacherErrorBody(HttpStatus code, char const *message) {
     static ErrorPageCache cache;
 
     ErrorPageCache::const_iterator it = cache.find(code);

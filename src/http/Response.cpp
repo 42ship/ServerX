@@ -7,7 +7,7 @@ namespace http {
 
 namespace {
 
-inline const char *getReasonPhrase(ResponseStatus status) {
+inline const char *getReasonPhrase(HttpStatus status) {
     switch (status) {
     case OK:
         return "OK";
@@ -29,6 +29,8 @@ inline const char *getReasonPhrase(ResponseStatus status) {
         return "Method Not Allowed";
     case INTERNAL_SERVER_ERROR:
         return "Internal Server Error";
+    case PAYLOAD_TOO_LARGE:
+        return "Payload too large";
     default:
         return "Unknown";
     }
@@ -85,7 +87,7 @@ void Response::buildHeaders(std::vector<char> &buffer) const {
     buffer.push_back('\n');
 }
 
-Response &Response::status(ResponseStatus status) {
+Response &Response::status(HttpStatus status) {
     startLine_.statusCode = status;
     startLine_.reasonPhrase = getReasonPhrase(status);
     return *this;
@@ -100,11 +102,11 @@ Response &Response::clear() {
 }
 Headers &Response::headers() { return headers_; }
 Headers const &Response::headers() const { return headers_; }
-ResponseStatus Response::status() const { return startLine_.statusCode; }
+HttpStatus Response::status() const { return startLine_.statusCode; }
 std::string const &Response::protocol() const { return startLine_.protocol; }
 std::string const &Response::reasonPhrase() const { return startLine_.reasonPhrase; }
 
-Response &Response::status(ResponseStatus statusCode, std::string const &customError) {
+Response &Response::status(HttpStatus statusCode, std::string const &customError) {
     status(statusCode);
     customError_ = customError;
     return *this;
