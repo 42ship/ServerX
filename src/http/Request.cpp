@@ -78,6 +78,7 @@ std::string const &Request::uri() const { return requestLine_.uri; }
 std::string const &Request::path() const { return requestLine_.path; }
 std::string const &Request::queryString() const { return requestLine_.queryString; }
 std::string const &Request::version() const { return requestLine_.version; }
+RequestStartLine::Method Request::method() const { return requestLine_.method; }
 Headers &Request::headers() { return headers_; }
 Headers const &Request::headers() const { return headers_; }
 Request &Request::location(config::LocationBlock const *location) {location_ = location;return *this;}

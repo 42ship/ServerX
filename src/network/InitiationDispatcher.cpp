@@ -1,9 +1,9 @@
 #include "network/InitiationDispatcher.hpp"
 
-#include "utils/Logger.hpp"
 #include "network/AEventHandler.hpp"
-#include <cstring>
+#include "utils/Logger.hpp"
 #include <cerrno>
+#include <cstring>
 
 namespace network {
 
@@ -12,8 +12,7 @@ InitiationDispatcher &InitiationDispatcher::getInstance() {
     return instance;
 }
 
-InitiationDispatcher::InitiationDispatcher() {
-}
+InitiationDispatcher::InitiationDispatcher() {}
 
 InitiationDispatcher::~InitiationDispatcher() {
     for (std::map<int, AEventHandler *>::iterator it = handlers_.begin(); it != handlers_.end();
@@ -42,6 +41,7 @@ void InitiationDispatcher::removeHandler(int fd) {
 
 // TODO will need to implement shutdown inside else if nready == 0
 void InitiationDispatcher::handleEvents() {
+    static bool wasPrinted = false;
     LOG_INFO("Starting event loop (signal-aware)");
     while (!epollManager_.getisShuttingDown()) {
         struct epoll_event events[1024];
@@ -54,7 +54,10 @@ void InitiationDispatcher::handleEvents() {
             LOG_ERROR("epoll_wait failed: " << strerror(errno));
             break;
         } else if (nready == 0) {
-            LOG_DEBUG("epoll_wait timed out, no events to process.");
+            if (!wasPrinted) {
+                LOG_DEBUG("epoll_wait timed out, no events to process.");
+                wasPrinted = true;
+            }
             continue;
         }
         for (int i = 0; i < nready; ++i) {
@@ -62,6 +65,7 @@ void InitiationDispatcher::handleEvents() {
 
             std::map<int, AEventHandler *>::iterator it = handlers_.find(fd);
             if (it != handlers_.end()) {
+                wasPrinted = false;
                 it->second->handleEvent(events[i].events);
             } else {
                 LOG_WARN("Received event for untracked fd: "
@@ -73,12 +77,8 @@ void InitiationDispatcher::handleEvents() {
     LOG_INFO("Event loop exited");
 }
 
-void InitiationDispatcher::requestShutdown() {
-    epollManager_.requestShutdown();
-}
+void InitiationDispatcher::requestShutdown() { epollManager_.requestShutdown(); }
 
-EpollManager &InitiationDispatcher::getEpollManager() {
-    return epollManager_;
-}
+EpollManager &InitiationDispatcher::getEpollManager() { return epollManager_; }
 
 } // namespace network
