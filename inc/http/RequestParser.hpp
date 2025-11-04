@@ -1,7 +1,6 @@
-
 #include "common/filesystem.hpp"
 #include "http/Headers.hpp"
-#include "http/HttpRequest.hpp"
+#include "http/Request.hpp"
 #include <string>
 #include <sys/types.h>
 #include <unistd.h>
@@ -12,16 +11,15 @@ class RequestParser {
 public:
     enum RequestState { READING_HEADERS, HEADERS_READY, READING_BODY, REQUEST_READY, ERROR };
 
-    RequestParser(size_t maxContentSize);
+    RequestParser(Request &req, size_t maxContentSize);
 
     void reset();
     RequestState getState() const;
     size_t getContentLength() const;
     RequestStartLine const &getStartLine() const;
-    http::Headers const &getHeaders() const;
+    Headers const &getHeaders() const;
     RequestParser &proceedReadingBody();
     RequestParser &setMaxContentSize(size_t size);
-    HttpRequest &getRequestContext();
 
     RequestState addIncomingChunk(char const *chunk, size_t size);
 
@@ -46,9 +44,9 @@ private:
     size_t bytesWrittenToBody_;
 
     // Final objects
-    HttpRequest reqContext_;
+    Request &request_;
     RequestStartLine &startLine_;
-    http::Headers &headers_;
+    Headers &headers_;
     utils::TempFile bodyFile_;
     // Final objects
 };

@@ -8,7 +8,7 @@
 #include "../test_utils.hpp"
 #include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
-#include "http/HttpRequest.hpp"
+#include "http/Request.hpp"
 #include "http/MimeTypes.hpp"
 
 using namespace http;
@@ -19,7 +19,7 @@ static const char *kConfPath = "config/test.conf";
 // ----------------- helpers -----------------
 
 struct RequestContext {
-    HttpRequest req;
+    Request req;
     const config::ServerBlock *server;
     const config::LocationBlock *location;
 };
@@ -31,7 +31,7 @@ static string makeRequestTo(const string &path, const string &headers) {
 inline RequestContext makeDeleteRequest(config::ServerConfig &conf, const std::string &requestTo,
                                         const std::string &headers) {
     RequestContext ctx;
-    ctx.req = http::HttpRequest::parse(makeRequestTo(requestTo, headers));
+    ctx.req = http::Request::parse(makeRequestTo(requestTo, headers));
     ctx.server = conf.getServer(9191, ctx.req.headers["Host"]);
     ctx.location = ctx.server ? ctx.server->matchLocation(ctx.req.path) : NULL;
     return ctx;
@@ -65,7 +65,7 @@ TEST_CASE("DELETE — 204 No Content when deleting an existing file") {
                                            "Host: localhost:9191\r\n"
                                            "Connection: close\r\n");
 
-    HttpResponse res = delHandler.handle(ctx.req, ctx.server, ctx.location);
+    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
     CHECK(res.getStatus() == NO_CONTENT);
     CHECK(access("test_www/img/uploads/to-delete.bin", F_OK) == -1);
 
@@ -85,7 +85,7 @@ TEST_CASE("DELETE — 404 Not Found when resource does not exist") {
                                            "Host: localhost:9191\r\n"
                                            "Connection: close\r\n");
 
-    HttpResponse res = delHandler.handle(ctx.req, ctx.server, ctx.location);
+    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
     CHECK(res.getStatus() == NOT_FOUND);
 
     removeDirectoryRecursive("test_www");
@@ -110,7 +110,7 @@ TEST_CASE("DELETE — 403 Forbidden when parent directory is not writable") {
                                            "Host: localhost:9191\r\n"
                                            "Connection: close\r\n");
 
-    HttpResponse res = delHandler.handle(ctx.req, ctx.server, ctx.location);
+    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
     CHECK(res.getStatus() == FORBIDDEN);
 
     // Restore permissions for cleanup
@@ -136,7 +136,7 @@ TEST_CASE("DELETE — 409 Conflict when deleting non-empty directory") {
                                            "Host: localhost:9191\r\n"
                                            "Connection: close\r\n");
 
-    HttpResponse res = delHandler.handle(ctx.req, ctx.server, ctx.location);
+    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
     CHECK(res.getStatus() == CONFLICT);
 
     // cleanup
@@ -161,7 +161,7 @@ TEST_CASE("DELETE — 204 No Content when deleting empty directory") {
                                            "Host: localhost:9191\r\n"
                                            "Connection: close\r\n");
 
-    HttpResponse res = delHandler.handle(ctx.req, ctx.server, ctx.location);
+    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
     CHECK(res.getStatus() == NO_CONTENT);
 
     // directory should be gone

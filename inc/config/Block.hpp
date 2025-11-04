@@ -54,8 +54,8 @@ public:
 
     // ============================== Getters & Setters =============================
 
-    std::vector<std::string> get(std::string const &key, http::HttpRequest const &req) const;
-    std::string getFirstEvaluatedString(std::string const &key, http::HttpRequest const &req) const;
+    std::vector<std::string> get(std::string const &key, http::Request const &req) const;
+    std::string getFirstEvaluatedString(std::string const &key, http::Request const &req) const;
 
     /**
      * @brief Gets the name of the block.

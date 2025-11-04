@@ -9,12 +9,14 @@
 
 namespace http {
 
-RequestParser::RequestParser(size_t maxContentSize)
+RequestParser::RequestParser(Request &req, size_t maxContentSize)
     : maxContentSize_(maxContentSize),
-      startLine_(reqContext_.requestLine),
-      headers_(reqContext_.headers) {
+      request_(req),
+      startLine_(req.requestLine_),
+      headers_(req.headers()) {
     buffer_.reserve(8192);
     reset();
+    (void)request_;
 }
 
 void RequestParser::reset() {
@@ -37,7 +39,6 @@ size_t RequestParser::getContentLength() const { return contentLength_; }
 RequestStartLine const &RequestParser::getStartLine() const { return startLine_; }
 http::Headers const &RequestParser::getHeaders() const { return headers_; }
 
-HttpRequest &RequestParser::getRequestContext() { return reqContext_; }
 RequestParser &RequestParser::setMaxContentSize(size_t size) {
     contentLength_ = size;
     return *this;
@@ -88,7 +89,7 @@ void RequestParser::readHeaders() {
         return;
     }
     headers_ = http::Headers::parse(buffer_);
-    contentLength_ = headers_.getConentLength();
+    contentLength_ = headers_.getContentLength();
 
     if (contentLength_ > 0 && contentLength_ > maxContentSize_) {
         state_ = ERROR;

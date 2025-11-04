@@ -1,5 +1,5 @@
 #include "doctest.h"
-#include "http/HttpRequest.hpp"
+#include "http/Request.hpp"
 #include "http/utils.hpp"
 #include <sstream>
 
@@ -7,20 +7,20 @@ using namespace std;
 using namespace http;
 using namespace utils;
 
-bool testStartLine(const std::string &line, HttpRequest &req) {
-    req = HttpRequest();
+bool testStartLine(const std::string &line, Request &req) {
+    req = Request();
     istringstream stream(line);
     return details::parseStartLine(req, stream);
 }
 
-bool testHeaders(const std::string &headerBlock, HttpRequest &req) {
-    req = HttpRequest(); // Reset for a clean state
+bool testHeaders(const std::string &headerBlock, Request &req) {
+    req = Request(); // Reset for a clean state
     istringstream stream(headerBlock);
     return details::parseHeaders(req.headers, stream);
 }
 
 TEST_CASE("HTTP Request Start Line Parsing") {
-    HttpRequest r;
+    Request r;
 
     SUBCASE("Valid Methods") {
         REQUIRE(testStartLine("GET /index.html HTTP/1.1\r\n", r));
@@ -80,7 +80,7 @@ TEST_CASE("HTTP Request Start Line Parsing") {
 }
 
 TEST_CASE("HTTP Request Header Parsing" * doctest::skip(true)) {
-    HttpRequest r;
+    Request r;
 
     SUBCASE("Valid Headers") {
         const char *headers = "Host: www.example.com\r\n"

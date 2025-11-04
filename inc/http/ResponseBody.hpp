@@ -66,11 +66,12 @@ public:
 
     ssize_t read(char *buffer, size_t size);
     size_t size() const { return size_; }
-    bool isDone() const { return true; };
+    bool isDone() const { return sent_ == size_; };
 
 private:
     int fd_;
     size_t size_;
+    size_t sent_;
 };
 
 class BodyInMemory : public IResponseBody {

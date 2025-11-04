@@ -38,7 +38,7 @@ std::string Headers::get(std::string const &key) const {
     return res;
 }
 
-size_t Headers::getConentLength() const {
+size_t Headers::getContentLength() const {
     static const std::string key = normalizeKey("content-length");
     HeaderMap::const_iterator it = map_.find(key);
     if (it == map_.end())
@@ -85,6 +85,15 @@ Headers &Headers::clear() {
 Headers &Headers::erase(std::string const &key) {
     map_.erase(normalizeKey(key));
     return *this;
+}
+
+std::string Headers::toString() const {
+    std::ostringstream oss;
+
+    for (HeaderMap::const_iterator it = map_.begin(); it != map_.end(); ++it) {
+        oss << it->first << ": " << it->second << "\r\n";
+    }
+    return oss.str();
 }
 
 } // namespace http

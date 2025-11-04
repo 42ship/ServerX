@@ -52,7 +52,7 @@ Block &Block::operator=(const Block &other) {
     return *this;
 }
 
-std::vector<std::string> Block::get(std::string const &key, http::HttpRequest const &req) const {
+std::vector<std::string> Block::get(std::string const &key, http::Request const &req) const {
     ArgumentVector const &argv = get(key);
     std::vector<std::string> res;
     res.reserve(argv.size());
@@ -63,8 +63,7 @@ std::vector<std::string> Block::get(std::string const &key, http::HttpRequest co
     return res;
 }
 
-std::string Block::getFirstEvaluatedString(std::string const &key,
-                                           http::HttpRequest const &req) const {
+std::string Block::getFirstEvaluatedString(std::string const &key, http::Request const &req) const {
     ArgumentVector const &argv = get(key);
     if (argv.empty()) {
         return "";
@@ -172,7 +171,7 @@ std::ostream &operator<<(std::ostream &o, Block const &b) {
     for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
         o << print_indent << it->first << ":";
         for (size_t i = 0; i < it->second.size(); i++) {
-            o << " '" << it->second[i] << "'";
+            o << " '" << it->second[i]->getRawValue() << "'";
         }
         o << "\n";
     }

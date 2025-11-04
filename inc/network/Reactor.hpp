@@ -1,15 +1,13 @@
 #pragma once
 
 #include "AEventHandler.hpp"
-#include "http/HttpResponse.hpp"
+#include "http/Response.hpp"
 #include "http/RequestParser.hpp"
 #include "http/Router.hpp"
 #include <sys/types.h>
 #include <vector>
 
 namespace network {
-
-enum ResponseState { NOT_READY, SENDING, SENT };
 
 /**
  * @class Reactor
@@ -34,8 +32,10 @@ private:
     // --- Core Connection State ---
     int clientFd_;
     int port_;
+
     http::Router const &router_;
-    http::HttpResponse response_; //!< The HTTP response being prepared/sent.
+    http::Request request_;
+    http::Response response_; //!< The HTTP response being prepared/sent.
 
     http::RequestParser reqParser_;
 

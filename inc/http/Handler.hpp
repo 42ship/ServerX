@@ -1,9 +1,7 @@
 #pragma once
 
-#include "HttpResponse.hpp"
-#include "config/LocationBlock.hpp"
-#include "config/ServerBlock.hpp"
-#include "http/HttpRequest.hpp"
+#include "http/Request.hpp"
+#include "http/Response.hpp"
 #include "http/MimeTypes.hpp"
 
 namespace http {
@@ -17,27 +15,8 @@ namespace http {
 class IHandler {
 public:
     virtual ~IHandler() {};
-    virtual void handle(HttpRequest const &, HttpResponse &) = 0;
+    virtual void handle(Request const &, Response &) const = 0;
 };
-#if 0
-    /**
-     * @brief The primary handler logic entry point.
-     * @param request The client's HTTP request.
-     * @param server The matched server configuration context.
-     * @param location The matched location configuration context.
-     * @return An HttpResponse object representing the result of the handling.
-     */
-    virtual HttpResponse handle(HttpRequest const &, config::ServerBlock const *,
-                                config::LocationBlock const *) const = 0;
-
-    /**
-     * @brief Convenience overload to handle a request using a RouterResult.
-     */
-    HttpResponse handle(HttpRequest const &h, RouterResult const &r) const {
-        return handle(h, r.server, r.location);
-    }
-};
-#endif
 
 /**
  * @brief Handles serving static files from the filesystem.
@@ -45,24 +24,31 @@ public:
 class StaticFileHandler : public IHandler {
 public:
     StaticFileHandler(MimeTypes const &);
-    void handle(HttpRequest const &, HttpResponse &);
+    void handle(Request const &, Response &) const;
 
 private:
     StaticFileHandler();
     MimeTypes const &mimeTypes_;
 };
-#if 0
-    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
-                        config::LocationBlock const *l) const;
 
+class JsonErrorHandler : public IHandler {
+public:
+    static void populateResponse(Response &res);
 };
+
+class DefaultErrorHandler : public IHandler {
+public:
+    static void populateResponse(Response &res);
+};
+
+#if 0
 
 /**
  * @brief Handles the generation of not found(404).
  */
 class NotFoundHandler : public IHandler {
 public:
-    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s = NULL,
+    Response handle(Request const &req, config::ServerBlock const *s = NULL,
                         config::LocationBlock const *l = NULL) const;
 };
 
@@ -70,7 +56,7 @@ public:
  * @brief Handles the execution of CGI scripts.
  */
 class CGIHandler : public IHandler {
-    HttpResponse handle(HttpRequest const &, config::ServerBlock const *s = NULL,
+    Response handle(Request const &, config::ServerBlock const *s = NULL,
                         config::LocationBlock const *l = NULL) const;
 };
 
@@ -78,31 +64,31 @@ class CGIHandler : public IHandler {
  * @brief Handles the execution of CGI scripts.
  */
 class DefaultErrorHandler : public IHandler {
-    HttpResponse handle(HttpRequest const &, config::ServerBlock const *s = NULL,
+    Response handle(Request const &, config::ServerBlock const *s = NULL,
                         config::LocationBlock const *l = NULL) const;
 };
 
 class FileUploadHandler : public IHandler {
 public:
     FileUploadHandler(MimeTypes const &);
-    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+    Response handle(Request const &req, config::ServerBlock const *s,
                         config::LocationBlock const *l) const;
 
 private:
     FileUploadHandler();
-    HttpResponse handleMultipartFormData(HttpRequest const &req, config::ServerBlock const *s,
+    Response handleMultipartFormData(Request const &req, config::ServerBlock const *s,
                                          config::LocationBlock const *l) const;
     MimeTypes const &mimeTypes_;
 };
 
 class FileDeleteHandler : public IHandler {
 public:
-    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *s,
+    Response handle(Request const &req, config::ServerBlock const *s,
                         config::LocationBlock const *l) const;
 };
 
 namespace details {
-HttpRequest parse(std::istringstream &s, const std::string &boundary);
+Request parse(std::istringstream &s, const std::string &boundary);
 }
 #endif
 

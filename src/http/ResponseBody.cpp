@@ -1,8 +1,10 @@
 #include "http/ResponseBody.hpp"
+#include "utils/Logger.hpp"
 #include <algorithm>
 #include <cerrno>
 #include <cstring>
 #include <fcntl.h>
+#include <iostream>
 #include <stdexcept>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -10,7 +12,7 @@
 
 namespace http {
 
-FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0) {
+FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0), sent_(0) {
     struct stat statbuf;
     if (stat(fpath.c_str(), &statbuf) != 0)
         throw std::runtime_error("stat(" + fpath + ")::" + strerror(errno));
@@ -19,6 +21,8 @@ FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0) {
     fd_ = open(fpath.c_str(), O_RDONLY | O_NONBLOCK);
     if (fd_ < 0)
         throw std::runtime_error("open(" + fpath + ", O_RDONLY)::" + strerror(errno));
+    LOG_TRACE("FileBody::FileBody(" << fpath << "): opened for reading and about to send " << size_
+                                    << " bytes")
 }
 
 FileBody::~FileBody() {
@@ -27,7 +31,12 @@ FileBody::~FileBody() {
 }
 
 ssize_t FileBody::read(char *buffer, size_t size) {
-    return (fd_ == -1 ? 0 : ::read(fd_, buffer, size));
+    if (fd_ == -1)
+        return 0;
+    ssize_t read = ::read(fd_, buffer, size);
+    std::cout << read << std::endl;
+    sent_ += read;
+    return read;
 }
 
 BodyInMemory::BodyInMemory(std::string const &body) : body_(body), bytesRead_(0) {}
@@ -35,6 +44,7 @@ BodyInMemory::BodyInMemory(std::string const &body) : body_(body), bytesRead_(0)
 ssize_t BodyInMemory::read(char *buffer, size_t size) {
     size_t bytesToRead = std::min(size, body_.length() - bytesRead_);
     std::memcpy(buffer, body_.data() + bytesRead_, bytesToRead);
+    bytesRead_ += bytesToRead;
     return bytesToRead;
 }
 
