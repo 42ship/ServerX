@@ -132,7 +132,7 @@ void Reactor::handleWrite() {
 
 void Reactor::finalizeConnection() {
     LOG_TRACE("Reactor::finalizeConnection(" << clientFd_ << "): finalizing");
-    if (response_.headers().get("Connection") == "keep-alive") {
+    if (request_.headers().get("Connection") == "keep-alive") {
         LOG_DEBUG("Reactor::finalizeConnection(" << clientFd_ << "): keep-alive, resetting");
         InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
         resetForNewRequest();
