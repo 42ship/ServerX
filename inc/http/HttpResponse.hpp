@@ -14,7 +14,7 @@ typedef std::map<std::string, std::string> HeaderMap;
  * @enum BodySourceType
  * @brief Defines the source of the data for an HTTP response body.
  *
- * This allows the server's Reactor to determine how to handle the sending
+ * This allows the server's ClientHandler to determine how to handle the sending
  * of the response body, whether it's from memory, a file, or another process.
  */
 enum BodySourceType {
@@ -69,14 +69,14 @@ public:
         /** @brief Details for in-memory bodies. */
         struct {
             std::vector<char> *data; /**< Pointer to the internal buffer holding the body. */
-            size_t sent;             /**< Tracks bytes sent by the Reactor. */
+            size_t sent;             /**< Tracks bytes sent by the ClientHandler. */
         } inMemoryBody;
 
         /** @brief Details for file-based bodies. */
         struct {
             int fd;           /**< File descriptor to read from. */
             size_t totalSize; /**< Total size of the file. */
-            size_t sent;      /**< Tracks bytes sent by the Reactor. */
+            size_t sent;      /**< Tracks bytes sent by the ClientHandler. */
         } fileBody;
 
         /** @brief Details for CGI-based bodies. */

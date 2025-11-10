@@ -1,11 +1,11 @@
-#include "network/Reactor.hpp"
+#include "network/ClientHandler.hpp"
 
 #include "http/HttpRequest.hpp"
 #include "http/HttpResponse.hpp"
 #include "http/Router.hpp"
 #include "http/RouterResult.hpp"
 #include "http/error_pages.hpp"
-#include "network/InitiationDispatcher.hpp"
+#include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
 #include <cstddef>
@@ -19,25 +19,25 @@
 
 namespace network {
 
-Reactor::Reactor(int clientFd, int port, http::Router const &router)
+ClientHandler::ClientHandler(int clientFd, int port, http::Router const &router)
     : clientFd_(clientFd), port_(port), router_(router), responseBuffer_(8192) {
     resetForNewRequest();
     LOG_TRACE("New connection accepted on fd: " << clientFd_);
 }
 
-Reactor::~Reactor() {
+ClientHandler::~ClientHandler() {
     LOG_TRACE("Closing connection on fd: " << clientFd_);
     if (clientFd_ >= 0) {
         close(clientFd_);
     }
 }
 
-void Reactor::closeConnection() {
+void ClientHandler::closeConnection() {
     LOG_TRACE("Cleaning up handler for fd: " << clientFd_);
-    InitiationDispatcher::getInstance().removeHandler(clientFd_);
+    EventDispatcher::getInstance().removeHandler(this);
 }
 
-void Reactor::handleEvent(uint32_t events) {
+void ClientHandler::handleEvent(uint32_t events) {
     if (events & EPOLLIN) {
         handleRead();
     }
@@ -46,9 +46,9 @@ void Reactor::handleEvent(uint32_t events) {
     }
 }
 
-int Reactor::getHandle() const { return clientFd_; }
+int ClientHandler::getFd() const { return clientFd_; }
 
-void Reactor::handleRead() {
+void ClientHandler::handleRead() {
     LOG_TRACE("Handling read event on fd: " << clientFd_);
     char read_buffer[IO_BUFFER_SIZE];
 
@@ -78,7 +78,7 @@ void Reactor::handleRead() {
     }
 }
 
-void Reactor::tryParseHeaders() {
+void ClientHandler::tryParseHeaders() {
     bodyStart_ = requestBuffer_.find("\r\n\r\n", 0, 4);
 
     if (bodyStart_ != std::string::npos) {
@@ -96,18 +96,18 @@ void Reactor::tryParseHeaders() {
     }
 }
 
-void Reactor::generateResponse() {
+void ClientHandler::generateResponse() {
     try {
         LOG_DEBUG(requestBuffer_);
         http::HttpRequest request = http::HttpRequest::parse(requestBuffer_);
         http::RouterResult result = router_.route(port_, request);
         response_ = result.handler.handle(request, result);
     } catch (std::exception const &e) {
-        LOG_ERROR("Reactor::generateResponse(): " << e.what());
+        LOG_ERROR("ClientHandler::generateResponse(): " << e.what());
         response_ =
             http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
     } catch (...) {
-        LOG_ERROR("Reactor::generateResponse(): \"Internal server error\"");
+        LOG_ERROR("ClientHandler::generateResponse(): \"Internal server error\"");
         response_ =
             http::error_pages::generateErrorResponse(http::INTERNAL_SERVER_ERROR, "HTTP/1.1");
     }
@@ -122,10 +122,10 @@ void Reactor::generateResponse() {
     LOG_DEBUG("Generated response for fd: " << clientFd_ << " status: " << response_.getStatus());
     responseState_ = SENDING;
     sentResponseBytes_ = 0;
-    InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLOUT);
+    EventDispatcher::getInstance().setSendingData(this);
 }
 
-void Reactor::handleWrite() {
+void ClientHandler::handleWrite() {
     if (responseState_ == NOT_READY)
         return;
     if (sentResponseBytes_ < responseBuffer_.size()) {
@@ -161,13 +161,13 @@ void Reactor::handleWrite() {
     LOG_DEBUG("Response fully sent to fd: " << clientFd_);
     if (response_.getHeaders()["Connection"] == "keep-alive") {
         LOG_DEBUG("Keep-alive enabled. Resetting state for fd: " << clientFd_);
-        InitiationDispatcher::getInstance().getEpollManager().modifyFd(clientFd_, EPOLLIN);
+        EventDispatcher::getInstance().setReceivingData(this);
         resetForNewRequest();
     } else
         closeConnection();
 }
 
-bool Reactor::sendResponseBuffer() {
+bool ClientHandler::sendResponseBuffer() {
     if (sentResponseBytes_ >= responseBuffer_.size()) {
         return true; // Nothing to send
     }
@@ -188,12 +188,12 @@ bool Reactor::sendResponseBuffer() {
     return true;
 }
 
-void Reactor::clearResponseBuffer() {
+void ClientHandler::clearResponseBuffer() {
     responseBuffer_.clear();
     sentResponseBytes_ = 0;
 }
 
-void Reactor::resetForNewRequest() {
+void ClientHandler::resetForNewRequest() {
     requestBuffer_.clear();
     responseBuffer_.clear();
     sentResponseBytes_ = 0;
