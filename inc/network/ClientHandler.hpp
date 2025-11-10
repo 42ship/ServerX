@@ -1,33 +1,31 @@
 #pragma once
 
-#include "AEventHandler.hpp"
+#include "IEventHandler.hpp"
 #include "http/RequestParser.hpp"
 #include "http/Response.hpp"
 #include "http/Router.hpp"
-#include <sys/types.h>
-#include <vector>
 
 namespace network {
 
 /**
- * @class Reactor
+ * @class ClientHandler
  * @brief Manages the full lifecycle of a single client connection.
  * @details This class acts as a state machine for a client, handling I/O events
  * via epoll. It reads and parses HTTP requests, dispatches them to a router,
  * and manages sending the response back to the client, including streaming
  * large files. Each instance corresponds to one connected client socket.
  */
-class Reactor : public AEventHandler {
+class ClientHandler : public IEventHandler {
 public:
-    Reactor(int clientFd, int port, http::Router const &);
-    ~Reactor();
+    ClientHandler(int clientFd, int port, http::Router const &);
+    ~ClientHandler();
 
     virtual void handleEvent(uint32_t events);
-    virtual int getHandle() const;
+    virtual int getFd() const;
 
 private:
-    Reactor(const Reactor &);
-    Reactor &operator=(const Reactor &);
+    ClientHandler(const ClientHandler &);
+    ClientHandler &operator=(const ClientHandler &);
 
     // --- Core Connection State ---
     int clientFd_;
@@ -63,7 +61,11 @@ private:
     void handleWrite();
     /// @brief Processes a fully parsed request to generate a response.
     void generateResponse();
-    /// @brief Resets the reactor state for a new request (keep-alive).
+    /// @brief Sends the contents of the response buffer. @return False on fatal error.
+    bool sendResponseBuffer();
+    /// @brief Clears the response buffer and resets sent byte count.
+    void clearResponseBuffer();
+    /// @brief Resets the ClientHandler state for a new request (keep-alive).
     void resetForNewRequest();
     /// @brief Closes the connection and removes it from the dispatcher.
     void closeConnection();
