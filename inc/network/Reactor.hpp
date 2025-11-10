@@ -70,7 +70,7 @@ private:
 
     void finalizeConnection();
 
-    void handleRequestParsingState(http::RequestParser::RequestState state);
+    void handleRequestParsingState(http::RequestParser::State state);
 };
 
 } // namespace network

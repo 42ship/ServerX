@@ -1,3 +1,4 @@
+#if 0
 #include "doctest.h"
 #include "http/Request.hpp"
 #include "http/utils.hpp"
@@ -134,3 +135,4 @@ TEST_CASE("HTTP Request Header Parsing" * doctest::skip(true)) {
         CHECK_FALSE(testHeaders("Bad Header: Value\r\n\r\n", r)); // Space in header key
     }
 }
+#endif

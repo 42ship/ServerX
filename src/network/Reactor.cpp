@@ -12,10 +12,7 @@
 namespace network {
 
 Reactor::Reactor(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd),
-      port_(port),
-      router_(router),
-      reqParser_(request_, IO_BUFFER_SIZE, IO_BUFFER_SIZE) {
+    : clientFd_(clientFd), port_(port), router_(router), reqParser_(request_, IO_BUFFER_SIZE) {
     resetForNewRequest();
     LOG_TRACE("Reactor::Reactor(" << clientFd_ << "," << port_ << "): new connection accepted");
 }
@@ -43,7 +40,7 @@ void Reactor::handleEvent(uint32_t events) {
 
 int Reactor::getHandle() const { return clientFd_; }
 
-void Reactor::handleRequestParsingState(http::RequestParser::RequestState state) {
+void Reactor::handleRequestParsingState(http::RequestParser::State state) {
     if (state == http::RequestParser::ERROR) {
         LOG_DEBUG("Reactor::handleRead(" << clientFd_
                                          << "): state=ERROR, generating error response");
@@ -53,7 +50,6 @@ void Reactor::handleRequestParsingState(http::RequestParser::RequestState state)
         LOG_DEBUG("Reactor::handleRead(" << clientFd_
                                          << "): state=HEADERS_READY, matching location");
         router_.matchServerAndLocation(port_, request_);
-        reqParser_.setMaxContentSize(request_.getMaxAllowedContentSize());
         handleRequestParsingState(reqParser_.proceedReadingBody());
     }
     if (state == http::RequestParser::REQUEST_READY) {
@@ -76,7 +72,7 @@ void Reactor::handleRead() {
         closeConnection();
         return;
     }
-    handleRequestParsingState(reqParser_.addIncomingChunk(read_buffer, count));
+    handleRequestParsingState(reqParser_.feed(read_buffer, count));
 }
 
 void Reactor::generateResponse() {

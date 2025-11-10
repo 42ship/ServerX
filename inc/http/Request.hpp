@@ -71,7 +71,7 @@ public:
      */
     void clear();
 
-    ssize_t getMaxAllowedContentSize() const;
+    size_t getMaxAllowedContentSize() const;
 
     // --- Public Read-only Accessors ---
 
@@ -110,6 +110,8 @@ public:
      */
     std::string const &uri() const;
 
+    Request &uri(std::string const &);
+
     /**
      * @brief Gets the path portion of the URI (e.g., "/path").
      */
@@ -146,7 +148,6 @@ protected:
     Request &location(config::LocationBlock const *location);
     Request &server(config::ServerBlock const *server);
     Request &method(RequestStartLine::Method method);
-    Request &uri(std::string const &);
     Request &version(std::string const &);
 
 private:

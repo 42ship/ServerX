@@ -1,5 +1,7 @@
 #include "http/RequestParser.hpp"
 #include "doctest.h"
+#include "utils/Logger.hpp"
+
 /*
 clang-format off
 
@@ -7,7 +9,7 @@ clang-format off
 
 The parser's job is to read bytes, follow HTTP syntax rules, and report syntax errors.
 
-1.  **Header Size Limit :**
+1.  **Header Size Limit:**
     * **Situation:** Client sends more than `kMaxHeaderSize` (e.g., 8KB) *before* sending a `\r\n\r\n`.
     * **Action:** `RequestParser::readHeaders` sets `state_ = ERROR` and `request_.setStatus(PAYLOAD_TOO_LARGE)`.
     * **Result:** `Reactor` sends a `413 Payload Too Large`.
@@ -69,7 +71,24 @@ These are complex HTTP rules that the `Headers` class itself should handle.
     * **Situation:** Request contains `Content-Length: 100` and `Content-Length: 200`.
     * **Action:** This is ambiguous and invalid. `Headers::parse` should detect this.
     * **Result:** `Headers::parse` should throw an exception (or return a "bad" state) that the `RequestParser` catches, setting `state_ = ERROR` and `request_.setStatus(BAD_REQUEST)`.
-clang-format on 
+clang-format on
 */
 
-TEST_CASE("RequestParser basic functions") { http::Request req; }
+TEST_CASE("RequestParser Testing handling limits") {
+    http::Request req;
+
+    SUBCASE("Header Size Limit") {
+        http::RequestParser rp(req, 10);
+        rp.feed("Hello World!!", 13);
+        REQUIRE(rp.state() == http::RequestParser::ERROR);
+        CHECK(rp.errorStatus() == http::BAD_REQUEST);
+    }
+
+    SUBCASE("Malformed Request Line") {
+        http::RequestParser rp(req, 8192);
+        REQUIRE(rp.feed("BLAHDF /hello \r\n\r\n", 18) == http::RequestParser::ERROR);
+        CHECK(rp.errorStatus() == http::BAD_REQUEST);
+    }
+}
+
+// TEST_CASE("RequestParser basic functions") { http::Request req; }

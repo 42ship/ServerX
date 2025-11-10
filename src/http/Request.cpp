@@ -74,12 +74,12 @@ void Request::clear() {
     status_ = OK;
 }
 
-ssize_t Request::getMaxAllowedContentSize() const {
+size_t Request::getMaxAllowedContentSize() const {
     if (location_ && location_->has("max_body_size"))
         return location_->maxBodySize();
     if (server_ && server_->has("max_body_size"))
         return server_->maxBodySize();
-    return -1;
+    return 1 * 1024 * 1024;
 }
 
 // clang-format off
