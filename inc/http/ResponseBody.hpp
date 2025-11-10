@@ -105,6 +105,8 @@ private:
 
 class BodyFromCgi : public IResponseBody {
 public:
+    BodyFromCgi(int pipe_fd);
+    ~BodyFromCgi();
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
     bool isDone() const;
@@ -112,6 +114,7 @@ public:
 
 private:
     int fd_;
+    bool isDone_;
 };
 
 } // namespace http

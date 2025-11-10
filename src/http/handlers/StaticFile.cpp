@@ -14,23 +14,9 @@ namespace http {
 
 StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
-#define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \
-    if (!req.location() || !req.server())                                                          \
-    return (void)res.status(NOT_FOUND)
-
-std::string getPath(http::Request const &req) {
-    std::string path;
-
-    if (req.path() == req.location()->path() && req.path()[req.path().length() - 1] != '/')
-        path = req.path();
-    else
-        path = (req.path().substr(req.location()->path().size()));
-    return req.location()->root() + path;
-}
-
 void StaticFileHandler::handle(Request const &req, Response &res) const {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
-    std::string path = getPath(req);
+    std::string path = req.resolvePath();
     struct stat statbuf;
     if (stat(path.c_str(), &statbuf) != 0) {
         if (errno == ENOENT || errno == ENOTDIR) {

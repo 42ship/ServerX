@@ -67,11 +67,9 @@ Response &Response::setBodyFromFile(std::string const &fpath, std::string const 
     return *this;
 }
 
-Response &Response::setBodyFromCgi(int pipeFd, std::string const &firstChunk) {
+Response &Response::setBodyFromCgi(int pipeFd) {
     delete body_;
-    body_ = new BodyFromCgi;
-    (void)pipeFd;
-    (void)firstChunk;
+    body_ = new BodyFromCgi(pipeFd);
     return *this;
 }
 

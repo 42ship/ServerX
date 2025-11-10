@@ -17,9 +17,9 @@ class ResponseStartLine {
 public:
     ResponseStartLine();
 
-    std::string protocol;      //!< The HTTP protocol version (e.g., "HTTP/1.1").
-    HttpStatus statusCode; //!< The numerical status code (e.g., 200, 404).
-    std::string reasonPhrase;  //!< The human-readable reason (e.g., "OK", "Not Found").
+    std::string protocol;     //!< The HTTP protocol version (e.g., "HTTP/1.1").
+    HttpStatus statusCode;    //!< The numerical status code (e.g., 200, 404).
+    std::string reasonPhrase; //!< The human-readable reason (e.g., "OK", "Not Found").
 };
 
 /**
@@ -78,10 +78,9 @@ public:
     /**
      * @brief Sets the response body to stream from a CGI pipe.
      * @param pipe_fd The file descriptor of the CGI script's output pipe.
-     * @param firstChunk A small chunk of data already read from the pipe (for headers).
      * @return A reference to this object for chaining.
      */
-    Response &setBodyFromCgi(int pipe_fd, std::string const &firstChunk);
+    Response &setBodyFromCgi(int pipe_fd);
 
     // --- Header & Status Management ---
 

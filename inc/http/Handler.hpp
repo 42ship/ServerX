@@ -31,6 +31,11 @@ private:
     MimeTypes const &mimeTypes_;
 };
 
+class CGIHandler : public IHandler {
+public:
+    void handle(Request const &, Response &) const;
+};
+
 class JsonErrorHandler {
 public:
     static void populateResponse(Response &res);
@@ -40,5 +45,9 @@ class DefaultErrorHandler {
 public:
     static void populateResponse(Response &res);
 };
+
+#define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \
+    if (!req.location() || !req.server())                                                          \
+    return (void)res.status(NOT_FOUND)
 
 } // namespace http

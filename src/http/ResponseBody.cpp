@@ -71,12 +71,39 @@ int BodyInMemory::getEventSourceFd() const { return -1; }
 //==================== BodyInMemory ====================
 
 //==================== BodyFromCgi ====================
+BodyFromCgi::BodyFromCgi(int pipe_fd) : fd_(pipe_fd), isDone_(false) {
+    if (fd_ < 0) {
+        isDone_ = true;
+        return;
+    }
+    int flags = fcntl(fd_, F_GETFL, 0);
+    fcntl(fd_, F_SETFL, flags | O_NONBLOCK);
+}
+
+BodyFromCgi::~BodyFromCgi() {
+    if (fd_ >= 0)
+        close(fd_);
+}
 ssize_t BodyFromCgi::read(char *buffer, size_t size) {
-    (void)buffer, (void)size, (void)fd_;
-    return 0;
+    if (isDone_)
+        return 0;
+    ssize_t bytes_read = ::read(fd_, buffer, size);
+    if (bytes_read > 0) {
+        return bytes_read;
+    }
+    if (bytes_read == 0) {
+        isDone_ = true;
+        return 0;
+    }
+    if (errno == EAGAIN || errno == EWOULDBLOCK) {
+        return -1;
+    }
+    LOG_ERROR("BodyFromCgi::read: " << strerror(errno));
+    isDone_ = true;
+    return -1;
 }
 size_t BodyFromCgi::size() const { return 0; }
-bool BodyFromCgi::isDone() const { return true; };
+bool BodyFromCgi::isDone() const { return isDone_; };
 int BodyFromCgi::getEventSourceFd() const { return fd_; }
 //==================== BodyFromCgi ====================
 

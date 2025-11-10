@@ -78,7 +78,7 @@ private:
     /** @internal */
     StaticFileHandler const staticFile_;
     /** @internal */
-    // CgiHandler const cgiHandler_;
+    CGIHandler const cgiHandler_;
     /** @internal */
     // FileUploadHandler const uploadHandler_;
     /** @internal */

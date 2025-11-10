@@ -86,24 +86,20 @@ void Router::executeHandler(Request &request, Response &response) const {
         LOG_DEBUG("Router::executeHandler(" << request.uri()
                                             << "): no location found, setting 404");
         response.status(NOT_FOUND);
+    } else if (request.location()->hasCgiPass()) {
+        cgiHandler_.handle(request, response);
     } else {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to StaticFileHandler");
         staticFile_.handle(request, response);
     }
 #if 0
-        else if (request.location->hasCgiPass())
-            // TODO: call CGI handler
-            ;
         else if (request.requestLine.method == RequestStartLine::POST) {
             // TODO: call file upload handler
             ;
         } else if (request.requestLine.method == RequestStartLine::DELETE) {
             // TODO: call file delte handler
             ;
-        } else {
-            staticFile_.handle(request, response);
-        }
 #endif
 }
 

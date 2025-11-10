@@ -5,6 +5,26 @@
 
 namespace http {
 
+namespace {
+std::string joinPaths(const std::string &p1, const std::string &p2) {
+    if (p1.empty() || p1 == "/") {
+        if (p2.empty() || p2[0] != '/')
+            return "/" + p2;
+        return p2;
+    }
+    if (p2.empty())
+        return p1;
+    std::string p1_clean = p1;
+    if (p1_clean[p1_clean.length() - 1] == '/') {
+        p1_clean = p1_clean.substr(0, p1_clean.length() - 1);
+    }
+    std::string p2_clean = p2;
+    if (p2_clean[0] != '/')
+        p2_clean = "/" + p2_clean;
+    return p1_clean + p2_clean;
+}
+} // namespace
+
 RequestStartLine::RequestStartLine() : method(RequestStartLine::UNKNOWN), version("HTTP/1.1") {}
 
 RequestStartLine RequestStartLine::parse(std::string const &line) {
@@ -59,7 +79,7 @@ char const *RequestStartLine::methodToString(Method m) {
     }
 }
 
-Request::Request() : body_(NULL), location_(NULL), server_(NULL), status_(OK) {}
+Request::Request() : body_(-1), location_(NULL), server_(NULL), status_(OK) {}
 
 bool Request::wantsJson() const { return headers_.get("Accept") == "application/json"; }
 
@@ -72,6 +92,7 @@ void Request::clear() {
     location_ = NULL;
     server_ = NULL;
     status_ = OK;
+    body_ = -1;
 }
 
 size_t Request::getMaxAllowedContentSize() const {
@@ -99,6 +120,26 @@ Request &Request::uri(std::string const &uri) {requestLine_.uri = uri;return *th
 Request &Request::version(std::string const &version) {requestLine_.version= version;return *this;}
 Request &Request::status(HttpStatus status) { status_ = status; return *this; }
 HttpStatus Request::status() const { return status_; }
+int Request::body() const { return body_; }
+Request &Request::body(int fd) { body_ = fd; return *this; }
 // clang-format on
+
+std::string Request::resolvePath() const {
+    if (!location())
+        return "";
+    config::LocationBlock const *loc = location();
+    std::string reqPath = path();
+    if (loc->has("alias")) {
+        std::string aliasPath = loc->get("alias", *this)[0];
+        std::string locPath = loc->path();
+        std::string suffix;
+        if (reqPath.length() >= locPath.length()) {
+            suffix = reqPath.substr(locPath.length());
+        }
+        return joinPaths(aliasPath, suffix);
+    }
+    std::string rootPath = loc->root();
+    return joinPaths(rootPath, reqPath);
+}
 
 } // namespace http

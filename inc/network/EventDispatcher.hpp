@@ -24,6 +24,7 @@ public:
     void removeHandler(IEventHandler *handler);
     void setSendingData(IEventHandler *handler);
     void setReceivingData(IEventHandler *handler);
+
     void handleEvents();
     void requestShutdown();
 

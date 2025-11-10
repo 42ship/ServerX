@@ -1,6 +1,7 @@
 #include "network/ClientHandler.hpp"
 #include "http/ResponseBody.hpp"
 #include "http/Router.hpp"
+#include "network/CGIHandler.hpp"
 #include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
@@ -27,6 +28,10 @@ ClientHandler::~ClientHandler() {
 
 void ClientHandler::closeConnection() {
     LOG_TRACE("ClientHandler::closeConnection(" << clientFd_ << "): removing handler");
+    if (rspEventSource_) {
+        EventDispatcher::getInstance().removeHandler(rspEventSource_);
+        rspEventSource_ = NULL;
+    }
     EventDispatcher::getInstance().removeHandler(this);
 }
 
@@ -100,6 +105,12 @@ void ClientHandler::generateResponse() {
     response_.buildHeaders(rspBuffer_.buffer);
     LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_ << "): modifying fd to EPOLLOUT");
     EventDispatcher::getInstance().setSendingData(this);
+    http::IResponseBody *body = response_.body();
+    if (body && !body->isDone() && body->getEventSourceFd() != -1 && body->size() == 0) {
+        rspEventSource_ = new CGIHandler(body->getEventSourceFd(), *this);
+        EventDispatcher::getInstance().registerHandler(rspEventSource_);
+        EventDispatcher::getInstance().modifyHandler(this, 0);
+    }
 }
 
 void ClientHandler::handleWrite() {
@@ -182,6 +193,7 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
 
 void ClientHandler::resetForNewRequest() {
     LOG_TRACE("ClientHandler::resetForNewRequest(" << clientFd_ << "): resetting for keep-alive");
+    rspEventSource_ = NULL;
     rspBuffer_.reset();
     reqParser_.reset();
     response_.clear();

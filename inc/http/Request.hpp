@@ -127,7 +127,9 @@ public:
      */
     std::string const &version() const;
 
-    // IRequestBody const *body() const; // Will be added later
+    int body() const;
+
+    Request &body(int fd);
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.
@@ -141,6 +143,16 @@ public:
      */
     HttpStatus status() const;
 
+    /**
+     * @brief Resolves the full filesystem path for a request.
+     *
+     * This function correctly implements the logic for both the Nginx 'root'
+     * and 'alias' directives. 'alias' takes precedence if it exists.
+     *
+     * @return The fully resolved filesystem path.
+     */
+    std::string resolvePath() const;
+
 protected:
     friend class RequestParser;
     friend class Router;
@@ -153,7 +165,7 @@ protected:
 private:
     RequestStartLine requestLine_;
     Headers headers_;
-    void *body_; // In future have body class
+    int body_;
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
     HttpStatus status_;
