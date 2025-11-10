@@ -47,6 +47,19 @@ public:
      */
     virtual bool isDone() const = 0;
 
+    /**
+     * @brief Returns the file descriptor for this body, if it has one.
+     *
+     * This method tells the ClientHandler if this body is an "active"
+     * (event-driven) source or a "passive" (in-memory) one.
+     *
+     * @return A valid file descriptor (>= 0) if the source needs to be
+     * watched by epoll.
+     * @return -1 if the source is passive (e.g., a std::string) and
+     * has no associated file descriptor.
+     */
+    virtual int getEventSourceFd() const = 0;
+
 private:
     IResponseBody(IResponseBody const &);
     IResponseBody const &operator=(IResponseBody const &);
@@ -54,9 +67,10 @@ private:
 
 class NoBody : public IResponseBody {
 public:
-    ssize_t read(char *, size_t) { return 0; }
-    size_t size() const { return 0; }
-    bool isDone() const { return true; };
+    ssize_t read(char *, size_t);
+    size_t size() const;
+    bool isDone() const;
+    int getEventSourceFd() const;
 };
 
 class FileBody : public IResponseBody {
@@ -65,8 +79,9 @@ public:
     ~FileBody();
 
     ssize_t read(char *buffer, size_t size);
-    size_t size() const { return size_; }
-    bool isDone() const { return sent_ == size_; };
+    size_t size() const;
+    bool isDone() const;
+    int getEventSourceFd() const;
 
 private:
     int fd_;
@@ -79,8 +94,9 @@ public:
     BodyInMemory(std::string const &);
 
     ssize_t read(char *buffer, size_t size);
-    size_t size() const { return body_.length(); }
-    bool isDone() const { return bytesRead_ == body_.length(); };
+    size_t size() const;
+    bool isDone() const;
+    int getEventSourceFd() const;
 
 private:
     std::string body_;
@@ -90,8 +106,9 @@ private:
 class BodyFromCgi : public IResponseBody {
 public:
     ssize_t read(char *buffer, size_t size);
-    size_t size() const { return 0; }
-    bool isDone() const { return true; };
+    size_t size() const;
+    bool isDone() const;
+    int getEventSourceFd() const;
 
 private:
     int fd_;

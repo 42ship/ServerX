@@ -12,6 +12,15 @@
 
 namespace http {
 
+//==================== NoBody ====================
+ssize_t NoBody::read(char *, size_t) { return 0; }
+size_t NoBody::size() const { return 0; }
+bool NoBody::isDone() const { return true; };
+int NoBody::getEventSourceFd() const { return -1; }
+//==================== NoBody ====================
+
+//==================== FileBody ====================
+
 FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0), sent_(0) {
     struct stat statbuf;
     if (stat(fpath.c_str(), &statbuf) != 0)
@@ -38,7 +47,18 @@ ssize_t FileBody::read(char *buffer, size_t size) {
     return read;
 }
 
+size_t FileBody::size() const { return size_; }
+bool FileBody::isDone() const { return sent_ == size_; };
+int FileBody::getEventSourceFd() const { return fd_; }
+
+//==================== FileBody ====================
+
+//==================== BodyInMemory ====================
+
 BodyInMemory::BodyInMemory(std::string const &body) : body_(body), bytesRead_(0) {}
+
+size_t BodyInMemory::size() const { return body_.length(); }
+bool BodyInMemory::isDone() const { return bytesRead_ == body_.length(); };
 
 ssize_t BodyInMemory::read(char *buffer, size_t size) {
     size_t bytesToRead = std::min(size, body_.length() - bytesRead_);
@@ -46,10 +66,18 @@ ssize_t BodyInMemory::read(char *buffer, size_t size) {
     bytesRead_ += bytesToRead;
     return bytesToRead;
 }
+int BodyInMemory::getEventSourceFd() const { return -1; }
 
+//==================== BodyInMemory ====================
+
+//==================== BodyFromCgi ====================
 ssize_t BodyFromCgi::read(char *buffer, size_t size) {
     (void)buffer, (void)size, (void)fd_;
     return 0;
 }
+size_t BodyFromCgi::size() const { return 0; }
+bool BodyFromCgi::isDone() const { return true; };
+int BodyFromCgi::getEventSourceFd() const { return fd_; }
+//==================== BodyFromCgi ====================
 
 } // namespace http
