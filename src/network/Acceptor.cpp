@@ -2,8 +2,8 @@
 
 #include "config/ServerBlock.hpp"
 #include "http/Router.hpp"
-#include "network/InitiationDispatcher.hpp"
-#include "network/Reactor.hpp"
+#include "network/ClientHandler.hpp"
+#include "network/EventDispatcher.hpp"
 #include "network/Socket.hpp"
 #include <cerrno>
 #include <cstring>
@@ -36,7 +36,7 @@ void Acceptor::handleEvent(uint32_t events) {
     }
 }
 
-int Acceptor::getHandle() const { return socket_.getFd(); }
+int Acceptor::getFd() const { return socket_.getFd(); }
 
 void Acceptor::acceptNewConnection() {
     struct sockaddr_in clientaddr;
@@ -49,8 +49,8 @@ void Acceptor::acceptNewConnection() {
     }
     int flags = fcntl(clientFd, F_GETFL, 0);
     fcntl(clientFd, F_SETFL, flags | O_NONBLOCK);
-    Reactor *clientHandler = new Reactor(clientFd, port_, router_);
-    InitiationDispatcher::getInstance().registerHandler(clientHandler);
+    ClientHandler *clientHandler = new ClientHandler(clientFd, port_, router_);
+    EventDispatcher::getInstance().registerHandler(clientHandler);
 }
 
 } // namespace network

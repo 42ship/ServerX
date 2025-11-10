@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AEventHandler.hpp"
+#include "IEventHandler.hpp"
 #include "config/ServerBlock.hpp"
 #include "http/Router.hpp"
 #include "network/Socket.hpp"
@@ -8,23 +8,23 @@
 namespace network {
 
 /**
- * @brief Acceptor inherent from AEventHandler  as a concrete class that accepts new client
+ * @brief Acceptor inherent from IEventHandler  as a concrete class that accepts new client
  * connections.
  *
  * Listens on a designated port and creates new client connections when connection
- * requests arrive. Acts as a factory for client event handlers for the Reactor class - when a new
+ * requests arrive. Acts as a factory for client event handlers for the ClientHandler class - when a new
  * connection is established, it typically creates and registers a corresponding handler to manage
  * that client's subsequent communication. This implements the connection establishment phase of the
- * Reactor pattern.
+ * ClientHandler pattern.
  */
-class Acceptor : public AEventHandler {
+class Acceptor : public IEventHandler {
 public:
     Acceptor(int port, http::Router const &);
     Acceptor(config::ServerBlock const &, http::Router const &);
     ~Acceptor();
 
     void handleEvent(uint32_t events);
-    int getHandle() const;
+    int getFd() const;
 
 private:
     Socket socket_;

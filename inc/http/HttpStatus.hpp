@@ -6,7 +6,7 @@ namespace http {
  * @enum Status
  * @brief Enumeration of common HTTP status codes.
  */
-enum Status {
+enum HttpStatus {
     OK = 200,         /** 200 OK — request succeeded. */
     CREATED = 201,    /** 201 Created — resource created successfully. */
     ACCEPTED = 202,   /** 202 Accepted — request accepted for processing, but not yet completed. */
@@ -28,8 +28,8 @@ enum Status {
                                      supported by the server. */
 
     INTERNAL_SERVER_ERROR = 500, /** 500 Internal Server Error — generic server-side failure. */
-    NOT_IMPLEMENTED = 501 /** 501 Not Implemented — server does not support the functionality
-                             required to fulfill the request. */
+    NOT_IMPLEMENTED = 501        /** 501 Not Implemented — server does not support the functionality
+                                    required to fulfill the request. */
 };
 
 } // namespace http
