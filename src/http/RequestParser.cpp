@@ -81,7 +81,9 @@ RequestParser::State RequestParser::parseHeaders() {
     if (request_.method() == RequestStartLine::UNKNOWN) {
         return setError(BAD_REQUEST);
     }
-    request_.headers_ = http::Headers::parse(buffer_);
+    // Only parse the header section, not the body
+    std::string headerSection = buffer_.substr(0, contentStartInBuffer_);
+    request_.headers_ = http::Headers::parse(headerSection);
     contentLength_ = request_.headers_.getContentLength();
     isContentChunked_ = request_.headers_.isContentChunked();
     bool isBodyExpected = contentLength_ > 0 || isContentChunked_;

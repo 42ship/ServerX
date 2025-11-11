@@ -50,7 +50,15 @@ Headers Headers::parse(std::istringstream &s) {
     Headers res;
     std::string line;
 
-    while (getline(s, line) && !line.empty() && line[0] != 'r') {
+    while (getline(s, line)) {
+        // Strip trailing \r if present (in case of \r\n line endings)
+        if (!line.empty() && line[line.length() - 1] == '\r') {
+            line = line.substr(0, line.length() - 1);
+        }
+        // Stop at empty line (end of headers)
+        if (line.empty()) {
+            break;
+        }
         size_t colon_pos = line.find(':');
         if (colon_pos == std::string::npos) {
             continue;
@@ -94,6 +102,10 @@ std::string Headers::toString() const {
         oss << it->first << ": " << it->second << "\r\n";
     }
     return oss.str();
+}
+
+Headers::HeaderMap const &Headers::getAll() const {
+    return map_;
 }
 
 } // namespace http

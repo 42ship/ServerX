@@ -96,8 +96,15 @@ public:
      */
     static Headers parse(std::istringstream &);
 
-private:
+    /**
+     * @brief Returns a const reference to the internal header map.
+     * Useful for iterating over all headers (e.g., for CGI environment).
+     * @return Const reference to the internal map of headers.
+     */
     typedef std::map<std::string, std::string> HeaderMap;
+    HeaderMap const &getAll() const;
+
+private:
 
     /**
      * @brief Internal: Normalizes a key to lowercase in-place.
