@@ -1,5 +1,5 @@
 MAKE		=	@make --no-print-directory
-VALGRIND	=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 --quiet
+VALGRIND	=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 --track-fds=yes --quiet
 
 JOBS := $(filter -j%,$(MAKEFLAGS))
 

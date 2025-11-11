@@ -13,7 +13,11 @@
 namespace network {
 
 ClientHandler::ClientHandler(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), router_(router), reqParser_(request_, IO_BUFFER_SIZE) {
+    : clientFd_(clientFd),
+      port_(port),
+      router_(router),
+      reqParser_(request_, IO_BUFFER_SIZE),
+      rspEventSource_(NULL) {
     resetForNewRequest();
     LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_
                                               << "): new connection accepted");
@@ -193,6 +197,7 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
 
 void ClientHandler::resetForNewRequest() {
     LOG_TRACE("ClientHandler::resetForNewRequest(" << clientFd_ << "): resetting for keep-alive");
+    EventDispatcher::getInstance().removeHandler(rspEventSource_);
     rspEventSource_ = NULL;
     rspBuffer_.reset();
     reqParser_.reset();
