@@ -187,7 +187,7 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
                                                          << "): client's buffer is full");
             return SEND_AGAIN;
         }
-        LOG_ERROR("ClientHandler::SendBuffer::send(" << clientFd << "): " << strerror(errno))
+        LOG_ERROR("ClientHandler::SendBuffer::send(" << clientFd << "): " << strerror(errno));
         return SEND_ERROR;
     }
     LOG_TRACE("ClientHandler::SendBuffer::send(" << clientFd << ") sent " << bytes_sent
