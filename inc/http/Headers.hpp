@@ -16,6 +16,9 @@ namespace http {
  */
 class Headers {
 public:
+    typedef std::map<std::string, std::string> HeaderMap;
+
+public:
     /**
      * @brief Constructs an empty Headers object.
      */
@@ -101,11 +104,12 @@ public:
      * Useful for iterating over all headers (e.g., for CGI environment).
      * @return Const reference to the internal map of headers.
      */
-    typedef std::map<std::string, std::string> HeaderMap;
     HeaderMap const &getAll() const;
 
-private:
+    HeaderMap::const_iterator begin() const;
+    HeaderMap::const_iterator end() const;
 
+private:
     /**
      * @brief Internal: Normalizes a key to lowercase in-place.
      * @internal

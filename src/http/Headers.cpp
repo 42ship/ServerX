@@ -104,8 +104,10 @@ std::string Headers::toString() const {
     return oss.str();
 }
 
-Headers::HeaderMap const &Headers::getAll() const {
-    return map_;
-}
+Headers::HeaderMap const &Headers::getAll() const { return map_; }
+bool Headers::has(std::string const &key) const { return map_.count(normalizeKey(key)); }
+
+Headers::HeaderMap::const_iterator Headers::begin() const { return map_.begin(); }
+Headers::HeaderMap::const_iterator Headers::end() const { return map_.end(); }
 
 } // namespace http
