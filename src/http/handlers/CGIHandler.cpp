@@ -4,15 +4,17 @@
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
 namespace http {
 
+static int execute(Request const &req);
+static void setupPipes(Request const &req, int pipe_fd[2]);
+
 void CGIHandler::handle(Request const &req, Response &res) const {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
-    std::string interpreter_path = req.location()->get("cgi_pass", req)[0];
-    std::string script_path = req.resolvePath();
     int pipe_fd[2];
     if (pipe(pipe_fd)) {
         LOG_ERROR("CGIHandler::handle::pipe: " << strerror(errno));
@@ -24,20 +26,111 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
     if (pid == 0) {
-        close(pipe_fd[0]);
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-        char *argv[] = {const_cast<char *>(interpreter_path.c_str()), // argv[0] = /usr/bin/python3
-                        const_cast<char *>(script_path.c_str()), // argv[1] = /var/www/script.py
-                        NULL};
-        execve(interpreter_path.c_str(), argv, NULL);
-        LOG_ERROR("EXECVE")
+        setupPipes(req, pipe_fd);
+        execute(req);
         exit(127);
-    }
-    if (pid) {
+    } else {
         close(pipe_fd[1]);
         res.setBodyFromCgi(pipe_fd[0]);
     }
 };
+
+static void setupPipes(Request const &req, int pipe_fd[2]) {
+    close(pipe_fd[0]);
+    dup2(pipe_fd[1], STDOUT_FILENO);
+    dup2(pipe_fd[1], STDERR_FILENO);
+    close(pipe_fd[1]);
+    if (req.body() >= 0) {
+        dup2(req.body(), STDIN_FILENO);
+        close(req.body());
+    } else {
+        int null_fd = open("/dev/null", O_RDONLY);
+        if (null_fd == -1) {
+            write(STDERR_FILENO, "CGI: Failed to open /dev/null\n", 30);
+            exit(125);
+        }
+        dup2(null_fd, STDIN_FILENO);
+        close(null_fd);
+    }
+}
+
+static std::vector<char *> toCStringVector(std::vector<std::string> const &v) {
+    std::vector<char *> res;
+    res.reserve(v.size() + 1);
+    for (size_t i = 0; i < v.size(); i++) {
+        res.push_back(const_cast<char *>(v[i].c_str()));
+    }
+    res.push_back(NULL);
+    return res;
+}
+
+static std::vector<std::string> buildEnvp(Request const &req);
+static std::vector<std::string> buildArgv(Request const &req);
+
+static int execute(Request const &req) {
+    std::vector<std::string> const &argv = buildArgv(req);
+    std::vector<std::string> const &envp = buildEnvp(req);
+    std::vector<char *> const &argv_ptrs = toCStringVector(argv);
+    std::vector<char *> const &envp_ptrs = toCStringVector(envp);
+    return execve(argv_ptrs[0], &argv_ptrs[0], &envp_ptrs[0]);
+}
+
+static std::vector<std::string> buildArgv(Request const &req) {
+    std::vector<std::string> argv;
+    argv.reserve(3);
+    std::string script_path = req.resolvePath();
+    if (req.location()->has("cgi_pass")) {
+        std::vector<std::string> const &cgi_pass = req.location()->get("cgi_pass", req);
+        if (!cgi_pass.empty()) {
+            argv.push_back(cgi_pass[0]);
+            argv.push_back(script_path);
+        } else
+            argv.push_back(script_path);
+    } else
+        argv.push_back(script_path);
+    return argv;
+}
+
+std::string formatHeaderName(const std::string &name) {
+    std::string cgi_name = "HTTP_";
+    for (size_t i = 0; i < name.length(); ++i) {
+        char c = name[i];
+        if (c == '-') {
+            cgi_name += '_';
+        } else {
+            cgi_name += std::toupper(c);
+        }
+    }
+    return cgi_name;
+}
+
+static std::vector<std::string> buildEnvp(Request const &req) {
+    std::vector<std::string> envp;
+
+    envp.push_back("REQUEST_METHOD=" + std::string(RequestStartLine::methodToString(req.method())));
+    envp.push_back("SERVER_PROTOCOL=" + req.version());
+    envp.push_back("SCRIPT_NAME=" + req.path());
+    envp.push_back("QUERY_STRING=" + req.queryString());
+
+    if (req.headers().has("Content-Length")) {
+        envp.push_back("CONTENT_LENGTH=" + req.headers().get("Content-Length"));
+    }
+    if (req.headers().has("Content-Type")) {
+        envp.push_back("CONTENT_TYPE=" + req.headers().get("Content-Type"));
+    }
+
+    for (Headers::HeaderMap::const_iterator it = req.headers().begin(); it != req.headers().end();
+         ++it) {
+        std::string name = it->first;
+        if (name != "Content-Length" && name != "Content-Type") {
+            envp.push_back(formatHeaderName(name) + "=" + it->second);
+        }
+    }
+
+    envp.push_back("SERVER_SOFTWARE=Webserv/1.0");
+    // envp.push_back("SERVER_PORT=" + intToString(req.port()));
+    envp.push_back("GATEWAY_INTERFACE=CGI/1.1");
+    return envp;
+}
 
 } // namespace http

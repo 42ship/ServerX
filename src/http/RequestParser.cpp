@@ -104,6 +104,10 @@ RequestParser::State RequestParser::parseBody() {
     } else {
         handleContentLengthBody();
     }
+    if (state_ == REQUEST_READY && bodyFile_.isOpen()) {
+        if (lseek(bodyFile_, 0, SEEK_SET) != (off_t)-1)
+            request_.body(bodyFile_);
+    }
     return state_;
 }
 

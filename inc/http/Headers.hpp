@@ -16,6 +16,8 @@ namespace http {
  */
 class Headers {
 public:
+    typedef std::map<std::string, std::string> HeaderMap;
+
     /**
      * @brief Constructs an empty Headers object.
      */
@@ -96,9 +98,10 @@ public:
      */
     static Headers parse(std::istringstream &);
 
-private:
-    typedef std::map<std::string, std::string> HeaderMap;
+    HeaderMap::const_iterator begin() const;
+    HeaderMap::const_iterator end() const;
 
+private:
     /**
      * @brief Internal: Normalizes a key to lowercase in-place.
      * @internal
