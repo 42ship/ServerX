@@ -26,8 +26,7 @@ FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0), sent_(0) {
     if (stat(fpath.c_str(), &statbuf) != 0)
         throw std::runtime_error("stat(" + fpath + ")::" + strerror(errno));
     size_ = statbuf.st_size;
-    // TODO: before evaluation remove NONBLOCK
-    fd_ = open(fpath.c_str(), O_RDONLY | O_NONBLOCK);
+    fd_ = open(fpath.c_str(), O_RDONLY);
     if (fd_ < 0)
         throw std::runtime_error("open(" + fpath + ", O_RDONLY)::" + strerror(errno));
     LOG_TRACE("FileBody::FileBody(" << fpath << "): opened for reading and about to send " << size_
@@ -49,7 +48,7 @@ ssize_t FileBody::read(char *buffer, size_t size) {
 
 size_t FileBody::size() const { return size_; }
 bool FileBody::isDone() const { return sent_ == size_; };
-int FileBody::getEventSourceFd() const { return fd_; }
+int FileBody::getEventSourceFd() const { return -1; }
 
 //==================== FileBody ====================
 
