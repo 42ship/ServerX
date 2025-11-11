@@ -79,7 +79,7 @@ char const *RequestStartLine::methodToString(Method m) {
     }
 }
 
-Request::Request() : body_(-1), location_(NULL), server_(NULL), status_(OK) {}
+Request::Request() : body_(-1), location_(NULL), server_(NULL), status_(OK), remoteAddr_("") {}
 
 bool Request::wantsJson() const { return headers_.get("Accept") == "application/json"; }
 
@@ -93,6 +93,7 @@ void Request::clear() {
     server_ = NULL;
     status_ = OK;
     body_ = -1;
+    remoteAddr_.clear();
 }
 
 size_t Request::getMaxAllowedContentSize() const {
@@ -122,6 +123,8 @@ Request &Request::status(HttpStatus status) { status_ = status; return *this; }
 HttpStatus Request::status() const { return status_; }
 int Request::body() const { return body_; }
 Request &Request::body(int fd) { body_ = fd; return *this; }
+std::string const &Request::remoteAddr() const { return remoteAddr_; }
+Request &Request::remoteAddr(std::string const &addr) { remoteAddr_ = addr; return *this; }
 // clang-format on
 
 std::string Request::resolvePath() const {

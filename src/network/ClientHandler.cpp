@@ -12,11 +12,14 @@
 
 namespace network {
 
-ClientHandler::ClientHandler(int clientFd, int port, http::Router const &router)
-    : clientFd_(clientFd), port_(port), router_(router), reqParser_(request_, IO_BUFFER_SIZE) {
+ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAddr,
+                             http::Router const &router)
+    : clientFd_(clientFd), port_(port), clientAddr_(clientAddr), router_(router),
+      reqParser_(request_, IO_BUFFER_SIZE) {
     resetForNewRequest();
     LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_
-                                              << "): new connection accepted");
+                                              << ") from " << clientAddr_
+                                              << ": new connection accepted");
 }
 
 ClientHandler::~ClientHandler() {
@@ -86,6 +89,8 @@ void ClientHandler::handleRead() {
 void ClientHandler::generateResponse() {
     LOG_TRACE("ClientHandler::generateResponse(" << clientFd_ << "): dispatching to router");
     try {
+        // Set remote address in request before dispatch
+        request_.remoteAddr(clientAddr_);
         router_.dispatch(port_, request_, response_);
     } catch (std::exception const &e) {
         LOG_ERROR("ClientHandler::generateResponse("

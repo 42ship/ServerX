@@ -9,6 +9,10 @@ class LocationBlock;
 class ServerBlock;
 } // namespace config
 
+namespace network {
+class ClientHandler;
+} // namespace network
+
 namespace http {
 
 /**
@@ -153,14 +157,22 @@ public:
      */
     std::string resolvePath() const;
 
+    /**
+     * @brief Gets the remote (client) IP address for this request.
+     * @return The client IP address as a string (e.g., "192.168.1.100").
+     */
+    std::string const &remoteAddr() const;
+
 protected:
     friend class RequestParser;
     friend class Router;
+    friend class network::ClientHandler;
 
     Request &location(config::LocationBlock const *location);
     Request &server(config::ServerBlock const *server);
     Request &method(RequestStartLine::Method method);
     Request &version(std::string const &);
+    Request &remoteAddr(std::string const &addr);
 
 private:
     RequestStartLine requestLine_;
@@ -169,6 +181,7 @@ private:
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
     HttpStatus status_;
+    std::string remoteAddr_;  // Client IP address
 };
 
 } // namespace http

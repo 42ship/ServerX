@@ -17,7 +17,7 @@ namespace network {
  */
 class ClientHandler : public IEventHandler {
 public:
-    ClientHandler(int clientFd, int port, http::Router const &);
+    ClientHandler(int clientFd, int port, std::string const &clientAddr, http::Router const &);
     ~ClientHandler();
 
     virtual void handleEvent(uint32_t events);
@@ -30,6 +30,7 @@ private:
     // --- Core Connection State ---
     int clientFd_;
     int port_;
+    std::string clientAddr_;  // Client IP address
 
     http::Router const &router_;
     http::Request request_;

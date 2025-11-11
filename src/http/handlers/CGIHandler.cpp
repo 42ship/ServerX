@@ -62,6 +62,14 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
         }
     }
 
+    // Remote Address (RFC 3875 section 4.1.8)
+    if (!req.remoteAddr().empty()) {
+        env.push_back("REMOTE_ADDR=" + req.remoteAddr());
+    } else {
+        // Fallback for safety (should never happen)
+        env.push_back("REMOTE_ADDR=127.0.0.1");
+    }
+
     // Content Meta-Variables
     std::string contentType = req.headers().get("Content-Type");
     if (!contentType.empty()) {
