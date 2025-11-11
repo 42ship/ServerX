@@ -105,10 +105,8 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
                 cgiName += '_';
             } else if (c >= 'a' && c <= 'z') {
                 cgiName += (c - 'a' + 'A');  // Convert to uppercase
-            } else if (c >= 'A' && c <= 'Z') {
-                cgiName += c;
             } else {
-                cgiName += c;
+                cgiName += c;  // Keep uppercase, digits, underscore, dot as-is
             }
         }
 
@@ -163,7 +161,8 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         LOG_ERROR("EXECVE");
         exit(127);
     }
-    if (pid) {
+    // Parent process (pid > 0)
+    if (pid > 0) {
         close(pipe_fd[1]);
         res.setBodyFromCgi(pipe_fd[0]);
     }
