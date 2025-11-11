@@ -53,7 +53,7 @@ Headers Headers::parse(std::istringstream &s) {
     while (getline(s, line)) {
         // Strip trailing \r if present (in case of \r\n line endings)
         if (!line.empty() && line[line.length() - 1] == '\r') {
-            line = line.substr(0, line.length() - 1);
+            line.resize(line.length() - 1);
         }
         // Stop at empty line (end of headers)
         if (line.empty()) {

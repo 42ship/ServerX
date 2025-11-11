@@ -160,7 +160,7 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         std::vector<std::string> env = buildCgiEnvironment(req, port);
         char**  envp = vectorToCharArray(env);
         execve(interpreter_path.c_str(), argv, envp);
-        LOG_ERROR("EXECVE")
+        LOG_ERROR("EXECVE");
         exit(127);
     }
     if (pid) {

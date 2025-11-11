@@ -16,7 +16,7 @@ std::string joinPaths(const std::string &p1, const std::string &p2) {
         return p1;
     std::string p1_clean = p1;
     if (p1_clean[p1_clean.length() - 1] == '/') {
-        p1_clean = p1_clean.substr(0, p1_clean.length() - 1);
+        p1_clean.resize(p1_clean.length() - 1);
     }
     std::string p2_clean = p2;
     if (p2_clean[0] != '/')
