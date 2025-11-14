@@ -46,11 +46,24 @@ void ClientHandler::handleEvent(uint32_t events) {
         handleRead();
     }
     if (events & EPOLLOUT) {
-        handleWrite();
+        if (rspEventSource_)
+            handleWriteCGI();
+        else
+            handleWritePassive();
     }
 }
 
 int ClientHandler::getFd() const { return clientFd_; }
+
+void ClientHandler::pushToSendBuffer(const char *data, size_t length) {
+    rspBuffer_.buffer.insert(rspBuffer_.buffer.end(), data, data + length);
+}
+
+bool ClientHandler::isSendBufferFull() const {
+    const size_t MAX_BUFFER_SIZE = 1024 * 1024; // 1MB
+    return rspBuffer_.buffer.size() > MAX_BUFFER_SIZE;
+}
+void ClientHandler::onCgiComplete() { finalizeConnection(); }
 
 void ClientHandler::handleRequestParsingState(http::RequestParser::State state) {
     if (state == http::RequestParser::ERROR) {
@@ -109,27 +122,37 @@ void ClientHandler::generateResponse() {
         }
     }
 
-    LOG_TRACE("ClientHandler::generateResponse(" << clientFd_ << "): building headers");
-    response_.buildHeaders(rspBuffer_.buffer);
-    LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_ << "): modifying fd to EPOLLOUT");
-    EventDispatcher::getInstance().setSendingData(this);
     http::IResponseBody *body = response_.body();
-    if (body && !body->isDone() && body->getEventSourceFd() != -1) {
-        rspEventSource_ = new CGIHandler(body->getEventSourceFd(), *this);
+    int event_src_fd = -1;
+    if (body && !body->isDone()) {
+        event_src_fd = body->getEventSourceFd();
+    }
+    if (event_src_fd != -1) {
+        LOG_DEBUG("ClientHandler::generateResponse("
+                  << clientFd_ << "): active (CGI) body detected (fd=" << event_src_fd
+                  << "). Creating worker handler.");
+        // TODO: Add build header if it's not cgi_nhp
+        rspEventSource_ = new CGIHandler(*body, *this);
         EventDispatcher::getInstance().registerHandler(rspEventSource_);
         EventDispatcher::getInstance().modifyHandler(this, 0);
+
+    } else {
+        rspEventSource_ = NULL;
+        LOG_TRACE("ClientHandler::generateResponse(" << clientFd_
+                                                     << "): passive body. Building headers.");
+        response_.buildHeaders(rspBuffer_.buffer);
+        LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_
+                                                     << "): modifying fd to EPOLLOUT.");
+        EventDispatcher::getInstance().setSendingData(this);
     }
 }
 
-void ClientHandler::handleWrite() {
+void ClientHandler::handleWritePassive() {
     LOG_TRACE("ClientHandler::handleWrite(" << clientFd_ << "): trying to send from buffer...");
     SendBuffer::SendStatus status = rspBuffer_.send(clientFd_);
 
     if (status == SendBuffer::SEND_ERROR) {
         return closeConnection();
-    }
-    if (status == SendBuffer::SEND_AGAIN) {
-        return;
     }
     if (status != SendBuffer::SEND_DONE) {
         return;
@@ -155,6 +178,31 @@ void ClientHandler::handleWrite() {
     }
 }
 
+// PING-PONG logic
+void ClientHandler::handleWriteCGI() {
+    if (rspBuffer_.isFullySent()) {
+        rspBuffer_.buffer.clear();
+        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
+        EventDispatcher::getInstance().modifyHandler(this, 0);
+        EventDispatcher::getInstance().setReceivingData(rspEventSource_);
+        return;
+    }
+    SendBuffer::SendStatus status = rspBuffer_.send(clientFd_);
+    if (status == SendBuffer::SEND_ERROR) {
+        return closeConnection();
+    }
+    if (status == SendBuffer::SEND_DONE) {
+        rspBuffer_.buffer.clear();
+        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
+        EventDispatcher::getInstance().modifyHandler(this, 0);
+        EventDispatcher::getInstance().setReceivingData(rspEventSource_);
+    } else {
+        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): remained to send "
+                                                   << rspBuffer_.buffer.size() - rspBuffer_.sent
+                                                   << " bytes")
+    }
+}
+
 void ClientHandler::finalizeConnection() {
     LOG_TRACE("ClientHandler::finalizeConnection(" << clientFd_ << "): finalizing");
     if (request_.headers().get("Connection") == "keep-alive") {
@@ -176,7 +224,13 @@ void ClientHandler::SendBuffer::reset() {
     sent = 0;
 }
 
-bool ClientHandler::SendBuffer::isFullySent() { return sent == buffer.size(); }
+bool ClientHandler::SendBuffer::isFullySent() {
+    if (sent == buffer.size()) {
+        buffer.clear();
+        sent = 0;
+    }
+    return buffer.empty();
+}
 
 ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int clientFd) {
     if (isFullySent())
@@ -201,8 +255,10 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
 
 void ClientHandler::resetForNewRequest() {
     LOG_TRACE("ClientHandler::resetForNewRequest(" << clientFd_ << "): resetting for keep-alive");
-    EventDispatcher::getInstance().removeHandler(rspEventSource_);
-    rspEventSource_ = NULL;
+    if (rspEventSource_) {
+        EventDispatcher::getInstance().removeHandler(rspEventSource_);
+        rspEventSource_ = NULL;
+    }
     rspBuffer_.reset();
     reqParser_.reset();
     response_.clear();

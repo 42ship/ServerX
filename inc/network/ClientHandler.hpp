@@ -23,6 +23,23 @@ public:
     virtual void handleEvent(uint32_t events);
     virtual int getFd() const;
 
+    /**
+     * @brief Pushes data into the client's send buffer.
+     * This is called by the CGIHandler when it reads from the pipe.
+     */
+    void pushToSendBuffer(const char *data, size_t length);
+
+    /**
+     * @brief Checks if the send buffer is over its high-water mark.
+     * This is the backpressure mechanism.
+     */
+    bool isSendBufferFull() const;
+
+    /**
+     * @brief Called by CGIHandler when the CGI script finishes (EOF).
+     */
+    void onCgiComplete();
+
 private:
     ClientHandler(const ClientHandler &);
     ClientHandler &operator=(const ClientHandler &);
@@ -61,7 +78,10 @@ private:
     /// @brief Handles incoming data on the socket.
     void handleRead();
     /// @brief Handles outgoing data on the socket.
-    void handleWrite();
+    void handleWritePassive();
+
+    void handleWriteCGI();
+
     /// @brief Processes a fully parsed request to generate a response.
     void generateResponse();
     /// @brief Sends the contents of the response buffer. @return False on fatal error.
