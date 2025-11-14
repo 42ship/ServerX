@@ -4,6 +4,7 @@
 #include "utils/Logger.hpp"
 #include <cerrno>
 #include <cstring>
+#include <exception>
 
 #define MAX_EVENTS 1024
 
@@ -77,7 +78,17 @@ void EventDispatcher::handleEvents() {
         was_printed = false;
         for (int i = 0; i < nready; ++i) {
             IEventHandler *handler = static_cast<IEventHandler *>(events[i].data.ptr);
-            handler->handleEvent(events[i].events);
+            try {
+                handler->handleEvent(events[i].events);
+            } catch (std::exception const &e) {
+                LOG_ERROR("EventDispatcher::handleEvents::handler("
+                          << handler->getFd() << ")->handleEvent: " << e.what());
+                removeHandler(handler);
+            } catch (...) {
+                LOG_ERROR("EventDispatcher::handleEvents::handler("
+                          << handler->getFd() << ")->handleEvent: unknown error");
+                removeHandler(handler);
+            }
         }
     }
 }
