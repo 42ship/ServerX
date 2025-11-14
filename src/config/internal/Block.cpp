@@ -1,5 +1,6 @@
 #include "config/Block.hpp"
 #include "config/arguments/ArgumentFactory.hpp"
+#include "config/arguments/Integer.hpp"
 #include "config/arguments/String.hpp"
 #include "config/internal/types.hpp"
 #include "utils/IndentManager.hpp"
@@ -52,7 +53,7 @@ Block &Block::operator=(const Block &other) {
     return *this;
 }
 
-std::vector<std::string> Block::get(std::string const &key, http::HttpRequest const &req) const {
+std::vector<std::string> Block::get(std::string const &key, http::Request const &req) const {
     ArgumentVector const &argv = get(key);
     std::vector<std::string> res;
     res.reserve(argv.size());
@@ -63,8 +64,7 @@ std::vector<std::string> Block::get(std::string const &key, http::HttpRequest co
     return res;
 }
 
-std::string Block::getFirstEvaluatedString(std::string const &key,
-                                           http::HttpRequest const &req) const {
+std::string Block::getFirstEvaluatedString(std::string const &key, http::Request const &req) const {
     ArgumentVector const &argv = get(key);
     if (argv.empty()) {
         return "";
@@ -87,6 +87,12 @@ ArgumentVector const &Block::get(std::string const &key) const {
 
 /** @brief Checks if a directive exists within the block. */
 bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
+
+Block &Block::add(std::string const &key, ArgumentPtr value) {
+    if (value)
+        directives_[key].push_back(value);
+    return *this;
+}
 
 Block &Block::add(std::string const &key, ArgumentVector const &values) {
     DirectiveMap::const_iterator it = directives_.find(key);
@@ -172,11 +178,24 @@ std::ostream &operator<<(std::ostream &o, Block const &b) {
     for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
         o << print_indent << it->first << ":";
         for (size_t i = 0; i < it->second.size(); i++) {
-            o << " '" << it->second[i] << "'";
+            o << " '" << it->second[i]->getRawValue() << "'";
         }
         o << "\n";
     }
     return o;
+}
+
+size_t Block::maxBodySize() const {
+    std::string const key = "max_body_size";
+    if (!has(key))
+        return 0;
+    ArgumentVector const &argv = get(key);
+    if (argv.empty())
+        return 0;
+    Integer const *arg = dynamic_cast<Integer const *>(argv[0]);
+    if (!arg)
+        return 0;
+    return arg->getIntValue();
 }
 
 } // namespace config
