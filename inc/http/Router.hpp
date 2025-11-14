@@ -1,7 +1,6 @@
 #pragma once
 
 #include "config/ServerConfig.hpp"
-#include "http/Handler.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
 
@@ -73,18 +72,7 @@ private:
 
     /** @internal */
     config::ServerConfig const &config_;
-
-    // --- Reusable, stateless handler instances ---
-    /** @internal */
-    StaticFileHandler const staticFile_;
-    /** @internal */
-    CGIHandler const cgiHandler_;
-    /** @internal */
-    // FileUploadHandler const uploadHandler_;
-    /** @internal */
-    // DefaultErrorHandler const defaultErrorHandler_;
-    /** @internal */
-    // JsonErrorHandler const jsonErrorHandler_;
+    MimeTypes const &mimeTypes_;
 };
 
 } // namespace http

@@ -63,7 +63,13 @@ bool ClientHandler::isSendBufferFull() const {
     const size_t MAX_BUFFER_SIZE = 1024 * 1024; // 1MB
     return rspBuffer_.buffer.size() > MAX_BUFFER_SIZE;
 }
-void ClientHandler::onCgiComplete() { finalizeConnection(); }
+void ClientHandler::onCgiComplete() {
+    isRspEventSourceDone_ = true;
+    if (rspBuffer_.isFullySent())
+        return finalizeConnection();
+    EventDispatcher::getInstance().modifyHandler(rspEventSource_, 0);
+    EventDispatcher::getInstance().setSendingData(this);
+}
 
 void ClientHandler::handleRequestParsingState(http::RequestParser::State state) {
     if (state == http::RequestParser::ERROR) {
@@ -181,6 +187,9 @@ void ClientHandler::handleWritePassive() {
 // PING-PONG logic
 void ClientHandler::handleWriteCGI() {
     if (rspBuffer_.isFullySent()) {
+        if (isRspEventSourceDone_) {
+            return finalizeConnection();
+        }
         rspBuffer_.buffer.clear();
         LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
         EventDispatcher::getInstance().modifyHandler(this, 0);
@@ -192,6 +201,9 @@ void ClientHandler::handleWriteCGI() {
         return closeConnection();
     }
     if (status == SendBuffer::SEND_DONE) {
+        if (isRspEventSourceDone_) {
+            return finalizeConnection();
+        }
         rspBuffer_.buffer.clear();
         LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
         EventDispatcher::getInstance().modifyHandler(this, 0);
@@ -255,6 +267,7 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
 
 void ClientHandler::resetForNewRequest() {
     LOG_TRACE("ClientHandler::resetForNewRequest(" << clientFd_ << "): resetting for keep-alive");
+    isRspEventSourceDone_ = false;
     if (rspEventSource_) {
         EventDispatcher::getInstance().removeHandler(rspEventSource_);
         rspEventSource_ = NULL;
