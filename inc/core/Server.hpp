@@ -66,7 +66,7 @@ private:
     http::Router router_; ///< HTTP request router for dispatching requests to handlers.
 
     static int nullFd_; ///< Server-wide file descriptor for `/dev/null` (opened at startup).
-    // clang-format on 
+    // clang-format on
 
     void setupAcceptors();
     void setupSignalHandlers();

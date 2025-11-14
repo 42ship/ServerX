@@ -72,6 +72,7 @@ private:
     static const size_t IO_BUFFER_SIZE = 8192; //!< Size for read/write chunks.
 
     IEventHandler *rspEventSource_;
+    bool isRspEventSourceDone_;
 
     // --- Private Methods ---
     /// @brief Handles incoming data on the socket.

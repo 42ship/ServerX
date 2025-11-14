@@ -9,7 +9,9 @@
 namespace network {
 
 CGIHandler::CGIHandler(http::IResponseBody &body, ClientHandler &client, bool isNPH)
-    : body_(body), client_(client), isNPH_(isNPH) {}
+    : body_(body), client_(client), isNPH_(isNPH) {
+    (void)isNPH_;
+}
 
 int CGIHandler::getFd() const { return body_.getEventSourceFd(); }
 
@@ -35,7 +37,6 @@ void CGIHandler::handleEvent(uint32_t events) {
             LOG_TRACE("CGIHandler::handleEvent(" << client_.getFd() << ")::read: " << bytes_read
                                                  << " bytes");
             client_.pushToSendBuffer(buffer, bytes_read);
-
         } else if (bytes_read == 0) {
             LOG_DEBUG("CGIHandler::handleEvent(" << client_.getFd()
                                                  << "): all data read successfully (EOF)");
