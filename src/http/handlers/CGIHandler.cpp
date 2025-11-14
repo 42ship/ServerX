@@ -1,4 +1,5 @@
 #include "config/LocationBlock.hpp"
+#include "core/Server.hpp"
 #include "http/Handler.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
@@ -10,11 +11,15 @@
 
 namespace http {
 
-static int execute(Request const &req);
+static std::vector<std::string> buildEnvp(Request const &req);
+static std::vector<std::string> buildArgv(Request const &req);
+static int execute(std::vector<std::string> const &argv, std::vector<std::string> const &envp);
 static void setupPipes(Request const &req, int pipe_fd[2]);
 
 void CGIHandler::handle(Request const &req, Response &res) const {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
+    std::vector<std::string> const &argv = buildArgv(req);
+    std::vector<std::string> const &envp = buildEnvp(req);
     int pipe_fd[2];
     if (pipe(pipe_fd)) {
         LOG_ERROR("CGIHandler::handle::pipe: " << strerror(errno));
@@ -27,7 +32,7 @@ void CGIHandler::handle(Request const &req, Response &res) const {
     }
     if (pid == 0) {
         setupPipes(req, pipe_fd);
-        execute(req);
+        execute(argv, envp);
         exit(127);
     } else {
         close(pipe_fd[1]);
@@ -44,13 +49,8 @@ static void setupPipes(Request const &req, int pipe_fd[2]) {
         dup2(req.body(), STDIN_FILENO);
         close(req.body());
     } else {
-        int null_fd = open("/dev/null", O_RDONLY);
-        if (null_fd == -1) {
-            write(STDERR_FILENO, "CGI: Failed to open /dev/null\n", 30);
-            exit(125);
-        }
-        dup2(null_fd, STDIN_FILENO);
-        close(null_fd);
+        dup2(core::Server::getNullFd(), STDIN_FILENO);
+        close(core::Server::getNullFd());
     }
 }
 
@@ -64,12 +64,7 @@ static std::vector<char *> toCStringVector(std::vector<std::string> const &v) {
     return res;
 }
 
-static std::vector<std::string> buildEnvp(Request const &req);
-static std::vector<std::string> buildArgv(Request const &req);
-
-static int execute(Request const &req) {
-    std::vector<std::string> const &argv = buildArgv(req);
-    std::vector<std::string> const &envp = buildEnvp(req);
+static int execute(std::vector<std::string> const &argv, std::vector<std::string> const &envp) {
     std::vector<char *> const &argv_ptrs = toCStringVector(argv);
     std::vector<char *> const &envp_ptrs = toCStringVector(envp);
     return execve(argv_ptrs[0], &argv_ptrs[0], &envp_ptrs[0]);
