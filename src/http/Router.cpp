@@ -38,8 +38,9 @@ void Router::matchServerAndLocation(int port, Request &request) const {
 }
 
 void Router::dispatch(int port, Request &request, Response &response) const {
-    LOG_DEBUG("Router::dispatch(" << port << ", " << request.method() << " " << request.uri()
-                                  << "): dispatching request");
+    LOG_DEBUG("Router::dispatch(" << port << ", "
+                                  << RequestStartLine::methodToString(request.method()) << " "
+                                  << request.uri() << "): dispatching request");
     if (request.status() >= 400) {
         response.status(request.status());
         return handleError(request, response);
