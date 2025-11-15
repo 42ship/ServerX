@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace utils {
 
@@ -27,19 +27,25 @@ private:
     static LogLevel threshold_;
 };
 
+#ifdef DISABLE_LOGGING
+#define LOG_MSG(level, msg) (void)0
+#else
+
 /**
- * @def LOG_MSG(level, msg)
- * @brief The base macro for logging. It constructs a string from the stream-like
- * input and passes it to the core logging function.
- * @param level The utils::LogLevel for the message.
- * @param msg A streamable expression (e.g., "User ID: " << id).
- */
+* @def LOG_MSG(level, msg)
+* @brief The base macro for logging. It constructs a string from the stream-like
+* input and passes it to the core logging function.
+* @param level The utils::LogLevel for the message.
+* @param msg A streamable expression (e.g., "User ID: " << id).
+*/
 #define LOG_MSG(level, msg)                                                                        \
     {                                                                                              \
         std::ostringstream oss;                                                                    \
         oss << msg;                                                                                \
         utils::Logger::log(level, oss.str());                                                      \
     }
+
+#endif // DISABLE_LOGGING
 
 /**
  * @def LOG_TRACE(msg)

@@ -66,7 +66,7 @@ void CGIHandler::runParentProcess() {
     close(errorFd_[0]);
     if (bread > 0) {
         close(pipeFd_[0]);
-        LOG_ERROR("CGIHandler::handle(" << req_.path() << ")::execve: " << buf)
+        LOG_ERROR("CGIHandler::handle(" << req_.path() << ")::execve: " << buf);
         return (void)res_.status(INTERNAL_SERVER_ERROR);
     } else {
         res_.setBodyFromCgi(pipeFd_[0]);
