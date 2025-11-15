@@ -163,7 +163,6 @@ void ClientHandler::handleWritePassive() {
     if (status != SendBuffer::SEND_DONE) {
         return;
     }
-    rspBuffer_.reset();
     http::IResponseBody *body = response_.body();
     if (!body || body->isDone()) {
         LOG_TRACE("ClientHandler::handleWrite(" << clientFd_
@@ -173,6 +172,8 @@ void ClientHandler::handleWritePassive() {
     rspBuffer_.buffer.resize(rspBuffer_.buffer.capacity());
     ssize_t read = body->read(rspBuffer_.buffer.data(), rspBuffer_.buffer.capacity());
     if (read <= 0) {
+        LOG_TRACE("ClientHandler::handleWrite("
+                  << clientFd_ << "): body finished reading (read <= 0), finalizing");
         return finalizeConnection();
     }
     LOG_TRACE("ClientHandler::handleWrite(" << clientFd_ << "): read " << read
@@ -219,7 +220,7 @@ void ClientHandler::finalizeConnection() {
     LOG_TRACE("ClientHandler::finalizeConnection(" << clientFd_ << "): finalizing");
     if (request_.headers().get("Connection") == "keep-alive") {
         LOG_DEBUG("ClientHandler::finalizeConnection(" << clientFd_ << "): keep-alive, resetting");
-        EventDispatcher::getInstance().setSendingData(this);
+        EventDispatcher::getInstance().setReceivingData(this);
         resetForNewRequest();
     } else {
         LOG_DEBUG("ClientHandler::finalizeConnection(" << clientFd_ << "): closing connection");
@@ -238,8 +239,7 @@ void ClientHandler::SendBuffer::reset() {
 
 bool ClientHandler::SendBuffer::isFullySent() {
     if (sent == buffer.size()) {
-        buffer.clear();
-        sent = 0;
+        reset();
     }
     return buffer.empty();
 }
