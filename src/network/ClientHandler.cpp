@@ -192,7 +192,7 @@ void ClientHandler::handleWriteCGI() {
             return finalizeConnection();
         }
         rspBuffer_.buffer.clear();
-        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
+        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent");
         EventDispatcher::getInstance().modifyHandler(this, 0);
         EventDispatcher::getInstance().setReceivingData(rspEventSource_);
         return;
@@ -206,13 +206,13 @@ void ClientHandler::handleWriteCGI() {
             return finalizeConnection();
         }
         rspBuffer_.buffer.clear();
-        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent")
+        LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent");
         EventDispatcher::getInstance().modifyHandler(this, 0);
         EventDispatcher::getInstance().setReceivingData(rspEventSource_);
     } else {
         LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): remained to send "
                                                    << rspBuffer_.buffer.size() - rspBuffer_.sent
-                                                   << " bytes")
+                                                   << " bytes");
     }
 }
 

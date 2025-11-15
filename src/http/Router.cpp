@@ -38,6 +38,7 @@ void Router::matchServerAndLocation(int port, Request &request) const {
 }
 
 void Router::dispatch(int port, Request &request, Response &response) const {
+    (void)port;
     LOG_DEBUG("Router::dispatch(" << port << ", "
                                   << RequestStartLine::methodToString(request.method()) << " "
                                   << request.uri() << "): dispatching request");

@@ -12,5 +12,8 @@ pkgs.mkShell {
     doxygen
     valgrind
     gnumake
+    perf
+    apacheHttpd
+    flamegraph
   ];
 }

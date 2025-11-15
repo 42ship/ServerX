@@ -66,6 +66,7 @@ void Server::setupSignalHandlers() {
 }
 
 void Server::signalHandler(int sig) {
+    (void)sig;
     if (instance_) {
         LOG_INFO("Signal " << sig << " received. Initiating graceful shutdown.");
         instance_->shutdownRequested_ = true;

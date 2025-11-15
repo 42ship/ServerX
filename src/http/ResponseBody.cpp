@@ -30,7 +30,7 @@ FileBody::FileBody(std::string const &fpath) : fd_(-1), size_(0), sent_(0) {
     if (fd_ < 0)
         throw std::runtime_error("open(" + fpath + ", O_RDONLY)::" + strerror(errno));
     LOG_TRACE("FileBody::FileBody(" << fpath << "): opened for reading and about to send " << size_
-                                    << " bytes")
+                                    << " bytes");
 }
 
 FileBody::~FileBody() {
