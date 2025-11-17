@@ -15,11 +15,6 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
         throw ConfigException("'" + name_ + "' directive requires two ore more arguments.");
     }
 
-    ServerBlock *serverBlock = dynamic_cast<ServerBlock *>(&b);
-    if (!serverBlock) {
-        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.name());
-    }
-
     std::string code;
     const std::string path = args[args.size() - 1].literal;
     static const std::string validCodes[] = {"400", "401", "403", "404", "405", "409", "411",
@@ -30,7 +25,7 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
         code = args[j].literal;
         for (size_t i = 0; i < validCount; i++) {
             if (validCodes[i] == code) {
-                serverBlock->add(code, path);
+                b.add(code, path);
                 break;
             }
             if (i == validCount - 1) {
