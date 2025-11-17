@@ -3,11 +3,19 @@
 #include <sstream>
 #include <string>
 #include <utility>
+#include <vector>
 
 namespace http {
 
-#if 0
-typedef map<Key, vector<char> > JsonErrorPageCache;
+struct Key {
+    HttpStatus code;
+    std::string message;
+    bool operator<(Key const &o) const {
+        return (code < o.code) || (code == o.code && message < o.message);
+    }
+};
+
+typedef std::map<Key, std::string> JsonErrorPageCache;
 
 static std::string createJsonErrorBody(HttpStatus code, char const *message) {
     std::ostringstream body;
@@ -15,11 +23,9 @@ static std::string createJsonErrorBody(HttpStatus code, char const *message) {
     return body.str();
 }
 
-// typedef std::map<Key, std::vector<char> > JsonErrorPageCache;
-
-static const std::vector<char> &getCacherJsonErrorBody(Status code, const std::string &message) {
+static const std::string &getCacherJsonErrorBody(HttpStatus code, const char *message) {
     static JsonErrorPageCache cache;
-    const std::string m = !message.empty() ? message : "";
+    const std::string m = message ? message : "";
     Key k;
     k.code = code;
     k.message = m;
@@ -30,8 +36,11 @@ static const std::vector<char> &getCacherJsonErrorBody(Status code, const std::s
 
     return cache.insert(std::make_pair(k, createJsonErrorBody(code, m.c_str()))).first->second;
 }
-#endif
 
-void JsonErrorHandler::populateResponse(Response &response) { (void)response; }
+void JsonErrorHandler::populateResponse(Response &response) {
+    std::string const &body =
+        getCacherJsonErrorBody(response.status(), response.reasonPhrase().c_str());
+    response.setBodyInMemory(body, "application/json");
+}
 
 } // namespace http

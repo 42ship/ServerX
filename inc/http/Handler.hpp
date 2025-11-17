@@ -39,11 +39,19 @@ public:
 class JsonErrorHandler {
 public:
     static void populateResponse(Response &res);
+private:
+    JsonErrorHandler();
 };
 
 class DefaultErrorHandler {
 public:
+    DefaultErrorHandler(MimeTypes const &);
+    void handle(Request const &, Response &) const;
     static void populateResponse(Response &res);
+private:
+    DefaultErrorHandler();
+    void serveErrorFile(Response &response, const std::string &root, std::string fpath) const;
+    MimeTypes const &mimeTypes_;
 };
 
 #define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \
