@@ -1,7 +1,12 @@
 #include "common/filesystem.hpp"
 #include <cerrno>
+#include <cstring>
 #include <fstream>
+#include <iostream>
+#include <stdlib.h>
+#include <string>
 #include <sys/stat.h>
+#include <unistd.h>
 
 namespace utils {
 
@@ -34,7 +39,6 @@ bool writeFile(const std::string &content, const char *path, size_t start, size_
     out.close();
     return success;
 }
-
 
 const char *validateDirectoryPath(const char *path) {
     if (!path || *path == '\0') {
@@ -71,5 +75,39 @@ std::string getFileExtension(const std::string &fpath) {
     }
     return "";
 }
+
+TempFile::TempFile() : fd_(-1) {}
+TempFile::~TempFile() { close(); }
+
+bool TempFile::open() {
+    if (fd_ != -1)
+        close();
+    char templateFileName[] = "/tmp/.webserv-file-body-XXXXXX";
+    fd_ = mkstemp(templateFileName);
+    if (fd_ < 1) {
+        std::cerr << "Error: couldn't create a file for a request body: " << strerror(errno)
+                  << std::endl;
+        return false;
+    }
+    filePath_ = templateFileName;
+    return true;
+}
+
+void TempFile::close() {
+    if (fd_ >= 0) {
+        ::close(fd_);
+        fd_ = -1;
+    }
+    if (!filePath_.empty()) {
+        unlink(filePath_.c_str());
+        filePath_.clear();
+    }
+}
+
+TempFile::operator int() { return fd_; }
+
+int TempFile::fd() const { return fd_; }
+std::string const &TempFile::path() const { return filePath_; }
+bool TempFile::isOpen() { return fd_ != -1 && !filePath_.empty(); }
 
 } // namespace utils

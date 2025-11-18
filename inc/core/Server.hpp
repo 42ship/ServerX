@@ -4,7 +4,7 @@
 #include "http/MimeTypes.hpp"
 #include "http/Router.hpp"
 #include "network/Acceptor.hpp"
-#include "network/InitiationDispatcher.hpp"
+#include "network/EventDispatcher.hpp"
 #include <signal.h>
 #include <vector>
 
@@ -15,11 +15,11 @@ namespace core {
  *
  * The Server class coordinates multiple acceptors, handles graceful shutdown, and provides a
  * unified interface for starting/stopping the event-driven TCP/IP server. Acts as the application's
- * main entry point into the Reactor pattern infrastructure.
+ * main entry point into the ClientHandler pattern infrastructure.
  *
- * Basically, the Server class serves as application controller above the Reactor the design pattern
+ * Basically, the Server class serves as application controller above the ClientHandler the design pattern
  * components and use them to build a complete server application. The Server class is like a bridge
- * between "I want to run a server" and "Here is how the Reactor pattern works" The design pattern
+ * between "I want to run a server" and "Here is how the ClientHandler pattern works" The design pattern
  * is Facade Pattern where it hides the complexity of "create dispatcher, create acceptors, register
  * handlers, start event loop, handle signals, cleanup" behind simple start() and stop() methods
  *
@@ -76,7 +76,7 @@ private:
     std::vector<network::Acceptor *> acceptors_;
 
     config::ServerConfig const &config_;
-    network::InitiationDispatcher &dispatcher_;
+    network::EventDispatcher &dispatcher_;
     http::MimeTypes mimeTypes_;
     http::Router router_;
 

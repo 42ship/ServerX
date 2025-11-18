@@ -4,6 +4,20 @@
 #include "config/ServerConfig.hpp"
 #include "config/internal/ConfigException.hpp"
 #include "doctest.h"
+#include "http/Request.hpp"
+
+const config::LocationBlock *testML(config::ServerBlock const &sb, std::string const &s) {
+    http::Request req;
+    req.uri(s);
+    return sb.matchLocation(req);
+}
+
+const config::ServerBlock *testGS(config::ServerConfig const &sc, int port,
+                                  std::string const &serverName) {
+    http::Request req;
+    req.headers().add("Host", serverName);
+    return sc.getServer(port, req);
+}
 
 TEST_CASE("ServerConfig Integration") {
     SUBCASE("Should correctly parse a complete config file") {
@@ -21,17 +35,17 @@ TEST_CASE("ServerConfig Integration") {
 
         config::ServerConfig sc(str, false);
         // An empty server name should return the default server for the port
-        const config::ServerBlock *sb = sc.getServer(9191, "");
+        const config::ServerBlock *sb = testGS(sc, 9191, "");
 
         REQUIRE(sb);
         CHECK(sb->port() == 9191);
         CHECK(sb->root() == ""); // Root is not defined at server level
 
-        const config::LocationBlock *root_loc = sb->matchLocation("/");
+        const config::LocationBlock *root_loc = testML(*sb, "/");
         REQUIRE(root_loc != NULL);
         CHECK(root_loc->root() == "website/html/");
 
-        const config::LocationBlock *img_loc = sb->matchLocation("/img/logo.png");
+        const config::LocationBlock *img_loc = testML(*sb, "/img/logo.png");
         REQUIRE(img_loc != NULL);
         CHECK(img_loc->root() == "website/img/");
     }
@@ -49,16 +63,16 @@ TEST_CASE("ServerConfig Integration") {
                                 "}\n";
 
         config::ServerConfig sc(str, false);
-        const config::ServerBlock *sb = sc.getServer(8000, "");
+        const config::ServerBlock *sb = testGS(sc, 8000, "");
 
         REQUIRE(sb != NULL);
         CHECK(sb->root() == "/var/www/");
 
-        const config::LocationBlock *relative_loc = sb->matchLocation("/site/index.html");
+        const config::LocationBlock *relative_loc = testML(*sb, "/site/index.html");
         REQUIRE(relative_loc != NULL);
         CHECK(relative_loc->root() == "/var/www/relative_path/");
 
-        const config::LocationBlock *absolute_loc = sb->matchLocation("/absolute/config.txt");
+        const config::LocationBlock *absolute_loc = testML(*sb, "/absolute/config.txt");
         REQUIRE(absolute_loc != NULL);
         CHECK(absolute_loc->root() == "/etc/nginx/");
     }
@@ -82,9 +96,9 @@ TEST_CASE("Virtual Server Matching (Future Feature)") {
         sc.addServer(f);
         sc.addServer(second);
 
-        const config::ServerBlock *sb_second = sc.getServer(8080, "second.com");
-        const config::ServerBlock *sb_first = sc.getServer(8080, "www.first.com");
-        const config::ServerBlock *sb_default = sc.getServer(8080, "notfound.com");
+        const config::ServerBlock *sb_second = testGS(sc, 8080, "second.com");
+        const config::ServerBlock *sb_first = testGS(sc, 8080, "www.first.com");
+        const config::ServerBlock *sb_default = testGS(sc, 8080, "notfound.com");
 
         MESSAGE("This test is expected to fail until virtual server matching is implemented in "
                 "ServerConfig::getServer.");
