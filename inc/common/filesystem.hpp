@@ -12,24 +12,4 @@ const char *validateDirectoryPath(const char *path);
 
 std::string getFileExtension(const std::string &fpath);
 
-class TempFile {
-public:
-    TempFile();
-    ~TempFile();
-
-    bool open();
-    void close();
-    operator int();
-    int fd() const;
-    std::string const &path() const;
-    bool isOpen();
-
-private:
-    int fd_;
-    std::string filePath_;
-
-    TempFile(TempFile const &TempFile);
-    TempFile &operator=(TempFile const &rhs);
-};
-
 } // namespace utils

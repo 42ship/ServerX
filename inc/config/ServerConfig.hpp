@@ -3,10 +3,6 @@
 #include "ServerBlock.hpp"
 #include <ostream>
 
-namespace http {
-class Request;
-}
-
 namespace config {
 
 typedef std::map<int, ServerBlockVec> ServerBlockMap;
@@ -44,10 +40,10 @@ public:
     /**
      * @brief Retrieves the server configuration that best matches a port and server name.
      * @param port The port number of the incoming connection.
-     * @param request The request
+     * @param server_name The server name from the client's 'Host' header.
      * @return A const pointer to the matched ServerBlock, or NULL if no match is found.
      */
-    ServerBlock const *getServer(int port, http::Request const &req) const;
+    ServerBlock const *getServer(int port, std::string const &server_name) const;
 
     /**
      * @brief Adds a ServerBlock to the configuration.

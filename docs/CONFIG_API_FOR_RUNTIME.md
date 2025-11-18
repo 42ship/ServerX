@@ -15,7 +15,7 @@ Both `ServerBlock` and `LocationBlock` inherit from `config::Block`, which provi
 // Example Handler
 class StaticFileHandler : public IHandler {
 public:
-    Response handle(Request const &req, config::ServerBlock const *server,
+    HttpResponse handle(HttpRequest const &req, config::ServerBlock const *server,
                         config::LocationBlock const *location) const {
         // --- Use server and location objects here ---
     }
@@ -61,7 +61,7 @@ Retrieves the values for a directive, evaluating any variables using the context
   - **Return type:** `std::vector<std::string>`
   - **Arguments:**
     1.  `key`: The name of the directive (e.g., `"server_name"`).
-    2.  `req`: A const reference to the `http::Request`.
+    2.  `req`: A const reference to the `http::HttpRequest`.
 
 **Example:**
 

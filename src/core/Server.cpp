@@ -1,7 +1,8 @@
 #include "core/Server.hpp"
+
 #include "config/ServerConfig.hpp"
 #include "http/Router.hpp"
-#include "network/EventDispatcher.hpp"
+#include "network/InitiationDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cstring>
 #include <iostream>
@@ -24,7 +25,7 @@ Server::Server(config::ServerConfig const &config)
     : shutdownRequested_(false),
       isRunning_(false),
       config_(config),
-      dispatcher_(network::EventDispatcher::getInstance()),
+      dispatcher_(network::InitiationDispatcher::getInstance()),
       router_(config_, mimeTypes_) {
     instance_ = this;
     setupSignalHandlers();
@@ -61,7 +62,7 @@ void Server::signalHandler(int sig) {
     if (instance_) {
         LOG_INFO("Signal " << sig << " received. Initiating graceful shutdown.");
         instance_->shutdownRequested_ = true;
-        network::EventDispatcher::getInstance().requestShutdown();
+        network::InitiationDispatcher::getInstance().requestShutdown();
     }
 }
 
@@ -121,7 +122,7 @@ void Server::setupAcceptors() {
 void Server::cleanup() {
     for (std::vector<network::Acceptor *>::iterator it = acceptors_.begin(); it != acceptors_.end();
          ++it) {
-        dispatcher_.removeHandler(*it);
+        dispatcher_.removeHandler((*it)->getHandle());
     }
     acceptors_.clear();
 }

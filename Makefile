@@ -8,9 +8,9 @@ LOGDIR		=	logs
 # =============================== COMPILATION ================================ #
 CXX			=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP -g3 -Og
-CXXFLAGS	+=	-I$(HDIR) -DLOGLEVEL=TRACE
+CXXFLAGS	+=	-I$(HDIR) -DLOGLEVEL=WARNING
 # ================================== FILES =================================== #
-SRCS		:=	$(shell find $(SDIR) -name "*.cpp" | grep -v ".bak")
+SRCS		:=	$(shell find $(SDIR) -name "*.cpp" -not -path '*/.bak/*')
 OBJS		:=	$(patsubst $(SDIR)/%.cpp,$(ODIR)/%.o,$(SRCS))
 DEPS		:=	$(patsubst %.o,%.d,$(OBJS))
 DIRS		=	$(sort $(dir $(OBJS)))

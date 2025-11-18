@@ -3,10 +3,6 @@
 #include "config/Block.hpp"
 #include "config/LocationBlock.hpp"
 
-namespace http {
-class Request;
-}
-
 namespace config {
 
 typedef std::map<std::string, LocationBlock> LocationBlockMap;
@@ -40,10 +36,10 @@ public:
 
     /**
      * @brief Finds the best-matching location block for a given request URI.
-     * @param request The request.
+     * @param name The request URI path.
      * @return A const pointer to the matched LocationBlock, or NULL if no match is found.
      */
-    LocationBlock const *matchLocation(http::Request const &req) const;
+    LocationBlock const *matchLocation(std::string const &uri) const;
 
     // ============================== Getters & Setters =============================
 

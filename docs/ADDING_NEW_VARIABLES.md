@@ -6,14 +6,14 @@ The core of this system is a map that links variable names to "getter" functions
 
 ### Step 1: Create the Getter Function
 
-In `config/arguments/Variable.cpp`, create a function that matches the `FuncVar` signature: `std::string(http::Request const &req)`.
+In `config/arguments/Variable.cpp`, create a function that matches the `FuncVar` signature: `std::string(http::HttpRequest const &req)`.
 
 This function should contain the logic to extract the desired value from the request object.
 
 **Example for `$request_uri`:**
 
 ```cpp
-std::string RequestUriFunc(http::Request const &req) {
+std::string RequestUriFunc(http::HttpRequest const &req) {
     // Logic to extract the request URI from the request object
     return req.uri;
 }

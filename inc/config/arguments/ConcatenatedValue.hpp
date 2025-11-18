@@ -13,7 +13,7 @@ public:
     ConcatenatedValue &operator=(const ConcatenatedValue &other);
 
     void add(IArgument *arg);
-    std::string evaluate(http::Request const &ctx) const;
+    std::string evaluate(http::HttpRequest const &ctx) const;
     ArgumentType getType() const { return ARG_CONCATENATED; }
     std::string getRawValue() const;
     IArgument *clone() const;

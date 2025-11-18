@@ -1,6 +1,5 @@
 #include "config/ServerBlock.hpp"
 #include "config/Block.hpp"
-#include "http/Request.hpp"
 #include "utils/IndentManager.hpp"
 #include <utility>
 
@@ -8,8 +7,8 @@ namespace config {
 
 ServerBlock::ServerBlock() : Block("server"), port_(-1) {}
 
-LocationBlock const *ServerBlock::matchLocation(http::Request const &req) const {
-    return details::bestMatchLocation(locations_, req.uri());
+LocationBlock const *ServerBlock::matchLocation(std::string const &path) const {
+    return details::bestMatchLocation(locations_, path);
 }
 
 bool ServerBlock::hasLocation(LocationBlock const &b) {

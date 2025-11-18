@@ -1,10 +1,13 @@
 #include "common/filesystem.hpp"
-#include "config/ServerBlock.hpp"
 #include "http/Handler.hpp"
+#include "http/HttpRequest.hpp"
+#include "http/HttpResponse.hpp"
+#include "http/HttpStatus.hpp"
 #include "http/MimeTypes.hpp"
-#include "http/Request.hpp"
-#include "http/Response.hpp"
-#include <cerrno>
+#include "http/error_pages.hpp"
+#include "http/utils.hpp"
+#include <cstddef>
+#include <errno.h>
 #include <fcntl.h>
 #include <string>
 #include <sys/stat.h>
@@ -14,25 +17,27 @@ namespace http {
 
 StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
 
-void StaticFileHandler::handle(Request const &req, Response &res) const {
-    CHECK_FOR_SERVER_AND_LOCATION(req, res);
-    std::string path = req.resolvePath();
+HttpResponse StaticFileHandler::handle(HttpRequest const &req, config::ServerBlock const *s,
+                                       config::LocationBlock const *l) const {
+    if (!l || !s)
+        return error_pages::generateErrorResponse(NOT_FOUND, req.version);
+    std::string path = utils::getPath(req, *l);
     struct stat statbuf;
     if (stat(path.c_str(), &statbuf) != 0) {
         if (errno == ENOENT || errno == ENOTDIR) {
-            return (void)res.status(NOT_FOUND);
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         } else if (errno == EACCES) {
-            return (void)res.status(FORBIDDEN);
+            return error_pages::generateErrorResponse(FORBIDDEN, req.version);
         } else {
-            return (void)res.status(INTERNAL_SERVER_ERROR);
+            return error_pages::generateErrorResponse(INTERNAL_SERVER_ERROR, req.version);
         }
     }
     if (S_ISDIR(statbuf.st_mode)) {
-        if (!req.location()->has("index"))
-            return (void)res.status(NOT_FOUND);
+        if (!l->has("index"))
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         std::string index_path;
         bool found_index = false;
-        std::vector<std::string> const &indexes = req.location()->indexFiles();
+        std::vector<std::string> const &indexes = l->indexFiles();
         for (size_t i = 0; i < indexes.size(); i++) {
             index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + indexes[i];
             if (access(index_path.c_str(), F_OK) == 0) {
@@ -42,20 +47,23 @@ void StaticFileHandler::handle(Request const &req, Response &res) const {
             }
         }
         if (!found_index) {
-            return (void)res.status(NOT_FOUND);
+            return error_pages::generateErrorResponse(NOT_FOUND, req.version);
         }
         if (stat(path.c_str(), &statbuf) != 0) {
-            return (void)res.status(INTERNAL_SERVER_ERROR);
+            return error_pages::generateErrorResponse(INTERNAL_SERVER_ERROR, req.version);
         }
     }
     if (!(statbuf.st_mode & S_IRUSR))
-        return (void)res.status(FORBIDDEN);
-    res.status(OK);
-    try {
-        res.setBodyFromFile(path, mimeTypes_.getMimeType(utils::getFileExtension(path)));
-    } catch (...) {
-        res.status(INTERNAL_SERVER_ERROR);
+        return error_pages::generateErrorResponse(FORBIDDEN, req.version);
+    // TODO: Add Body in memory if the file is small
+    int fd = open(path.c_str(), O_RDONLY);
+    if (fd == -1) {
+        return error_pages::generateErrorResponse(INTERNAL_SERVER_ERROR, req.version);
     }
+    HttpResponse res(OK, req.version);
+    res.setBodyFromFile(fd, statbuf.st_size);
+    res.getHeaders()["Content-Type"] = this->mimeTypes_.getMimeType(utils::getFileExtension(path));
+    return res;
 }
 
 } // namespace http

@@ -48,18 +48,14 @@ public:
     /** @copydoc add(std::string const &, StringVector const &) */
     Block &add(std::string const &key, std::string const &, std::string const &);
 
-    Block &add(std::string const &key, ParsedDirectiveArgs const &values);
-    Block &add(std::string const &key, ArgumentVector const &values);
-    Block &add(std::string const &key, ArgumentPtr value);
-
     std::vector<std::string> getRawValues(std::string const &key) const;
 
     std::string getFirstRawValue(std::string const &key) const;
 
     // ============================== Getters & Setters =============================
 
-    std::vector<std::string> get(std::string const &key, http::Request const &req) const;
-    std::string getFirstEvaluatedString(std::string const &key, http::Request const &req) const;
+    std::vector<std::string> get(std::string const &key, http::HttpRequest const &req) const;
+    std::string getFirstEvaluatedString(std::string const &key, http::HttpRequest const &req) const;
 
     /**
      * @brief Gets the name of the block.
@@ -88,13 +84,15 @@ public:
      */
     Block &root(std::string const &);
 
-    size_t maxBodySize() const;
-
 protected:
+    Block &add(std::string const &key, ParsedDirectiveArgs const &values);
+    Block &add(std::string const &key, ArgumentVector const &values);
+
     std::string name_;        //!< The name of the block (e.g., "server", "location").
     DirectiveMap directives_; //!< Map storing directive names and their values.
     friend class DirectiveHandler;
     friend std::ostream &operator<<(std::ostream &, Block const &);
+    friend class ListenDirective;
 };
 
 } // namespace config

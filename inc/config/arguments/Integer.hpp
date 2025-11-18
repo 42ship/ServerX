@@ -7,7 +7,7 @@ namespace config {
 class Integer : public IArgument {
 public:
     Integer(int val);
-    std::string evaluate(http::Request const &) const;
+    std::string evaluate(http::HttpRequest const &) const;
     int getIntValue() const;
     ArgumentType getType() const { return ARG_INTEGER; }
     std::string getRawValue() const { return sValue_; }

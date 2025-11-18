@@ -1,10 +1,10 @@
 #include "network/EpollManager.hpp"
-#include "network/IEventHandler.hpp"
+
+#include <sys/epoll.h>
+#include <stdexcept>
+#include <cstring>
 #include <cerrno>
 #include <cstdio>
-#include <cstring>
-#include <stdexcept>
-#include <sys/epoll.h>
 #include <unistd.h>
 
 namespace network {
@@ -23,33 +23,29 @@ EpollManager::~EpollManager() {
     }
 }
 
-void EpollManager::addHandler(IEventHandler *handler, uint32_t events) {
-    if (!handler)
-        return;
+void EpollManager::addFd(int fd, uint32_t events) {
     struct epoll_event eventStruct;
     eventStruct.events = events;
-    eventStruct.data.ptr = handler;
-    if (epoll_ctl(epollFd_, EPOLL_CTL_ADD, handler->getFd(), &eventStruct) < 0) {
+    eventStruct.data.fd = fd;
+
+    if (epoll_ctl(epollFd_, EPOLL_CTL_ADD, fd, &eventStruct) < 0) {
         throw std::runtime_error("Failed to add fd to epoll: " + std::string(strerror(errno)));
     }
 }
 
-void EpollManager::modifyHandler(IEventHandler *handler, uint32_t events) {
-    if (!handler)
-        return;
-    struct epoll_event eventStruct;
-    eventStruct.events = events;
-    eventStruct.data.ptr = handler;
-    if (epoll_ctl(epollFd_, EPOLL_CTL_MOD, handler->getFd(), &eventStruct) < 0) {
-        throw std::runtime_error("Failed to add fd to epoll: " + std::string(strerror(errno)));
-    }
-}
-
-void EpollManager::removeHandler(IEventHandler *handler) {
-    if (!handler)
-        return;
-    if (epoll_ctl(epollFd_, EPOLL_CTL_DEL, handler->getFd(), NULL) < 0) {
+void EpollManager::removeFd(int fd) {
+    if (epoll_ctl(epollFd_, EPOLL_CTL_DEL, fd, NULL) < 0) {
         throw std::runtime_error("Failed to remove fd to epoll: " + std::string(strerror(errno)));
+    }
+}
+
+void EpollManager::modifyFd(int fd, uint32_t events) {
+    struct epoll_event eventStruct;
+    eventStruct.events = events;
+    eventStruct.data.fd = fd;
+
+    if (epoll_ctl(epollFd_, EPOLL_CTL_MOD, fd, &eventStruct) < 0) {
+        throw std::runtime_error("Failed to modify fd in epoll: " + std::string(strerror(errno)));
     }
 }
 
@@ -58,8 +54,12 @@ int EpollManager::waitForEvents(struct epoll_event *events, int maxEvents, int t
     return epoll_wait(epollFd_, events, maxEvents, timeout);
 }
 
-void EpollManager::requestShutdown() { isShuttingDown = 1; }
+void EpollManager::requestShutdown() {
+    isShuttingDown = 1;
+}
 
-bool EpollManager::getisShuttingDown() const { return isShuttingDown != 0; }
+bool EpollManager::getisShuttingDown() const {
+    return isShuttingDown != 0;
+}
 
 } // namespace network

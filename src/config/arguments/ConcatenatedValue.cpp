@@ -35,7 +35,7 @@ ConcatenatedValue &ConcatenatedValue::operator=(ConcatenatedValue const &other) 
     return *this;
 }
 
-std::string ConcatenatedValue::evaluate(http::Request const &ctx) const {
+std::string ConcatenatedValue::evaluate(http::HttpRequest const &ctx) const {
     std::string res;
     for (size_t i = 0; i < variables_.size(); i++) {
         if (variables_[i])

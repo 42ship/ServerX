@@ -2,89 +2,64 @@
 
 #include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
-#include "http/Request.hpp"
-#include "http/Response.hpp"
+#include "http/HttpRequest.hpp"
+#include "http/MimeTypes.hpp"
+#include "http/RouterResult.hpp"
+#include "http/utils.hpp"
 
 namespace http {
 
-class MimeTypes;
-
 /**
  * @class Router
- * @brief The central request dispatcher (Facade).
+ * @brief The central request dispatcher.
  *
- * This class acts as the main "brain" for handling requests. It uses the
- * ServerConfig to find the correct route, selects the appropriate handler
- * (e.g., StaticFile, CGI), and populates an Response. It also
- * coordinates error page generation.
+ * Matches an incoming HttpRequest to a specific handler based on the server
+ * configuration.
  */
 class Router {
 public:
-    /**
-     * @brief Constructs the Router.
-     * @param cfg A constant reference to the global server configuration.
-     * @param mime A constant reference to the loaded MIME types.
-     */
-    Router(config::ServerConfig const &cfg, MimeTypes const &mime);
+    Router(config::ServerConfig const &config, MimeTypes const &mime)
+        : config_(config), staticFile_(mime), fileUpload_(mime) {}
 
     /**
-     * @brief Populates the request with the matching server and location blocks.
-     *
-     * This method is intended to be called by the Reactor *before* the body
-     * is parsed, allowing for route-specific body validation (e.g., size limits).
-     *
+     * @brief Determines the correct handler and context for a request.
      * @param port The port the connection was received on.
-     * @param request The HttpRequest object to populate.
+     * @param request The client's HTTP request.
+     * @return A RouterResult containing the matched handler and config blocks.
      */
-    void matchServerAndLocation(int port, Request &request) const;
+    RouterResult route(int port, HttpRequest &request) const {
+        config::ServerBlock const *server = config_.getServer(port, request.headers["Host"]);
+        if (request.status != 200) {
+            return RouterResult(error_, server);
+        }
+        if (!server) {
+            return RouterResult(notFound_);
+        }
+        config::LocationBlock const *location = server->matchLocation(request.path);
+        if (!location) {
+            return RouterResult(notFound_, server);
+        }
+        if (location->hasCgiPass())
+            return RouterResult(cgi_, server, location);
+        if (request.method == POST) {
+            return RouterResult(fileUpload_, server, location);
+        } else if (request.method == DELETE) {
+            return RouterResult(fileDelete_, server, location);
+        }
 
-    /**
-     * @brief Dispatches a fully parsed request to the correct handler.
-     *
-     * This is the main entry point for the Reactor. It finds the route,
-     * executes the correct handler, and formats any errors that occur.
-     *
-     * @param port The port the connection was received on.
-     * @param request The fully populated client request.
-     * @param response The Response object to be populated by the handler.
-     */
-    void dispatch(int port, Request &request, Response &response) const;
+        return RouterResult(staticFile_, server, location);
+    }
 
 private:
-    /**
-     * @brief Internal: Selects and executes the correct handler.
-     * @internal
-     * This is called by dispatch() inside a try/catch block.
-     *
-     * @param request The client request.
-     * @param response The Response object to be populated.
-     */
-    void executeHandler(Request &request, Response &response) const;
-
-    /**
-     * @brief Internal: Populates an error response.
-     * @internal
-     * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
-     *
-     * @param request The client request.
-     * @param response The Response to populate with an error body.
-     */
-    void handleError(Request &request, Response &response) const;
-
-    /** @internal */
     config::ServerConfig const &config_;
 
-    // --- Reusable, stateless handler instances ---
-    /** @internal */
+    // Reusable, stateless handler instances owned by the router.
+    NotFoundHandler const notFound_;
     StaticFileHandler const staticFile_;
-    /** @internal */
-    CGIHandler const cgiHandler_;
-    /** @internal */
-    // FileUploadHandler const uploadHandler_;
-    /** @internal */
-    // DefaultErrorHandler const defaultErrorHandler_;
-    /** @internal */
-    // JsonErrorHandler const jsonErrorHandler_;
+    FileUploadHandler const fileUpload_;
+    FileDeleteHandler const fileDelete_;
+    CGIHandler const cgi_;
+    DefaultErrorHandler const error_;
 };
 
 } // namespace http

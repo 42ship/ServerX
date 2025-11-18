@@ -5,7 +5,6 @@
 #include "config/pipeline/Mapper.hpp"
 #include "config/pipeline/Parser.hpp"
 #include "config/pipeline/Validator.hpp"
-#include "http/Request.hpp"
 #include "utils/Logger.hpp"
 #include <fstream>
 #include <iostream>
@@ -41,9 +40,8 @@ void ServerConfig::build(std::string const &content, bool perform_fs_checks) {
 
 ServerBlockMap const &ServerConfig::getServersMap() const { return servers_; }
 
-ServerBlock const *ServerConfig::getServer(int port, http::Request const &req) const {
-    std::string const &host = req.headers().get("Host");
-    (void)host;
+ServerBlock const *ServerConfig::getServer(int port, std::string const &server_name) const {
+    (void)server_name;
     ServerBlockMap::const_iterator it = servers_.find(port);
     if (it == servers_.end())
         return NULL;

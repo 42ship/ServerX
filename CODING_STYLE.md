@@ -10,7 +10,7 @@ Use `clang-format` before committing:
 ## Naming Conventions
 
 - **Classes & Structs:** `PascalCase`
-  - _Example:_ `class Request;` `struct ServerConfig;`
+  - _Example:_ `class HttpRequest;` `struct ServerConfig;`
 - **Functions & Methods:** `camelCase`
   - _Example:_ `void parseRequest();`
 - **Variables (Local & Member):** `camelCase`
