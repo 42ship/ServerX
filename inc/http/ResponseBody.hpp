@@ -50,12 +50,12 @@ public:
     /**
      * @brief Retrieves the file descriptor for event-driven body sources.
      *
-     * This method is used by the Reactor to determine if the response body 
+     * This method is used by the Reactor to determine if the response body
      * source requires monitoring via the event loop (epoll).
      *
-     * @return A non-negative file descriptor (fd >= 0) if the source is "active" 
+     * @return A non-negative file descriptor (fd >= 0) if the source is "active"
      * (e.g., a CGI pipe) and must be watched for read events.
-     * @return -1 if the source is "passive" (e.g., in-memory data or a standard file) 
+     * @return -1 if the source is "passive" (e.g., in-memory data or a standard file)
      * and does not require epoll monitoring.
      */
     virtual int getEventSourceFd() const;
@@ -110,16 +110,18 @@ private:
 
 class BodyFromCgi : public IResponseBody {
 public:
-    BodyFromCgi(int pipe_fd);
+    BodyFromCgi(int pipe_fd, bool has_header_parsing);
     ~BodyFromCgi();
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
     bool isDone() const;
     int getEventSourceFd() const;
+    bool hasHeaderParsing() const;
 
 private:
     int fd_;
     bool isDone_;
+    bool hasHeaderParsing_;
 };
 
 } // namespace http

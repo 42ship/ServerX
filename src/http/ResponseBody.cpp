@@ -70,7 +70,8 @@ ssize_t BodyInMemory::read(char *buffer, size_t size) {
 //==================== BodyInMemory ====================
 
 //==================== BodyFromCgi ====================
-BodyFromCgi::BodyFromCgi(int pipe_fd) : fd_(pipe_fd), isDone_(false) {
+BodyFromCgi::BodyFromCgi(int pipe_fd, bool has_header_parsing)
+    : fd_(pipe_fd), isDone_(false), hasHeaderParsing_(has_header_parsing) {
     if (fd_ < 0) {
         isDone_ = true;
         return;
@@ -104,6 +105,8 @@ ssize_t BodyFromCgi::read(char *buffer, size_t size) {
 size_t BodyFromCgi::size() const { return 0; }
 bool BodyFromCgi::isDone() const { return isDone_; };
 int BodyFromCgi::getEventSourceFd() const { return fd_; }
+bool BodyFromCgi::hasHeaderParsing() const { return hasHeaderParsing_; }
+
 //==================== BodyFromCgi ====================
 
 } // namespace http

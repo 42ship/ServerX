@@ -13,22 +13,39 @@
 
 namespace http {
 
+namespace {
+
+bool isNPH(const std::string &path) {
+    size_t lastSlash = path.rfind('/');
+    size_t startPos = (lastSlash == std::string::npos) ? 0 : lastSlash + 1;
+    if (path.length() - startPos < 3) {
+        return false;
+    }
+    return path.compare(startPos, 3, "nph") == 0;
+}
+
+bool isNPH(Request const &req) { return req.location()->has("cgi_nph") || isNPH(req.path()); }
+
+} // namespace
+
 static std::vector<char *> toCStringVector(std::vector<std::string> const &v);
 
-CGIHandler::CGIHandler(Request const &req, Response &res) : req_(req), res_(res), pid_(-1) {
+CGIHandler::CGIHandler(Request const &req, Response &res)
+    : req_(req), res_(res), pid_(-1), hasHeaderParsing_(false) {
     argv_.reserve(3);
     envp_.reserve(20);
 }
 
 void CGIHandler::handle(Request const &req, Response &res) {
+    CHECK_FOR_SERVER_AND_LOCATION(req, res);
     CGIHandler handler(req, res);
     handler.handle();
 }
 
 void CGIHandler::handle() {
-    CHECK_FOR_SERVER_AND_LOCATION(req_, res_);
     if (!buildArgv() || !buildEnvp() || !initPipes())
         return;
+    hasHeaderParsing_ = !isNPH(req_);
     this->fork();
     switch (pid_) {
     case -1:
@@ -69,7 +86,7 @@ void CGIHandler::runParentProcess() {
         LOG_ERROR("CGIHandler::handle(" << req_.path() << ")::execve: " << buf);
         return (void)res_.status(INTERNAL_SERVER_ERROR);
     } else {
-        res_.setBodyFromCgi(pipeFd_[0]);
+        res_.setBodyFromCgi(pipeFd_[0], hasHeaderParsing_);
     }
 }
 
@@ -114,32 +131,30 @@ bool CGIHandler::buildArgv() {
 }
 
 bool CGIHandler::buildEnvp() {
-    std::vector<std::string> envp;
-
-    envp.push_back("REQUEST_METHOD=" +
-                   std::string(RequestStartLine::methodToString(req_.method())));
-    envp.push_back("SERVER_PROTOCOL=" + req_.version());
-    envp.push_back("SCRIPT_NAME=" + req_.path());
-    envp.push_back("QUERY_STRING=" + req_.queryString());
+    envp_.push_back("REQUEST_METHOD=" +
+                    std::string(RequestStartLine::methodToString(req_.method())));
+    envp_.push_back("SERVER_PROTOCOL=" + req_.version());
+    envp_.push_back("SCRIPT_NAME=" + req_.path());
+    envp_.push_back("QUERY_STRING=" + req_.queryString());
 
     if (req_.headers().has("Content-Length")) {
-        envp.push_back("CONTENT_LENGTH=" + req_.headers().get("Content-Length"));
+        envp_.push_back("CONTENT_LENGTH=" + req_.headers().get("Content-Length"));
     }
     if (req_.headers().has("Content-Type")) {
-        envp.push_back("CONTENT_TYPE=" + req_.headers().get("Content-Type"));
+        envp_.push_back("CONTENT_TYPE=" + req_.headers().get("Content-Type"));
     }
 
     for (Headers::HeaderMap::const_iterator it = req_.headers().begin(); it != req_.headers().end();
          ++it) {
         std::string name = it->first;
         if (name != "Content-Length" && name != "Content-Type") {
-            envp.push_back(formatHeaderName(name) + "=" + it->second);
+            envp_.push_back(formatHeaderName(name) + "=" + it->second);
         }
     }
 
-    envp.push_back("SERVER_SOFTWARE=Webserv/1.0");
+    envp_.push_back("SERVER_SOFTWARE=Webserv/1.0");
     // envp.push_back("SERVER_PORT=" + intToString(req_.port()));
-    envp.push_back("GATEWAY_INTERFACE=CGI/1.1");
+    envp_.push_back("GATEWAY_INTERFACE=CGI/1.1");
     return true;
 }
 

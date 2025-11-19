@@ -1,20 +1,93 @@
 #include "network/CGIHandler.hpp"
+#include "http/HttpStatus.hpp"
 #include "http/ResponseBody.hpp"
 #include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
-#include <cerrno>
 #include <cstring>
 #include <sys/epoll.h>
 
 namespace network {
 
-CGIHandler::CGIHandler(http::IResponseBody &body, ClientHandler &client, bool isNPH)
-    : body_(body), client_(client), isNPH_(isNPH) {
-    (void)isNPH_;
+static const size_t MAX_CGI_HEADER_SIZE = 8192;
+
+CGIHandler::CGIHandler(http::IResponseBody &body, ClientHandler &client, bool isNoParseHeaders)
+    : body_(body), client_(client), isNPH_(isNoParseHeaders) {
+    if (isNPH_) {
+        state_ = STREAMING_BODY;
+    } else {
+        state_ = READING_HEADERS;
+    }
 }
 
 int CGIHandler::getFd() const { return body_.getEventSourceFd(); }
 
+void CGIHandler::handleRead() {
+    LOG_TRACE("CGIHandler::handleRead(" << client_.getFd() << ")");
+    if (state_ == STREAMING_BODY && client_.isSendBufferFull()) {
+        LOG_DEBUG("Client send buffer is full. Disabling CGI read handler temporarily.");
+        EventDispatcher::getInstance().modifyHandler(this, 0);
+    }
+
+    char buffer[8192];
+    ssize_t bytes_read = body_.read(buffer, sizeof(buffer));
+    LOG_TRACE("CGIHandler::handleRead: Read " << bytes_read << " bytes from CGI body pipe.");
+    if (bytes_read <= 0) {
+        if (state_ == READING_HEADERS) {
+            LOG_WARN("CGIHandler::handleRead: CGI process ended or failed before sending valid "
+                     "headers. Sending 502 Bad "
+                     "Gateway.");
+            // TODO: Kill CGI process
+            client_.handleError(http::BAD_GATEWAY);
+        } else {
+            LOG_DEBUG("CGIHandler::handleRead: CGI body stream finished. Completing request.");
+            client_.onCgiComplete();
+        }
+    }
+    if (state_ == STREAMING_BODY) {
+        LOG_TRACE("CGIHandler::handleRead: State is STREAMING_BODY. Pushing "
+                  << bytes_read << " bytes to client buffer.");
+        return client_.pushToSendBuffer(buffer, bytes_read);
+    }
+    headerBuffer_.append(buffer, bytes_read);
+    size_t headersEnd = headerBuffer_.find("\r\n\r\n");
+    if (headersEnd == std::string::npos) {
+        if (headerBuffer_.size() > MAX_CGI_HEADER_SIZE) {
+            LOG_ERROR("CGIHandler::handleRead: CGI headers exceeded maximum allowed size ("
+                      << MAX_CGI_HEADER_SIZE << "). Sending 502.");
+            // TODO: Kill CGI process
+            return client_.handleError(http::BAD_GATEWAY);
+        }
+        return;
+    }
+    LOG_DEBUG("CGIHandler::handleRead: Found end of CGI headers. Parsing headers...");
+    http::Headers headers;
+    if (!http::Headers::parse(headerBuffer_, headers)) {
+        LOG_ERROR("CGIHandler::handleRead: Failed to parse CGI headers. Malformed response. "
+                  "Sending 502.");
+        // TODO: Kill CGI process
+        return client_.handleError(http::BAD_GATEWAY);
+    }
+    LOG_DEBUG("CGIHandler::handleRead: CGI headers parsed successfully. Forwarding to client.");
+    client_.onCgiHeadersParsed(headers);
+    state_ = STREAMING_BODY;
+    if (headersEnd + 4 < headerBuffer_.length()) {
+        size_t bodyBytes = headerBuffer_.length() - (headersEnd + 4);
+        LOG_DEBUG("CGIHandler::handleRead: Pushing remaining "
+                  << bodyBytes << " bytes of body found in header buffer.");
+        client_.pushToSendBuffer(headerBuffer_.data() + headersEnd + 4, headerBuffer_.length());
+    }
+}
+
+void CGIHandler::handleEvent(uint32_t events) {
+    if (events & EPOLLIN)
+        handleRead();
+    else {
+        LOG_TRACE("CGIHandler::handleEvent(" << client_.getFd() << "): " << events);
+        client_.onCgiComplete();
+    }
+}
+
+#if 0
 void CGIHandler::handleEvent(uint32_t events) {
     if (!(events & (EPOLLIN | EPOLLHUP | EPOLLERR)))
         return;
@@ -57,5 +130,6 @@ void CGIHandler::handleEvent(uint32_t events) {
     EventDispatcher::getInstance().modifyHandler(this, 0);
     EventDispatcher::getInstance().setSendingData(&client_);
 }
+#endif
 
 } // namespace network

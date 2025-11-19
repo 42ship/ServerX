@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IEventHandler.hpp"
+#include "http/Headers.hpp"
+#include "http/HttpStatus.hpp"
 #include "http/RequestParser.hpp"
 #include "http/Response.hpp"
 #include "http/Router.hpp"
@@ -40,6 +42,9 @@ public:
      */
     void onCgiComplete();
 
+    void onCgiHeadersParsed(http::Headers const &);
+    void handleError(http::HttpStatus);
+
 private:
     ClientHandler(const ClientHandler &);
     ClientHandler &operator=(const ClientHandler &);
@@ -73,6 +78,7 @@ private:
 
     IEventHandler *rspEventSource_;
     bool isRspEventSourceDone_;
+    bool headersSent_;
 
     // --- Private Methods ---
     /// @brief Handles incoming data on the socket.
