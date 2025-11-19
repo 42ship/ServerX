@@ -93,6 +93,18 @@ public:
     static Headers parse(std::string &);
 
     /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::istringstream &, Headers &);
+
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::string &, Headers &);
+
+    /**
      * @brief Parses a stream of text into a Headers object.
      * The stream should contain multiple "Key: Value\r\n" lines.
      */

@@ -46,6 +46,29 @@ size_t Headers::getContentLength() const {
     return std::strtol(it->second.c_str(), NULL, 10);
 }
 
+bool Headers::parse(std::istringstream &s, Headers &res) {
+    std::string line;
+
+    while (getline(s, line)) {
+        if (!line.empty() && line[line.length() - 1] == '\r') {
+            line.resize(line.length() - 1);
+        }
+        if (line.empty()) {
+            return true;
+        }
+        size_t colon_pos = line.find(':');
+        if (colon_pos == std::string::npos) {
+            return false;
+        }
+        std::string key = utils::trim(line.substr(0, colon_pos));
+        if (key.empty())
+            return false;
+        std::string value = utils::trim(line.substr(colon_pos + 1));
+        res.add(key, value);
+    }
+    return true;
+}
+
 Headers Headers::parse(std::istringstream &s) {
     Headers res;
     std::string line;
@@ -62,6 +85,11 @@ Headers Headers::parse(std::istringstream &s) {
         res.add(key, value);
     }
     return res;
+}
+
+bool Headers::parse(std::string &buffer, Headers &headers) {
+    std::istringstream s(buffer);
+    return parse(s, headers);
 }
 
 Headers Headers::parse(std::string &buffer) {
