@@ -27,66 +27,40 @@ private:
     static LogLevel threshold_;
 };
 
+#ifndef LOGLEVEL
+#define LOGLEVEL TRACE
+#endif
+
 #ifdef DISABLE_LOGGING
 #define LOG_MSG(level, msg) (void)0
 #else
 
 /**
 * @def LOG_MSG(level, msg)
-* @brief The base macro for logging. It constructs a string from the stream-like
-* input and passes it to the core logging function.
-* @param level The utils::LogLevel for the message.
-* @param msg A streamable expression (e.g., "User ID: " << id).
+* @brief Base macro. Uses a do-while(0) loop to scope variables and
+* a compile-time 'if' check to strip out low-level logs.
+* * @details
+* If 'level' is less than the compiled 'LOGLEVEL', the compiler's
+* optimizer (Dead Code Elimination) will completely remove the
+* 'if' block. This prevents the expensive std::ostringstream
+* construction and message evaluation from ever happening.
 */
 #define LOG_MSG(level, msg)                                                                        \
-    {                                                                                              \
-        std::ostringstream oss;                                                                    \
-        oss << msg;                                                                                \
-        utils::Logger::log(level, oss.str());                                                      \
-    }
+    do {                                                                                           \
+        if (level >= utils::LOGLEVEL) {                                                            \
+            std::ostringstream oss;                                                                \
+            oss << msg;                                                                            \
+            utils::Logger::log(level, oss.str());                                                  \
+        }                                                                                          \
+    } while (0)
 
-#endif // DISABLE_LOGGING
+#endif
 
-/**
- * @def LOG_TRACE(msg)
- * @brief Logs a message with the TRACE severity level.
- * @details Use for highly detailed, step-by-step execution flow.
- */
 #define LOG_TRACE(msg) LOG_MSG(utils::TRACE, msg)
-
-/**
- * @def LOG_DEBUG(msg)
- * @brief Logs a message with the DEBUG severity level.
- * @details Use for information useful during development and debugging.
- */
 #define LOG_DEBUG(msg) LOG_MSG(utils::DEBUG, msg)
-
-/**
- * @def LOG_INFO(msg)
- * @brief Logs a message with the INFO severity level.
- * @details Use for general application progress and lifecycle events.
- */
 #define LOG_INFO(msg) LOG_MSG(utils::INFO, msg)
-
-/**
- * @def LOG_WARN(msg)
- * @brief Logs a message with the WARNING severity level.
- * @details Use for potential problems that do not stop program execution.
- */
 #define LOG_WARN(msg) LOG_MSG(utils::WARNING, msg)
-
-/**
- * @def LOG_ERROR(msg)
- * @brief Logs a message with the ERROR severity level.
- * @details Use for errors that the application can recover from.
- */
 #define LOG_ERROR(msg) LOG_MSG(utils::ERROR, msg)
-
-/**
- * @def LOG_FATAL(msg)
- * @brief Logs a message with the FATAL severity level.
- * @details Use for critical errors that prevent the application from continuing.
- */
 #define LOG_FATAL(msg) LOG_MSG(utils::FATAL, msg)
 
 } // namespace utils
