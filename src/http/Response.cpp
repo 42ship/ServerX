@@ -5,38 +5,6 @@
 
 namespace http {
 
-namespace {
-
-inline const char *getReasonPhrase(HttpStatus status) {
-    switch (status) {
-    case OK:
-        return "OK";
-    case CREATED:
-        return "Created";
-    case ACCEPTED:
-        return "Accepted";
-    case NO_CONTENT:
-        return "No Content";
-    case BAD_REQUEST:
-        return "Bad Request";
-    case UNAUTHORIZED:
-        return "Unauthorized";
-    case FORBIDDEN:
-        return "Forbidden";
-    case NOT_FOUND:
-        return "Not Found";
-    case METHOD_NOT_ALLOWED:
-        return "Method Not Allowed";
-    case INTERNAL_SERVER_ERROR:
-        return "Internal Server Error";
-    case PAYLOAD_TOO_LARGE:
-        return "Payload too large";
-    default:
-        return "Unknown";
-    }
-}
-} // namespace
-
 ResponseStartLine::ResponseStartLine() : protocol("HTTP/1.1"), statusCode(OK), reasonPhrase("OK") {}
 
 Response::Response() : body_(NULL) {}
@@ -67,13 +35,13 @@ Response &Response::setBodyFromFile(std::string const &fpath, std::string const 
     return *this;
 }
 
-Response &Response::setBodyFromCgi(int pipeFd) {
+Response &Response::setBodyFromCgi(int pipeFd, bool has_header_parsing) {
     delete body_;
-    body_ = new BodyFromCgi(pipeFd);
+    body_ = new BodyFromCgi(pipeFd, has_header_parsing);
     return *this;
 }
 
-void Response::buildHeaders(std::vector<char> &buffer) const {
+void Response::buildHeaders(std::vector<char> &buffer, bool addBodyLine) const {
     std::string start_line = startLine_.protocol + " " + utils::toString(startLine_.statusCode) +
                              " " + startLine_.reasonPhrase + "\r\n";
     buffer.insert(buffer.end(), start_line.begin(), start_line.end());
@@ -81,8 +49,10 @@ void Response::buildHeaders(std::vector<char> &buffer) const {
     std::string header_lines = headers_.toString();
     buffer.insert(buffer.end(), header_lines.begin(), header_lines.end());
 
-    buffer.push_back('\r');
-    buffer.push_back('\n');
+    if (addBodyLine) {
+        buffer.push_back('\r');
+        buffer.push_back('\n');
+    }
 }
 
 Response &Response::status(HttpStatus status) {

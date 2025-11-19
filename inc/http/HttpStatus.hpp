@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace http {
 
 /**
@@ -7,6 +9,7 @@ namespace http {
  * @brief Enumeration of common HTTP status codes.
  */
 enum HttpStatus {
+    UNKNOWN_STATUS = 0,
     OK = 200,         /** 200 OK — request succeeded. */
     CREATED = 201,    /** 201 Created — resource created successfully. */
     ACCEPTED = 202,   /** 202 Accepted — request accepted for processing, but not yet completed. */
@@ -28,8 +31,15 @@ enum HttpStatus {
                                      supported by the server. */
 
     INTERNAL_SERVER_ERROR = 500, /** 500 Internal Server Error — generic server-side failure. */
-    NOT_IMPLEMENTED = 501        /** 501 Not Implemented — server does not support the functionality
+    NOT_IMPLEMENTED = 501, /** 501 Not Implemented — server does not support the functionality
                                     required to fulfill the request. */
+    BAD_GATEWAY = 502,
 };
+
+HttpStatus toHttpStatus(int);
+
+HttpStatus toHttpStatus(const std::string &codeStr);
+
+const char *getReasonPhrase(HttpStatus status);
 
 } // namespace http

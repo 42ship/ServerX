@@ -80,7 +80,7 @@ public:
      * @param pipe_fd The file descriptor of the CGI script's output pipe.
      * @return A reference to this object for chaining.
      */
-    Response &setBodyFromCgi(int pipe_fd);
+    Response &setBodyFromCgi(int pipe_fd, bool has_header_parsing);
 
     // --- Header & Status Management ---
 
@@ -99,7 +99,7 @@ public:
      * This is a high-performance method that avoids temporary string creation.
      * @param buffer The send buffer to which headers will be appended.
      */
-    void buildHeaders(std::vector<char> &buffer) const;
+    void buildHeaders(std::vector<char> &buffer, bool addBodyLine = true) const;
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.
@@ -134,11 +134,6 @@ private:
      * @brief Internal: safely deletes the current body object.
      */
     void cleanupBody_();
-
-    /**
-     * @brief Internal: maps a Status enum to its standard string.
-     */
-    static char const *getReasonPhrase_(HttpStatus status);
 
     ResponseStartLine startLine_;
     Headers headers_;

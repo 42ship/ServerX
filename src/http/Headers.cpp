@@ -135,7 +135,11 @@ std::string Headers::toString() const {
 Headers::HeaderMap const &Headers::getAll() const { return map_; }
 bool Headers::has(std::string const &key) const { return map_.count(normalizeKey(key)); }
 
-Headers::HeaderMap::const_iterator Headers::begin() const { return map_.begin(); }
-Headers::HeaderMap::const_iterator Headers::end() const { return map_.end(); }
+Headers::const_iterator Headers::begin() const { return map_.begin(); }
+Headers::const_iterator Headers::end() const { return map_.end(); }
+
+Headers::HeaderMap::const_iterator Headers::find(std::string const &key) const {
+    return map_.find(normalizeKey(key));
+}
 
 } // namespace http

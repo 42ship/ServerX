@@ -30,6 +30,8 @@ private:
     int pipeFd_[2];
     int errorFd_[2];
     int pid_;
+
+    bool hasHeaderParsing_;
 };
 
 } // namespace http

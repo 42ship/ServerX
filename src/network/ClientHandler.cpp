@@ -1,10 +1,12 @@
 #include "network/ClientHandler.hpp"
+#include "http/HttpStatus.hpp"
 #include "http/ResponseBody.hpp"
 #include "http/Router.hpp"
 #include "network/CGIHandler.hpp"
 #include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
+#include <cstdlib>
 #include <cstring>
 #include <string>
 #include <sys/socket.h>
@@ -42,6 +44,10 @@ void ClientHandler::closeConnection() {
 }
 
 void ClientHandler::handleEvent(uint32_t events) {
+    if (events & EPOLLHUP || events & EPOLLERR) {
+        closeConnection();
+        return;
+    }
     if (events & EPOLLIN) {
         handleRead();
     }
@@ -56,13 +62,18 @@ void ClientHandler::handleEvent(uint32_t events) {
 int ClientHandler::getFd() const { return clientFd_; }
 
 void ClientHandler::pushToSendBuffer(const char *data, size_t length) {
+    bool was_empty = rspBuffer_.buffer.empty();
     rspBuffer_.buffer.insert(rspBuffer_.buffer.end(), data, data + length);
+    if (was_empty) {
+        EventDispatcher::getInstance().setSendingData(this);
+    }
 }
 
 bool ClientHandler::isSendBufferFull() const {
     const size_t MAX_BUFFER_SIZE = 1024 * 1024; // 1MB
     return rspBuffer_.buffer.size() > MAX_BUFFER_SIZE;
 }
+
 void ClientHandler::onCgiComplete() {
     isRspEventSourceDone_ = true;
     if (rspBuffer_.isFullySent())
@@ -137,8 +148,11 @@ void ClientHandler::generateResponse() {
         LOG_DEBUG("ClientHandler::generateResponse("
                   << clientFd_ << "): active (CGI) body detected (fd=" << event_src_fd
                   << "). Creating worker handler.");
-        // TODO: Add build header if it's not cgi_nhp
-        rspEventSource_ = new CGIHandler(*body, *this);
+        if (body->hasHeaderParsing()) {
+            rspEventSource_ = new CGIHandler(*body, *this, false);
+        } else {
+            rspEventSource_ = new CGIHandler(*body, *this, true);
+        }
         EventDispatcher::getInstance().registerHandler(rspEventSource_);
         EventDispatcher::getInstance().modifyHandler(this, 0);
 
@@ -191,7 +205,7 @@ void ClientHandler::handleWriteCGI() {
         if (isRspEventSourceDone_) {
             return finalizeConnection();
         }
-        rspBuffer_.buffer.clear();
+        rspBuffer_.reset();
         LOG_TRACE("ClientHandler::handleWriteCGI(" << clientFd_ << "): buffer is fully sent");
         EventDispatcher::getInstance().modifyHandler(this, 0);
         EventDispatcher::getInstance().setReceivingData(rspEventSource_);
@@ -226,6 +240,36 @@ void ClientHandler::finalizeConnection() {
         LOG_DEBUG("ClientHandler::finalizeConnection(" << clientFd_ << "): closing connection");
         closeConnection();
     }
+}
+
+void ClientHandler::onCgiHeadersParsed(http::Headers const &headers) {
+    response_.headers() = headers;
+
+    http::HttpStatus status = http::OK;
+    http::Headers::const_iterator it = headers.find("Status");
+    if (it != headers.end()) {
+        status = http::toHttpStatus(it->second);
+        if (status == http::UNKNOWN_STATUS)
+            status = http::OK;
+        response_.headers().erase("Status");
+    }
+    LOG_TRACE(
+        "ClientHandler::onCgiHeadersParsed(): received headers: " << http::getReasonPhrase(status));
+    response_.status(status);
+    response_.buildHeaders(rspBuffer_.buffer, true);
+    EventDispatcher::getInstance().setSendingData(this);
+}
+
+void ClientHandler::handleError(http::HttpStatus status) {
+    if (rspEventSource_)
+        EventDispatcher::getInstance().modifyHandler(rspEventSource_, 0);
+    if (!headersSent_) {
+        response_.clear();
+        response_.status(status);
+        response_.buildHeaders(rspBuffer_.buffer);
+        EventDispatcher::getInstance().setSendingData(this);
+    } else
+        closeConnection();
 }
 
 ClientHandler::SendBuffer::SendBuffer(size_t initialCapacity) : sent(0) {

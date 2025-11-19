@@ -17,6 +17,8 @@ namespace http {
 class Headers {
 public:
     typedef std::map<std::string, std::string> HeaderMap;
+    typedef HeaderMap::iterator iterator;
+    typedef HeaderMap::const_iterator const_iterator;
 
 public:
     /**
@@ -53,6 +55,8 @@ public:
      * @return The header value as a string. Returns an empty string if not found.
      */
     std::string get(const std::string &key) const;
+
+    HeaderMap::const_iterator find(std::string const &key) const;
 
     /**
      * @brief A specialized accessor for the Content-Length header.
@@ -118,8 +122,8 @@ public:
      */
     HeaderMap const &getAll() const;
 
-    HeaderMap::const_iterator begin() const;
-    HeaderMap::const_iterator end() const;
+    const_iterator begin() const;
+    const_iterator end() const;
 
 private:
     /**

@@ -1,5 +1,6 @@
 #include "http/handlers/CGIHandler.hpp"
 #include "common/error.hpp"
+#include "common/string.hpp"
 #include "config/LocationBlock.hpp"
 #include "core/Server.hpp"
 #include "http/Handler.hpp"
@@ -142,16 +143,16 @@ bool CGIHandler::buildEnvp() {
     envp_.push_back("QUERY_STRING=" + req_.queryString());
 
     envp_.push_back("SERVER_PORT=" + utils::toString(req_.server()->port()));
-    envp_.push_back("REMOTE_ADDR=" + req.remoteAddr());
+    envp_.push_back("REMOTE_ADDR=" + req_.remoteAddr());
 
-    std::string contentType = req.headers().get("Content-Type");
+    std::string contentType = req_.headers().get("Content-Type");
     if (!contentType.empty()) {
-        env.push_back("CONTENT_TYPE=" + contentType);
+        envp_.push_back("CONTENT_TYPE=" + contentType);
     }
 
-    std::string contentLength = req.headers().get("Content-Length");
+    std::string contentLength = req_.headers().get("Content-Length");
     if (!contentLength.empty()) {
-        env.push_back("CONTENT_LENGTH=" + contentLength);
+        envp_.push_back("CONTENT_LENGTH=" + contentLength);
     }
 
     for (Headers::HeaderMap::const_iterator it = req_.headers().begin(); it != req_.headers().end();
