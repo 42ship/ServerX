@@ -12,11 +12,13 @@
 
 namespace http {
 
+bool IResponseBody::hasHeaderParsing() const { return false; }
+int IResponseBody::getEventSourceFd() const { return -1; }
+
 //==================== NoBody ====================
 ssize_t NoBody::read(char *, size_t) { return 0; }
 size_t NoBody::size() const { return 0; }
 bool NoBody::isDone() const { return true; };
-int NoBody::getEventSourceFd() const { return -1; }
 //==================== NoBody ====================
 
 //==================== FileBody ====================
@@ -48,7 +50,6 @@ ssize_t FileBody::read(char *buffer, size_t size) {
 
 size_t FileBody::size() const { return size_; }
 bool FileBody::isDone() const { return sent_ == size_; };
-int FileBody::getEventSourceFd() const { return -1; }
 
 //==================== FileBody ====================
 
@@ -65,7 +66,6 @@ ssize_t BodyInMemory::read(char *buffer, size_t size) {
     bytesRead_ += bytesToRead;
     return bytesToRead;
 }
-int BodyInMemory::getEventSourceFd() const { return -1; }
 
 //==================== BodyInMemory ====================
 
