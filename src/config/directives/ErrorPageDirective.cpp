@@ -15,14 +15,13 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
         throw ConfigException("'" + name_ + "' directive requires two ore more arguments.");
     }
 
-    std::string code;
     const std::string path = args[args.size() - 1].literal;
     static const std::string validCodes[] = {"400", "401", "403", "404", "405", "409", "411",
                                              "413", "415", "500", "501", "502", "503", "504"};
     static const size_t validCount = 14;
 
     for (size_t j = 0; j < args.size() - 1; j++) {
-        code = args[j].literal;
+        const std::string &code = args[j].literal;
         for (size_t i = 0; i < validCount; i++) {
             if (validCodes[i] == code) {
                 b.add(code, path);
