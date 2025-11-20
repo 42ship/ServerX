@@ -82,7 +82,7 @@ private:
     /** @internal */
     // FileUploadHandler const uploadHandler_;
     /** @internal */
-    // DefaultErrorHandler const defaultErrorHandler_;
+    DefaultErrorHandler const defaultErrorHandler_;
     /** @internal */
     // JsonErrorHandler const jsonErrorHandler_;
 };

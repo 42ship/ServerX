@@ -9,7 +9,7 @@
 namespace http {
 
 Router::Router(config::ServerConfig const &cfg, MimeTypes const &mime)
-    : config_(cfg), staticFile_(mime) {
+    : config_(cfg), staticFile_(mime), defaultErrorHandler_(mime) {
     LOG_TRACE("Router::Router(): router created");
 }
 
@@ -73,7 +73,7 @@ void Router::handleError(Request &request, Response &response) const {
     } else {
         LOG_TRACE("Router::handleError(" << request.uri()
                                          << "): populating default HTML error page");
-        DefaultErrorHandler::populateResponse(response);
+        defaultErrorHandler_.handle(request, response);
     }
 }
 
@@ -98,8 +98,9 @@ void Router::executeHandler(Request &request, Response &response) const {
             // TODO: call file upload handler
             ;
         } else if (request.requestLine.method == RequestStartLine::DELETE) {
-            // TODO: call file delte handler
+            // TODO: call file delete handler
             ;
+        }
 #endif
 }
 

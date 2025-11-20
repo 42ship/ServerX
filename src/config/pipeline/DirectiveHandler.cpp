@@ -2,12 +2,14 @@
 #include "config/directives/IDirective.hpp"
 #include "config/directives/ListenDirective.hpp"
 #include "config/directives/RootDirective.hpp"
+#include "config/directives/ErrorPageDirective.hpp"
 
 namespace config {
 
 DirectiveHandler::DirectiveHandler() {
     registerHandler(new ListenDirective);
     registerHandler(new RootDirective);
+    registerHandler(new ErrorPageDirective);
 }
 
 void DirectiveHandler::registerHandler(IDirective *h) {
