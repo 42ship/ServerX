@@ -71,7 +71,7 @@ int BodyInMemory::getEventSourceFd() const { return -1; }
 //==================== BodyInMemory ====================
 
 //==================== BodyFromCgi ====================
-BodyFromCgi::BodyFromCgi(int pipe_fd) : fd_(pipe_fd), isDone_(false) {
+BodyFromCgi::BodyFromCgi(int pipeFd) : fd_(pipeFd), isDone_(false) {
     if (fd_ < 0) {
         isDone_ = true;
         return;
@@ -87,11 +87,11 @@ BodyFromCgi::~BodyFromCgi() {
 ssize_t BodyFromCgi::read(char *buffer, size_t size) {
     if (isDone_)
         return 0;
-    ssize_t bytes_read = ::read(fd_, buffer, size);
-    if (bytes_read > 0) {
-        return bytes_read;
+    ssize_t bytesRead = ::read(fd_, buffer, size);
+    if (bytesRead > 0) {
+        return bytesRead;
     }
-    if (bytes_read == 0) {
+    if (bytesRead == 0) {
         isDone_ = true;
         return 0;
     }

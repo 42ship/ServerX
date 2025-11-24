@@ -48,7 +48,7 @@ public:
      * @param request The fully populated client request.
      * @param response The Response object to be populated by the handler.
      */
-    void dispatch(int port, Request &request, Response &response) const;
+    void dispatch(int port, Request const &request, Response &response) const;
 
 private:
     /**
@@ -59,7 +59,7 @@ private:
      * @param request The client request.
      * @param response The Response object to be populated.
      */
-    void executeHandler(Request &request, Response &response) const;
+    void executeHandler(Request const &request, Response &response) const;
 
     /**
      * @brief Internal: Populates an error response.
@@ -69,7 +69,7 @@ private:
      * @param request The client request.
      * @param response The Response to populate with an error body.
      */
-    void handleError(Request &request, Response &response) const;
+    static void handleError(Request const &request, Response &response);
 
     /** @internal */
     config::ServerConfig const &config_;

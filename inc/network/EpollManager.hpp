@@ -23,9 +23,9 @@ public:
 
     void addHandler(IEventHandler *handler, uint32_t events);
     void modifyHandler(IEventHandler *handler, uint32_t events);
-    void removeHandler(IEventHandler *handler);
+    void removeHandler(IEventHandler const *handler);
 
-    int waitForEvents(struct epoll_event *events, int max_events, int timeout = -1);
+    int waitForEvents(struct epoll_event *events, int maxEvents, int timeout = -1);
 
     void requestShutdown();
     bool getisShuttingDown() const;

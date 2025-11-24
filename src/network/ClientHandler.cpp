@@ -110,7 +110,7 @@ void ClientHandler::generateResponse() {
     response_.buildHeaders(rspBuffer_.buffer);
     LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_ << "): modifying fd to EPOLLOUT");
     EventDispatcher::getInstance().setSendingData(this);
-    http::IResponseBody *body = response_.body();
+    http::IResponseBody const *body = response_.body();
     if (body && !body->isDone() && body->getEventSourceFd() != -1 && body->size() == 0) {
         rspEventSource_ = new CGIHandler(body->getEventSourceFd(), *this);
         EventDispatcher::getInstance().registerHandler(rspEventSource_);
@@ -173,7 +173,7 @@ void ClientHandler::SendBuffer::reset() {
     sent = 0;
 }
 
-bool ClientHandler::SendBuffer::isFullySent() { return sent == buffer.size(); }
+bool ClientHandler::SendBuffer::isFullySent() const { return sent == buffer.size(); }
 
 ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int clientFd) {
     if (isFullySent())

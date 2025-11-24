@@ -23,7 +23,7 @@ public:
      * @param request The Request object context to populate.
      * @param maxHeaderSize Hard limit on header block size (prevents OOM).
      */
-    RequestParser(Request &request, size_t maxHeaderSize);
+    RequestParser(Request &req, size_t maxHeaderSize);
 
     /**
      * @brief Resets the parser *and* the associated Request object for reuse.

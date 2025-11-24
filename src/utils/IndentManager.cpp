@@ -1,13 +1,13 @@
 #include "utils/IndentManager.hpp"
 
 static int getIndentIndex() {
-    static int indent_index = std::ios_base::xalloc();
-    return indent_index;
+    static int indentIndex = std::ios_base::xalloc();
+    return indentIndex;
 }
 
-std::ostream &print_indent(std::ostream &os) {
-    long indent_level = os.iword(getIndentIndex());
-    for (long i = 0; i < indent_level; ++i) {
+std::ostream &printIndent(std::ostream &os) {
+    long indentLevel = os.iword(getIndentIndex());
+    for (long i = 0; i < indentLevel; ++i) {
         os << "    "; // 4 spaces per indent level
     }
     return os;

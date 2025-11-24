@@ -23,7 +23,7 @@ public:
  */
 class StaticFileHandler : public IHandler {
 public:
-    StaticFileHandler(MimeTypes const &);
+    explicit StaticFileHandler(MimeTypes const &);
     void handle(Request const &, Response &) const;
 
 private:
@@ -38,12 +38,12 @@ public:
 
 class JsonErrorHandler {
 public:
-    static void populateResponse(Response &res);
+    static void populateResponse(Response &response);
 };
 
 class DefaultErrorHandler {
 public:
-    static void populateResponse(Response &res);
+    static void populateResponse(Response &response);
 };
 
 #define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \

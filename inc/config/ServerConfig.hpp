@@ -30,14 +30,14 @@ public:
      * @param fpath Path to the configuration file.
      * @param perform_fs_checks If true, validates that file paths in the config exist.
      */
-    ServerConfig(char const *fpath, bool perform_fs_checks = true);
+    explicit ServerConfig(char const *fpath, bool perform_fs_checks = true);
 
     /**
      * @brief Constructs and builds the configuration from a string.
      * @param content A string containing the full configuration.
      * @param perform_fs_checks If true, validates that file paths in the config exist.
      */
-    ServerConfig(std::string const &content, bool perform_fs_checks = true);
+    explicit ServerConfig(std::string const &content, bool perform_fs_checks = true);
 
     // ============================== Public Interface ==============================
 

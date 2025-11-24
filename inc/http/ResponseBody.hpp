@@ -75,7 +75,7 @@ public:
 
 class FileBody : public IResponseBody {
 public:
-    FileBody(std::string const &fpath);
+    explicit FileBody(std::string const &fpath);
     ~FileBody();
 
     ssize_t read(char *buffer, size_t size);
@@ -91,7 +91,7 @@ private:
 
 class BodyInMemory : public IResponseBody {
 public:
-    BodyInMemory(std::string const &);
+    explicit BodyInMemory(std::string const &);
 
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
@@ -105,7 +105,7 @@ private:
 
 class BodyFromCgi : public IResponseBody {
 public:
-    BodyFromCgi(int pipe_fd);
+    explicit BodyFromCgi(int pipeFd);
     ~BodyFromCgi();
     ssize_t read(char *buffer, size_t size);
     size_t size() const;

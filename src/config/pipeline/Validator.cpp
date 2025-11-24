@@ -20,19 +20,19 @@ void Validator::validate(ServerBlockVec &servers, bool perform_fs_checks) {
     }
 }
 
-void Validator::validateServer(ServerBlock &b) {
+void Validator::validateServer(ServerBlock &b) const {
     validateListen(b);
     for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
         validateLocation(it->second, b);
     }
 }
 
-void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) {
+void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) const {
     (void)server;
     validateRoot(b);
 }
 
-void Validator::validateRoot(Block &b) {
+void Validator::validateRoot(Block &b) const {
     if (!b.has("root"))
         return;
     std::string const &root = b.root();
@@ -47,7 +47,7 @@ void Validator::validateRoot(Block &b) {
         b.root(root + '/');
 }
 
-void Validator::validateListen(ServerBlock &b) {
+void Validator::validateListen(ServerBlock const &b) {
     if (!b.has("listen")) {
         LOG_WARN("in server block listen is not specified default address: '"
                  << b.address() << "' and port: '" << b.port() << "' is used.");
@@ -56,7 +56,7 @@ void Validator::validateListen(ServerBlock &b) {
     return;
 }
 
-void Validator::validateServerNames(ServerBlock &b) {
+void Validator::validateServerNames(ServerBlock const &b) {
     if (!b.has("server_names"))
         return;
 }

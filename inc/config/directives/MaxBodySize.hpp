@@ -6,7 +6,7 @@ namespace config {
 
 class MaxBodySize : public IDirective {
 public:
-    void process(Block &block, ParsedDirectiveArgs const &args) const;
+    void process(Block &b, ParsedDirectiveArgs const &args) const;
     std::string const &getName() const { return name_; }
 
 private:

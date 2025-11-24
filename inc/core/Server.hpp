@@ -59,7 +59,7 @@ namespace core {
  */
 class Server {
 public:
-    Server(config::ServerConfig const &);
+    explicit Server(config::ServerConfig const &);
     ~Server();
 
     void start();
@@ -81,7 +81,7 @@ private:
     http::Router router_;
 
     void setupAcceptors();
-    void setupSignalHandlers();
+    static void setupSignalHandlers();
     void cleanup();
     void gracefulShutdown();
 

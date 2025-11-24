@@ -16,7 +16,7 @@ public:
         ERROR
     };
 
-    ChunkedBodyParser(utils::TempFile &file);
+    explicit ChunkedBodyParser(utils::TempFile &file);
 
     void reset();
 

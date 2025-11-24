@@ -74,20 +74,20 @@ Response &Response::setBodyFromCgi(int pipeFd) {
 }
 
 void Response::buildHeaders(std::vector<char> &buffer) const {
-    std::string start_line = startLine_.protocol + " " + utils::toString(startLine_.statusCode) +
-                             " " + startLine_.reasonPhrase + "\r\n";
-    buffer.insert(buffer.end(), start_line.begin(), start_line.end());
+    std::string startLine = startLine_.protocol + " " + utils::toString(startLine_.statusCode) +
+                            " " + startLine_.reasonPhrase + "\r\n";
+    buffer.insert(buffer.end(), startLine.begin(), startLine.end());
 
-    std::string header_lines = headers_.toString();
-    buffer.insert(buffer.end(), header_lines.begin(), header_lines.end());
+    std::string headerLines = headers_.toString();
+    buffer.insert(buffer.end(), headerLines.begin(), headerLines.end());
 
     buffer.push_back('\r');
     buffer.push_back('\n');
 }
 
-Response &Response::status(HttpStatus status) {
-    startLine_.statusCode = status;
-    startLine_.reasonPhrase = getReasonPhrase(status);
+Response &Response::status(HttpStatus statusCode) {
+    startLine_.statusCode = statusCode;
+    startLine_.reasonPhrase = getReasonPhrase(statusCode);
     return *this;
 }
 

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-std::ostream &print_indent(std::ostream &os);
+std::ostream &printIndent(std::ostream &os);
 
 struct IndentManager {
     int modification;

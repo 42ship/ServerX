@@ -36,18 +36,18 @@ private:
     size_t pos_;
 
     Parser();
-    Parser(TokenArray const &);
+    explicit Parser(TokenArray const &);
     size_t size() const;
 
     Token const &currentToken() const;
     Token const &peekToken() const;
     void consumeToken();
     void expectToken(TokenType type);
-    void expectToken(std::string literal);
+    void expectToken(std::string const &literal);
     bool isTokenAValue() const;
     void displayCurrentToken() const;
-    void addDirective(ConfigNode &node, ParsedDirectivePair const &pair) const;
-    void pushTokenTo(ParsedDirectiveArgs &args);
+    static void addDirective(ConfigNode &node, ParsedDirectivePair const &pair);
+    void pushTokenTo(ParsedDirectiveArgs &args) const;
 
     void handleServerBlock();
     void handleStatement();
