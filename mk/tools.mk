@@ -8,7 +8,8 @@ check:
 		--suppress=functionConst \
 		--suppress=unmatchedSuppression \
 		--suppress=normalCheckLevelMaxBranches \
-		--suppress=checkersReport
+		--suppress=checkersReport \
+		--suppress=missingOverride
 # useStlAlgorithm: std::any_of requires C++11, we use C++98
 # unusedPrivateFunction: some functions reserved for future implementation
 # constParameterPointer: false positives when pointer is deleted indirectly
