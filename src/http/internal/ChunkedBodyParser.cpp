@@ -24,7 +24,7 @@ ChunkedBodyParser::State ChunkedBodyParser::setError(HttpStatus status) {
 }
 
 // TODO: finish this implementation (will modify state_ and bodyFile_ when implemented)
-ChunkedBodyParser::State ChunkedBodyParser::feed(std::string &buffer) {
+ChunkedBodyParser::State ChunkedBodyParser::feed(std::string const &buffer) {
     (void)buffer;
     (void)bodyFile_;
     return DONE;

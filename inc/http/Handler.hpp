@@ -38,7 +38,7 @@ public:
 
 class JsonErrorHandler {
 public:
-    static void populateResponse(Response &response);
+    static void populateResponse(Response const &response);
 };
 
 class DefaultErrorHandler {

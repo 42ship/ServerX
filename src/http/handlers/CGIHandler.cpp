@@ -134,7 +134,6 @@ namespace http {
 void CGIHandler::handle(Request const &req, Response &res) const {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
     std::string interpreterPath = req.location()->get("cgi_pass", req)[0];
-    std::string scriptPath = req.resolvePath();
     int pipeFd[2];
     if (pipe(pipeFd)) {
         LOG_ERROR("CGIHandler::handle::pipe: " << strerror(errno));
@@ -149,6 +148,7 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         close(pipeFd[0]);
         dup2(pipeFd[1], STDOUT_FILENO);
         close(pipeFd[1]);
+        std::string scriptPath = req.resolvePath();
         char *argv[] = {const_cast<char *>(interpreterPath.c_str()), // argv[0] = /usr/bin/python3
                         const_cast<char *>(scriptPath.c_str()), // argv[1] = /var/www/script.py
                         NULL};
