@@ -38,13 +38,13 @@ void Parser::expectToken(TokenType type) {
     consumeToken();
 }
 
-void Parser::expectToken(std::string literal) {
+void Parser::expectToken(std::string const &literal) {
     if (currentToken().literal != literal)
         throw ConfigError("Non matching token literals");
     consumeToken();
 }
 
-void Parser::addDirective(ConfigNode &node, ParsedDirectivePair const &pair) const {
+void Parser::addDirective(ConfigNode &node, ParsedDirectivePair const &pair) {
     ParsedDirectiveMap::iterator it = node.directives.find(pair.first);
 
     if (it != node.directives.end()) {
@@ -58,8 +58,8 @@ void Parser::addDirective(ConfigNode &node, ParsedDirectivePair const &pair) con
 
 bool Parser::isTokenAValue() const {
     static const TokenType validTypes[] = {IDENTIFIER, STRING, NUMBER};
-    static const size_t size = sizeof(validTypes) / sizeof(validTypes[0]);
-    return currentToken().isTypeIn(validTypes, size);
+    static const size_t validTypesCount = sizeof(validTypes) / sizeof(validTypes[0]);
+    return currentToken().isTypeIn(validTypes, validTypesCount);
 }
 
 void Parser::handleServerBlock() {
@@ -114,6 +114,6 @@ ParsedDirectivePair Parser::handleDirective() {
     return d;
 }
 
-void Parser::pushTokenTo(ParsedDirectiveArgs &args) { args.push_back(currentToken()); }
+void Parser::pushTokenTo(ParsedDirectiveArgs &args) const { args.push_back(currentToken()); }
 
 } // namespace config

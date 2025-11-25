@@ -14,8 +14,8 @@ namespace config {
  */
 class ConfigNode {
 public:
-    ConfigNode() { args.reserve(3); };
-    ConfigNode(std::string const &conf_name) : name(conf_name) { args.reserve(3); };
+    ConfigNode() { args.reserve(3); }
+    explicit ConfigNode(std::string const &conf_name) : name(conf_name) { args.reserve(3); }
     std::string name;
     ParsedDirectiveArgs args;
     ParsedDirectiveMap directives;

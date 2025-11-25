@@ -45,7 +45,7 @@ void EpollManager::modifyHandler(IEventHandler *handler, uint32_t events) {
     }
 }
 
-void EpollManager::removeHandler(IEventHandler *handler) {
+void EpollManager::removeHandler(IEventHandler const *handler) {
     if (!handler)
         return;
     if (epoll_ctl(epollFd_, EPOLL_CTL_DEL, handler->getFd(), NULL) < 0) {

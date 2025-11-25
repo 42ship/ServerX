@@ -23,13 +23,13 @@ LocationBlock &LocationBlock::parent(ServerBlock *parent) {
 ServerBlock const *LocationBlock::parent() const { return parent_; }
 
 std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
-    o << print_indent << "[LocationBlock] Path: " << t.path() << " {\n";
+    o << printIndent << "[LocationBlock] Path: " << t.path() << " {\n";
 
     o << indent;
     o << static_cast<Block const &>(t);
     o << unindent;
 
-    o << print_indent << "}\n";
+    o << printIndent << "}\n";
     return o;
 }
 

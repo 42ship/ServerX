@@ -9,9 +9,9 @@ namespace network {
 class Socket {
 public:
     Socket();
-    Socket(int port);
+    explicit Socket(int port);
     Socket(std::string const &address, int port);
-    Socket(config::ServerBlock const &);
+    explicit Socket(config::ServerBlock const &);
     ~Socket();
 
     int getFd(void) const;

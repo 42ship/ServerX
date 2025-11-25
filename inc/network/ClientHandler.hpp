@@ -40,13 +40,13 @@ private:
 
     // --- Response State ---
     struct SendBuffer {
-        SendBuffer(size_t initialCapacity = IO_BUFFER_SIZE);
+        explicit SendBuffer(size_t initialCapacity = IO_BUFFER_SIZE);
 
         std::vector<char> buffer;
         size_t sent;
 
         void reset();
-        bool isFullySent();
+        bool isFullySent() const;
         enum SendStatus { SEND_DONE, SEND_AGAIN, SEND_ERROR };
         SendStatus send(int clientFd);
     };

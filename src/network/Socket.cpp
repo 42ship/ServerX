@@ -39,7 +39,7 @@ void Socket::bindTo(std::string const &address, int port) {
     createAndBind(address, port);
 }
 
-void Socket::createAndBind(std::string const &address, int port) {
+void Socket::createAndBind(std::string const &ipAddress, int port) {
     if (port < 0 || port > 65535) {
         throw std::runtime_error("Invalid port number. Port must be between 1024 and 65535");
     }
@@ -55,7 +55,7 @@ void Socket::createAndBind(std::string const &address, int port) {
     std::memset(&addr_, 0, sizeof(addr_));
     addr_.sin_port = htons(port);
     addr_.sin_family = AF_INET;
-    if (inet_pton(AF_INET, address.c_str(), &addr_.sin_addr.s_addr) <= 0) {
+    if (inet_pton(AF_INET, ipAddress.c_str(), &addr_.sin_addr.s_addr) <= 0) {
         close(fd_);
         fd_ = -1;
         throw std::runtime_error("Invalid IP address");

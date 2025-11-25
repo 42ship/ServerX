@@ -8,9 +8,8 @@
 
 namespace http {
 
-MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
-    mimeTypes_ = std::map<std::string, std::string>();
-    mimeExt_ = std::map<std::string, std::string>();
+MimeTypes::MimeTypes(const std::string &path)
+    : mimeTypes_(), mimeExt_(), filePath_(path) {
     rtime_.tv_nsec = 0;
     rtime_.tv_sec = 0;
     reload();
@@ -19,11 +18,9 @@ MimeTypes::MimeTypes(const std::string &path) : filePath_(path) {
     }
 }
 
-MimeTypes::MimeTypes(const MimeTypes &other) {
-    mimeTypes_ = other.mimeTypes_;
-    mimeExt_ = other.mimeExt_;
-    filePath_ = other.filePath_;
-    rtime_ = other.rtime_;
+MimeTypes::MimeTypes(const MimeTypes &other)
+    : mimeTypes_(other.mimeTypes_), mimeExt_(other.mimeExt_),
+      filePath_(other.filePath_), rtime_(other.rtime_) {
 }
 
 MimeTypes &MimeTypes::operator=(const MimeTypes &other) {
@@ -100,11 +97,11 @@ void MimeTypes::reload() {
     file.close();
 }
 
-size_t MimeTypes::findFirstSpace(const std::string str) {
+size_t MimeTypes::findFirstSpace(const std::string &str) {
     size_t pos = 0;
-    size_t size = str.size();
+    size_t strSize = str.size();
     const char *tmp = str.c_str();
-    while (pos < size) {
+    while (pos < strSize) {
         if (tmp[pos] == ' ' || tmp[pos] == '\t' || tmp[pos] == '\v') {
             return pos;
         }
@@ -113,11 +110,11 @@ size_t MimeTypes::findFirstSpace(const std::string str) {
     return pos;
 }
 
-size_t MimeTypes::findFirstNonSpace(const std::string str, size_t startPos) {
+size_t MimeTypes::findFirstNonSpace(const std::string &str, size_t startPos) {
     size_t pos = startPos;
-    size_t size = str.size();
+    size_t strSize = str.size();
     const char *tmp = str.c_str();
-    while (pos < size) {
+    while (pos < strSize) {
         if (tmp[pos] != ' ' && tmp[pos] != '\t' && tmp[pos] != '\v') {
             return pos;
         }

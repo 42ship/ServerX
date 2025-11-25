@@ -136,8 +136,8 @@ void RequestParser::handleContentLengthBody() {
 void RequestParser::handleChunkedBody() {
     LOG_ERROR(
         "RequestParser::handleChunkedBody(): Chunked parsing is not implemented. State=ERROR");
-    ChunkedBodyParser::State state = chunkParser_.feed(buffer_);
-    (void)state;
+    ChunkedBodyParser::State chunkState = chunkParser_.feed(buffer_);
+    (void)chunkState;
     setError(NOT_IMPLEMENTED);
 }
 

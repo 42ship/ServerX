@@ -36,7 +36,7 @@ void Router::matchServerAndLocation(int port, Request &request) const {
     }
 }
 
-void Router::dispatch(int port, Request &request, Response &response) const {
+void Router::dispatch(int port, Request const &request, Response &response) const {
     LOG_DEBUG("Router::dispatch(" << port << ", " << request.method() << " " << request.uri()
                                   << "): dispatching request");
     if (request.status() >= 400) {
@@ -66,7 +66,7 @@ void Router::dispatch(int port, Request &request, Response &response) const {
     handleError(request, response);
 }
 
-void Router::handleError(Request &request, Response &response) const {
+void Router::handleError(Request const &request, Response &response) {
     if (request.wantsJson()) {
         LOG_TRACE("Router::handleError(" << request.uri() << "): populating JSON error page");
         JsonErrorHandler::populateResponse(response);
@@ -77,7 +77,7 @@ void Router::handleError(Request &request, Response &response) const {
     }
 }
 
-void Router::executeHandler(Request &request, Response &response) const {
+void Router::executeHandler(Request const &request, Response &response) const {
     LOG_TRACE("Router::executeHandler(" << request.uri() << "): selecting handler...");
     if (!request.server()) {
         LOG_DEBUG("Router::executeHandler(" << request.uri() << "): no server found, setting 404");

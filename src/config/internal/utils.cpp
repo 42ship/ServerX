@@ -36,14 +36,14 @@ bool extractIpInfo(std::string const &s, IpInfo &info) {
             return false;
         return true;
     }
-    std::string port_part = s.substr(cpos + 1);
-    std::string ip_part = s.substr(0, cpos);
-    if (ip_part == "localhost")
-        ip_part = "127.0.0.1";
-    if (!isValidIPv4(ip_part) || !isValidPort(port_part))
+    std::string portPart = s.substr(cpos + 1);
+    std::string ipPart = s.substr(0, cpos);
+    if (ipPart == "localhost")
+        ipPart = "127.0.0.1";
+    if (!isValidIPv4(ipPart) || !isValidPort(portPart))
         return false;
-    info.ip = ip_part;
-    info.port = fromString<int>(port_part);
+    info.ip = ipPart;
+    info.port = fromString<int>(portPart);
     return true;
 }
 

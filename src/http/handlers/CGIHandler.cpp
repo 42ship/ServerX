@@ -133,10 +133,9 @@ namespace http {
 
 void CGIHandler::handle(Request const &req, Response &res) const {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
-    std::string interpreter_path = req.location()->get("cgi_pass", req)[0];
-    std::string script_path = req.resolvePath();
-    int pipe_fd[2];
-    if (pipe(pipe_fd)) {
+    std::string interpreterPath = req.location()->get("cgi_pass", req)[0];
+    int pipeFd[2];
+    if (pipe(pipeFd)) {
         LOG_ERROR("CGIHandler::handle::pipe: " << strerror(errno));
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
@@ -146,26 +145,27 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
     if (pid == 0) {
-        close(pipe_fd[0]);
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-        char *argv[] = {const_cast<char *>(interpreter_path.c_str()), // argv[0] = /usr/bin/python3
-                        const_cast<char *>(script_path.c_str()), // argv[1] = /var/www/script.py
+        close(pipeFd[0]);
+        dup2(pipeFd[1], STDOUT_FILENO);
+        close(pipeFd[1]);
+        std::string scriptPath = req.resolvePath();
+        char *argv[] = {const_cast<char *>(interpreterPath.c_str()), // argv[0] = /usr/bin/python3
+                        const_cast<char *>(scriptPath.c_str()), // argv[1] = /var/www/script.py
                         NULL};
 
         // Build CGI environment
         int port = req.server() ? req.server()->port() : 0;
         std::vector<std::string> env = buildCgiEnvironment(req, port);
         char**  envp = vectorToCharArray(env);
-        execve(interpreter_path.c_str(), argv, envp);
+        execve(interpreterPath.c_str(), argv, envp);
         LOG_ERROR("EXECVE");
         exit(127);
     }
     // Parent process (pid > 0)
     if (pid > 0) {
-        close(pipe_fd[1]);
-        res.setBodyFromCgi(pipe_fd[0]);
+        close(pipeFd[1]);
+        res.setBodyFromCgi(pipeFd[0]);
     }
-};
+}
 
 } // namespace http

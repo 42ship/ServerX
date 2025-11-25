@@ -58,7 +58,7 @@ void Lexer::handlePunctuation() {
     readChar();
 }
 
-bool Lexer::isPunctuation() { return ch_ == '#' || ch_ == '{' || ch_ == '}' || ch_ == ';'; }
+bool Lexer::isPunctuation() const { return ch_ == '#' || ch_ == '{' || ch_ == '}' || ch_ == ';'; }
 
 bool Lexer::handleValue() {
     size_t start_pos = pos_ - 1;
@@ -83,7 +83,7 @@ void Lexer::eatWhitespaces() {
 
 void Lexer::identifyLastToken() {
     bool is_number = 1;
-    std::string &literal = tokens_.back().literal;
+    std::string const &literal = tokens_.back().literal;
     for (size_t i = 0; i < literal.length(); i++) {
         if (!::isdigit(literal[i])) {
             is_number = 0;

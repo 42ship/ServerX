@@ -53,28 +53,28 @@ ArgumentPtr ArgumentFactory::handleStringVariable(std::string const &s) {
     }
 
     ConcatenatedValue *var = new ConcatenatedValue;
-    size_t current_pos = 0;
-    while (current_pos < s.size()) {
-        size_t var_start = s.find('$', current_pos);
+    size_t currentPos = 0;
+    while (currentPos < s.size()) {
+        size_t varStart = s.find('$', currentPos);
 
-        if (var_start == std::string::npos) {
-            var->add(new String(s.substr(current_pos)));
+        if (varStart == std::string::npos) {
+            var->add(new String(s.substr(currentPos)));
             break;
         }
-        if (var_start > current_pos) {
-            var->add(new String(s.substr(current_pos, var_start - current_pos)));
+        if (varStart > currentPos) {
+            var->add(new String(s.substr(currentPos, varStart - currentPos)));
         }
 
-        size_t var_name_pos = var_start + 1;
-        size_t vlength = getVariableLength(s, var_start + 1);
+        size_t varNamePos = varStart + 1;
+        size_t vlength = getVariableLength(s, varStart + 1);
 
         if (vlength == 0) {
             delete var;
             throw ConfigError("'" + s + "': has empty or invalid variable");
         }
 
-        var->add(new Variable(s.substr(var_name_pos, vlength)));
-        current_pos = var_name_pos + vlength;
+        var->add(new Variable(s.substr(varNamePos, vlength)));
+        currentPos = varNamePos + vlength;
     }
 
     return var;

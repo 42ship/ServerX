@@ -10,7 +10,7 @@
 namespace network {
 
 namespace {
-bool checkHandler(IEventHandler *handler) { return handler && handler->getFd() >= 0; }
+bool checkHandler(IEventHandler const *handler) { return handler && handler->getFd() >= 0; }
 } // namespace
 
 EventDispatcher::EventDispatcher() {}

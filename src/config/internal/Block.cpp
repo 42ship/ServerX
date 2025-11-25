@@ -176,7 +176,7 @@ std::string Block::getFirstRawValue(std::string const &key) const {
 std::ostream &operator<<(std::ostream &o, Block const &b) {
     DirectiveMap const &m = b.directives_;
     for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
-        o << print_indent << it->first << ":";
+        o << printIndent << it->first << ":";
         for (size_t i = 0; i < it->second.size(); i++) {
             o << " '" << it->second[i]->getRawValue() << "'";
         }

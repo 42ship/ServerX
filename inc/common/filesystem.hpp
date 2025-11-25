@@ -19,10 +19,10 @@ public:
 
     bool open();
     void close();
-    operator int();
+    operator int() const;
     int fd() const;
     std::string const &path() const;
-    bool isOpen();
+    bool isOpen() const;
 
 private:
     int fd_;

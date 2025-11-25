@@ -119,7 +119,7 @@ Request &Request::server(config::ServerBlock const *server) {server_ = server;re
 Request &Request::method(RequestStartLine::Method method) {requestLine_.method = method;return *this;}
 Request &Request::uri(std::string const &uri) {requestLine_.uri = uri;return *this;}
 Request &Request::version(std::string const &version) {requestLine_.version= version;return *this;}
-Request &Request::status(HttpStatus status) { status_ = status; return *this; }
+Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *this; }
 HttpStatus Request::status() const { return status_; }
 int Request::body() const { return body_; }
 Request &Request::body(int fd) { body_ = fd; return *this; }
