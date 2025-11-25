@@ -1,25 +1,11 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classconfig_1_1Validator.html#a16d2ab336a78d329662722be84dd1eb6',1,'config::Validator']]],
-  ['validatedirectorypath_1',['validateDirectoryPath',['../namespaceutils.html#a6c6c2490267aaffaecd721402a08351c',1,'utils']]],
-  ['validatelisten_2',['validateListen',['../classconfig_1_1Validator.html#ad41c08af0f0c1b949799ce6e69c3a063',1,'config::Validator']]],
-  ['validatelocation_3',['validateLocation',['../classconfig_1_1Validator.html#aae805000f6d7d88e034593ef0f250a5a',1,'config::Validator']]],
-  ['validateroot_4',['validateRoot',['../classconfig_1_1Validator.html#a128efd79010ccb0fb3ff84bb22fb52d8',1,'config::Validator']]],
-  ['validateserver_5',['validateServer',['../classconfig_1_1Validator.html#aabac1fe3ec9df1bf46d5eaecada357d4',1,'config::Validator']]],
-  ['validateservernames_6',['validateServerNames',['../classconfig_1_1Validator.html#a16c69d8865ce8f3269338ed68b596bf3',1,'config::Validator']]],
-  ['validateuploadpath_7',['validateUploadPath',['../namespaceutils.html#a6bde84553f6b49432985dcb333a073d5',1,'utils']]],
-  ['validationresult_8',['ValidationResult',['../structutils_1_1ValidationResult.html',1,'utils']]],
-  ['validationresult_2ehpp_9',['ValidationResult.hpp',['../ValidationResult_8hpp.html',1,'']]],
-  ['validationutils_2ehpp_10',['ValidationUtils.hpp',['../ValidationUtils_8hpp.html',1,'']]],
-  ['validator_11',['Validator',['../classconfig_1_1Validator.html',1,'config::Validator'],['../classconfig_1_1ServerBlock.html#a5929181addf27f130c7f8f99eeba3256',1,'config::ServerBlock::Validator()'],['../classconfig_1_1Validator.html#a4e1794a9ee1f4b4d891b8968a8a56dd5',1,'config::Validator::Validator()'],['../classconfig_1_1Validator.html#a07747fd25f6a480339b58a48e9858bd1',1,'config::Validator::Validator(bool perform_fs_checks=true)']]],
-  ['validator_2ecpp_12',['Validator.cpp',['../Validator_8cpp.html',1,'']]],
-  ['validator_2ehpp_13',['Validator.hpp',['../Validator_8hpp.html',1,'']]],
-  ['value_14',['value',['../structutils_1_1ValidationResult.html#a02d2452e860b816b2c04bea6eb159229',1,'utils::ValidationResult']]],
-  ['value_5f_15',['value_',['../classconfig_1_1String.html#ab095c3cda171c16839d557851bfb74d5',1,'config::String']]],
-  ['variable_16',['Variable',['../classconfig_1_1Variable.html',1,'config::Variable'],['../classconfig_1_1Variable.html#a7c7e31677b70d25f41844606985258f8',1,'config::Variable::Variable()']]],
-  ['variable_2ecpp_17',['Variable.cpp',['../Variable_8cpp.html',1,'']]],
-  ['variable_2ehpp_18',['Variable.hpp',['../Variable_8hpp.html',1,'']]],
-  ['variables_5f_19',['variables_',['../classconfig_1_1ConcatenatedValue.html#a2b95fc08621152422704f026a0128131',1,'config::ConcatenatedValue']]],
-  ['varname_5f_20',['varName_',['../classconfig_1_1Variable.html#a762e60a9a53765ec984238e265bd0ba0',1,'config::Variable']]],
-  ['version_21',['version',['../classhttp_1_1HttpRequest.html#a798bd27b874448f7fa96d8de82700886',1,'http::HttpRequest']]]
+  ['unauthorized_0',['UNAUTHORIZED',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45',1,'http']]],
+  ['unindent_1',['unindent',['../IndentManager_8hpp.html#a4b66e28918099f6f4e405bbc29fa54db',1,'IndentManager.hpp']]],
+  ['unknown_2',['UNKNOWN',['../classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aa79e9354d69ab04fd8ccae631b622e80c',1,'http::RequestStartLine::UNKNOWN'],['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a55f80ce5063f5097575c86db1c29d614',1,'config::UNKNOWN']]],
+  ['unsupported_5fmedia_5ftype_3',['UNSUPPORTED_MEDIA_TYPE',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b',1,'http']]],
+  ['uri_4',['uri',['../classhttp_1_1RequestStartLine.html#ae3439f5f15899e4dd9601a2fb52756f0',1,'http::RequestStartLine::uri'],['../classhttp_1_1Request.html#a026f02e2bade37a29d3d4c0f6bddda29',1,'http::Request::uri() const'],['../classhttp_1_1Request.html#a0ce381125c6fcadf1806835e5fab6caf',1,'http::Request::uri(std::string const &amp;)']]],
+  ['utils_5',['utils',['../namespaceutils.html',1,'']]],
+  ['utils_2ecpp_6',['utils.cpp',['../utils_8cpp.html',1,'']]],
+  ['utils_2ehpp_7',['utils.hpp',['../utils_8hpp.html',1,'']]]
 ];

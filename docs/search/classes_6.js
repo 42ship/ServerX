@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['httprequest_0',['HttpRequest',['../classhttp_1_1HttpRequest.html',1,'http']]],
-  ['httpresponse_1',['HttpResponse',['../classhttp_1_1HttpResponse.html',1,'http']]]
+  ['headers_0',['Headers',['../classhttp_1_1Headers.html',1,'http']]],
+  ['httprequest_1',['HttpRequest',['../classHttpRequest.html',1,'']]]
 ];

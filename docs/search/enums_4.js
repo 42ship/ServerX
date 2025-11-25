@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['requeststate_0',['RequestState',['../namespacenetwork.html#aaaec8168c304b28c9d428837848abae4',1,'network']]],
-  ['responsestate_1',['ResponseState',['../namespacenetwork.html#aecef2691506037b978e28401f4b52c68',1,'network']]]
+  ['sendstatus_0',['SendStatus',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a12407aa08f2a1e5b70d61f4238fefa5c',1,'network::ClientHandler::SendBuffer']]],
+  ['state_1',['State',['../classhttp_1_1ChunkedBodyParser.html#a726b0fe20b7a48fc7d1daa53e63a9a29',1,'http::ChunkedBodyParser::State'],['../classhttp_1_1RequestParser.html#acee2c6282a3dff470dfebac78ffeb763',1,'http::RequestParser::State']]]
 ];

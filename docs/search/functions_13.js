@@ -1,19 +1,13 @@
 var searchData=
 [
-  ['_7eacceptor_0',['~Acceptor',['../classnetwork_1_1Acceptor.html#ad8e8dafd4b0655a3d7b7e290c435dc6f',1,'network::Acceptor']]],
-  ['_7eaeventhandler_1',['~AEventHandler',['../classnetwork_1_1AEventHandler.html#a0f96866cd8a2b727995ad28d9d491750',1,'network::AEventHandler']]],
-  ['_7eblock_2',['~Block',['../classconfig_1_1Block.html#a156ceb838b9dd8cd42d2f3b5d08d9ceb',1,'config::Block']]],
-  ['_7econcatenatedvalue_3',['~ConcatenatedValue',['../classconfig_1_1ConcatenatedValue.html#a6706cddfe84121635d4369215970c25e',1,'config::ConcatenatedValue']]],
-  ['_7econfigexception_4',['~ConfigException',['../classconfig_1_1ConfigException.html#ade829a48c0f93415bfe76347d462572a',1,'config::ConfigException']]],
-  ['_7edirectivehandler_5',['~DirectiveHandler',['../classconfig_1_1DirectiveHandler.html#abbd546699a4a30d9acbc06d2ba260c10',1,'config::DirectiveHandler']]],
-  ['_7eepollmanager_6',['~EpollManager',['../classnetwork_1_1EpollManager.html#abdd30e189cae3ea1df0d6278e3fba582',1,'network::EpollManager']]],
-  ['_7ehttpresponse_7',['~HttpResponse',['../classhttp_1_1HttpResponse.html#addd7ec77ea6731cdcf35b2d6f601eb76',1,'http::HttpResponse']]],
-  ['_7eiargument_8',['~IArgument',['../classconfig_1_1IArgument.html#ab54437c9ac0bbc8c5d7c560c6d98936f',1,'config::IArgument']]],
-  ['_7eidirective_9',['~IDirective',['../classconfig_1_1IDirective.html#a5fd870847e9f5e96c5637613678d425a',1,'config::IDirective']]],
-  ['_7eihandler_10',['~IHandler',['../classhttp_1_1IHandler.html#a4bfa964206e57bb84fce5cb93d7fa3a7',1,'http::IHandler']]],
-  ['_7einitiationdispatcher_11',['~InitiationDispatcher',['../classnetwork_1_1InitiationDispatcher.html#a2ece1ccf59f8c839862947c16a870b1e',1,'network::InitiationDispatcher']]],
-  ['_7emimetypes_12',['~MimeTypes',['../classhttp_1_1MimeTypes.html#aee7d7ceeb76fc7222194175b2a259a2c',1,'http::MimeTypes']]],
-  ['_7ereactor_13',['~Reactor',['../classnetwork_1_1Reactor.html#a97ab34df77dcd6a4b7da2d2367d74755',1,'network::Reactor']]],
-  ['_7eserver_14',['~Server',['../classcore_1_1Server.html#a50cd925018015b98bd30e12f7e115ca0',1,'core::Server']]],
-  ['_7esocket_15',['~Socket',['../classnetwork_1_1Socket.html#a1038401f14d76bad02571a7458712aed',1,'network::Socket']]]
+  ['validate_0',['validate',['../classconfig_1_1Validator.html#a16d2ab336a78d329662722be84dd1eb6',1,'config::Validator']]],
+  ['validatedirectorypath_1',['validateDirectoryPath',['../namespaceutils.html#a6c6c2490267aaffaecd721402a08351c',1,'utils']]],
+  ['validatelisten_2',['validateListen',['../classconfig_1_1Validator.html#a7ed9c76638c828b7676177e0e9bff1b9',1,'config::Validator']]],
+  ['validatelocation_3',['validateLocation',['../classconfig_1_1Validator.html#aa52dead26b84551c6a7022d5035056a5',1,'config::Validator']]],
+  ['validateroot_4',['validateRoot',['../classconfig_1_1Validator.html#a559c18262c7253024896f06bed53508c',1,'config::Validator']]],
+  ['validateserver_5',['validateServer',['../classconfig_1_1Validator.html#ad97aadeec4d03e3e5f4cdb036b4c805b',1,'config::Validator']]],
+  ['validateservernames_6',['validateServerNames',['../classconfig_1_1Validator.html#a3afe6f3dba8e66d840b2034f691c95b5',1,'config::Validator']]],
+  ['validator_7',['Validator',['../classconfig_1_1Validator.html#a4e1794a9ee1f4b4d891b8968a8a56dd5',1,'config::Validator::Validator()'],['../classconfig_1_1Validator.html#a07747fd25f6a480339b58a48e9858bd1',1,'config::Validator::Validator(bool perform_fs_checks=true)']]],
+  ['variable_8',['Variable',['../classconfig_1_1Variable.html#a7c7e31677b70d25f41844606985258f8',1,'config::Variable']]],
+  ['version_9',['version',['../classhttp_1_1Request.html#a6a950f6d83f3702a9d173c0775d95c3f',1,'http::Request::version() const'],['../classhttp_1_1Request.html#a06bac7117f942567aaccab4b6bc76df2',1,'http::Request::version(std::string const &amp;)']]]
 ];

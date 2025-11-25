@@ -104,8 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a62e813f86654adeee4b4762bc79d9e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and builds the configuration from a file path.  <br /></td></tr>
 <tr class="memitem:acabda31333d22e92f7018924600a2431" id="r_acabda31333d22e92f7018924600a2431"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acabda31333d22e92f7018924600a2431">ServerConfig</a> (std::string const &amp;content, bool perform_fs_checks=true)</td></tr>
 <tr class="memdesc:acabda31333d22e92f7018924600a2431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and builds the configuration from a string.  <br /></td></tr>
-<tr class="memitem:af63bd3c26dd1303ae1a47b2d09117869" id="r_af63bd3c26dd1303ae1a47b2d09117869"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af63bd3c26dd1303ae1a47b2d09117869">getServer</a> (int port, std::string const &amp;server_name) const</td></tr>
-<tr class="memdesc:af63bd3c26dd1303ae1a47b2d09117869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the server configuration that best matches a port and server name.  <br /></td></tr>
+<tr class="memitem:a0647b2f8f153e15e299609d9dc2706dc" id="r_a0647b2f8f153e15e299609d9dc2706dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0647b2f8f153e15e299609d9dc2706dc">getServer</a> (int port, <a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req) const</td></tr>
+<tr class="memdesc:a0647b2f8f153e15e299609d9dc2706dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the server configuration that best matches a port and server name.  <br /></td></tr>
 <tr class="memitem:a04ea97c78b723c23e02bb1e65cb99796" id="r_a04ea97c78b723c23e02bb1e65cb99796"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04ea97c78b723c23e02bb1e65cb99796">addServer</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const &amp;server)</td></tr>
 <tr class="memdesc:a04ea97c78b723c23e02bb1e65cb99796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> to the configuration.  <br /></td></tr>
 <tr class="memitem:a9f03a0388fe689730e4ce60bbdc8b0b8" id="r_a9f03a0388fe689730e4ce60bbdc8b0b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceconfig.html#a7cc70445712c439111acb4dc2cfd561a">ServerBlockMap</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f03a0388fe689730e4ce60bbdc8b0b8">getServersMap</a> () const</td></tr>
@@ -146,6 +146,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">config::ServerConfig::ServerConfig </td>
@@ -158,6 +161,11 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>perform_fs_checks</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructs and builds the configuration from a file path. </p>
@@ -176,6 +184,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">config::ServerConfig::ServerConfig </td>
@@ -188,6 +199,11 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>perform_fs_checks</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructs and builds the configuration from a string. </p>
@@ -256,8 +272,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af63bd3c26dd1303ae1a47b2d09117869" name="af63bd3c26dd1303ae1a47b2d09117869"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af63bd3c26dd1303ae1a47b2d09117869">&#9670;&#160;</a></span>getServer()</h2>
+<a id="a0647b2f8f153e15e299609d9dc2706dc" name="a0647b2f8f153e15e299609d9dc2706dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0647b2f8f153e15e299609d9dc2706dc">&#9670;&#160;</a></span>getServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +286,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>server_name</em></span>&#160;) const</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -279,7 +295,7 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td>The port number of the incoming connection. </td></tr>
-    <tr><td class="paramname">server_name</td><td>The server name from the client's 'Host' header. </td></tr>
+    <tr><td class="paramname">request</td><td>The request </td></tr>
   </table>
   </dd>
 </dl>

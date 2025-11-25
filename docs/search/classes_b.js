@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parser_0',['Parser',['../classconfig_1_1Parser.html',1,'config']]]
+  ['nobody_0',['NoBody',['../classhttp_1_1NoBody.html',1,'http']]]
 ];

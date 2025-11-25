@@ -102,22 +102,15 @@ Inheritance diagram for http::IHandler:</div>
  <div class="center">
   <img src="classhttp_1_1IHandler.png" usemap="#http_3A_3AIHandler_map" alt=""/>
   <map id="http_3A_3AIHandler_map" name="http_3A_3AIHandler_map">
-<area href="classhttp_1_1CGIHandler.html" title="Handles the execution of CGI scripts." alt="http::CGIHandler" shape="rect" coords="0,56,153,80"/>
-<area href="classhttp_1_1DefaultErrorHandler.html" title="Handles the execution of CGI scripts." alt="http::DefaultErrorHandler" shape="rect" coords="163,56,316,80"/>
-<area href="classhttp_1_1FileDeleteHandler.html" alt="http::FileDeleteHandler" shape="rect" coords="326,56,479,80"/>
-<area href="classhttp_1_1FileUploadHandler.html" alt="http::FileUploadHandler" shape="rect" coords="489,56,642,80"/>
-<area href="classhttp_1_1NotFoundHandler.html" title="Handles the generation of not found(404)." alt="http::NotFoundHandler" shape="rect" coords="652,56,805,80"/>
-<area href="classhttp_1_1StaticFileHandler.html" title="Handles serving static files from the filesystem." alt="http::StaticFileHandler" shape="rect" coords="815,56,968,80"/>
+<area href="classhttp_1_1CGIHandler.html" alt="http::CGIHandler" shape="rect" coords="0,56,135,80"/>
+<area href="classhttp_1_1StaticFileHandler.html" title="Handles serving static files from the filesystem." alt="http::StaticFileHandler" shape="rect" coords="145,56,280,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4bfa964206e57bb84fce5cb93d7fa3a7" id="r_a4bfa964206e57bb84fce5cb93d7fa3a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bfa964206e57bb84fce5cb93d7fa3a7">~IHandler</a> ()</td></tr>
-<tr class="memitem:a042fc11760ffc023edb37fe412553c41" id="r_a042fc11760ffc023edb37fe412553c41"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a042fc11760ffc023edb37fe412553c41">handle</a> (<a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;, <a class="el" href="classconfig_1_1ServerBlock.html">config::ServerBlock</a> const *, <a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const *) const =0</td></tr>
-<tr class="memdesc:a042fc11760ffc023edb37fe412553c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">The primary handler logic entry point.  <br /></td></tr>
-<tr class="memitem:a8e12c7a0ef5370219e89e328181286ce" id="r_a8e12c7a0ef5370219e89e328181286ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e12c7a0ef5370219e89e328181286ce">handle</a> (<a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;h, <a class="el" href="structhttp_1_1RouterResult.html">RouterResult</a> const &amp;r) const</td></tr>
-<tr class="memdesc:a8e12c7a0ef5370219e89e328181286ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience overload to handle a request using a <a class="el" href="structhttp_1_1RouterResult.html" title="A data container for the result of a routing decision.">RouterResult</a>.  <br /></td></tr>
+<tr class="memitem:a2464d3e0edc86cbca5e16b37f29822fa" id="r_a2464d3e0edc86cbca5e16b37f29822fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2464d3e0edc86cbca5e16b37f29822fa">handle</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;) const =0</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract interface for all request handlers (Strategy Pattern). </p>
@@ -149,8 +142,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a042fc11760ffc023edb37fe412553c41" name="a042fc11760ffc023edb37fe412553c41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a042fc11760ffc023edb37fe412553c41">&#9670;&#160;</a></span>handle() <span class="overload">[1/2]</span></h2>
+<a id="a2464d3e0edc86cbca5e16b37f29822fa" name="a2464d3e0edc86cbca5e16b37f29822fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2464d3e0edc86cbca5e16b37f29822fa">&#9670;&#160;</a></span>handle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,19 +152,14 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> http::IHandler::handle </td>
+          <td class="memname">virtual void http::IHandler::handle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classconfig_1_1ServerBlock.html">config::ServerBlock</a> const *</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classconfig_1_1LocationBlock.html">config::LocationBlock</a> const *</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;) const</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -181,49 +169,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The primary handler logic entry point. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">request</td><td>The client's HTTP request. </td></tr>
-    <tr><td class="paramname">server</td><td>The matched server configuration context. </td></tr>
-    <tr><td class="paramname">location</td><td>The matched location configuration context. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="classhttp_1_1HttpResponse.html" title="A data container for an HTTP response.">HttpResponse</a> object representing the result of the handling. </dd></dl>
-
-<p>Implemented in <a class="el" href="classhttp_1_1CGIHandler.html#ab92655ae7c846e309e46bb44c08413fc">http::CGIHandler</a>, <a class="el" href="classhttp_1_1DefaultErrorHandler.html#a9db4b5dbb89b771219f0294697059df6">http::DefaultErrorHandler</a>, <a class="el" href="classhttp_1_1FileDeleteHandler.html#adadec5eca254e53fb10903b3f73e27e4">http::FileDeleteHandler</a>, <a class="el" href="classhttp_1_1FileUploadHandler.html#a5e8182049435db3b8d5210c8c5e8d178">http::FileUploadHandler</a>, <a class="el" href="classhttp_1_1NotFoundHandler.html#ad1a6cdf7175a6c1c174c640cc85a3e3a">http::NotFoundHandler</a>, and <a class="el" href="classhttp_1_1StaticFileHandler.html#aff11773eb6d6058a427628d3dcd5693f">http::StaticFileHandler</a>.</p>
-
-</div>
-</div>
-<a id="a8e12c7a0ef5370219e89e328181286ce" name="a8e12c7a0ef5370219e89e328181286ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e12c7a0ef5370219e89e328181286ce">&#9670;&#160;</a></span>handle() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhttp_1_1HttpResponse.html">HttpResponse</a> http::IHandler::handle </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structhttp_1_1RouterResult.html">RouterResult</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convenience overload to handle a request using a <a class="el" href="structhttp_1_1RouterResult.html" title="A data container for the result of a routing decision.">RouterResult</a>. </p>
+<p>Implemented in <a class="el" href="classhttp_1_1CGIHandler.html#a5730b59dfd84579efa70fc1f2b3bc367">http::CGIHandler</a>, and <a class="el" href="classhttp_1_1StaticFileHandler.html#ac6535804f3c9047867380f236d565fa5">http::StaticFileHandler</a>.</p>
 
 </div>
 </div>

@@ -119,6 +119,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single 'location' block from the configuration file.  <a href="classconfig_1_1LocationBlock.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Mapper" id="r_Mapper"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Mapper.html">Mapper</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates a generic <a class="el" href="classconfig_1_1ConfigNode.html" title="A generic node representing a block in the configuration file.">ConfigNode</a> tree into strongly-typed config blocks.  <a href="classconfig_1_1Mapper.html#details">More...</a><br /></td></tr>
+<tr class="memitem:MaxBodySize" id="r_MaxBodySize"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1MaxBodySize.html">MaxBodySize</a></td></tr>
 <tr class="memitem:Parser" id="r_Parser"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Parser.html">Parser</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs syntax analysis on a stream of tokens to build a configuration tree.  <a href="classconfig_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="memitem:RootDirective" id="r_RootDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1RootDirective.html">RootDirective</a></td></tr>
@@ -148,8 +149,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:aedc2742208b5528f82947ef171cc854e" id="r_aedc2742208b5528f82947ef171cc854e"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedc2742208b5528f82947ef171cc854e">LocationBlockMap</a></td></tr>
 <tr class="memitem:a4508aae42e035db1f7d0e29c8ae0bcf3" id="r_a4508aae42e035db1f7d0e29c8ae0bcf3"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">ServerBlockVec</a></td></tr>
 <tr class="memitem:a7cc70445712c439111acb4dc2cfd561a" id="r_a7cc70445712c439111acb4dc2cfd561a"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; int, <a class="el" href="#a4508aae42e035db1f7d0e29c8ae0bcf3">ServerBlockVec</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cc70445712c439111acb4dc2cfd561a">ServerBlockMap</a></td></tr>
-<tr class="memitem:a02800564188ba0e19fb0147041c9c5f1" id="r_a02800564188ba0e19fb0147041c9c5f1"><td class="memItemLeft" align="right" valign="top">typedef std::string(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02800564188ba0e19fb0147041c9c5f1">FuncVar</a>) (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req)</td></tr>
-<tr class="memitem:aa8c68ac53942e8956025bf4392a4a888" id="r_aa8c68ac53942e8956025bf4392a4a888"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="#a02800564188ba0e19fb0147041c9c5f1">FuncVar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8c68ac53942e8956025bf4392a4a888">FuncMap</a></td></tr>
+<tr class="memitem:a7deca19fb51c19342fb23ae2294b3a2d" id="r_a7deca19fb51c19342fb23ae2294b3a2d"><td class="memItemLeft" align="right" valign="top">typedef std::string(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7deca19fb51c19342fb23ae2294b3a2d">FuncVar</a>) (<a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req)</td></tr>
+<tr class="memitem:aa8c68ac53942e8956025bf4392a4a888" id="r_aa8c68ac53942e8956025bf4392a4a888"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="#a7deca19fb51c19342fb23ae2294b3a2d">FuncVar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8c68ac53942e8956025bf4392a4a888">FuncMap</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -185,7 +186,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a69410b8526d2b2eb0864688f2c45b3cf" id="r_a69410b8526d2b2eb0864688f2c45b3cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69410b8526d2b2eb0864688f2c45b3cf">isValidVariableChar</a> (char c)</td></tr>
 <tr class="memitem:ae4c0ffe21b331e95076f553d6bd784c1" id="r_ae4c0ffe21b331e95076f553d6bd784c1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4c0ffe21b331e95076f553d6bd784c1">getVariableLength</a> (std::string const &amp;s, size_t pos)</td></tr>
 <tr class="memitem:aa45994805527beead38fc7e70b4fdfbc" id="r_aa45994805527beead38fc7e70b4fdfbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aa8c68ac53942e8956025bf4392a4a888">FuncMap</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45994805527beead38fc7e70b4fdfbc">getMap</a> ()</td></tr>
-<tr class="memitem:a61c01257c9a718c92b6432c9e05b7da5" id="r_a61c01257c9a718c92b6432c9e05b7da5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61c01257c9a718c92b6432c9e05b7da5">HostFunc</a> (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req)</td></tr>
+<tr class="memitem:a5e2221a44dab9b2996b40984ee12791e" id="r_a5e2221a44dab9b2996b40984ee12791e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e2221a44dab9b2996b40984ee12791e">HostFunc</a> (<a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req)</td></tr>
 <tr class="memitem:a67658bb36afc00976da33f5d76501deb" id="r_a67658bb36afc00976da33f5d76501deb"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67658bb36afc00976da33f5d76501deb">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classconfig_1_1Block.html">Block</a> const &amp;b)</td></tr>
 <tr class="memitem:a127485cd845a03dcc45d2a08c261995a" id="r_a127485cd845a03dcc45d2a08c261995a"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127485cd845a03dcc45d2a08c261995a">operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> &amp;t)</td></tr>
 </table>
@@ -253,21 +254,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::map&lt;std::string, <a class="el" href="#a02800564188ba0e19fb0147041c9c5f1">FuncVar</a>&gt; <a class="el" href="#aa8c68ac53942e8956025bf4392a4a888">config::FuncMap</a></td>
+          <td class="memname">typedef std::map&lt;std::string, <a class="el" href="#a7deca19fb51c19342fb23ae2294b3a2d">FuncVar</a>&gt; <a class="el" href="#aa8c68ac53942e8956025bf4392a4a888">config::FuncMap</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a02800564188ba0e19fb0147041c9c5f1" name="a02800564188ba0e19fb0147041c9c5f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02800564188ba0e19fb0147041c9c5f1">&#9670;&#160;</a></span>FuncVar</h2>
+<a id="a7deca19fb51c19342fb23ae2294b3a2d" name="a7deca19fb51c19342fb23ae2294b3a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7deca19fb51c19342fb23ae2294b3a2d">&#9670;&#160;</a></span>FuncVar</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::string(* config::FuncVar) (<a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;req)</td>
+          <td class="memname">typedef std::string(* config::FuncVar) (<a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -513,8 +514,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a61c01257c9a718c92b6432c9e05b7da5" name="a61c01257c9a718c92b6432c9e05b7da5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61c01257c9a718c92b6432c9e05b7da5">&#9670;&#160;</a></span>HostFunc()</h2>
+<a id="a5e2221a44dab9b2996b40984ee12791e" name="a5e2221a44dab9b2996b40984ee12791e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e2221a44dab9b2996b40984ee12791e">&#9670;&#160;</a></span>HostFunc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -522,7 +523,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string config::HostFunc </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classhttp_1_1HttpRequest.html">http::HttpRequest</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

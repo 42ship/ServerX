@@ -1,13 +1,13 @@
 var dir_8790a556eb51fcdc104df0b6976396f1 =
 [
-    [ "error_pages.hpp", "error__pages_8hpp.html", "error__pages_8hpp" ],
+    [ "internal", "dir_b4aa6e55aa0b3b94dae4205e58850172.html", "dir_b4aa6e55aa0b3b94dae4205e58850172" ],
     [ "Handler.hpp", "Handler_8hpp.html", "Handler_8hpp" ],
-    [ "HttpRequest.hpp", "HttpRequest_8hpp.html", "HttpRequest_8hpp" ],
-    [ "HttpResponse.hpp", "HttpResponse_8hpp.html", "HttpResponse_8hpp" ],
+    [ "Headers.hpp", "Headers_8hpp.html", "Headers_8hpp" ],
     [ "HttpStatus.hpp", "HttpStatus_8hpp.html", "HttpStatus_8hpp" ],
     [ "MimeTypes.hpp", "MimeTypes_8hpp.html", "MimeTypes_8hpp" ],
-    [ "Router.hpp", "Router_8hpp.html", "Router_8hpp" ],
-    [ "RouterResult.hpp", "RouterResult_8hpp.html", "RouterResult_8hpp" ],
-    [ "utils.hpp", "http_2utils_8hpp.html", "http_2utils_8hpp" ],
-    [ "ValidationResult.hpp", "ValidationResult_8hpp.html", "ValidationResult_8hpp" ]
+    [ "Request.hpp", "Request_8hpp.html", "Request_8hpp" ],
+    [ "RequestParser.hpp", "RequestParser_8hpp.html", "RequestParser_8hpp" ],
+    [ "Response.hpp", "Response_8hpp.html", "Response_8hpp" ],
+    [ "ResponseBody.hpp", "ResponseBody_8hpp.html", "ResponseBody_8hpp" ],
+    [ "Router.hpp", "Router_8hpp.html", "Router_8hpp" ]
 ];

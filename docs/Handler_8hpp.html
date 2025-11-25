@@ -91,12 +91,9 @@ $(function(){initNavTree('Handler_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Handler.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="LocationBlock_8hpp_source.html">config/LocationBlock.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ServerBlock_8hpp_source.html">config/ServerBlock.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="HttpRequest_8hpp_source.html">http/HttpRequest.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="HttpResponse_8hpp_source.html">HttpResponse.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="RouterResult_8hpp_source.html">RouterResult.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="MimeTypes_8hpp_source.html">http/MimeTypes.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="MimeTypes_8hpp_source.html">http/MimeTypes.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Request_8hpp_source.html">http/Request.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Response_8hpp_source.html">http/Response.hpp</a>&quot;</code><br />
 </div>
 <p><a href="Handler_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -106,24 +103,42 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract interface for all request handlers (Strategy Pattern).  <a href="classhttp_1_1IHandler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:http_3A_3AStaticFileHandler" id="r_http_3A_3AStaticFileHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1StaticFileHandler.html">http::StaticFileHandler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles serving static files from the filesystem.  <a href="classhttp_1_1StaticFileHandler.html#details">More...</a><br /></td></tr>
-<tr class="memitem:http_3A_3ANotFoundHandler" id="r_http_3A_3ANotFoundHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1NotFoundHandler.html">http::NotFoundHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the generation of not found(404).  <a href="classhttp_1_1NotFoundHandler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:http_3A_3ACGIHandler" id="r_http_3A_3ACGIHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1CGIHandler.html">http::CGIHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the execution of CGI scripts.  <a href="classhttp_1_1CGIHandler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:http_3A_3AJsonErrorHandler" id="r_http_3A_3AJsonErrorHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1JsonErrorHandler.html">http::JsonErrorHandler</a></td></tr>
 <tr class="memitem:http_3A_3ADefaultErrorHandler" id="r_http_3A_3ADefaultErrorHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1DefaultErrorHandler.html">http::DefaultErrorHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the execution of CGI scripts.  <a href="classhttp_1_1DefaultErrorHandler.html#details">More...</a><br /></td></tr>
-<tr class="memitem:http_3A_3AFileUploadHandler" id="r_http_3A_3AFileUploadHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileUploadHandler.html">http::FileUploadHandler</a></td></tr>
-<tr class="memitem:http_3A_3AFileDeleteHandler" id="r_http_3A_3AFileDeleteHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileDeleteHandler.html">http::FileDeleteHandler</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:http" id="r_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp.html">http</a></td></tr>
-<tr class="memitem:http_3A_3Adetails" id="r_http_3A_3Adetails"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp_1_1details.html">http::details</a></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a0a12f783285f8611aab97f4c80e2d630" id="r_a0a12f783285f8611aab97f4c80e2d630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1HttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp_1_1details.html#a0a12f783285f8611aab97f4c80e2d630">http::details::parse</a> (std::istringstream &amp;s, const std::string &amp;boundary)</td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a065a82add5ef390cc410fe1d5b65db36" id="r_a065a82add5ef390cc410fe1d5b65db36"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a065a82add5ef390cc410fe1d5b65db36">CHECK_FOR_SERVER_AND_LOCATION</a>(req,  res)</td></tr>
 </table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a065a82add5ef390cc410fe1d5b65db36" name="a065a82add5ef390cc410fe1d5b65db36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a065a82add5ef390cc410fe1d5b65db36">&#9670;&#160;</a></span>CHECK_FOR_SERVER_AND_LOCATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_FOR_SERVER_AND_LOCATION</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>res</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> (!req.location() || !req.server())                                                          \</div>
+<div class="line">    return (<span class="keywordtype">void</span>)res.status(NOT_FOUND)</div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

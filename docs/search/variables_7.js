@@ -1,11 +1,12 @@
 var searchData=
 [
   ['indent_0',['indent',['../IndentManager_8hpp.html#a0dadb7b61f62ff852bee7dd3c838d57b',1,'IndentManager.hpp']]],
-  ['inmemorybody_1',['inMemoryBody',['../classhttp_1_1HttpResponse.html#adf01b3f96e3adabb654dc1ea5f1923da',1,'http::HttpResponse']]],
-  ['instance_5f_2',['instance_',['../classcore_1_1Server.html#a6c9bdad2c38ccb2f51fca8185c7e921c',1,'core::Server']]],
-  ['io_5fbuffer_5fsize_3',['IO_BUFFER_SIZE',['../classnetwork_1_1Reactor.html#ae2f06b51c05cf0e91efc4b32374a7738',1,'network::Reactor']]],
-  ['ip_4',['ip',['../structutils_1_1IpInfo.html#abb1762d2c692d6029163c09fe1cc712d',1,'utils::IpInfo']]],
-  ['isrunning_5f_5',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
-  ['isshuttingdown_6',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
-  ['ivalue_5f_7',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
+  ['instance_5f_1',['instance_',['../classcore_1_1Server.html#a6c9bdad2c38ccb2f51fca8185c7e921c',1,'core::Server']]],
+  ['io_5fbuffer_5fsize_2',['IO_BUFFER_SIZE',['../classnetwork_1_1ClientHandler.html#ac3d16c06a2351e35b85ef71a8c3c2425',1,'network::ClientHandler']]],
+  ['ip_3',['ip',['../structutils_1_1IpInfo.html#abb1762d2c692d6029163c09fe1cc712d',1,'utils::IpInfo']]],
+  ['iscontentchunked_5f_4',['isContentChunked_',['../classhttp_1_1RequestParser.html#aec8d7b8588bc599d6dc22f19f8806b1b',1,'http::RequestParser']]],
+  ['isdone_5f_5',['isDone_',['../classhttp_1_1BodyFromCgi.html#a25df8ba053f0bf1d1e029ee70477fcf8',1,'http::BodyFromCgi']]],
+  ['isrunning_5f_6',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
+  ['isshuttingdown_7',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
+  ['ivalue_5f_8',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
 ];

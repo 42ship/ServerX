@@ -7,7 +7,7 @@ var classconfig_1_1Lexer =
     [ "handleUnknown", "classconfig_1_1Lexer.html#a139ebb29babffde315f89afda1ea0141", null ],
     [ "handleValue", "classconfig_1_1Lexer.html#a58ea81de7b3ef968ce02745b81e02410", null ],
     [ "identifyLastToken", "classconfig_1_1Lexer.html#a2b33f2e43eb34ac2d7523323a241315a", null ],
-    [ "isPunctuation", "classconfig_1_1Lexer.html#aa26b33e0e93966ac2ddbbdf1ff44922f", null ],
+    [ "isPunctuation", "classconfig_1_1Lexer.html#a2f72dc31ce16c91090554f6bff6d0484", null ],
     [ "pushToken", "classconfig_1_1Lexer.html#a5db5727e62ca2475c429426e0ec5359a", null ],
     [ "pushToken", "classconfig_1_1Lexer.html#a171546fd01e46822fc502da741911377", null ],
     [ "readChar", "classconfig_1_1Lexer.html#afdb1642f3297487e2c5a273515f469f2", null ],

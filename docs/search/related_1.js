@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['listendirective_0',['ListenDirective',['../classconfig_1_1Block.html#a2a3e6fbfc8479272d09aaa82bdcf59e4',1,'config::Block']]]
+  ['network_3a_3aclienthandler_0',['ClientHandler',['../classhttp_1_1Request.html#a837d793eae715f42b609535db75657c5',1,'http::Request']]]
 ];

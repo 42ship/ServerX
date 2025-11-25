@@ -101,10 +101,10 @@ $(function(){initNavTree('classnetwork_1_1EpollManager.html','','classnetwork_1_
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2210befade41027da81c2769c353ce17" id="r_a2210befade41027da81c2769c353ce17"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2210befade41027da81c2769c353ce17">EpollManager</a> ()</td></tr>
 <tr class="memitem:abdd30e189cae3ea1df0d6278e3fba582" id="r_abdd30e189cae3ea1df0d6278e3fba582"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdd30e189cae3ea1df0d6278e3fba582">~EpollManager</a> ()</td></tr>
-<tr class="memitem:a00318900650786f6077aa1cc966c90d9" id="r_a00318900650786f6077aa1cc966c90d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00318900650786f6077aa1cc966c90d9">addFd</a> (int fd, uint32_t events)</td></tr>
-<tr class="memitem:aa7462b1479c04fe43cb44d4e47bb810f" id="r_aa7462b1479c04fe43cb44d4e47bb810f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7462b1479c04fe43cb44d4e47bb810f">removeFd</a> (int fd)</td></tr>
-<tr class="memitem:a256a0f6edcb18296b6d8db8ee8d34dc6" id="r_a256a0f6edcb18296b6d8db8ee8d34dc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a256a0f6edcb18296b6d8db8ee8d34dc6">modifyFd</a> (int fd, uint32_t events)</td></tr>
-<tr class="memitem:abb424308981f68a5c9275d6a4b9cbbd8" id="r_abb424308981f68a5c9275d6a4b9cbbd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb424308981f68a5c9275d6a4b9cbbd8">waitForEvents</a> (struct epoll_event *events, int max_events, int timeout=-1)</td></tr>
+<tr class="memitem:a21b4e57b39869a0a7ffdefc9de516d4d" id="r_a21b4e57b39869a0a7ffdefc9de516d4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21b4e57b39869a0a7ffdefc9de516d4d">addHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler, uint32_t events)</td></tr>
+<tr class="memitem:ad82d294c9b2df17cf7491de3c7ffacff" id="r_ad82d294c9b2df17cf7491de3c7ffacff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad82d294c9b2df17cf7491de3c7ffacff">modifyHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler, uint32_t events)</td></tr>
+<tr class="memitem:a81d88cf64ef44dc74ac413cc11073f3c" id="r_a81d88cf64ef44dc74ac413cc11073f3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81d88cf64ef44dc74ac413cc11073f3c">removeHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> const *handler)</td></tr>
+<tr class="memitem:a5c23dff8ee99229794aa5ecf4e93b735" id="r_a5c23dff8ee99229794aa5ecf4e93b735"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c23dff8ee99229794aa5ecf4e93b735">waitForEvents</a> (struct epoll_event *events, int maxEvents, int timeout=-1)</td></tr>
 <tr class="memitem:a0adb965362d44abf55bb552d24cb588b" id="r_a0adb965362d44abf55bb552d24cb588b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0adb965362d44abf55bb552d24cb588b">requestShutdown</a> ()</td></tr>
 <tr class="memitem:af2bb985e5f7758f25f971ba26a6f3ee8" id="r_af2bb985e5f7758f25f971ba26a6f3ee8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2bb985e5f7758f25f971ba26a6f3ee8">getisShuttingDown</a> () const</td></tr>
 </table><table class="memberdecls">
@@ -120,7 +120,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Synchronous event demultiplexer that wraps Linux epoll for I/O event monitoring. </p>
-<p>Provides a simplified interface to the epoll system call for detecting when file descriptors are ready for I/O operations without blocking. Acts as the low-level event detection mechanism in the <a class="el" href="classnetwork_1_1Reactor.html" title="Manages the full lifecycle of a single client connection.">Reactor</a> pattern implementation. By "low-level", it means epoll() is a system call to communnicate with the kernal space from the user space </p>
+<p>Provides a simplified interface to the epoll system call for detecting when file descriptors are ready for I/O operations without blocking. Acts as the low-level event detection mechanism in the <a class="el" href="classnetwork_1_1ClientHandler.html" title="Manages the full lifecycle of a single client connection.">ClientHandler</a> pattern implementation. By "low-level", it means epoll() is a system call to communnicate with the kernal space from the user space </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2210befade41027da81c2769c353ce17" name="a2210befade41027da81c2769c353ce17"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2210befade41027da81c2769c353ce17">&#9670;&#160;</a></span>EpollManager() <span class="overload">[1/2]</span></h2>
@@ -182,16 +182,16 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a00318900650786f6077aa1cc966c90d9" name="a00318900650786f6077aa1cc966c90d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00318900650786f6077aa1cc966c90d9">&#9670;&#160;</a></span>addFd()</h2>
+<a id="a21b4e57b39869a0a7ffdefc9de516d4d" name="a21b4e57b39869a0a7ffdefc9de516d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b4e57b39869a0a7ffdefc9de516d4d">&#9670;&#160;</a></span>addHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void network::EpollManager::addFd </td>
+          <td class="memname">void network::EpollManager::addHandler </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fd</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -220,16 +220,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a256a0f6edcb18296b6d8db8ee8d34dc6" name="a256a0f6edcb18296b6d8db8ee8d34dc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a256a0f6edcb18296b6d8db8ee8d34dc6">&#9670;&#160;</a></span>modifyFd()</h2>
+<a id="ad82d294c9b2df17cf7491de3c7ffacff" name="ad82d294c9b2df17cf7491de3c7ffacff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82d294c9b2df17cf7491de3c7ffacff">&#9670;&#160;</a></span>modifyHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void network::EpollManager::modifyFd </td>
+          <td class="memname">void network::EpollManager::modifyHandler </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fd</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -266,16 +266,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa7462b1479c04fe43cb44d4e47bb810f" name="aa7462b1479c04fe43cb44d4e47bb810f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7462b1479c04fe43cb44d4e47bb810f">&#9670;&#160;</a></span>removeFd()</h2>
+<a id="a81d88cf64ef44dc74ac413cc11073f3c" name="a81d88cf64ef44dc74ac413cc11073f3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d88cf64ef44dc74ac413cc11073f3c">&#9670;&#160;</a></span>removeHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void network::EpollManager::removeFd </td>
+          <td class="memname">void network::EpollManager::removeHandler </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fd</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> const *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -300,8 +300,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abb424308981f68a5c9275d6a4b9cbbd8" name="abb424308981f68a5c9275d6a4b9cbbd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb424308981f68a5c9275d6a4b9cbbd8">&#9670;&#160;</a></span>waitForEvents()</h2>
+<a id="a5c23dff8ee99229794aa5ecf4e93b735" name="a5c23dff8ee99229794aa5ecf4e93b735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c23dff8ee99229794aa5ecf4e93b735">&#9670;&#160;</a></span>waitForEvents()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -314,7 +314,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>max_events</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>maxEvents</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

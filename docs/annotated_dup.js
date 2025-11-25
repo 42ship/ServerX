@@ -16,6 +16,7 @@ var annotated_dup =
       [ "ListenDirective", "classconfig_1_1ListenDirective.html", "classconfig_1_1ListenDirective" ],
       [ "LocationBlock", "classconfig_1_1LocationBlock.html", "classconfig_1_1LocationBlock" ],
       [ "Mapper", "classconfig_1_1Mapper.html", null ],
+      [ "MaxBodySize", "classconfig_1_1MaxBodySize.html", "classconfig_1_1MaxBodySize" ],
       [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
       [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
       [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
@@ -29,31 +30,40 @@ var annotated_dup =
       [ "Server", "classcore_1_1Server.html", "classcore_1_1Server" ]
     ] ],
     [ "http", "namespacehttp.html", [
+      [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html", "classhttp_1_1BodyFromCgi" ],
+      [ "BodyInMemory", "classhttp_1_1BodyInMemory.html", "classhttp_1_1BodyInMemory" ],
       [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
-      [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", "classhttp_1_1DefaultErrorHandler" ],
-      [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", "classhttp_1_1FileDeleteHandler" ],
-      [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", "classhttp_1_1FileUploadHandler" ],
-      [ "HttpRequest", "classhttp_1_1HttpRequest.html", "classhttp_1_1HttpRequest" ],
-      [ "HttpResponse", "classhttp_1_1HttpResponse.html", "classhttp_1_1HttpResponse" ],
+      [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
+      [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
+      [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
+      [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
       [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
+      [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
+      [ "JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],
       [ "MimeTypes", "classhttp_1_1MimeTypes.html", "classhttp_1_1MimeTypes" ],
-      [ "NotFoundHandler", "classhttp_1_1NotFoundHandler.html", "classhttp_1_1NotFoundHandler" ],
+      [ "NoBody", "classhttp_1_1NoBody.html", "classhttp_1_1NoBody" ],
+      [ "Request", "classhttp_1_1Request.html", "classhttp_1_1Request" ],
+      [ "RequestParser", "classhttp_1_1RequestParser.html", "classhttp_1_1RequestParser" ],
+      [ "RequestStartLine", "classhttp_1_1RequestStartLine.html", "classhttp_1_1RequestStartLine" ],
+      [ "Response", "classhttp_1_1Response.html", "classhttp_1_1Response" ],
+      [ "ResponseStartLine", "classhttp_1_1ResponseStartLine.html", "classhttp_1_1ResponseStartLine" ],
       [ "Router", "classhttp_1_1Router.html", "classhttp_1_1Router" ],
-      [ "RouterResult", "structhttp_1_1RouterResult.html", "structhttp_1_1RouterResult" ],
       [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", "classhttp_1_1StaticFileHandler" ]
     ] ],
     [ "network", "namespacenetwork.html", [
       [ "Acceptor", "classnetwork_1_1Acceptor.html", "classnetwork_1_1Acceptor" ],
-      [ "AEventHandler", "classnetwork_1_1AEventHandler.html", "classnetwork_1_1AEventHandler" ],
+      [ "CGIHandler", "classnetwork_1_1CGIHandler.html", "classnetwork_1_1CGIHandler" ],
+      [ "ClientHandler", "classnetwork_1_1ClientHandler.html", "classnetwork_1_1ClientHandler" ],
       [ "EpollManager", "classnetwork_1_1EpollManager.html", "classnetwork_1_1EpollManager" ],
-      [ "InitiationDispatcher", "classnetwork_1_1InitiationDispatcher.html", "classnetwork_1_1InitiationDispatcher" ],
-      [ "Reactor", "classnetwork_1_1Reactor.html", "classnetwork_1_1Reactor" ],
+      [ "EventDispatcher", "classnetwork_1_1EventDispatcher.html", "classnetwork_1_1EventDispatcher" ],
+      [ "IEventHandler", "classnetwork_1_1IEventHandler.html", "classnetwork_1_1IEventHandler" ],
       [ "Socket", "classnetwork_1_1Socket.html", "classnetwork_1_1Socket" ]
     ] ],
     [ "utils", "namespaceutils.html", [
       [ "IpInfo", "structutils_1_1IpInfo.html", "structutils_1_1IpInfo" ],
       [ "Logger", "classutils_1_1Logger.html", null ],
-      [ "ValidationResult", "structutils_1_1ValidationResult.html", "structutils_1_1ValidationResult" ]
+      [ "TempFile", "classutils_1_1TempFile.html", "classutils_1_1TempFile" ]
     ] ],
+    [ "HttpRequest", "classHttpRequest.html", null ],
     [ "IndentManager", "structIndentManager.html", "structIndentManager" ]
 ];

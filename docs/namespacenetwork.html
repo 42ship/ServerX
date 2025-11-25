@@ -95,67 +95,18 @@ $(function(){initNavTree('namespacenetwork.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Acceptor" id="r_Acceptor"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Acceptor.html">Acceptor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnetwork_1_1Acceptor.html" title="Acceptor inherent from AEventHandler as a concrete class that accepts new client connections.">Acceptor</a> inherent from <a class="el" href="classnetwork_1_1AEventHandler.html" title="Abstract base class defining the interface for event-driven service handlers.">AEventHandler</a> as a concrete class that accepts new client connections.  <a href="classnetwork_1_1Acceptor.html#details">More...</a><br /></td></tr>
-<tr class="memitem:AEventHandler" id="r_AEventHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1AEventHandler.html">AEventHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class defining the interface for event-driven service handlers.  <a href="classnetwork_1_1AEventHandler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnetwork_1_1Acceptor.html" title="Acceptor inherent from IEventHandler as a concrete class that accepts new client connections.">Acceptor</a> inherent from <a class="el" href="classnetwork_1_1IEventHandler.html" title="Abstract base class defining the interface for event-driven service handlers.">IEventHandler</a> as a concrete class that accepts new client connections.  <a href="classnetwork_1_1Acceptor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:CGIHandler" id="r_CGIHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1CGIHandler.html">CGIHandler</a></td></tr>
+<tr class="memitem:ClientHandler" id="r_ClientHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the full lifecycle of a single client connection.  <a href="classnetwork_1_1ClientHandler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:EpollManager" id="r_EpollManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1EpollManager.html">EpollManager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronous event demultiplexer that wraps Linux epoll for I/O event monitoring.  <a href="classnetwork_1_1EpollManager.html#details">More...</a><br /></td></tr>
-<tr class="memitem:InitiationDispatcher" id="r_InitiationDispatcher"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1InitiationDispatcher.html">InitiationDispatcher</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centralised event demultiplexer and dispatcher for managing I/O events.  <a href="classnetwork_1_1InitiationDispatcher.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Reactor" id="r_Reactor"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Reactor.html">Reactor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the full lifecycle of a single client connection.  <a href="classnetwork_1_1Reactor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:EventDispatcher" id="r_EventDispatcher"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1EventDispatcher.html">EventDispatcher</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centralised event demultiplexer and dispatcher for managing I/O events.  <a href="classnetwork_1_1EventDispatcher.html#details">More...</a><br /></td></tr>
+<tr class="memitem:IEventHandler" id="r_IEventHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class defining the interface for event-driven service handlers.  <a href="classnetwork_1_1IEventHandler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Socket" id="r_Socket"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Socket.html">Socket</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:aaaec8168c304b28c9d428837848abae4" id="r_aaaec8168c304b28c9d428837848abae4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaec8168c304b28c9d428837848abae4">RequestState</a> { <a class="el" href="#aaaec8168c304b28c9d428837848abae4a6b8c56ac0c2a72e55bd7163ddba893f5">READING_HEADERS</a>
-, <a class="el" href="#aaaec8168c304b28c9d428837848abae4a7b9ff537543116c2f4aa0399a5511862">READING_BODY</a>
-, <a class="el" href="#aaaec8168c304b28c9d428837848abae4a6a309d002ea09e66d42f150a144510a2">REQUEST_READY</a>
- }</td></tr>
-<tr class="memitem:aecef2691506037b978e28401f4b52c68" id="r_aecef2691506037b978e28401f4b52c68"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecef2691506037b978e28401f4b52c68">ResponseState</a> { <a class="el" href="#aecef2691506037b978e28401f4b52c68a458e362c525e9c57c2fdaf1b71a8885b">NOT_READY</a>
-, <a class="el" href="#aecef2691506037b978e28401f4b52c68aa50025f7af8a5d10c0d6ebada092a252">SENDING</a>
-, <a class="el" href="#aecef2691506037b978e28401f4b52c68a4bdec1c72780146f81278818664ef576">SENT</a>
- }</td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
-<a id="aaaec8168c304b28c9d428837848abae4" name="aaaec8168c304b28c9d428837848abae4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaaec8168c304b28c9d428837848abae4">&#9670;&#160;</a></span>RequestState</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="#aaaec8168c304b28c9d428837848abae4">network::RequestState</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aaaec8168c304b28c9d428837848abae4a6b8c56ac0c2a72e55bd7163ddba893f5" name="aaaec8168c304b28c9d428837848abae4a6b8c56ac0c2a72e55bd7163ddba893f5"></a>READING_HEADERS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaaec8168c304b28c9d428837848abae4a7b9ff537543116c2f4aa0399a5511862" name="aaaec8168c304b28c9d428837848abae4a7b9ff537543116c2f4aa0399a5511862"></a>READING_BODY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaaec8168c304b28c9d428837848abae4a6a309d002ea09e66d42f150a144510a2" name="aaaec8168c304b28c9d428837848abae4a6a309d002ea09e66d42f150a144510a2"></a>REQUEST_READY&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="aecef2691506037b978e28401f4b52c68" name="aecef2691506037b978e28401f4b52c68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecef2691506037b978e28401f4b52c68">&#9670;&#160;</a></span>ResponseState</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="#aecef2691506037b978e28401f4b52c68">network::ResponseState</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aecef2691506037b978e28401f4b52c68a458e362c525e9c57c2fdaf1b71a8885b" name="aecef2691506037b978e28401f4b52c68a458e362c525e9c57c2fdaf1b71a8885b"></a>NOT_READY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aecef2691506037b978e28401f4b52c68aa50025f7af8a5d10c0d6ebada092a252" name="aecef2691506037b978e28401f4b52c68aa50025f7af8a5d10c0d6ebada092a252"></a>SENDING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aecef2691506037b978e28401f4b52c68a4bdec1c72780146f81278818664ef576" name="aecef2691506037b978e28401f4b52c68a4bdec1c72780146f81278818664ef576"></a>SENT&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

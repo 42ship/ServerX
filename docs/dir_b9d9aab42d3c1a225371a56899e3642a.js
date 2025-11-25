@@ -1,9 +1,7 @@
 var dir_b9d9aab42d3c1a225371a56899e3642a =
 [
-    [ "CGI.cpp", "CGI_8cpp.html", null ],
-    [ "DefaultError.cpp", "DefaultError_8cpp.html", null ],
-    [ "FileDeleteHandler.cpp", "FileDeleteHandler_8cpp.html", null ],
-    [ "FileUpload.cpp", "FileUpload_8cpp.html", "FileUpload_8cpp" ],
-    [ "NotFound.cpp", "NotFound_8cpp.html", null ],
+    [ "CGIHandler.cpp", "http_2handlers_2CGIHandler_8cpp.html", null ],
+    [ "DefaultError.cpp", "DefaultError_8cpp.html", "DefaultError_8cpp" ],
+    [ "JsonError.cpp", "JsonError_8cpp.html", null ],
     [ "StaticFile.cpp", "StaticFile_8cpp.html", null ]
 ];

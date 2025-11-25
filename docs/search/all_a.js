@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['json_0',['JSON',['../namespacehttp.html#a8f88c4ace128eee20180b1f0981d0337ac0b6bfeb64f847fde16a8765a9e9e84b',1,'http']]]
+  ['jsonerror_2ecpp_0',['JsonError.cpp',['../JsonError_8cpp.html',1,'']]],
+  ['jsonerrorhandler_1',['JsonErrorHandler',['../classhttp_1_1JsonErrorHandler.html',1,'http']]]
 ];
