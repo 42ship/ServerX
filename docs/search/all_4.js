@@ -10,7 +10,7 @@ var searchData=
   ['directivemap_7',['DirectiveMap',['../namespaceconfig.html#af84dbd7147ca68f1dbb08472f16061d6',1,'config']]],
   ['directives_8',['directives',['../classconfig_1_1ConfigNode.html#a12bf2a5d316be544d2997dac79e3e8f0',1,'config::ConfigNode']]],
   ['directives_5f_9',['directives_',['../classconfig_1_1Block.html#a66c593ae9f617ab65ccae5c52467614c',1,'config::Block']]],
-  ['dispatch_10',['dispatch',['../classhttp_1_1Router.html#a78a0dcb2c498cd145fbf07d0299ad3bd',1,'http::Router']]],
+  ['dispatch_10',['dispatch',['../classhttp_1_1Router.html#afeec6462abf61f2debfc94865b204ae0',1,'http::Router']]],
   ['dispatcher_5f_11',['dispatcher_',['../classcore_1_1Server.html#a4f77cffca29d16f0b9f41c8f279589e7',1,'core::Server']]],
   ['displaycurrenttoken_12',['displayCurrentToken',['../classconfig_1_1Parser.html#af5c88512d33330c718ea50a5729b9224',1,'config::Parser']]],
   ['done_13',['DONE',['../classhttp_1_1ChunkedBodyParser.html#a726b0fe20b7a48fc7d1daa53e63a9a29a1a2f8aeabe67c3dc3ccd34a9796dda97',1,'http::ChunkedBodyParser']]]

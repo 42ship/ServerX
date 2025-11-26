@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handle_0',['handle',['../classhttp_1_1IHandler.html#a2464d3e0edc86cbca5e16b37f29822fa',1,'http::IHandler::handle()'],['../classhttp_1_1StaticFileHandler.html#ac6535804f3c9047867380f236d565fa5',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1CGIHandler.html#a5730b59dfd84579efa70fc1f2b3bc367',1,'http::CGIHandler::handle()']]],
+  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1CGIHandler.html#a85cde3832cfb8f5b2b240de9c5bf52df',1,'http::CGIHandler::handle()']]],
   ['handlechunkedbody_1',['handleChunkedBody',['../classhttp_1_1RequestParser.html#a963b693664e3ee237b28371dbb63d84d',1,'http::RequestParser']]],
   ['handlecomment_2',['handleComment',['../classconfig_1_1Lexer.html#a699d9f478fb02fba854f1270ae04780e',1,'config::Lexer']]],
   ['handlecontentlengthbody_3',['handleContentLengthBody',['../classhttp_1_1RequestParser.html#aeb59fd00d27f41b96a8047f76b9d51fc',1,'http::RequestParser']]],

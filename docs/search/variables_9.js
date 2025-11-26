@@ -7,6 +7,6 @@ var searchData=
   ['message_5f_4',['message_',['../classconfig_1_1ConfigException.html#a38e7bc3dc69fec591b64864aaae8041a',1,'config::ConfigException']]],
   ['method_5',['method',['../classhttp_1_1RequestStartLine.html#add33a3a9944e815f3aa6b2366167b7e8',1,'http::RequestStartLine']]],
   ['mimeext_5f_6',['mimeExt_',['../classhttp_1_1MimeTypes.html#a0d9384e09a4ec6a6d49d26194d9092b5',1,'http::MimeTypes']]],
-  ['mimetypes_5f_7',['mimeTypes_',['../classcore_1_1Server.html#a9ff94a114014763f6dadea7ddab0b182',1,'core::Server::mimeTypes_'],['../classhttp_1_1StaticFileHandler.html#ab3850855508df4a8742b6fbf93f84104',1,'http::StaticFileHandler::mimeTypes_'],['../classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff',1,'http::MimeTypes::mimeTypes_']]],
+  ['mimetypes_5f_7',['mimeTypes_',['../classcore_1_1Server.html#a9ff94a114014763f6dadea7ddab0b182',1,'core::Server::mimeTypes_'],['../classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff',1,'http::MimeTypes::mimeTypes_'],['../classhttp_1_1Router.html#acf39caa60038760ed23c9bef61001b48',1,'http::Router::mimeTypes_']]],
   ['modification_8',['modification',['../structIndentManager.html#abbf0830a9180b2f7603c85dcb3b7082e',1,'IndentManager']]]
 ];

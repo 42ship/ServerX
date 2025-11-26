@@ -103,24 +103,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa0fbec2bfc7ea52101730f1473aacf53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the <a class="el" href="classhttp_1_1Router.html" title="The central request dispatcher (Facade).">Router</a>.  <br /></td></tr>
 <tr class="memitem:a41a149e90f58f2dfc79de7e75324ac2f" id="r_a41a149e90f58f2dfc79de7e75324ac2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41a149e90f58f2dfc79de7e75324ac2f">matchServerAndLocation</a> (int port, <a class="el" href="classhttp_1_1Request.html">Request</a> &amp;request) const</td></tr>
 <tr class="memdesc:a41a149e90f58f2dfc79de7e75324ac2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates the request with the matching server and location blocks.  <br /></td></tr>
-<tr class="memitem:a78a0dcb2c498cd145fbf07d0299ad3bd" id="r_a78a0dcb2c498cd145fbf07d0299ad3bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78a0dcb2c498cd145fbf07d0299ad3bd">dispatch</a> (int port, <a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;request, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;response) const</td></tr>
-<tr class="memdesc:a78a0dcb2c498cd145fbf07d0299ad3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a fully parsed request to the correct handler.  <br /></td></tr>
+<tr class="memitem:afeec6462abf61f2debfc94865b204ae0" id="r_afeec6462abf61f2debfc94865b204ae0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeec6462abf61f2debfc94865b204ae0">dispatch</a> (int port, const <a class="el" href="classhttp_1_1Request.html">Request</a> &amp;request, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;response) const</td></tr>
+<tr class="memdesc:afeec6462abf61f2debfc94865b204ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a fully parsed request to the correct handler.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a704489f11273ef74af05711a730195ac" id="r_a704489f11273ef74af05711a730195ac"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a704489f11273ef74af05711a730195ac">handleError</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;request, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;response)</td></tr>
+<tr class="memdesc:a704489f11273ef74af05711a730195ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Populates an error response.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a77dafb7c804558ef1c86a5edfaaa37b6" id="r_a77dafb7c804558ef1c86a5edfaaa37b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77dafb7c804558ef1c86a5edfaaa37b6">executeHandler</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;request, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;response) const</td></tr>
 <tr class="memdesc:a77dafb7c804558ef1c86a5edfaaa37b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Selects and executes the correct handler.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
-Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a704489f11273ef74af05711a730195ac" id="r_a704489f11273ef74af05711a730195ac"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a704489f11273ef74af05711a730195ac">handleError</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;request, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;response)</td></tr>
-<tr class="memdesc:a704489f11273ef74af05711a730195ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Populates an error response.  <br /></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa8e689276f0349ab727da075b7ab9560" id="r_aa8e689276f0349ab727da075b7ab9560"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerConfig.html">config::ServerConfig</a> const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8e689276f0349ab727da075b7ab9560">config_</a></td></tr>
-<tr class="memitem:a4222594d1ddaad3ed289ec7fcd33bf2c" id="r_a4222594d1ddaad3ed289ec7fcd33bf2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1StaticFileHandler.html">StaticFileHandler</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4222594d1ddaad3ed289ec7fcd33bf2c">staticFile_</a></td></tr>
-<tr class="memitem:a0a7fb191540042f3b58f842977f939a1" id="r_a0a7fb191540042f3b58f842977f939a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1CGIHandler.html">CGIHandler</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a7fb191540042f3b58f842977f939a1">cgiHandler_</a></td></tr>
+<tr class="memitem:acf39caa60038760ed23c9bef61001b48" id="r_acf39caa60038760ed23c9bef61001b48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1MimeTypes.html">MimeTypes</a> const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf39caa60038760ed23c9bef61001b48">mimeTypes_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The central request dispatcher (Facade). </p>
@@ -157,8 +156,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a78a0dcb2c498cd145fbf07d0299ad3bd" name="a78a0dcb2c498cd145fbf07d0299ad3bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78a0dcb2c498cd145fbf07d0299ad3bd">&#9670;&#160;</a></span>dispatch()</h2>
+<a id="afeec6462abf61f2debfc94865b204ae0" name="afeec6462abf61f2debfc94865b204ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeec6462abf61f2debfc94865b204ae0">&#9670;&#160;</a></span>dispatch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +170,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classhttp_1_1Request.html">Request</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -247,7 +246,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -288,28 +287,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a0a7fb191540042f3b58f842977f939a1" name="a0a7fb191540042f3b58f842977f939a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a7fb191540042f3b58f842977f939a1">&#9670;&#160;</a></span>cgiHandler_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhttp_1_1CGIHandler.html">CGIHandler</a> const http::Router::cgiHandler_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aa8e689276f0349ab727da075b7ab9560" name="aa8e689276f0349ab727da075b7ab9560"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8e689276f0349ab727da075b7ab9560">&#9670;&#160;</a></span>config_</h2>
 
@@ -332,8 +309,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4222594d1ddaad3ed289ec7fcd33bf2c" name="a4222594d1ddaad3ed289ec7fcd33bf2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4222594d1ddaad3ed289ec7fcd33bf2c">&#9670;&#160;</a></span>staticFile_</h2>
+<a id="acf39caa60038760ed23c9bef61001b48" name="acf39caa60038760ed23c9bef61001b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf39caa60038760ed23c9bef61001b48">&#9670;&#160;</a></span>mimeTypes_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +319,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classhttp_1_1StaticFileHandler.html">StaticFileHandler</a> const http::Router::staticFile_</td>
+          <td class="memname"><a class="el" href="classhttp_1_1MimeTypes.html">MimeTypes</a> const&amp; http::Router::mimeTypes_</td>
         </tr>
       </table>
   </td>

@@ -32,7 +32,7 @@ var annotated_dup =
     [ "http", "namespacehttp.html", [
       [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html", "classhttp_1_1BodyFromCgi" ],
       [ "BodyInMemory", "classhttp_1_1BodyInMemory.html", "classhttp_1_1BodyInMemory" ],
-      [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
+      [ "CGIHandler", "classhttp_1_1CGIHandler.html", null ],
       [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
       [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
@@ -48,7 +48,7 @@ var annotated_dup =
       [ "Response", "classhttp_1_1Response.html", "classhttp_1_1Response" ],
       [ "ResponseStartLine", "classhttp_1_1ResponseStartLine.html", "classhttp_1_1ResponseStartLine" ],
       [ "Router", "classhttp_1_1Router.html", "classhttp_1_1Router" ],
-      [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", "classhttp_1_1StaticFileHandler" ]
+      [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],
     [ "network", "namespacenetwork.html", [
       [ "Acceptor", "classnetwork_1_1Acceptor.html", "classnetwork_1_1Acceptor" ],
