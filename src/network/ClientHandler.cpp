@@ -14,12 +14,14 @@ namespace network {
 
 ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAddr,
                              http::Router const &router)
-    : clientFd_(clientFd), port_(port), clientAddr_(clientAddr), router_(router),
+    : clientFd_(clientFd),
+      port_(port),
+      clientAddr_(clientAddr),
+      router_(router),
       reqParser_(request_, IO_BUFFER_SIZE) {
     resetForNewRequest();
-    LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_
-                                              << ") from " << clientAddr_
-                                              << ": new connection accepted");
+    LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_ << ") from "
+                                              << clientAddr_ << ": new connection accepted");
 }
 
 ClientHandler::~ClientHandler() {
@@ -111,7 +113,7 @@ void ClientHandler::generateResponse() {
     LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_ << "): modifying fd to EPOLLOUT");
     EventDispatcher::getInstance().setSendingData(this);
     http::IResponseBody const *body = response_.body();
-    if (body && !body->isDone() && body->getEventSourceFd() != -1 && body->size() == 0) {
+    if (body && !body->isDone() && body->getEventSourceFd() != -1) {
         rspEventSource_ = new CGIHandler(body->getEventSourceFd(), *this);
         EventDispatcher::getInstance().registerHandler(rspEventSource_);
         EventDispatcher::getInstance().modifyHandler(this, 0);
