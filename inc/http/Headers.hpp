@@ -85,18 +85,6 @@ public:
     std::string toString() const;
 
     /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::string &);
-
-    /**
-     * @brief Parses a stream of text into a Headers object.
-     * The stream should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::istringstream &);
-
-    /**
      * @brief Returns a const reference to the internal header map.
      * Useful for iterating over all headers (e.g., for CGI environment).
      * @return Const reference to the internal map of headers.
@@ -104,8 +92,32 @@ public:
     typedef std::map<std::string, std::string> HeaderMap;
     HeaderMap const &getAll() const;
 
-private:
+public:
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static Headers parse(std::string &, bool strict = true);
 
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::istringstream &, Headers &, bool strict = true);
+
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::string &, Headers &, bool strict = true);
+
+    /**
+     * @brief Parses a stream of text into a Headers object.
+     * The stream should contain multiple "Key: Value\r\n" lines.
+     */
+    static Headers parse(std::istringstream &, bool strict = true);
+
+private:
     /**
      * @brief Internal: Normalizes a key to lowercase in-place.
      * @internal

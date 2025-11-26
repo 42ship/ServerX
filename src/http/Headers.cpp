@@ -46,35 +46,48 @@ size_t Headers::getContentLength() const {
     return std::strtol(it->second.c_str(), NULL, 10);
 }
 
-Headers Headers::parse(std::istringstream &s) {
-    Headers res;
+bool Headers::parse(std::istringstream &s, Headers &res, bool strict) {
     std::string line;
 
     while (getline(s, line)) {
-        // Strip trailing \r if present (in case of \r\n line endings)
-        if (!line.empty() && line[line.length() - 1] == '\r') {
+        bool hasCR = (!line.empty() && line[line.length() - 1] == '\r');
+
+        if (hasCR) {
             line.resize(line.length() - 1);
+        } else if (strict && !line.empty()) {
+            return false;
         }
-        // Stop at empty line (end of headers)
+
         if (line.empty()) {
-            break;
+            return true;
         }
         size_t colon_pos = line.find(':');
         if (colon_pos == std::string::npos) {
-            continue;
+            return false;
         }
         std::string key = utils::trim(line.substr(0, colon_pos));
         if (key.empty())
-            continue;
+            return false;
         std::string value = utils::trim(line.substr(colon_pos + 1));
         res.add(key, value);
     }
+    return true;
+}
+
+Headers Headers::parse(std::istringstream &s, bool strict) {
+    Headers res;
+    parse(s, res, strict);
     return res;
 }
 
-Headers Headers::parse(std::string &buffer) {
+bool Headers::parse(std::string &buffer, Headers &headers, bool strict) {
     std::istringstream s(buffer);
-    return parse(s);
+    return parse(s, headers, strict);
+}
+
+Headers Headers::parse(std::string &buffer, bool strict) {
+    std::istringstream s(buffer);
+    return parse(s, strict);
 }
 
 bool Headers::isContentChunked() const {
