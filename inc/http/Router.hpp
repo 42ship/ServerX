@@ -1,7 +1,6 @@
 #pragma once
 
 #include "config/ServerConfig.hpp"
-#include "http/Handler.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
 
@@ -48,7 +47,17 @@ public:
      * @param request The fully populated client request.
      * @param response The Response object to be populated by the handler.
      */
-    void dispatch(int port, Request const &request, Response &response) const;
+    void dispatch(int port, const Request &request, Response &response) const;
+
+    /**
+     * @brief Internal: Populates an error response.
+     * @internal
+     * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
+     *
+     * @param request The client request.
+     * @param response The Response to populate with an error body.
+     */
+    static void handleError(Request const &request, Response &response);
 
 private:
     /**
@@ -61,30 +70,9 @@ private:
      */
     void executeHandler(Request const &request, Response &response) const;
 
-    /**
-     * @brief Internal: Populates an error response.
-     * @internal
-     * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
-     *
-     * @param request The client request.
-     * @param response The Response to populate with an error body.
-     */
-    static void handleError(Request const &request, Response &response);
-
     /** @internal */
     config::ServerConfig const &config_;
-
-    // --- Reusable, stateless handler instances ---
-    /** @internal */
-    StaticFileHandler const staticFile_;
-    /** @internal */
-    CGIHandler const cgiHandler_;
-    /** @internal */
-    // FileUploadHandler const uploadHandler_;
-    /** @internal */
-    // DefaultErrorHandler const defaultErrorHandler_;
-    /** @internal */
-    // JsonErrorHandler const jsonErrorHandler_;
+    MimeTypes const &mimeTypes_;
 };
 
 } // namespace http

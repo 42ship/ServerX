@@ -9,7 +9,7 @@
 namespace http {
 
 Router::Router(config::ServerConfig const &cfg, MimeTypes const &mime)
-    : config_(cfg), staticFile_(mime) {
+    : config_(cfg), mimeTypes_(mime) {
     LOG_TRACE("Router::Router(): router created");
 }
 
@@ -37,8 +37,10 @@ void Router::matchServerAndLocation(int port, Request &request) const {
 }
 
 void Router::dispatch(int port, Request const &request, Response &response) const {
-    LOG_DEBUG("Router::dispatch(" << port << ", " << request.method() << " " << request.uri()
-                                  << "): dispatching request");
+    (void)port;
+    LOG_DEBUG("Router::dispatch(" << port << ", "
+                                  << RequestStartLine::methodToString(request.method()) << " "
+                                  << request.uri() << "): dispatching request");
     if (request.status() >= 400) {
         response.status(request.status());
         return handleError(request, response);
@@ -87,11 +89,11 @@ void Router::executeHandler(Request const &request, Response &response) const {
                                             << "): no location found, setting 404");
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
-        cgiHandler_.handle(request, response);
+        CGIHandler::handle(request, response);
     } else {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to StaticFileHandler");
-        staticFile_.handle(request, response);
+        StaticFileHandler::handle(request, response, mimeTypes_);
     }
 #if 0
         else if (request.requestLine.method == RequestStartLine::POST) {
