@@ -1,4 +1,5 @@
 #include "network/ClientHandler.hpp"
+#include "common/string.hpp"
 #include "http/ResponseBody.hpp"
 #include "http/Router.hpp"
 #include "network/CGIHandler.hpp"
@@ -14,12 +15,14 @@ namespace network {
 
 ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAddr,
                              http::Router const &router)
-    : clientFd_(clientFd), port_(port), clientAddr_(clientAddr), router_(router),
+    : clientFd_(clientFd),
+      port_(port),
+      clientAddr_(clientAddr),
+      router_(router),
       reqParser_(request_, IO_BUFFER_SIZE) {
     resetForNewRequest();
-    LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_
-                                              << ") from " << clientAddr_
-                                              << ": new connection accepted");
+    LOG_TRACE("ClientHandler::ClientHandler(" << clientFd_ << "," << port_ << ") from "
+                                              << clientAddr_ << ": new connection accepted");
 }
 
 ClientHandler::~ClientHandler() {
@@ -203,6 +206,10 @@ void ClientHandler::resetForNewRequest() {
     reqParser_.reset();
     response_.clear();
     request_.clear();
+}
+
+std::string ClientHandler::getLogSignature() const {
+    return "[fd:" + utils::toString(clientFd_) + "]";
 }
 
 } // namespace network
