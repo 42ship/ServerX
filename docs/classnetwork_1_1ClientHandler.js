@@ -9,6 +9,7 @@ var classnetwork_1_1ClientHandler =
     [ "finalizeConnection", "classnetwork_1_1ClientHandler.html#a94c8affb6e4221df6c40fadb0fecba83", null ],
     [ "generateResponse", "classnetwork_1_1ClientHandler.html#ab33cd98c1f96a83eabf3e0ca47d56f13", null ],
     [ "getFd", "classnetwork_1_1ClientHandler.html#a3130d5a292273091372bd85c4a665ebf", null ],
+    [ "getLogSignature", "classnetwork_1_1ClientHandler.html#afa5a61477e313e1715d0db92ef2bc9cf", null ],
     [ "handleEvent", "classnetwork_1_1ClientHandler.html#a6608671559af5c21acced1522d1443bb", null ],
     [ "handleRead", "classnetwork_1_1ClientHandler.html#a849e000f909ad43cdb359ec2c77294a9", null ],
     [ "handleRequestParsingState", "classnetwork_1_1ClientHandler.html#a6675fa87ba7684db9e28b54b5d52476e", null ],
