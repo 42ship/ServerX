@@ -32,6 +32,8 @@ static const std::vector<char> &getCacherJsonErrorBody(Status code, const std::s
 }
 #endif
 
-void JsonErrorHandler::populateResponse(Response &response) { (void)response; }
+void JsonErrorHandler::populateResponse(Response &response) {
+    response.status(INTERNAL_SERVER_ERROR, "Json Response Not Implemented");
+}
 
 } // namespace http

@@ -68,7 +68,7 @@ void Router::dispatch(int port, Request const &request, Response &response) cons
     handleError(request, response);
 }
 
-void Router::handleError(Request const &request, Response &response) const {
+void Router::handleError(Request const &request, Response &response) {
     if (request.wantsJson()) {
         LOG_TRACE("Router::handleError(" << request.uri() << "): populating JSON error page");
         JsonErrorHandler::populateResponse(response);

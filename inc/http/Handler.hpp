@@ -32,12 +32,12 @@ public:
 
 class JsonErrorHandler {
 public:
-    static void populateResponse(Response &res);
+    static void populateResponse(Response &);
 };
 
 class DefaultErrorHandler {
 public:
-    static void populateResponse(Response &res);
+    static void populateResponse(Response &);
 };
 
 #define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \

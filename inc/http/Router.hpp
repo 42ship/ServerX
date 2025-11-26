@@ -57,7 +57,7 @@ public:
      * @param request The client request.
      * @param response The Response to populate with an error body.
      */
-    void handleError(Request const &request, Response &response) const;
+    static void handleError(Request const &request, Response &response);
 
 private:
     /**
