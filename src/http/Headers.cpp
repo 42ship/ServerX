@@ -74,20 +74,9 @@ bool Headers::parse(std::istringstream &s, Headers &res, bool strict) {
     return true;
 }
 
-Headers Headers::parse(std::istringstream &s, bool strict) {
-    Headers res;
-    parse(s, res, strict);
-    return res;
-}
-
 bool Headers::parse(std::string &buffer, Headers &headers, bool strict) {
     std::istringstream s(buffer);
     return parse(s, headers, strict);
-}
-
-Headers Headers::parse(std::string &buffer, bool strict) {
-    std::istringstream s(buffer);
-    return parse(s, strict);
 }
 
 bool Headers::isContentChunked() const {

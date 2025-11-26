@@ -94,28 +94,17 @@ public:
 
 public:
     /**
-     * @brief Parses a raw string of headers into a Headers object.
+     * @brief Parses a raw string of headers into a provided Headers reference.
      * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::string &, bool strict = true);
-
-    /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static bool parse(std::istringstream &, Headers &, bool strict = true);
-
-    /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
+     * @param input The raw string containing headers.
+     * @param[out] headers The Headers object to be filled.
+     * @param strict If true, parsing is strict; otherwise, more lenient.
+     * @return True if parsing succeeded, false otherwise.
      */
     static bool parse(std::string &, Headers &, bool strict = true);
 
-    /**
-     * @brief Parses a stream of text into a Headers object.
-     * The stream should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::istringstream &, bool strict = true);
+    /** @copydoc parse */
+    static bool parse(std::istringstream &, Headers &, bool strict = true);
 
 private:
     /**
