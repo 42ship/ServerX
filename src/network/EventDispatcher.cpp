@@ -83,11 +83,19 @@ void EventDispatcher::handleEvents() {
             } catch (std::exception const &e) {
                 LOG_ERROR("EventDispatcher::handleEvents::handler("
                           << handler->getFd() << ")->handleEvent: " << e.what());
-                removeHandler(handler);
+                try {
+                    removeHandler(handler);
+                } catch (std::exception const &removeEx) {
+                    LOG_ERROR("EventDispatcher::handleEvents: Failed to remove handler: " << removeEx.what());
+                }
             } catch (...) {
                 LOG_ERROR("EventDispatcher::handleEvents::handler("
                           << handler->getFd() << ")->handleEvent: unknown error");
-                removeHandler(handler);
+                try {
+                    removeHandler(handler);
+                } catch (...) {
+                    LOG_ERROR("EventDispatcher::handleEvents: Failed to remove handler");
+                }
             }
         }
     }
