@@ -15,7 +15,6 @@ namespace http {
 class IHandler {
 public:
     virtual ~IHandler() {};
-    virtual void handle(Request const &, Response &) const = 0;
 };
 
 /**
@@ -23,27 +22,22 @@ public:
  */
 class StaticFileHandler : public IHandler {
 public:
-    explicit StaticFileHandler(MimeTypes const &);
-    void handle(Request const &, Response &) const;
-
-private:
-    StaticFileHandler();
-    MimeTypes const &mimeTypes_;
+    static void handle(Request const &, Response &, MimeTypes const &);
 };
 
 class CGIHandler : public IHandler {
 public:
-    void handle(Request const &, Response &) const;
+    static void handle(Request const &, Response &);
 };
 
 class JsonErrorHandler {
 public:
-    static void populateResponse(Response const &response);
+    static void populateResponse(Response &res);
 };
 
 class DefaultErrorHandler {
 public:
-    static void populateResponse(Response &response);
+    static void populateResponse(Response &res);
 };
 
 #define CHECK_FOR_SERVER_AND_LOCATION(req, res)                                                    \

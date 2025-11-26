@@ -32,6 +32,6 @@ static const std::vector<char> &getCacherJsonErrorBody(Status code, const std::s
 }
 #endif
 
-void JsonErrorHandler::populateResponse(Response const &response) { (void)response; }
+void JsonErrorHandler::populateResponse(Response &response) { (void)response; }
 
 } // namespace http
