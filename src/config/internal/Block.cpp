@@ -80,13 +80,13 @@ std::string Block::getFirstEvaluatedString(std::string const &key, http::Request
  */
 ArgumentVector const &Block::get(std::string const &key) const {
     DirectiveMap::const_iterator it = directives_.find(key);
-    if (it != directives_.end() && !it->second.empty())
+    if (it != directives_.end())
         return it->second;
     throw std::out_of_range(key);
 }
 
 /** @brief Checks if a directive exists within the block. */
-bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
+bool Block::has(std::string const &key) const { return directives_.count(key); }
 
 Block &Block::add(std::string const &key, ArgumentPtr value) {
     if (value)
