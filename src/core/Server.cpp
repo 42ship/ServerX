@@ -27,6 +27,26 @@ void signalHandler(int sig) {
     }
 }
 
+void setupSignalHandlers() {
+    struct sigaction sa;
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_handler = &signalHandler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_RESTART;
+
+    if (sigaction(SIGTERM, &sa, NULL) == -1) {
+        throw std::runtime_error("Failed to install SIGRTERM handler");
+    }
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
+        throw std::runtime_error("Failed to install SIGINT handler");
+    }
+    if (sigaction(SIGHUP, &sa, NULL) == -1) {
+        throw std::runtime_error("Failed to install SIGHUP handler");
+    }
+    signal(SIGPIPE, SIG_IGN);
+    LOG_DEBUG("Signal handlers installed.");
+}
+
 } // namespace
 
 Server::Server(config::ServerConfig const &config)
@@ -53,26 +73,6 @@ Server::~Server() {
         close(nullFd_);
     }
     LOG_DEBUG("Server instance destroyed.");
-}
-
-void Server::setupSignalHandlers() {
-    struct sigaction sa;
-    memset(&sa, 0, sizeof(sa));
-    sa.sa_handler = &signalHandler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_RESTART;
-
-    if (sigaction(SIGTERM, &sa, NULL) == -1) {
-        throw std::runtime_error("Failed to install SIGRTERM handler");
-    }
-    if (sigaction(SIGINT, &sa, NULL) == -1) {
-        throw std::runtime_error("Failed to install SIGINT handler");
-    }
-    if (sigaction(SIGHUP, &sa, NULL) == -1) {
-        throw std::runtime_error("Failed to install SIGHUP handler");
-    }
-    signal(SIGPIPE, SIG_IGN);
-    LOG_DEBUG("Signal handlers installed.");
 }
 
 void Server::start() {

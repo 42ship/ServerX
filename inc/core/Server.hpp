@@ -63,7 +63,6 @@ private:
     // clang-format on
 
     void setupAcceptors();
-    void setupSignalHandlers();
     void cleanup();
     void gracefulShutdown();
 
