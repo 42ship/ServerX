@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         LOG_ERROR(e.what());
         return 2;
     } catch (const std::exception &e) {
-        LOG_ERROR(e.what());
+        LOG_FATAL(e.what());
         return 3;
     }
 }

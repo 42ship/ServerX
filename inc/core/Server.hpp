@@ -31,20 +31,15 @@ namespace core {
  */
 class Server {
 public:
-    Server(config::ServerConfig const &);
+    explicit Server(config::ServerConfig const &);
     ~Server();
 
     void start();
     void stop();
     bool getisRunning() const;
+    void requestShutDown();
 
-    /**
-     * @brief Static C-style callback for handling OS signals (e.g., SIGINT, SIGTERM).
-     * @details Accesses the singleton `instance_` to initiate a graceful shutdown.
-     * @param sig The signal number received from the OS.
-     */
-    static void signalHandler(int sig);
-
+public:
     /**
      * @brief Gets the server-wide file descriptor for /dev/null.
      * @return A read-only file descriptor for /dev/null.
@@ -57,7 +52,6 @@ private:
     // clang-format off
     bool isRunning_; ///< Tracks main loop state (`true` between `start()` and `gracefulShutdown()`).
     volatile sig_atomic_t shutdownRequested_; ///< Graceful shutdown flag (must be `volatile sig_atomic_t` for signal handler).
-    static Server *instance_; ///< Singleton instance, allowing `signalHandler` to access the object.
     std::vector<network::Acceptor *> acceptors_; ///< Collection of active acceptor handlers (listening sockets).
 
     config::ServerConfig const &config_; ///< Const reference to the parsed server configuration.
@@ -65,7 +59,7 @@ private:
     http::MimeTypes mimeTypes_; ///< MIME types database instance (passed to the router).
     http::Router router_; ///< HTTP request router for dispatching requests to handlers.
 
-    static int nullFd_; ///< Server-wide file descriptor for `/dev/null` (opened at startup).
+    int nullFd_; ///< Server-wide file descriptor for `/dev/null` (opened at startup).
     // clang-format on
 
     void setupAcceptors();

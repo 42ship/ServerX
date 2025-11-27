@@ -15,24 +15,35 @@
 
 namespace core {
 
-int Server::nullFd_ = -1;
+namespace {
 
-// TODO write the documentation
-// In Server.hpp - this is a DECLARATION
-// class Server {
-//     static Server* instance_;  // ← Declaration: "instance_ exists somewhere"
-// };
-Server *Server::instance_ = NULL;
+Server *instance_ = NULL;
+
+void signalHandler(int sig) {
+    if (instance_) {
+        LOG_TRACE("Signal " << sig << " received. Initiating graceful shutdown.");
+        instance_->requestShutDown();
+        network::EventDispatcher::getInstance().requestShutdown();
+    }
+}
+
+} // namespace
 
 Server::Server(config::ServerConfig const &config)
     : isRunning_(false),
       shutdownRequested_(false),
       config_(config),
       dispatcher_(network::EventDispatcher::getInstance()),
-      router_(config_, mimeTypes_) {
+      router_(config_, mimeTypes_),
+      nullFd_(open("/dev/null", O_RDONLY)) {
+
+    if (nullFd_ == -1) {
+        throw std::runtime_error("Failed to open /dev/null: " + std::string(strerror(errno)));
+    }
+
     instance_ = this;
     setupSignalHandlers();
-    LOG_INFO("Server instance created.");
+    LOG_TRACE("Server instance created.");
 }
 
 Server::~Server() {
@@ -40,15 +51,14 @@ Server::~Server() {
     instance_ = NULL;
     if (nullFd_ >= 0) {
         close(nullFd_);
-        nullFd_ = -1;
     }
-    LOG_INFO("Server instance destroyed.");
+    LOG_DEBUG("Server instance destroyed.");
 }
 
 void Server::setupSignalHandlers() {
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
-    sa.sa_handler = &Server::signalHandler;
+    sa.sa_handler = &signalHandler;
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = SA_RESTART;
 
@@ -65,28 +75,11 @@ void Server::setupSignalHandlers() {
     LOG_DEBUG("Signal handlers installed.");
 }
 
-void Server::signalHandler(int sig) {
-    (void)sig;
-    if (instance_) {
-        LOG_INFO("Signal " << sig << " received. Initiating graceful shutdown.");
-        instance_->shutdownRequested_ = true;
-        network::EventDispatcher::getInstance().requestShutdown();
-    }
-}
-
 void Server::start() {
     if (isRunning_) {
         LOG_WARN("Server::start() called, but server is already running.");
         return;
     }
-
-    nullFd_ = open("/dev/null", O_RDONLY);
-    if (nullFd_ == -1) {
-        LOG_FATAL("Failed to open /dev/null: " << strerror(errno));
-        throw std::runtime_error("Failed to open /dev/null");
-    }
-    LOG_DEBUG("Opened /dev/null globally (fd=" << nullFd_ << ")");
-
     LOG_INFO("Starting server...");
     setupAcceptors();
     isRunning_ = true;
@@ -98,8 +91,8 @@ void Server::start() {
 }
 
 void Server::stop() {
-    LOG_INFO("Server::stop() called.");
-    shutdownRequested_ = true;
+    LOG_TRACE("Server::stop() called.");
+    requestShutDown();
     dispatcher_.requestShutdown();
 }
 
@@ -116,22 +109,23 @@ void Server::gracefulShutdown() {
 bool Server::getisRunning() const { return isRunning_; }
 
 void Server::setupAcceptors() {
-    LOG_INFO("Setting up server listeners (acceptors)...");
+    LOG_TRACE("Setting up server listeners (acceptors)...");
     config::ServerBlockMap const &servers = config_.getServersMap();
     for (config::ServerBlockMap::const_iterator it = servers.begin(); it != servers.end(); ++it) {
         network::Acceptor *acceptor;
-        if (it->second.size() > 1)
+        if (it->second.size() > 1) {
             // Since we've got multiple servers Listening on same port then default address would be
             // "0.0.0.0" and all requests would be accepted and virtual server name matching would
             // decide which server block to get
             acceptor = new network::Acceptor(it->first, router_);
-        else if (it->second.size() == 1)
+            LOG_INFO("Listening on 0.0.0.0:" << it->first);
+        } else if (it->second.size() == 1) {
             acceptor = new network::Acceptor(it->second[0], router_);
-        else
+            LOG_INFO("Listening on port: " << it->second[0].port());
+        } else
             continue;
         dispatcher_.registerHandler(acceptor);
         acceptors_.push_back(acceptor);
-        LOG_INFO("Listening on port " << it->first);
     }
 }
 
@@ -143,6 +137,8 @@ void Server::cleanup() {
     acceptors_.clear();
 }
 
-int core::Server::getNullFd() { return nullFd_; }
+int core::Server::getNullFd() { return instance_->nullFd_; }
+
+void Server::requestShutDown() { shutdownRequested_ = true; }
 
 } // namespace core
