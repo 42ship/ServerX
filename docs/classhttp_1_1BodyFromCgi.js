@@ -2,6 +2,7 @@ var classhttp_1_1BodyFromCgi =
 [
     [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html#adab3c4e191667a0390d50a249befe1b7", null ],
     [ "~BodyFromCgi", "classhttp_1_1BodyFromCgi.html#a089cb072f67edafb6e08a0f20213959d", null ],
+    [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html#ab9ba046c4d8c214fcea783500aa5e224", null ],
     [ "getEventSourceFd", "classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e", null ],
     [ "isDone", "classhttp_1_1BodyFromCgi.html#a0bf33617e9a0c2cd4a802586846b5055", null ],
     [ "read", "classhttp_1_1BodyFromCgi.html#a697adbffa6cfc8c4bbc41c0363b1facb", null ],

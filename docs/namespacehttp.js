@@ -11,7 +11,6 @@ var namespacehttp =
     [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
     [ "JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],
     [ "MimeTypes", "classhttp_1_1MimeTypes.html", "classhttp_1_1MimeTypes" ],
-    [ "NoBody", "classhttp_1_1NoBody.html", "classhttp_1_1NoBody" ],
     [ "Request", "classhttp_1_1Request.html", "classhttp_1_1Request" ],
     [ "RequestParser", "classhttp_1_1RequestParser.html", "classhttp_1_1RequestParser" ],
     [ "RequestStartLine", "classhttp_1_1RequestStartLine.html", "classhttp_1_1RequestStartLine" ],

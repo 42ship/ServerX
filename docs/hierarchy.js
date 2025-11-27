@@ -44,8 +44,7 @@ var hierarchy =
     [ "http::IResponseBody", "classhttp_1_1IResponseBody.html", [
       [ "http::BodyFromCgi", "classhttp_1_1BodyFromCgi.html", null ],
       [ "http::BodyInMemory", "classhttp_1_1BodyInMemory.html", null ],
-      [ "http::FileBody", "classhttp_1_1FileBody.html", null ],
-      [ "http::NoBody", "classhttp_1_1NoBody.html", null ]
+      [ "http::FileBody", "classhttp_1_1FileBody.html", null ]
     ] ],
     [ "http::JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],
     [ "config::Lexer", "classconfig_1_1Lexer.html", null ],

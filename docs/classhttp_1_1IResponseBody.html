@@ -105,7 +105,6 @@ Inheritance diagram for http::IResponseBody:</div>
 <area href="classhttp_1_1BodyFromCgi.html" alt="http::BodyFromCgi" shape="rect" coords="0,56,125,80"/>
 <area href="classhttp_1_1BodyInMemory.html" alt="http::BodyInMemory" shape="rect" coords="135,56,260,80"/>
 <area href="classhttp_1_1FileBody.html" alt="http::FileBody" shape="rect" coords="270,56,395,80"/>
-<area href="classhttp_1_1NoBody.html" alt="http::NoBody" shape="rect" coords="405,56,530,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -119,8 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a721334a880758d31d6faafad378cda16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total size of the body in bytes, if known.  <br /></td></tr>
 <tr class="memitem:ad72c9955f98701ed01970ad19af3d926" id="r_ad72c9955f98701ed01970ad19af3d926"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad72c9955f98701ed01970ad19af3d926">isDone</a> () const =0</td></tr>
 <tr class="memdesc:ad72c9955f98701ed01970ad19af3d926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the body source has been fully read.  <br /></td></tr>
-<tr class="memitem:af0e2d18304a20486a4f8faa3bd99dc3d" id="r_af0e2d18304a20486a4f8faa3bd99dc3d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0e2d18304a20486a4f8faa3bd99dc3d">getEventSourceFd</a> () const =0</td></tr>
-<tr class="memdesc:af0e2d18304a20486a4f8faa3bd99dc3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the file descriptor for this body, if it has one.  <br /></td></tr>
+<tr class="memitem:a3d5a5800f29714984cc0a165ee4d7a9f" id="r_a3d5a5800f29714984cc0a165ee4d7a9f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d5a5800f29714984cc0a165ee4d7a9f">getEventSourceFd</a> () const</td></tr>
+<tr class="memdesc:a3d5a5800f29714984cc0a165ee4d7a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file descriptor for event-driven body sources.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -207,8 +206,8 @@ Private Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="af0e2d18304a20486a4f8faa3bd99dc3d" name="af0e2d18304a20486a4f8faa3bd99dc3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0e2d18304a20486a4f8faa3bd99dc3d">&#9670;&#160;</a></span>getEventSourceFd()</h2>
+<a id="a3d5a5800f29714984cc0a165ee4d7a9f" name="a3d5a5800f29714984cc0a165ee4d7a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d5a5800f29714984cc0a165ee4d7a9f">&#9670;&#160;</a></span>getEventSourceFd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,7 +216,7 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int http::IResponseBody::getEventSourceFd </td>
+          <td class="memname">int http::IResponseBody::getEventSourceFd </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -225,18 +224,18 @@ Private Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the file descriptor for this body, if it has one. </p>
-<p>This method tells the ClientHandler if this body is an "active" (event-driven) source or a "passive" (in-memory) one.</p>
-<dl class="section return"><dt>Returns</dt><dd>A valid file descriptor (&gt;= 0) if the source needs to be watched by epoll. </dd>
+<p>Retrieves the file descriptor for event-driven body sources. </p>
+<p>This method is used by the Reactor to determine if the response body source requires monitoring via the event loop (epoll).</p>
+<dl class="section return"><dt>Returns</dt><dd>A non-negative file descriptor (fd &gt;= 0) if the source is "active" (e.g., a CGI pipe) and must be watched for read events. </dd>
 <dd>
--1 if the source is passive (e.g., a std::string) and has no associated file descriptor. </dd></dl>
+-1 if the source is "passive" (e.g., in-memory data or a standard file) and does not require epoll monitoring. </dd></dl>
 
-<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#ae400c6e9b0a726541ecd477484c72039">http::BodyInMemory</a>, <a class="el" href="classhttp_1_1FileBody.html#a66daba198daa34287e7ef22796c466ba">http::FileBody</a>, and <a class="el" href="classhttp_1_1NoBody.html#a3cf99b0d88123d44f1fc23a9f72cfaa7">http::NoBody</a>.</p>
+<p>Reimplemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e">http::BodyFromCgi</a>.</p>
 
 </div>
 </div>
@@ -266,7 +265,7 @@ Private Member Functions</h2></td></tr>
 <p>Checks if the body source has been fully read. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the source is depleted (EOF has been reached), false otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a0bf33617e9a0c2cd4a802586846b5055">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#a496a2f0e7e34c626ab42e396ffd8b8bf">http::BodyInMemory</a>, <a class="el" href="classhttp_1_1FileBody.html#affe788dc0b6c2f6184520bc8609198b8">http::FileBody</a>, and <a class="el" href="classhttp_1_1NoBody.html#ad8a5b0fc361ffb63342442c6159c4aea">http::NoBody</a>.</p>
+<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a0bf33617e9a0c2cd4a802586846b5055">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#a496a2f0e7e34c626ab42e396ffd8b8bf">http::BodyInMemory</a>, and <a class="el" href="classhttp_1_1FileBody.html#affe788dc0b6c2f6184520bc8609198b8">http::FileBody</a>.</p>
 
 </div>
 </div>
@@ -336,7 +335,7 @@ Private Member Functions</h2></td></tr>
 <dd>
 -1 on error. <span class="tt">errno</span> may be set (e.g., to EAGAIN/EWOULDBLOCK if the source is not ready). </dd></dl>
 
-<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a697adbffa6cfc8c4bbc41c0363b1facb">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#aba76e33ccbfcd523913c49b911c6e2b1">http::BodyInMemory</a>, <a class="el" href="classhttp_1_1FileBody.html#a26579002775012e2b7cb07b4b0c9cec7">http::FileBody</a>, and <a class="el" href="classhttp_1_1NoBody.html#a45573c0ca0d73f5af7395b3f7a019297">http::NoBody</a>.</p>
+<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a697adbffa6cfc8c4bbc41c0363b1facb">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#aba76e33ccbfcd523913c49b911c6e2b1">http::BodyInMemory</a>, and <a class="el" href="classhttp_1_1FileBody.html#a26579002775012e2b7cb07b4b0c9cec7">http::FileBody</a>.</p>
 
 </div>
 </div>
@@ -366,12 +365,13 @@ Private Member Functions</h2></td></tr>
 <p>Returns the total size of the body in bytes, if known. </p>
 <dl class="section return"><dt>Returns</dt><dd>The total content length. Returns 0 or (size_t)-1 if the size is unknown (e.g., for a streaming CGI response). </dd></dl>
 
-<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a8196c710c0d7923c7dc7934f824d300c">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#a4c3d0e013cb35aa2e69f2ada836a42c4">http::BodyInMemory</a>, <a class="el" href="classhttp_1_1FileBody.html#a3228d8f0a4faebd5aa652fc1ba9d3586">http::FileBody</a>, and <a class="el" href="classhttp_1_1NoBody.html#acf16e07b80b870bfb8f5302b830ad0c1">http::NoBody</a>.</p>
+<p>Implemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a8196c710c0d7923c7dc7934f824d300c">http::BodyFromCgi</a>, <a class="el" href="classhttp_1_1BodyInMemory.html#a4c3d0e013cb35aa2e69f2ada836a42c4">http::BodyInMemory</a>, and <a class="el" href="classhttp_1_1FileBody.html#a3228d8f0a4faebd5aa652fc1ba9d3586">http::FileBody</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/http/<a class="el" href="ResponseBody_8hpp_source.html">ResponseBody.hpp</a></li>
+<li>src/http/<a class="el" href="ResponseBody_8cpp.html">ResponseBody.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -113,11 +113,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3228d8f0a4faebd5aa652fc1ba9d3586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total size of the body in bytes, if known.  <br /></td></tr>
 <tr class="memitem:affe788dc0b6c2f6184520bc8609198b8" id="r_affe788dc0b6c2f6184520bc8609198b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affe788dc0b6c2f6184520bc8609198b8">isDone</a> () const</td></tr>
 <tr class="memdesc:affe788dc0b6c2f6184520bc8609198b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the body source has been fully read.  <br /></td></tr>
-<tr class="memitem:a66daba198daa34287e7ef22796c466ba" id="r_a66daba198daa34287e7ef22796c466ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66daba198daa34287e7ef22796c466ba">getEventSourceFd</a> () const</td></tr>
-<tr class="memdesc:a66daba198daa34287e7ef22796c466ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the file descriptor for this body, if it has one.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classhttp_1_1IResponseBody"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classhttp_1_1IResponseBody')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classhttp_1_1IResponseBody.html">http::IResponseBody</a></td></tr>
 <tr class="memitem:ae579865bb16faa230cf9cb68c0692e1b inherit pub_methods_classhttp_1_1IResponseBody" id="r_ae579865bb16faa230cf9cb68c0692e1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IResponseBody.html#ae579865bb16faa230cf9cb68c0692e1b">IResponseBody</a> ()</td></tr>
 <tr class="memitem:ae27a592d44cfbbb7d42b597efb32c617 inherit pub_methods_classhttp_1_1IResponseBody" id="r_ae27a592d44cfbbb7d42b597efb32c617"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IResponseBody.html#ae27a592d44cfbbb7d42b597efb32c617">~IResponseBody</a> ()</td></tr>
+<tr class="memitem:a3d5a5800f29714984cc0a165ee4d7a9f inherit pub_methods_classhttp_1_1IResponseBody" id="r_a3d5a5800f29714984cc0a165ee4d7a9f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IResponseBody.html#a3d5a5800f29714984cc0a165ee4d7a9f">getEventSourceFd</a> () const</td></tr>
+<tr class="memdesc:a3d5a5800f29714984cc0a165ee4d7a9f inherit pub_methods_classhttp_1_1IResponseBody"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file descriptor for event-driven body sources.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -169,39 +169,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a66daba198daa34287e7ef22796c466ba" name="a66daba198daa34287e7ef22796c466ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66daba198daa34287e7ef22796c466ba">&#9670;&#160;</a></span>getEventSourceFd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int http::FileBody::getEventSourceFd </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the file descriptor for this body, if it has one. </p>
-<p>This method tells the ClientHandler if this body is an "active" (event-driven) source or a "passive" (in-memory) one.</p>
-<dl class="section return"><dt>Returns</dt><dd>A valid file descriptor (&gt;= 0) if the source needs to be watched by epoll. </dd>
-<dd>
--1 if the source is passive (e.g., a std::string) and has no associated file descriptor. </dd></dl>
-
-<p>Implements <a class="el" href="classhttp_1_1IResponseBody.html#af0e2d18304a20486a4f8faa3bd99dc3d">http::IResponseBody</a>.</p>
-
-</div>
-</div>
 <a id="affe788dc0b6c2f6184520bc8609198b8" name="affe788dc0b6c2f6184520bc8609198b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affe788dc0b6c2f6184520bc8609198b8">&#9670;&#160;</a></span>isDone()</h2>
 

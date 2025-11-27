@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['read_0',['read',['../classhttp_1_1IResponseBody.html#aa2d0e11fdfaafa225bb8315e6eed0e01',1,'http::IResponseBody::read()'],['../classhttp_1_1NoBody.html#a45573c0ca0d73f5af7395b3f7a019297',1,'http::NoBody::read()'],['../classhttp_1_1FileBody.html#a26579002775012e2b7cb07b4b0c9cec7',1,'http::FileBody::read()'],['../classhttp_1_1BodyInMemory.html#aba76e33ccbfcd523913c49b911c6e2b1',1,'http::BodyInMemory::read()'],['../classhttp_1_1BodyFromCgi.html#a697adbffa6cfc8c4bbc41c0363b1facb',1,'http::BodyFromCgi::read()']]],
+  ['read_0',['read',['../classhttp_1_1IResponseBody.html#aa2d0e11fdfaafa225bb8315e6eed0e01',1,'http::IResponseBody::read()'],['../classhttp_1_1FileBody.html#a26579002775012e2b7cb07b4b0c9cec7',1,'http::FileBody::read()'],['../classhttp_1_1BodyInMemory.html#aba76e33ccbfcd523913c49b911c6e2b1',1,'http::BodyInMemory::read()'],['../classhttp_1_1BodyFromCgi.html#a697adbffa6cfc8c4bbc41c0363b1facb',1,'http::BodyFromCgi::read()']]],
   ['readchar_1',['readChar',['../classconfig_1_1Lexer.html#afdb1642f3297487e2c5a273515f469f2',1,'config::Lexer']]],
   ['reasonphrase_2',['reasonPhrase',['../classhttp_1_1Response.html#a93f59b06bdf565cf3324265a002b0d9d',1,'http::Response']]],
   ['registerhandler_3',['registerHandler',['../classconfig_1_1DirectiveHandler.html#a26df619732bfd45c9f75d5202ba4234e',1,'config::DirectiveHandler::registerHandler()'],['../classnetwork_1_1EventDispatcher.html#abb40ed1289dcb6c428922df597557b7c',1,'network::EventDispatcher::registerHandler()']]],
