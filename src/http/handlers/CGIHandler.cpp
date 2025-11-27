@@ -81,7 +81,7 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
     }
 
     // HTTP_* Variables from request headers
-    http::Headers::HeaderMap const &allHeaders = req.headers().getAll();
+    http::Headers::HeaderMap const &allHeaders = req.headers().getMap();
     for (http::Headers::HeaderMap::const_iterator it = allHeaders.begin(); it != allHeaders.end();
          ++it) {
         std::string headerName = it->first;
