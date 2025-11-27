@@ -20,9 +20,7 @@ bool isValidCgiHeaderName(std::string const &headerName) {
         char c = headerName[i];
         // Valid header name characters: alphanumeric, hyphen, underscore, dot
         // RFC 7230: field-name = token
-        if (!((c >= 'a' && c <= 'z') ||
-              (c >= 'A' && c <= 'Z') ||
-              (c >= '0' && c <= '9') ||
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') ||
               c == '-' || c == '_' || c == '.')) {
             return false;
         }
@@ -40,7 +38,8 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
     env.push_back("SERVER_PROTOCOL=" + req.version());
 
     // Request Meta-Variables
-    env.push_back("REQUEST_METHOD=" + std::string(http::RequestStartLine::methodToString(req.method())));
+    env.push_back("REQUEST_METHOD=" +
+                  std::string(http::RequestStartLine::methodToString(req.method())));
     env.push_back("QUERY_STRING=" + req.queryString());
     env.push_back("SCRIPT_NAME=" + req.path());
 
@@ -82,9 +81,9 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
     }
 
     // HTTP_* Variables from request headers
-    http::Headers::HeaderMap const &allHeaders = req.headers().getAll();
-    for (http::Headers::HeaderMap::const_iterator it = allHeaders.begin();
-         it != allHeaders.end(); ++it) {
+    http::Headers::HeaderMap const &allHeaders = req.headers().getMap();
+    for (http::Headers::HeaderMap::const_iterator it = allHeaders.begin(); it != allHeaders.end();
+         ++it) {
         std::string headerName = it->first;
 
         // Validate header name (skip invalid headers)
@@ -104,9 +103,9 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
             if (c == '-') {
                 cgiName += '_';
             } else if (c >= 'a' && c <= 'z') {
-                cgiName += (c - 'a' + 'A');  // Convert to uppercase
+                cgiName += (c - 'a' + 'A'); // Convert to uppercase
             } else {
-                cgiName += c;  // Keep uppercase, digits, underscore, dot as-is
+                cgiName += c; // Keep uppercase, digits, underscore, dot as-is
             }
         }
 
@@ -117,26 +116,24 @@ std::vector<std::string> buildCgiEnvironment(http::Request const &req, int port)
 }
 
 // Helper function to convert vector to char** for execve
-char**  vectorToCharArray(std::vector<std::string> const &vec) {
-    char**  arr = new char*[vec.size() + 1];
+char **vectorToCharArray(std::vector<std::string> const &vec) {
+    char **arr = new char *[vec.size() + 1];
     for (size_t i = 0; i < vec.size(); ++i) {
-        arr[i] = const_cast<char*>(vec[i].c_str());
+        arr[i] = const_cast<char *>(vec[i].c_str());
     }
     arr[vec.size()] = NULL;
     return (arr);
 }
 
-}
+} // namespace
 
 namespace http {
 
-
-void CGIHandler::handle(Request const &req, Response &res) const {
+void CGIHandler::handle(Request const &req, Response &res) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
-    std::string interpreter_path = req.location()->get("cgi_pass", req)[0];
-    std::string script_path = req.resolvePath();
-    int pipe_fd[2];
-    if (pipe(pipe_fd)) {
+    std::string interpreterPath = req.location()->get("cgi_pass", req)[0];
+    int pipeFd[2];
+    if (pipe(pipeFd)) {
         LOG_ERROR("CGIHandler::handle::pipe: " << strerror(errno));
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
@@ -146,26 +143,27 @@ void CGIHandler::handle(Request const &req, Response &res) const {
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
     if (pid == 0) {
-        close(pipe_fd[0]);
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-        char *argv[] = {const_cast<char *>(interpreter_path.c_str()), // argv[0] = /usr/bin/python3
-                        const_cast<char *>(script_path.c_str()), // argv[1] = /var/www/script.py
+        close(pipeFd[0]);
+        dup2(pipeFd[1], STDOUT_FILENO);
+        close(pipeFd[1]);
+        std::string scriptPath = req.resolvePath();
+        char *argv[] = {const_cast<char *>(interpreterPath.c_str()), // argv[0] = /usr/bin/python3
+                        const_cast<char *>(scriptPath.c_str()),      // argv[1] = /var/www/script.py
                         NULL};
 
         // Build CGI environment
         int port = req.server() ? req.server()->port() : 0;
         std::vector<std::string> env = buildCgiEnvironment(req, port);
-        char**  envp = vectorToCharArray(env);
-        execve(interpreter_path.c_str(), argv, envp);
+        char **envp = vectorToCharArray(env);
+        execve(interpreterPath.c_str(), argv, envp);
         LOG_ERROR("EXECVE");
         exit(127);
     }
     // Parent process (pid > 0)
     if (pid > 0) {
-        close(pipe_fd[1]);
-        res.setBodyFromCgi(pipe_fd[0]);
+        close(pipeFd[1]);
+        res.setBodyFromCgi(pipeFd[0]);
     }
-};
+}
 
 } // namespace http

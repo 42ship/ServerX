@@ -48,40 +48,31 @@ public:
     virtual bool isDone() const = 0;
 
     /**
-     * @brief Returns the file descriptor for this body, if it has one.
+     * @brief Retrieves the file descriptor for event-driven body sources.
      *
-     * This method tells the ClientHandler if this body is an "active"
-     * (event-driven) source or a "passive" (in-memory) one.
+     * This method is used by the Reactor to determine if the response body
+     * source requires monitoring via the event loop (epoll).
      *
-     * @return A valid file descriptor (>= 0) if the source needs to be
-     * watched by epoll.
-     * @return -1 if the source is passive (e.g., a std::string) and
-     * has no associated file descriptor.
+     * @return A non-negative file descriptor (fd >= 0) if the source is "active"
+     * (e.g., a CGI pipe) and must be watched for read events.
+     * @return -1 if the source is "passive" (e.g., in-memory data or a standard file)
+     * and does not require epoll monitoring.
      */
-    virtual int getEventSourceFd() const = 0;
+    virtual int getEventSourceFd() const;
 
 private:
     IResponseBody(IResponseBody const &);
     IResponseBody const &operator=(IResponseBody const &);
 };
 
-class NoBody : public IResponseBody {
-public:
-    ssize_t read(char *, size_t);
-    size_t size() const;
-    bool isDone() const;
-    int getEventSourceFd() const;
-};
-
 class FileBody : public IResponseBody {
 public:
-    FileBody(std::string const &fpath);
+    explicit FileBody(std::string const &fpath);
     ~FileBody();
 
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
     bool isDone() const;
-    int getEventSourceFd() const;
 
 private:
     int fd_;
@@ -91,12 +82,11 @@ private:
 
 class BodyInMemory : public IResponseBody {
 public:
-    BodyInMemory(std::string const &);
+    explicit BodyInMemory(std::string const &);
 
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
     bool isDone() const;
-    int getEventSourceFd() const;
 
 private:
     std::string body_;
@@ -105,7 +95,7 @@ private:
 
 class BodyFromCgi : public IResponseBody {
 public:
-    BodyFromCgi(int pipe_fd);
+    explicit BodyFromCgi(int pipeFd);
     ~BodyFromCgi();
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
@@ -113,6 +103,7 @@ public:
     int getEventSourceFd() const;
 
 private:
+    BodyFromCgi();
     int fd_;
     bool isDone_;
 };

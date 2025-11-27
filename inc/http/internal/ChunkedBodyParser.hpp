@@ -16,7 +16,7 @@ public:
         ERROR
     };
 
-    ChunkedBodyParser(utils::TempFile &file);
+    explicit ChunkedBodyParser(utils::TempFile &file);
 
     void reset();
 
@@ -25,7 +25,7 @@ public:
      * @param buffer The RequestParser's main data buffer.
      * @return The new internal state.
      */
-    State feed(std::string &buffer);
+    State feed(std::string const &buffer);
 
     State state() const;
     HttpStatus errorStatus() const;

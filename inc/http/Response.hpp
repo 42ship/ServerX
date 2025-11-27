@@ -77,10 +77,10 @@ public:
 
     /**
      * @brief Sets the response body to stream from a CGI pipe.
-     * @param pipe_fd The file descriptor of the CGI script's output pipe.
+     * @param pipeFd The file descriptor of the CGI script's output pipe.
      * @return A reference to this object for chaining.
      */
-    Response &setBodyFromCgi(int pipe_fd);
+    Response &setBodyFromCgi(int pipeFd);
 
     // --- Header & Status Management ---
 

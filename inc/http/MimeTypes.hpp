@@ -20,7 +20,7 @@ public:
      * @param path Optional parameter path to the MIME types configuration file. Defaults to
      * "MIME_TYPES_PATH".
      */
-    MimeTypes(const std::string &path = MIME_TYPES_PATH);
+    explicit MimeTypes(const std::string &path = MIME_TYPES_PATH);
 
     /**
      * @brief Copy constructor.
@@ -64,7 +64,7 @@ public:
      * @return The corresponding file extension as a string, or "txt"
      *         if the MIME type is not recognized.
      */
-    const std::string getMimeExt(const std::string &extension) const;
+    const std::string getMimeExt(const std::string &mimeType) const;
 
     /**
      * @brief Reloads the MIME types from the configuration file.
@@ -90,8 +90,8 @@ private:
      */
     bool wasChanged();
 
-    size_t findFirstSpace(const std::string str);
-    size_t findFirstNonSpace(const std::string str, size_t startPos);
+    static size_t findFirstSpace(const std::string &str);
+    static size_t findFirstNonSpace(const std::string &str, size_t startPos);
 };
 
 } // namespace http

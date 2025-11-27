@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace http {
 
 /**
@@ -7,29 +9,41 @@ namespace http {
  * @brief Enumeration of common HTTP status codes.
  */
 enum HttpStatus {
-    OK = 200,         /** 200 OK — request succeeded. */
-    CREATED = 201,    /** 201 Created — resource created successfully. */
-    ACCEPTED = 202,   /** 202 Accepted — request accepted for processing, but not yet completed. */
-    NO_CONTENT = 204, /** 204 No Content — request succeeded, no response body. */
+    UNKNOWN_STATUS = 0,
 
-    BAD_REQUEST = 400,  /** 400 Bad Request — malformed request syntax or invalid parameters. */
-    UNAUTHORIZED = 401, /** 401 Unauthorized — authentication required or has failed. */
-    FORBIDDEN = 403, /** 403 Forbidden — client is authenticated but not permitted to perform this
-                        action. */
-    NOT_FOUND = 404, /** 404 Not Found — requested resource does not exist. */
-    METHOD_NOT_ALLOWED =
-        405,        /** 405 Method Not Allowed — HTTP method not permitted for this resource. */
-    CONFLICT = 409, /** 409 Conflict — request could not be completed due to a resource conflict
-                       (e.g., non-empty directory on DELETE). */
-    LENGTH_REQUIRED = 411,   /** 411 Length Required — missing Content-Length header for a request
-                                that requires it. */
-    PAYLOAD_TOO_LARGE = 413, /** 413 Payload Too Large — request body exceeds configured limit. */
-    UNSUPPORTED_MEDIA_TYPE = 415, /** 415 Unsupported Media Type — request entity format is not
-                                     supported by the server. */
+    // 2xx Success
+    OK = 200,         /** *Request succeeded. */
+    CREATED = 201,    /** *Resource created. */
+    ACCEPTED = 202,   /** Request accepted for processing. */
+    NO_CONTENT = 204, /** *Request succeeded; no body in response (e.g., DELETE). */
 
-    INTERNAL_SERVER_ERROR = 500, /** 500 Internal Server Error — generic server-side failure. */
-    NOT_IMPLEMENTED = 501        /** 501 Not Implemented — server does not support the functionality
-                                    required to fulfill the request. */
+    // 3xx Redirection
+    MOVED_PERMANENTLY = 301, /** *Resource moved to new URL (permanent). */
+    FOUND = 302,             /** *Resource temporarily at different URL. */
+    SEE_OTHER = 303,         /** See another URL (often used after POST). */
+    NOT_MODIFIED = 304,      /** Resource not modified since last access. */
+
+    // 4xx Client Error
+    BAD_REQUEST = 400,  /** *Malformed syntax or invalid parameters (client error). */
+    UNAUTHORIZED = 401, /** *Authentication failed or is missing (Unauthenticated). */
+    FORBIDDEN = 403,    /** *Client authenticated but not authorized for action (Unauthorized). */
+    NOT_FOUND = 404,    /** *Requested resource doesn't exist. */
+    METHOD_NOT_ALLOWED = 405,     /** *HTTP method not allowed for resource. */
+    CONFLICT = 409,               /** *Request failed due to resource conflict (e.g., duplicate). */
+    LENGTH_REQUIRED = 411,        /** Missing Content-Length header. */
+    PAYLOAD_TOO_LARGE = 413,      /** Request body exceeds limit. */
+    UNSUPPORTED_MEDIA_TYPE = 415, /** Request entity format is not supported. */
+
+    // 5xx Server Error
+    INTERNAL_SERVER_ERROR = 500, /** *Generic server-side failure. */
+    NOT_IMPLEMENTED = 501,       /** Server lacks functionality to fulfill request. */
+    BAD_GATEWAY = 502,           /** *Invalid response from upstream server (gateway/proxy). */
 };
+
+HttpStatus toHttpStatus(int);
+
+HttpStatus toHttpStatus(const std::string &codeStr);
+
+const char *getReasonPhrase(HttpStatus status);
 
 } // namespace http

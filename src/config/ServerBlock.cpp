@@ -12,7 +12,7 @@ LocationBlock const *ServerBlock::matchLocation(http::Request const &req) const 
     return details::bestMatchLocation(locations_, req.uri());
 }
 
-bool ServerBlock::hasLocation(LocationBlock const &b) {
+bool ServerBlock::hasLocation(LocationBlock const &b) const {
     return !b.path().empty() && locations_.count(b.path());
 }
 
@@ -42,13 +42,13 @@ std::ostream &operator<<(std::ostream &o, const ServerBlock &t) {
 
     o << indent;
 
-    o << print_indent << "listen address: '" << t.address() << "'\n";
-    o << print_indent << "port: '" << t.port() << "'\n";
+    o << printIndent << "listen address: '" << t.address() << "'\n";
+    o << printIndent << "port: '" << t.port() << "'\n";
 
     o << static_cast<Block const &>(t);
 
     if (!t.locations_.empty()) {
-        o << "\n" << print_indent << "Locations Defined (" << t.locations_.size() << "):\n";
+        o << "\n" << printIndent << "Locations Defined (" << t.locations_.size() << "):\n";
         for (std::map<std::string, LocationBlock>::const_iterator it = t.locations_.begin();
              it != t.locations_.end(); ++it) {
             o << it->second;

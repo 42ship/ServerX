@@ -20,13 +20,13 @@ void ListenDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
 
     EXPECT_ARG_COUNT(args, 1, name_);
 
-    utils::IpInfo ip_info;
-    if (!utils::extractIpInfo(args[0].literal, ip_info)) {
+    utils::IpInfo ipInfo;
+    if (!utils::extractIpInfo(args[0].literal, ipInfo)) {
         throw ConfigError("'listen' directive '" + args[0].literal + "' has an invalid format.");
     }
 
-    serverBlock->port((ip_info.port == -1 ? 9191 : ip_info.port));
-    serverBlock->address((ip_info.ip.empty() ? "0.0.0.0" : ip_info.ip));
+    serverBlock->port((ipInfo.port == -1 ? 9191 : ipInfo.port));
+    serverBlock->address((ipInfo.ip.empty() ? "0.0.0.0" : ipInfo.ip));
     b.add(name_, args);
 }
 

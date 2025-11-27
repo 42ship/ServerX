@@ -14,7 +14,7 @@ private:
     std::string message_;
 
 public:
-    ConfigException(std::string const &message) : message_(message) {
+    explicit ConfigException(std::string const &message) : message_(message) {
     }
     virtual ~ConfigException() throw() {
     }
@@ -25,13 +25,13 @@ public:
 
 class ConfigError : public ConfigException {
 public:
-    ConfigError(std::string const &message) : ConfigException(RED "Error: " NC + message) {
+    explicit ConfigError(std::string const &message) : ConfigException(RED "Error: " NC + message) {
     }
 };
 
 class ConfigWarning : public ConfigException {
 public:
-    ConfigWarning(std::string const &message) : ConfigException(YELLOW "Warning: " NC + message) {
+    explicit ConfigWarning(std::string const &message) : ConfigException(YELLOW "Warning: " NC + message) {
     }
 };
 

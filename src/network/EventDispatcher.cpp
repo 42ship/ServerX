@@ -4,13 +4,14 @@
 #include "utils/Logger.hpp"
 #include <cerrno>
 #include <cstring>
+#include <exception>
 
 #define MAX_EVENTS 1024
 
 namespace network {
 
 namespace {
-bool checkHandler(IEventHandler *handler) { return handler && handler->getFd() >= 0; }
+bool checkHandler(IEventHandler const *handler) { return handler && handler->getFd() >= 0; }
 } // namespace
 
 EventDispatcher::EventDispatcher() {}
@@ -77,7 +78,25 @@ void EventDispatcher::handleEvents() {
         was_printed = false;
         for (int i = 0; i < nready; ++i) {
             IEventHandler *handler = static_cast<IEventHandler *>(events[i].data.ptr);
-            handler->handleEvent(events[i].events);
+            try {
+                handler->handleEvent(events[i].events);
+            } catch (std::exception const &e) {
+                LOG_ERROR("EventDispatcher::handleEvents::handler("
+                          << handler->getFd() << ")->handleEvent: " << e.what());
+                try {
+                    removeHandler(handler);
+                } catch (std::exception const &removeEx) {
+                    LOG_ERROR("EventDispatcher::handleEvents: Failed to remove handler: " << removeEx.what());
+                }
+            } catch (...) {
+                LOG_ERROR("EventDispatcher::handleEvents::handler("
+                          << handler->getFd() << ")->handleEvent: unknown error");
+                try {
+                    removeHandler(handler);
+                } catch (...) {
+                    LOG_ERROR("EventDispatcher::handleEvents: Failed to remove handler");
+                }
+            }
         }
     }
 }

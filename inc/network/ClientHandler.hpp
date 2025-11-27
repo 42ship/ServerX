@@ -30,7 +30,7 @@ private:
     // --- Core Connection State ---
     int clientFd_;
     int port_;
-    std::string clientAddr_;  // Client IP address
+    std::string clientAddr_; // Client IP address
 
     http::Router const &router_;
     http::Request request_;
@@ -40,13 +40,13 @@ private:
 
     // --- Response State ---
     struct SendBuffer {
-        SendBuffer(size_t initialCapacity = IO_BUFFER_SIZE);
+        explicit SendBuffer(size_t initialCapacity = IO_BUFFER_SIZE);
 
         std::vector<char> buffer;
         size_t sent;
 
         void reset();
-        bool isFullySent();
+        bool isFullySent() const;
         enum SendStatus { SEND_DONE, SEND_AGAIN, SEND_ERROR };
         SendStatus send(int clientFd);
     };
@@ -76,6 +76,8 @@ private:
     void finalizeConnection();
 
     void handleRequestParsingState(http::RequestParser::State state);
+
+    std::string getLogSignature() const;
 };
 
 } // namespace network

@@ -99,6 +99,9 @@ TEST_CASE("Virtual Server Matching (Future Feature)") {
         const config::ServerBlock *sb_second = testGS(sc, 8080, "second.com");
         const config::ServerBlock *sb_first = testGS(sc, 8080, "www.first.com");
         const config::ServerBlock *sb_default = testGS(sc, 8080, "notfound.com");
+        (void)sb_second;
+        (void)sb_first;
+        (void)sb_default;
 
         MESSAGE("This test is expected to fail until virtual server matching is implemented in "
                 "ServerConfig::getServer.");

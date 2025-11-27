@@ -37,7 +37,7 @@ private:
     void eatWhitespaces();
     void identifyLastToken();
 
-    bool isPunctuation();
+    bool isPunctuation() const;
     bool handleValue();
     void handleComment();
     void handleUnknown();

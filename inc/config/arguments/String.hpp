@@ -6,7 +6,7 @@ namespace config {
 
 class String : public IArgument {
 public:
-    String(std::string const &s) : value_(s) {}
+    explicit String(std::string const &s) : value_(s) {}
     void setValue(const std::string &value) { value_ = value; }
     std::string evaluate(http::Request const &) const { return value_; }
     ArgumentType getType() const { return ARG_STRING; }

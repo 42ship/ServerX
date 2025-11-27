@@ -14,7 +14,7 @@ public:
     ~DirectiveHandler();
 
     template <typename T>
-    void process(T &block, std::string const &key, ParsedDirectiveArgs const &args) {
+    void process(T &block, std::string const &key, ParsedDirectiveArgs const &args) const {
         HandlerMap::const_iterator it = handlers_.find(key);
         if (it != handlers_.end()) {
             it->second->process(block, args);
@@ -23,7 +23,7 @@ public:
         }
     }
 
-    template <typename T> void process(T &block, ParsedDirectiveMap const &map) {
+    template <typename T> void process(T &block, ParsedDirectiveMap const &map) const {
         for (ParsedDirectiveMap::const_iterator it = map.begin(); it != map.end(); ++it) {
             process(block, it->first, it->second);
         }

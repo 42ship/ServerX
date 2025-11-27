@@ -30,7 +30,7 @@ public:
      * @param location The LocationBlock to check.
      * @return True if a location with the same path is already configured, false otherwise.
      */
-    bool hasLocation(LocationBlock const &);
+    bool hasLocation(LocationBlock const &) const;
 
     /**
      * @brief Adds a new LocationBlock to this server configuration.

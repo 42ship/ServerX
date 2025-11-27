@@ -104,10 +104,10 @@ void TempFile::close() {
     }
 }
 
-TempFile::operator int() { return fd_; }
+TempFile::operator int() const { return fd_; }
 
 int TempFile::fd() const { return fd_; }
 std::string const &TempFile::path() const { return filePath_; }
-bool TempFile::isOpen() { return fd_ != -1 && !filePath_.empty(); }
+bool TempFile::isOpen() const { return fd_ != -1 && !filePath_.empty(); }
 
 } // namespace utils

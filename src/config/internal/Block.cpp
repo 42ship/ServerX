@@ -80,13 +80,13 @@ std::string Block::getFirstEvaluatedString(std::string const &key, http::Request
  */
 ArgumentVector const &Block::get(std::string const &key) const {
     DirectiveMap::const_iterator it = directives_.find(key);
-    if (it != directives_.end() && !it->second.empty())
+    if (it != directives_.end())
         return it->second;
     throw std::out_of_range(key);
 }
 
 /** @brief Checks if a directive exists within the block. */
-bool Block::has(std::string const &key) const { return directives_.find(key) != directives_.end(); }
+bool Block::has(std::string const &key) const { return directives_.count(key); }
 
 Block &Block::add(std::string const &key, ArgumentPtr value) {
     if (value)
@@ -176,7 +176,7 @@ std::string Block::getFirstRawValue(std::string const &key) const {
 std::ostream &operator<<(std::ostream &o, Block const &b) {
     DirectiveMap const &m = b.directives_;
     for (DirectiveMap::const_iterator it = m.begin(); it != m.end(); ++it) {
-        o << print_indent << it->first << ":";
+        o << printIndent << it->first << ":";
         for (size_t i = 0; i < it->second.size(); i++) {
             o << " '" << it->second[i]->getRawValue() << "'";
         }

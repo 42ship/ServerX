@@ -14,7 +14,7 @@ namespace config {
  */
 class Block {
 public:
-    Block(std::string const &name);
+    explicit Block(std::string const &name);
     Block(const Block &other);
     Block &operator=(const Block &other);
     virtual ~Block();
@@ -48,7 +48,7 @@ public:
     /** @copydoc add(std::string const &, StringVector const &) */
     Block &add(std::string const &key, std::string const &, std::string const &);
 
-    Block &add(std::string const &key, ParsedDirectiveArgs const &values);
+    Block &add(std::string const &key, ParsedDirectiveArgs const &args);
     Block &add(std::string const &key, ArgumentVector const &values);
     Block &add(std::string const &key, ArgumentPtr value);
 
