@@ -16,6 +16,11 @@ namespace http {
  */
 class Headers {
 public:
+    typedef std::map<std::string, std::string> HeaderMap;
+    typedef HeaderMap::iterator iterator;
+    typedef HeaderMap::const_iterator const_iterator;
+
+public:
     /**
      * @brief Constructs an empty Headers object.
      */
@@ -89,8 +94,11 @@ public:
      * Useful for iterating over all headers (e.g., for CGI environment).
      * @return Const reference to the internal map of headers.
      */
-    typedef std::map<std::string, std::string> HeaderMap;
-    HeaderMap const &getAll() const;
+    HeaderMap const &getMap() const;
+
+    const_iterator find(std::string const &key) const;
+    const_iterator begin() const;
+    const_iterator end() const;
 
 public:
     /**
