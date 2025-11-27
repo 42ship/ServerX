@@ -129,7 +129,7 @@ char **vectorToCharArray(std::vector<std::string> const &vec) {
 
 namespace http {
 
-void CGIHandler::handle(Request const &req, Response &res) const {
+void CGIHandler::handle(Request const &req, Response &res) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
     std::string interpreterPath = req.location()->get("cgi_pass", req)[0];
     int pipeFd[2];

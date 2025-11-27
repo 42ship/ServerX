@@ -12,9 +12,7 @@
 
 namespace http {
 
-StaticFileHandler::StaticFileHandler(MimeTypes const &mime) : mimeTypes_(mime) {}
-
-void StaticFileHandler::handle(Request const &req, Response &res) const {
+void StaticFileHandler::handle(Request const &req, Response &res, MimeTypes const &mime) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
     std::string path = req.resolvePath();
     struct stat statbuf;
@@ -52,7 +50,7 @@ void StaticFileHandler::handle(Request const &req, Response &res) const {
         return (void)res.status(FORBIDDEN);
     res.status(OK);
     try {
-        res.setBodyFromFile(path, mimeTypes_.getMimeType(utils::getFileExtension(path)));
+        res.setBodyFromFile(path, mime.getMimeType(utils::getFileExtension(path)));
     } catch (...) {
         res.status(INTERNAL_SERVER_ERROR);
     }

@@ -30,7 +30,7 @@ private:
     // --- Core Connection State ---
     int clientFd_;
     int port_;
-    std::string clientAddr_;  // Client IP address
+    std::string clientAddr_; // Client IP address
 
     http::Router const &router_;
     http::Request request_;
@@ -76,6 +76,8 @@ private:
     void finalizeConnection();
 
     void handleRequestParsingState(http::RequestParser::State state);
+
+    std::string getLogSignature() const;
 };
 
 } // namespace network
