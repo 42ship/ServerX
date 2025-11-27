@@ -1,5 +1,6 @@
 #include "network/EventDispatcher.hpp"
 
+#include "common/string.hpp"
 #include "network/IEventHandler.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
@@ -19,6 +20,7 @@ EventDispatcher::EventDispatcher() {}
 EventDispatcher::~EventDispatcher() {
     for (std::map<int, IEventHandler *>::iterator it = handlers_.begin(); it != handlers_.end();
          ++it) {
+        LOG_SDEBUG(utils::toString(it->second->getFd()));
         delete it->second;
     }
     handlers_.clear();
@@ -42,8 +44,8 @@ void EventDispatcher::removeHandler(IEventHandler *handler) {
     std::map<int, IEventHandler *>::iterator it = handlers_.find(handler->getFd());
     if (it != handlers_.end()) {
         epollManager_.removeHandler(it->second);
-        delete it->second;
         handlers_.erase(it);
+        delete it->second;
     }
 }
 

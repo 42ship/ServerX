@@ -29,6 +29,7 @@ private:
     std::string headerBuffer_;
     bool isNPH_;
     State state_;
+    int fd_;
 };
 
 } // namespace network

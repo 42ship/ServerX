@@ -8,7 +8,7 @@ LOGDIR		=	logs
 # =============================== COMPILATION ================================ #
 CXX			=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -MMD -MP -g3 -Og
-CXXFLAGS	+=	-I$(HDIR) -DLOGLEVEL=INFO
+CXXFLAGS	+=	-I$(HDIR) -DLOGLEVEL=TRACE
 #CXXFLAGS	+=	-DDISABLE_LOGGING
 # ================================== FILES =================================== #
 SRCS		:=	$(shell find $(SDIR) -name "*.cpp" | grep -v ".bak")

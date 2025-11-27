@@ -13,7 +13,7 @@ Response::~Response() { delete body_; }
 IResponseBody *Response::body() const { return body_; }
 Response &Response::setNoBody() {
     delete body_;
-    body_ = new NoBody;
+    body_ = NULL;
     headers_.erase("Content-Length");
     headers_.erase("Content-Type");
     return *this;

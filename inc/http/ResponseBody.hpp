@@ -119,6 +119,7 @@ public:
     bool hasHeaderParsing() const;
 
 private:
+    BodyFromCgi();
     int fd_;
     bool isDone_;
     bool hasHeaderParsing_;

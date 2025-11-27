@@ -33,7 +33,16 @@ private:
 
 #ifdef DISABLE_LOGGING
 #define LOG_MSG(level, msg) (void)0
+#define LOG_SMSG(level, msg) (void)0
 #else
+
+// #ifdef __GNUC__
+// #define FUNCTION_SIGNATURE __PRETTY_FUNCTION__
+// #elif _MSC_VER
+// #define FUNCTION_SIGNATURE __FUNCSIG__
+// #else
+#define FUNCTION_SIGNATURE __func__
+// #endif
 
 /**
 * @def LOG_MSG(level, msg)
@@ -54,6 +63,16 @@ private:
         }                                                                                          \
     } while (0)
 
+#define LOG_SMSG(level, msg)                                                                       \
+    do {                                                                                           \
+        LOG_MSG(level, FUNCTION_SIGNATURE << ": " << msg);                                         \
+    } while (0)
+
+#define LOG_CMSG(level, msg)                                                                       \
+    do {                                                                                           \
+        LOG_MSG(level, (handler)->getLogSignature() << " " << FUNCTION_SIGNATURE << ": " << msg);  \
+    } while (0)
+
 #endif
 
 #define LOG_TRACE(msg) LOG_MSG(utils::TRACE, msg)
@@ -62,5 +81,19 @@ private:
 #define LOG_WARN(msg) LOG_MSG(utils::WARNING, msg)
 #define LOG_ERROR(msg) LOG_MSG(utils::ERROR, msg)
 #define LOG_FATAL(msg) LOG_MSG(utils::FATAL, msg)
+
+#define LOG_STRACE(msg) LOG_SMSG(utils::TRACE, msg)
+#define LOG_SDEBUG(msg) LOG_SMSG(utils::DEBUG, msg)
+#define LOG_SINFO(msg) LOG_SMSG(utils::INFO, msg)
+#define LOG_SWARN(msg) LOG_SMSG(utils::WARNING, msg)
+#define LOG_SERROR(msg) LOG_SMSG(utils::ERROR, msg)
+#define LOG_SFATAL(msg) LOG_SMSG(utils::FATAL, msg)
+
+#define LOG_CTRACE(handler, msg) LOG_CMSG(handler, utils::TRACE, msg)
+#define LOG_CDEBUG(handler, msg) LOG_CMSG(handler, utils::DEBUG, msg)
+#define LOG_CINFO(handler, msg) LOG_CMSG(handler, utils::INFO, msg)
+#define LOG_CWARN(handler, msg) LOG_CMSG(handler, utils::WARNING, msg)
+#define LOG_CERROR(handler, msg) LOG_CMSG(handler, utils::ERROR, msg)
+#define LOG_CFATAL(handler, msg) LOG_CMSG(handler, utils::FATAL, msg)
 
 } // namespace utils

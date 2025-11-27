@@ -49,6 +49,16 @@ public:
      */
     void dispatch(int port, Request &request, Response &response) const;
 
+    /**
+     * @brief Internal: Populates an error response.
+     * @internal
+     * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
+     *
+     * @param request The client request.
+     * @param response The Response to populate with an error body.
+     */
+    void handleError(Request &request, Response &response) const;
+
 private:
     /**
      * @brief Internal: Selects and executes the correct handler.
@@ -59,16 +69,6 @@ private:
      * @param response The Response object to be populated.
      */
     void executeHandler(Request &request, Response &response) const;
-
-    /**
-     * @brief Internal: Populates an error response.
-     * @internal
-     * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
-     *
-     * @param request The client request.
-     * @param response The Response to populate with an error body.
-     */
-    void handleError(Request &request, Response &response) const;
 
     /** @internal */
     config::ServerConfig const &config_;

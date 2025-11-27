@@ -92,30 +92,6 @@ public:
     std::string toString() const;
 
     /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::string &);
-
-    /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static bool parse(std::istringstream &, Headers &);
-
-    /**
-     * @brief Parses a raw string of headers into a Headers object.
-     * The string should contain multiple "Key: Value\r\n" lines.
-     */
-    static bool parse(std::string &, Headers &);
-
-    /**
-     * @brief Parses a stream of text into a Headers object.
-     * The stream should contain multiple "Key: Value\r\n" lines.
-     */
-    static Headers parse(std::istringstream &);
-
-    /**
      * @brief Returns a const reference to the internal header map.
      * Useful for iterating over all headers (e.g., for CGI environment).
      * @return Const reference to the internal map of headers.
@@ -124,6 +100,31 @@ public:
 
     const_iterator begin() const;
     const_iterator end() const;
+
+public:
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static Headers parse(std::string &, bool strict = true);
+
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::istringstream &, Headers &, bool strict = true);
+
+    /**
+     * @brief Parses a raw string of headers into a Headers object.
+     * The string should contain multiple "Key: Value\r\n" lines.
+     */
+    static bool parse(std::string &, Headers &, bool strict = true);
+
+    /**
+     * @brief Parses a stream of text into a Headers object.
+     * The stream should contain multiple "Key: Value\r\n" lines.
+     */
+    static Headers parse(std::istringstream &, bool strict = true);
 
 private:
     /**

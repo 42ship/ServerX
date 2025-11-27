@@ -11,7 +11,7 @@ namespace network {
 static const size_t MAX_CGI_HEADER_SIZE = 8192;
 
 CGIHandler::CGIHandler(http::IResponseBody &body, ClientHandler &client, bool isNoParseHeaders)
-    : body_(body), client_(client), isNPH_(isNoParseHeaders) {
+    : body_(body), client_(client), isNPH_(isNoParseHeaders), fd_(body.getEventSourceFd()) {
     if (isNPH_) {
         state_ = STREAMING_BODY;
     } else {
@@ -19,7 +19,7 @@ CGIHandler::CGIHandler(http::IResponseBody &body, ClientHandler &client, bool is
     }
 }
 
-int CGIHandler::getFd() const { return body_.getEventSourceFd(); }
+int CGIHandler::getFd() const { return fd_; }
 
 void CGIHandler::handleRead() {
     LOG_TRACE("CGIHandler::handleRead(" << client_.getFd() << ")");
@@ -48,20 +48,32 @@ void CGIHandler::handleRead() {
                   << bytes_read << " bytes to client buffer.");
         return client_.pushToSendBuffer(buffer, bytes_read);
     }
+    if (headerBuffer_.length() + bytes_read > MAX_CGI_HEADER_SIZE) {
+        LOG_ERROR("CGIHandler::handleRead: CGI headers exceeded maximum allowed size ("
+                  << MAX_CGI_HEADER_SIZE << "). Sending 502.");
+        // TODO: Kill CGI process
+        return client_.handleError(http::BAD_GATEWAY);
+    }
     headerBuffer_.append(buffer, bytes_read);
-    size_t headersEnd = headerBuffer_.find("\r\n\r\n");
-    if (headersEnd == std::string::npos) {
-        if (headerBuffer_.size() > MAX_CGI_HEADER_SIZE) {
-            LOG_ERROR("CGIHandler::handleRead: CGI headers exceeded maximum allowed size ("
-                      << MAX_CGI_HEADER_SIZE << "). Sending 502.");
-            // TODO: Kill CGI process
-            return client_.handleError(http::BAD_GATEWAY);
-        }
+    LOG_SERROR(headerBuffer_);
+    size_t headerEnd = headerBuffer_.find("\r\n\r\n");
+    size_t offset = 4; // Length of \r\n\r\n
+
+    if (headerEnd == std::string::npos) {
+        headerEnd = headerBuffer_.find("\n\n");
+        offset = 2; // Length of \n\n
+    }
+
+    if (headerEnd == std::string::npos) {
+        headerEnd = headerBuffer_.find("\n\r\n");
+        offset = 3; // Length of \n\r\n
+    }
+    if (headerEnd == std::string::npos) {
         return;
     }
     LOG_DEBUG("CGIHandler::handleRead: Found end of CGI headers. Parsing headers...");
     http::Headers headers;
-    if (!http::Headers::parse(headerBuffer_, headers)) {
+    if (!http::Headers::parse(headerBuffer_, headers, false)) {
         LOG_ERROR("CGIHandler::handleRead: Failed to parse CGI headers. Malformed response. "
                   "Sending 502.");
         // TODO: Kill CGI process
@@ -70,11 +82,11 @@ void CGIHandler::handleRead() {
     LOG_DEBUG("CGIHandler::handleRead: CGI headers parsed successfully. Forwarding to client.");
     client_.onCgiHeadersParsed(headers);
     state_ = STREAMING_BODY;
-    if (headersEnd + 4 < headerBuffer_.length()) {
-        size_t bodyBytes = headerBuffer_.length() - (headersEnd + 4);
+    if (headerEnd + offset < headerBuffer_.length()) {
+        size_t bodyBytes = headerBuffer_.length() - (headerEnd + offset);
         LOG_DEBUG("CGIHandler::handleRead: Pushing remaining "
                   << bodyBytes << " bytes of body found in header buffer.");
-        client_.pushToSendBuffer(headerBuffer_.data() + headersEnd + 4, headerBuffer_.length());
+        client_.pushToSendBuffer(headerBuffer_.data() + headerEnd + offset, headerBuffer_.length());
     }
 }
 
