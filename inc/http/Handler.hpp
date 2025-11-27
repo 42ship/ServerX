@@ -37,6 +37,7 @@ public:
 
 class DefaultErrorHandler {
 public:
+    static void handle(Request const &request, Response &response, MimeTypes const &mimeTypes);
     static void populateResponse(Response &);
 };
 

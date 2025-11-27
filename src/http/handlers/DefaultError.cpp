@@ -3,6 +3,7 @@
 #include "common/filesystem.hpp"
 #include "config/ServerBlock.hpp"
 #include "config/arguments/Integer.hpp"
+#include "utils/Logger.hpp"
 
 #include <iostream>
 #include <map>
@@ -79,27 +80,32 @@ void DefaultErrorHandler::populateResponse(Response &response) {
     response.setBodyInMemory(body, "text/html");
 }
 
-DefaultErrorHandler::DefaultErrorHandler(MimeTypes const &mime) : mimeTypes_(mime) {};
-
-void DefaultErrorHandler::serveErrorFile(Response &response, const std::string &root, std::string fpath) const {
+static void serveErrorFile(Response &response, const std::string &root, std::string fpath,
+                           MimeTypes const &mimeTypes) {
     if (fpath.empty()) {
-        populateResponse(response);
+        DefaultErrorHandler::populateResponse(response);
         return;
     }
 
     if (fpath[0] == '.') {
         fpath = fpath.substr(1);
     } else if (fpath[0] == '/' || root.empty()) {
-        response.setBodyFromFile(fpath, mimeTypes_.getMimeType(utils::getFileExtension(fpath)));
+        response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
         return;
     }
 
     // prepend root if relative
     fpath = root + (root[root.size() - 1] == '/' ? "" : "/") + fpath;
-    response.setBodyFromFile(fpath, mimeTypes_.getMimeType(utils::getFileExtension(fpath)));
+    try {
+        response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
+    } catch (const std::exception &e) {
+        LOG_ERROR(e.what());
+        DefaultErrorHandler::populateResponse(response);
+    }
 }
 
-void DefaultErrorHandler::handle(Request const &request, Response &response) const {
+void DefaultErrorHandler::handle(Request const &request, Response &response,
+                                 MimeTypes const &mimeTypes) {
     CHECK_FOR_SERVER_AND_LOCATION(request, response);
     config::Integer status(response.status());
     std::string root = request.server()->root();
@@ -108,20 +114,19 @@ void DefaultErrorHandler::handle(Request const &request, Response &response) con
     // try location-level error_page
     if (request.location()->has(status.getRawValue())) {
         fpath = request.location()->get(status.getRawValue())[0]->getRawValue();
-        serveErrorFile(response, root, fpath);
+        serveErrorFile(response, root, fpath, mimeTypes);
         return;
     }
 
     // try server-level error_page
     if (request.server()->has(status.getRawValue())) {
         fpath = request.server()->get(status.getRawValue())[0]->getRawValue();
-        serveErrorFile(response, root, fpath);
+        serveErrorFile(response, root, fpath, mimeTypes);
         return;
     }
 
     // fallback to default response
     populateResponse(response);
 }
-
 
 } // namespace http

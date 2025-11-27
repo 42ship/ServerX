@@ -43,7 +43,7 @@ void Router::dispatch(int port, Request const &request, Response &response) cons
                                   << request.uri() << "): dispatching request");
     if (request.status() >= 400) {
         response.status(request.status());
-        return handleError(request, response);
+        return handleError(request, response, this->mimeTypes_);
     }
     try {
         executeHandler(request, response);
@@ -65,17 +65,17 @@ void Router::dispatch(int port, Request const &request, Response &response) cons
     LOG_DEBUG("Router::dispatch(" << port << ", " << request.uri()
                                   << "): handler reported error. status=" << response.status()
                                   << ", formatting error response...");
-    handleError(request, response);
+    handleError(request, response, this->mimeTypes_);
 }
 
-void Router::handleError(Request const &request, Response &response) {
+void Router::handleError(Request const &request, Response &response, MimeTypes const &mimeTypes) {
     if (request.wantsJson()) {
         LOG_TRACE("Router::handleError(" << request.uri() << "): populating JSON error page");
         JsonErrorHandler::populateResponse(response);
     } else {
         LOG_TRACE("Router::handleError(" << request.uri()
                                          << "): populating default HTML error page");
-        defaultErrorHandler_.handle(request, response);
+        DefaultErrorHandler::handle(request, response, mimeTypes);
     }
 }
 
