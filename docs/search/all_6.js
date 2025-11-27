@@ -13,8 +13,9 @@ var searchData=
   ['findfirstnonspace_10',['findFirstNonSpace',['../classhttp_1_1MimeTypes.html#a1e8d883020d7e35865a24655397ed562',1,'http::MimeTypes']]],
   ['findfirstspace_11',['findFirstSpace',['../classhttp_1_1MimeTypes.html#adf10d9584650c57a7ed97cb3ccb4db49',1,'http::MimeTypes']]],
   ['forbidden_12',['FORBIDDEN',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7',1,'http']]],
-  ['fromstring_13',['fromString',['../namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4',1,'utils']]],
-  ['funcmap_14',['FuncMap',['../namespaceconfig.html#aa8c68ac53942e8956025bf4392a4a888',1,'config']]],
-  ['function_5fsignature_15',['FUNCTION_SIGNATURE',['../Logger_8hpp.html#a25d87e18f84c0c647629c16fe5ad7586',1,'Logger.hpp']]],
-  ['funcvar_16',['FuncVar',['../namespaceconfig.html#a7deca19fb51c19342fb23ae2294b3a2d',1,'config']]]
+  ['found_13',['FOUND',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d',1,'http']]],
+  ['fromstring_14',['fromString',['../namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4',1,'utils']]],
+  ['funcmap_15',['FuncMap',['../namespaceconfig.html#aa8c68ac53942e8956025bf4392a4a888',1,'config']]],
+  ['function_5fsignature_16',['FUNCTION_SIGNATURE',['../Logger_8hpp.html#a25d87e18f84c0c647629c16fe5ad7586',1,'Logger.hpp']]],
+  ['funcvar_17',['FuncVar',['../namespaceconfig.html#a7deca19fb51c19342fb23ae2294b3a2d',1,'config']]]
 ];

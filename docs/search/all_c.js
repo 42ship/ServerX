@@ -34,5 +34,6 @@ var searchData=
   ['mimetypes_2ehpp_31',['MimeTypes.hpp',['../MimeTypes_8hpp.html',1,'']]],
   ['mimetypes_5f_32',['mimeTypes_',['../classcore_1_1Server.html#a9ff94a114014763f6dadea7ddab0b182',1,'core::Server::mimeTypes_'],['../classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff',1,'http::MimeTypes::mimeTypes_'],['../classhttp_1_1Router.html#acf39caa60038760ed23c9bef61001b48',1,'http::Router::mimeTypes_']]],
   ['modification_33',['modification',['../structIndentManager.html#abbf0830a9180b2f7603c85dcb3b7082e',1,'IndentManager']]],
-  ['modifyhandler_34',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager::modifyHandler()'],['../classnetwork_1_1EventDispatcher.html#aebd534372ed3ac27b96225b03fe54320',1,'network::EventDispatcher::modifyHandler()']]]
+  ['modifyhandler_34',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager::modifyHandler()'],['../classnetwork_1_1EventDispatcher.html#aebd534372ed3ac27b96225b03fe54320',1,'network::EventDispatcher::modifyHandler()']]],
+  ['moved_5fpermanently_35',['MOVED_PERMANENTLY',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374',1,'http']]]
 ];

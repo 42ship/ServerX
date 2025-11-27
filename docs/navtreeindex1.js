@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classconfig_1_1ConfigError.html":[1,0,0,3],
 "classconfig_1_1ConfigError.html#a7d28509da3983e7127803ca708f885e9":[0,0,0,4,0],
 "classconfig_1_1ConfigError.html#a7d28509da3983e7127803ca708f885e9":[1,0,0,3,0],
 "classconfig_1_1ConfigException.html":[0,0,0,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classconfig_1_1String.html":[1,0,0,20],
 "classconfig_1_1String.html#a03109d6e09c28ac316ca954810eac119":[0,0,0,21,5],
 "classconfig_1_1String.html#a03109d6e09c28ac316ca954810eac119":[1,0,0,20,5],
-"classconfig_1_1String.html#a5ae32adf3c1daee612a9600feaa1da23":[0,0,0,21,0],
-"classconfig_1_1String.html#a5ae32adf3c1daee612a9600feaa1da23":[1,0,0,20,0]
+"classconfig_1_1String.html#a5ae32adf3c1daee612a9600feaa1da23":[0,0,0,21,0]
 };

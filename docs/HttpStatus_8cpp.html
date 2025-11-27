@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Webserv: inc/http/HttpStatus.hpp File Reference</title>
+<title>Webserv: src/http/internal/HttpStatus.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('HttpStatus_8hpp.html','',''); });
+$(function(){initNavTree('HttpStatus_8cpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,48 +88,16 @@ $(function(){initNavTree('HttpStatus_8hpp.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">HttpStatus.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">HttpStatus.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
-</div>
-<p><a href="HttpStatus_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="HttpStatus_8hpp_source.html">http/HttpStatus.hpp</a>&quot;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:http" id="r_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp.html">http</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a0efa96275274052910edb78dbb443d16" id="r_a0efa96275274052910edb78dbb443d16"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">http::HttpStatus</a> { <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b">http::UNKNOWN_STATUS</a> = 0
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc">http::OK</a> = 200
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85">http::CREATED</a> = 201
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a">http::ACCEPTED</a> = 202
-, <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a">http::NO_CONTENT</a> = 204
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374">http::MOVED_PERMANENTLY</a> = 301
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d">http::FOUND</a> = 302
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a5717ca1f9dcd04dba55487f8210aa9f3">http::SEE_OTHER</a> = 303
-, <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16ad2025c2f62630fe5349c620f6c19b68a">http::NOT_MODIFIED</a> = 304
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb">http::BAD_REQUEST</a> = 400
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45">http::UNAUTHORIZED</a> = 401
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7">http::FORBIDDEN</a> = 403
-, <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c">http::NOT_FOUND</a> = 404
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad">http::METHOD_NOT_ALLOWED</a> = 405
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3">http::CONFLICT</a> = 409
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f">http::LENGTH_REQUIRED</a> = 411
-, <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a">http::PAYLOAD_TOO_LARGE</a> = 413
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b">http::UNSUPPORTED_MEDIA_TYPE</a> = 415
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba">http::INTERNAL_SERVER_ERROR</a> = 500
-, <a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702">http::NOT_IMPLEMENTED</a> = 501
-, <br />
-&#160;&#160;<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16a28f37481a1370680536f38437874e5a7">http::BAD_GATEWAY</a> = 502
-<br />
- }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -150,7 +118,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a href="dir_8790a556eb51fcdc104df0b6976396f1.html">http</a></li><li class="navelem"><a href="HttpStatus_8hpp.html">HttpStatus.hpp</a></li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_2d29d7dff7c7baf1180920f6796c23ae.html">http</a></li><li class="navelem"><a href="dir_012df233503b245213f3d2ba96319c4a.html">internal</a></li><li class="navelem"><a href="HttpStatus_8cpp.html">HttpStatus.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

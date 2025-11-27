@@ -20,10 +20,15 @@ var namespacehttp =
     [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ],
     [ "ErrorPageCache", "namespacehttp.html#aec19d6964e2099b68366c0fc269757b0", null ],
     [ "HttpStatus", "namespacehttp.html#a0efa96275274052910edb78dbb443d16", [
+      [ "UNKNOWN_STATUS", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b", null ],
       [ "OK", "namespacehttp.html#a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc", null ],
       [ "CREATED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85", null ],
       [ "ACCEPTED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a", null ],
       [ "NO_CONTENT", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a", null ],
+      [ "MOVED_PERMANENTLY", "namespacehttp.html#a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374", null ],
+      [ "FOUND", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d", null ],
+      [ "SEE_OTHER", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a5717ca1f9dcd04dba55487f8210aa9f3", null ],
+      [ "NOT_MODIFIED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16ad2025c2f62630fe5349c620f6c19b68a", null ],
       [ "BAD_REQUEST", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb", null ],
       [ "UNAUTHORIZED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45", null ],
       [ "FORBIDDEN", "namespacehttp.html#a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7", null ],
@@ -34,7 +39,11 @@ var namespacehttp =
       [ "PAYLOAD_TOO_LARGE", "namespacehttp.html#a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a", null ],
       [ "UNSUPPORTED_MEDIA_TYPE", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b", null ],
       [ "INTERNAL_SERVER_ERROR", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba", null ],
-      [ "NOT_IMPLEMENTED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702", null ]
+      [ "NOT_IMPLEMENTED", "namespacehttp.html#a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702", null ],
+      [ "BAD_GATEWAY", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a28f37481a1370680536f38437874e5a7", null ]
     ] ],
-    [ "operator<<", "namespacehttp.html#a2dfb5c8937dd3d9df0e3f8c0603b8788", null ]
+    [ "getReasonPhrase", "namespacehttp.html#aee1bb1ff7a7be83dea87bf4279f18822", null ],
+    [ "operator<<", "namespacehttp.html#a2dfb5c8937dd3d9df0e3f8c0603b8788", null ],
+    [ "toHttpStatus", "namespacehttp.html#a0da74fb9135214bf20905bd0f40f4b47", null ],
+    [ "toHttpStatus", "namespacehttp.html#a64a4817b4f6d100885695eb99236d075", null ]
 ];

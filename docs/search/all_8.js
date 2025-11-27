@@ -36,5 +36,6 @@ var searchData=
   ['http_33',['http',['../namespacehttp.html',1,'']]],
   ['httprequest_34',['HttpRequest',['../classHttpRequest.html',1,'']]],
   ['httpstatus_35',['HttpStatus',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16',1,'http']]],
-  ['httpstatus_2ehpp_36',['HttpStatus.hpp',['../HttpStatus_8hpp.html',1,'']]]
+  ['httpstatus_2ecpp_36',['HttpStatus.cpp',['../HttpStatus_8cpp.html',1,'']]],
+  ['httpstatus_2ehpp_37',['HttpStatus.hpp',['../HttpStatus_8hpp.html',1,'']]]
 ];

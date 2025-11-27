@@ -128,29 +128,40 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a0efa96275274052910edb78dbb443d16" id="r_a0efa96275274052910edb78dbb443d16"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a> { <br />
-&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc">OK</a> = 200
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b">UNKNOWN_STATUS</a> = 0
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc">OK</a> = 200
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85">CREATED</a> = 201
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a">ACCEPTED</a> = 202
-, <a class="el" href="#a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a">NO_CONTENT</a> = 204
 , <br />
-&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb">BAD_REQUEST</a> = 400
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a">NO_CONTENT</a> = 204
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374">MOVED_PERMANENTLY</a> = 301
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d">FOUND</a> = 302
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16a5717ca1f9dcd04dba55487f8210aa9f3">SEE_OTHER</a> = 303
+, <br />
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16ad2025c2f62630fe5349c620f6c19b68a">NOT_MODIFIED</a> = 304
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb">BAD_REQUEST</a> = 400
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45">UNAUTHORIZED</a> = 401
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7">FORBIDDEN</a> = 403
-, <a class="el" href="#a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c">NOT_FOUND</a> = 404
 , <br />
-&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad">METHOD_NOT_ALLOWED</a>
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c">NOT_FOUND</a> = 404
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad">METHOD_NOT_ALLOWED</a> = 405
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3">CONFLICT</a> = 409
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f">LENGTH_REQUIRED</a> = 411
-, <a class="el" href="#a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a">PAYLOAD_TOO_LARGE</a> = 413
 , <br />
-&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b">UNSUPPORTED_MEDIA_TYPE</a> = 415
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a">PAYLOAD_TOO_LARGE</a> = 413
+, <a class="el" href="#a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b">UNSUPPORTED_MEDIA_TYPE</a> = 415
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba">INTERNAL_SERVER_ERROR</a> = 500
 , <a class="el" href="#a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702">NOT_IMPLEMENTED</a> = 501
+, <br />
+&#160;&#160;<a class="el" href="#a0efa96275274052910edb78dbb443d16a28f37481a1370680536f38437874e5a7">BAD_GATEWAY</a> = 502
 <br />
  }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a64a4817b4f6d100885695eb99236d075" id="r_a64a4817b4f6d100885695eb99236d075"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64a4817b4f6d100885695eb99236d075">toHttpStatus</a> (int)</td></tr>
+<tr class="memitem:a0da74fb9135214bf20905bd0f40f4b47" id="r_a0da74fb9135214bf20905bd0f40f4b47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0da74fb9135214bf20905bd0f40f4b47">toHttpStatus</a> (const std::string &amp;codeStr)</td></tr>
+<tr class="memitem:aee1bb1ff7a7be83dea87bf4279f18822" id="r_aee1bb1ff7a7be83dea87bf4279f18822"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee1bb1ff7a7be83dea87bf4279f18822">getReasonPhrase</a> (<a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a> status)</td></tr>
 <tr class="memitem:a2dfb5c8937dd3d9df0e3f8c0603b8788" id="r_a2dfb5c8937dd3d9df0e3f8c0603b8788"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dfb5c8937dd3d9df0e3f8c0603b8788">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classhttp_1_1RequestParser.html#acee2c6282a3dff470dfebac78ffeb763">RequestParser::State</a> st)</td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
@@ -181,40 +192,68 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc" name="a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc"></a>OK&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85" name="a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85"></a>CREATED&#160;</td><td class="fielddoc"><p>200 OK — request succeeded. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b" name="a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b"></a>UNKNOWN_STATUS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc" name="a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc"></a>OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85" name="a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85"></a>CREATED&#160;</td><td class="fielddoc"><p>*Request succeeded. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a" name="a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a"></a>ACCEPTED&#160;</td><td class="fielddoc"><p>201 Created — resource created successfully. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a" name="a0efa96275274052910edb78dbb443d16ada040cfaa65857ae3be3676c276fc87a"></a>ACCEPTED&#160;</td><td class="fielddoc"><p>*Resource created. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a" name="a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a"></a>NO_CONTENT&#160;</td><td class="fielddoc"><p>202 Accepted — request accepted for processing, but not yet completed. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a" name="a0efa96275274052910edb78dbb443d16a1f8808bf48e47d5ded8dd2093dc6401a"></a>NO_CONTENT&#160;</td><td class="fielddoc"><p><a class="el" href="classhttp_1_1Request.html">Request</a> accepted for processing. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb" name="a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb"></a>BAD_REQUEST&#160;</td><td class="fielddoc"><p>204 No Content — request succeeded, no response body. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374" name="a0efa96275274052910edb78dbb443d16af48f28793b2b2cf55236a361684fe374"></a>MOVED_PERMANENTLY&#160;</td><td class="fielddoc"><p>*Request succeeded; no body in response (e.g., DELETE). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45" name="a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45"></a>UNAUTHORIZED&#160;</td><td class="fielddoc"><p>400 Bad <a class="el" href="classhttp_1_1Request.html">Request</a> — malformed request syntax or invalid parameters. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d" name="a0efa96275274052910edb78dbb443d16a664deb693ad9829d972110894872ba8d"></a>FOUND&#160;</td><td class="fielddoc"><p>*Resource moved to new URL (permanent). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7" name="a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7"></a>FORBIDDEN&#160;</td><td class="fielddoc"><p>401 Unauthorized — authentication required or has failed. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a5717ca1f9dcd04dba55487f8210aa9f3" name="a0efa96275274052910edb78dbb443d16a5717ca1f9dcd04dba55487f8210aa9f3"></a>SEE_OTHER&#160;</td><td class="fielddoc"><p>*Resource temporarily at different URL. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c" name="a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c"></a>NOT_FOUND&#160;</td><td class="fielddoc"><p>403 Forbidden — client is authenticated but not permitted to perform this action. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ad2025c2f62630fe5349c620f6c19b68a" name="a0efa96275274052910edb78dbb443d16ad2025c2f62630fe5349c620f6c19b68a"></a>NOT_MODIFIED&#160;</td><td class="fielddoc"><p>See another URL (often used after POST). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad" name="a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad"></a>METHOD_NOT_ALLOWED&#160;</td><td class="fielddoc"><p>404 Not Found — requested resource does not exist. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb" name="a0efa96275274052910edb78dbb443d16a3c7a4281c4fc1905c67373fe3234d5cb"></a>BAD_REQUEST&#160;</td><td class="fielddoc"><p>Resource not modified since last access. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3" name="a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3"></a>CONFLICT&#160;</td><td class="fielddoc"><p>405 Method Not Allowed — HTTP method not permitted for this resource. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45" name="a0efa96275274052910edb78dbb443d16a3d7d9fa1fdefebf6853cb2a1bdb7ed45"></a>UNAUTHORIZED&#160;</td><td class="fielddoc"><p>*Malformed syntax or invalid parameters (client error). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f" name="a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f"></a>LENGTH_REQUIRED&#160;</td><td class="fielddoc"><p>409 Conflict — request could not be completed due to a resource conflict (e.g., non-empty directory on DELETE). </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7" name="a0efa96275274052910edb78dbb443d16aa7fc75a70dfcdabcdda77d353a9424a7"></a>FORBIDDEN&#160;</td><td class="fielddoc"><p>*Authentication failed or is missing (Unauthenticated). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a" name="a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a"></a>PAYLOAD_TOO_LARGE&#160;</td><td class="fielddoc"><p>411 Length Required — missing Content-Length header for a request that requires it. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c" name="a0efa96275274052910edb78dbb443d16a144f7cef2e3efe6d823debdf4e62b10c"></a>NOT_FOUND&#160;</td><td class="fielddoc"><p>*Client authenticated but not authorized for action (Unauthorized). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b" name="a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b"></a>UNSUPPORTED_MEDIA_TYPE&#160;</td><td class="fielddoc"><p>413 Payload Too Large — request body exceeds configured limit. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad" name="a0efa96275274052910edb78dbb443d16a951e17c8b8b27ee06ced2f743295c2ad"></a>METHOD_NOT_ALLOWED&#160;</td><td class="fielddoc"><p>*Requested resource doesn't exist. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba" name="a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba"></a>INTERNAL_SERVER_ERROR&#160;</td><td class="fielddoc"><p>415 Unsupported Media Type — request entity format is not supported by the server. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3" name="a0efa96275274052910edb78dbb443d16a0102681b664612b47f268b7b25b455f3"></a>CONFLICT&#160;</td><td class="fielddoc"><p>*HTTP method not allowed for resource. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702" name="a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702"></a>NOT_IMPLEMENTED&#160;</td><td class="fielddoc"><p>500 Internal Server Error — generic server-side failure. </p>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f" name="a0efa96275274052910edb78dbb443d16a99433d071bad8a0f316f89d915e3a65f"></a>LENGTH_REQUIRED&#160;</td><td class="fielddoc"><p>*Request failed due to resource conflict (e.g., duplicate). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a" name="a0efa96275274052910edb78dbb443d16ae0967dfd6179bfd162129b973a2acf8a"></a>PAYLOAD_TOO_LARGE&#160;</td><td class="fielddoc"><p>Missing Content-Length header. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b" name="a0efa96275274052910edb78dbb443d16a032b28c11dba5740005c00c42e23ee9b"></a>UNSUPPORTED_MEDIA_TYPE&#160;</td><td class="fielddoc"><p><a class="el" href="classhttp_1_1Request.html">Request</a> body exceeds limit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba" name="a0efa96275274052910edb78dbb443d16a8bed57973a8cc88394fe713a7a4c2cba"></a>INTERNAL_SERVER_ERROR&#160;</td><td class="fielddoc"><p><a class="el" href="classhttp_1_1Request.html">Request</a> entity format is not supported. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702" name="a0efa96275274052910edb78dbb443d16afbf6e492480c6d18842a60c27cb04702"></a>NOT_IMPLEMENTED&#160;</td><td class="fielddoc"><p>*Generic server-side failure. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0efa96275274052910edb78dbb443d16a28f37481a1370680536f38437874e5a7" name="a0efa96275274052910edb78dbb443d16a28f37481a1370680536f38437874e5a7"></a>BAD_GATEWAY&#160;</td><td class="fielddoc"><p>Server lacks functionality to fulfill request. </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="aee1bb1ff7a7be83dea87bf4279f18822" name="aee1bb1ff7a7be83dea87bf4279f18822"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1bb1ff7a7be83dea87bf4279f18822">&#9670;&#160;</a></span>getReasonPhrase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * http::getReasonPhrase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a></td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2dfb5c8937dd3d9df0e3f8c0603b8788" name="a2dfb5c8937dd3d9df0e3f8c0603b8788"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2dfb5c8937dd3d9df0e3f8c0603b8788">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
 
@@ -230,6 +269,40 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classhttp_1_1RequestParser.html#acee2c6282a3dff470dfebac78ffeb763">RequestParser::State</a></td>          <td class="paramname"><span class="paramname"><em>st</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0da74fb9135214bf20905bd0f40f4b47" name="a0da74fb9135214bf20905bd0f40f4b47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0da74fb9135214bf20905bd0f40f4b47">&#9670;&#160;</a></span>toHttpStatus() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a> http::toHttpStatus </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>codeStr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64a4817b4f6d100885695eb99236d075" name="a64a4817b4f6d100885695eb99236d075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64a4817b4f6d100885695eb99236d075">&#9670;&#160;</a></span>toHttpStatus() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a> http::toHttpStatus </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>code</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
