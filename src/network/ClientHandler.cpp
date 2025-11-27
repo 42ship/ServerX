@@ -114,7 +114,7 @@ void ClientHandler::generateResponse() {
     LOG_DEBUG("ClientHandler::generateResponse(" << clientFd_ << "): modifying fd to EPOLLOUT");
     EventDispatcher::getInstance().setSendingData(this);
     http::IResponseBody const *body = response_.body();
-    if (body && !body->isDone() && body->getEventSourceFd() != -1 && body->size() == 0) {
+    if (body && !body->isDone() && body->getEventSourceFd() != -1) {
         rspEventSource_ = new CGIHandler(body->getEventSourceFd(), *this);
         EventDispatcher::getInstance().registerHandler(rspEventSource_);
         EventDispatcher::getInstance().modifyHandler(this, 0);
