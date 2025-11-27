@@ -5,38 +5,6 @@
 
 namespace http {
 
-namespace {
-
-inline const char *getReasonPhrase(HttpStatus status) {
-    switch (status) {
-    case OK:
-        return "OK";
-    case CREATED:
-        return "Created";
-    case ACCEPTED:
-        return "Accepted";
-    case NO_CONTENT:
-        return "No Content";
-    case BAD_REQUEST:
-        return "Bad Request";
-    case UNAUTHORIZED:
-        return "Unauthorized";
-    case FORBIDDEN:
-        return "Forbidden";
-    case NOT_FOUND:
-        return "Not Found";
-    case METHOD_NOT_ALLOWED:
-        return "Method Not Allowed";
-    case INTERNAL_SERVER_ERROR:
-        return "Internal Server Error";
-    case PAYLOAD_TOO_LARGE:
-        return "Payload too large";
-    default:
-        return "Unknown";
-    }
-}
-} // namespace
-
 ResponseStartLine::ResponseStartLine() : protocol("HTTP/1.1"), statusCode(OK), reasonPhrase("OK") {}
 
 Response::Response() : body_(NULL) {}
