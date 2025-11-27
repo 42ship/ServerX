@@ -87,15 +87,23 @@ static void serveErrorFile(Response &response, const std::string &root, std::str
         return;
     }
 
-    if (fpath[0] == '.') {
-        fpath = fpath.substr(1);
+    if (fpath.size() > 2 && fpath[0] == '.'&& fpath[1] == '/') {
+        fpath = fpath.substr(2);
     } else if (fpath[0] == '/' || root.empty()) {
-        response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
+        try {
+            response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
+        } catch (const std::exception &e) {
+            LOG_ERROR(e.what());
+            DefaultErrorHandler::populateResponse(response);
+        }
         return;
     }
 
     // prepend root if relative
-    fpath = root + (root[root.size() - 1] == '/' ? "" : "/") + fpath;
+    if (!root.empty()) {
+        fpath = root + (root[root.size() - 1] == '/' ? "" : "/") + fpath;
+    }
+
     try {
         response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
     } catch (const std::exception &e) {
