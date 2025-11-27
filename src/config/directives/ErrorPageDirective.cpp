@@ -12,7 +12,7 @@ const std::string ErrorPageDirective::name_ = "error_page";
 
 void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
     if (args.size() < 2) {
-        throw ConfigException("'" + name_ + "' directive requires two ore more arguments.");
+        throw ConfigException("'" + name_ + "' directive requires two or more arguments.");
     }
 
     const std::string path = args[args.size() - 1].literal;
