@@ -3,7 +3,9 @@
 #include "http/Router.hpp"
 #include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
+#include <cerrno>
 #include <cstring>
+#include <fcntl.h>
 #include <iostream>
 #include <signal.h>
 #include <sys/types.h>
@@ -13,6 +15,8 @@
 
 namespace core {
 
+int Server::nullFd_ = -1;
+
 // TODO write the documentation
 // In Server.hpp - this is a DECLARATION
 // class Server {
@@ -21,8 +25,8 @@ namespace core {
 Server *Server::instance_ = NULL;
 
 Server::Server(config::ServerConfig const &config)
-    : shutdownRequested_(false),
-      isRunning_(false),
+    : isRunning_(false),
+      shutdownRequested_(false),
       config_(config),
       dispatcher_(network::EventDispatcher::getInstance()),
       router_(config_, mimeTypes_) {
@@ -34,6 +38,10 @@ Server::Server(config::ServerConfig const &config)
 Server::~Server() {
     cleanup();
     instance_ = NULL;
+    if (nullFd_ >= 0) {
+        close(nullFd_);
+        nullFd_ = -1;
+    }
     LOG_INFO("Server instance destroyed.");
 }
 
@@ -58,6 +66,7 @@ void Server::setupSignalHandlers() {
 }
 
 void Server::signalHandler(int sig) {
+    (void)sig;
     if (instance_) {
         LOG_INFO("Signal " << sig << " received. Initiating graceful shutdown.");
         instance_->shutdownRequested_ = true;
@@ -70,6 +79,14 @@ void Server::start() {
         LOG_WARN("Server::start() called, but server is already running.");
         return;
     }
+
+    nullFd_ = open("/dev/null", O_RDONLY);
+    if (nullFd_ == -1) {
+        LOG_FATAL("Failed to open /dev/null: " << strerror(errno));
+        throw std::runtime_error("Failed to open /dev/null");
+    }
+    LOG_DEBUG("Opened /dev/null globally (fd=" << nullFd_ << ")");
+
     LOG_INFO("Starting server...");
     setupAcceptors();
     isRunning_ = true;
@@ -125,5 +142,7 @@ void Server::cleanup() {
     }
     acceptors_.clear();
 }
+
+int core::Server::getNullFd() { return nullFd_; }
 
 } // namespace core

@@ -11,77 +11,65 @@
 namespace core {
 
 /**
+ * @class Server
  * @brief High-level server orchestrator that manages the complete server lifecycle.
  *
- * The Server class coordinates multiple acceptors, handles graceful shutdown, and provides a
- * unified interface for starting/stopping the event-driven TCP/IP server. Acts as the application's
- * main entry point into the ClientHandler pattern infrastructure.
+ * The Server class acts as a [Facade](https://en.wikipedia.org/wiki/Facade_pattern)
+ * for the underlying network subsystem. It hides the complexity of the Reactor
+ * pattern (e.g., EventDispatcher, Acceptors) behind a simple start() and stop()
+ * interface.
  *
- * Basically, the Server class serves as application controller above the ClientHandler the design pattern
- * components and use them to build a complete server application. The Server class is like a bridge
- * between "I want to run a server" and "Here is how the ClientHandler pattern works" The design pattern
- * is Facade Pattern where it hides the complexity of "create dispatcher, create acceptors, register
- * handlers, start event loop, handle signals, cleanup" behind simple start() and stop() methods
+ * This class is the central point of control and is responsible for:
+ * - Initializing all core components (EventDispatcher, Router, MimeTypes).
+ * - Setting up listening sockets (Acceptors) based on the ServerConfig.
+ * - Installing OS signal handlers (SIGTERM, SIGINT) to initiate a gracefulShutdown().
+ * - Running the main event loop by calling EventDispatcher::handleEvents().
+ * - Managing global, server-wide resources (like the /dev/null FD).
  *
- * void start() will set up acceptors and start event loop
- * void stop() will gracefully shutdown the server instance in OS
- * void handleSignal(int sig) will handle OS signals because when you run a server in a OS, \
- * you run the server instance on the background. For example,
- * ```
- * $ ./server &
- * [1] 12345
- * Starting production server with signal handling ...
- * Server started on ports 2000 to 2019
- *
- * $ kill 12345
- * Received signal: SIGTERM
- * Performing graceful shutdown...
- * Stopping acceptors...
- * Waiting for existing connections to finish...
- * Cleaning up resources...
- * Server shutdown complete
- * ```
- *
- * void getisRunning() is the getter function to check server status
- *
- * static void signalHandler(int sig) static signal handler required by signal api
- *
- * bool shutdownRequested_ is a flag
- *
- *  static Server* instance_;  // Static pointer for signal handler access
- *  void setupAcceptors();     // Create listening sockets for multiple ports
- *  void setupSignalHandlers(); // Install signal handlers
- *  void cleanup();            // Clean up resources
- *  void gracefulShutdown();   // Perform graceful shutdown
- *
- *  Server(const Server&); // Prevent copying
- *  Server& operator=(const Server&); // Prevent copying
+ * It is implemented as a Singleton (using `instance_`) to allow the static
+ * `signalHandler` to access the active Server instance and request a shutdown.
  */
 class Server {
 public:
-    explicit Server(config::ServerConfig const &);
+    Server(config::ServerConfig const &);
     ~Server();
 
     void start();
     void stop();
-    void handleSignal(int sig);
     bool getisRunning() const;
 
+    /**
+     * @brief Static C-style callback for handling OS signals (e.g., SIGINT, SIGTERM).
+     * @details Accesses the singleton `instance_` to initiate a graceful shutdown.
+     * @param sig The signal number received from the OS.
+     */
     static void signalHandler(int sig);
 
-private:
-    volatile sig_atomic_t shutdownRequested_;
-    bool isRunning_;
-    static Server *instance_;
-    std::vector<network::Acceptor *> acceptors_;
+    /**
+     * @brief Gets the server-wide file descriptor for /dev/null.
+     * @return A read-only file descriptor for /dev/null.
+     * @note This is used by CGI to provide a valid, empty `stdin`
+     * for requests that do not have a body.
+     */
+    static int getNullFd();
 
-    config::ServerConfig const &config_;
-    network::EventDispatcher &dispatcher_;
-    http::MimeTypes mimeTypes_;
-    http::Router router_;
+private:
+    // clang-format off
+    bool isRunning_; ///< Tracks main loop state (`true` between `start()` and `gracefulShutdown()`).
+    volatile sig_atomic_t shutdownRequested_; ///< Graceful shutdown flag (must be `volatile sig_atomic_t` for signal handler).
+    static Server *instance_; ///< Singleton instance, allowing `signalHandler` to access the object.
+    std::vector<network::Acceptor *> acceptors_; ///< Collection of active acceptor handlers (listening sockets).
+
+    config::ServerConfig const &config_; ///< Const reference to the parsed server configuration.
+    network::EventDispatcher &dispatcher_; ///< Reference to the central EventDispatcher (Reactor) singleton.
+    http::MimeTypes mimeTypes_; ///< MIME types database instance (passed to the router).
+    http::Router router_; ///< HTTP request router for dispatching requests to handlers.
+
+    static int nullFd_; ///< Server-wide file descriptor for `/dev/null` (opened at startup).
+    // clang-format on
 
     void setupAcceptors();
-    static void setupSignalHandlers();
+    void setupSignalHandlers();
     void cleanup();
     void gracefulShutdown();
 
