@@ -43,5 +43,6 @@ var searchData=
   ['isvalidipv4_40',['isValidIPv4',['../namespaceutils.html#aedbc0638b66531360317f908d4ff9eed',1,'utils::isValidIPv4(char const *)'],['../namespaceutils.html#a81dd67800f9537cafe72ff917dbf388f',1,'utils::isValidIPv4(std::string const &amp;)']]],
   ['isvalidport_41',['isValidPort',['../namespaceutils.html#af996b680f7f75212aeeb13cf855a916d',1,'utils::isValidPort(int port)'],['../namespaceutils.html#ad2c7af639c94afbb424737764f3dd555',1,'utils::isValidPort(std::string const &amp;)']]],
   ['isvalidvariablechar_42',['isValidVariableChar',['../namespaceconfig.html#a69410b8526d2b2eb0864688f2c45b3cf',1,'config']]],
-  ['ivalue_5f_43',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
+  ['iterator_43',['iterator',['../classhttp_1_1Headers.html#a321e0f46af7c011e5458a4cd711d1695',1,'http::Headers']]],
+  ['ivalue_5f_44',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
 ];

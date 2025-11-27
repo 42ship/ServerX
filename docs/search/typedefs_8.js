@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['serverblockmap_0',['ServerBlockMap',['../namespaceconfig.html#a7cc70445712c439111acb4dc2cfd561a',1,'config']]],
-  ['serverblockvec_1',['ServerBlockVec',['../namespaceconfig.html#a4508aae42e035db1f7d0e29c8ae0bcf3',1,'config']]]
+  ['parseddirectiveargs_0',['ParsedDirectiveArgs',['../namespaceconfig.html#a1fb3fd027affd58ff9cb112084f3f419',1,'config']]],
+  ['parseddirectivemap_1',['ParsedDirectiveMap',['../namespaceconfig.html#a90b160092e6e132640e39bcd5d30b438',1,'config']]],
+  ['parseddirectivepair_2',['ParsedDirectivePair',['../namespaceconfig.html#ada3ecde0d501660d55c573a64080685e',1,'config']]]
 ];

@@ -1,5 +1,15 @@
 var NAVTREEINDEX3 =
 {
+"classhttp_1_1MimeTypes.html#a7f06462b892d5fe17e9a4259abc8bbb6":[1,0,2,10,6],
+"classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0":[0,0,2,10,11],
+"classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0":[1,0,2,10,11],
+"classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff":[0,0,2,10,10],
+"classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff":[1,0,2,10,10],
+"classhttp_1_1MimeTypes.html#abf3a59ac8702c823fea352858da13ac1":[0,0,2,10,1],
+"classhttp_1_1MimeTypes.html#abf3a59ac8702c823fea352858da13ac1":[1,0,2,10,1],
+"classhttp_1_1MimeTypes.html#ae44d2165f959305827829c2dbe07334c":[0,0,2,10,5],
+"classhttp_1_1MimeTypes.html#ae44d2165f959305827829c2dbe07334c":[1,0,2,10,5],
+"classhttp_1_1MimeTypes.html#aec34252a69c970969f229af536b91add":[0,0,2,10,3],
 "classhttp_1_1MimeTypes.html#aec34252a69c970969f229af536b91add":[1,0,2,10,3],
 "classhttp_1_1MimeTypes.html#aee7d7ceeb76fc7222194175b2a259a2c":[0,0,2,10,2],
 "classhttp_1_1MimeTypes.html#aee7d7ceeb76fc7222194175b2a259a2c":[1,0,2,10,2],
@@ -239,15 +249,5 @@ var NAVTREEINDEX3 =
 "classhttp_1_1Router.html#aa8e689276f0349ab727da075b7ab9560":[1,0,2,17,4],
 "classhttp_1_1Router.html#acf39caa60038760ed23c9bef61001b48":[0,0,2,17,5],
 "classhttp_1_1Router.html#acf39caa60038760ed23c9bef61001b48":[1,0,2,17,5],
-"classhttp_1_1Router.html#afeec6462abf61f2debfc94865b204ae0":[0,0,2,17,1],
-"classhttp_1_1Router.html#afeec6462abf61f2debfc94865b204ae0":[1,0,2,17,1],
-"classhttp_1_1StaticFileHandler.html":[0,0,2,18],
-"classhttp_1_1StaticFileHandler.html":[1,0,2,18],
-"classnetwork_1_1Acceptor.html":[0,0,3,0],
-"classnetwork_1_1Acceptor.html":[1,0,3,0],
-"classnetwork_1_1Acceptor.html#a003c6483d9728593d6c716c802f00ff4":[0,0,3,0,1],
-"classnetwork_1_1Acceptor.html#a003c6483d9728593d6c716c802f00ff4":[1,0,3,0,1],
-"classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b":[0,0,3,0,10],
-"classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b":[1,0,3,0,10],
-"classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772":[0,0,3,0,9]
+"classhttp_1_1Router.html#afeec6462abf61f2debfc94865b204ae0":[0,0,2,17,1]
 };
