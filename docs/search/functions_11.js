@@ -1,8 +1,28 @@
 var searchData=
 [
-  ['tempfile_0',['TempFile',['../classutils_1_1TempFile.html#a4fc830fc578daf88d60c2ef8a6cabff0',1,'utils::TempFile::TempFile()'],['../classutils_1_1TempFile.html#a8cd0cd2ed9474f005b0e3051da4f5754',1,'utils::TempFile::TempFile(TempFile const &amp;TempFile)']]],
-  ['tohttpstatus_1',['toHttpStatus',['../namespacehttp.html#a64a4817b4f6d100885695eb99236d075',1,'http::toHttpStatus(int)'],['../namespacehttp.html#a0da74fb9135214bf20905bd0f40f4b47',1,'http::toHttpStatus(const std::string &amp;codeStr)']]],
-  ['tokenize_2',['tokenize',['../classconfig_1_1Lexer.html#a4ba1c03b0da84592d3f63809c525bfa3',1,'config::Lexer::tokenize(std::string const &amp;content, TokenArray &amp;res)'],['../classconfig_1_1Lexer.html#a6bda52e1c7c75a367be138ce16e8d31d',1,'config::Lexer::tokenize(std::string const &amp;content)']]],
-  ['tostring_3',['toString',['../classhttp_1_1Headers.html#a375c42b89d3433ca47d125c52fda6120',1,'http::Headers::toString()'],['../namespaceutils.html#aa829fef424a4463ddfc6488b969755a2',1,'utils::toString(T const &amp;v)']]],
-  ['trim_4',['trim',['../namespaceutils.html#a935df850f81594becc164936220efa39',1,'utils']]]
+  ['send_0',['send',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a5706026f0997e842be3b5aba3226c1c0',1,'network::ClientHandler::SendBuffer']]],
+  ['sendbuffer_1',['SendBuffer',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#afebd7eec152fa1fb0193414d6dcba804',1,'network::ClientHandler::SendBuffer']]],
+  ['sendresponsebuffer_2',['sendResponseBuffer',['../classnetwork_1_1ClientHandler.html#acc8642c1d952a740c8528741add87c60',1,'network::ClientHandler']]],
+  ['server_3',['Server',['../classcore_1_1Server.html#ad1d86005623d49dcfb078ab90e3f3206',1,'core::Server::Server(config::ServerConfig const &amp;)'],['../classcore_1_1Server.html#a27b6c748588d21a06b7e5bccfbaa3d6a',1,'core::Server::Server(const Server &amp;)']]],
+  ['server_4',['server',['../classhttp_1_1Request.html#a09ef450d79a5edf35f6f08be3a60aa79',1,'http::Request::server() const'],['../classhttp_1_1Request.html#a8a74a9fa3ead9918730438216db8aa63',1,'http::Request::server(config::ServerBlock const *server)']]],
+  ['serverblock_5',['ServerBlock',['../classconfig_1_1ServerBlock.html#add62f08f4a4b7dcd65d7ff5ad79128a6',1,'config::ServerBlock']]],
+  ['serverconfig_6',['ServerConfig',['../classconfig_1_1ServerConfig.html#aafe5eeed7ab4acbe58227a2ab8370f25',1,'config::ServerConfig::ServerConfig()'],['../classconfig_1_1ServerConfig.html#a62e813f86654adeee4b4762bc79d9e93',1,'config::ServerConfig::ServerConfig(char const *fpath, bool perform_fs_checks=true)'],['../classconfig_1_1ServerConfig.html#acabda31333d22e92f7018924600a2431',1,'config::ServerConfig::ServerConfig(std::string const &amp;content, bool perform_fs_checks=true)']]],
+  ['setbodyfromcgi_7',['setBodyFromCgi',['../classhttp_1_1Response.html#ad7c7df62d05d68a6b702bde34771fa42',1,'http::Response']]],
+  ['setbodyfromfile_8',['setBodyFromFile',['../classhttp_1_1Response.html#a43f25fad244c563728fab26ae10521b6',1,'http::Response']]],
+  ['setbodyinmemory_9',['setBodyInMemory',['../classhttp_1_1Response.html#ac1dfe56179dd769723f320095a261396',1,'http::Response']]],
+  ['seterror_10',['setError',['../classhttp_1_1ChunkedBodyParser.html#a86c6f2070e55280035baddd026288ea7',1,'http::ChunkedBodyParser::setError()'],['../classhttp_1_1RequestParser.html#a1878387bcb1b13c7a2d8cce3fbe3abcc',1,'http::RequestParser::setError()']]],
+  ['setlevel_11',['setLevel',['../classutils_1_1Logger.html#a9bcf51692bf5b8e317a740711f322b48',1,'utils::Logger']]],
+  ['setmaxbodysize_12',['setMaxBodySize',['../classhttp_1_1ChunkedBodyParser.html#a54a64b17b8f5eaaa337740c8238b15f5',1,'http::ChunkedBodyParser']]],
+  ['setnobody_13',['setNoBody',['../classhttp_1_1Response.html#aee64ac6f72428eb4d41145d1d89ffe0b',1,'http::Response']]],
+  ['setreceivingdata_14',['setReceivingData',['../classnetwork_1_1EventDispatcher.html#a9f10e7a5121c7116bb7f5702778a7444',1,'network::EventDispatcher']]],
+  ['setsendingdata_15',['setSendingData',['../classnetwork_1_1EventDispatcher.html#a50cbdf1d0baba7860bcecce7dd342397',1,'network::EventDispatcher']]],
+  ['setupacceptors_16',['setupAcceptors',['../classcore_1_1Server.html#a55aa0b8cd87298bdcf7ea8c8321efe5e',1,'core::Server']]],
+  ['setvalue_17',['setValue',['../classconfig_1_1String.html#a03109d6e09c28ac316ca954810eac119',1,'config::String']]],
+  ['size_18',['size',['../classconfig_1_1Parser.html#abd5aad88bb54b320efa8cd1dc79483d5',1,'config::Parser::size()'],['../classhttp_1_1IResponseBody.html#a721334a880758d31d6faafad378cda16',1,'http::IResponseBody::size()'],['../classhttp_1_1FileBody.html#a3228d8f0a4faebd5aa652fc1ba9d3586',1,'http::FileBody::size()'],['../classhttp_1_1BodyInMemory.html#a4c3d0e013cb35aa2e69f2ada836a42c4',1,'http::BodyInMemory::size()'],['../classhttp_1_1BodyFromCgi.html#a8196c710c0d7923c7dc7934f824d300c',1,'http::BodyFromCgi::size()']]],
+  ['socket_19',['Socket',['../classnetwork_1_1Socket.html#a3b1f307869d71c52bd2b609007d8d086',1,'network::Socket::Socket()'],['../classnetwork_1_1Socket.html#a70aa05bcb9dadb67be429e80b6ae1a15',1,'network::Socket::Socket(int port)'],['../classnetwork_1_1Socket.html#aa15f7d7fe23693d8378a8697b6c38e62',1,'network::Socket::Socket(std::string const &amp;address, int port)'],['../classnetwork_1_1Socket.html#a0d487c7f507763d659a7887ddee287c3',1,'network::Socket::Socket(config::ServerBlock const &amp;)'],['../classnetwork_1_1Socket.html#aaafea43dc2dbd578b9ac18203f1b0284',1,'network::Socket::Socket(Socket const &amp;rhs)']]],
+  ['start_20',['start',['../classcore_1_1Server.html#af0dea2fd6a43d0953801232c50fb118c',1,'core::Server']]],
+  ['state_21',['state',['../classhttp_1_1ChunkedBodyParser.html#a5ee6cb9c9f793cd7c2ce8f908b7a7e2a',1,'http::ChunkedBodyParser::state()'],['../classhttp_1_1RequestParser.html#ac776004e269c10366221906f649865cd',1,'http::RequestParser::state()']]],
+  ['status_22',['status',['../classhttp_1_1Request.html#a0772e16d16f3d4d36fac7f5af7a28f27',1,'http::Request::status(HttpStatus statusCode)'],['../classhttp_1_1Request.html#a874e22c8fc082f0f9a58f635d8ebb0f7',1,'http::Request::status() const'],['../classhttp_1_1Response.html#ad38cca72f10a441603cf0d035c2baf86',1,'http::Response::status(HttpStatus statusCode)'],['../classhttp_1_1Response.html#aeca713748b057c76dc87c1cbab6d8a0e',1,'http::Response::status(HttpStatus statusCode, std::string const &amp;customError)'],['../classhttp_1_1Response.html#a982e36b4a4f41327200b1c7c26f6f063',1,'http::Response::status() const']]],
+  ['stop_23',['stop',['../classcore_1_1Server.html#aa57116097b6c904d29b0aea470fc68e5',1,'core::Server']]],
+  ['string_24',['String',['../classconfig_1_1String.html#a5ae32adf3c1daee612a9600feaa1da23',1,'config::String']]]
 ];

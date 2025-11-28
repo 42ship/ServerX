@@ -26,6 +26,7 @@ var hierarchy =
       [ "config::Variable", "classconfig_1_1Variable.html", null ]
     ] ],
     [ "config::IDirective", "classconfig_1_1IDirective.html", [
+      [ "config::ErrorPageDirective", "classconfig_1_1ErrorPageDirective.html", null ],
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
       [ "config::MaxBodySize", "classconfig_1_1MaxBodySize.html", null ],
       [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]
@@ -47,6 +48,7 @@ var hierarchy =
       [ "http::FileBody", "classhttp_1_1FileBody.html", null ]
     ] ],
     [ "http::JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],
+    [ "http::Key", "structhttp_1_1Key.html", null ],
     [ "config::Lexer", "classconfig_1_1Lexer.html", null ],
     [ "utils::Logger", "classutils_1_1Logger.html", null ],
     [ "config::Mapper", "classconfig_1_1Mapper.html", null ],

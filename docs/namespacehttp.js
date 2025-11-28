@@ -10,6 +10,7 @@ var namespacehttp =
     [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
     [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
     [ "JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],
+    [ "Key", "structhttp_1_1Key.html", "structhttp_1_1Key" ],
     [ "MimeTypes", "classhttp_1_1MimeTypes.html", "classhttp_1_1MimeTypes" ],
     [ "Request", "classhttp_1_1Request.html", "classhttp_1_1Request" ],
     [ "RequestParser", "classhttp_1_1RequestParser.html", "classhttp_1_1RequestParser" ],
@@ -19,6 +20,7 @@ var namespacehttp =
     [ "Router", "classhttp_1_1Router.html", "classhttp_1_1Router" ],
     [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ],
     [ "ErrorPageCache", "namespacehttp.html#aec19d6964e2099b68366c0fc269757b0", null ],
+    [ "JsonErrorPageCache", "namespacehttp.html#aacc045ca66c5022a8f4bdaa024a03b75", null ],
     [ "HttpStatus", "namespacehttp.html#a0efa96275274052910edb78dbb443d16", [
       [ "UNKNOWN_STATUS", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b", null ],
       [ "OK", "namespacehttp.html#a0efa96275274052910edb78dbb443d16ace8bd8e364919b329d851fd49423d8cc", null ],

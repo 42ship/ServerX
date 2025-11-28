@@ -13,6 +13,7 @@ var namespaceconfig =
     [ "ConfigNode", "classconfig_1_1ConfigNode.html", "classconfig_1_1ConfigNode" ],
     [ "ConfigWarning", "classconfig_1_1ConfigWarning.html", "classconfig_1_1ConfigWarning" ],
     [ "DirectiveHandler", "classconfig_1_1DirectiveHandler.html", "classconfig_1_1DirectiveHandler" ],
+    [ "ErrorPageDirective", "classconfig_1_1ErrorPageDirective.html", "classconfig_1_1ErrorPageDirective" ],
     [ "IArgument", "classconfig_1_1IArgument.html", "classconfig_1_1IArgument" ],
     [ "IDirective", "classconfig_1_1IDirective.html", "classconfig_1_1IDirective" ],
     [ "Integer", "classconfig_1_1Integer.html", "classconfig_1_1Integer" ],

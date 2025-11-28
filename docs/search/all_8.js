@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1CGIHandler.html#a85cde3832cfb8f5b2b240de9c5bf52df',1,'http::CGIHandler::handle()']]],
+  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1CGIHandler.html#a85cde3832cfb8f5b2b240de9c5bf52df',1,'http::CGIHandler::handle()'],['../classhttp_1_1DefaultErrorHandler.html#aba09c25a4448cd8d16c56e5830bf0d21',1,'http::DefaultErrorHandler::handle()']]],
   ['handlechunkedbody_1',['handleChunkedBody',['../classhttp_1_1RequestParser.html#a963b693664e3ee237b28371dbb63d84d',1,'http::RequestParser']]],
   ['handlecomment_2',['handleComment',['../classconfig_1_1Lexer.html#a699d9f478fb02fba854f1270ae04780e',1,'config::Lexer']]],
   ['handlecontentlengthbody_3',['handleContentLengthBody',['../classhttp_1_1RequestParser.html#aeb59fd00d27f41b96a8047f76b9d51fc',1,'http::RequestParser']]],
   ['handledirective_4',['handleDirective',['../classconfig_1_1Parser.html#ad6b4fe26571a1c1e1940f75ac7a9d54c',1,'config::Parser']]],
-  ['handleerror_5',['handleError',['../classhttp_1_1Router.html#a704489f11273ef74af05711a730195ac',1,'http::Router']]],
+  ['handleerror_5',['handleError',['../classhttp_1_1Router.html#ab96e0120ad913d1ccd4ee3edc776bb27',1,'http::Router']]],
   ['handleevent_6',['handleEvent',['../classnetwork_1_1Acceptor.html#aeedd5213a83a3f8faf1934eade7a4def',1,'network::Acceptor::handleEvent()'],['../classnetwork_1_1CGIHandler.html#ae2c3a1d8ab29106a0ab8ccc84c22431a',1,'network::CGIHandler::handleEvent()'],['../classnetwork_1_1ClientHandler.html#a6608671559af5c21acced1522d1443bb',1,'network::ClientHandler::handleEvent()'],['../classnetwork_1_1IEventHandler.html#a55ed45237282d20e3a71fdc213db6482',1,'network::IEventHandler::handleEvent()']]],
   ['handleevents_7',['handleEvents',['../classnetwork_1_1EventDispatcher.html#a7215d12ac2f91d4baaf638b2af7be0d7',1,'network::EventDispatcher']]],
   ['handlelocationblock_8',['handleLocationBlock',['../classconfig_1_1Mapper.html#a8dc86925850a72432f4a4b86e619cf7b',1,'config::Mapper::handleLocationBlock()'],['../classconfig_1_1Parser.html#ae6cdc4c11aac8b6ca838aa7ada22d2fc',1,'config::Parser::handleLocationBlock()']]],

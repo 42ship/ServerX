@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['sendbuffer_0',['SendBuffer',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html',1,'network::ClientHandler']]],
-  ['server_1',['Server',['../classcore_1_1Server.html',1,'core']]],
-  ['serverblock_2',['ServerBlock',['../classconfig_1_1ServerBlock.html',1,'config']]],
-  ['serverconfig_3',['ServerConfig',['../classconfig_1_1ServerConfig.html',1,'config']]],
-  ['socket_4',['Socket',['../classnetwork_1_1Socket.html',1,'network']]],
-  ['staticfilehandler_5',['StaticFileHandler',['../classhttp_1_1StaticFileHandler.html',1,'http']]],
-  ['string_6',['String',['../classconfig_1_1String.html',1,'config']]]
+  ['request_0',['Request',['../classhttp_1_1Request.html',1,'http']]],
+  ['requestparser_1',['RequestParser',['../classhttp_1_1RequestParser.html',1,'http']]],
+  ['requeststartline_2',['RequestStartLine',['../classhttp_1_1RequestStartLine.html',1,'http']]],
+  ['response_3',['Response',['../classhttp_1_1Response.html',1,'http']]],
+  ['responsestartline_4',['ResponseStartLine',['../classhttp_1_1ResponseStartLine.html',1,'http']]],
+  ['rootdirective_5',['RootDirective',['../classconfig_1_1RootDirective.html',1,'config']]],
+  ['router_6',['Router',['../classhttp_1_1Router.html',1,'http']]]
 ];
