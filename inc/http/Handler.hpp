@@ -25,11 +25,6 @@ public:
     static void handle(Request const &, Response &, MimeTypes const &);
 };
 
-class CGIHandler : public IHandler {
-public:
-    static void handle(Request const &, Response &);
-};
-
 class JsonErrorHandler {
 public:
     static void populateResponse(Response &);

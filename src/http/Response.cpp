@@ -35,13 +35,13 @@ Response &Response::setBodyFromFile(std::string const &fpath, std::string const 
     return *this;
 }
 
-Response &Response::setBodyFromCgi(int pipeFd) {
+Response &Response::setBodyFromCgi(int pipeFd, bool hasHeaderParsing) {
     delete body_;
-    body_ = new BodyFromCgi(pipeFd);
+    body_ = new BodyFromCgi(pipeFd, hasHeaderParsing);
     return *this;
 }
 
-void Response::buildHeaders(std::vector<char> &buffer) const {
+void Response::buildHeaders(std::vector<char> &buffer, bool addBodyLine) const {
     std::string startLine = startLine_.protocol + " " + utils::toString(startLine_.statusCode) +
                             " " + startLine_.reasonPhrase + "\r\n";
     buffer.insert(buffer.end(), startLine.begin(), startLine.end());
@@ -49,8 +49,10 @@ void Response::buildHeaders(std::vector<char> &buffer) const {
     std::string headerLines = headers_.toString();
     buffer.insert(buffer.end(), headerLines.begin(), headerLines.end());
 
-    buffer.push_back('\r');
-    buffer.push_back('\n');
+    if (addBodyLine) {
+        buffer.push_back('\r');
+        buffer.push_back('\n');
+    }
 }
 
 Response &Response::status(HttpStatus statusCode) {

@@ -12,6 +12,7 @@
 
 namespace http {
 
+bool IResponseBody::hasHeaderParsing() const { return false; }
 int IResponseBody::getEventSourceFd() const { return -1; }
 
 //==================== FileBody ====================
@@ -63,7 +64,8 @@ ssize_t BodyInMemory::read(char *buffer, size_t size) {
 //==================== BodyInMemory ====================
 
 //==================== BodyFromCgi ====================
-BodyFromCgi::BodyFromCgi(int pipeFd) : fd_(pipeFd), isDone_(false) {
+BodyFromCgi::BodyFromCgi(int pipeFd, bool hasHeaderParsing)
+    : fd_(pipeFd), isDone_(false), hasHeaderParsing_(hasHeaderParsing) {
     if (fd_ < 0) {
         isDone_ = true;
         return;
@@ -97,6 +99,7 @@ ssize_t BodyFromCgi::read(char *buffer, size_t size) {
 size_t BodyFromCgi::size() const { return 0; }
 bool BodyFromCgi::isDone() const { return isDone_; };
 int BodyFromCgi::getEventSourceFd() const { return fd_; }
+bool BodyFromCgi::hasHeaderParsing() const { return hasHeaderParsing_; }
 
 //==================== BodyFromCgi ====================
 

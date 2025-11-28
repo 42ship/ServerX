@@ -78,9 +78,11 @@ public:
     /**
      * @brief Sets the response body to stream from a CGI pipe.
      * @param pipeFd The file descriptor of the CGI script's output pipe.
+     * @param hasHeaderParsing If true, the response expects the pipe to contain HTTP headers that
+     * need parsing before the body content.
      * @return A reference to this object for chaining.
      */
-    Response &setBodyFromCgi(int pipeFd);
+    Response &setBodyFromCgi(int pipeFd, bool hasHeaderParsing);
 
     // --- Header & Status Management ---
 
@@ -96,10 +98,10 @@ public:
 
     /**
      * @brief Appends the fully formatted start-line and headers to a buffer.
-     * This is a high-performance method that avoids temporary string creation.
      * @param buffer The send buffer to which headers will be appended.
+     * @param addBodyLine If true, an extra CRLF line is added after the headers
      */
-    void buildHeaders(std::vector<char> &buffer) const;
+    void buildHeaders(std::vector<char> &buffer, bool addBodyLine = true) const;
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.

@@ -4,6 +4,7 @@
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
+#include "http/handlers/CGIHandler.hpp"
 #include "utils/Logger.hpp"
 
 namespace http {
