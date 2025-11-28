@@ -23,7 +23,7 @@ static std::string createJsonErrorBody(HttpStatus code, char const *message) {
     return body.str();
 }
 
-static const std::string &getCacherJsonErrorBody(HttpStatus code, const char *message) {
+static const std::string &getCachedJsonErrorBody(HttpStatus code, const char *message) {
     static JsonErrorPageCache cache;
     const std::string m = message ? message : "";
     Key k;

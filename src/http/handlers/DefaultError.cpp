@@ -2,7 +2,7 @@
 
 #include "common/filesystem.hpp"
 #include "config/ServerBlock.hpp"
-#include "config/arguments/Integer.hpp"
+#include "common/string.hpp"
 #include "utils/Logger.hpp"
 
 #include <iostream>
@@ -129,6 +129,22 @@ void DefaultErrorHandler::handle(Request const &request, Response &response,
     // try server-level error_page
     if (request.server()->has(status.getRawValue())) {
         fpath = request.server()->get(status.getRawValue())[0]->getRawValue();
+        serveErrorFile(response, root, fpath, mimeTypes);
+        return;
+    std::string status = utils::toString(response.status());
+    std::string root = request.server()->root();
+    std::string fpath;
+
+    // try location-level error_page
+    if (request.location()->has(status)) {
+        fpath = request.location()->getFirstRawValue(status);
+        serveErrorFile(response, root, fpath, mimeTypes);
+        return;
+    }
+
+    // try server-level error_page
+    if (request.server()->has(status)) {
+        fpath = request.server()->getFirstRawValue(status);
         serveErrorFile(response, root, fpath, mimeTypes);
         return;
     }

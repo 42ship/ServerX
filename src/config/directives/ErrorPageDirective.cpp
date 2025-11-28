@@ -12,13 +12,13 @@ const std::string ErrorPageDirective::name_ = "error_page";
 
 void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
     if (args.size() < 2) {
-        throw ConfigException("'" + name_ + "' directive requires two or more arguments.");
+        throw ConfigError("'" + name_ + "' directive requires two or more arguments.");
     }
 
     const std::string path = args[args.size() - 1].literal;
     static const std::string validCodes[] = {"400", "401", "403", "404", "405", "409", "411",
                                              "413", "415", "500", "501", "502", "503", "504"};
-    static const size_t validCount = 14;
+    static const size_t validCount = sizeof(validCodes) / sizeof(validCodes[0]);
 
     for (size_t j = 0; j < args.size() - 1; j++) {
         const std::string &code = args[j].literal;
@@ -30,6 +30,17 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
             if (i == validCount - 1) {
                 throw ConfigError("'" + name_ + " " + code + "' invalid status code.");
             }
+        bool isFound = false;
+
+        for (size_t i = 0; i < validCount; i++) {
+            if (validCodes[i] == code) {
+                b.add(code, path);
+                isFound = true;
+                break; 
+            }
+        }
+        if (!isFound) {
+            throw ConfigError("'" + name_ + " " + code + "' invalid status code.");
         }
     }
 }
