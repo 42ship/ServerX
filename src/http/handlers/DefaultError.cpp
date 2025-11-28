@@ -87,27 +87,17 @@ static void serveErrorFile(Response &response, const std::string &root, std::str
         return;
     }
 
-    if (fpath.size() > 2 && fpath[0] == '.' && fpath[1] == '/') {
-        fpath = fpath.substr(2);
-    } else if (fpath[0] == '/' || root.empty()) {
-        try {
-            response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
-        } catch (const std::exception &e) {
-            LOG_ERROR(e.what());
-            DefaultErrorHandler::populateResponse(response);
-        }
-        return;
+    if (!root.empty() && fpath[0] != '/') {
+        fpath = utils::joinPaths(root, fpath);
     }
 
-    // prepend root if relative
-    if (!root.empty()) {
-        fpath = root + (root[root.size() - 1] == '/' ? "" : "/") + fpath;
-    }
-
+    HttpStatus originalCode = response.status();
     try {
+        // This might set response.status(200) internally on success in future
         response.setBodyFromFile(fpath, mimeTypes.getMimeType(utils::getFileExtension(fpath)));
+        response.status(originalCode);
     } catch (const std::exception &e) {
-        LOG_ERROR(e.what());
+        LOG_ERROR("Failed to serve custom error page: " << e.what());
         DefaultErrorHandler::populateResponse(response);
     }
 }

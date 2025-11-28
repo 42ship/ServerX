@@ -12,6 +12,8 @@ const char *validateDirectoryPath(const char *path);
 
 std::string getFileExtension(const std::string &fpath);
 
+std::string joinPaths(const std::string &p1, const std::string &p2);
+
 class TempFile {
 public:
     TempFile();
