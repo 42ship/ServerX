@@ -22,21 +22,13 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
 
     for (size_t j = 0; j < args.size() - 1; j++) {
         const std::string &code = args[j].literal;
-        for (size_t i = 0; i < validCount; i++) {
-            if (validCodes[i] == code) {
-                b.add(code, path);
-                break;
-            }
-            if (i == validCount - 1) {
-                throw ConfigError("'" + name_ + " " + code + "' invalid status code.");
-            }
         bool isFound = false;
 
         for (size_t i = 0; i < validCount; i++) {
             if (validCodes[i] == code) {
                 b.add(code, path);
                 isFound = true;
-                break; 
+                break;
             }
         }
         if (!isFound) {
