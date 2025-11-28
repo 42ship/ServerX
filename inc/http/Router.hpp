@@ -56,8 +56,9 @@ public:
      *
      * @param request The client request.
      * @param response The Response to populate with an error body.
+     * @param mimeTypes MIME type resolver used to set the Content-Type of the response.
      */
-    static void handleError(Request const &request, Response &response);
+    static void handleError(Request const &request, Response &response, MimeTypes const &mimeTypes);
 
 private:
     /**
