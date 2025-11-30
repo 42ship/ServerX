@@ -80,6 +80,10 @@ void Router::handleError(Request const &request, Response &response, MimeTypes c
     }
 }
 
+void Router::handleError(Request const &request, Response &response) const {
+    handleError(request, response, mimeTypes_);
+}
+
 void Router::executeHandler(Request const &request, Response &response) const {
     LOG_TRACE("Router::executeHandler(" << request.uri() << "): selecting handler...");
     if (!request.server()) {

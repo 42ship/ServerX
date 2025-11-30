@@ -49,8 +49,12 @@ public:
      */
     void dispatch(int port, const Request &request, Response &response) const;
 
+    /** @copydoc handleError */
+    void handleError(Request const &, Response &) const;
+
+private:
     /**
-     * @brief Internal: Populates an error response.
+     * @brief: Populates an error response.
      * @internal
      * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
      *
@@ -60,7 +64,6 @@ public:
      */
     static void handleError(Request const &request, Response &response, MimeTypes const &mimeTypes);
 
-private:
     /**
      * @brief Internal: Selects and executes the correct handler.
      * @internal
