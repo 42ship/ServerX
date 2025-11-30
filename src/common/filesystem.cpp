@@ -136,4 +136,22 @@ http::HttpStatus checkFileAccess(const std::string &path, int modeMask, bool all
     return http::OK;
 }
 
+std::string joinPaths(const std::string &p1, const std::string &p2) {
+    if (p1.empty() || p1 == "/") {
+        if (p2.empty() || p2[0] != '/')
+            return "/" + p2;
+        return p2;
+    }
+    if (p2.empty())
+        return p1;
+    std::string p1_clean = p1;
+    if (p1_clean[p1_clean.length() - 1] == '/') {
+        p1_clean.resize(p1_clean.length() - 1);
+    }
+    std::string p2_clean = p2;
+    if (p2_clean[0] != '/')
+        p2_clean = "/" + p2_clean;
+    return p1_clean + p2_clean;
+}
+
 } // namespace utils

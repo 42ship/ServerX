@@ -16,6 +16,8 @@ std::string getFileExtension(const std::string &fpath);
 http::HttpStatus checkFileAccess(const std::string &path, int modeMask,
                                  bool allowDirectory = false);
 
+std::string joinPaths(const std::string &p1, const std::string &p2);
+
 class TempFile {
 public:
     TempFile();
