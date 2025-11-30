@@ -116,13 +116,18 @@ void CGIHandler::runParentProcess() {
     close(pipeFd_[1]);
     close(errorFd_[1]);
     char buf[257];
-    size_t bread = read(errorFd_[0], buf, sizeof(buf) - 1);
-    buf[bread] = 0;
+    ssize_t bytesRead = read(errorFd_[0], buf, sizeof(buf) - 1);
+    buf[bytesRead] = 0;
     close(errorFd_[0]);
 
-    if (bread > 0) {
+    if (bytesRead < 0) {  
+        close(pipeFd_[0]);  
+        LOG_SERROR("read: " << strerror(errno));  
+        return (void)res_.status(INTERNAL_SERVER_ERROR);  
+    }  
+    else if (bytesRead > 0) {
         close(pipeFd_[0]);
-        LOG_ERROR("CGIHandler::handle(" << req_.path() << ")::execve: " << buf);
+        LOG_SERROR("execve: " << buf);
         return (void)res_.status(INTERNAL_SERVER_ERROR);
     } else {
         res_.setBodyFromCgi(pipeFd_[0], !isNPH(req_));
@@ -210,9 +215,11 @@ void CGIHandler::buildEnvp() {
 
         std::string headerName = it->first;
 
-        if (!isValidCgiHeaderName(headerName)) {
+        if (!isValidCgiHeaderName(headerName))
             continue;
-        }
+
+        if (headerName == "content-type" || headerName == "content-length")
+            continue;
 
         envp_.push_back(formatHeaderName(headerName) + "=" + it->second);
     }
@@ -225,7 +232,7 @@ std::string CGIHandler::formatHeaderName(const std::string &name) {
         if (c == '-') {
             cgi_name += '_';
         } else {
-            cgi_name += std::toupper(c);
+            cgi_name += std::toupper(static_cast<unsigned char>(c));
         }
     }
     return cgi_name;

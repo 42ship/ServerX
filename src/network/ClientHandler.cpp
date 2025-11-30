@@ -28,7 +28,7 @@ void ClientHandler::SendBuffer::reset() {
     sent = 0;
 }
 
-bool ClientHandler::SendBuffer::isFullySent() const { return buffer.empty(); }
+bool ClientHandler::SendBuffer::isFullySent() const { return buffer.empty() || sent >= buffer.size(); }
 
 ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int clientFd) {
     if (isFullySent())
@@ -186,6 +186,7 @@ void ClientHandler::generateResponse() {
 bool ClientHandler::setupCgiHandler(http::IResponseBody *body) {
     LOG_SDEBUG("starting CGI handler");
 
+    cgiState_.handler = NULL;
     try {
         cgiState_.handler = new CGIHandler(*body, *this, body->hasHeaderParsing());
         EventDispatcher::getInstance().registerHandler(cgiState_.handler);
@@ -194,6 +195,8 @@ bool ClientHandler::setupCgiHandler(http::IResponseBody *body) {
         return true;
     } catch (std::exception const &e) {
         LOG_SERROR("Failed to setup CGI: " << e.what());
+        delete cgiState_.handler;
+        cgiState_.handler = NULL;
         return false;
     }
 }
@@ -206,7 +209,7 @@ void ClientHandler::setupStaticResponse() {
     headersSent_ = true;
 
     EventDispatcher::getInstance().enableWrite(this);
-};
+}
 
 // =============================================================================
 // Response Writing (Passive / Static)
@@ -297,7 +300,7 @@ void ClientHandler::handleCgiResponseWrite() {
     }
 
     if (rspBuffer_.isFullySent()) {
-        if (cgiState_.isDone) {
+        if (cgiState_.isDone || !cgiState_.handler) {
             finalizeConnection();
         } else {
             LOG_SDEBUG("Send buffer empty. Pausing ClientHandler.");

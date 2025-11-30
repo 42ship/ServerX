@@ -63,7 +63,7 @@ public:
     /**
      * @brief Indicates if the data read from this source contains HTTP headers
      * that need to be parsed by the server (e.g., CGI output).
-     * * @return true if the Reactor should buffer and parse headers before streaming.
+     * @return true if the Reactor should buffer and parse headers before streaming.
      * @return false if the data is the raw body (default).
      */
     virtual bool hasHeaderParsing() const;

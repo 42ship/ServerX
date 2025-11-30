@@ -54,7 +54,7 @@ public:
 
 private:
     /**
-     * @brief: Populates an error response.
+     * @brief Populates an error response.
      * @internal
      * Selects the correct ErrorHandler (e.g., JSON or HTML) based on the request.
      *

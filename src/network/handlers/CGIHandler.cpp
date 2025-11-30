@@ -1,7 +1,6 @@
 #include "network/CGIHandler.hpp"
 #include "http/HttpStatus.hpp"
 #include "http/ResponseBody.hpp"
-#include "network/CGIHandler.hpp"
 #include "network/EventDispatcher.hpp"
 #include "utils/Logger.hpp"
 #include <cstring>
@@ -48,6 +47,7 @@ void CGIHandler::handleRead() {
         } else {
             LOG_DEBUG("CGIHandler::handleRead: CGI body stream finished. Completing request.");
             client_.onCgiComplete();
+            return;
         }
     }
     if (state_ == STREAMING_BODY) {
