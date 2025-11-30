@@ -46,6 +46,10 @@ bool isValidCgiHeaderName(std::string const &headerName) {
 } // namespace
 
 CGIHandler::CGIHandler(Request const &req, Response &res) : req_(req), res_(res), pid_(-1) {
+    pipeFd_[0] = -1;
+    pipeFd_[1] = -1;
+    errorFd_[0] = -1;
+    errorFd_[1] = -1;
     argv_.reserve(3);
     envp_.reserve(30); // Increased reservation for more env vars
 }
