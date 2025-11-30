@@ -42,6 +42,7 @@ Response &Response::setBodyFromCgi(int pipeFd, bool hasHeaderParsing) {
 }
 
 void Response::buildHeaders(std::vector<char> &buffer, bool addBodyLine) const {
+    buffer.clear();
     std::string startLine = startLine_.protocol + " " + utils::toString(startLine_.statusCode) +
                             " " + startLine_.reasonPhrase + "\r\n";
     buffer.insert(buffer.end(), startLine.begin(), startLine.end());

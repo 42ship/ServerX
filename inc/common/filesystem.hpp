@@ -1,5 +1,6 @@
 #pragma once
 
+#include "http/HttpStatus.hpp"
 #include <string>
 
 namespace utils {
@@ -11,6 +12,9 @@ bool isDir(const std::string &p);
 const char *validateDirectoryPath(const char *path);
 
 std::string getFileExtension(const std::string &fpath);
+
+http::HttpStatus checkFileAccess(const std::string &path, int modeMask,
+                                 bool allowDirectory = false);
 
 class TempFile {
 public:

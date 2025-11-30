@@ -1,9 +1,11 @@
 #include "http/handlers/CGIHandler.hpp"
 #include "common/error.hpp"
+#include "common/filesystem.hpp"
 #include "common/string.hpp"
 #include "config/LocationBlock.hpp"
 #include "core/Server.hpp"
 #include "http/Handler.hpp"
+#include "http/HttpStatus.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
 #include <cstdlib>
@@ -55,6 +57,11 @@ void CGIHandler::handle(Request const &req, Response &res) {
 }
 
 void CGIHandler::handle() {
+    HttpStatus fp = utils::checkFileAccess(req_.resolvePath(), S_IXUSR);
+    if (fp != OK) {
+        res_.status(fp);
+        return;
+    }
     if (!initPipes()) {
         res_.status(INTERNAL_SERVER_ERROR);
         return;
