@@ -86,8 +86,6 @@ private:
         CgiState();
         void clear();
         void remove();
-        void pause();
-        void resume();
     };
 
 private:

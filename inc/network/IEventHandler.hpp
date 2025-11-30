@@ -28,6 +28,15 @@ protected:
 private:
     IEventHandler(const IEventHandler &);
     IEventHandler &operator=(const IEventHandler &);
+
+    friend class EventDispatcher;
+
+    /**
+     * @brief Shadow State.
+     * Stores the events currently registered in epoll.
+     * Prevents redundant syscalls.
+     */
+    uint32_t registeredEvents_;
 };
 
 } // namespace network

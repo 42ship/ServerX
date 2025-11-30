@@ -31,7 +31,8 @@ void CGIHandler::handleRead() {
     LOG_TRACE("CGIHandler::handleRead(" << client_.getFd() << ")");
     if (state_ == STREAMING_BODY && client_.isSendBufferFull()) {
         LOG_DEBUG("Client send buffer is full. Disabling CGI read handler temporarily.");
-        EventDispatcher::getInstance().modifyHandler(this, 0);
+        EventDispatcher::getInstance().disableRead(this);
+        return;
     }
 
     char buffer[8192];
@@ -88,10 +89,12 @@ void CGIHandler::handleRead() {
     client_.onCgiHeadersParsed(headers);
     state_ = STREAMING_BODY;
     if (headerEnd + offset < headerBuffer_.length()) {
-        size_t bodyBytes = headerBuffer_.length() - (headerEnd + offset);
+        size_t bodyStart = headerEnd + offset;
         LOG_DEBUG("CGIHandler::handleRead: Pushing remaining "
-                  << bodyBytes << " bytes of body found in header buffer.");
-        client_.pushToSendBuffer(headerBuffer_.data() + headerEnd + offset, headerBuffer_.length());
+                  << headerBuffer_.length() - bodyStart
+                  << " bytes of body found in header buffer.");
+        client_.pushToSendBuffer(headerBuffer_.data() + bodyStart,
+                                 headerBuffer_.length() - bodyStart);
     }
 }
 

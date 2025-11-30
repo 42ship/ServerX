@@ -68,18 +68,6 @@ void ClientHandler::CgiState::remove() {
     LOG_SDEBUG("CGI handler removed from dispatcher.");
     clear();
 }
-void ClientHandler::CgiState::pause() {
-    if (handler) {
-        LOG_SDEBUG("pausing handler events.");
-        EventDispatcher::getInstance().modifyHandler(handler, 0);
-    }
-}
-void ClientHandler::CgiState::resume() {
-    if (handler) {
-        LOG_SDEBUG("resuming handler events.");
-        EventDispatcher::getInstance().setReceivingData(handler);
-    }
-}
 
 // =============================================================================
 // ClientHandler Implementation
@@ -105,6 +93,7 @@ ClientHandler::~ClientHandler() {
         ::close(clientFd_);
         clientFd_ = -1;
     }
+    cgiState_.remove();
 }
 
 int ClientHandler::getFd() const { return clientFd_; }
@@ -200,7 +189,7 @@ bool ClientHandler::setupCgiHandler(http::IResponseBody *body) {
     try {
         cgiState_.handler = new CGIHandler(*body, *this, body->hasHeaderParsing());
         EventDispatcher::getInstance().registerHandler(cgiState_.handler);
-        EventDispatcher::getInstance().modifyHandler(this, 0);
+        EventDispatcher::getInstance().disableRead(this);
         LOG_STRACE("CGI handler registered.");
         return true;
     } catch (std::exception const &e) {
@@ -216,7 +205,7 @@ void ClientHandler::setupStaticResponse() {
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
-    EventDispatcher::getInstance().setSendingData(this);
+    EventDispatcher::getInstance().enableWrite(this);
 };
 
 // =============================================================================
@@ -258,8 +247,10 @@ void ClientHandler::pushToSendBuffer(const char *data, size_t length) {
     rspBuffer_.buffer.insert(rspBuffer_.buffer.end(), data, data + length);
 
     if (wasEmpty) {
-        EventDispatcher::getInstance().setSendingData(this);
+        EventDispatcher::getInstance().enableWrite(this);
     }
+    if (isSendBufferFull())
+        EventDispatcher::getInstance().disableRead(cgiState_.handler);
 }
 
 bool ClientHandler::isSendBufferFull() const { return rspBuffer_.buffer.size() > (1024 * 1024); }
@@ -267,14 +258,15 @@ bool ClientHandler::isSendBufferFull() const { return rspBuffer_.buffer.size() >
 void ClientHandler::onCgiComplete() {
     LOG_SDEBUG("CGI completion signaled.");
     cgiState_.isDone = true;
+
+    if (cgiState_.handler) {
+        cgiState_.remove();
+    }
+
     if (rspBuffer_.isFullySent()) {
         finalizeConnection();
     } else {
-        EventDispatcher::getInstance().setSendingData(this);
-    }
-
-    if (cgiState_.handler) {
-        cgiState_.pause();
+        EventDispatcher::getInstance().enableWrite(this);
     }
 }
 
@@ -293,7 +285,7 @@ void ClientHandler::onCgiHeadersParsed(http::Headers const &headers) {
     headersSent_ = true;
     LOG_SDEBUG("Headers built, activating send.");
 
-    EventDispatcher::getInstance().setSendingData(this);
+    EventDispatcher::getInstance().enableWrite(this);
 }
 
 void ClientHandler::handleCgiResponseWrite() {
@@ -308,9 +300,9 @@ void ClientHandler::handleCgiResponseWrite() {
         if (cgiState_.isDone) {
             finalizeConnection();
         } else {
-            LOG_SDEBUG("Send buffer empty. Resuming CGI handler.");
-            EventDispatcher::getInstance().modifyHandler(this, 0);
-            cgiState_.resume();
+            LOG_SDEBUG("Send buffer empty. Pausing ClientHandler.");
+            EventDispatcher::getInstance().disableWrite(this);
+            EventDispatcher::getInstance().enableRead(cgiState_.handler);
         }
     }
 }
@@ -340,7 +332,7 @@ void ClientHandler::handleError(http::HttpStatus status) {
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
-    EventDispatcher::getInstance().setSendingData(this);
+    EventDispatcher::getInstance().enableWrite(this);
 }
 
 void ClientHandler::finalizeConnection() {
@@ -348,7 +340,7 @@ void ClientHandler::finalizeConnection() {
     if (conn == "keep-alive") {
         LOG_SDEBUG("Keep-Alive. Resetting.");
         resetForNewRequest();
-        EventDispatcher::getInstance().setReceivingData(this);
+        EventDispatcher::getInstance().enableRead(this);
     } else {
         closeConnection();
     }
