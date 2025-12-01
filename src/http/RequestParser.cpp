@@ -145,11 +145,15 @@ void RequestParser::handleChunkedBody() {
     setError(NOT_IMPLEMENTED);
 }
 
-inline void RequestParser::setRequestReady() {
+void RequestParser::setRequestReady() {
     state_ = REQUEST_READY;
     if (bodyFile_.isOpen()) {
-        if (lseek(bodyFile_, 0, SEEK_SET) != (off_t)-1)
+        if (lseek(bodyFile_, 0, SEEK_SET) != (off_t)-1) {
             request_.body(bodyFile_);
+        } else {
+            LOG_ERROR("RequestParser::setRequestReady(): lseek failed on TempFile. State=ERROR");
+            setError(INTERNAL_SERVER_ERROR);
+        }
     }
 }
 
