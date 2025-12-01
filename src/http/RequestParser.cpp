@@ -82,7 +82,8 @@ RequestParser::State RequestParser::parseHeaders() {
         return setError(BAD_REQUEST);
     }
     // Only parse the header section, not the body
-    std::string headerSection = buffer_.substr(buffer_.find_first_of("\r\n") + 1, contentStartInBuffer_);
+    size_t headerSectionStart = buffer_.find('\n') + 1;
+    std::string headerSection = buffer_.substr(headerSectionStart, contentStartInBuffer_ - headerSectionStart + 2);
     if (!http::Headers::parse(headerSection, request_.headers_)) {
         return setError(BAD_REQUEST);
     }

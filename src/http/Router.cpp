@@ -4,6 +4,7 @@
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
+#include "http/handlers/CGIHandler.hpp"
 #include "utils/Logger.hpp"
 
 namespace http {
@@ -77,6 +78,10 @@ void Router::handleError(Request const &request, Response &response, MimeTypes c
                                          << "): populating default HTML error page");
         DefaultErrorHandler::handle(request, response, mimeTypes);
     }
+}
+
+void Router::handleError(Request const &request, Response &response) const {
+    handleError(request, response, mimeTypes_);
 }
 
 void Router::executeHandler(Request const &request, Response &response) const {

@@ -110,6 +110,32 @@ int TempFile::fd() const { return fd_; }
 std::string const &TempFile::path() const { return filePath_; }
 bool TempFile::isOpen() const { return fd_ != -1 && !filePath_.empty(); }
 
+http::HttpStatus checkFileAccess(const std::string &path, int modeMask, bool allowDirectory) {
+    struct stat statbuf;
+
+    if (stat(path.c_str(), &statbuf) != 0) {
+        if (errno == ENOENT || errno == ENOTDIR) {
+            return http::NOT_FOUND;
+        } else if (errno == EACCES) {
+            return http::FORBIDDEN;
+        }
+        return http::INTERNAL_SERVER_ERROR;
+    }
+
+    if ((statbuf.st_mode & modeMask) == 0) {
+        return http::FORBIDDEN;
+    }
+
+    // 3. Check if it is a directory
+    if (S_ISDIR(statbuf.st_mode)) {
+        if (!allowDirectory) {
+            return http::FORBIDDEN;
+        }
+    }
+
+    return http::OK;
+}
+
 std::string joinPaths(const std::string &p1, const std::string &p2) {
     if (p1.empty() || p1 == "/") {
         if (p2.empty() || p2[0] != '/')

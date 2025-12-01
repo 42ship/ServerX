@@ -2,10 +2,8 @@
 
 namespace network {
 
-IEventHandler::IEventHandler() {
-}
+IEventHandler::IEventHandler() : registeredEvents_(0) {}
 
-IEventHandler::~IEventHandler() {
-}
+IEventHandler::~IEventHandler() {}
 
 } // namespace network
