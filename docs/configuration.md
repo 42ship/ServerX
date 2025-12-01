@@ -24,3 +24,4 @@ which they can be used.
 | [`upload_file_size`](./directives/upload_file_size.md) | `server` | Defines the maximum allowed upload size in MiB. |
 | [`alias`](./directives/alias.md) | `location` | Replaces a location's path with a new filesystem path. |
 | [`error_page`](./directives/error_page.md) | `server`, `location` | Defines custom error pages for specific HTTP status codes. |
+| [`return`](./directives/return.md) | `location`, `server` | Returns the specified status to the client. |
