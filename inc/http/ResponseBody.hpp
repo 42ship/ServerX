@@ -60,6 +60,14 @@ public:
      */
     virtual int getEventSourceFd() const;
 
+    /**
+     * @brief Indicates if the data read from this source contains HTTP headers
+     * that need to be parsed by the server (e.g., CGI output).
+     * @return true if the Reactor should buffer and parse headers before streaming.
+     * @return false if the data is the raw body (default).
+     */
+    virtual bool hasHeaderParsing() const;
+
 private:
     IResponseBody(IResponseBody const &);
     IResponseBody const &operator=(IResponseBody const &);
@@ -95,17 +103,19 @@ private:
 
 class BodyFromCgi : public IResponseBody {
 public:
-    explicit BodyFromCgi(int pipeFd);
+    BodyFromCgi(int pipeFd, bool hasHeaderParsing);
     ~BodyFromCgi();
     ssize_t read(char *buffer, size_t size);
     size_t size() const;
     bool isDone() const;
     int getEventSourceFd() const;
+    bool hasHeaderParsing() const;
 
 private:
     BodyFromCgi();
     int fd_;
     bool isDone_;
+    bool hasHeaderParsing_;
 };
 
 } // namespace http

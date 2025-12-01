@@ -3,6 +3,7 @@
 #include "EpollManager.hpp"
 #include "IEventHandler.hpp"
 #include <map>
+#include <set>
 
 namespace network {
 
@@ -20,23 +21,49 @@ public:
     ~EventDispatcher();
 
     void registerHandler(IEventHandler *handler);
-    void modifyHandler(IEventHandler *handler, uint32_t events);
     void removeHandler(IEventHandler *handler);
-    void setSendingData(IEventHandler *handler);
-    void setReceivingData(IEventHandler *handler);
-
     void handleEvents();
     void requestShutdown();
 
     static EventDispatcher &getInstance();
 
+public:
+    /**
+     * @brief Adds EPOLLIN to the monitored events.
+     * @note No-op if already reading.
+     */
+    void enableRead(IEventHandler *handler);
+
+    /**
+     * @brief Removes EPOLLIN from the monitored events.
+     */
+    void disableRead(IEventHandler *handler);
+
+    /**
+     * @brief Adds EPOLLOUT to the monitored events.
+     * @note No-op if already writing.
+     */
+    void enableWrite(IEventHandler *handler);
+
+    /**
+     * @brief Removes EPOLLOUT from the monitored events.
+     */
+    void disableWrite(IEventHandler *handler);
+
+private:
+    void updateEventMask(IEventHandler *handler, uint32_t newMask);
+    void cleanUpGarbage();
+
+private:
+    EpollManager epollManager_;
+    std::map<int, IEventHandler *> handlers_;
+    std::set<IEventHandler *> pendingRemovals_;
+    std::set<IEventHandler *> activeHandlers_;
+
 private:
     EventDispatcher();
     EventDispatcher(const EventDispatcher &);
     EventDispatcher &operator=(const EventDispatcher &);
-
-    EpollManager epollManager_;
-    std::map<int, IEventHandler *> handlers_;
 };
 
 } // namespace network
