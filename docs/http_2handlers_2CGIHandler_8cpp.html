@@ -91,17 +91,21 @@ $(function(){initNavTree('http_2handlers_2CGIHandler_8cpp.html','',''); });
   <div class="headertitle"><div class="title">CGIHandler.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="LocationBlock_8hpp_source.html">config/LocationBlock.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ServerBlock_8hpp_source.html">config/ServerBlock.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="http_2handlers_2CGIHandler_8hpp_source.html">http/handlers/CGIHandler.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="error_8hpp_source.html">common/error.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="filesystem_8hpp_source.html">common/filesystem.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="string_8hpp_source.html">common/string.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LocationBlock_8hpp_source.html">config/LocationBlock.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Server_8hpp_source.html">core/Server.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Handler_8hpp_source.html">http/Handler.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="HttpStatus_8hpp_source.html">http/HttpStatus.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">utils/Logger.hpp</a>&quot;</code><br />
 <code>#include &lt;cerrno&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
 <code>#include &lt;sys/wait.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>

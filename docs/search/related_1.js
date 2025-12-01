@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['network_3a_3aclienthandler_0',['ClientHandler',['../classhttp_1_1Request.html#a837d793eae715f42b609535db75657c5',1,'http::Request']]]
+  ['eventdispatcher_0',['EventDispatcher',['../classnetwork_1_1IEventHandler.html#aad5f38ccd490ea17008460423f52325a',1,'network::IEventHandler']]]
 ];

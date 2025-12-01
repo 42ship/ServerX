@@ -1,7 +1,7 @@
 var dir_20134cae3c955076fb6cbe22b404024f =
 [
     [ "Acceptor.hpp", "Acceptor_8hpp.html", "Acceptor_8hpp" ],
-    [ "CGIHandler.hpp", "CGIHandler_8hpp.html", "CGIHandler_8hpp" ],
+    [ "CGIHandler.hpp", "network_2CGIHandler_8hpp.html", "network_2CGIHandler_8hpp" ],
     [ "ClientHandler.hpp", "ClientHandler_8hpp.html", "ClientHandler_8hpp" ],
     [ "EpollManager.hpp", "EpollManager_8hpp.html", "EpollManager_8hpp" ],
     [ "EventDispatcher.hpp", "EventDispatcher_8hpp.html", "EventDispatcher_8hpp" ],

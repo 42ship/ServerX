@@ -92,7 +92,7 @@ $(function(){initNavTree('classhttp_1_1CGIHandler.html','','classhttp_1_1CGIHand
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="Handler_8hpp_source.html">Handler.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="http_2handlers_2CGIHandler_8hpp_source.html">CGIHandler.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for http::CGIHandler:</div>
 <div class="dyncontent">
@@ -105,16 +105,219 @@ Inheritance diagram for http::CGIHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab0da0d7b4b0538603fea84333c8f0edf" id="r_ab0da0d7b4b0538603fea84333c8f0edf"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0da0d7b4b0538603fea84333c8f0edf">formatHeaderName</a> (std::string const &amp;name)</td></tr>
 <tr class="memitem:a85cde3832cfb8f5b2b240de9c5bf52df" id="r_a85cde3832cfb8f5b2b240de9c5bf52df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85cde3832cfb8f5b2b240de9c5bf52df">handle</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:add36269e701766c4048e29c47559045d" id="r_add36269e701766c4048e29c47559045d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add36269e701766c4048e29c47559045d">CGIHandler</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;req, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;res)</td></tr>
+<tr class="memitem:a898bbdc06fa627109a81e7fdcb4ba23a" id="r_a898bbdc06fa627109a81e7fdcb4ba23a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a898bbdc06fa627109a81e7fdcb4ba23a">handle</a> ()</td></tr>
+<tr class="memitem:adb280f32bacd9338372b914ccb7151d0" id="r_adb280f32bacd9338372b914ccb7151d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb280f32bacd9338372b914ccb7151d0">buildArgv</a> ()</td></tr>
+<tr class="memitem:ae660d2049525d6871a51e34bf3e84a02" id="r_ae660d2049525d6871a51e34bf3e84a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae660d2049525d6871a51e34bf3e84a02">buildEnvp</a> ()</td></tr>
+<tr class="memitem:a9ddf795c885bce3692961684b2ba1522" id="r_a9ddf795c885bce3692961684b2ba1522"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ddf795c885bce3692961684b2ba1522">initPipes</a> ()</td></tr>
+<tr class="memitem:a0088c9d59eda461a59668fd2755a4114" id="r_a0088c9d59eda461a59668fd2755a4114"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0088c9d59eda461a59668fd2755a4114">fork</a> ()</td></tr>
+<tr class="memitem:a5704f65efe798cd3187d414b26057bbd" id="r_a5704f65efe798cd3187d414b26057bbd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5704f65efe798cd3187d414b26057bbd">execve</a> ()</td></tr>
+<tr class="memitem:ad7ad2ec2115bbae4b465921264367756" id="r_ad7ad2ec2115bbae4b465921264367756"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ad2ec2115bbae4b465921264367756">runChildProcess</a> ()</td></tr>
+<tr class="memitem:abebcefddfc85c9b9a66fafb1fe432065" id="r_abebcefddfc85c9b9a66fafb1fe432065"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abebcefddfc85c9b9a66fafb1fe432065">runParentProcess</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa91a3b79061c05c051875fa88dcbec6d" id="r_aa91a3b79061c05c051875fa88dcbec6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Request.html">Request</a> const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa91a3b79061c05c051875fa88dcbec6d">req_</a></td></tr>
+<tr class="memitem:af8714cf4ceafa7655eadcddfa0267147" id="r_af8714cf4ceafa7655eadcddfa0267147"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8714cf4ceafa7655eadcddfa0267147">res_</a></td></tr>
+<tr class="memitem:ae19fae28132380a62bc668127aaedbc4" id="r_ae19fae28132380a62bc668127aaedbc4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae19fae28132380a62bc668127aaedbc4">argv_</a></td></tr>
+<tr class="memitem:a69230952d47d0413955243c818bc4f2b" id="r_a69230952d47d0413955243c818bc4f2b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69230952d47d0413955243c818bc4f2b">envp_</a></td></tr>
+<tr class="memitem:a65884355fbf0b6e24affe6c7e64d7890" id="r_a65884355fbf0b6e24affe6c7e64d7890"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65884355fbf0b6e24affe6c7e64d7890">pipeFd_</a> [2]</td></tr>
+<tr class="memitem:adf55de08ba34264728200cb950f70fe2" id="r_adf55de08ba34264728200cb950f70fe2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf55de08ba34264728200cb950f70fe2">errorFd_</a> [2]</td></tr>
+<tr class="memitem:a1bea3022e232aafd882fc4e95bfc7fe5" id="r_a1bea3022e232aafd882fc4e95bfc7fe5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bea3022e232aafd882fc4e95bfc7fe5">pid_</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_classhttp_1_1IHandler"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classhttp_1_1IHandler')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classhttp_1_1IHandler.html">http::IHandler</a></td></tr>
 <tr class="memitem:a4bfa964206e57bb84fce5cb93d7fa3a7 inherit pub_methods_classhttp_1_1IHandler" id="r_a4bfa964206e57bb84fce5cb93d7fa3a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IHandler.html#a4bfa964206e57bb84fce5cb93d7fa3a7">~IHandler</a> ()</td></tr>
 </table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="add36269e701766c4048e29c47559045d" name="add36269e701766c4048e29c47559045d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add36269e701766c4048e29c47559045d">&#9670;&#160;</a></span>CGIHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">http::CGIHandler::CGIHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>res</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="adb280f32bacd9338372b914ccb7151d0" name="adb280f32bacd9338372b914ccb7151d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb280f32bacd9338372b914ccb7151d0">&#9670;&#160;</a></span>buildArgv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::buildArgv </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae660d2049525d6871a51e34bf3e84a02" name="ae660d2049525d6871a51e34bf3e84a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae660d2049525d6871a51e34bf3e84a02">&#9670;&#160;</a></span>buildEnvp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::buildEnvp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5704f65efe798cd3187d414b26057bbd" name="a5704f65efe798cd3187d414b26057bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5704f65efe798cd3187d414b26057bbd">&#9670;&#160;</a></span>execve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int http::CGIHandler::execve </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0088c9d59eda461a59668fd2755a4114" name="a0088c9d59eda461a59668fd2755a4114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0088c9d59eda461a59668fd2755a4114">&#9670;&#160;</a></span>fork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::fork </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab0da0d7b4b0538603fea84333c8f0edf" name="ab0da0d7b4b0538603fea84333c8f0edf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0da0d7b4b0538603fea84333c8f0edf">&#9670;&#160;</a></span>formatHeaderName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string http::CGIHandler::formatHeaderName </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a898bbdc06fa627109a81e7fdcb4ba23a" name="a898bbdc06fa627109a81e7fdcb4ba23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a898bbdc06fa627109a81e7fdcb4ba23a">&#9670;&#160;</a></span>handle() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::handle </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a85cde3832cfb8f5b2b240de9c5bf52df" name="a85cde3832cfb8f5b2b240de9c5bf52df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85cde3832cfb8f5b2b240de9c5bf52df">&#9670;&#160;</a></span>handle()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a85cde3832cfb8f5b2b240de9c5bf52df">&#9670;&#160;</a></span>handle() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,8 +345,238 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a9ddf795c885bce3692961684b2ba1522" name="a9ddf795c885bce3692961684b2ba1522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ddf795c885bce3692961684b2ba1522">&#9670;&#160;</a></span>initPipes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool http::CGIHandler::initPipes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7ad2ec2115bbae4b465921264367756" name="ad7ad2ec2115bbae4b465921264367756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ad2ec2115bbae4b465921264367756">&#9670;&#160;</a></span>runChildProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::runChildProcess </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abebcefddfc85c9b9a66fafb1fe432065" name="abebcefddfc85c9b9a66fafb1fe432065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abebcefddfc85c9b9a66fafb1fe432065">&#9670;&#160;</a></span>runParentProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void http::CGIHandler::runParentProcess </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ae19fae28132380a62bc668127aaedbc4" name="ae19fae28132380a62bc668127aaedbc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19fae28132380a62bc668127aaedbc4">&#9670;&#160;</a></span>argv_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; http::CGIHandler::argv_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69230952d47d0413955243c818bc4f2b" name="a69230952d47d0413955243c818bc4f2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69230952d47d0413955243c818bc4f2b">&#9670;&#160;</a></span>envp_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; http::CGIHandler::envp_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf55de08ba34264728200cb950f70fe2" name="adf55de08ba34264728200cb950f70fe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf55de08ba34264728200cb950f70fe2">&#9670;&#160;</a></span>errorFd_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int http::CGIHandler::errorFd_[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bea3022e232aafd882fc4e95bfc7fe5" name="a1bea3022e232aafd882fc4e95bfc7fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bea3022e232aafd882fc4e95bfc7fe5">&#9670;&#160;</a></span>pid_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int http::CGIHandler::pid_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65884355fbf0b6e24affe6c7e64d7890" name="a65884355fbf0b6e24affe6c7e64d7890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65884355fbf0b6e24affe6c7e64d7890">&#9670;&#160;</a></span>pipeFd_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int http::CGIHandler::pipeFd_[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa91a3b79061c05c051875fa88dcbec6d" name="aa91a3b79061c05c051875fa88dcbec6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa91a3b79061c05c051875fa88dcbec6d">&#9670;&#160;</a></span>req_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhttp_1_1Request.html">Request</a> const&amp; http::CGIHandler::req_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af8714cf4ceafa7655eadcddfa0267147" name="af8714cf4ceafa7655eadcddfa0267147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8714cf4ceafa7655eadcddfa0267147">&#9670;&#160;</a></span>res_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhttp_1_1Response.html">Response</a>&amp; http::CGIHandler::res_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>inc/http/<a class="el" href="Handler_8hpp_source.html">Handler.hpp</a></li>
+<li>inc/http/handlers/<a class="el" href="http_2handlers_2CGIHandler_8hpp_source.html">CGIHandler.hpp</a></li>
 <li>src/http/handlers/<a class="el" href="http_2handlers_2CGIHandler_8cpp.html">CGIHandler.cpp</a></li>
 </ul>
 </div><!-- contents -->

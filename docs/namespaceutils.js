@@ -11,6 +11,7 @@ var namespaceutils =
       [ "ERROR", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dda40d4c6e2760d5f9c616cbe05f98e2826", null ],
       [ "FATAL", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dda700023160820e1571081adb0b5de1331", null ]
     ] ],
+    [ "checkFileAccess", "namespaceutils.html#abd686a6904b528491f3fca83b46f26d7", null ],
     [ "extractIpInfo", "namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59", null ],
     [ "fromString", "namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4", null ],
     [ "getFileExtension", "namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3", null ],

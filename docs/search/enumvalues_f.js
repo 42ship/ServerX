@@ -5,5 +5,6 @@ var searchData=
   ['send_5fagain_2',['SEND_AGAIN',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a12407aa08f2a1e5b70d61f4238fefa5ca78a1f38658ce9be95ff2744cc23f4ef0',1,'network::ClientHandler::SendBuffer']]],
   ['send_5fdone_3',['SEND_DONE',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a12407aa08f2a1e5b70d61f4238fefa5ca9f1705f76d04bd4d06df765323777824',1,'network::ClientHandler::SendBuffer']]],
   ['send_5ferror_4',['SEND_ERROR',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a12407aa08f2a1e5b70d61f4238fefa5ca1e51cf859620c6b76a6c4d4852fad17b',1,'network::ClientHandler::SendBuffer']]],
-  ['string_5',['STRING',['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a1acd517b4a41ccbf9b700bf0812d750d',1,'config']]]
+  ['streaming_5fbody_5',['STREAMING_BODY',['../classnetwork_1_1CGIHandler.html#a84f7ffd13a1e55e57bbd2c24f9eb0297aab8c67b9c78945ad7ec2ff2b9105716a',1,'network::CGIHandler']]],
+  ['string_6',['STRING',['../namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a1acd517b4a41ccbf9b700bf0812d750d',1,'config']]]
 ];

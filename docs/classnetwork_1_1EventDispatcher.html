@@ -101,12 +101,17 @@ $(function(){initNavTree('classnetwork_1_1EventDispatcher.html','','classnetwork
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a09a6beca3f2891963d76936bac95e0f6" id="r_a09a6beca3f2891963d76936bac95e0f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09a6beca3f2891963d76936bac95e0f6">~EventDispatcher</a> ()</td></tr>
 <tr class="memitem:abb40ed1289dcb6c428922df597557b7c" id="r_abb40ed1289dcb6c428922df597557b7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb40ed1289dcb6c428922df597557b7c">registerHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
-<tr class="memitem:aebd534372ed3ac27b96225b03fe54320" id="r_aebd534372ed3ac27b96225b03fe54320"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebd534372ed3ac27b96225b03fe54320">modifyHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler, uint32_t events)</td></tr>
 <tr class="memitem:ab10cf8206a533ee4aec32aa7c0dd8a8b" id="r_ab10cf8206a533ee4aec32aa7c0dd8a8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab10cf8206a533ee4aec32aa7c0dd8a8b">removeHandler</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
-<tr class="memitem:a50cbdf1d0baba7860bcecce7dd342397" id="r_a50cbdf1d0baba7860bcecce7dd342397"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50cbdf1d0baba7860bcecce7dd342397">setSendingData</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
-<tr class="memitem:a9f10e7a5121c7116bb7f5702778a7444" id="r_a9f10e7a5121c7116bb7f5702778a7444"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f10e7a5121c7116bb7f5702778a7444">setReceivingData</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
 <tr class="memitem:a7215d12ac2f91d4baaf638b2af7be0d7" id="r_a7215d12ac2f91d4baaf638b2af7be0d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7215d12ac2f91d4baaf638b2af7be0d7">handleEvents</a> ()</td></tr>
 <tr class="memitem:a48f904b82f640ce6b20b9ca2df70476f" id="r_a48f904b82f640ce6b20b9ca2df70476f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f904b82f640ce6b20b9ca2df70476f">requestShutdown</a> ()</td></tr>
+<tr class="memitem:a785a653981cddec97c56df694ca61602" id="r_a785a653981cddec97c56df694ca61602"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a785a653981cddec97c56df694ca61602">enableRead</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
+<tr class="memdesc:a785a653981cddec97c56df694ca61602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds EPOLLIN to the monitored events.  <br /></td></tr>
+<tr class="memitem:a853501cb384c4170c1fbdbcbd7ea3961" id="r_a853501cb384c4170c1fbdbcbd7ea3961"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a853501cb384c4170c1fbdbcbd7ea3961">disableRead</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
+<tr class="memdesc:a853501cb384c4170c1fbdbcbd7ea3961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes EPOLLIN from the monitored events.  <br /></td></tr>
+<tr class="memitem:a0fa3e6f93be515d9d18d73755502b63e" id="r_a0fa3e6f93be515d9d18d73755502b63e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fa3e6f93be515d9d18d73755502b63e">enableWrite</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
+<tr class="memdesc:a0fa3e6f93be515d9d18d73755502b63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds EPOLLOUT to the monitored events.  <br /></td></tr>
+<tr class="memitem:a9e850d0384593372e54ad63224eb4aca" id="r_a9e850d0384593372e54ad63224eb4aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e850d0384593372e54ad63224eb4aca">disableWrite</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler)</td></tr>
+<tr class="memdesc:a9e850d0384593372e54ad63224eb4aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes EPOLLOUT from the monitored events.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -114,6 +119,8 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:a6adb72f09341399ae53e444d3d640ca8" id="r_a6adb72f09341399ae53e444d3d640ca8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6adb72f09341399ae53e444d3d640ca8">updateEventMask</a> (<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *handler, uint32_t newMask)</td></tr>
+<tr class="memitem:acd52851ef7d21a3d72f428f10f256ebe" id="r_acd52851ef7d21a3d72f428f10f256ebe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd52851ef7d21a3d72f428f10f256ebe">cleanUpGarbage</a> ()</td></tr>
 <tr class="memitem:a72c71039a1e2d78d7d88b5b4187e803c" id="r_a72c71039a1e2d78d7d88b5b4187e803c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72c71039a1e2d78d7d88b5b4187e803c">EventDispatcher</a> ()</td></tr>
 <tr class="memitem:aa58ffcdcd9fa4f1191d50a7cd99f15c8" id="r_aa58ffcdcd9fa4f1191d50a7cd99f15c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa58ffcdcd9fa4f1191d50a7cd99f15c8">EventDispatcher</a> (const <a class="el" href="classnetwork_1_1EventDispatcher.html">EventDispatcher</a> &amp;)</td></tr>
 <tr class="memitem:aa44d3f78932435d33d7787c07e532807" id="r_aa44d3f78932435d33d7787c07e532807"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnetwork_1_1EventDispatcher.html">EventDispatcher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa44d3f78932435d33d7787c07e532807">operator=</a> (const <a class="el" href="classnetwork_1_1EventDispatcher.html">EventDispatcher</a> &amp;)</td></tr>
@@ -122,6 +129,8 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a78594e8ec71a1f8f997c2894a2da7020" id="r_a78594e8ec71a1f8f997c2894a2da7020"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnetwork_1_1EpollManager.html">EpollManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78594e8ec71a1f8f997c2894a2da7020">epollManager_</a></td></tr>
 <tr class="memitem:afdf09b29b23127d27253eb6ab89f6706" id="r_afdf09b29b23127d27253eb6ab89f6706"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, <a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf09b29b23127d27253eb6ab89f6706">handlers_</a></td></tr>
+<tr class="memitem:a03eaa696b0bec88ef8eec8dfd952b414" id="r_a03eaa696b0bec88ef8eec8dfd952b414"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03eaa696b0bec88ef8eec8dfd952b414">pendingRemovals_</a></td></tr>
+<tr class="memitem:a40b843b3c8651a92ac95700a24b26708" id="r_a40b843b3c8651a92ac95700a24b26708"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b843b3c8651a92ac95700a24b26708">activeHandlers_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Centralised event demultiplexer and dispatcher for managing I/O events. </p>
@@ -195,6 +204,109 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="acd52851ef7d21a3d72f428f10f256ebe" name="acd52851ef7d21a3d72f428f10f256ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd52851ef7d21a3d72f428f10f256ebe">&#9670;&#160;</a></span>cleanUpGarbage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::EventDispatcher::cleanUpGarbage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a853501cb384c4170c1fbdbcbd7ea3961" name="a853501cb384c4170c1fbdbcbd7ea3961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a853501cb384c4170c1fbdbcbd7ea3961">&#9670;&#160;</a></span>disableRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::EventDispatcher::disableRead </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes EPOLLIN from the monitored events. </p>
+
+</div>
+</div>
+<a id="a9e850d0384593372e54ad63224eb4aca" name="a9e850d0384593372e54ad63224eb4aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e850d0384593372e54ad63224eb4aca">&#9670;&#160;</a></span>disableWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::EventDispatcher::disableWrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes EPOLLOUT from the monitored events. </p>
+
+</div>
+</div>
+<a id="a785a653981cddec97c56df694ca61602" name="a785a653981cddec97c56df694ca61602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785a653981cddec97c56df694ca61602">&#9670;&#160;</a></span>enableRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::EventDispatcher::enableRead </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds EPOLLIN to the monitored events. </p>
+<dl class="section note"><dt>Note</dt><dd>No-op if already reading. </dd></dl>
+
+</div>
+</div>
+<a id="a0fa3e6f93be515d9d18d73755502b63e" name="a0fa3e6f93be515d9d18d73755502b63e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa3e6f93be515d9d18d73755502b63e">&#9670;&#160;</a></span>enableWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::EventDispatcher::enableWrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds EPOLLOUT to the monitored events. </p>
+<dl class="section note"><dt>Note</dt><dd>No-op if already writing. </dd></dl>
+
+</div>
+</div>
 <a id="a34364d044a7cfa6dd8c2e088896337c4" name="a34364d044a7cfa6dd8c2e088896337c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34364d044a7cfa6dd8c2e088896337c4">&#9670;&#160;</a></span>getInstance()</h2>
 
@@ -231,27 +343,6 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aebd534372ed3ac27b96225b03fe54320" name="aebd534372ed3ac27b96225b03fe54320"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebd534372ed3ac27b96225b03fe54320">&#9670;&#160;</a></span>modifyHandler()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void network::EventDispatcher::modifyHandler </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>events</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -334,41 +425,58 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9f10e7a5121c7116bb7f5702778a7444" name="a9f10e7a5121c7116bb7f5702778a7444"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f10e7a5121c7116bb7f5702778a7444">&#9670;&#160;</a></span>setReceivingData()</h2>
+<a id="a6adb72f09341399ae53e444d3d640ca8" name="a6adb72f09341399ae53e444d3d640ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6adb72f09341399ae53e444d3d640ca8">&#9670;&#160;</a></span>updateEventMask()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void network::EventDispatcher::setReceivingData </td>
+          <td class="memname">void network::EventDispatcher::updateEventMask </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a50cbdf1d0baba7860bcecce7dd342397" name="a50cbdf1d0baba7860bcecce7dd342397"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50cbdf1d0baba7860bcecce7dd342397">&#9670;&#160;</a></span>setSendingData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">void network::EventDispatcher::setSendingData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>newMask</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a40b843b3c8651a92ac95700a24b26708" name="a40b843b3c8651a92ac95700a24b26708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b843b3c8651a92ac95700a24b26708">&#9670;&#160;</a></span>activeHandlers_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *&gt; network::EventDispatcher::activeHandlers_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a78594e8ec71a1f8f997c2894a2da7020" name="a78594e8ec71a1f8f997c2894a2da7020"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a78594e8ec71a1f8f997c2894a2da7020">&#9670;&#160;</a></span>epollManager_</h2>
 
@@ -402,6 +510,28 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::map&lt;int, <a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *&gt; network::EventDispatcher::handlers_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03eaa696b0bec88ef8eec8dfd952b414" name="a03eaa696b0bec88ef8eec8dfd952b414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03eaa696b0bec88ef8eec8dfd952b414">&#9670;&#160;</a></span>pendingRemovals_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;<a class="el" href="classnetwork_1_1IEventHandler.html">IEventHandler</a> *&gt; network::EventDispatcher::pendingRemovals_</td>
         </tr>
       </table>
   </td>

@@ -5,6 +5,7 @@ var hierarchy =
       [ "config::LocationBlock", "classconfig_1_1LocationBlock.html", null ],
       [ "config::ServerBlock", "classconfig_1_1ServerBlock.html", null ]
     ] ],
+    [ "network::ClientHandler::CgiState", "structnetwork_1_1ClientHandler_1_1CgiState.html", null ],
     [ "http::ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", null ],
     [ "config::ConfigNode", "classconfig_1_1ConfigNode.html", null ],
     [ "http::DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],

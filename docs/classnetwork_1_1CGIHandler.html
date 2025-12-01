@@ -92,7 +92,7 @@ $(function(){initNavTree('classnetwork_1_1CGIHandler.html','','classnetwork_1_1C
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="CGIHandler_8hpp_source.html">CGIHandler.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="network_2CGIHandler_8hpp_source.html">CGIHandler.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for network::CGIHandler:</div>
 <div class="dyncontent">
@@ -105,25 +105,67 @@ Inheritance diagram for network::CGIHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a425b3b7e9cfcde61757d15a6bab6856d" id="r_a425b3b7e9cfcde61757d15a6bab6856d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a425b3b7e9cfcde61757d15a6bab6856d">CGIHandler</a> (int fd, <a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;client)</td></tr>
+<tr class="memitem:a211d15c0ba1b700a124b34bdbf9f364f" id="r_a211d15c0ba1b700a124b34bdbf9f364f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a211d15c0ba1b700a124b34bdbf9f364f">CGIHandler</a> (<a class="el" href="classhttp_1_1IResponseBody.html">http::IResponseBody</a> &amp;body, <a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;client, bool hasHeaderParsing)</td></tr>
 <tr class="memitem:ae2c3a1d8ab29106a0ab8ccc84c22431a" id="r_ae2c3a1d8ab29106a0ab8ccc84c22431a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2c3a1d8ab29106a0ab8ccc84c22431a">handleEvent</a> (uint32_t events)</td></tr>
 <tr class="memitem:a80fcbf929ff234bcdcdd69f734e54719" id="r_a80fcbf929ff234bcdcdd69f734e54719"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80fcbf929ff234bcdcdd69f734e54719">getFd</a> () const</td></tr>
 <tr class="inherit_header pub_methods_classnetwork_1_1IEventHandler"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classnetwork_1_1IEventHandler')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classnetwork_1_1IEventHandler.html">network::IEventHandler</a></td></tr>
 <tr class="memitem:ad52d5a5806e06677d8e5119438d7c300 inherit pub_methods_classnetwork_1_1IEventHandler" id="r_ad52d5a5806e06677d8e5119438d7c300"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1IEventHandler.html#ad52d5a5806e06677d8e5119438d7c300">~IEventHandler</a> ()</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a84f7ffd13a1e55e57bbd2c24f9eb0297" id="r_a84f7ffd13a1e55e57bbd2c24f9eb0297"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297">State</a> { <a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297a1994d35fd835325a5b05a91b18916a92">READING_HEADERS</a>
+, <a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297aab8c67b9c78945ad7ec2ff2b9105716a">STREAMING_BODY</a>
+, <a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297a704dd54518b1c51c8131657a41d87d18">COMPLETE</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a5a41ba99c36fdcf550341d9efb4a7607" id="r_a5a41ba99c36fdcf550341d9efb4a7607"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a41ba99c36fdcf550341d9efb4a7607">handleRead</a> ()</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a5e67da36be016f5c093292af979d45d2" id="r_a5e67da36be016f5c093292af979d45d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e67da36be016f5c093292af979d45d2">fd_</a></td></tr>
+<tr class="memitem:ac4e9e470a1961acc5f12e214cbef1d8d" id="r_ac4e9e470a1961acc5f12e214cbef1d8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1IResponseBody.html">http::IResponseBody</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4e9e470a1961acc5f12e214cbef1d8d">body_</a></td></tr>
 <tr class="memitem:a0f23d5e2c34fba9165aeff83a3b345a8" id="r_a0f23d5e2c34fba9165aeff83a3b345a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f23d5e2c34fba9165aeff83a3b345a8">client_</a></td></tr>
+<tr class="memitem:adaed3403427c8d2819f1e7987fb41a36" id="r_adaed3403427c8d2819f1e7987fb41a36"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaed3403427c8d2819f1e7987fb41a36">headerBuffer_</a></td></tr>
+<tr class="memitem:ae20dd1ce802a2dedcfbbb931e044f780" id="r_ae20dd1ce802a2dedcfbbb931e044f780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae20dd1ce802a2dedcfbbb931e044f780">state_</a></td></tr>
+<tr class="memitem:a5e67da36be016f5c093292af979d45d2" id="r_a5e67da36be016f5c093292af979d45d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e67da36be016f5c093292af979d45d2">fd_</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classnetwork_1_1IEventHandler"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classnetwork_1_1IEventHandler')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classnetwork_1_1IEventHandler.html">network::IEventHandler</a></td></tr>
 <tr class="memitem:a67572d0bca603ee6a92bc6f66c409153 inherit pro_methods_classnetwork_1_1IEventHandler" id="r_a67572d0bca603ee6a92bc6f66c409153"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1IEventHandler.html#a67572d0bca603ee6a92bc6f66c409153">IEventHandler</a> ()</td></tr>
 </table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a84f7ffd13a1e55e57bbd2c24f9eb0297" name="a84f7ffd13a1e55e57bbd2c24f9eb0297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f7ffd13a1e55e57bbd2c24f9eb0297">&#9670;&#160;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297">network::CGIHandler::State</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a84f7ffd13a1e55e57bbd2c24f9eb0297a1994d35fd835325a5b05a91b18916a92" name="a84f7ffd13a1e55e57bbd2c24f9eb0297a1994d35fd835325a5b05a91b18916a92"></a>READING_HEADERS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84f7ffd13a1e55e57bbd2c24f9eb0297aab8c67b9c78945ad7ec2ff2b9105716a" name="a84f7ffd13a1e55e57bbd2c24f9eb0297aab8c67b9c78945ad7ec2ff2b9105716a"></a>STREAMING_BODY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84f7ffd13a1e55e57bbd2c24f9eb0297a704dd54518b1c51c8131657a41d87d18" name="a84f7ffd13a1e55e57bbd2c24f9eb0297a704dd54518b1c51c8131657a41d87d18"></a>COMPLETE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a425b3b7e9cfcde61757d15a6bab6856d" name="a425b3b7e9cfcde61757d15a6bab6856d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a425b3b7e9cfcde61757d15a6bab6856d">&#9670;&#160;</a></span>CGIHandler()</h2>
+<a id="a211d15c0ba1b700a124b34bdbf9f364f" name="a211d15c0ba1b700a124b34bdbf9f364f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211d15c0ba1b700a124b34bdbf9f364f">&#9670;&#160;</a></span>CGIHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,12 +173,17 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">network::CGIHandler::CGIHandler </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fd</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1IResponseBody.html">http::IResponseBody</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>body</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>hasHeaderParsing</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -198,7 +245,54 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a5a41ba99c36fdcf550341d9efb4a7607" name="a5a41ba99c36fdcf550341d9efb4a7607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a41ba99c36fdcf550341d9efb4a7607">&#9670;&#160;</a></span>handleRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::CGIHandler::handleRead </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ac4e9e470a1961acc5f12e214cbef1d8d" name="ac4e9e470a1961acc5f12e214cbef1d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e9e470a1961acc5f12e214cbef1d8d">&#9670;&#160;</a></span>body_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhttp_1_1IResponseBody.html">http::IResponseBody</a>&amp; network::CGIHandler::body_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0f23d5e2c34fba9165aeff83a3b345a8" name="a0f23d5e2c34fba9165aeff83a3b345a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f23d5e2c34fba9165aeff83a3b345a8">&#9670;&#160;</a></span>client_</h2>
 
@@ -243,8 +337,52 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="adaed3403427c8d2819f1e7987fb41a36" name="adaed3403427c8d2819f1e7987fb41a36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaed3403427c8d2819f1e7987fb41a36">&#9670;&#160;</a></span>headerBuffer_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string network::CGIHandler::headerBuffer_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae20dd1ce802a2dedcfbbb931e044f780" name="ae20dd1ce802a2dedcfbbb931e044f780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20dd1ce802a2dedcfbbb931e044f780">&#9670;&#160;</a></span>state_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a84f7ffd13a1e55e57bbd2c24f9eb0297">State</a> network::CGIHandler::state_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>inc/network/<a class="el" href="CGIHandler_8hpp_source.html">CGIHandler.hpp</a></li>
+<li>inc/network/<a class="el" href="network_2CGIHandler_8hpp_source.html">CGIHandler.hpp</a></li>
 <li>src/network/handlers/<a class="el" href="network_2handlers_2CGIHandler_8cpp.html">CGIHandler.cpp</a></li>
 </ul>
 </div><!-- contents -->

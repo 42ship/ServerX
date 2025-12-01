@@ -33,7 +33,7 @@ var annotated_dup =
     [ "http", "namespacehttp.html", [
       [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html", "classhttp_1_1BodyFromCgi" ],
       [ "BodyInMemory", "classhttp_1_1BodyInMemory.html", "classhttp_1_1BodyInMemory" ],
-      [ "CGIHandler", "classhttp_1_1CGIHandler.html", null ],
+      [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
       [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
       [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],

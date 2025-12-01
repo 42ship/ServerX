@@ -120,6 +120,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad72c9955f98701ed01970ad19af3d926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the body source has been fully read.  <br /></td></tr>
 <tr class="memitem:a3d5a5800f29714984cc0a165ee4d7a9f" id="r_a3d5a5800f29714984cc0a165ee4d7a9f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d5a5800f29714984cc0a165ee4d7a9f">getEventSourceFd</a> () const</td></tr>
 <tr class="memdesc:a3d5a5800f29714984cc0a165ee4d7a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file descriptor for event-driven body sources.  <br /></td></tr>
+<tr class="memitem:ad7110f463b8f30e388cbf02831cb40c9" id="r_ad7110f463b8f30e388cbf02831cb40c9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7110f463b8f30e388cbf02831cb40c9">hasHeaderParsing</a> () const</td></tr>
+<tr class="memdesc:ad7110f463b8f30e388cbf02831cb40c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the data read from this source contains HTTP headers that need to be parsed by the server (e.g., CGI output).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -236,6 +238,38 @@ Private Member Functions</h2></td></tr>
 -1 if the source is "passive" (e.g., in-memory data or a standard file) and does not require epoll monitoring. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e">http::BodyFromCgi</a>.</p>
+
+</div>
+</div>
+<a id="ad7110f463b8f30e388cbf02831cb40c9" name="ad7110f463b8f30e388cbf02831cb40c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7110f463b8f30e388cbf02831cb40c9">&#9670;&#160;</a></span>hasHeaderParsing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool http::IResponseBody::hasHeaderParsing </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the data read from this source contains HTTP headers that need to be parsed by the server (e.g., CGI output). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the Reactor should buffer and parse headers before streaming. </dd>
+<dd>
+false if the data is the raw body (default). </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classhttp_1_1BodyFromCgi.html#a2f1500979be89bec7628d65587c47663">http::BodyFromCgi</a>.</p>
 
 </div>
 </div>

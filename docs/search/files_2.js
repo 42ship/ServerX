@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cgihandler_2ecpp_0',['CGIHandler.cpp',['../http_2handlers_2CGIHandler_8cpp.html',1,'(Global Namespace)'],['../network_2handlers_2CGIHandler_8cpp.html',1,'(Global Namespace)']]],
-  ['cgihandler_2ehpp_1',['CGIHandler.hpp',['../CGIHandler_8hpp.html',1,'']]],
+  ['cgihandler_2ehpp_1',['CGIHandler.hpp',['../http_2handlers_2CGIHandler_8hpp.html',1,'(Global Namespace)'],['../network_2CGIHandler_8hpp.html',1,'(Global Namespace)']]],
   ['chunkedbodyparser_2ecpp_2',['ChunkedBodyParser.cpp',['../ChunkedBodyParser_8cpp.html',1,'']]],
   ['chunkedbodyparser_2ehpp_3',['ChunkedBodyParser.hpp',['../ChunkedBodyParser_8hpp.html',1,'']]],
   ['clienthandler_2ecpp_4',['ClientHandler.cpp',['../ClientHandler_8cpp.html',1,'']]],

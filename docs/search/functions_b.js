@@ -12,5 +12,5 @@ var searchData=
   ['method_9',['method',['../classhttp_1_1Request.html#a4515704e7f49121829e62e48ec5172e1',1,'http::Request::method() const'],['../classhttp_1_1Request.html#a7d23a6abafa0ae233fd5d9a1152f13a0',1,'http::Request::method(RequestStartLine::Method method)']]],
   ['methodtostring_10',['methodToString',['../classhttp_1_1RequestStartLine.html#a3c63fca92beb8a62a296cde125f7726c',1,'http::RequestStartLine']]],
   ['mimetypes_11',['MimeTypes',['../classhttp_1_1MimeTypes.html#a01488b62b9cbfdf6fbb0104088285246',1,'http::MimeTypes::MimeTypes(const std::string &amp;path=MIME_TYPES_PATH)'],['../classhttp_1_1MimeTypes.html#abf3a59ac8702c823fea352858da13ac1',1,'http::MimeTypes::MimeTypes(const MimeTypes &amp;other)']]],
-  ['modifyhandler_12',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager::modifyHandler()'],['../classnetwork_1_1EventDispatcher.html#aebd534372ed3ac27b96225b03fe54320',1,'network::EventDispatcher::modifyHandler()']]]
+  ['modifyhandler_12',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager']]]
 ];
