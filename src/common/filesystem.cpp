@@ -8,7 +8,57 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#define READ_BUFFER_SIZE 16384
+
 namespace utils {
+
+int writeFile(const int fd, const char *path) {
+    // Do not overwrite existing files
+    if (::access(path, F_OK) == 0) {
+        return 1; // file exists
+    }
+
+    if (fd < 0) {
+        return 3; // invalid input fd
+    }
+
+    char buffer[READ_BUFFER_SIZE];
+
+    std::ofstream out(path, std::ios::binary);
+    if (!out.is_open()) {
+        return 2; // cannot create file
+    }
+
+    while (true) {
+        ssize_t bytesRead = ::read(fd, buffer, READ_BUFFER_SIZE);
+
+        if (bytesRead > 0) {
+            out.write(buffer, bytesRead);
+
+            if (!out) {
+                out.close();
+                ::unlink(path);
+                return 2; // write error
+            }
+        } else if (bytesRead == 0) {
+            // EOF
+            break;
+        } else {
+            // bytesRead < 0: error
+            if (errno == EINTR) {
+                continue; // retry read
+            }
+
+            out.close();
+            ::unlink(path);
+            return 2; // read error
+        }
+    }
+
+    out.flush(); // optional but safe
+    out.close();
+    return 0;
+}
 
 bool writeFile(const std::string &content, const char *path) {
     std::ofstream out(path, std::ios::binary);
