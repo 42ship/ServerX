@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"namespaceutils.html#ac83bcb19796dfe193c69d38695f1d906":[0,0,4,8],
+"namespaceutils.html#ad2c7af639c94afbb424737764f3dd555":[0,0,4,13],
 "namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3":[0,0,4,7],
 "namespaceutils.html#ad9d889fe7abcae9ea28a4fd4c5a35b0e":[0,0,4,19],
 "namespaceutils.html#aedbc0638b66531360317f908d4ff9eed":[0,0,4,10],

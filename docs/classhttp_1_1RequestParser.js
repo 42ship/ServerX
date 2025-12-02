@@ -17,6 +17,7 @@ var classhttp_1_1RequestParser =
     [ "proceedReadingBody", "classhttp_1_1RequestParser.html#a6b1b4b0cc711e75f03a0d96f345b1e8d", null ],
     [ "reset", "classhttp_1_1RequestParser.html#a19aa514769486f0e847ecee2903503bc", null ],
     [ "setError", "classhttp_1_1RequestParser.html#a1878387bcb1b13c7a2d8cce3fbe3abcc", null ],
+    [ "setRequestReady", "classhttp_1_1RequestParser.html#af28b3cf7e890f7bc7a8186e51119d120", null ],
     [ "state", "classhttp_1_1RequestParser.html#ac776004e269c10366221906f649865cd", null ],
     [ "bodyFile_", "classhttp_1_1RequestParser.html#a85ff7f5cd81f98e76b67d48a9c18eba7", null ],
     [ "buffer_", "classhttp_1_1RequestParser.html#aba16342655b79a808708d4bc3376e9cb", null ],
