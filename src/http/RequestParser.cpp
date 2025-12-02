@@ -64,7 +64,7 @@ RequestParser::State RequestParser::proceedReadingBody() {
             return setError(PAYLOAD_TOO_LARGE);
         return parseBody();
     }
-    state_ = REQUEST_READY;
+    setRequestReady();
     return state_;
 }
 
@@ -83,7 +83,8 @@ RequestParser::State RequestParser::parseHeaders() {
     }
     // Only parse the header section, not the body
     size_t headerSectionStart = buffer_.find('\n') + 1;
-    std::string headerSection = buffer_.substr(headerSectionStart, contentStartInBuffer_ - headerSectionStart + 2);
+    std::string headerSection =
+        buffer_.substr(headerSectionStart, contentStartInBuffer_ - headerSectionStart + 2);
     if (!http::Headers::parse(headerSection, request_.headers_)) {
         return setError(BAD_REQUEST);
     }
@@ -94,7 +95,7 @@ RequestParser::State RequestParser::parseHeaders() {
         buffer_.erase(0, contentStartInBuffer_ + 4);
     } else {
         buffer_.clear();
-        state_ = REQUEST_READY;
+        setRequestReady();
     }
     return state_;
 }
@@ -114,7 +115,7 @@ RequestParser::State RequestParser::parseBody() {
 
 void RequestParser::handleContentLengthBody() {
     if (bytesWrittenToBody_ == contentLength_) {
-        state_ = REQUEST_READY;
+        setRequestReady();
         return;
     }
     size_t bytesLeftToWrite = contentLength_ - bytesWrittenToBody_;
@@ -132,7 +133,7 @@ void RequestParser::handleContentLengthBody() {
     bytesWrittenToBody_ += written;
 
     if (bytesWrittenToBody_ == contentLength_) {
-        state_ = REQUEST_READY;
+        setRequestReady();
     }
 }
 
@@ -142,6 +143,18 @@ void RequestParser::handleChunkedBody() {
     ChunkedBodyParser::State chunkState = chunkParser_.feed(buffer_);
     (void)chunkState;
     setError(NOT_IMPLEMENTED);
+}
+
+void RequestParser::setRequestReady() {
+    state_ = REQUEST_READY;
+    if (bodyFile_.isOpen()) {
+        if (lseek(bodyFile_, 0, SEEK_SET) != (off_t)-1) {
+            request_.body(bodyFile_);
+        } else {
+            LOG_ERROR("RequestParser::setRequestReady(): lseek failed on TempFile. State=ERROR");
+            setError(INTERNAL_SERVER_ERROR);
+        }
+    }
 }
 
 std::ostream &operator<<(std::ostream &o, RequestParser::State st) {

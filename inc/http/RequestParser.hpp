@@ -74,6 +74,8 @@ private:
      */
     State setError(HttpStatus status);
 
+    void setRequestReady();
+
     State state_;
     HttpStatus errorStatus_;
 
