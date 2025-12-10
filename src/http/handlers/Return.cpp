@@ -8,7 +8,7 @@
 
 namespace http {
 
-void http::ReturnHandler::handle(Request const &req, Response &res) {
+void ReturnHandler::handle(Request const &req, Response &res) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
     if (!req.location()->has("return")) {
         return (void)res.status(INTERNAL_SERVER_ERROR);
@@ -27,13 +27,18 @@ void http::ReturnHandler::handle(Request const &req, Response &res) {
     if (args[0]->getType() != config::ARG_INTEGER) {
         return (void)res.status(INTERNAL_SERVER_ERROR);
     }
+
     int num = static_cast<config::Integer const *>(args[0])->getIntValue();
     HttpStatus status = toHttpStatus(num);
-    std::string const &secondArgument = args[1]->evaluate(req);
-    if (num < 300 || num >= 400) {
-        return (void)res.status(status).setBodyInMemory(secondArgument, "text/plain");
+    if (status == UNKNOWN_STATUS) {
+        return (void)res.status(INTERNAL_SERVER_ERROR);
     }
-    return (void)res.status(status).headers().add("location", secondArgument);
+
+    std::string const &secondArgument = args[1]->evaluate(req);
+    if (num == 301 || num == 302 || num == 303 || num == 307 || num == 308) {
+        return (void)res.status(status).headers().add("location", secondArgument);
+    }
+    return (void)res.status(status).setBodyInMemory(secondArgument, "text/plain");
 }
 
 } // namespace http

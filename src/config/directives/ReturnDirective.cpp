@@ -20,7 +20,7 @@ void ReturnDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
         return;
     }
     if (args[0].type != NUMBER) {
-        throw ConfigError("'" + name_ + "' expected INTEGER type.");
+        throw ConfigError("'" + name_ + "' expected NUMBER type.");
     }
     int code = utils::fromString<int>(args[0].literal);
     if (code < 100 || code >= 1000) {
