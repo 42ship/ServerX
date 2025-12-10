@@ -18,6 +18,8 @@ HttpStatus toHttpStatus(int code) {
         case 302: return FOUND;
         case 303: return SEE_OTHER;
         case 304: return NOT_MODIFIED;
+        case 307: return TEMPORARY_REDIRECT;
+        case 308: return PERMANENT_REDIRECT;
 
         // 4xx Client Error
         case 400: return BAD_REQUEST;
@@ -59,6 +61,8 @@ const char *getReasonPhrase(HttpStatus status) {
         case FOUND: return "Found";
         case SEE_OTHER: return "See Other";
         case NOT_MODIFIED: return "Not Modified";
+        case TEMPORARY_REDIRECT: return "Temporary Redirect";
+        case PERMANENT_REDIRECT: return "Permanent Redirect";
 
         // 4xx Client Error
         case BAD_REQUEST: return "Bad Request";
