@@ -108,6 +108,15 @@ std::string const &Request::remoteAddr() const { return remoteAddr_; }
 Request &Request::remoteAddr(std::string const &addr) { remoteAddr_ = addr; return *this; }
 // clang-format on
 
+// Test helpers (public API)
+Request &Request::setLocationBlock(config::LocationBlock const *location) {
+    return this->location(location);
+}
+
+Request &Request::setServerBlock(config::ServerBlock const *server) {
+    return this->server(server);
+}
+
 std::string Request::resolvePath() const {
     if (!location())
         return "";

@@ -163,6 +163,24 @@ public:
      */
     std::string const &remoteAddr() const;
 
+    // ======================== Test Helpers (Public API) ========================
+
+    /**
+     * @brief Test helper: Sets the location block for this request.
+     * @note This is a public method specifically for testing purposes.
+     * @param location Pointer to the LocationBlock to associate with this request.
+     * @return A reference to this Request object for chaining.
+     */
+    Request &setLocationBlock(config::LocationBlock const *location);
+
+    /**
+     * @brief Test helper: Sets the server block for this request.
+     * @note This is a public method specifically for testing purposes.
+     * @param server Pointer to the ServerBlock to associate with this request.
+     * @return A reference to this Request object for chaining.
+     */
+    Request &setServerBlock(config::ServerBlock const *server);
+
 protected:
     friend class RequestParser;
     friend class Router;
