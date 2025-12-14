@@ -19,6 +19,8 @@ using namespace config;
  * @brief Helper to create a mock LocationBlock with a return directive
  * @param status Optional status code (if 0, single-argument form is used)
  * @param value The URL or text value
+ * @note Memory for ArgumentPtr objects is managed by the LocationBlock destructor,
+ *       so no explicit cleanup is needed when the LocationBlock goes out of scope.
  */
 static LocationBlock createMockLocationWithReturn(int status, const string &value) {
     LocationBlock loc;
@@ -205,7 +207,7 @@ TEST_CASE("ReturnHandler - Error when location has no return directive") {
 TEST_CASE("ReturnHandler - Error when server is NULL") {
     LocationBlock loc = createMockLocationWithReturn(301, "http://example.com");
     
-    Request req = createRequestWithMocks(NULL, &loc);
+    Request req = createRequestWithMocks(nullptr, &loc);
     Response response;
     
     ReturnHandler::handle(req, response);
@@ -217,7 +219,7 @@ TEST_CASE("ReturnHandler - Error when server is NULL") {
 TEST_CASE("ReturnHandler - Error when location is NULL") {
     ServerBlock server = createMockServer();
     
-    Request req = createRequestWithMocks(&server, NULL);
+    Request req = createRequestWithMocks(&server, nullptr);
     Response response;
     
     ReturnHandler::handle(req, response);
@@ -227,7 +229,7 @@ TEST_CASE("ReturnHandler - Error when location is NULL") {
 }
 
 TEST_CASE("ReturnHandler - Error when both server and location are NULL") {
-    Request req = createRequestWithMocks(NULL, NULL);
+    Request req = createRequestWithMocks(nullptr, nullptr);
     Response response;
     
     ReturnHandler::handle(req, response);
