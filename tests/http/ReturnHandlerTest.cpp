@@ -19,8 +19,10 @@ using namespace config;
  * @brief Helper to create a mock LocationBlock with a return directive
  * @param status Optional status code (if 0, single-argument form is used)
  * @param value The URL or text value
- * @note Memory for ArgumentPtr objects is managed by the LocationBlock destructor,
- *       so no explicit cleanup is needed when the LocationBlock goes out of scope.
+ * @note Raw pointers are passed to loc.add(), which transfers ownership to the 
+ *       LocationBlock. The Block destructor will delete all allocated arguments,
+ *       ensuring proper cleanup when the LocationBlock goes out of scope. This
+ *       follows the same pattern used throughout the config system.
  */
 static LocationBlock createMockLocationWithReturn(int status, const string &value) {
     LocationBlock loc;
