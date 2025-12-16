@@ -19,6 +19,7 @@ var annotated_dup =
       [ "Mapper", "classconfig_1_1Mapper.html", null ],
       [ "MaxBodySize", "classconfig_1_1MaxBodySize.html", "classconfig_1_1MaxBodySize" ],
       [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
+      [ "ReturnDirective", "classconfig_1_1ReturnDirective.html", "classconfig_1_1ReturnDirective" ],
       [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
       [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
       [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
@@ -48,6 +49,7 @@ var annotated_dup =
       [ "RequestStartLine", "classhttp_1_1RequestStartLine.html", "classhttp_1_1RequestStartLine" ],
       [ "Response", "classhttp_1_1Response.html", "classhttp_1_1Response" ],
       [ "ResponseStartLine", "classhttp_1_1ResponseStartLine.html", "classhttp_1_1ResponseStartLine" ],
+      [ "ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "Router", "classhttp_1_1Router.html", "classhttp_1_1Router" ],
       [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],

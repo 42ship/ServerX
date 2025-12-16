@@ -23,6 +23,7 @@ var namespaceconfig =
     [ "Mapper", "classconfig_1_1Mapper.html", null ],
     [ "MaxBodySize", "classconfig_1_1MaxBodySize.html", "classconfig_1_1MaxBodySize" ],
     [ "Parser", "classconfig_1_1Parser.html", "classconfig_1_1Parser" ],
+    [ "ReturnDirective", "classconfig_1_1ReturnDirective.html", "classconfig_1_1ReturnDirective" ],
     [ "RootDirective", "classconfig_1_1RootDirective.html", "classconfig_1_1RootDirective" ],
     [ "ServerBlock", "classconfig_1_1ServerBlock.html", "classconfig_1_1ServerBlock" ],
     [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],

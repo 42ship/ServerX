@@ -30,6 +30,7 @@ var hierarchy =
       [ "config::ErrorPageDirective", "classconfig_1_1ErrorPageDirective.html", null ],
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
       [ "config::MaxBodySize", "classconfig_1_1MaxBodySize.html", null ],
+      [ "config::ReturnDirective", "classconfig_1_1ReturnDirective.html", null ],
       [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]
     ] ],
     [ "network::IEventHandler", "classnetwork_1_1IEventHandler.html", [
@@ -39,6 +40,7 @@ var hierarchy =
     ] ],
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
+      [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],
     [ "IndentManager", "structIndentManager.html", null ],

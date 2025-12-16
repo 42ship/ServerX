@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1DefaultErrorHandler.html#aba09c25a4448cd8d16c56e5830bf0d21',1,'http::DefaultErrorHandler::handle()'],['../classhttp_1_1CGIHandler.html#a85cde3832cfb8f5b2b240de9c5bf52df',1,'http::CGIHandler::handle(Request const &amp;, Response &amp;)'],['../classhttp_1_1CGIHandler.html#a898bbdc06fa627109a81e7fdcb4ba23a',1,'http::CGIHandler::handle()']]],
+  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1ReturnHandler.html#ace7f5513bf77bb0332144406b5490588',1,'http::ReturnHandler::handle()'],['../classhttp_1_1DefaultErrorHandler.html#aba09c25a4448cd8d16c56e5830bf0d21',1,'http::DefaultErrorHandler::handle()'],['../classhttp_1_1CGIHandler.html#a85cde3832cfb8f5b2b240de9c5bf52df',1,'http::CGIHandler::handle(Request const &amp;, Response &amp;)'],['../classhttp_1_1CGIHandler.html#a898bbdc06fa627109a81e7fdcb4ba23a',1,'http::CGIHandler::handle()']]],
   ['handlecgiresponsewrite_1',['handleCgiResponseWrite',['../classnetwork_1_1ClientHandler.html#a02914e67929d0713058f2673a0b00f9c',1,'network::ClientHandler']]],
   ['handlechunkedbody_2',['handleChunkedBody',['../classhttp_1_1RequestParser.html#a963b693664e3ee237b28371dbb63d84d',1,'http::RequestParser']]],
   ['handlecomment_3',['handleComment',['../classconfig_1_1Lexer.html#a699d9f478fb02fba854f1270ae04780e',1,'config::Lexer']]],
