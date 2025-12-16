@@ -181,7 +181,7 @@ private:
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
     HttpStatus status_;
-    std::string remoteAddr_;  // Client IP address
+    std::string remoteAddr_; // Client IP address
 };
 
 } // namespace http

@@ -95,6 +95,8 @@ void Router::executeHandler(Request const &request, Response &response) const {
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
         CGIHandler::handle(request, response);
+    } else if (request.location()->has("return")) {
+        ReturnHandler::handle(request, response);
     } else {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to StaticFileHandler");

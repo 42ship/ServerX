@@ -12,12 +12,14 @@ HttpStatus toHttpStatus(int code) {
         case 201: return CREATED;
         case 202: return ACCEPTED;
         case 204: return NO_CONTENT;
-        
+
         // 3xx Redirection (NEW)
         case 301: return MOVED_PERMANENTLY;
         case 302: return FOUND;
         case 303: return SEE_OTHER;
         case 304: return NOT_MODIFIED;
+        case 307: return TEMPORARY_REDIRECT;
+        case 308: return PERMANENT_REDIRECT;
 
         // 4xx Client Error
         case 400: return BAD_REQUEST;
@@ -29,12 +31,12 @@ HttpStatus toHttpStatus(int code) {
         case 411: return LENGTH_REQUIRED;
         case 413: return PAYLOAD_TOO_LARGE;
         case 415: return UNSUPPORTED_MEDIA_TYPE;
-        
+
         // 5xx Server Error
         case 500: return INTERNAL_SERVER_ERROR;
         case 501: return NOT_IMPLEMENTED;
         case 502: return BAD_GATEWAY;
-        
+
         default: return UNKNOWN_STATUS;
         // clang-format on
     }
@@ -59,6 +61,8 @@ const char *getReasonPhrase(HttpStatus status) {
         case FOUND: return "Found";
         case SEE_OTHER: return "See Other";
         case NOT_MODIFIED: return "Not Modified";
+        case TEMPORARY_REDIRECT: return "Temporary Redirect";
+        case PERMANENT_REDIRECT: return "Permanent Redirect";
 
         // 4xx Client Error
         case BAD_REQUEST: return "Bad Request";
@@ -70,12 +74,12 @@ const char *getReasonPhrase(HttpStatus status) {
         case LENGTH_REQUIRED: return "Length Required";
         case PAYLOAD_TOO_LARGE: return "Payload Too Large";
         case UNSUPPORTED_MEDIA_TYPE: return "Unsupported Media Type";
-        
+
         // 5xx Server Error
         case INTERNAL_SERVER_ERROR: return "Internal Server Error";
         case NOT_IMPLEMENTED: return "Not Implemented";
         case BAD_GATEWAY: return "Bad Gateway";
-        
+
         default: return "Unknown Status";
         // clang-format on
     }
