@@ -16,6 +16,7 @@ template <typename T> T fromString(std::string const &str) {
     ss >> ret;
     return ret;
 }
+
 std::string trim(const std::string &s);
 
 bool isAllDigit(std::string const &s);

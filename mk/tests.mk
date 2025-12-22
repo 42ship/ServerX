@@ -5,7 +5,7 @@ TEST_SRCS		:=	$(shell find $(TEST_DIR) -name "*.cpp")
 TEST_OBJS		:=	$(patsubst $(TEST_DIR)/%.cpp,$(ODIR)/tests/%.o,$(TEST_SRCS))
 TEST_DEPS		:=	$(patsubst %.o,%.d,$(TEST_OBJS))
 
-TEST_CXXFLAGS	=	$(filter-out -Werror, $(CXXFLAGS)) -I$(DOCTEST_DIR) -std=c++17
+TEST_CXXFLAGS	=	$(filter-out -Werror, $(CXXFLAGS)) -I$(DOCTEST_DIR) -std=c++17 -I $(TEST_DIR)
 
 PROJECT_OBJS_FOR_TESTS	:=	$(filter-out $(ODIR)/main.o, $(OBJS))
 

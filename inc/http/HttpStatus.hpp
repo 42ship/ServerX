@@ -18,10 +18,12 @@ enum HttpStatus {
     NO_CONTENT = 204, /** *Request succeeded; no body in response (e.g., DELETE). */
 
     // 3xx Redirection
-    MOVED_PERMANENTLY = 301, /** *Resource moved to new URL (permanent). */
-    FOUND = 302,             /** *Resource temporarily at different URL. */
-    SEE_OTHER = 303,         /** See another URL (often used after POST). */
-    NOT_MODIFIED = 304,      /** Resource not modified since last access. */
+    MOVED_PERMANENTLY = 301,  /** *Resource moved to new URL (permanent). */
+    FOUND = 302,              /** *Resource temporarily at different URL. */
+    SEE_OTHER = 303,          /** See another URL (often used after POST). */
+    NOT_MODIFIED = 304,       /** Resource not modified since last access. */
+    TEMPORARY_REDIRECT = 307, /** Resource has been temporarily moved. */
+    PERMANENT_REDIRECT = 308, /** Resource has been permantly moved. */
 
     // 4xx Client Error
     BAD_REQUEST = 400,  /** *Malformed syntax or invalid parameters (client error). */
