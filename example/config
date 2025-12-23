@@ -1,0 +1,17 @@
+server {
+  listen 9191;
+  root example;
+
+  location / {
+    index index.html;
+  }
+
+  location /auth {
+    alias /home/dmelnyk/common-core/webserv/example/cgi/nph-see-input.sh;
+    cgi_pass;
+  }
+
+  location /cgi/ {
+    cgi_pass;
+  }
+}
