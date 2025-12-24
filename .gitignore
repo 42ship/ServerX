@@ -5,7 +5,6 @@ webserv
 *.swp
 *~
 *.bak
-.vscode/
 .cache/
 compile_commands.json
 .help_shown.stamp
@@ -14,4 +13,3 @@ doxy/
 lib/
 logs/
 website/
-.idea/
