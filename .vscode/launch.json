@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug webserv (config/example.conf)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/webserv",
+            "args": [
+                "config/example.conf"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "make all"
+        },
+        {
+            "name": "Debug webserv (no args)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/webserv",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "make all"
+        },
+        {
+            "name": "Debug run_tests",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_tests",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "make build_tests"
+        },
+        {
+            "name": "Attach to webserv",
+            "type": "lldb",
+            "request": "attach",
+            "program": "${workspaceFolder}/webserv",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}
