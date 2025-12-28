@@ -11,7 +11,7 @@
 namespace http {
 
 RequestParser::RequestParser(Request &req, size_t maxHeaderSize)
-    : maxHeaderSize_(maxHeaderSize), request_(req), chunkParser_(bodyFile_) {
+    : maxHeaderSize_(maxHeaderSize), request_(req), chunkParser_() {
     LOG_TRACE("RequestParser::RequestParser(): Initializing...");
     reset();
 }
@@ -137,12 +137,43 @@ void RequestParser::handleContentLengthBody() {
     }
 }
 
+bool RequestParser::writeToBodyFile(const std::string& data) {
+    ssize_t written = write(bodyFile_, data.c_str(), data.size());
+    if (written < 0) {
+        LOG_ERROR("RequestParser::writeToBodyFile(): Write error to TempFile.");
+        setError(INTERNAL_SERVER_ERROR);
+        return false;
+    }
+    bytesWrittenToBody_ += written;
+    return true;
+}
+
 void RequestParser::handleChunkedBody() {
-    LOG_ERROR(
-        "RequestParser::handleChunkedBody(): Chunked parsing is not implemented. State=ERROR");
-    ChunkedBodyParser::State chunkState = chunkParser_.feed(buffer_);
-    (void)chunkState;
-    setError(NOT_IMPLEMENTED);
+    std::string decodedData;
+    size_t bytesConsumed = 0;
+
+    ChunkedBodyParser::Status status =
+        chunkParser_.parse(buffer_.c_str(), buffer_.size(), decodedData, bytesConsumed);
+
+    buffer_.erase(0, bytesConsumed);
+
+    if (!decodedData.empty()) {
+        LOG_INFO("ChunkedBodyParser: decoded " << decodedData.size()
+                  << " bytes: \"" << decodedData << "\"");
+        if (!writeToBodyFile(decodedData))
+            return;
+    }
+
+    if (status == ChunkedBodyParser::CHUNK_ERROR) {
+        LOG_ERROR("ChunkedBodyParser: parse error, status=" << chunkParser_.errorStatus());
+        setError(chunkParser_.errorStatus());
+        return;
+    }
+
+    if (status == ChunkedBodyParser::CHUNK_DONE) {
+        LOG_INFO("ChunkedBodyParser: complete, total bytes=" << bytesWrittenToBody_);
+        setRequestReady();
+    }
 }
 
 void RequestParser::setRequestReady() {

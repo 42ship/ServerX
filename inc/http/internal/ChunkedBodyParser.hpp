@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common/filesystem.hpp"
 #include "http/HttpStatus.hpp"
 #include <string>
 
@@ -8,38 +7,66 @@ namespace http {
 
 class ChunkedBodyParser {
 public:
-    enum State {
-        PARSING_CHUNK_SIZE, // Waiting for size (e.g., "A0\r\n")
-        PARSING_CHUNK_DATA, // Reading the N bytes of data
-        PARSING_TRAILER,    // Reading the final '\r\n' after the data
-        DONE,               // Saw "0\r\n\r\n"
-        ERROR
+    enum Status {
+        CHUNK_CONTINUE,
+        CHUNK_DONE,
+        CHUNK_ERROR
     };
 
-    explicit ChunkedBodyParser(utils::TempFile &file);
+    ChunkedBodyParser();
 
     void reset();
 
     /**
-     * @brief Consumes data from the buffer, parses, and writes to the file.
-     * @param buffer The RequestParser's main data buffer.
-     * @return The new internal state.
+     * @brief Parse chunked data incrementally.
+     * @param input Raw input buffer
+     * @param size Size of input
+     * @param output Decoded body data (appended)
+     * @param bytesConsumed How many bytes were consumed from input
+     * @return Status indicating parse state
      */
-    State feed(std::string const &buffer);
+    Status parse(const char* input, size_t size,
+                 std::string& output, size_t& bytesConsumed);
 
-    State state() const;
     HttpStatus errorStatus() const;
     void setMaxBodySize(size_t size);
 
 private:
-    State setError(HttpStatus status);
+    struct ParseResult {
+        bool ok;
+        size_t consumed;
 
-    State state_;
-    utils::TempFile &bodyFile_;
+        static ParseResult success(size_t n);
+        static ParseResult needMore();
+        static ParseResult error();
+    };
+
+    enum InternalState {
+        READING_SIZE,
+        READING_DATA,
+        READING_TRAILER_CRLF,
+        READING_FINAL_CRLF,
+        DONE
+    };
+
+    typedef ParseResult (ChunkedBodyParser::*StateHandler)(
+        const char* input, size_t size, std::string& output);
+
+    ParseResult readSize(const char* input, size_t size, std::string& output);
+    ParseResult readData(const char* input, size_t size, std::string& output);
+    ParseResult readTrailerCrlf(const char* input, size_t size, std::string& output);
+    ParseResult readFinalCrlf(const char* input, size_t size, std::string& output);
+
+    ParseResult setError(HttpStatus status);
+    bool parseHex(const std::string& hex, size_t& result) const;
+
+    InternalState state_;
+    std::string sizeBuffer_;
+    size_t bytesRemainingInChunk_;
+    size_t totalBytesWritten_;
     size_t maxBodySize_;
-    size_t bytesWritten_;
-    size_t chunkBytesLeft_;
     HttpStatus errorStatus_;
+    bool sawCR_;
 };
 
 } // namespace http
