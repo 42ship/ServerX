@@ -8,6 +8,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#define READ_BUFFER_SIZE 16384
+
 namespace utils {
 
 bool writeFile(const std::string &content, const char *path) {
@@ -109,6 +111,49 @@ TempFile::operator int() const { return fd_; }
 int TempFile::fd() const { return fd_; }
 std::string const &TempFile::path() const { return filePath_; }
 bool TempFile::isOpen() const { return fd_ != -1 && !filePath_.empty(); }
+
+int TempFile::moveOrCopyFile(const std::string &srcPath, const std::string &destPath) {
+    // Fast path: try atomic move
+    if (::rename(srcPath.c_str(), destPath.c_str()) == 0)
+        return 0;
+
+    std::ifstream src(srcPath.c_str(), std::ios::binary);
+    std::ofstream dest(destPath.c_str(), std::ios::binary | std::ios::trunc);
+
+    if (!src.is_open() || !dest.is_open()) {
+        if (dest.is_open())
+            ::unlink(destPath.c_str());
+        return 2;
+    }
+
+    char buf[READ_BUFFER_SIZE];
+    while (src.good()) {
+        src.read(buf, READ_BUFFER_SIZE);
+        std::streamsize bytesRead = src.gcount();
+        if (bytesRead > 0) {
+            dest.write(buf, bytesRead);
+            if (!dest.good()) {
+                ::unlink(destPath.c_str());
+                return 1;
+            }
+        }
+    }
+
+    if (!src.eof()) {
+        // read error (not just EOF)
+        ::unlink(destPath.c_str());
+        return 1;
+    }
+
+    src.close();
+    dest.close();
+
+    if (!dest.good()) {
+        return 1;
+    }
+
+    return 0;
+}
 
 http::HttpStatus checkFileAccess(const std::string &path, int modeMask, bool allowDirectory) {
     struct stat statbuf;
