@@ -12,54 +12,6 @@
 
 namespace utils {
 
-int writeFile(const int fd, const char *path) {
-    // Do not overwrite existing files
-    if (::access(path, F_OK) == 0) {
-        return 1; // file exists
-    }
-
-    if (fd < 0) {
-        return 3; // invalid input fd
-    }
-
-    char buffer[READ_BUFFER_SIZE];
-
-    std::ofstream out(path, std::ios::binary);
-    if (!out.is_open()) {
-        return 2; // cannot create file
-    }
-
-    while (true) {
-        ssize_t bytesRead = ::read(fd, buffer, READ_BUFFER_SIZE);
-
-        if (bytesRead > 0) {
-            out.write(buffer, bytesRead);
-
-            if (!out) {
-                out.close();
-                ::unlink(path);
-                return 2; // write error
-            }
-        } else if (bytesRead == 0) {
-            // EOF
-            break;
-        } else {
-            // bytesRead < 0: error
-            if (errno == EINTR) {
-                continue; // retry read
-            }
-
-            out.close();
-            ::unlink(path);
-            return 2; // read error
-        }
-    }
-
-    out.flush(); // optional but safe
-    out.close();
-    return 0;
-}
-
 bool writeFile(const std::string &content, const char *path) {
     std::ofstream out(path, std::ios::binary);
 
@@ -159,6 +111,49 @@ TempFile::operator int() const { return fd_; }
 int TempFile::fd() const { return fd_; }
 std::string const &TempFile::path() const { return filePath_; }
 bool TempFile::isOpen() const { return fd_ != -1 && !filePath_.empty(); }
+
+int TempFile::moveOrCopyFile(const std::string &srcPath, const std::string &destPath) {
+    // Fast path: try atomic move
+    if (::rename(srcPath.c_str(), destPath.c_str()) == 0)
+        return 0;
+
+    std::ifstream src(srcPath.c_str(), std::ios::binary);
+    std::ofstream dest(destPath.c_str(), std::ios::binary | std::ios::trunc);
+
+    if (!src.is_open() || !dest.is_open()) {
+        if (dest.is_open())
+            ::unlink(destPath.c_str());
+        return 2;
+    }
+
+    char buf[READ_BUFFER_SIZE];
+    while (src.good()) {
+        src.read(buf, READ_BUFFER_SIZE);
+        std::streamsize bytesRead = src.gcount();
+        if (bytesRead > 0) {
+            dest.write(buf, bytesRead);
+            if (!dest.good()) {
+                ::unlink(destPath.c_str());
+                return 1;
+            }
+        }
+    }
+
+    if (!src.eof()) {
+        // read error (not just EOF)
+        ::unlink(destPath.c_str());
+        return 1;
+    }
+
+    src.close();
+    dest.close();
+
+    if (!dest.good()) {
+        return 1;
+    }
+
+    return 0;
+}
 
 http::HttpStatus checkFileAccess(const std::string &path, int modeMask, bool allowDirectory) {
     struct stat statbuf;

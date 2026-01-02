@@ -5,34 +5,6 @@
 
 namespace utils {
 
-/**
- * @brief Writes data from an existing file descriptor to a new file on disk.
- *
- * This function reads data from the input file descriptor @p fd using a fixed-size
- * buffer and writes it to a newly created file specified by @p path. If the target
- * file already exists, the function aborts without modifying it.
- *
- * Error handling:
- *  - If the output file already exists, returns 1.
- *  - If creating or writing to the output file fails, the partially written file
- *    is removed (unlink) and the function returns 2.
- *  - If reading from @p fd fails (except EINTR), the partially written file is
- *    removed and the function returns 2.
- *
- * On success, the function returns 0.
- *
- * @param fd   File descriptor to read from.
- * @param path Path to the file that will be created and written to.
- *
- * @return int
- *         - 0 on success
- *         - 1 if the target file already exists
- *         - 2 on read/write/create error (partial file is removed)
- *         - 3 if the input file descriptor is invalid
- */
-
-int writeFile(const int fd, const char *path);
-
 bool writeFile(const std::string &content, const char *path);
 
 bool isDir(const std::string &p);
@@ -57,6 +29,37 @@ public:
     int fd() const;
     std::string const &path() const;
     bool isOpen() const;
+
+    /**
+     * @brief Moves a file atomically if possible, or copies it as a fallback.
+     *
+     * Attempts to move a file from @p srcPath to @p destPath using the POSIX
+     * rename() system call, which performs an atomic move when both paths
+     * reside on the same filesystem.
+     *
+     * If rename() fails (e.g. due to EXDEV when crossing filesystem boundaries,
+     * or insufficient permissions), the function falls back to copying the file
+     * contents in binary mode using buffered I/O.
+     *
+     * The destination file is created or truncated as needed. On any write or
+     * read failure, the partially written file is removed to ensure filesystem
+     * consistency.
+     *
+     * This function is suitable for server-side use cases such as safe file uploads,
+     * CGI script output, and temporary file management.
+     *
+     * @param srcPath   Absolute path to the source file (must exist and be readable).
+     * @param destPath  Absolute path to the destination file.
+     *
+     * @return int Status code:
+     *         - 0 → success (file moved or copied)
+     *         - 1 → copy or write failure (partial file removed)
+     *         - 2 → invalid source file, access denied, or unrecoverable error
+     *
+     * @note This function does not remove the source file (@p srcPath).
+     *       Caller is responsible for cleanup after successful or failed operation.
+     */
+    static int moveOrCopyFile(const std::string &srcPath, const std::string &destPath);
 
 private:
     int fd_;

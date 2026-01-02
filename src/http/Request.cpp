@@ -103,7 +103,9 @@ Request &Request::version(std::string const &version) {requestLine_.version= ver
 Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *this; }
 HttpStatus Request::status() const { return status_; }
 int Request::body() const { return body_; }
+std::string Request::bodyPath() const { return bodyPath_; }
 Request &Request::body(int fd) { body_ = fd; return *this; }
+Request &Request::body(int fd, const std::string &path) {body_ = fd; bodyPath_ = path; return *this; };
 std::string const &Request::remoteAddr() const { return remoteAddr_; }
 Request &Request::remoteAddr(std::string const &addr) { remoteAddr_ = addr; return *this; }
 // clang-format on

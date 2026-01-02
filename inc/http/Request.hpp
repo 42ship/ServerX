@@ -132,8 +132,10 @@ public:
     std::string const &version() const;
 
     int body() const;
+    std::string bodyPath() const;
 
     Request &body(int fd);
+    Request &body(int fd, const std::string &path);
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.
@@ -178,6 +180,7 @@ private:
     RequestStartLine requestLine_;
     Headers headers_;
     int body_;
+    std::string bodyPath_;
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
     HttpStatus status_;
