@@ -95,6 +95,12 @@ void Router::executeHandler(Request const &request, Response &response) const {
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
         CGIHandler::handle(request, response);
+    } else if (request.location()->has("return")) {
+        ReturnHandler::handle(request, response);
+    } else if (request.method() == RequestStartLine::DELETE) {
+        LOG_TRACE("Router::executeHandler(" << request.uri()
+                                            << "): dispatching to FileDeleteHandler");
+        FileDeleteHandler::handle(request, response);
     } else if (request.method() == RequestStartLine::POST) {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to FileUploadHandler");
@@ -104,15 +110,6 @@ void Router::executeHandler(Request const &request, Response &response) const {
                                             << "): dispatching to StaticFileHandler");
         StaticFileHandler::handle(request, response, mimeTypes_);
     }
-#if 0
-        else if (request.requestLine.method == RequestStartLine::POST) {
-            // TODO: call file upload handler
-            ;
-        } else if (request.requestLine.method == RequestStartLine::DELETE) {
-            // TODO: call file delete handler
-            ;
-        }
-#endif
 }
 
 } // namespace http

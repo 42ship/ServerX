@@ -30,10 +30,14 @@ public:
     static void handle(Request const &, Response &);
 };
 
-class FileUploadHandler
-{
+class FileUploadHandler : public IHandler {
 public:
     static void handle(Request const &, Response &, MimeTypes const &);
+};
+
+class FileDeleteHandler : public IHandler {
+public:
+    static void handle(Request const &, Response &);
 };
 
 class JsonErrorHandler {
