@@ -10,7 +10,7 @@ var searchData=
   ['block_2ehpp_7',['Block.hpp',['../Block_8hpp.html',1,'']]],
   ['body_8',['body',['../classhttp_1_1Request.html#a12de551b72dc2f25da2fdcf9a9b9679a',1,'http::Request::body() const'],['../classhttp_1_1Request.html#a0fabef2d8dfc40670a170f237f1fbf9c',1,'http::Request::body(int fd)'],['../classhttp_1_1Response.html#ac78a6bf902fff234390dd4faaa41e446',1,'http::Response::body()']]],
   ['body_5f_9',['body_',['../classhttp_1_1Request.html#adc1daba91d747a5b878a8af0c1fa0c3f',1,'http::Request::body_'],['../classhttp_1_1Response.html#aecb31929ce73f00fef320c542c670271',1,'http::Response::body_'],['../classhttp_1_1BodyInMemory.html#a43213f0bbe6d3b43f12752037fbc30cf',1,'http::BodyInMemory::body_'],['../classnetwork_1_1CGIHandler.html#ac4e9e470a1961acc5f12e214cbef1d8d',1,'network::CGIHandler::body_']]],
-  ['bodyfile_5f_10',['bodyFile_',['../classhttp_1_1ChunkedBodyParser.html#a0a8e58d0d1f831510ed8a54b30696f97',1,'http::ChunkedBodyParser::bodyFile_'],['../classhttp_1_1RequestParser.html#a85ff7f5cd81f98e76b67d48a9c18eba7',1,'http::RequestParser::bodyFile_']]],
+  ['bodyfile_5f_10',['bodyFile_',['../classhttp_1_1RequestParser.html#a85ff7f5cd81f98e76b67d48a9c18eba7',1,'http::RequestParser']]],
   ['bodyfromcgi_11',['BodyFromCgi',['../classhttp_1_1BodyFromCgi.html',1,'http::BodyFromCgi'],['../classhttp_1_1BodyFromCgi.html#ad05380e1e00a7856bd966fd8cf584069',1,'http::BodyFromCgi::BodyFromCgi(int pipeFd, bool hasHeaderParsing)'],['../classhttp_1_1BodyFromCgi.html#ab9ba046c4d8c214fcea783500aa5e224',1,'http::BodyFromCgi::BodyFromCgi()']]],
   ['bodyinmemory_12',['BodyInMemory',['../classhttp_1_1BodyInMemory.html',1,'http::BodyInMemory'],['../classhttp_1_1BodyInMemory.html#a7112a568edb1e0bc2b9fbc6fc1f245ea',1,'http::BodyInMemory::BodyInMemory()']]],
   ['buffer_13',['buffer',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a283d2afd78ce2459ea2f7df324d803fa',1,'network::ClientHandler::SendBuffer']]],
@@ -20,6 +20,6 @@ var searchData=
   ['buildenvp_17',['buildEnvp',['../classhttp_1_1CGIHandler.html#ae660d2049525d6871a51e34bf3e84a02',1,'http::CGIHandler']]],
   ['buildheaders_18',['buildHeaders',['../classhttp_1_1Response.html#ae1a7999d1b14299692a3df559463202e',1,'http::Response']]],
   ['bytesread_5f_19',['bytesRead_',['../classhttp_1_1BodyInMemory.html#a1c63f934a60cfdd56df2292d767804ef',1,'http::BodyInMemory']]],
-  ['byteswritten_5f_20',['bytesWritten_',['../classhttp_1_1ChunkedBodyParser.html#a9ae69b6ed041831f7cb9a0851c75d8dd',1,'http::ChunkedBodyParser']]],
+  ['bytesremaininginchunk_5f_20',['bytesRemainingInChunk_',['../classhttp_1_1ChunkedBodyParser.html#a827b6867e708fcb4910a6c94559d4413',1,'http::ChunkedBodyParser']]],
   ['byteswrittentobody_5f_21',['bytesWrittenToBody_',['../classhttp_1_1RequestParser.html#a2153795c9caf307de29132e654eb6f41',1,'http::RequestParser']]]
 ];

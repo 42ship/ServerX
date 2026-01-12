@@ -94,66 +94,61 @@ $(function(){initNavTree('classhttp_1_1ChunkedBodyParser.html','','classhttp_1_1
 
 <p><code>#include &lt;<a class="el" href="ChunkedBodyParser_8hpp_source.html">ChunkedBodyParser.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ParseResult" id="r_ParseResult"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a726b0fe20b7a48fc7d1daa53e63a9a29" id="r_a726b0fe20b7a48fc7d1daa53e63a9a29"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a> { <br />
-&#160;&#160;<a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29afd1dcb71ad28d7af6852210403c464cb">PARSING_CHUNK_SIZE</a>
-, <a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29afa48bd4880675a344501ed81902f348a">PARSING_CHUNK_DATA</a>
-, <a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29a7e7fced89903981762cda1a22d62e14a">PARSING_TRAILER</a>
-, <a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29a1a2f8aeabe67c3dc3ccd34a9796dda97">DONE</a>
-, <br />
-&#160;&#160;<a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29a3a61c3be5c0d8ab17b8a3a83a336d6d8">ERROR</a>
-<br />
+<tr class="memitem:a114b84322b721f5542ad74a5efac55cc" id="r_a114b84322b721f5542ad74a5efac55cc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a114b84322b721f5542ad74a5efac55cc">Status</a> { <a class="el" href="#a114b84322b721f5542ad74a5efac55cca829db77d0d0ab6a281114f47aaaffb8c">CHUNK_CONTINUE</a>
+, <a class="el" href="#a114b84322b721f5542ad74a5efac55cca1d4befe89f7d3f6d9ef3ed343891674b">CHUNK_DONE</a>
+, <a class="el" href="#a114b84322b721f5542ad74a5efac55cca705880cdd05eafd8b1ee5c76efdf4687">CHUNK_ERROR</a>
  }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8f15247c1e5d9b4268c5cc097115332a" id="r_a8f15247c1e5d9b4268c5cc097115332a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f15247c1e5d9b4268c5cc097115332a">ChunkedBodyParser</a> (<a class="el" href="classutils_1_1TempFile.html">utils::TempFile</a> &amp;file)</td></tr>
+<tr class="memitem:a573a31a3bf01c0cc7445ba1e5e8ae126" id="r_a573a31a3bf01c0cc7445ba1e5e8ae126"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a573a31a3bf01c0cc7445ba1e5e8ae126">ChunkedBodyParser</a> ()</td></tr>
 <tr class="memitem:a071ac11e0166d1d9ed9cb82a615a97ad" id="r_a071ac11e0166d1d9ed9cb82a615a97ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a071ac11e0166d1d9ed9cb82a615a97ad">reset</a> ()</td></tr>
-<tr class="memitem:a97c76e4034e8e2773ecd8da10e08437b" id="r_a97c76e4034e8e2773ecd8da10e08437b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97c76e4034e8e2773ecd8da10e08437b">feed</a> (std::string const &amp;buffer)</td></tr>
-<tr class="memdesc:a97c76e4034e8e2773ecd8da10e08437b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consumes data from the buffer, parses, and writes to the file.  <br /></td></tr>
-<tr class="memitem:a5ee6cb9c9f793cd7c2ce8f908b7a7e2a" id="r_a5ee6cb9c9f793cd7c2ce8f908b7a7e2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ee6cb9c9f793cd7c2ce8f908b7a7e2a">state</a> () const</td></tr>
+<tr class="memitem:a7a4ae1248c67f66ba18465cd382d261b" id="r_a7a4ae1248c67f66ba18465cd382d261b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a114b84322b721f5542ad74a5efac55cc">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a4ae1248c67f66ba18465cd382d261b">parse</a> (const char *input, size_t size, std::string &amp;output, size_t &amp;bytesConsumed)</td></tr>
+<tr class="memdesc:a7a4ae1248c67f66ba18465cd382d261b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse chunked data incrementally.  <br /></td></tr>
 <tr class="memitem:a2f8f1971d467e9c228130c701553954d" id="r_a2f8f1971d467e9c228130c701553954d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f8f1971d467e9c228130c701553954d">errorStatus</a> () const</td></tr>
 <tr class="memitem:a54a64b17b8f5eaaa337740c8238b15f5" id="r_a54a64b17b8f5eaaa337740c8238b15f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54a64b17b8f5eaaa337740c8238b15f5">setMaxBodySize</a> (size_t size)</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a9a9d01bedcba8dc7fc2badf0af87fc67" id="r_a9a9d01bedcba8dc7fc2badf0af87fc67"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67">InternalState</a> { <br />
+&#160;&#160;<a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67a2d48200c25dcbbae1d42571dfecaf969">READING_SIZE</a>
+, <a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67a9f6f8ea2a8bc9dc4e83d64dce42e9507">READING_DATA</a>
+, <a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67ae6deb833db6c8cbc228d83c6df69ad21">READING_TRAILER_CRLF</a>
+, <a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67ae5606a3ab901e0683473000aa5e755a2">READING_FINAL_CRLF</a>
+, <br />
+&#160;&#160;<a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67a1a2f8aeabe67c3dc3ccd34a9796dda97">DONE</a>
+<br />
+ }</td></tr>
+<tr class="memitem:aaf9db5a630c6d3d119f9cd5ce1c7fae6" id="r_aaf9db5a630c6d3d119f9cd5ce1c7fae6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>(ChunkedBodyParser::*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf9db5a630c6d3d119f9cd5ce1c7fae6">StateHandler</a>) (const char *input, size_t size, std::string &amp;output)</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a86c6f2070e55280035baddd026288ea7" id="r_a86c6f2070e55280035baddd026288ea7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86c6f2070e55280035baddd026288ea7">setError</a> (<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a> status)</td></tr>
+<tr class="memitem:a8c23275547179ff8075914587554776d" id="r_a8c23275547179ff8075914587554776d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c23275547179ff8075914587554776d">readSize</a> (const char *input, size_t size, std::string &amp;output)</td></tr>
+<tr class="memitem:ad94b763d64d974b8dce89fa57ac5f0f7" id="r_ad94b763d64d974b8dce89fa57ac5f0f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad94b763d64d974b8dce89fa57ac5f0f7">readData</a> (const char *input, size_t size, std::string &amp;output)</td></tr>
+<tr class="memitem:a4375ad1fb70a2753fdff97c5aacfbf7d" id="r_a4375ad1fb70a2753fdff97c5aacfbf7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4375ad1fb70a2753fdff97c5aacfbf7d">readTrailerCrlf</a> (const char *input, size_t size, std::string &amp;output)</td></tr>
+<tr class="memitem:a6a4e722e9307636041ff05e103c63c3e" id="r_a6a4e722e9307636041ff05e103c63c3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a4e722e9307636041ff05e103c63c3e">readFinalCrlf</a> (const char *input, size_t size, std::string &amp;output)</td></tr>
+<tr class="memitem:a3c61e2f94b94119faea05abc11319734" id="r_a3c61e2f94b94119faea05abc11319734"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c61e2f94b94119faea05abc11319734">setError</a> (<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a> status)</td></tr>
+<tr class="memitem:ad1b07d32dc82fa5ce5ce4dd9ce6e8bad" id="r_ad1b07d32dc82fa5ce5ce4dd9ce6e8bad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1b07d32dc82fa5ce5ce4dd9ce6e8bad">parseHex</a> (const std::string &amp;hex, size_t &amp;result) const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a887d60f23be0fde1853c7bea676793d3" id="r_a887d60f23be0fde1853c7bea676793d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a887d60f23be0fde1853c7bea676793d3">state_</a></td></tr>
-<tr class="memitem:a0a8e58d0d1f831510ed8a54b30696f97" id="r_a0a8e58d0d1f831510ed8a54b30696f97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classutils_1_1TempFile.html">utils::TempFile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a8e58d0d1f831510ed8a54b30696f97">bodyFile_</a></td></tr>
+<tr class="memitem:ab28828c5d640ad668f38e1a4d2f98cc6" id="r_ab28828c5d640ad668f38e1a4d2f98cc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67">InternalState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab28828c5d640ad668f38e1a4d2f98cc6">state_</a></td></tr>
+<tr class="memitem:a95d06ea36c74cda93ccb706eb81d47b7" id="r_a95d06ea36c74cda93ccb706eb81d47b7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95d06ea36c74cda93ccb706eb81d47b7">sizeBuffer_</a></td></tr>
+<tr class="memitem:a827b6867e708fcb4910a6c94559d4413" id="r_a827b6867e708fcb4910a6c94559d4413"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a827b6867e708fcb4910a6c94559d4413">bytesRemainingInChunk_</a></td></tr>
+<tr class="memitem:ad936b0665b68a970cca90869f58dbd31" id="r_ad936b0665b68a970cca90869f58dbd31"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad936b0665b68a970cca90869f58dbd31">totalBytesWritten_</a></td></tr>
 <tr class="memitem:a392845a2171bf1d1a6858a091da93c43" id="r_a392845a2171bf1d1a6858a091da93c43"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a392845a2171bf1d1a6858a091da93c43">maxBodySize_</a></td></tr>
-<tr class="memitem:a9ae69b6ed041831f7cb9a0851c75d8dd" id="r_a9ae69b6ed041831f7cb9a0851c75d8dd"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ae69b6ed041831f7cb9a0851c75d8dd">bytesWritten_</a></td></tr>
-<tr class="memitem:ab4099effd8d212ae812e80f11e121155" id="r_ab4099effd8d212ae812e80f11e121155"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4099effd8d212ae812e80f11e121155">chunkBytesLeft_</a></td></tr>
 <tr class="memitem:a1ee86ed6f878ca053e622554e35bf982" id="r_a1ee86ed6f878ca053e622554e35bf982"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ee86ed6f878ca053e622554e35bf982">errorStatus_</a></td></tr>
+<tr class="memitem:a328367296af793d5bbb3beb36a01f96e" id="r_a328367296af793d5bbb3beb36a01f96e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a328367296af793d5bbb3beb36a01f96e">sawCR_</a></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
-<a id="a726b0fe20b7a48fc7d1daa53e63a9a29" name="a726b0fe20b7a48fc7d1daa53e63a9a29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a726b0fe20b7a48fc7d1daa53e63a9a29">&#9670;&#160;</a></span>State</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">http::ChunkedBodyParser::State</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a726b0fe20b7a48fc7d1daa53e63a9a29afd1dcb71ad28d7af6852210403c464cb" name="a726b0fe20b7a48fc7d1daa53e63a9a29afd1dcb71ad28d7af6852210403c464cb"></a>PARSING_CHUNK_SIZE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a726b0fe20b7a48fc7d1daa53e63a9a29afa48bd4880675a344501ed81902f348a" name="a726b0fe20b7a48fc7d1daa53e63a9a29afa48bd4880675a344501ed81902f348a"></a>PARSING_CHUNK_DATA&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a726b0fe20b7a48fc7d1daa53e63a9a29a7e7fced89903981762cda1a22d62e14a" name="a726b0fe20b7a48fc7d1daa53e63a9a29a7e7fced89903981762cda1a22d62e14a"></a>PARSING_TRAILER&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a726b0fe20b7a48fc7d1daa53e63a9a29a1a2f8aeabe67c3dc3ccd34a9796dda97" name="a726b0fe20b7a48fc7d1daa53e63a9a29a1a2f8aeabe67c3dc3ccd34a9796dda97"></a>DONE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a726b0fe20b7a48fc7d1daa53e63a9a29a3a61c3be5c0d8ab17b8a3a83a336d6d8" name="a726b0fe20b7a48fc7d1daa53e63a9a29a3a61c3be5c0d8ab17b8a3a83a336d6d8"></a>ERROR&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a8f15247c1e5d9b4268c5cc097115332a" name="a8f15247c1e5d9b4268c5cc097115332a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f15247c1e5d9b4268c5cc097115332a">&#9670;&#160;</a></span>ChunkedBodyParser()</h2>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="aaf9db5a630c6d3d119f9cd5ce1c7fae6" name="aaf9db5a630c6d3d119f9cd5ce1c7fae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf9db5a630c6d3d119f9cd5ce1c7fae6">&#9670;&#160;</a></span>StateHandler</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,17 +157,81 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">http::ChunkedBodyParser::ChunkedBodyParser </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classutils_1_1TempFile.html">utils::TempFile</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
-          <td></td>
+          <td class="memname">typedef <a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ParseResult</a>(ChunkedBodyParser::* http::ChunkedBodyParser::StateHandler) (const char *input, size_t size, std::string &amp;output)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a9a9d01bedcba8dc7fc2badf0af87fc67" name="a9a9d01bedcba8dc7fc2badf0af87fc67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9d01bedcba8dc7fc2badf0af87fc67">&#9670;&#160;</a></span>InternalState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67">http::ChunkedBodyParser::InternalState</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9a9d01bedcba8dc7fc2badf0af87fc67a2d48200c25dcbbae1d42571dfecaf969" name="a9a9d01bedcba8dc7fc2badf0af87fc67a2d48200c25dcbbae1d42571dfecaf969"></a>READING_SIZE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9a9d01bedcba8dc7fc2badf0af87fc67a9f6f8ea2a8bc9dc4e83d64dce42e9507" name="a9a9d01bedcba8dc7fc2badf0af87fc67a9f6f8ea2a8bc9dc4e83d64dce42e9507"></a>READING_DATA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9a9d01bedcba8dc7fc2badf0af87fc67ae6deb833db6c8cbc228d83c6df69ad21" name="a9a9d01bedcba8dc7fc2badf0af87fc67ae6deb833db6c8cbc228d83c6df69ad21"></a>READING_TRAILER_CRLF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9a9d01bedcba8dc7fc2badf0af87fc67ae5606a3ab901e0683473000aa5e755a2" name="a9a9d01bedcba8dc7fc2badf0af87fc67ae5606a3ab901e0683473000aa5e755a2"></a>READING_FINAL_CRLF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9a9d01bedcba8dc7fc2badf0af87fc67a1a2f8aeabe67c3dc3ccd34a9796dda97" name="a9a9d01bedcba8dc7fc2badf0af87fc67a1a2f8aeabe67c3dc3ccd34a9796dda97"></a>DONE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a114b84322b721f5542ad74a5efac55cc" name="a114b84322b721f5542ad74a5efac55cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a114b84322b721f5542ad74a5efac55cc">&#9670;&#160;</a></span>Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a114b84322b721f5542ad74a5efac55cc">http::ChunkedBodyParser::Status</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a114b84322b721f5542ad74a5efac55cca829db77d0d0ab6a281114f47aaaffb8c" name="a114b84322b721f5542ad74a5efac55cca829db77d0d0ab6a281114f47aaaffb8c"></a>CHUNK_CONTINUE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a114b84322b721f5542ad74a5efac55cca1d4befe89f7d3f6d9ef3ed343891674b" name="a114b84322b721f5542ad74a5efac55cca1d4befe89f7d3f6d9ef3ed343891674b"></a>CHUNK_DONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a114b84322b721f5542ad74a5efac55cca705880cdd05eafd8b1ee5c76efdf4687" name="a114b84322b721f5542ad74a5efac55cca705880cdd05eafd8b1ee5c76efdf4687"></a>CHUNK_ERROR&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a573a31a3bf01c0cc7445ba1e5e8ae126" name="a573a31a3bf01c0cc7445ba1e5e8ae126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573a31a3bf01c0cc7445ba1e5e8ae126">&#9670;&#160;</a></span>ChunkedBodyParser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">http::ChunkedBodyParser::ChunkedBodyParser </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -195,29 +254,211 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a97c76e4034e8e2773ecd8da10e08437b" name="a97c76e4034e8e2773ecd8da10e08437b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97c76e4034e8e2773ecd8da10e08437b">&#9670;&#160;</a></span>feed()</h2>
+<a id="a7a4ae1248c67f66ba18465cd382d261b" name="a7a4ae1248c67f66ba18465cd382d261b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a4ae1248c67f66ba18465cd382d261b">&#9670;&#160;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">ChunkedBodyParser::State</a> http::ChunkedBodyParser::feed </td>
+          <td class="memname"><a class="el" href="#a114b84322b721f5542ad74a5efac55cc">ChunkedBodyParser::Status</a> http::ChunkedBodyParser::parse </td>
           <td>(</td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t &amp;</td>          <td class="paramname"><span class="paramname"><em>bytesConsumed</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Consumes data from the buffer, parses, and writes to the file. </p>
+<p>Parse chunked data incrementally. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>The <a class="el" href="classhttp_1_1RequestParser.html">RequestParser</a>'s main data buffer. </td></tr>
+    <tr><td class="paramname">input</td><td>Raw input buffer </td></tr>
+    <tr><td class="paramname">size</td><td>Size of input </td></tr>
+    <tr><td class="paramname">output</td><td>Decoded body data (appended) </td></tr>
+    <tr><td class="paramname">bytesConsumed</td><td>How many bytes were consumed from input </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The new internal state. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="#a114b84322b721f5542ad74a5efac55cc">Status</a> indicating parse state </dd></dl>
+
+</div>
+</div>
+<a id="ad1b07d32dc82fa5ce5ce4dd9ce6e8bad" name="ad1b07d32dc82fa5ce5ce4dd9ce6e8bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1b07d32dc82fa5ce5ce4dd9ce6e8bad">&#9670;&#160;</a></span>parseHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool http::ChunkedBodyParser::parseHex </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>hex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t &amp;</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad94b763d64d974b8dce89fa57ac5f0f7" name="ad94b763d64d974b8dce89fa57ac5f0f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad94b763d64d974b8dce89fa57ac5f0f7">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ChunkedBodyParser::ParseResult</a> http::ChunkedBodyParser::readData </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a4e722e9307636041ff05e103c63c3e" name="a6a4e722e9307636041ff05e103c63c3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a4e722e9307636041ff05e103c63c3e">&#9670;&#160;</a></span>readFinalCrlf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ChunkedBodyParser::ParseResult</a> http::ChunkedBodyParser::readFinalCrlf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c23275547179ff8075914587554776d" name="a8c23275547179ff8075914587554776d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c23275547179ff8075914587554776d">&#9670;&#160;</a></span>readSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ChunkedBodyParser::ParseResult</a> http::ChunkedBodyParser::readSize </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4375ad1fb70a2753fdff97c5aacfbf7d" name="a4375ad1fb70a2753fdff97c5aacfbf7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4375ad1fb70a2753fdff97c5aacfbf7d">&#9670;&#160;</a></span>readTrailerCrlf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ChunkedBodyParser::ParseResult</a> http::ChunkedBodyParser::readTrailerCrlf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -238,8 +479,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a86c6f2070e55280035baddd026288ea7" name="a86c6f2070e55280035baddd026288ea7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86c6f2070e55280035baddd026288ea7">&#9670;&#160;</a></span>setError()</h2>
+<a id="a3c61e2f94b94119faea05abc11319734" name="a3c61e2f94b94119faea05abc11319734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c61e2f94b94119faea05abc11319734">&#9670;&#160;</a></span>setError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +489,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">ChunkedBodyParser::State</a> http::ChunkedBodyParser::setError </td>
+          <td class="memname"><a class="el" href="structhttp_1_1ChunkedBodyParser_1_1ParseResult.html">ChunkedBodyParser::ParseResult</a> http::ChunkedBodyParser::setError </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a></td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
           <td></td>
@@ -280,26 +521,9 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5ee6cb9c9f793cd7c2ce8f908b7a7e2a" name="a5ee6cb9c9f793cd7c2ce8f908b7a7e2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ee6cb9c9f793cd7c2ce8f908b7a7e2a">&#9670;&#160;</a></span>state()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">ChunkedBodyParser::State</a> http::ChunkedBodyParser::state </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a0a8e58d0d1f831510ed8a54b30696f97" name="a0a8e58d0d1f831510ed8a54b30696f97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a8e58d0d1f831510ed8a54b30696f97">&#9670;&#160;</a></span>bodyFile_</h2>
+<a id="a827b6867e708fcb4910a6c94559d4413" name="a827b6867e708fcb4910a6c94559d4413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a827b6867e708fcb4910a6c94559d4413">&#9670;&#160;</a></span>bytesRemainingInChunk_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,51 +532,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classutils_1_1TempFile.html">utils::TempFile</a>&amp; http::ChunkedBodyParser::bodyFile_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9ae69b6ed041831f7cb9a0851c75d8dd" name="a9ae69b6ed041831f7cb9a0851c75d8dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ae69b6ed041831f7cb9a0851c75d8dd">&#9670;&#160;</a></span>bytesWritten_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t http::ChunkedBodyParser::bytesWritten_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab4099effd8d212ae812e80f11e121155" name="ab4099effd8d212ae812e80f11e121155"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4099effd8d212ae812e80f11e121155">&#9670;&#160;</a></span>chunkBytesLeft_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t http::ChunkedBodyParser::chunkBytesLeft_</td>
+          <td class="memname">size_t http::ChunkedBodyParser::bytesRemainingInChunk_</td>
         </tr>
       </table>
   </td>
@@ -408,8 +588,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a887d60f23be0fde1853c7bea676793d3" name="a887d60f23be0fde1853c7bea676793d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a887d60f23be0fde1853c7bea676793d3">&#9670;&#160;</a></span>state_</h2>
+<a id="a328367296af793d5bbb3beb36a01f96e" name="a328367296af793d5bbb3beb36a01f96e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a328367296af793d5bbb3beb36a01f96e">&#9670;&#160;</a></span>sawCR_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,7 +598,73 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a726b0fe20b7a48fc7d1daa53e63a9a29">State</a> http::ChunkedBodyParser::state_</td>
+          <td class="memname">bool http::ChunkedBodyParser::sawCR_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95d06ea36c74cda93ccb706eb81d47b7" name="a95d06ea36c74cda93ccb706eb81d47b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d06ea36c74cda93ccb706eb81d47b7">&#9670;&#160;</a></span>sizeBuffer_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string http::ChunkedBodyParser::sizeBuffer_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab28828c5d640ad668f38e1a4d2f98cc6" name="ab28828c5d640ad668f38e1a4d2f98cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab28828c5d640ad668f38e1a4d2f98cc6">&#9670;&#160;</a></span>state_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a9a9d01bedcba8dc7fc2badf0af87fc67">InternalState</a> http::ChunkedBodyParser::state_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad936b0665b68a970cca90869f58dbd31" name="ad936b0665b68a970cca90869f58dbd31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad936b0665b68a970cca90869f58dbd31">&#9670;&#160;</a></span>totalBytesWritten_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t http::ChunkedBodyParser::totalBytesWritten_</td>
         </tr>
       </table>
   </td>

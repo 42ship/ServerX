@@ -57,6 +57,7 @@ var hierarchy =
     [ "config::Mapper", "classconfig_1_1Mapper.html", null ],
     [ "http::MimeTypes", "classhttp_1_1MimeTypes.html", null ],
     [ "config::Parser", "classconfig_1_1Parser.html", null ],
+    [ "http::ChunkedBodyParser::ParseResult", "structhttp_1_1ChunkedBodyParser_1_1ParseResult.html", null ],
     [ "http::Request", "classhttp_1_1Request.html", null ],
     [ "http::RequestParser", "classhttp_1_1RequestParser.html", null ],
     [ "http::RequestStartLine", "classhttp_1_1RequestStartLine.html", null ],

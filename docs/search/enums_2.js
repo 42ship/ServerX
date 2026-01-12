@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglevel_0',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
+  ['internalstate_0',['InternalState',['../classhttp_1_1ChunkedBodyParser.html#a9a9d01bedcba8dc7fc2badf0af87fc67',1,'http::ChunkedBodyParser']]]
 ];
