@@ -171,6 +171,7 @@ protected:
     Request &location(config::LocationBlock const *location);
     Request &server(config::ServerBlock const *server);
     Request &method(RequestStartLine::Method method);
+    Request &path(std::string const &);
     Request &version(std::string const &);
     Request &remoteAddr(std::string const &addr);
 
