@@ -28,7 +28,9 @@ void ClientHandler::SendBuffer::reset() {
     sent = 0;
 }
 
-bool ClientHandler::SendBuffer::isFullySent() const { return buffer.empty() || sent >= buffer.size(); }
+bool ClientHandler::SendBuffer::isFullySent() const {
+    return buffer.empty() || sent >= buffer.size();
+}
 
 ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int clientFd) {
     if (isFullySent())
@@ -340,6 +342,10 @@ void ClientHandler::handleError(http::HttpStatus status) {
 
 void ClientHandler::finalizeConnection() {
     std::string conn = request_.headers().get("Connection");
+    closeConnection();
+    return;
+// Currently close all connections because we don't have a timeout
+#if 0
     if (conn == "keep-alive") {
         LOG_SDEBUG("Keep-Alive. Resetting.");
         resetForNewRequest();
@@ -347,6 +353,7 @@ void ClientHandler::finalizeConnection() {
     } else {
         closeConnection();
     }
+#endif
 }
 
 void ClientHandler::closeConnection() {

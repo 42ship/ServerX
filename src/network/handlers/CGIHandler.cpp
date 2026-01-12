@@ -36,6 +36,9 @@ void CGIHandler::handleRead() {
 
     char buffer[8192];
     ssize_t bytes_read = body_.read(buffer, sizeof(buffer));
+#if 0
+    LOG_TRACE(std::string(buffer, bytes_read));
+#endif
     LOG_TRACE("CGIHandler::handleRead: Read " << bytes_read << " bytes from CGI body pipe.");
     if (bytes_read <= 0) {
         if (state_ == READING_HEADERS) {
