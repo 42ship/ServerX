@@ -98,7 +98,6 @@ Headers const &Request::headers() const { return headers_; }
 Request &Request::location(config::LocationBlock const *location) {location_ = location;return *this;}
 Request &Request::server(config::ServerBlock const *server) {server_ = server;return *this;}
 Request &Request::method(RequestStartLine::Method method) {requestLine_.method = method;return *this;}
-Request &Request::path(std::string const &path) {requestLine_.path = path;return *this;}
 Request &Request::uri(std::string const &uri) {requestLine_.uri = uri;return *this;}
 Request &Request::version(std::string const &version) {requestLine_.version= version;return *this;}
 Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *this; }
