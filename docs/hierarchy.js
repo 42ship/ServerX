@@ -40,7 +40,6 @@ var hierarchy =
     ] ],
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
-      [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],

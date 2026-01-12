@@ -38,7 +38,6 @@ var annotated_dup =
       [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
       [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
-      [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
       [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
       [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
