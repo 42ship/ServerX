@@ -1,7 +1,71 @@
-<form action="/cgi/login.py" method="POST">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname"><br><br>
-  <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Server Session Test</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; }
+        input { width: 100%; margin: 10px 0; padding: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h3>Login (Session Test)</h3>
+    <input type="text" id="fullName" placeholder="Full Name (e.g. John Wick)">
+    <input type="number" id="age" placeholder="Age">
+    <button onclick="handleLogin(event)">Login</button>
+    <p id="status"></p>
+    <hr>
+    <a href="/cgi/welcome.py">Go to Welcome Page</a>
+</div>
+
+<script>
+async function handleLogin(event) {
+    if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+    }
+
+    const fullName = document.getElementById('fullName').value;
+    const age = document.getElementById('age').value;
+    const status = document.getElementById('status');
+    try {
+        console.log("Attempting fetch..."); // Debug log 1
+        const response = await fetch('/cgi/login.py', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        console.log("Response received. Status:", response.status); // Debug log 2
+
+        // Check if the response is actually JSON before parsing
+        const text = await response.text();
+        console.log("Raw response text:", text);
+
+        const result = JSON.parse(text);
+        console.log("Parsed JSON:", result);
+
+        if (response.ok) {
+            status.style.color = "green";
+            status.innerText = "Success! Redirecting.";
+
+            setTimeout(() => {
+                window.location.href = "/cgi/welcome.py";
+            }, 1000);
+        } else {
+            console.warn("Server returned error status:", response.status);
+            status.style.color = "red";
+            status.innerText = "Login failed.";
+        }
+    } catch (err) {
+        console.error("JavaScript Error:", err); // This is crucial!
+    }
+}
+</script>
+
+</body>
+</html>
