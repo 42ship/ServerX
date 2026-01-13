@@ -87,7 +87,7 @@ public:
      * @param ext The extension including the dot (e.g., ".php").
      * @return A reference to the LocationBlock object for chaining.
      */
-    LocationBlock &extension(std::string const &ext);
+    LocationBlock &extension(std::string const &);
 
     /**
      * @brief Sets the parent ServerBlock for this location.
