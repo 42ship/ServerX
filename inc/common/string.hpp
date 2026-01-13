@@ -20,5 +20,6 @@ template <typename T> T fromString(std::string const &str) {
 std::string trim(const std::string &s);
 
 bool isAllDigit(std::string const &s);
+void toLower(std::string &s);
 
 } // namespace utils
