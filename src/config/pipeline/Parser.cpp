@@ -82,15 +82,18 @@ void Parser::handleStatement() {
 
 void Parser::handleLocationBlock() {
     expectToken("location");
-    if (peekToken().type != LEFT_BRACE)
-        throw ConfigError("Non matching token types");
-    if (!isTokenAValue())
-        throw ConfigError("Expected a location name (identifier)");
 
     ConfigNode node(std::string("location"));
-    pushTokenTo(node.args);
+    while (currentToken().type != LEFT_BRACE && currentToken().type != END_OF_FILE) {
+        if (!isTokenAValue())
+            throw ConfigError("Expected a location name (identifier)");
+        pushTokenTo(node.args);
+        consumeToken();
+    }
 
-    consumeToken();
+    if (node.args.empty())
+        throw ConfigError("Expected a location name (identifier)");
+
     expectToken(LEFT_BRACE);
     while (currentToken().type != RIGHT_BRACE)
         addDirective(node, handleDirective());

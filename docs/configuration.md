@@ -9,6 +9,24 @@ The configuration is built from **directives**, which are organized into **block
 - `location`: Defines how to process requests for specific URIs.
     A `location` block lives inside a `server` block.
 
+## Location Matching
+
+The server supports two types of location matching:
+
+1.  **Prefix Matching** (Default):
+    Matches the start of the URI. The longest matching prefix is chosen.
+    ```nginx
+    location /images/ { ... }
+    ```
+2.  **Extension Matching**:
+    Matches the file extension at the end of the URI. Triggered by the `~` modifier and a pattern like `\.ext$`.
+    Regex-like syntax is currently restricted to simple extension matching for performance and C++98 compatibility.
+    ```nginx
+    location ~ \.php$ { ... }
+    ```
+    *Note: Extension matches have priority over prefix matches (unless the prefix is an exact match).*
+
+
 ## Directives
 
 Here is a list of all supported directives, their arguments, and the context in
