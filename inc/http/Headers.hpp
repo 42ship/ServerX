@@ -3,6 +3,7 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
 namespace http {
 
@@ -16,7 +17,7 @@ namespace http {
  */
 class Headers {
 public:
-    typedef std::map<std::string, std::string> HeaderMap;
+    typedef std::multimap<std::string, std::string> HeaderMap;
     typedef HeaderMap::iterator iterator;
     typedef HeaderMap::const_iterator const_iterator;
 
@@ -34,7 +35,8 @@ public:
     bool has(std::string const &key) const;
 
     /**
-     * @brief Adds or overwrites a header key-value pair.
+     * @brief Adds a header key-value pair.
+     * If the key already exists, another entry is added (multimap).
      * @param key The header name.
      * @param value The header value.
      * @return A reference to this Headers object for chaining.
@@ -42,7 +44,16 @@ public:
     Headers &add(std::string const &key, std::string const &value);
 
     /**
-     * @brief C++98-style getter. Retrieves a header value.
+     * @brief Sets or overwrites a header key-value pair.
+     * Removes all existing entries for the key before adding the new one.
+     * @param key The header name.
+     * @param value The header value.
+     * @return A reference to this Headers object for chaining.
+     */
+    Headers &set(std::string const &key, std::string const &value);
+
+    /**
+     * @brief C++98-style getter. Retrieves the first header value for a key.
      * @param key The header name (case-insensitive).
      * @param[out] value The string to be filled with the header's value.
      * @return True if the key was found, false otherwise.
@@ -50,11 +61,18 @@ public:
     bool get(const std::string &key, std::string &value) const;
 
     /**
-     * @brief C++11-style getter. Retrieves a header value.
+     * @brief C++11-style getter. Retrieves the first header value for a key.
      * @param key The header name (case-insensitive).
      * @return The header value as a string. Returns an empty string if not found.
      */
     std::string get(const std::string &key) const;
+
+    /**
+     * @brief Retrieves all values associated with a header key.
+     * @param key The header name (case-insensitive).
+     * @return A vector of strings containing all values for the given key.
+     */
+    std::vector<std::string> getAll(const std::string &key) const;
 
     /**
      * @brief A specialized accessor for the Content-Length header.
@@ -76,7 +94,7 @@ public:
     Headers &clear();
 
     /**
-     * @brief Removes a single header by its key.
+     * @brief Removes all headers by their key.
      * @param key The header name to remove (case-insensitive).
      * @return A reference to this Headers object for chaining.
      */

@@ -31,6 +31,7 @@ async function handleLogin(event) {
 
     const fullName = document.getElementById('fullName').value;
     const age = document.getElementById('age').value;
+    const data = { fullName, age };
     const status = document.getElementById('status');
     try {
         console.log("Attempting fetch..."); // Debug log 1

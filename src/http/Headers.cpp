@@ -20,7 +20,16 @@ std::string Headers::normalizeKey(std::string const &key) {
 Headers &Headers::add(std::string const &key, std::string const &value) {
     if (key.empty())
         return *this;
-    map_[normalizeKey(key)] = value;
+    map_.insert(std::make_pair(normalizeKey(key), value));
+    return *this;
+}
+
+Headers &Headers::set(std::string const &key, std::string const &value) {
+    if (key.empty())
+        return *this;
+    std::string normalized = normalizeKey(key);
+    map_.erase(normalized);
+    map_.insert(std::make_pair(normalized, value));
     return *this;
 }
 
@@ -35,6 +44,17 @@ bool Headers::get(std::string const &key, std::string &value) const {
 std::string Headers::get(std::string const &key) const {
     std::string res;
     get(key, res);
+    return res;
+}
+
+std::vector<std::string> Headers::getAll(const std::string &key) const {
+    std::vector<std::string> res;
+    std::string normalized = normalizeKey(key);
+    std::pair<HeaderMap::const_iterator, HeaderMap::const_iterator> range =
+        map_.equal_range(normalized);
+    for (HeaderMap::const_iterator it = range.first; it != range.second; ++it) {
+        res.push_back(it->second);
+    }
     return res;
 }
 
@@ -81,10 +101,15 @@ bool Headers::parse(std::string &buffer, Headers &headers, bool strict) {
 
 bool Headers::isContentChunked() const {
     std::string value;
-    // TODO: add parsing to check if chunked exists there
     if (!get("Transfer-Encoding", value))
         return false;
-    return true;
+    // Check if "chunked" is one of the encodings
+    std::vector<std::string> encodings = getAll("Transfer-Encoding");
+    for (size_t i = 0; i < encodings.size(); ++i) {
+        if (encodings[i].find("chunked") != std::string::npos)
+            return true;
+    }
+    return false;
 }
 
 Headers &Headers::clear() {
@@ -107,7 +132,7 @@ std::string Headers::toString() const {
 }
 
 Headers::HeaderMap const &Headers::getMap() const { return map_; }
-bool Headers::has(std::string const &key) const { return map_.count(normalizeKey(key)); }
+bool Headers::has(std::string const &key) const { return map_.count(normalizeKey(key)) > 0; }
 Headers::const_iterator Headers::begin() const { return map_.begin(); }
 Headers::const_iterator Headers::end() const { return map_.end(); }
 
