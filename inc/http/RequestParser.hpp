@@ -68,6 +68,7 @@ private:
 
     void handleChunkedBody();
     void handleContentLengthBody();
+    bool writeToBodyFile(const std::string& data);
 
     /**
      * @brief Sets the parser to an error state and updates the Request's status.

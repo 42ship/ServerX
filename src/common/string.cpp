@@ -1,5 +1,7 @@
 #include "common/string.hpp"
 
+#include <algorithm>
+
 namespace utils {
 
 std::string trim(const std::string &s) {
@@ -18,5 +20,7 @@ bool isAllDigit(std::string const &s) {
     }
     return true;
 }
+
+void toLower(std::string &s) { std::transform(s.begin(), s.end(), s.begin(), ::tolower); }
 
 } // namespace utils

@@ -102,6 +102,7 @@ private:
     http::RequestParser reqParser_;
 
     // Response State
+    bool isKeepAlive_;
     SendBuffer rspBuffer_;
     CgiState cgiState_;
 
