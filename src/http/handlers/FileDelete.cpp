@@ -51,6 +51,16 @@ std::string getParentDir(const std::string &path) {
     return path.substr(0, pos);
 }
 
+HttpStatus tryDeletePath(const std::string &path, bool isDir) {
+    if (!isDir)
+        return unlink(path.c_str()) == 0 ? OK : mapDeleteError(errno);
+    if (!isDirectoryEmpty(path))
+        return CONFLICT;
+    if (rmdir(path.c_str()) != 0)
+        return mapDeleteError(errno);
+    return OK;
+}
+
 } // anonymous namespace
 
 void FileDeleteHandler::handle(Request const &req, Response &res) {
@@ -68,15 +78,9 @@ void FileDeleteHandler::handle(Request const &req, Response &res) {
     if (access(getParentDir(path).c_str(), W_OK) != 0)
         return (void)res.status(FORBIDDEN);
 
-    if (S_ISDIR(statbuf.st_mode)) {
-        if (!isDirectoryEmpty(path))
-            return (void)res.status(CONFLICT);
-        if (rmdir(path.c_str()) != 0)
-            return (void)res.status(mapDeleteError(errno));
-    } else {
-        if (unlink(path.c_str()) != 0)
-            return (void)res.status(mapDeleteError(errno));
-    }
+    HttpStatus result = tryDeletePath(path, S_ISDIR(statbuf.st_mode));
+    if (result != OK)
+        return (void)res.status(result);
 
     res.status(NO_CONTENT);
     res.setNoBody();
