@@ -16,7 +16,7 @@ bool isDirectoryEmpty(const std::string &path) {
     if (!dir) {
         return false;
     }
-    struct dirent *entry;
+    const struct dirent *entry;
     while ((entry = readdir(dir)) != NULL) {
         if (entry->d_name[0] == '.' &&
             (entry->d_name[1] == '\0' ||
