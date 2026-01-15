@@ -39,6 +39,25 @@ std::string resolveUploadDir(Request const &req) {
     return root + uploadPath;
 }
 
+std::string appendPath(std::string const &base, std::string const &suffix) {
+    if (base.empty())
+        return suffix;
+    if (base[base.size() - 1] == '/')
+        return base + suffix;
+    return base + '/' + suffix;
+}
+
+bool writeAll(int fd, const char *buf, ssize_t len) {
+    ssize_t written = 0;
+    while (written < len) {
+        ssize_t w = write(fd, buf + written, len - written);
+        if (w < 0)
+            return false;
+        written += w;
+    }
+    return true;
+}
+
 HttpStatus copyBodyToFile(int srcFd, std::string const &destPath) {
     int destFd = open(destPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (destFd < 0)
@@ -52,15 +71,10 @@ HttpStatus copyBodyToFile(int srcFd, std::string const &destPath) {
     char buf[4096];
     ssize_t bytesRead;
     while ((bytesRead = read(srcFd, buf, sizeof(buf))) > 0) {
-        ssize_t written = 0;
-        while (written < bytesRead) {
-            ssize_t w = write(destFd, buf + written, bytesRead - written);
-            if (w < 0) {
-                close(destFd);
-                unlink(destPath.c_str());
-                return INTERNAL_SERVER_ERROR;
-            }
-            written += w;
+        if (!writeAll(destFd, buf, bytesRead)) {
+            close(destFd);
+            unlink(destPath.c_str());
+            return INTERNAL_SERVER_ERROR;
         }
     }
 
@@ -105,14 +119,9 @@ void FileUploadHandler::handle(Request const &req, Response &res) {
 
     std::string location = req.location()->path();
     std::string uploadPath = req.location()->getFirstRawValue("upload_path");
-    if (!uploadPath.empty() && uploadPath[0] != '/') {
-        if (location[location.size() - 1] != '/')
-            location += '/';
-        location += uploadPath;
-    }
-    if (location[location.size() - 1] != '/')
-        location += '/';
-    location += filename;
+    if (!uploadPath.empty() && uploadPath[0] != '/')
+        location = appendPath(location, uploadPath);
+    location = appendPath(location, filename);
 
     res.status(CREATED);
     res.headers().add("Location", location);
