@@ -30,53 +30,52 @@ bool isDirectoryEmpty(const std::string &path) {
     return true;
 }
 
+HttpStatus mapStatError(int err) {
+    if (err == ENOENT || err == ENOTDIR)
+        return NOT_FOUND;
+    if (err == EACCES)
+        return FORBIDDEN;
+    return INTERNAL_SERVER_ERROR;
+}
+
+HttpStatus mapDeleteError(int err) {
+    if (err == EACCES || err == EPERM)
+        return FORBIDDEN;
+    return INTERNAL_SERVER_ERROR;
+}
+
+std::string getParentDir(const std::string &path) {
+    std::string::size_type pos = path.rfind('/');
+    if (pos == std::string::npos || pos == 0)
+        return "/";
+    return path.substr(0, pos);
+}
+
 } // anonymous namespace
 
 void FileDeleteHandler::handle(Request const &req, Response &res) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
 
-    if (!req.location()->has("upload_path")) {
+    if (!req.location()->has("upload_path"))
         return (void)res.status(METHOD_NOT_ALLOWED);
-    }
 
     std::string path = req.resolvePath();
 
     struct stat statbuf;
-    if (stat(path.c_str(), &statbuf) != 0) {
-        if (errno == ENOENT || errno == ENOTDIR) {
-            return (void)res.status(NOT_FOUND);
-        } else if (errno == EACCES) {
-            return (void)res.status(FORBIDDEN);
-        } else {
-            return (void)res.status(INTERNAL_SERVER_ERROR);
-        }
-    }
+    if (stat(path.c_str(), &statbuf) != 0)
+        return (void)res.status(mapStatError(errno));
 
-    std::string parentDir = path.substr(0, path.rfind('/'));
-    if (parentDir.empty()) {
-        parentDir = "/";
-    }
-    if (access(parentDir.c_str(), W_OK) != 0) {
+    if (access(getParentDir(path).c_str(), W_OK) != 0)
         return (void)res.status(FORBIDDEN);
-    }
 
     if (S_ISDIR(statbuf.st_mode)) {
-        if (!isDirectoryEmpty(path)) {
+        if (!isDirectoryEmpty(path))
             return (void)res.status(CONFLICT);
-        }
-        if (rmdir(path.c_str()) != 0) {
-            if (errno == EACCES || errno == EPERM) {
-                return (void)res.status(FORBIDDEN);
-            }
-            return (void)res.status(INTERNAL_SERVER_ERROR);
-        }
+        if (rmdir(path.c_str()) != 0)
+            return (void)res.status(mapDeleteError(errno));
     } else {
-        if (unlink(path.c_str()) != 0) {
-            if (errno == EACCES || errno == EPERM) {
-                return (void)res.status(FORBIDDEN);
-            }
-            return (void)res.status(INTERNAL_SERVER_ERROR);
-        }
+        if (unlink(path.c_str()) != 0)
+            return (void)res.status(mapDeleteError(errno));
     }
 
     res.status(NO_CONTENT);
