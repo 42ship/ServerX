@@ -3,6 +3,7 @@ var namespaceconfig =
     [ "details", "namespaceconfig_1_1details.html", [
       [ "bestMatchLocation", "namespaceconfig_1_1details.html#a66c025a76ebf25314c629f8b939621f7", null ],
       [ "completeLocationRoot", "namespaceconfig_1_1details.html#ae0316af89ff9339892a2084d7002b587", null ],
+      [ "matchExtensionLocation", "namespaceconfig_1_1details.html#a85e744b172cc639f266f881d9af6fdd0", null ],
       [ "matchServerName", "namespaceconfig_1_1details.html#a821cbbcacbb3ad8eda492144114f0d31", null ]
     ] ],
     [ "ArgumentFactory", "classconfig_1_1ArgumentFactory.html", null ],

@@ -106,6 +106,13 @@ Inheritance diagram for config::LocationBlock:</div>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a756ab28320f86fe50ebc18b9ef266229" id="r_a756ab28320f86fe50ebc18b9ef266229"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a> { <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229a414e93aa38146babed21124a3c474d92">PREFIX</a>
+, <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229aed4015ebc2e83cab52a064e7ebdac24a">EXTENSION</a>
+ }</td></tr>
+<tr class="memdesc:a756ab28320f86fe50ebc18b9ef266229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies how the location path should be matched against the request URI.  <a href="#a756ab28320f86fe50ebc18b9ef266229">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a636a009cd7843c903f143fe58bd3f3ff" id="r_a636a009cd7843c903f143fe58bd3f3ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a636a009cd7843c903f143fe58bd3f3ff">LocationBlock</a> ()</td></tr>
@@ -113,10 +120,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afc07c99290008d65485524a23cca16a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a 'cgi_pass' directive is configured for this location.  <br /></td></tr>
 <tr class="memitem:acef625fe935d344dd42f3aa9327a00eb" id="r_acef625fe935d344dd42f3aa9327a00eb"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acef625fe935d344dd42f3aa9327a00eb">path</a> () const</td></tr>
 <tr class="memdesc:acef625fe935d344dd42f3aa9327a00eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the URI path that this location block matches.  <br /></td></tr>
+<tr class="memitem:a04f4c81d267c44c45c0011c0cae224b2" id="r_a04f4c81d267c44c45c0011c0cae224b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04f4c81d267c44c45c0011c0cae224b2">matchType</a> () const</td></tr>
+<tr class="memdesc:a04f4c81d267c44c45c0011c0cae224b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the match type for this location.  <br /></td></tr>
+<tr class="memitem:afe26ce016dfe6c7f8da240d33ad84b20" id="r_afe26ce016dfe6c7f8da240d33ad84b20"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe26ce016dfe6c7f8da240d33ad84b20">extension</a> () const</td></tr>
+<tr class="memdesc:afe26ce016dfe6c7f8da240d33ad84b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the extension string (including the dot) for EXTENSION match type.  <br /></td></tr>
+<tr class="memitem:a1cfdb66e7304ad1d7a7b811359b16811" id="r_a1cfdb66e7304ad1d7a7b811359b16811"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cfdb66e7304ad1d7a7b811359b16811">isRegex</a> () const</td></tr>
+<tr class="memdesc:a1cfdb66e7304ad1d7a7b811359b16811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatibility wrapper for checking if this is a "regex" (extension) location.  <br /></td></tr>
 <tr class="memitem:ad020019d6a0cf5bd7e9b583f69d37188" id="r_ad020019d6a0cf5bd7e9b583f69d37188"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad020019d6a0cf5bd7e9b583f69d37188">parent</a> () const</td></tr>
 <tr class="memdesc:ad020019d6a0cf5bd7e9b583f69d37188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>.  <br /></td></tr>
 <tr class="memitem:a8bc9f93b8f98cb0afc22f25cb004c235" id="r_a8bc9f93b8f98cb0afc22f25cb004c235"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bc9f93b8f98cb0afc22f25cb004c235">path</a> (std::string const &amp;)</td></tr>
 <tr class="memdesc:a8bc9f93b8f98cb0afc22f25cb004c235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the URI path for this location using a fluent interface.  <br /></td></tr>
+<tr class="memitem:aa479a0402404d0d89abbc13c8d5fb5f4" id="r_aa479a0402404d0d89abbc13c8d5fb5f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa479a0402404d0d89abbc13c8d5fb5f4">matchType</a> (<a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a>)</td></tr>
+<tr class="memdesc:aa479a0402404d0d89abbc13c8d5fb5f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the match type for this location.  <br /></td></tr>
+<tr class="memitem:a8b5c1dd45a5092b87421f8285cc4816a" id="r_a8b5c1dd45a5092b87421f8285cc4816a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b5c1dd45a5092b87421f8285cc4816a">extension</a> (std::string const &amp;)</td></tr>
+<tr class="memdesc:a8b5c1dd45a5092b87421f8285cc4816a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the extension string for EXTENSION match type.  <br /></td></tr>
 <tr class="memitem:a05555b584af5f7d4fe8ddaacbf4a266e" id="r_a05555b584af5f7d4fe8ddaacbf4a266e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05555b584af5f7d4fe8ddaacbf4a266e">parent</a> (<a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *parent)</td></tr>
 <tr class="memdesc:a05555b584af5f7d4fe8ddaacbf4a266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a> for this location.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classconfig_1_1Block"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classconfig_1_1Block')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classconfig_1_1Block.html">config::Block</a></td></tr>
@@ -154,7 +171,11 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:abe1bc502b5c78f0728564c9a3c91118f" id="r_abe1bc502b5c78f0728564c9a3c91118f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1ServerBlock.html">ServerBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe1bc502b5c78f0728564c9a3c91118f">parent_</a></td></tr>
 <tr class="memdesc:abe1bc502b5c78f0728564c9a3c91118f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the parent <a class="el" href="classconfig_1_1ServerBlock.html" title="Represents a single &#39;server&#39; block from the configuration file.">ServerBlock</a>.  <br /></td></tr>
 <tr class="memitem:af0363fe4f136d0bbbbfe8c8433537b0f" id="r_af0363fe4f136d0bbbbfe8c8433537b0f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0363fe4f136d0bbbbfe8c8433537b0f">path_</a></td></tr>
-<tr class="memdesc:af0363fe4f136d0bbbbfe8c8433537b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URI path this location matches.  <br /></td></tr>
+<tr class="memdesc:af0363fe4f136d0bbbbfe8c8433537b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URI path/pattern this location matches.  <br /></td></tr>
+<tr class="memitem:ad4e75589fca37512cc6dba964aa4c3bd" id="r_ad4e75589fca37512cc6dba964aa4c3bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4e75589fca37512cc6dba964aa4c3bd">matchType_</a></td></tr>
+<tr class="memdesc:ad4e75589fca37512cc6dba964aa4c3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">How this location matches.  <br /></td></tr>
+<tr class="memitem:afcd6738b6f3b4ef8b22f59f5e64346a8" id="r_afcd6738b6f3b4ef8b22f59f5e64346a8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcd6738b6f3b4ef8b22f59f5e64346a8">extension_</a></td></tr>
+<tr class="memdesc:afcd6738b6f3b4ef8b22f59f5e64346a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The extracted extension if <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229" title="Specifies how the location path should be matched against the request URI.">MatchType</a> is EXTENSION.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -167,7 +188,30 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a single 'location' block from the configuration file. </p>
 <p>This class is a strongly-typed container for the directives defined within a location context. It holds settings such as the document root and index files for a specific URI path. </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a756ab28320f86fe50ebc18b9ef266229" name="a756ab28320f86fe50ebc18b9ef266229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a756ab28320f86fe50ebc18b9ef266229">&#9670;&#160;</a></span>MatchType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">config::LocationBlock::MatchType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Specifies how the location path should be matched against the request URI. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a756ab28320f86fe50ebc18b9ef266229a414e93aa38146babed21124a3c474d92" name="a756ab28320f86fe50ebc18b9ef266229a414e93aa38146babed21124a3c474d92"></a>PREFIX&#160;</td><td class="fielddoc"><p>Standard prefix matching (e.g., /static/) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a756ab28320f86fe50ebc18b9ef266229aed4015ebc2e83cab52a064e7ebdac24a" name="a756ab28320f86fe50ebc18b9ef266229aed4015ebc2e83cab52a064e7ebdac24a"></a>EXTENSION&#160;</td><td class="fielddoc"><p>File extension matching (e.g., .php) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a636a009cd7843c903f143fe58bd3f3ff" name="a636a009cd7843c903f143fe58bd3f3ff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a636a009cd7843c903f143fe58bd3f3ff">&#9670;&#160;</a></span>LocationBlock()</h2>
 
@@ -186,6 +230,52 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="afe26ce016dfe6c7f8da240d33ad84b20" name="afe26ce016dfe6c7f8da240d33ad84b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe26ce016dfe6c7f8da240d33ad84b20">&#9670;&#160;</a></span>extension() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string const  &amp; config::LocationBlock::extension </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the extension string (including the dot) for EXTENSION match type. </p>
+<dl class="section return"><dt>Returns</dt><dd>The extension string (e.g., ".php"). </dd></dl>
+
+</div>
+</div>
+<a id="a8b5c1dd45a5092b87421f8285cc4816a" name="a8b5c1dd45a5092b87421f8285cc4816a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b5c1dd45a5092b87421f8285cc4816a">&#9670;&#160;</a></span>extension() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp; config::LocationBlock::extension </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the extension string for EXTENSION match type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ext</td><td>The extension including the dot (e.g., ".php"). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a> object for chaining. </dd></dl>
+
+</div>
+</div>
 <a id="afc07c99290008d65485524a23cca16a7" name="afc07c99290008d65485524a23cca16a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc07c99290008d65485524a23cca16a7">&#9670;&#160;</a></span>hasCgiPass()</h2>
 
@@ -203,6 +293,66 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Checks if a 'cgi_pass' directive is configured for this location. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if 'cgi_pass' is present, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a1cfdb66e7304ad1d7a7b811359b16811" name="a1cfdb66e7304ad1d7a7b811359b16811"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cfdb66e7304ad1d7a7b811359b16811">&#9670;&#160;</a></span>isRegex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool config::LocationBlock::isRegex </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compatibility wrapper for checking if this is a "regex" (extension) location. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if matchType is EXTENSION. </dd></dl>
+
+</div>
+</div>
+<a id="a04f4c81d267c44c45c0011c0cae224b2" name="a04f4c81d267c44c45c0011c0cae224b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04f4c81d267c44c45c0011c0cae224b2">&#9670;&#160;</a></span>matchType() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">LocationBlock::MatchType</a> config::LocationBlock::matchType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the match type for this location. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229" title="Specifies how the location path should be matched against the request URI.">MatchType</a> (PREFIX or EXTENSION). </dd></dl>
+
+</div>
+</div>
+<a id="aa479a0402404d0d89abbc13c8d5fb5f4" name="aa479a0402404d0d89abbc13c8d5fb5f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa479a0402404d0d89abbc13c8d5fb5f4">&#9670;&#160;</a></span>matchType() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> &amp; config::LocationBlock::matchType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a></td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the match type for this location. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a> object for chaining. </dd></dl>
 
 </div>
 </div>
@@ -299,6 +449,54 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="afcd6738b6f3b4ef8b22f59f5e64346a8" name="afcd6738b6f3b4ef8b22f59f5e64346a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd6738b6f3b4ef8b22f59f5e64346a8">&#9670;&#160;</a></span>extension_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string config::LocationBlock::extension_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The extracted extension if <a class="el" href="#a756ab28320f86fe50ebc18b9ef266229" title="Specifies how the location path should be matched against the request URI.">MatchType</a> is EXTENSION. </p>
+
+</div>
+</div>
+<a id="ad4e75589fca37512cc6dba964aa4c3bd" name="ad4e75589fca37512cc6dba964aa4c3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e75589fca37512cc6dba964aa4c3bd">&#9670;&#160;</a></span>matchType_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a756ab28320f86fe50ebc18b9ef266229">MatchType</a> config::LocationBlock::matchType_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How this location matches. </p>
+
+</div>
+</div>
 <a id="abe1bc502b5c78f0728564c9a3c91118f" name="abe1bc502b5c78f0728564c9a3c91118f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abe1bc502b5c78f0728564c9a3c91118f">&#9670;&#160;</a></span>parent_</h2>
 
@@ -343,7 +541,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The URI path this location matches. </p>
+<p>The URI path/pattern this location matches. </p>
 
 </div>
 </div>

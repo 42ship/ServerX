@@ -13,11 +13,12 @@ var searchData=
   ['isfullysent_10',['isFullySent',['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#a89969aa7846ff817cb0514ce5a35a857',1,'network::ClientHandler::SendBuffer']]],
   ['isopen_11',['isOpen',['../classutils_1_1TempFile.html#a88874b4f483a8918197f6310913ed301',1,'utils::TempFile']]],
   ['ispunctuation_12',['isPunctuation',['../classconfig_1_1Lexer.html#a2f72dc31ce16c91090554f6bff6d0484',1,'config::Lexer']]],
-  ['issendbufferfull_13',['isSendBufferFull',['../classnetwork_1_1ClientHandler.html#ae6d91c41bfc47ba27b620caa5a6a98e1',1,'network::ClientHandler']]],
-  ['issue_5fwarning_14',['issue_warning',['../namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7',1,'config']]],
-  ['istokenavalue_15',['isTokenAValue',['../classconfig_1_1Parser.html#a10b311d3aeb068cb260d17697a44f7a2',1,'config::Parser']]],
-  ['istypein_16',['isTypeIn',['../structconfig_1_1Token.html#a9e3b17e602f4467ef3b317b092d5d034',1,'config::Token']]],
-  ['isvalidipv4_17',['isValidIPv4',['../namespaceutils.html#aedbc0638b66531360317f908d4ff9eed',1,'utils::isValidIPv4(char const *)'],['../namespaceutils.html#a81dd67800f9537cafe72ff917dbf388f',1,'utils::isValidIPv4(std::string const &amp;)']]],
-  ['isvalidport_18',['isValidPort',['../namespaceutils.html#af996b680f7f75212aeeb13cf855a916d',1,'utils::isValidPort(int port)'],['../namespaceutils.html#ad2c7af639c94afbb424737764f3dd555',1,'utils::isValidPort(std::string const &amp;)']]],
-  ['isvalidvariablechar_19',['isValidVariableChar',['../namespaceconfig.html#a69410b8526d2b2eb0864688f2c45b3cf',1,'config']]]
+  ['isregex_13',['isRegex',['../classconfig_1_1LocationBlock.html#a1cfdb66e7304ad1d7a7b811359b16811',1,'config::LocationBlock']]],
+  ['issendbufferfull_14',['isSendBufferFull',['../classnetwork_1_1ClientHandler.html#ae6d91c41bfc47ba27b620caa5a6a98e1',1,'network::ClientHandler']]],
+  ['issue_5fwarning_15',['issue_warning',['../namespaceconfig.html#a43b52aaf79c6da51d1e15ce30e8f43d7',1,'config']]],
+  ['istokenavalue_16',['isTokenAValue',['../classconfig_1_1Parser.html#a10b311d3aeb068cb260d17697a44f7a2',1,'config::Parser']]],
+  ['istypein_17',['isTypeIn',['../structconfig_1_1Token.html#a9e3b17e602f4467ef3b317b092d5d034',1,'config::Token']]],
+  ['isvalidipv4_18',['isValidIPv4',['../namespaceutils.html#aedbc0638b66531360317f908d4ff9eed',1,'utils::isValidIPv4(char const *)'],['../namespaceutils.html#a81dd67800f9537cafe72ff917dbf388f',1,'utils::isValidIPv4(std::string const &amp;)']]],
+  ['isvalidport_19',['isValidPort',['../namespaceutils.html#af996b680f7f75212aeeb13cf855a916d',1,'utils::isValidPort(int port)'],['../namespaceutils.html#ad2c7af639c94afbb424737764f3dd555',1,'utils::isValidPort(std::string const &amp;)']]],
+  ['isvalidvariablechar_20',['isValidVariableChar',['../namespaceconfig.html#a69410b8526d2b2eb0864688f2c45b3cf',1,'config']]]
 ];

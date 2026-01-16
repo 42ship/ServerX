@@ -11,6 +11,7 @@ var classconfig_1_1ServerBlock =
     [ "operator<<", "classconfig_1_1ServerBlock.html#a70f016b42c502e6722b8657766ce25e9", null ],
     [ "Validator", "classconfig_1_1ServerBlock.html#a5929181addf27f130c7f8f99eeba3256", null ],
     [ "address_", "classconfig_1_1ServerBlock.html#a0632f3d89d1c59f31a21fbf535646071", null ],
+    [ "extensionPaths_", "classconfig_1_1ServerBlock.html#ac84ee5bf7f0a563b635e668759292a31", null ],
     [ "locations_", "classconfig_1_1ServerBlock.html#a797aa2e0b2b7ed6693aa253bf6b61f6d", null ],
     [ "port_", "classconfig_1_1ServerBlock.html#aba8300041dad367a313e321bd5f65d8e", null ]
 ];

@@ -13,5 +13,6 @@ var searchData=
   ['executehandler_10',['executeHandler',['../classhttp_1_1Router.html#a77dafb7c804558ef1c86a5edfaaa37b6',1,'http::Router']]],
   ['execve_11',['execve',['../classhttp_1_1CGIHandler.html#a5704f65efe798cd3187d414b26057bbd',1,'http::CGIHandler']]],
   ['expecttoken_12',['expectToken',['../classconfig_1_1Parser.html#a96c4c3dcb6c86c3da4a58370aae6a2df',1,'config::Parser::expectToken(TokenType type)'],['../classconfig_1_1Parser.html#a5dd51a14d4f08338b1a134031ba7c64d',1,'config::Parser::expectToken(std::string const &amp;literal)']]],
-  ['extractipinfo_13',['extractIpInfo',['../namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59',1,'utils']]]
+  ['extension_13',['extension',['../classconfig_1_1LocationBlock.html#afe26ce016dfe6c7f8da240d33ad84b20',1,'config::LocationBlock::extension() const'],['../classconfig_1_1LocationBlock.html#a8b5c1dd45a5092b87421f8285cc4816a',1,'config::LocationBlock::extension(std::string const &amp;)']]],
+  ['extractipinfo_14',['extractIpInfo',['../namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59',1,'utils']]]
 ];

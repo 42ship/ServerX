@@ -32,5 +32,9 @@ var searchData=
   ['execve_29',['execve',['../classhttp_1_1CGIHandler.html#a5704f65efe798cd3187d414b26057bbd',1,'http::CGIHandler']]],
   ['expect_5farg_5fcount_30',['EXPECT_ARG_COUNT',['../ValidationUtils_8hpp.html#a424e3a7a86c7b17aa4117ce670ab9e6e',1,'ValidationUtils.hpp']]],
   ['expecttoken_31',['expectToken',['../classconfig_1_1Parser.html#a96c4c3dcb6c86c3da4a58370aae6a2df',1,'config::Parser::expectToken(TokenType type)'],['../classconfig_1_1Parser.html#a5dd51a14d4f08338b1a134031ba7c64d',1,'config::Parser::expectToken(std::string const &amp;literal)']]],
-  ['extractipinfo_32',['extractIpInfo',['../namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59',1,'utils']]]
+  ['extension_32',['EXTENSION',['../classconfig_1_1LocationBlock.html#a756ab28320f86fe50ebc18b9ef266229aed4015ebc2e83cab52a064e7ebdac24a',1,'config::LocationBlock']]],
+  ['extension_33',['extension',['../classconfig_1_1LocationBlock.html#afe26ce016dfe6c7f8da240d33ad84b20',1,'config::LocationBlock::extension() const'],['../classconfig_1_1LocationBlock.html#a8b5c1dd45a5092b87421f8285cc4816a',1,'config::LocationBlock::extension(std::string const &amp;)']]],
+  ['extension_5f_34',['extension_',['../classconfig_1_1LocationBlock.html#afcd6738b6f3b4ef8b22f59f5e64346a8',1,'config::LocationBlock']]],
+  ['extensionpaths_5f_35',['extensionPaths_',['../classconfig_1_1ServerBlock.html#ac84ee5bf7f0a563b635e668759292a31',1,'config::ServerBlock']]],
+  ['extractipinfo_36',['extractIpInfo',['../namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59',1,'utils']]]
 ];
