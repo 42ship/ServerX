@@ -360,6 +360,7 @@ void ClientHandler::finalizeConnection() {
         LOG_SDEBUG("Keep-Alive. Resetting.");
         resetForNewRequest();
         EventDispatcher::getInstance().enableRead(this);
+        EventDispatcher::getInstance().disableWrite(this);
     } else {
         closeConnection();
     }

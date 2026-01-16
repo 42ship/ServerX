@@ -115,4 +115,20 @@ Headers::const_iterator Headers::find(std::string const &key) const {
     return map_.find(normalizeKey(key));
 }
 
+size_t Headers::findHeaderEnd(const std::string &buffer, size_t &offset) {
+    for (size_t i = 0; i < buffer.size(); ++i) {
+        if (buffer[i] == '\n') {
+            if (i + 1 < buffer.size() && buffer[i + 1] == '\n') {
+                offset = (i > 0 && buffer[i - 1] == '\r') ? 3 : 2;
+                return (i > 0 && buffer[i - 1] == '\r') ? i - 1 : i;
+            }
+            if (i + 2 < buffer.size() && buffer[i + 1] == '\r' && buffer[i + 2] == '\n') {
+                offset = (i > 0 && buffer[i - 1] == '\r') ? 4 : 3;
+                return (i > 0 && buffer[i - 1] == '\r') ? i - 1 : i;
+            }
+        }
+    }
+    return std::string::npos;
+}
+
 } // namespace http

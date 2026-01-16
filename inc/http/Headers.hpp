@@ -109,10 +109,19 @@ public:
      * @param strict If true, parsing is strict; otherwise, more lenient.
      * @return True if parsing succeeded, false otherwise.
      */
-    static bool parse(std::string &, Headers &, bool strict = true);
+    static bool parse(std::string &, Headers &, bool strict = false);
 
     /** @copydoc parse */
-    static bool parse(std::istringstream &, Headers &, bool strict = true);
+    static bool parse(std::istringstream &, Headers &, bool strict = false);
+
+    /**
+     * @brief Finds the end of the HTTP header section in a buffer.
+     * Compatible with \r\n\r\n, \n\n, \r\n\n, and \n\r\n.
+     * @param buffer The input buffer to search.
+     * @param[out] offset The length of the delimiter found (2, 3, or 4).
+     * @return The starting position of the delimiter, or std::string::npos if not found.
+     */
+    static size_t findHeaderEnd(const std::string &buffer, size_t &offset);
 
 private:
     /**
