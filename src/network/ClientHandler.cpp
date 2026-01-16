@@ -28,7 +28,9 @@ void ClientHandler::SendBuffer::reset() {
     sent = 0;
 }
 
-bool ClientHandler::SendBuffer::isFullySent() const { return buffer.empty() || sent >= buffer.size(); }
+bool ClientHandler::SendBuffer::isFullySent() const {
+    return buffer.empty() || sent >= buffer.size();
+}
 
 ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int clientFd) {
     if (isFullySent())
@@ -81,6 +83,7 @@ ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAd
       headersSent_(false),
       router_(router),
       reqParser_(request_, IO_BUFFER_SIZE),
+      isKeepAlive_(false),
       rspBuffer_(IO_BUFFER_SIZE) {
 
     resetForNewRequest();
@@ -148,6 +151,17 @@ void ClientHandler::handleRequestParsingState(http::RequestParser::State state) 
 
     case http::RequestParser::REQUEST_READY:
         router_.matchServerAndLocation(port_, request_);
+        {
+            std::string connectionHeader = request_.headers().get("Connection");
+            utils::toLower(connectionHeader);
+            if (connectionHeader == "keep-alive") {
+                isKeepAlive_ = true;
+            } else if (connectionHeader == "close") {
+                isKeepAlive_ = false;
+            } else {
+                isKeepAlive_ = (request_.version() == "HTTP/1.1");
+            }
+        }
         generateResponse();
         break;
 
@@ -205,6 +219,7 @@ void ClientHandler::setupStaticResponse() {
     LOG_STRACE("preparing static response");
     cgiState_.handler = NULL;
 
+    response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
@@ -284,6 +299,7 @@ void ClientHandler::onCgiHeadersParsed(http::Headers const &headers) {
         response_.headers().erase("Status");
     }
 
+    response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
     response_.buildHeaders(rspBuffer_.buffer, true);
     headersSent_ = true;
     LOG_SDEBUG("Headers built, activating send.");
@@ -332,6 +348,7 @@ void ClientHandler::handleError(http::HttpStatus status) {
 
     router_.handleError(request_, response_);
 
+    response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
@@ -339,8 +356,7 @@ void ClientHandler::handleError(http::HttpStatus status) {
 }
 
 void ClientHandler::finalizeConnection() {
-    std::string conn = request_.headers().get("Connection");
-    if (conn == "keep-alive") {
+    if (isKeepAlive_) {
         LOG_SDEBUG("Keep-Alive. Resetting.");
         resetForNewRequest();
         EventDispatcher::getInstance().enableRead(this);
