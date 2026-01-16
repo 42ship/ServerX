@@ -1,9 +1,9 @@
-#include "http/Router.hpp"
 #include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
+#include "http/Router.hpp"
 #include "http/handlers/CGIHandler.hpp"
 #include "utils/Logger.hpp"
 
@@ -95,8 +95,10 @@ void Router::executeHandler(Request const &request, Response &response) const {
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
         CGIHandler::handle(request, response);
-    } else if (request.location()->has("return")) {
-        ReturnHandler::handle(request, response);
+    } else if (request.method() == RequestStartLine::POST) {
+        LOG_TRACE("Router::executeHandler(" << request.uri()
+                                            << "): dispatching to FileUploadHandler");
+        FileUploadHandler::handle(request, response, mimeTypes_);
     } else {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to StaticFileHandler");
