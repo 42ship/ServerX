@@ -28,6 +28,7 @@ var classnetwork_1_1ClientHandler =
     [ "clientAddr_", "classnetwork_1_1ClientHandler.html#a45a2b7cf0b017f19a49c93741dbcaa95", null ],
     [ "clientFd_", "classnetwork_1_1ClientHandler.html#abc169fd5d4ba06c02283b19038bc92d4", null ],
     [ "headersSent_", "classnetwork_1_1ClientHandler.html#a37e3f7e5c42cf45c36a03dc96e356106", null ],
+    [ "isKeepAlive_", "classnetwork_1_1ClientHandler.html#a78f16ecd8e9b1c6a4a936ddd979166f5", null ],
     [ "port_", "classnetwork_1_1ClientHandler.html#a05bb70be11cbd9005085edaa369c5dbe", null ],
     [ "reqParser_", "classnetwork_1_1ClientHandler.html#a5cad2fbd296f255256776f902714c6cd", null ],
     [ "request_", "classnetwork_1_1ClientHandler.html#a8af21b57d67c242d2ac6ce7960bcb7d5", null ],

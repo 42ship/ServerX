@@ -6,7 +6,8 @@ var searchData=
   ['iscontentchunked_5f_3',['isContentChunked_',['../classhttp_1_1RequestParser.html#aec8d7b8588bc599d6dc22f19f8806b1b',1,'http::RequestParser']]],
   ['isdone_4',['isDone',['../structnetwork_1_1ClientHandler_1_1CgiState.html#a3818b552d613fb2379db614a15b80596',1,'network::ClientHandler::CgiState']]],
   ['isdone_5f_5',['isDone_',['../classhttp_1_1BodyFromCgi.html#a25df8ba053f0bf1d1e029ee70477fcf8',1,'http::BodyFromCgi']]],
-  ['isrunning_5f_6',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
-  ['isshuttingdown_7',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
-  ['ivalue_5f_8',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
+  ['iskeepalive_5f_6',['isKeepAlive_',['../classnetwork_1_1ClientHandler.html#a78f16ecd8e9b1c6a4a936ddd979166f5',1,'network::ClientHandler']]],
+  ['isrunning_5f_7',['isRunning_',['../classcore_1_1Server.html#acf2df5ee2fa48bf5c9bc74c60e6cf50a',1,'core::Server']]],
+  ['isshuttingdown_8',['isShuttingDown',['../classnetwork_1_1EpollManager.html#a3b4c3a37ddb1b0bd40a63117992d35d3',1,'network::EpollManager']]],
+  ['ivalue_5f_9',['iValue_',['../classconfig_1_1Integer.html#af06954ea93f6e3d402582b6be9b4fe9b',1,'config::Integer']]]
 ];

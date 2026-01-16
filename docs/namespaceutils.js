@@ -22,6 +22,7 @@ var namespaceutils =
     [ "isValidPort", "namespaceutils.html#af996b680f7f75212aeeb13cf855a916d", null ],
     [ "isValidPort", "namespaceutils.html#ad2c7af639c94afbb424737764f3dd555", null ],
     [ "joinPaths", "namespaceutils.html#a59b379a1228d21e5fd7616410e93578a", null ],
+    [ "toLower", "namespaceutils.html#ae03fb56bd79bb7966b00949504364a17", null ],
     [ "toString", "namespaceutils.html#aa829fef424a4463ddfc6488b969755a2", null ],
     [ "trim", "namespaceutils.html#a935df850f81594becc164936220efa39", null ],
     [ "validateDirectoryPath", "namespaceutils.html#a6c6c2490267aaffaecd721402a08351c", null ],

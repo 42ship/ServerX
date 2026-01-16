@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"classnetwork_1_1EventDispatcher.html#a09a6beca3f2891963d76936bac95e0f6":[1,0,3,4,0],
+"classnetwork_1_1EventDispatcher.html#a0fa3e6f93be515d9d18d73755502b63e":[0,0,3,4,7],
 "classnetwork_1_1EventDispatcher.html#a0fa3e6f93be515d9d18d73755502b63e":[1,0,3,4,7],
 "classnetwork_1_1EventDispatcher.html#a40b843b3c8651a92ac95700a24b26708":[0,0,3,4,14],
 "classnetwork_1_1EventDispatcher.html#a40b843b3c8651a92ac95700a24b26708":[1,0,3,4,14],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a8233ddf40d7fcc57c8b790925bf575da":[0,0,0,43,2],
 "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1abb7e5bc50490e4fb6f7b0c68a3aa32c8":[0,0,0,43,6],
 "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac139d3c03f43ee586069c5cf47f7aa24":[0,0,0,43,5],
-"namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac9d5105eec9c62f0d81051eb32eb7bd7":[0,0,0,43,8],
-"namespaceconfig_1_1details.html":[0,0,0,0],
-"namespaceconfig_1_1details.html#a66c025a76ebf25314c629f8b939621f7":[0,0,0,0,0]
+"namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1ac9d5105eec9c62f0d81051eb32eb7bd7":[0,0,0,43,8]
 };
