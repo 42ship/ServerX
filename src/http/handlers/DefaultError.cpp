@@ -104,26 +104,25 @@ static void serveErrorFile(Response &response, const std::string &root, std::str
 
 void DefaultErrorHandler::handle(Request const &request, Response &response,
                                  MimeTypes const &mimeTypes) {
-    CHECK_FOR_SERVER_AND_LOCATION(request, response);
     std::string status = utils::toString(response.status());
-    std::string root = request.server()->root();
-    std::string fpath;
 
-    // try location-level error_page
-    if (request.location()->has(status)) {
-        fpath = request.location()->getFirstRawValue(status);
-        serveErrorFile(response, root, fpath, mimeTypes);
-        return;
+    if (request.server()) {
+        std::string root = request.server()->root();
+        std::string fpath;
+
+        if (request.location() && request.location()->has(status)) {
+            fpath = request.location()->getFirstRawValue(status);
+            serveErrorFile(response, root, fpath, mimeTypes);
+            return;
+        }
+
+        if (request.server()->has(status)) {
+            fpath = request.server()->getFirstRawValue(status);
+            serveErrorFile(response, root, fpath, mimeTypes);
+            return;
+        }
     }
 
-    // try server-level error_page
-    if (request.server()->has(status)) {
-        fpath = request.server()->getFirstRawValue(status);
-        serveErrorFile(response, root, fpath, mimeTypes);
-        return;
-    }
-
-    // fallback to default response
     populateResponse(response);
 }
 
