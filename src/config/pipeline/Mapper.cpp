@@ -45,7 +45,20 @@ void Mapper::handleLocationBlock(ServerBlock &b, ConfigNode const &node) {
 }
 
 void Mapper::mapLocationBlock(LocationBlock &b, ConfigNode const &node) {
-    b.path(node.args[0].literal);
+    if (node.args.size() == 2 && node.args[0].literal == "~") {
+        std::string pattern = node.args[1].literal;
+        b.path(pattern);
+        if (pattern.size() > 3 && pattern.substr(0, 2) == "\\." &&
+            pattern[pattern.size() - 1] == '$') {
+            b.matchType(LocationBlock::EXTENSION);
+            b.extension(pattern.substr(1, pattern.size() - 2)); // Extract ".ext"
+        } else {
+            b.matchType(LocationBlock::PREFIX);
+        }
+    } else {
+        b.path(node.args[0].literal);
+        b.matchType(LocationBlock::PREFIX);
+    }
     DirectiveHandler::getInstance().process(b, node.directives);
 }
 

@@ -9,7 +9,14 @@ namespace config {
 ServerBlock::ServerBlock() : Block("server"), port_(-1) {}
 
 LocationBlock const *ServerBlock::matchLocation(http::Request const &req) const {
-    return details::bestMatchLocation(locations_, req.uri());
+    LocationBlock const *bestPrefix = details::bestMatchLocation(locations_, req.uri());
+
+    LocationBlock const *extMatch =
+        details::matchExtensionLocation(locations_, extensionPaths_, req.uri());
+    if (extMatch) {
+        return extMatch;
+    }
+    return bestPrefix;
 }
 
 bool ServerBlock::hasLocation(LocationBlock const &b) const {
@@ -19,7 +26,11 @@ bool ServerBlock::hasLocation(LocationBlock const &b) const {
 void ServerBlock::addLocation(LocationBlock const &b) {
     std::pair<LocationBlockMap::iterator, bool> result;
     result = locations_.insert(std::make_pair(b.path(), b));
-    result.first->second.parent(this);
+    LocationBlock &inserted = result.first->second;
+    inserted.parent(this);
+    if (inserted.matchType() == LocationBlock::EXTENSION) {
+        extensionPaths_.push_back(inserted.path());
+    }
 }
 
 ServerBlock &ServerBlock::port(int port) {
