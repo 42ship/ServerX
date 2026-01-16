@@ -79,6 +79,8 @@ private:
     int port_;                   //!< The listening port.
     std::string address_;        //!< The binding IP address.
     LocationBlockMap locations_; //!< Map of configured location blocks, keyed by path.
+    std::vector<std::string>
+        extensionPaths_; //!< List of extension location paths in declaration order.
 
     friend std::ostream &operator<<(std::ostream &o, ServerBlock const &t);
     friend class Validator;
@@ -90,6 +92,9 @@ namespace details {
 
 bool matchServerName(std::vector<std::string> const &, std::string const &);
 LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string const &path);
+LocationBlock const *matchExtensionLocation(LocationBlockMap const &ls,
+                                            std::vector<std::string> const &paths,
+                                            std::string const &uri);
 
 } // namespace details
 

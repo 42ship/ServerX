@@ -1,6 +1,7 @@
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
 #include "doctest.h"
+#include "http/Request.hpp"
 #include <map>
 #include <string>
 
@@ -108,5 +109,72 @@ TEST_CASE("LocationMatcher: Edge Cases") {
         const LocationBlock *result = details::bestMatchLocation(locs, "/images");
         REQUIRE(result != NULL);
         CHECK(result->path() == "/");
+    }
+}
+
+TEST_CASE("LocationMatcher: Regex Matching") {
+    ServerBlock server;
+
+    LocationBlock php;
+    php.path("\\.php$").matchType(config::LocationBlock::EXTENSION).extension(".php");
+
+    php.add("cgi_pass", "/usr/bin/php-cgi");
+    server.addLocation(php);
+
+    LocationBlock py;
+    py.path("\\.py$").matchType(config::LocationBlock::EXTENSION).extension(".py");
+
+    py.add("cgi_pass", "/usr/bin/python3");
+    server.addLocation(py);
+
+    LocationBlock root;
+    root.path("/");
+    root.add("root", "/var/www/html");
+    server.addLocation(root);
+
+    SUBCASE("Should match .php regex") {
+        http::Request req;
+        req.uri("/index.php");
+        const LocationBlock *result = server.matchLocation(req);
+        REQUIRE(result != NULL);
+        CHECK(result->isRegex() == true);
+        CHECK(result->path() == "\\.php$");
+    }
+
+    SUBCASE("Should match .py regex") {
+        http::Request req;
+        req.uri("/script.py");
+        const LocationBlock *result = server.matchLocation(req);
+        REQUIRE(result != NULL);
+        CHECK(result->isRegex() == true);
+        CHECK(result->path() == "\\.py$");
+    }
+
+    SUBCASE("Should fallback to prefix match if no regex matches") {
+        http::Request req;
+        req.uri("/style.css");
+        const LocationBlock *result = server.matchLocation(req);
+        REQUIRE(result != NULL);
+        CHECK(result->matchType() == config::LocationBlock::PREFIX);
+        CHECK(result->path() == "/");
+    }
+
+    SUBCASE("Extension match priority: first declared extension should match first") {
+        ServerBlock s2;
+        config::LocationBlock py1;
+        py1.path(".*\\.py$").matchType(config::LocationBlock::EXTENSION).extension(".py");
+        py1.add("id", "1");
+        s2.addLocation(py1);
+
+        config::LocationBlock py2;
+        py2.path("\\.py$").matchType(config::LocationBlock::EXTENSION).extension(".py");
+        py2.add("id", "2");
+        s2.addLocation(py2);
+
+        http::Request req;
+        req.uri("/test.py");
+        const LocationBlock *result = s2.matchLocation(req);
+        REQUIRE(result != NULL);
+        CHECK(result->getFirstRawValue("id") == "1");
     }
 }
