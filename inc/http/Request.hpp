@@ -132,7 +132,7 @@ public:
     std::string const &version() const;
 
     int body() const;
-    std::string bodyPath() const;
+    const std::string &bodyPath() const;
 
     Request &body(int fd);
     Request &body(int fd, const std::string &path);
