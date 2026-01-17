@@ -1,42 +1,25 @@
 #include "doctest.h"
 
+#include <cerrno>
 #include <cstdio>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-#if 0
+#include "../TestableRequest.hpp"
 #include "../test_utils.hpp"
-#include "config/ServerConfig.hpp"
+#include "config/LocationBlock.hpp"
+#include "config/ServerBlock.hpp"
+#include "config/arguments/String.hpp"
 #include "http/Handler.hpp"
-#include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
+#include "http/Response.hpp"
 
 using namespace http;
 using namespace std;
-
-static const char *kConfPath = "config/test.conf";
+using namespace config;
 
 // ----------------- helpers -----------------
-
-struct RequestContext {
-    Request req;
-    const config::ServerBlock *server;
-    const config::LocationBlock *location;
-};
-
-static string makeRequestTo(const string &path, const string &headers) {
-    return "DELETE " + path + " HTTP/1.1\r\n" + headers;
-}
-
-inline RequestContext makeDeleteRequest(config::ServerConfig &conf, const std::string &requestTo,
-                                        const std::string &headers) {
-    RequestContext ctx;
-    ctx.req = http::Request::parse(makeRequestTo(requestTo, headers));
-    ctx.server = conf.getServer(9191, ctx.req.headers["Host"]);
-    ctx.location = ctx.server ? ctx.server->matchLocation(ctx.req.path) : NULL;
-    return ctx;
-}
 
 static bool createFile(const char *path, const char *data = "x", size_t len = 1) {
     int fd = ::open(path, O_CREAT | O_TRUNC | O_WRONLY, 0644);
@@ -47,127 +30,164 @@ static bool createFile(const char *path, const char *data = "x", size_t len = 1)
     return (w == (ssize_t)len);
 }
 
+static LocationBlock createMockLocationWithUploadPath(const string &root, const string &path,
+                                                      const string &uploadPath) {
+    LocationBlock loc;
+    loc.path(path);
+    loc.add("root", root);
+    ArgumentVector args;
+    args.push_back(new config::String(uploadPath));
+    loc.add("upload_path", args);
+    return loc;
+}
+
+static LocationBlock createMockLocationWithoutUploadPath(const string &root, const string &path) {
+    LocationBlock loc;
+    loc.path(path);
+    loc.add("root", root);
+    return loc;
+}
+
+static ServerBlock createMockServer() {
+    ServerBlock server;
+    server.port(8080);
+    server.address("localhost");
+    return server;
+}
+
+static TestableRequest createDeleteRequest(const ServerBlock *server, const LocationBlock *location,
+                                           const string &reqPath) {
+    TestableRequest req;
+    req.server(server);
+    req.location(location);
+    req.method(RequestStartLine::DELETE);
+    req.path(reqPath);
+    return req;
+}
+
 // ----------------- tests -----------------
 
-TEST_CASE("DELETE — 204 No Content when deleting an existing file") {
-    config::ServerConfig conf(kConfPath, false);
-    MimeTypes mime;
-    FileDeleteHandler delHandler;
-
-    // FS layout that matches test.conf: /img/ -> root test_www/img
+TEST_CASE("DELETE - 204 No Content when deleting an existing file") {
     mkdir("test_www", 0777);
-    mkdir("test_www/img", 0777);
-    mkdir("test_www/img/uploads", 0777);
+    mkdir("test_www/uploads", 0777);
+    CHECK(createFile("test_www/uploads/to-delete.bin"));
 
-    // Create file to delete
-    CHECK(createFile("test_www/img/uploads/to-delete.bin"));
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+    ServerBlock server = createMockServer();
 
-    RequestContext ctx = makeDeleteRequest(conf, "/img/uploads/to-delete.bin",
-                                           "Host: localhost:9191\r\n"
-                                           "Connection: close\r\n");
+    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/to-delete.bin");
+    Response res;
 
-    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
-    CHECK(res.getStatus() == NO_CONTENT);
-    CHECK(access("test_www/img/uploads/to-delete.bin", F_OK) == -1);
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == NO_CONTENT);
+    CHECK(access("test_www/uploads/to-delete.bin", F_OK) == -1);
 
     removeDirectoryRecursive("test_www");
 }
 
-TEST_CASE("DELETE — 404 Not Found when resource does not exist") {
-    config::ServerConfig conf(kConfPath, false);
-    MimeTypes mime;
-    FileDeleteHandler delHandler;
-
+TEST_CASE("DELETE - 404 Not Found when resource does not exist") {
     mkdir("test_www", 0777);
-    mkdir("test_www/img", 0777);
-    mkdir("test_www/img/uploads", 0777);
+    mkdir("test_www/uploads", 0777);
 
-    RequestContext ctx = makeDeleteRequest(conf, "/img/uploads/missing.bin",
-                                           "Host: localhost:9191\r\n"
-                                           "Connection: close\r\n");
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+    ServerBlock server = createMockServer();
 
-    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
-    CHECK(res.getStatus() == NOT_FOUND);
+    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/missing.bin");
+    Response res;
+
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == NOT_FOUND);
 
     removeDirectoryRecursive("test_www");
 }
 
-TEST_CASE("DELETE — 403 Forbidden when parent directory is not writable") {
-    config::ServerConfig conf(kConfPath, false);
-    MimeTypes mime;
-    FileDeleteHandler delHandler;
-
+TEST_CASE("DELETE - 403 Forbidden when parent directory is not writable") {
     mkdir("test_www", 0777);
-    mkdir("test_www/img", 0777);
-    mkdir("test_www/img/uploads", 0777);
+    mkdir("test_www/uploads", 0777);
+    CHECK(createFile("test_www/uploads/locked.bin"));
+    CHECK(chmod("test_www/uploads", 0555) == 0);
 
-    // File exists
-    CHECK(createFile("test_www/img/uploads/locked.bin"));
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+    ServerBlock server = createMockServer();
 
-    // Remove write permission from parent dir (uploads)
-    CHECK(chmod("test_www/img/uploads", 0555) == 0);
+    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/locked.bin");
+    Response res;
 
-    RequestContext ctx = makeDeleteRequest(conf, "/img/uploads/locked.bin",
-                                           "Host: localhost:9191\r\n"
-                                           "Connection: close\r\n");
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == FORBIDDEN);
 
-    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
-    CHECK(res.getStatus() == FORBIDDEN);
-
-    // Restore permissions for cleanup
-    chmod("test_www/img/uploads", 0755);
-    unlink("test_www/img/uploads/locked.bin");
+    chmod("test_www/uploads", 0755);
     removeDirectoryRecursive("test_www");
 }
 
-TEST_CASE("DELETE — 409 Conflict when deleting non-empty directory") {
-    config::ServerConfig conf(kConfPath, false);
-    MimeTypes mime;
-    FileDeleteHandler delHandler;
-
+TEST_CASE("DELETE - 409 Conflict when deleting non-empty directory") {
     mkdir("test_www", 0777);
-    mkdir("test_www/img", 0777);
-    mkdir("test_www/img/uploads", 0777);
+    mkdir("test_www/uploads", 0777);
+    mkdir("test_www/uploads/dir", 0777);
+    CHECK(createFile("test_www/uploads/dir/file.txt"));
 
-    // Create non-empty directory
-    mkdir("test_www/img/uploads/dir", 0777);
-    CHECK(createFile("test_www/img/uploads/dir/file.txt"));
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+    ServerBlock server = createMockServer();
 
-    RequestContext ctx = makeDeleteRequest(conf, "/img/uploads/dir",
-                                           "Host: localhost:9191\r\n"
-                                           "Connection: close\r\n");
+    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/dir");
+    Response res;
 
-    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
-    CHECK(res.getStatus() == CONFLICT);
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == CONFLICT);
 
-    // cleanup
-    unlink("test_www/img/uploads/dir/file.txt");
-    rmdir("test_www/img/uploads/dir");
     removeDirectoryRecursive("test_www");
 }
 
-TEST_CASE("DELETE — 204 No Content when deleting empty directory") {
-    config::ServerConfig conf(kConfPath, false);
-    MimeTypes mime;
-    FileDeleteHandler delHandler;
-
+TEST_CASE("DELETE - 204 No Content when deleting empty directory") {
     mkdir("test_www", 0777);
-    mkdir("test_www/img", 0777);
-    mkdir("test_www/img/uploads", 0777);
+    mkdir("test_www/uploads", 0777);
+    mkdir("test_www/uploads/emptydir", 0777);
 
-    // Create empty directory
-    mkdir("test_www/img/uploads/emptydir", 0777);
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+    ServerBlock server = createMockServer();
 
-    RequestContext ctx = makeDeleteRequest(conf, "/img/uploads/emptydir",
-                                           "Host: localhost:9191\r\n"
-                                           "Connection: close\r\n");
+    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/emptydir");
+    Response res;
 
-    Response res = delHandler.handle(ctx.req, ctx.server, ctx.location);
-    CHECK(res.getStatus() == NO_CONTENT);
-
-    // directory should be gone
-    CHECK(access("test_www/img/uploads/emptydir", F_OK) == -1);
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == NO_CONTENT);
+    CHECK(access("test_www/uploads/emptydir", F_OK) == -1);
 
     removeDirectoryRecursive("test_www");
 }
-#endif
+
+TEST_CASE("DELETE - 405 Method Not Allowed when location has no upload_path") {
+    mkdir("test_www", 0777);
+    CHECK(createFile("test_www/file.txt"));
+
+    LocationBlock loc = createMockLocationWithoutUploadPath("test_www", "/");
+    ServerBlock server = createMockServer();
+
+    TestableRequest req = createDeleteRequest(&server, &loc, "/file.txt");
+    Response res;
+
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == METHOD_NOT_ALLOWED);
+
+    removeDirectoryRecursive("test_www");
+}
+
+TEST_CASE("DELETE - 404 when server is NULL") {
+    LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
+
+    TestableRequest req = createDeleteRequest(nullptr, &loc, "/uploads/file.txt");
+    Response res;
+
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == NOT_FOUND);
+}
+
+TEST_CASE("DELETE - 404 when location is NULL") {
+    ServerBlock server = createMockServer();
+
+    TestableRequest req = createDeleteRequest(&server, nullptr, "/uploads/file.txt");
+    Response res;
+
+    FileDeleteHandler::handle(req, res);
+    CHECK(res.status() == NOT_FOUND);
+}
