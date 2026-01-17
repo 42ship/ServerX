@@ -133,10 +133,20 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac218e732da9c8bdf34e320aec4b609f4" id="r_ac218e732da9c8bdf34e320aec4b609f4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac218e732da9c8bdf34e320aec4b609f4">parse</a> (std::string &amp;, <a class="el" href="classhttp_1_1Headers.html">Headers</a> &amp;, bool strict=true)</td></tr>
-<tr class="memdesc:ac218e732da9c8bdf34e320aec4b609f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a raw string of headers into a provided <a class="el" href="classhttp_1_1Headers.html" title="Manages a collection of HTTP headers.">Headers</a> reference. The string should contain multiple "Key: Value\r\n" lines.  <br /></td></tr>
-<tr class="memitem:a21021ca563c62ea1f516f674b8f8c3ac" id="r_a21021ca563c62ea1f516f674b8f8c3ac"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21021ca563c62ea1f516f674b8f8c3ac">parse</a> (std::istringstream &amp;, <a class="el" href="classhttp_1_1Headers.html">Headers</a> &amp;, bool strict=true)</td></tr>
-<tr class="memdesc:a21021ca563c62ea1f516f674b8f8c3ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a raw string of headers into a provided <a class="el" href="classhttp_1_1Headers.html" title="Manages a collection of HTTP headers.">Headers</a> reference. The string should contain multiple "Key: Value\r\n" lines.     <br /></td></tr>
+<tr class="memitem:a18952c821a027623c1c78b47a55d46b8" id="r_a18952c821a027623c1c78b47a55d46b8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18952c821a027623c1c78b47a55d46b8">parse</a> (std::string &amp;, <a class="el" href="classhttp_1_1Headers.html">Headers</a> &amp;, bool strict=false)</td></tr>
+<tr class="memdesc:a18952c821a027623c1c78b47a55d46b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a raw string of headers into a provided <a class="el" href="classhttp_1_1Headers.html" title="Manages a collection of HTTP headers.">Headers</a> reference. The string should contain multiple "Key: Value\r\n" lines.  <br /></td></tr>
+<tr class="memitem:afc663dfb1e5e398b33b263fb8fb9b04e" id="r_afc663dfb1e5e398b33b263fb8fb9b04e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc663dfb1e5e398b33b263fb8fb9b04e">parse</a> (std::istringstream &amp;, <a class="el" href="classhttp_1_1Headers.html">Headers</a> &amp;, bool strict=false)</td></tr>
+<tr class="memdesc:afc663dfb1e5e398b33b263fb8fb9b04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a raw string of headers into a provided <a class="el" href="classhttp_1_1Headers.html" title="Manages a collection of HTTP headers.">Headers</a> reference. The string should contain multiple "Key: Value\r\n" lines.     <br /></td></tr>
+<tr class="memitem:a165a5c45bce8180db177b5dc9a95f1b3" id="r_a165a5c45bce8180db177b5dc9a95f1b3"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a165a5c45bce8180db177b5dc9a95f1b3">findHeaderEnd</a> (const std::string &amp;buffer, size_t &amp;offset)</td></tr>
+<tr class="memdesc:a165a5c45bce8180db177b5dc9a95f1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the end of the HTTP header section in a buffer. Compatible with \r<br  />
+\r<br  />
+, <br  />
+<br  />
+, \r<br  />
+<br  />
+, and <br  />
+\r<br  />
+.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -345,6 +355,53 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a165a5c45bce8180db177b5dc9a95f1b3" name="a165a5c45bce8180db177b5dc9a95f1b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a165a5c45bce8180db177b5dc9a95f1b3">&#9670;&#160;</a></span>findHeaderEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t http::Headers::findHeaderEnd </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the end of the HTTP header section in a buffer. Compatible with \r<br  />
+\r<br  />
+, <br  />
+<br  />
+, \r<br  />
+<br  />
+, and <br  />
+\r<br  />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">buffer</td><td>The input buffer to search. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">offset</td><td>The length of the delimiter found (2, 3, or 4). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The starting position of the delimiter, or std::string::npos if not found. </dd></dl>
+
+</div>
+</div>
 <a id="a103575f2ef2bb1982f75a296cbc63e48" name="a103575f2ef2bb1982f75a296cbc63e48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a103575f2ef2bb1982f75a296cbc63e48">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
@@ -542,8 +599,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a21021ca563c62ea1f516f674b8f8c3ac" name="a21021ca563c62ea1f516f674b8f8c3ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21021ca563c62ea1f516f674b8f8c3ac">&#9670;&#160;</a></span>parse() <span class="overload">[1/2]</span></h2>
+<a id="afc663dfb1e5e398b33b263fb8fb9b04e" name="afc663dfb1e5e398b33b263fb8fb9b04e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc663dfb1e5e398b33b263fb8fb9b04e">&#9670;&#160;</a></span>parse() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -564,7 +621,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>strict</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>strict</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -587,8 +644,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac218e732da9c8bdf34e320aec4b609f4" name="ac218e732da9c8bdf34e320aec4b609f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac218e732da9c8bdf34e320aec4b609f4">&#9670;&#160;</a></span>parse() <span class="overload">[2/2]</span></h2>
+<a id="a18952c821a027623c1c78b47a55d46b8" name="a18952c821a027623c1c78b47a55d46b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18952c821a027623c1c78b47a55d46b8">&#9670;&#160;</a></span>parse() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -609,7 +666,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>strict</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>strict</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
         </tr>
       </table>
   </td>
