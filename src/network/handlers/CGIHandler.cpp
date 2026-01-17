@@ -62,18 +62,9 @@ void CGIHandler::handleRead() {
         return client_.handleError(http::BAD_GATEWAY);
     }
     headerBuffer_.append(buffer, bytes_read);
-    size_t headerEnd = headerBuffer_.find("\r\n\r\n");
-    size_t offset = 4;
 
-    if (headerEnd == std::string::npos) {
-        headerEnd = headerBuffer_.find("\n\n");
-        offset = 2;
-    }
-
-    if (headerEnd == std::string::npos) {
-        headerEnd = headerBuffer_.find("\n\r\n");
-        offset = 3;
-    }
+    size_t offset = 0;
+    size_t headerEnd = http::Headers::findHeaderEnd(headerBuffer_, offset);
     if (headerEnd == std::string::npos) {
         return;
     }

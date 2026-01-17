@@ -72,19 +72,24 @@ RequestParser::State RequestParser::parseHeaders() {
     if (buffer_.length() > maxHeaderSize_) {
         return setError(BAD_REQUEST);
     }
-    size_t contentStartInBuffer_ = buffer_.find("\r\n\r\n", 0, 4);
-    if (contentStartInBuffer_ == std::string::npos) {
+
+    size_t offset = 0;
+    size_t headerEnd = http::Headers::findHeaderEnd(buffer_, offset);
+
+    if (headerEnd == std::string::npos) {
         return state_;
     }
+
     state_ = HEADERS_READY;
     request_.requestLine_ = RequestStartLine::parse(buffer_);
     if (request_.method() == RequestStartLine::UNKNOWN) {
         return setError(BAD_REQUEST);
     }
+
     // Only parse the header section, not the body
     size_t headerSectionStart = buffer_.find('\n') + 1;
     std::string headerSection =
-        buffer_.substr(headerSectionStart, contentStartInBuffer_ - headerSectionStart + 2);
+        buffer_.substr(headerSectionStart, headerEnd - headerSectionStart + (offset - 2));
     if (!http::Headers::parse(headerSection, request_.headers_)) {
         return setError(BAD_REQUEST);
     }
@@ -92,7 +97,7 @@ RequestParser::State RequestParser::parseHeaders() {
     isContentChunked_ = request_.headers_.isContentChunked();
     bool isBodyExpected = contentLength_ > 0 || isContentChunked_;
     if (isBodyExpected) {
-        buffer_.erase(0, contentStartInBuffer_ + 4);
+        buffer_.erase(0, headerEnd + offset);
     } else {
         buffer_.clear();
         setRequestReady();
@@ -137,7 +142,7 @@ void RequestParser::handleContentLengthBody() {
     }
 }
 
-bool RequestParser::writeToBodyFile(const std::string& data) {
+bool RequestParser::writeToBodyFile(const std::string &data) {
     ssize_t written = write(bodyFile_, data.c_str(), data.size());
     if (written < 0) {
         LOG_ERROR("RequestParser::writeToBodyFile(): Write error to TempFile.");
@@ -158,20 +163,19 @@ void RequestParser::handleChunkedBody() {
     buffer_.erase(0, bytesConsumed);
 
     if (!decodedData.empty()) {
-        LOG_INFO("ChunkedBodyParser: decoded " << decodedData.size()
-                  << " bytes: \"" << decodedData << "\"");
+        LOG_STRACE("decoded " << decodedData.size() << " bytes: \"" << decodedData << "\"");
         if (!writeToBodyFile(decodedData))
             return;
     }
 
     if (status == ChunkedBodyParser::CHUNK_ERROR) {
-        LOG_ERROR("ChunkedBodyParser: parse error, status=" << chunkParser_.errorStatus());
+        LOG_STRACE("parse error, status=" << chunkParser_.errorStatus());
         setError(chunkParser_.errorStatus());
         return;
     }
 
     if (status == ChunkedBodyParser::CHUNK_DONE) {
-        LOG_INFO("ChunkedBodyParser: complete, total bytes=" << bytesWrittenToBody_);
+        LOG_STRACE("complete, total bytes=" << bytesWrittenToBody_);
         setRequestReady();
     }
 }
