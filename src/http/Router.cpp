@@ -91,7 +91,7 @@ void Router::executeHandler(Request const &request, Response &response) const {
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
         LOG_STRACE(ctx << "Dispatched to CGIHandler");
-        CGIHandler::handle(request, response);
+        CGIHandler::handle(request, response, mimeTypes_);
     } else if (request.location()->has("return")) {
         LOG_STRACE(ctx << "Dispatched to ReturnHandler");
         ReturnHandler::handle(request, response);
