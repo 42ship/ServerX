@@ -4,6 +4,7 @@
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
+#include <cerrno>
 #include <fcntl.h>
 #include <string>
 #include <sys/stat.h>

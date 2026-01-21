@@ -6,9 +6,9 @@ namespace config {
 
 class Bool : public IArgument {
 public:
-    Bool(bool value);
-    Bool(std::string const &value);
-    Bool(const char *value);
+    explicit Bool(bool value);
+    explicit Bool(std::string const &value);
+    explicit Bool(const char *value);
     virtual ~Bool();
 
     virtual std::string evaluate(http::Request const &) const;

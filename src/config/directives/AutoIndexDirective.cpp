@@ -9,17 +9,17 @@ namespace config {
 
 const std::string AutoIndexDirective::name_ = "autoindex";
 
-void AutoIndexDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
-    LocationBlock *locationBlock = dynamic_cast<LocationBlock *>(&b);
+void AutoIndexDirective::process(Block &block, ParsedDirectiveArgs const &args) const {
+    LocationBlock *locationBlock = dynamic_cast<LocationBlock *>(&block);
     if (!locationBlock) {
-        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.name());
+        throw ConfigError("'" + name_ + "' directive is not allowed in: " + block.name());
     }
 
     EXPECT_ARG_COUNT(args, 1, name_);
 
     Bool arg(args[0].literal);
     locationBlock->autoIndex(arg.getValue());
-    b.add(name_, new Bool(arg));
+    block.add(name_, new Bool(arg));
 }
 
 } // namespace config

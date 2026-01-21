@@ -20,6 +20,7 @@ Router::Router(config::ServerConfig const &cfg, MimeTypes const &mime)
 
 void Router::matchServerAndLocation(int port, Request &request) const {
     std::string ctx = "(" + utils::toString(port) + ", " + request.path() + "): ";
+    (void)ctx;
     request.server(config_.getServer(port, request));
     if (!request.server()) {
         LOG_STRACE(ctx + "No matching server found");
@@ -83,6 +84,7 @@ void Router::handleError(Request const &request, Response &response) const {
 
 void Router::executeHandler(Request const &request, Response &response) const {
     std::string ctx = "'" + request.uri() + "': ";
+    (void)ctx;
     if (!request.server()) {
         LOG_STRACE(ctx << "No server found, setting 404");
         response.status(NOT_FOUND);

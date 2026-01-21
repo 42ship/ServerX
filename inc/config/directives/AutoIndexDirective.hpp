@@ -7,7 +7,6 @@ namespace config {
 
 class AutoIndexDirective : public IDirective {
 public:
-    virtual ~AutoIndexDirective() {}
     virtual void process(Block &block, ParsedDirectiveArgs const &args) const;
     virtual std::string const &getName() const { return name_; }
 

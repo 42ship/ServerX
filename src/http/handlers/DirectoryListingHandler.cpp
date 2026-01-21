@@ -21,7 +21,7 @@ std::string formatSize(off_t size) {
 
 std::string formatTime(time_t mtime) {
     char timeBuf[64];
-    struct tm *tm = localtime(&mtime);
+    const struct tm *tm = localtime(&mtime);
     strftime(timeBuf, sizeof(timeBuf), "%d-%b-%Y %H:%M", tm);
     return std::string(timeBuf);
 }
@@ -47,7 +47,8 @@ std::string generateListingHtml(std::string const &path,
 
         std::string displayName = name;
         if (displayName.size() > 50) {
-            displayName = displayName.substr(0, 47) + "..>";
+            displayName.resize(47);
+            displayName += "..>";
         }
 
         html << "<a href=\"" << name << "\">" << displayName << "</a>";

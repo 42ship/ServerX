@@ -179,7 +179,7 @@ bool getDirectoryEntries(std::string const &path, std::vector<FileEntry> &entrie
     }
 
     entries.reserve(64);
-    struct dirent *entry;
+    const struct dirent *entry;
     while ((entry = readdir(dir)) != NULL) {
         std::string name = entry->d_name;
 
