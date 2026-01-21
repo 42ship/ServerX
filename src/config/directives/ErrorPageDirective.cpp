@@ -5,6 +5,7 @@
 #include "config/arguments/String.hpp"
 #include "config/internal/ConfigException.hpp"
 #include "config/internal/Token.hpp"
+#include <set>
 #include <string>
 
 namespace config {
@@ -16,24 +17,16 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
     }
 
     const std::string path = args[args.size() - 1].literal;
-    static const std::string validCodes[] = {"400", "401", "403", "404", "405", "409", "411",
-                                             "413", "415", "500", "501", "502", "503", "504"};
-    static const size_t validCount = sizeof(validCodes) / sizeof(validCodes[0]);
+    static const char *codes[] = {"400", "401", "403", "404", "405", "409", "411",
+                                  "413", "415", "500", "501", "502", "503", "504"};
+    static const std::set<std::string> validCodes(codes, codes + sizeof(codes) / sizeof(codes[0]));
 
     for (size_t j = 0; j < args.size() - 1; j++) {
         const std::string &code = args[j].literal;
-        bool isFound = false;
-
-        for (size_t i = 0; i < validCount; i++) {
-            if (validCodes[i] == code) {
-                b.add(code, path);
-                isFound = true;
-                break;
-            }
-        }
-        if (!isFound) {
+        if (validCodes.find(code) == validCodes.end()) {
             throw ConfigError("'" + name_ + " " + code + "' invalid status code.");
         }
+        b.add(code, path);
     }
 }
 

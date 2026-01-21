@@ -22,6 +22,7 @@ void Validator::validate(ServerBlockVec &servers, bool perform_fs_checks) {
 
 void Validator::validateServer(ServerBlock &b) const {
     validateListen(b);
+    validateIndex(b);
     for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
         validateLocation(it->second, b);
     }
@@ -30,6 +31,7 @@ void Validator::validateServer(ServerBlock &b) const {
 void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) const {
     (void)server;
     validateRoot(b);
+    validateIndex(b);
 }
 
 void Validator::validateRoot(Block &b) const {
@@ -59,6 +61,12 @@ void Validator::validateListen(ServerBlock const &b) {
 void Validator::validateServerNames(ServerBlock const &b) {
     if (!b.has("server_names"))
         return;
+}
+
+void Validator::validateIndex(Block &b) {
+    if (!b.has("index")) {
+        b.add("index", "index.html");
+    }
 }
 
 } // namespace config
