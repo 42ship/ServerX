@@ -21,7 +21,7 @@ TEST_CASE("ReturnDirective") {
         too_many_args.push_back(arg1);
         too_many_args.push_back(arg2);
         too_many_args.push_back(arg3);
-        
+
         CHECK_THROWS_AS(directive.process(block, too_many_args), const config::ConfigError &);
     }
 
@@ -29,14 +29,15 @@ TEST_CASE("ReturnDirective") {
         config::ParsedDirectiveArgs single_arg;
         config::Token url_arg = {"http://example.com", config::STRING};
         single_arg.push_back(url_arg);
-        
+
         CHECK_NOTHROW(directive.process(block, single_arg));
         CHECK(block.has("return"));
-        
-        // Verify the argument was stored
+
+        // Verify the argument was stored as 302 + URL
         std::vector<std::string> raw_values = block.getRawValues("return");
-        CHECK(raw_values.size() == 1);
-        CHECK(raw_values[0] == "http://example.com");
+        CHECK(raw_values.size() == 2);
+        CHECK(raw_values[0] == "302");
+        CHECK(raw_values[1] == "http://example.com");
     }
 
     SUBCASE("Should accept single argument (text)") {
@@ -44,7 +45,7 @@ TEST_CASE("ReturnDirective") {
         config::ParsedDirectiveArgs single_arg;
         config::Token text_arg = {"Some text response", config::STRING};
         single_arg.push_back(text_arg);
-        
+
         CHECK_NOTHROW(directive.process(block2, single_arg));
         CHECK(block2.has("return"));
     }
@@ -56,10 +57,10 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_NOTHROW(directive.process(block2, two_args));
         CHECK(block2.has("return"));
-        
+
         // Verify the arguments were stored
         std::vector<std::string> raw_values = block2.getRawValues("return");
         CHECK(raw_values.size() == 2);
@@ -74,7 +75,7 @@ TEST_CASE("ReturnDirective") {
         config::Token text_arg = {"Success", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(text_arg);
-        
+
         CHECK_NOTHROW(directive.process(block2, two_args));
         CHECK(block2.has("return"));
     }
@@ -86,7 +87,7 @@ TEST_CASE("ReturnDirective") {
         config::Token text_arg = {"Not Found", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(text_arg);
-        
+
         CHECK_NOTHROW(directive.process(block2, two_args));
         CHECK(block2.has("return"));
     }
@@ -98,33 +99,31 @@ TEST_CASE("ReturnDirective") {
         config::Token text_arg = {"Internal Server Error", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(text_arg);
-        
+
         CHECK_NOTHROW(directive.process(block2, two_args));
         CHECK(block2.has("return"));
     }
 
-    SUBCASE("Should accept two arguments with boundary status code (100)") {
+    SUBCASE("Should throw on two arguments with invalid status code (100)") {
         config::Block block2("location");
         config::ParsedDirectiveArgs two_args;
         config::Token status_arg = {"100", config::NUMBER};
         config::Token text_arg = {"Continue", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(text_arg);
-        
-        CHECK_NOTHROW(directive.process(block2, two_args));
-        CHECK(block2.has("return"));
+
+        CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
-    SUBCASE("Should accept two arguments with boundary status code (999)") {
+    SUBCASE("Should throw on two arguments with invalid status code (999)") {
         config::Block block2("location");
         config::ParsedDirectiveArgs two_args;
         config::Token status_arg = {"999", config::NUMBER};
         config::Token text_arg = {"Custom", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(text_arg);
-        
-        CHECK_NOTHROW(directive.process(block2, two_args));
-        CHECK(block2.has("return"));
+
+        CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
     SUBCASE("Should throw on non-numeric first argument when two arguments provided") {
@@ -133,7 +132,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(non_numeric_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block, two_args), const config::ConfigError &);
     }
 
@@ -144,7 +143,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(non_numeric_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
@@ -155,7 +154,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
@@ -166,7 +165,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
@@ -177,7 +176,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
@@ -188,7 +187,7 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
@@ -199,11 +198,9 @@ TEST_CASE("ReturnDirective") {
         config::Token url_arg = {"http://example.com", config::STRING};
         two_args.push_back(status_arg);
         two_args.push_back(url_arg);
-        
+
         CHECK_THROWS_AS(directive.process(block2, two_args), const config::ConfigError &);
     }
 
-    SUBCASE("Should verify directive name is 'return'") {
-        CHECK(directive.getName() == "return");
-    }
+    SUBCASE("Should verify directive name is 'return'") { CHECK(directive.getName() == "return"); }
 }

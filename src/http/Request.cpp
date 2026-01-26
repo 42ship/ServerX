@@ -78,11 +78,15 @@ void Request::clear() {
 }
 
 size_t Request::getMaxAllowedContentSize() const {
-    if (location_ && location_->has("max_body_size"))
-        return location_->maxBodySize();
-    if (server_ && server_->has("max_body_size"))
-        return server_->maxBodySize();
-    return 1 * 1024 * 1024;
+    size_t limit = 0;
+    if (location_ && location_->has("client_max_body_size"))
+        limit = location_->maxBodySize();
+    else if (server_ && server_->has("client_max_body_size"))
+        limit = server_->maxBodySize();
+
+    if (limit == 0)
+        return 1 * 1024 * 1024; // Default 1MB
+    return limit;
 }
 
 // clang-format off

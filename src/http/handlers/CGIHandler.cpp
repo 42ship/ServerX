@@ -120,12 +120,11 @@ void CGIHandler::runParentProcess() {
     buf[bytesRead] = 0;
     close(errorFd_[0]);
 
-    if (bytesRead < 0) {  
-        close(pipeFd_[0]);  
-        LOG_SERROR("read: " << strerror(errno));  
-        return (void)res_.status(INTERNAL_SERVER_ERROR);  
-    }  
-    else if (bytesRead > 0) {
+    if (bytesRead < 0) {
+        close(pipeFd_[0]);
+        LOG_SERROR("read: " << strerror(errno));
+        return (void)res_.status(INTERNAL_SERVER_ERROR);
+    } else if (bytesRead > 0) {
         close(pipeFd_[0]);
         LOG_SERROR("execve: " << buf);
         return (void)res_.status(INTERNAL_SERVER_ERROR);
@@ -164,12 +163,26 @@ void CGIHandler::fork() {
 void CGIHandler::buildArgv() {
     std::string script_path = req_.resolvePath();
     if (req_.location()->has("cgi_pass")) {
-        std::vector<std::string> const &cgi_pass = req_.location()->get("cgi_pass", req_);
-        if (!cgi_pass.empty()) {
-            argv_.push_back(cgi_pass[0]); // The interpreter (e.g., python)
-            argv_.push_back(script_path); // The script
-        } else {
+        std::vector<std::string> const &cgi_pass = req_.location()->getRawValues("cgi_pass");
+        if (cgi_pass.empty() || (cgi_pass.size() == 1 && cgi_pass[0] == "enabled")) {
+            // Case 0: enabled but no interpreter specified
             argv_.push_back(script_path);
+        } else if (cgi_pass.size() == 1) {
+            // Case 1: single interpreter specified for all files
+            argv_.push_back(cgi_pass[0]);
+            argv_.push_back(script_path);
+        } else if (cgi_pass.size() >= 2) {
+            // Case 2: extension mapping (extension, interpreter)
+            std::string ext = utils::getFileExtension(script_path);
+            if (!ext.empty() && ext[0] != '.') {
+                ext = "." + ext;
+            }
+            if (!ext.empty() && ext == cgi_pass[0]) {
+                argv_.push_back(cgi_pass[1]);
+                argv_.push_back(script_path);
+            } else {
+                argv_.push_back(script_path);
+            }
         }
     } else {
         argv_.push_back(script_path);

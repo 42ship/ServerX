@@ -1,19 +1,13 @@
 #include "config/directives/ErrorPageDirective.hpp"
-
-#include "config/LocationBlock.hpp"
-#include "config/ServerBlock.hpp"
-#include "config/arguments/String.hpp"
-#include "config/internal/ConfigException.hpp"
-#include "config/internal/Token.hpp"
+#include "config/internal/ValidationUtils.hpp"
 #include <string>
 
 namespace config {
 const std::string ErrorPageDirective::name_ = "error_page";
 
 void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
-    if (args.size() < 2) {
-        throw ConfigError("'" + name_ + "' directive requires two or more arguments.");
-    }
+    ValidatorUtils::checkContext(b, "server location", name_);
+    ValidatorUtils::checkArgs(args, 2, 20, name_); // Arbitrary max to prevent abuse
 
     const std::string path = args[args.size() - 1].literal;
     static const std::string validCodes[] = {"400", "401", "403", "404", "405", "409", "411",
@@ -22,8 +16,9 @@ void ErrorPageDirective::process(Block &b, ParsedDirectiveArgs const &args) cons
 
     for (size_t j = 0; j < args.size() - 1; j++) {
         const std::string &code = args[j].literal;
-        bool isFound = false;
+        ValidatorUtils::checkType(args[j], NUMBER, name_);
 
+        bool isFound = false;
         for (size_t i = 0; i < validCount; i++) {
             if (validCodes[i] == code) {
                 b.add(code, path);

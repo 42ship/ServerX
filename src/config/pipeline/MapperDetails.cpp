@@ -6,28 +6,17 @@ namespace config {
 namespace details {
 
 void completeLocationRoot(LocationBlock &l, ServerBlock const &s) {
-    std::string finalRoot;
-
     std::string serverRoot = s.root();
     std::string locationRoot = l.root();
-    if (!locationRoot.empty()) {
-        // root is an absolute path
-        if (locationRoot[0] == '/') {
-            finalRoot = locationRoot;
-        } else { // root is a relative path
-            finalRoot = serverRoot;
-            if (!finalRoot.empty() && finalRoot[finalRoot.length() - 1] != '/') {
-                finalRoot += '/';
-            }
-            finalRoot += locationRoot;
-        }
+
+    if (locationRoot.empty()) {
+        l.root(serverRoot);
     } else {
-        finalRoot = serverRoot;
+        // If location has root set, it strictly overrides server root.
+        // In our implementation, we treat it as-is (could be relative to CWD
+        // or absolute, but we don't concatenate it with serverRoot anymore).
+        l.root(locationRoot);
     }
-    if (finalRoot.empty()) {
-        return;
-    }
-    l.root(finalRoot);
 }
 
 } // namespace details

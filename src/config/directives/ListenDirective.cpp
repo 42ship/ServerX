@@ -13,18 +13,15 @@ namespace config {
 const std::string ListenDirective::name_ = "listen";
 
 void ListenDirective::process(Block &b, ParsedDirectiveArgs const &args) const {
-    ServerBlock *serverBlock = dynamic_cast<ServerBlock *>(&b);
-    if (!serverBlock) {
-        throw ConfigError("'" + name_ + "' directive is not allowed in: " + b.name());
-    }
-
-    EXPECT_ARG_COUNT(args, 1, name_);
+    ValidatorUtils::checkContext(b, "server", name_);
+    ValidatorUtils::checkArgs(args, 1, 1, name_);
 
     utils::IpInfo ipInfo;
     if (!utils::extractIpInfo(args[0].literal, ipInfo)) {
         throw ConfigError("'listen' directive '" + args[0].literal + "' has an invalid format.");
     }
 
+    ServerBlock *serverBlock = static_cast<ServerBlock *>(&b);
     serverBlock->port((ipInfo.port == -1 ? 9191 : ipInfo.port));
     serverBlock->address((ipInfo.ip.empty() ? "0.0.0.0" : ipInfo.ip));
     b.add(name_, args);

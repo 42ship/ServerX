@@ -69,7 +69,7 @@ bool isDir(const std::string &p) {
 }
 
 std::string getFileExtension(const std::string &fpath) {
-    size_t dotPos = fpath.find('.');
+    size_t dotPos = fpath.rfind('.');
     if (dotPos != std::string::npos) {
         return fpath.substr(dotPos + 1);
     }

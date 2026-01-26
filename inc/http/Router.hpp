@@ -73,6 +73,7 @@ private:
      * @param response The Response object to be populated.
      */
     void executeHandler(Request const &request, Response &response) const;
+    bool isMethodAllowed(const Request &request) const;
 
     /** @internal */
     config::ServerConfig const &config_;

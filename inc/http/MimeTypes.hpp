@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <map>
+#include <string>
 #include <time.h>
 
 namespace http {
@@ -81,7 +81,7 @@ public:
 private:
     /*map<extensoin, type> mimeTypes_*/
     std::map<std::string, std::string> mimeTypes_; // Map of file extensions to MIME types
-    std::map<std::string, std::string> mimeExt_; // Map of file extensions to MIME types
+    std::map<std::string, std::string> mimeExt_;   // Map of file extensions to MIME types
     std::string filePath_;                         // Path to the MIME types configuration file
     struct timespec rtime_;                        // last reload time
 

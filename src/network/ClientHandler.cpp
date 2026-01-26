@@ -141,7 +141,7 @@ void ClientHandler::handleRequestParsingState(http::RequestParser::State state) 
     switch (state) {
     case http::RequestParser::ERROR:
         LOG_WARN("ClientHandler::handleRequestParsingState(" << clientFd_ << "): parsing error.");
-        handleError(http::BAD_REQUEST);
+        handleError(reqParser_.errorStatus());
         break;
 
     case http::RequestParser::HEADERS_READY:

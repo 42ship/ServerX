@@ -43,11 +43,11 @@ TEST_CASE("ServerConfig Integration") {
 
         const config::LocationBlock *root_loc = testML(*sb, "/");
         REQUIRE(root_loc != NULL);
-        CHECK(root_loc->root() == "website/html/");
+        CHECK(root_loc->root() == "website/html");
 
         const config::LocationBlock *img_loc = testML(*sb, "/img/logo.png");
         REQUIRE(img_loc != NULL);
-        CHECK(img_loc->root() == "website/img/");
+        CHECK(img_loc->root() == "website/img");
     }
 
     SUBCASE("Should correctly combine server and location root paths") {
@@ -70,7 +70,8 @@ TEST_CASE("ServerConfig Integration") {
 
         const config::LocationBlock *relative_loc = testML(*sb, "/site/index.html");
         REQUIRE(relative_loc != NULL);
-        CHECK(relative_loc->root() == "/var/www/relative_path/");
+        // Location root overrides server root, and no trailing slash is added automatically
+        CHECK(relative_loc->root() == "relative_path");
 
         const config::LocationBlock *absolute_loc = testML(*sb, "/absolute/config.txt");
         REQUIRE(absolute_loc != NULL);
