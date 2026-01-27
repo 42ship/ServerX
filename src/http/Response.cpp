@@ -78,6 +78,7 @@ std::string const &Response::reasonPhrase() const { return startLine_.reasonPhra
 Response &Response::status(HttpStatus statusCode, std::string const &customError) {
     status(statusCode);
     customError_ = customError;
+    startLine_.reasonPhrase = customError_;
     return *this;
 }
 
