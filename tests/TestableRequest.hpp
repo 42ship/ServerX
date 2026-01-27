@@ -8,4 +8,5 @@ public:
     using Request::remoteAddr;
     using Request::server;
     using Request::version;
+    using Request::bodyPath;
 };
