@@ -5,6 +5,7 @@
 
 #include <sstream>
 #include <unistd.h>
+#include <cerrno>
 
 namespace http::upload {
 
