@@ -105,6 +105,7 @@ Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *
 HttpStatus Request::status() const { return status_; }
 int Request::body() const { return body_; }
 const std::string &Request::bodyPath() const { return bodyPath_; }
+Request &Request::bodyPath(const std::string &path) {bodyPath_ = path; return *this;}
 Request &Request::body(int fd) { body_ = fd; return *this; }
 Request &Request::body(int fd, const std::string &path) {body_ = fd; bodyPath_ = path; return *this; };
 std::string const &Request::remoteAddr() const { return remoteAddr_; }

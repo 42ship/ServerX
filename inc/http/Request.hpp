@@ -176,6 +176,7 @@ protected:
     Request &path(std::string const &);
     Request &version(std::string const &);
     Request &remoteAddr(std::string const &addr);
+    Request &bodyPath(std::string const &path);
 
 private:
     RequestStartLine requestLine_;
