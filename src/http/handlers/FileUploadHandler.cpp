@@ -96,7 +96,7 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
     // This logic exists because root & location path are merged too early.
     // Remove after root/url separation is implemented.
     if (up.compare(0, toFind.size(), toFind) == 0 && (lRoot == req.server()->root())) {
-        up.erase(0, lp.size());
+        up.erase(0, toFind.size());
     }
     std::string url = utils::joinPaths(lp, utils::joinPaths(up, pf.filename));
 
