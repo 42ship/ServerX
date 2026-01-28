@@ -1,4 +1,3 @@
-#include "config/pipeline/DirectiveHandler.hpp"
 #include "config/directives/AutoIndexDirective.hpp"
 #include "config/directives/ErrorPageDirective.hpp"
 #include "config/directives/IDirective.hpp"
@@ -7,6 +6,7 @@
 #include "config/directives/ReturnDirective.hpp"
 #include "config/directives/RootDirective.hpp"
 #include "config/directives/UploadPathDirective.hpp"
+#include "config/pipeline/DirectiveHandler.hpp"
 #include <vector>
 
 namespace config {
@@ -14,7 +14,8 @@ namespace config {
 static IDirective **getBuiltInDirectives(size_t &count) {
     static IDirective *directives[] = {new ListenDirective(),     new RootDirective(),
                                        new ErrorPageDirective(),  new ReturnDirective(),
-                                       new UploadPathDirective(), new MaxBodySize()};
+                                       new UploadPathDirective(), new MaxBodySize(),
+                                       new AutoIndexDirective()};
     count = sizeof(directives) / sizeof(directives[0]);
     return directives;
 }
