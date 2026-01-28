@@ -19,8 +19,13 @@ public:
 private:
     Validator();
     explicit Validator(bool perform_fs_checks = true);
+
     static void validateServer(ServerBlock &b);
+    static void validateLocation(LocationBlock &b, ServerBlock const &server);
     static void validateGlobalConstraints(ServerBlockVec const &servers);
+
+    static void validateRoot(Block &b);
+    static void validateIndex(Block &b);
 
     bool perform_fs_checks_;
 };

@@ -8,7 +8,7 @@ class Request;
 
 namespace config {
 
-enum ArgumentType { ARG_STRING, ARG_INTEGER, ARG_VARIABLE, ARG_CONCATENATED };
+enum ArgumentType { ARG_STRING, ARG_INTEGER, ARG_VARIABLE, ARG_CONCATENATED, ARG_BOOL };
 
 class IArgument {
 public:

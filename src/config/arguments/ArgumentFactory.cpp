@@ -1,5 +1,6 @@
 #include "config/arguments/ArgumentFactory.hpp"
 #include "common/string.hpp"
+#include "config/arguments/Bool.hpp"
 #include "config/arguments/ConcatenatedValue.hpp"
 #include "config/arguments/Integer.hpp"
 #include "config/arguments/String.hpp"
@@ -44,8 +45,13 @@ size_t getVariableLength(std::string const &s, size_t pos) {
 }
 
 ArgumentPtr ArgumentFactory::handleStringVariable(std::string const &s) {
-    if (s.find('$') == std::string::npos)
-        return new String(s);
+    if (s.find('$') == std::string::npos) {
+        try {
+            return new Bool(s);
+        } catch (ConfigError const &) {
+            return new String(s);
+        }
+    }
     if (s.length() > 1 && s[0] == '$') {
         size_t vlength = getVariableLength(s, 1);
         if (vlength > 0 && vlength == s.length() - 1)

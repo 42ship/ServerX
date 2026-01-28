@@ -1,6 +1,7 @@
 #include "config/pipeline/DirectiveHandler.hpp"
 #include "config/directives/AliasDirective.hpp"
 #include "config/directives/AllowMethodsDirective.hpp"
+#include "config/directives/AutoIndexDirective.hpp"
 #include "config/directives/CgiPassDirective.hpp"
 #include "config/directives/ClientMaxBodySize.hpp"
 #include "config/directives/ErrorPageDirective.hpp"
@@ -15,6 +16,7 @@
 namespace config {
 
 DirectiveHandler::DirectiveHandler() {
+    registerHandler(new AutoIndexDirective);
     registerHandler(new ListenDirective);
     registerHandler(new RootDirective);
     registerHandler(new ErrorPageDirective);

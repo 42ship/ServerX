@@ -6,7 +6,10 @@
 #include "http/Request.hpp"
 #include "http/Response.hpp"
 #include "http/handlers/CGIHandler.hpp"
+#include "http/handlers/DirectoryListingHandler.hpp"
 #include "utils/Logger.hpp"
+#include <sys/stat.h>
+#include <unistd.h>
 
 namespace http {
 
@@ -91,13 +94,16 @@ void Router::executeHandler(Request const &request, Response &response) const {
 
     if (loc->hasCgiPass()) {
         LOG_STRACE(ctx << "Dispatched to CGIHandler");
-        CGIHandler::handle(request, response);
+        CGIHandler::handle(request, response, mimeTypes_);
     } else if (loc->has("return")) {
         LOG_STRACE(ctx << "Dispatched to ReturnHandler");
         ReturnHandler::handle(request, response);
     } else if (request.method() == RequestStartLine::DELETE) {
         LOG_STRACE(ctx << "Dispatched to FileDeleteHandler");
         FileDeleteHandler::handle(request, response);
+    } else if (loc->autoIndex()) {
+        LOG_STRACE(ctx << "Dispatched to DirectoryListingHandler");
+        DirectoryListingHandler::handle(request, response, mimeTypes_);
     } else {
         LOG_STRACE(ctx << "Dispatched to StaticFileHandler");
         StaticFileHandler::handle(request, response, mimeTypes_);

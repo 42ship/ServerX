@@ -34,9 +34,21 @@ void Validator::validateServer(ServerBlock &b) {
     if (b.address().empty()) {
         b.address("0.0.0.0");
     }
+
+    validateIndex(b);
+
+    for (LocationBlockMap::iterator it = b.locations_.begin(); it != b.locations_.end(); ++it) {
+        validateLocation(it->second, b);
+    }
+}
+
+void Validator::validateLocation(LocationBlock &b, ServerBlock const &server) {
+    (void)server;
+    validateIndex(b);
 }
 
 void Validator::validateGlobalConstraints(ServerBlockVec const &servers) {
+    // Map of "address:port" -> set of server names
     std::map<std::string, std::set<std::string> > listenMap;
 
     for (size_t i = 0; i < servers.size(); ++i) {
@@ -59,6 +71,12 @@ void Validator::validateGlobalConstraints(ServerBlockVec const &servers) {
                 }
             }
         }
+    }
+}
+
+void Validator::validateIndex(Block &b) {
+    if (!b.has("index")) {
+        b.add("index", "index.html");
     }
 }
 

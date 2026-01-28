@@ -6,6 +6,7 @@
 #include "core/Server.hpp"
 #include "http/Handler.hpp"
 #include "http/HttpStatus.hpp"
+#include "http/handlers/DirectoryListingHandler.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
 #include <cstdlib>
@@ -54,18 +55,34 @@ CGIHandler::CGIHandler(Request const &req, Response &res) : req_(req), res_(res)
     envp_.reserve(30); // Increased reservation for more env vars
 }
 
-void CGIHandler::handle(Request const &req, Response &res) {
+void CGIHandler::handle(Request const &req, Response &res, MimeTypes const &mime) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
+
+    std::string path = req.resolvePath();
+    struct stat st;
+
+    if (!utils::getFileStatus(path, st)) {
+        res.status(NOT_FOUND);
+        return;
+    }
+
+    if (S_ISDIR(st.st_mode)) {
+        if (req.location()->autoIndex()) {
+            return DirectoryListingHandler::handle(req, res, mime);
+        }
+        return StaticFileHandler::handle(req, res, mime);
+    }
+
+    if (!(st.st_mode & S_IXUSR)) {
+        res.status(FORBIDDEN);
+        return;
+    }
+
     CGIHandler handler(req, res);
     handler.handle();
 }
 
 void CGIHandler::handle() {
-    HttpStatus fp = utils::checkFileAccess(req_.resolvePath(), S_IXUSR);
-    if (fp != OK) {
-        res_.status(fp);
-        return;
-    }
     if (!initPipes()) {
         res_.status(INTERNAL_SERVER_ERROR);
         return;

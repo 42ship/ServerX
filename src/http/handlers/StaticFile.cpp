@@ -13,47 +13,53 @@
 namespace http {
 
 void StaticFileHandler::handle(Request const &req, Response &res, MimeTypes const &mime) {
-    CHECK_FOR_SERVER_AND_LOCATION(req, res);
+    if (!req.server() || !req.location()) {
+        res.status(INTERNAL_SERVER_ERROR);
+        return;
+    }
+
     std::string path = req.resolvePath();
-    struct stat statbuf;
-    if (stat(path.c_str(), &statbuf) != 0) {
-        if (errno == ENOENT || errno == ENOTDIR) {
-            return (void)res.status(NOT_FOUND);
-        } else if (errno == EACCES) {
-            return (void)res.status(FORBIDDEN);
+    struct stat st;
+
+    if (!utils::getFileStatus(path, st)) {
+        if (errno == EACCES) {
+            res.status(FORBIDDEN);
         } else {
-            return (void)res.status(INTERNAL_SERVER_ERROR);
+            res.status(NOT_FOUND);
         }
+        return;
     }
-    if (S_ISDIR(statbuf.st_mode)) {
-        if (!req.location()->has("index"))
-            return (void)res.status(NOT_FOUND);
-        std::string index_path;
-        bool found_index = false;
-        std::vector<std::string> const &indexes = req.location()->indexFiles();
-        for (size_t i = 0; i < indexes.size(); i++) {
-            index_path = path + (path[path.size() - 1] == '/' ? "" : "/") + indexes[i];
-            if (access(index_path.c_str(), F_OK) == 0) {
-                found_index = true;
-                path = index_path;
-                break;
-            }
+
+    if (S_ISDIR(st.st_mode)) {
+        if (req.path().empty() || req.path()[req.path().size() - 1] != '/') {
+            std::string redirect = req.path() + "/";
+            if (!req.queryString().empty())
+                redirect += "?" + req.queryString();
+            res.status(MOVED_PERMANENTLY);
+            res.headers().add("Location", redirect);
+            return;
         }
-        if (!found_index) {
-            return (void)res.status(NOT_FOUND);
+
+        std::string indexPath = req.location()->resolveIndexFile(path);
+
+        if (indexPath.empty()) {
+            res.status(FORBIDDEN);
+            return;
         }
-        if (stat(path.c_str(), &statbuf) != 0) {
-            return (void)res.status(INTERNAL_SERVER_ERROR);
-        }
+        path = indexPath;
     }
-    if (!(statbuf.st_mode & S_IRUSR))
-        return (void)res.status(FORBIDDEN);
+
+    if (access(path.c_str(), R_OK) != 0) {
+        res.status(FORBIDDEN);
+        return;
+    }
+
     res.status(OK);
     try {
-        res.setBodyFromFile(path, mime.getMimeType(utils::getFileExtension(path)));
+        std::string ext = utils::getFileExtension(path);
+        res.setBodyFromFile(path, mime.getMimeType(ext));
     } catch (...) {
         res.status(INTERNAL_SERVER_ERROR);
     }
 }
-
 } // namespace http

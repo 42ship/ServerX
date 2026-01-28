@@ -1,10 +1,13 @@
 #include "config/LocationBlock.hpp"
 #include "config/Block.hpp"
+#include "config/ServerBlock.hpp"
 #include "utils/IndentManager.hpp"
+#include <unistd.h>
 
 namespace config {
 
-LocationBlock::LocationBlock() : Block("location"), parent_(NULL), matchType_(PREFIX) {}
+LocationBlock::LocationBlock()
+    : Block("location"), parent_(NULL), matchType_(PREFIX), autoIndex_(false) {}
 
 std::string const &LocationBlock::path() const { return path_; }
 
@@ -38,11 +41,34 @@ LocationBlock &LocationBlock::parent(ServerBlock *parent) {
 
 ServerBlock const *LocationBlock::parent() const { return parent_; }
 
+bool LocationBlock::autoIndex() const { return autoIndex_; }
+
+LocationBlock &LocationBlock::autoIndex(bool val) {
+    autoIndex_ = val;
+    return *this;
+}
+
+std::string LocationBlock::resolveIndexFile(std::string const &dirPath) const {
+    if (!has("index"))
+        return "";
+    std::vector<std::string> const &indexes = indexFiles();
+    std::string base = dirPath + (dirPath.empty() || dirPath[dirPath.size() - 1] != '/' ? "/" : "");
+
+    for (size_t i = 0; i < indexes.size(); ++i) {
+        std::string fullPath = base + indexes[i];
+        if (access(fullPath.c_str(), F_OK) == 0) {
+            return fullPath;
+        }
+    }
+    return "";
+}
+
 std::ostream &operator<<(std::ostream &o, const LocationBlock &t) {
     o << printIndent << "[LocationBlock] Path: " << t.path();
     if (t.matchType() == LocationBlock::EXTENSION) {
         o << " (extension: " << t.extension() << ")";
     }
+    o << " (autoindex: " << (t.autoIndex() ? "on" : "off") << ")";
     o << " {\n";
 
     o << indent;
