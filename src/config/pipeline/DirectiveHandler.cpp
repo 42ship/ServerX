@@ -1,4 +1,5 @@
 #include "config/pipeline/DirectiveHandler.hpp"
+#include "config/directives/AutoIndexDirective.hpp"
 #include "config/directives/ErrorPageDirective.hpp"
 #include "config/directives/IDirective.hpp"
 #include "config/directives/ListenDirective.hpp"

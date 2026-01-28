@@ -1,3 +1,5 @@
+#include "http/Router.hpp"
+#include "common/string.hpp"
 #include "config/ServerConfig.hpp"
 #include "http/Handler.hpp"
 #include "http/MimeTypes.hpp"
@@ -5,7 +7,10 @@
 #include "http/Response.hpp"
 #include "http/Router.hpp"
 #include "http/handlers/CGIHandler.hpp"
+#include "http/handlers/DirectoryListingHandler.hpp"
 #include "utils/Logger.hpp"
+#include <sys/stat.h>
+#include <unistd.h>
 
 namespace http {
 
@@ -15,25 +20,19 @@ Router::Router(config::ServerConfig const &cfg, MimeTypes const &mime)
 }
 
 void Router::matchServerAndLocation(int port, Request &request) const {
-    LOG_TRACE("Router::matchServerAndLocation(" << port << ", " << request.uri()
-                                                << "): matching server...");
+    std::string ctx = "(" + utils::toString(port) + ", " + request.path() + "): ";
+    (void)ctx;
     request.server(config_.getServer(port, request));
     if (!request.server()) {
-        LOG_DEBUG("Router::matchServerAndLocation(" << port << ", " << request.uri()
-                                                    << "): no matching server found");
+        LOG_STRACE(ctx + "No matching server found");
         return;
     }
-    LOG_TRACE("Router::matchServerAndLocation(" << port << ", " << request.uri()
-                                                << "): matched server='" << request.server()->name()
-                                                << "'");
+    LOG_STRACE(ctx + "Matched server=" + request.server()->name());
     request.location(request.server()->matchLocation(request));
     if (!request.location()) {
-        LOG_DEBUG("Router::matchServerAndLocation(" << port << ", " << request.uri()
-                                                    << "): no matching location found");
+        LOG_STRACE(ctx + "No matching location found");
     } else {
-        LOG_TRACE("Router::matchServerAndLocation(" << port << ", " << request.uri()
-                                                    << "): matched location='"
-                                                    << request.location()->path() << "'");
+        LOG_STRACE(ctx + "Matched location=" + request.location()->path());
     }
 }
 
@@ -85,29 +84,32 @@ void Router::handleError(Request const &request, Response &response) const {
 }
 
 void Router::executeHandler(Request const &request, Response &response) const {
-    LOG_TRACE("Router::executeHandler(" << request.uri() << "): selecting handler...");
+    std::string ctx = "'" + request.uri() + "': ";
+    (void)ctx;
     if (!request.server()) {
-        LOG_DEBUG("Router::executeHandler(" << request.uri() << "): no server found, setting 404");
+        LOG_STRACE(ctx << "No server found, setting 404");
         response.status(NOT_FOUND);
     } else if (!request.location()) {
-        LOG_DEBUG("Router::executeHandler(" << request.uri()
-                                            << "): no location found, setting 404");
+        LOG_STRACE(ctx << "No location found, setting 404");
         response.status(NOT_FOUND);
     } else if (request.location()->hasCgiPass()) {
-        CGIHandler::handle(request, response);
+        LOG_STRACE(ctx << "Dispatched to CGIHandler");
+        CGIHandler::handle(request, response, mimeTypes_);
     } else if (request.location()->has("return")) {
+        LOG_STRACE(ctx << "Dispatched to ReturnHandler");
         ReturnHandler::handle(request, response);
     } else if (request.method() == RequestStartLine::DELETE) {
-        LOG_TRACE("Router::executeHandler(" << request.uri()
-                                            << "): dispatching to FileDeleteHandler");
+        LOG_STRACE(ctx << "Dispatched to FileDeleteHandler");
         FileDeleteHandler::handle(request, response);
     } else if (request.method() == RequestStartLine::POST) {
         LOG_TRACE("Router::executeHandler(" << request.uri()
                                             << "): dispatching to FileUploadHandler");
         FileUploadHandler::handle(request, response, mimeTypes_);
+    } else if (request.location()->autoIndex()) {
+        LOG_STRACE(ctx << "Dispatched to DirectoryListingHandler");
+        DirectoryListingHandler::handle(request, response, mimeTypes_);
     } else {
-        LOG_TRACE("Router::executeHandler(" << request.uri()
-                                            << "): dispatching to StaticFileHandler");
+        LOG_STRACE(ctx << "Dispatched to StaticFileHandler");
         StaticFileHandler::handle(request, response, mimeTypes_);
     }
 }

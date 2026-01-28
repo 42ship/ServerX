@@ -12,6 +12,8 @@ char const *getArgumentTypeName(ArgumentType type) {
         return "Variable";
     case ARG_CONCATENATED:
         return "Concatenated";
+    case ARG_BOOL:
+        return "Boolean";
     default:
         return "Unknown";
     }
