@@ -19,12 +19,13 @@ var searchData=
   ['requeststartline_16',['RequestStartLine',['../classhttp_1_1RequestStartLine.html#ac49a64a99aa433b92cb15f50c06f3300',1,'http::RequestStartLine']]],
   ['reset_17',['reset',['../classhttp_1_1ChunkedBodyParser.html#a071ac11e0166d1d9ed9cb82a615a97ad',1,'http::ChunkedBodyParser::reset()'],['../classhttp_1_1RequestParser.html#a19aa514769486f0e847ecee2903503bc',1,'http::RequestParser::reset()'],['../structnetwork_1_1ClientHandler_1_1SendBuffer.html#aff440115fb448653aa0cc67bb2e91799',1,'network::ClientHandler::SendBuffer::reset()']]],
   ['resetfornewrequest_18',['resetForNewRequest',['../classnetwork_1_1ClientHandler.html#a3a882e9e37b1ca3bfe15ec610aedb433',1,'network::ClientHandler']]],
-  ['resolvepath_19',['resolvePath',['../classhttp_1_1Request.html#ac2b3249b4674659e5d55ba854954d63b',1,'http::Request']]],
-  ['response_20',['Response',['../classhttp_1_1Response.html#aee5d4231503752a6144614bff6b654b7',1,'http::Response::Response()'],['../classhttp_1_1Response.html#aa2da9d6adfa0d91a3f042ce028a9de3a',1,'http::Response::Response(Response const &amp;)']]],
-  ['responsestartline_21',['ResponseStartLine',['../classhttp_1_1ResponseStartLine.html#a52e162422f5f6690f45de7e513413624',1,'http::ResponseStartLine']]],
-  ['root_22',['root',['../classconfig_1_1Block.html#a10ffd4385056006951501fc15d052a9e',1,'config::Block::root() const'],['../classconfig_1_1Block.html#af456a8a04ee6da8db4ec3c661c578267',1,'config::Block::root(std::string const &amp;)']]],
-  ['router_23',['Router',['../classhttp_1_1Router.html#aa0fbec2bfc7ea52101730f1473aacf53',1,'http::Router']]],
-  ['run_24',['run',['../classconfig_1_1Lexer.html#aa515fbd6bc93febfb60c8826d46e9b45',1,'config::Lexer']]],
-  ['runchildprocess_25',['runChildProcess',['../classhttp_1_1CGIHandler.html#ad7ad2ec2115bbae4b465921264367756',1,'http::CGIHandler']]],
-  ['runparentprocess_26',['runParentProcess',['../classhttp_1_1CGIHandler.html#abebcefddfc85c9b9a66fafb1fe432065',1,'http::CGIHandler']]]
+  ['resolveindexfile_19',['resolveIndexFile',['../classconfig_1_1LocationBlock.html#a9f7962f2b693ba7f898a58dd39e66e56',1,'config::LocationBlock']]],
+  ['resolvepath_20',['resolvePath',['../classhttp_1_1Request.html#ac2b3249b4674659e5d55ba854954d63b',1,'http::Request']]],
+  ['response_21',['Response',['../classhttp_1_1Response.html#aee5d4231503752a6144614bff6b654b7',1,'http::Response::Response()'],['../classhttp_1_1Response.html#aa2da9d6adfa0d91a3f042ce028a9de3a',1,'http::Response::Response(Response const &amp;)']]],
+  ['responsestartline_22',['ResponseStartLine',['../classhttp_1_1ResponseStartLine.html#a52e162422f5f6690f45de7e513413624',1,'http::ResponseStartLine']]],
+  ['root_23',['root',['../classconfig_1_1Block.html#a10ffd4385056006951501fc15d052a9e',1,'config::Block::root() const'],['../classconfig_1_1Block.html#af456a8a04ee6da8db4ec3c661c578267',1,'config::Block::root(std::string const &amp;)']]],
+  ['router_24',['Router',['../classhttp_1_1Router.html#aa0fbec2bfc7ea52101730f1473aacf53',1,'http::Router']]],
+  ['run_25',['run',['../classconfig_1_1Lexer.html#aa515fbd6bc93febfb60c8826d46e9b45',1,'config::Lexer']]],
+  ['runchildprocess_26',['runChildProcess',['../classhttp_1_1CGIHandler.html#ad7ad2ec2115bbae4b465921264367756',1,'http::CGIHandler']]],
+  ['runparentprocess_27',['runParentProcess',['../classhttp_1_1CGIHandler.html#abebcefddfc85c9b9a66fafb1fe432065',1,'http::CGIHandler']]]
 ];

@@ -6,12 +6,13 @@ var searchData=
   ['server_5f_3',['server_',['../classhttp_1_1Request.html#a1d4badae63c0a30fec2130c4cde628d9',1,'http::Request']]],
   ['servers_5f_4',['servers_',['../classconfig_1_1ServerConfig.html#aa81a79c0ca76ab6ef9b74a9f29ad7b65',1,'config::ServerConfig']]],
   ['shutdownrequested_5f_5',['shutdownRequested_',['../classcore_1_1Server.html#ac1ba97a00f484ffd903f49d38c75c073',1,'core::Server']]],
-  ['size_5f_6',['size_',['../classhttp_1_1FileBody.html#aba0c6d949372f408ecabe1d5f66e5a3b',1,'http::FileBody']]],
-  ['sizebuffer_5f_7',['sizeBuffer_',['../classhttp_1_1ChunkedBodyParser.html#a95d06ea36c74cda93ccb706eb81d47b7',1,'http::ChunkedBodyParser']]],
-  ['socket_5f_8',['socket_',['../classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b',1,'network::Acceptor']]],
-  ['startline_5f_9',['startLine_',['../classhttp_1_1Response.html#ab3de3e7c7bbfecc7778d20ad6fb236d0',1,'http::Response']]],
-  ['state_5f_10',['state_',['../classhttp_1_1ChunkedBodyParser.html#ab28828c5d640ad668f38e1a4d2f98cc6',1,'http::ChunkedBodyParser::state_'],['../classhttp_1_1RequestParser.html#a90be6dfda873b7dcd47b7f067815d91b',1,'http::RequestParser::state_'],['../classnetwork_1_1CGIHandler.html#ae20dd1ce802a2dedcfbbb931e044f780',1,'network::CGIHandler::state_']]],
-  ['status_5f_11',['status_',['../classhttp_1_1Request.html#ae05477e3d526e61b4db903e098814bd7',1,'http::Request']]],
-  ['statuscode_12',['statusCode',['../classhttp_1_1ResponseStartLine.html#afb91b60b75f168f1284d312e3afe979d',1,'http::ResponseStartLine']]],
-  ['svalue_5f_13',['sValue_',['../classconfig_1_1Integer.html#ae3476c2692e7449fc5abbf0ef96b662f',1,'config::Integer']]]
+  ['size_6',['size',['../structutils_1_1FileEntry.html#a42b419cce961f12ccd63ef715ad5773e',1,'utils::FileEntry']]],
+  ['size_5f_7',['size_',['../classhttp_1_1FileBody.html#aba0c6d949372f408ecabe1d5f66e5a3b',1,'http::FileBody']]],
+  ['sizebuffer_5f_8',['sizeBuffer_',['../classhttp_1_1ChunkedBodyParser.html#a95d06ea36c74cda93ccb706eb81d47b7',1,'http::ChunkedBodyParser']]],
+  ['socket_5f_9',['socket_',['../classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b',1,'network::Acceptor']]],
+  ['startline_5f_10',['startLine_',['../classhttp_1_1Response.html#ab3de3e7c7bbfecc7778d20ad6fb236d0',1,'http::Response']]],
+  ['state_5f_11',['state_',['../classhttp_1_1ChunkedBodyParser.html#ab28828c5d640ad668f38e1a4d2f98cc6',1,'http::ChunkedBodyParser::state_'],['../classhttp_1_1RequestParser.html#a90be6dfda873b7dcd47b7f067815d91b',1,'http::RequestParser::state_'],['../classnetwork_1_1CGIHandler.html#ae20dd1ce802a2dedcfbbb931e044f780',1,'network::CGIHandler::state_']]],
+  ['status_5f_12',['status_',['../classhttp_1_1Request.html#ae05477e3d526e61b4db903e098814bd7',1,'http::Request']]],
+  ['statuscode_13',['statusCode',['../classhttp_1_1ResponseStartLine.html#afb91b60b75f168f1284d312e3afe979d',1,'http::ResponseStartLine']]],
+  ['svalue_5f_14',['sValue_',['../classconfig_1_1Integer.html#ae3476c2692e7449fc5abbf0ef96b662f',1,'config::Integer']]]
 ];

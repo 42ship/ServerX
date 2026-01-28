@@ -5,6 +5,8 @@ var classconfig_1_1LocationBlock =
       [ "EXTENSION", "classconfig_1_1LocationBlock.html#a756ab28320f86fe50ebc18b9ef266229aed4015ebc2e83cab52a064e7ebdac24a", null ]
     ] ],
     [ "LocationBlock", "classconfig_1_1LocationBlock.html#a636a009cd7843c903f143fe58bd3f3ff", null ],
+    [ "autoIndex", "classconfig_1_1LocationBlock.html#a1a2675739974c7cb338a927e94f61d1c", null ],
+    [ "autoIndex", "classconfig_1_1LocationBlock.html#a3e52498aedf66377c893ec1c7e10f27b", null ],
     [ "extension", "classconfig_1_1LocationBlock.html#afe26ce016dfe6c7f8da240d33ad84b20", null ],
     [ "extension", "classconfig_1_1LocationBlock.html#a8b5c1dd45a5092b87421f8285cc4816a", null ],
     [ "hasCgiPass", "classconfig_1_1LocationBlock.html#afc07c99290008d65485524a23cca16a7", null ],
@@ -15,6 +17,8 @@ var classconfig_1_1LocationBlock =
     [ "parent", "classconfig_1_1LocationBlock.html#a05555b584af5f7d4fe8ddaacbf4a266e", null ],
     [ "path", "classconfig_1_1LocationBlock.html#acef625fe935d344dd42f3aa9327a00eb", null ],
     [ "path", "classconfig_1_1LocationBlock.html#a8bc9f93b8f98cb0afc22f25cb004c235", null ],
+    [ "resolveIndexFile", "classconfig_1_1LocationBlock.html#a9f7962f2b693ba7f898a58dd39e66e56", null ],
+    [ "autoIndex_", "classconfig_1_1LocationBlock.html#a52996b60e61b381ef04842299bf18bba", null ],
     [ "extension_", "classconfig_1_1LocationBlock.html#afcd6738b6f3b4ef8b22f59f5e64346a8", null ],
     [ "matchType_", "classconfig_1_1LocationBlock.html#ad4e75589fca37512cc6dba964aa4c3bd", null ],
     [ "parent_", "classconfig_1_1LocationBlock.html#abe1bc502b5c78f0728564c9a3c91118f", null ],

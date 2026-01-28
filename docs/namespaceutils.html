@@ -94,6 +94,7 @@ $(function(){initNavTree('namespaceutils.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:FileEntry" id="r_FileEntry"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils_1_1FileEntry.html">FileEntry</a></td></tr>
 <tr class="memitem:IpInfo" id="r_IpInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils_1_1IpInfo.html">IpInfo</a></td></tr>
 <tr class="memitem:Logger" id="r_Logger"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html">Logger</a></td></tr>
 <tr class="memitem:TempFile" id="r_TempFile"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1TempFile.html">TempFile</a></td></tr>
@@ -120,6 +121,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad66d7d2997cbd52649e7f6026f53dfb3" id="r_ad66d7d2997cbd52649e7f6026f53dfb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad66d7d2997cbd52649e7f6026f53dfb3">getFileExtension</a> (const std::string &amp;fpath)</td></tr>
 <tr class="memitem:abd686a6904b528491f3fca83b46f26d7" id="r_abd686a6904b528491f3fca83b46f26d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">http::HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd686a6904b528491f3fca83b46f26d7">checkFileAccess</a> (const std::string &amp;path, int modeMask, bool allowDirectory=false)</td></tr>
 <tr class="memitem:a59b379a1228d21e5fd7616410e93578a" id="r_a59b379a1228d21e5fd7616410e93578a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59b379a1228d21e5fd7616410e93578a">joinPaths</a> (const std::string &amp;p1, const std::string &amp;p2)</td></tr>
+<tr class="memitem:a9427975bd0b8847933056bc5e1ba3c52" id="r_a9427975bd0b8847933056bc5e1ba3c52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9427975bd0b8847933056bc5e1ba3c52">getDirectoryEntries</a> (std::string const &amp;path, std::vector&lt; <a class="el" href="structutils_1_1FileEntry.html">FileEntry</a> &gt; &amp;entries)</td></tr>
+<tr class="memdesc:a9427975bd0b8847933056bc5e1ba3c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a directory, stats all files, and returns them sorted by name. Uses only opendir/readdir/closedir/stat.  <br /></td></tr>
+<tr class="memitem:a02c39ee41dde4e735b28953a145f612f" id="r_a02c39ee41dde4e735b28953a145f612f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02c39ee41dde4e735b28953a145f612f">getFileStatus</a> (std::string const &amp;path, struct stat &amp;buf)</td></tr>
+<tr class="memdesc:a02c39ee41dde4e735b28953a145f612f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple wrapper for stat to check existence and get details.  <br /></td></tr>
 <tr class="memitem:aa829fef424a4463ddfc6488b969755a2" id="r_aa829fef424a4463ddfc6488b969755a2"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:aa829fef424a4463ddfc6488b969755a2 template"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa829fef424a4463ddfc6488b969755a2">toString</a> (T const &amp;v)</td></tr>
 <tr class="memitem:a15e8dba46eff72c11f43b82c2b4d36d4" id="r_a15e8dba46eff72c11f43b82c2b4d36d4"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
@@ -232,6 +237,29 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
+<a id="a9427975bd0b8847933056bc5e1ba3c52" name="a9427975bd0b8847933056bc5e1ba3c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9427975bd0b8847933056bc5e1ba3c52">&#9670;&#160;</a></span>getDirectoryEntries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::getDirectoryEntries </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structutils_1_1FileEntry.html">FileEntry</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>entries</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads a directory, stats all files, and returns them sorted by name. Uses only opendir/readdir/closedir/stat. </p>
+
+</div>
+</div>
 <a id="ad66d7d2997cbd52649e7f6026f53dfb3" name="ad66d7d2997cbd52649e7f6026f53dfb3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad66d7d2997cbd52649e7f6026f53dfb3">&#9670;&#160;</a></span>getFileExtension()</h2>
 
@@ -246,6 +274,29 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02c39ee41dde4e735b28953a145f612f" name="a02c39ee41dde4e735b28953a145f612f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c39ee41dde4e735b28953a145f612f">&#9670;&#160;</a></span>getFileStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::getFileStatus </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct stat &amp;</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simple wrapper for stat to check existence and get details. </p>
 
 </div>
 </div>

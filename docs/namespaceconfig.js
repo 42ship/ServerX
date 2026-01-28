@@ -7,7 +7,9 @@ var namespaceconfig =
       [ "matchServerName", "namespaceconfig_1_1details.html#a821cbbcacbb3ad8eda492144114f0d31", null ]
     ] ],
     [ "ArgumentFactory", "classconfig_1_1ArgumentFactory.html", null ],
+    [ "AutoIndexDirective", "classconfig_1_1AutoIndexDirective.html", "classconfig_1_1AutoIndexDirective" ],
     [ "Block", "classconfig_1_1Block.html", "classconfig_1_1Block" ],
+    [ "Bool", "classconfig_1_1Bool.html", "classconfig_1_1Bool" ],
     [ "ConcatenatedValue", "classconfig_1_1ConcatenatedValue.html", "classconfig_1_1ConcatenatedValue" ],
     [ "ConfigError", "classconfig_1_1ConfigError.html", "classconfig_1_1ConfigError" ],
     [ "ConfigException", "classconfig_1_1ConfigException.html", "classconfig_1_1ConfigException" ],
@@ -51,7 +53,8 @@ var namespaceconfig =
       [ "ARG_STRING", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087a2d7b79c8a517f517177ba6885eee0de5", null ],
       [ "ARG_INTEGER", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087a09ea250168c2826a1b48bcf239f7ffe6", null ],
       [ "ARG_VARIABLE", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087a68e2ab41babd0110ea7a11029587994f", null ],
-      [ "ARG_CONCATENATED", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087adfed8147a1494e935b2dad8b35a2a4ce", null ]
+      [ "ARG_CONCATENATED", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087adfed8147a1494e935b2dad8b35a2a4ce", null ],
+      [ "ARG_BOOL", "namespaceconfig.html#a8663f9f1aa3ee23ee132c71609e4d087a063742c934d3eb6d385e3d869ca8d57b", null ]
     ] ],
     [ "TokenType", "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1", [
       [ "IDENTIFIER", "namespaceconfig.html#aff38d875ab6c1cc2bb735e4dbc8380e1a378916df2d7616be2bf266ee677c8b63", null ],

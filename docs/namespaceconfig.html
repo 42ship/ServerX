@@ -99,8 +99,10 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:ArgumentFactory" id="r_ArgumentFactory"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ArgumentFactory.html">ArgumentFactory</a></td></tr>
+<tr class="memitem:AutoIndexDirective" id="r_AutoIndexDirective"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1AutoIndexDirective.html">AutoIndexDirective</a></td></tr>
 <tr class="memitem:Block" id="r_Block"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Block.html">Block</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for configuration blocks like 'server' and 'location'.  <a href="classconfig_1_1Block.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Bool" id="r_Bool"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1Bool.html">Bool</a></td></tr>
 <tr class="memitem:ConcatenatedValue" id="r_ConcatenatedValue"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConcatenatedValue.html">ConcatenatedValue</a></td></tr>
 <tr class="memitem:ConfigError" id="r_ConfigError"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigError.html">ConfigError</a></td></tr>
 <tr class="memitem:ConfigException" id="r_ConfigException"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ConfigException.html">ConfigException</a></td></tr>
@@ -156,10 +158,14 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a8663f9f1aa3ee23ee132c71609e4d087" id="r_a8663f9f1aa3ee23ee132c71609e4d087"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087">ArgumentType</a> { <a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087a2d7b79c8a517f517177ba6885eee0de5">ARG_STRING</a>
+<tr class="memitem:a8663f9f1aa3ee23ee132c71609e4d087" id="r_a8663f9f1aa3ee23ee132c71609e4d087"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087">ArgumentType</a> { <br />
+&#160;&#160;<a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087a2d7b79c8a517f517177ba6885eee0de5">ARG_STRING</a>
 , <a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087a09ea250168c2826a1b48bcf239f7ffe6">ARG_INTEGER</a>
 , <a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087a68e2ab41babd0110ea7a11029587994f">ARG_VARIABLE</a>
 , <a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087adfed8147a1494e935b2dad8b35a2a4ce">ARG_CONCATENATED</a>
+, <br />
+&#160;&#160;<a class="el" href="#a8663f9f1aa3ee23ee132c71609e4d087a063742c934d3eb6d385e3d869ca8d57b">ARG_BOOL</a>
+<br />
  }</td></tr>
 <tr class="memitem:aff38d875ab6c1cc2bb735e4dbc8380e1" id="r_aff38d875ab6c1cc2bb735e4dbc8380e1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1">TokenType</a> { <br />
 &#160;&#160;<a class="el" href="#aff38d875ab6c1cc2bb735e4dbc8380e1a378916df2d7616be2bf266ee677c8b63">IDENTIFIER</a>
@@ -420,6 +426,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a8663f9f1aa3ee23ee132c71609e4d087a09ea250168c2826a1b48bcf239f7ffe6" name="a8663f9f1aa3ee23ee132c71609e4d087a09ea250168c2826a1b48bcf239f7ffe6"></a>ARG_INTEGER&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8663f9f1aa3ee23ee132c71609e4d087a68e2ab41babd0110ea7a11029587994f" name="a8663f9f1aa3ee23ee132c71609e4d087a68e2ab41babd0110ea7a11029587994f"></a>ARG_VARIABLE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8663f9f1aa3ee23ee132c71609e4d087adfed8147a1494e935b2dad8b35a2a4ce" name="a8663f9f1aa3ee23ee132c71609e4d087adfed8147a1494e935b2dad8b35a2a4ce"></a>ARG_CONCATENATED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8663f9f1aa3ee23ee132c71609e4d087a063742c934d3eb6d385e3d869ca8d57b" name="a8663f9f1aa3ee23ee132c71609e4d087a063742c934d3eb6d385e3d869ca8d57b"></a>ARG_BOOL&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

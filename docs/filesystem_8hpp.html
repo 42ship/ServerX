@@ -92,13 +92,17 @@ $(function(){initNavTree('filesystem_8hpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="HttpStatus_8hpp_source.html">http/HttpStatus.hpp</a>&quot;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="filesystem_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:utils_3A_3ATempFile" id="r_utils_3A_3ATempFile"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1TempFile.html">utils::TempFile</a></td></tr>
+<tr class="memitem:utils_3A_3AFileEntry" id="r_utils_3A_3AFileEntry"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils_1_1FileEntry.html">utils::FileEntry</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -112,6 +116,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad66d7d2997cbd52649e7f6026f53dfb3" id="r_ad66d7d2997cbd52649e7f6026f53dfb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3">utils::getFileExtension</a> (const std::string &amp;fpath)</td></tr>
 <tr class="memitem:abd686a6904b528491f3fca83b46f26d7" id="r_abd686a6904b528491f3fca83b46f26d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">http::HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#abd686a6904b528491f3fca83b46f26d7">utils::checkFileAccess</a> (const std::string &amp;path, int modeMask, bool allowDirectory=false)</td></tr>
 <tr class="memitem:a59b379a1228d21e5fd7616410e93578a" id="r_a59b379a1228d21e5fd7616410e93578a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a59b379a1228d21e5fd7616410e93578a">utils::joinPaths</a> (const std::string &amp;p1, const std::string &amp;p2)</td></tr>
+<tr class="memitem:a9427975bd0b8847933056bc5e1ba3c52" id="r_a9427975bd0b8847933056bc5e1ba3c52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a9427975bd0b8847933056bc5e1ba3c52">utils::getDirectoryEntries</a> (std::string const &amp;path, std::vector&lt; <a class="el" href="structutils_1_1FileEntry.html">FileEntry</a> &gt; &amp;entries)</td></tr>
+<tr class="memdesc:a9427975bd0b8847933056bc5e1ba3c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a directory, stats all files, and returns them sorted by name. Uses only opendir/readdir/closedir/stat.  <br /></td></tr>
+<tr class="memitem:a02c39ee41dde4e735b28953a145f612f" id="r_a02c39ee41dde4e735b28953a145f612f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a02c39ee41dde4e735b28953a145f612f">utils::getFileStatus</a> (std::string const &amp;path, struct stat &amp;buf)</td></tr>
+<tr class="memdesc:a02c39ee41dde4e735b28953a145f612f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple wrapper for stat to check existence and get details.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

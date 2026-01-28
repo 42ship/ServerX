@@ -92,8 +92,10 @@ $(function(){initNavTree('filesystem_8cpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="filesystem_8hpp_source.html">common/filesystem.hpp</a>&quot;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cerrno&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;dirent.h&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -114,6 +116,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad66d7d2997cbd52649e7f6026f53dfb3" id="r_ad66d7d2997cbd52649e7f6026f53dfb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3">utils::getFileExtension</a> (const std::string &amp;fpath)</td></tr>
 <tr class="memitem:abd686a6904b528491f3fca83b46f26d7" id="r_abd686a6904b528491f3fca83b46f26d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">http::HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#abd686a6904b528491f3fca83b46f26d7">utils::checkFileAccess</a> (const std::string &amp;path, int modeMask, bool allowDirectory=false)</td></tr>
 <tr class="memitem:a59b379a1228d21e5fd7616410e93578a" id="r_a59b379a1228d21e5fd7616410e93578a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a59b379a1228d21e5fd7616410e93578a">utils::joinPaths</a> (const std::string &amp;p1, const std::string &amp;p2)</td></tr>
+<tr class="memitem:a02c39ee41dde4e735b28953a145f612f" id="r_a02c39ee41dde4e735b28953a145f612f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a02c39ee41dde4e735b28953a145f612f">utils::getFileStatus</a> (std::string const &amp;path, struct stat &amp;buf)</td></tr>
+<tr class="memdesc:a02c39ee41dde4e735b28953a145f612f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple wrapper for stat to check existence and get details.  <br /></td></tr>
+<tr class="memitem:a9427975bd0b8847933056bc5e1ba3c52" id="r_a9427975bd0b8847933056bc5e1ba3c52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a9427975bd0b8847933056bc5e1ba3c52">utils::getDirectoryEntries</a> (std::string const &amp;path, std::vector&lt; <a class="el" href="structutils_1_1FileEntry.html">FileEntry</a> &gt; &amp;entries)</td></tr>
+<tr class="memdesc:a9427975bd0b8847933056bc5e1ba3c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a directory, stats all files, and returns them sorted by name. Uses only opendir/readdir/closedir/stat.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

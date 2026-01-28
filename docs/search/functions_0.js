@@ -7,5 +7,6 @@ var searchData=
   ['addhandler_4',['addHandler',['../classnetwork_1_1EpollManager.html#a21b4e57b39869a0a7ffdefc9de516d4d',1,'network::EpollManager']]],
   ['addlocation_5',['addLocation',['../classconfig_1_1ServerBlock.html#ab3f55c45b06ad4cdd20990a509656ca4',1,'config::ServerBlock']]],
   ['address_6',['address',['../classconfig_1_1ServerBlock.html#abdd6a3baaaab8fb4d9a8aa0a1b04c759',1,'config::ServerBlock::address() const'],['../classconfig_1_1ServerBlock.html#a2e5253d9f64f76781b29dd1c4260c2ca',1,'config::ServerBlock::address(std::string const &amp;address)']]],
-  ['addserver_7',['addServer',['../classconfig_1_1ServerConfig.html#a04ea97c78b723c23e02bb1e65cb99796',1,'config::ServerConfig']]]
+  ['addserver_7',['addServer',['../classconfig_1_1ServerConfig.html#a04ea97c78b723c23e02bb1e65cb99796',1,'config::ServerConfig']]],
+  ['autoindex_8',['autoIndex',['../classconfig_1_1LocationBlock.html#a1a2675739974c7cb338a927e94f61d1c',1,'config::LocationBlock::autoIndex() const'],['../classconfig_1_1LocationBlock.html#a3e52498aedf66377c893ec1c7e10f27b',1,'config::LocationBlock::autoIndex(bool val)']]]
 ];

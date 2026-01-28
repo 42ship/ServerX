@@ -1,5 +1,6 @@
 var namespaceutils =
 [
+    [ "FileEntry", "structutils_1_1FileEntry.html", "structutils_1_1FileEntry" ],
     [ "IpInfo", "structutils_1_1IpInfo.html", "structutils_1_1IpInfo" ],
     [ "Logger", "classutils_1_1Logger.html", null ],
     [ "TempFile", "classutils_1_1TempFile.html", "classutils_1_1TempFile" ],
@@ -14,7 +15,9 @@ var namespaceutils =
     [ "checkFileAccess", "namespaceutils.html#abd686a6904b528491f3fca83b46f26d7", null ],
     [ "extractIpInfo", "namespaceutils.html#a5199a40a0e3a421bfc0cb04e8286ee59", null ],
     [ "fromString", "namespaceutils.html#a15e8dba46eff72c11f43b82c2b4d36d4", null ],
+    [ "getDirectoryEntries", "namespaceutils.html#a9427975bd0b8847933056bc5e1ba3c52", null ],
     [ "getFileExtension", "namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3", null ],
+    [ "getFileStatus", "namespaceutils.html#a02c39ee41dde4e735b28953a145f612f", null ],
     [ "isAllDigit", "namespaceutils.html#ac83bcb19796dfe193c69d38695f1d906", null ],
     [ "isDir", "namespaceutils.html#af07de80d1aa5d787fa115cec01cbe813", null ],
     [ "isValidIPv4", "namespaceutils.html#aedbc0638b66531360317f908d4ff9eed", null ],

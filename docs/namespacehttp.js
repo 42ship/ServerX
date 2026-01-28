@@ -5,6 +5,7 @@ var namespacehttp =
     [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
     [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
     [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
+    [ "DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
     [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
     [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
     [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],

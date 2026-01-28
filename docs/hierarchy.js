@@ -18,15 +18,18 @@ var hierarchy =
         [ "config::ConfigWarning", "classconfig_1_1ConfigWarning.html", null ]
       ] ]
     ] ],
+    [ "utils::FileEntry", "structutils_1_1FileEntry.html", null ],
     [ "http::Headers", "classhttp_1_1Headers.html", null ],
     [ "HttpRequest", "classHttpRequest.html", null ],
     [ "config::IArgument", "classconfig_1_1IArgument.html", [
+      [ "config::Bool", "classconfig_1_1Bool.html", null ],
       [ "config::ConcatenatedValue", "classconfig_1_1ConcatenatedValue.html", null ],
       [ "config::Integer", "classconfig_1_1Integer.html", null ],
       [ "config::String", "classconfig_1_1String.html", null ],
       [ "config::Variable", "classconfig_1_1Variable.html", null ]
     ] ],
     [ "config::IDirective", "classconfig_1_1IDirective.html", [
+      [ "config::AutoIndexDirective", "classconfig_1_1AutoIndexDirective.html", null ],
       [ "config::ErrorPageDirective", "classconfig_1_1ErrorPageDirective.html", null ],
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
       [ "config::MaxBodySize", "classconfig_1_1MaxBodySize.html", null ],
@@ -40,6 +43,7 @@ var hierarchy =
     ] ],
     [ "http::IHandler", "classhttp_1_1IHandler.html", [
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
+      [ "http::DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
       [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]

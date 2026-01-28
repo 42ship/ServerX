@@ -1,5 +1,6 @@
 var dir_b7e6bf9535c33775e8ea3abf1e3f40f5 =
 [
+    [ "AutoIndexDirective.hpp", "AutoIndexDirective_8hpp.html", "AutoIndexDirective_8hpp" ],
     [ "ErrorPageDirective.hpp", "ErrorPageDirective_8hpp.html", "ErrorPageDirective_8hpp" ],
     [ "IDirective.hpp", "IDirective_8hpp.html", "IDirective_8hpp" ],
     [ "ListenDirective.hpp", "ListenDirective_8hpp.html", "ListenDirective_8hpp" ],

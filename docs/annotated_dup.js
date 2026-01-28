@@ -2,7 +2,9 @@ var annotated_dup =
 [
     [ "config", "namespaceconfig.html", [
       [ "ArgumentFactory", "classconfig_1_1ArgumentFactory.html", null ],
+      [ "AutoIndexDirective", "classconfig_1_1AutoIndexDirective.html", "classconfig_1_1AutoIndexDirective" ],
       [ "Block", "classconfig_1_1Block.html", "classconfig_1_1Block" ],
+      [ "Bool", "classconfig_1_1Bool.html", "classconfig_1_1Bool" ],
       [ "ConcatenatedValue", "classconfig_1_1ConcatenatedValue.html", "classconfig_1_1ConcatenatedValue" ],
       [ "ConfigError", "classconfig_1_1ConfigError.html", "classconfig_1_1ConfigError" ],
       [ "ConfigException", "classconfig_1_1ConfigException.html", "classconfig_1_1ConfigException" ],
@@ -37,6 +39,7 @@ var annotated_dup =
       [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
       [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
+      [ "DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
       [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
       [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
@@ -64,6 +67,7 @@ var annotated_dup =
       [ "Socket", "classnetwork_1_1Socket.html", "classnetwork_1_1Socket" ]
     ] ],
     [ "utils", "namespaceutils.html", [
+      [ "FileEntry", "structutils_1_1FileEntry.html", "structutils_1_1FileEntry" ],
       [ "IpInfo", "structutils_1_1IpInfo.html", "structutils_1_1IpInfo" ],
       [ "Logger", "classutils_1_1Logger.html", null ],
       [ "TempFile", "classutils_1_1TempFile.html", "classutils_1_1TempFile" ]
