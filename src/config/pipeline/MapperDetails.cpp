@@ -6,10 +6,10 @@ namespace config {
 namespace details {
 
 void completeLocationRoot(LocationBlock &l, ServerBlock const &s) {
-    std::string serverRoot = s.root();
     std::string locationRoot = l.root();
 
     if (locationRoot.empty()) {
+        std::string serverRoot = s.root();
         l.root(serverRoot);
     } else {
         // If location has root set, it strictly overrides server root.

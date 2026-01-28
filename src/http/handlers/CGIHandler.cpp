@@ -171,7 +171,7 @@ void CGIHandler::buildArgv() {
             // Case 1: single interpreter specified for all files
             argv_.push_back(cgi_pass[0]);
             argv_.push_back(script_path);
-        } else if (cgi_pass.size() >= 2) {
+        } else {
             // Case 2: extension mapping (extension, interpreter)
             std::string ext = utils::getFileExtension(script_path);
             if (!ext.empty() && ext[0] != '.') {

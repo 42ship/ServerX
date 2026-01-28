@@ -24,7 +24,7 @@ void Validator::validate(ServerBlockVec &servers, bool perform_fs_checks) {
     vl.validateGlobalConstraints(servers);
 }
 
-void Validator::validateServer(ServerBlock &b) const {
+void Validator::validateServer(ServerBlock &b) {
     // Basic requirement check
     if (b.port() == -1) {
         LOG_WARN("in server block listen is not specified default address: '"
@@ -36,7 +36,7 @@ void Validator::validateServer(ServerBlock &b) const {
     }
 }
 
-void Validator::validateGlobalConstraints(ServerBlockVec const &servers) const {
+void Validator::validateGlobalConstraints(ServerBlockVec const &servers) {
     std::map<std::string, std::set<std::string> > listenMap;
 
     for (size_t i = 0; i < servers.size(); ++i) {
