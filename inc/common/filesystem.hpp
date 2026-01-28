@@ -1,7 +1,10 @@
 #pragma once
 
 #include "http/HttpStatus.hpp"
+#include <ctime>
 #include <string>
+#include <sys/stat.h>
+#include <vector>
 
 namespace utils {
 
@@ -37,5 +40,23 @@ private:
     TempFile(TempFile const &TempFile);
     TempFile &operator=(TempFile const &rhs);
 };
+
+struct FileEntry {
+    std::string name;
+    bool isDir;
+    time_t mtime;
+    off_t size;
+};
+
+/**
+ * @brief Reads a directory, stats all files, and returns them sorted by name.
+ * Uses only opendir/readdir/closedir/stat.
+ */
+bool getDirectoryEntries(std::string const &path, std::vector<FileEntry> &entries);
+
+/**
+ * @brief Simple wrapper for stat to check existence and get details.
+ */
+bool getFileStatus(std::string const &path, struct stat &buf);
 
 } // namespace utils

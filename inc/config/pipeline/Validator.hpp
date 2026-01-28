@@ -25,6 +25,7 @@ private:
     static void validateListen(ServerBlock const &b);
     void validateRoot(Block &b) const;
     static void validateServerNames(ServerBlock const &b);
+    static void validateIndex(Block &b);
 
     static void locationCompleteRoot(LocationBlock &l, ServerBlock const &s);
 

@@ -10,7 +10,7 @@ class CGIHandler : public IHandler {
 public:
     static std::string formatHeaderName(std::string const &name);
 
-    static void handle(Request const &, Response &);
+    static void handle(Request const &, Response &, MimeTypes const &);
 
 private:
     CGIHandler(Request const &req, Response &res);

@@ -1,6 +1,8 @@
 #include "common/filesystem.hpp"
+#include <algorithm>
 #include <cerrno>
 #include <cstring>
+#include <dirent.h>
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
@@ -9,6 +11,16 @@
 #include <unistd.h>
 
 namespace utils {
+
+namespace {
+// Helper comparator for sorting (Directories first, then files alphabetically)
+bool compareFileEntries(const FileEntry &a, const FileEntry &b) {
+    if (a.isDir != b.isDir) {
+        return a.isDir > b.isDir; // Directories first
+    }
+    return a.name < b.name; // Alphabetical order
+}
+} // namespace
 
 bool writeFile(const std::string &content, const char *path) {
     std::ofstream out(path, std::ios::binary);
@@ -152,6 +164,50 @@ std::string joinPaths(const std::string &p1, const std::string &p2) {
     if (p2_clean[0] != '/')
         p2_clean = "/" + p2_clean;
     return p1_clean + p2_clean;
+}
+
+bool getFileStatus(std::string const &path, struct stat &buf) {
+    return (stat(path.c_str(), &buf) == 0);
+}
+
+bool getDirectoryEntries(std::string const &path, std::vector<FileEntry> &entries) {
+    entries.clear();
+
+    DIR *dir = opendir(path.c_str());
+    if (!dir) {
+        return false;
+    }
+
+    entries.reserve(64);
+    const struct dirent *entry;
+    while ((entry = readdir(dir)) != NULL) {
+        std::string name = entry->d_name;
+
+        if (name == "." || name == "..") {
+            continue;
+        }
+
+        std::string fullPath = path;
+        if (!fullPath.empty() && fullPath[fullPath.size() - 1] != '/') {
+            fullPath += "/";
+        }
+        fullPath += name;
+
+        struct stat st;
+        if (stat(fullPath.c_str(), &st) == 0) {
+            FileEntry fe;
+            fe.name = name;
+            fe.isDir = S_ISDIR(st.st_mode);
+            fe.mtime = st.st_mtime;
+            fe.size = st.st_size;
+            entries.push_back(fe);
+        }
+    }
+    closedir(dir);
+
+    std::sort(entries.begin(), entries.end(), compareFileEntries);
+
+    return true;
 }
 
 } // namespace utils

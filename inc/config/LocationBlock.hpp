@@ -96,11 +96,32 @@ public:
      */
     LocationBlock &parent(ServerBlock *parent);
 
+    /**
+     * @brief Gets the autoIndex setting.
+     * @return True if directory listing is enabled.
+     */
+    bool autoIndex() const;
+
+    /**
+     * @brief Sets the autoIndex setting.
+     * @param val The new value.
+     * @return Reference to self.
+     */
+    LocationBlock &autoIndex(bool val);
+
+    /**
+     * @brief Tries to find an index file in the given directory.
+     * @param dirPath The absolute path to the directory.
+     * @return The path to the found index file, or empty string if not found.
+     */
+    std::string resolveIndexFile(std::string const &dirPath) const;
+
 private:
     ServerBlock *parent_;   //!< Pointer to the parent ServerBlock.
     std::string path_;      //!< The URI path/pattern this location matches.
     MatchType matchType_;   //!< How this location matches.
     std::string extension_; //!< The extracted extension if MatchType is EXTENSION.
+    bool autoIndex_;        //!< Whether directory listing is enabled.
 };
 
 std::ostream &operator<<(std::ostream &o, LocationBlock const &t);
