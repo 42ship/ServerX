@@ -45,15 +45,8 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
         return (void)res.status(vup.status, vup.message);
     }
 
-    if (req.headers().has("Transfer-Encoding")) {
-        std::string te = req.headers().get("Transfer-Encoding");
-        if (te.find("chunked") != std::string::npos) {
-            return (void)res.status(NOT_IMPLEMENTED, "Transfer-Encoding: chunked is not supported");
-        }
-    }
-
-    if (!req.headers().has("Content-Length")) {
-        return (void)res.status(LENGTH_REQUIRED, "Content-Length header is required for uploads");
+    if (req.body() < 0) {
+        return (void)res.status(BAD_REQUEST, "No body provided for upload");
     }
 
     // todo: Handle multipart/form-data
