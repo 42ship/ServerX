@@ -5,7 +5,6 @@
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
-#include "http/Router.hpp"
 #include "http/handlers/CGIHandler.hpp"
 #include "http/handlers/DirectoryListingHandler.hpp"
 #include "utils/Logger.hpp"
