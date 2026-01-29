@@ -86,6 +86,7 @@ static TestableRequest createUploadRequest(const ServerBlock* server,
     req.headers().add("Content-Type", "text/html");
     req.headers().add("X-Filename", filename);
     req.bodyPath(bodyPath);
+    req.body(open(bodyPath.c_str(), O_RDONLY));
     return req;
 }
 
