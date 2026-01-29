@@ -140,8 +140,8 @@ void ClientHandler::handleRead() {
 void ClientHandler::handleRequestParsingState(http::RequestParser::State state) {
     switch (state) {
     case http::RequestParser::ERROR:
-        LOG_WARN("ClientHandler::handleRequestParsingState(" << clientFd_ << "): parsing error.");
-        handleError(http::BAD_REQUEST);
+        LOG_SWARN("Request parsing failed with status: " << reqParser_.errorStatus());
+        handleError(reqParser_.errorStatus());
         break;
 
     case http::RequestParser::HEADERS_READY:
@@ -220,6 +220,14 @@ void ClientHandler::setupStaticResponse() {
     cgiState_.handler = NULL;
 
     response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
+
+    if (!response_.body() && !response_.headers().has("Content-Length")) {
+        http::HttpStatus s = response_.status();
+        if (s != http::NO_CONTENT && s != http::NOT_MODIFIED && s >= 200) {
+            response_.headers().add("Content-Length", "0");
+        }
+    }
+
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
