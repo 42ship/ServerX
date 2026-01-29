@@ -11,20 +11,14 @@
 
 namespace config {
 
-static IDirective **getBuiltInDirectives(size_t &count) {
-    static IDirective *directives[] = {new ListenDirective(),     new RootDirective(),
-                                       new ErrorPageDirective(),  new ReturnDirective(),
-                                       new UploadPathDirective(), new MaxBodySize(),
-                                       new AutoIndexDirective()};
-    count = sizeof(directives) / sizeof(directives[0]);
-    return directives;
-}
-
 DirectiveHandler::DirectiveHandler() {
-    size_t count;
-    IDirective **directives = getBuiltInDirectives(count);
-    for (size_t i = 0; i < count; i++)
-        registerHandler(directives[i]);
+    registerHandler(new ListenDirective);
+    registerHandler(new RootDirective);
+    registerHandler(new ErrorPageDirective);
+    registerHandler(new ReturnDirective);
+    registerHandler(new MaxBodySize);
+    registerHandler(new UploadPathDirective);
+    registerHandler(new AutoIndexDirective);
 }
 
 void DirectiveHandler::registerHandler(IDirective *h) {

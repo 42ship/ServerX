@@ -1,13 +1,13 @@
 #include "http/Handler.hpp"
 
 #include "common/filesystem.hpp"
+#include "common/string.hpp"
 #include "config/ServerBlock.hpp"
 #include "http/FileUploadValidator.hpp"
 #include "http/MimeTypes.hpp"
 #include "http/Request.hpp"
 #include "http/Response.hpp"
 #include "utils/Logger.hpp"
-#include "common/string.hpp"
 
 #include <cerrno>
 #include <fcntl.h>
@@ -47,6 +47,10 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
 
     if (req.body() < 0) {
         return (void)res.status(BAD_REQUEST, "No body provided for upload");
+    }
+
+    if (!req.headers().has("Content-Length")) {
+        return (void)res.status(LENGTH_REQUIRED, "Content-Length header is required for uploads");
     }
 
     // todo: Handle multipart/form-data
