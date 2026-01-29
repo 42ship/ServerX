@@ -3,9 +3,9 @@
 #include "common/filesystem.hpp"
 #include "common/string.hpp"
 
+#include <cerrno>
 #include <sstream>
 #include <unistd.h>
-#include <cerrno>
 
 namespace http::upload {
 
@@ -48,60 +48,57 @@ std::string extractHeaderParam(const std::string &str, const std::string &toFind
     return "";
 }
 
-UploadValidationResult parseFilename(Request const &req, MimeTypes const &mime) {
+UploadValidationResult parseFilename(Request const &req, MimeTypes const &) {
     std::string filename = req.headers().get("X-Filename");
     std::string disposition = req.headers().get("Content-Disposition");
 
-    if (!filename.empty() && !disposition.empty()) {
-        return UploadValidationResult::fail(
-            BAD_REQUEST,
-            "Conflicting filename sources: both X-Filename and Content-Disposition provided");
+    // 1. Source filename from headers if present
+    if (filename.empty() && !disposition.empty()) {
+        filename = extractHeaderParam(disposition, "filename=");
     }
+
+    // 2. Fallback: Source filename from the URI path itself
+    // e.g. POST /uploads/my_file.txt -> "my_file.txt"
     if (filename.empty()) {
-        if (disposition.empty()) {
-            return UploadValidationResult::fail(
-                BAD_REQUEST, "Missing filename (X-Filename or Content-Disposition)");
-        } else {
-            filename = extractHeaderParam(disposition, "filename=");
+        std::string const &reqPath = req.path();
+        size_t lastSlash = reqPath.find_last_of('/');
+        if (lastSlash != std::string::npos && lastSlash < reqPath.size() - 1) {
+            filename = reqPath.substr(lastSlash + 1);
         }
     }
+
     if (filename.empty()) {
-        return UploadValidationResult::fail(BAD_REQUEST, "Empty filename in Content-Disposition");
+        return UploadValidationResult::fail(
+            BAD_REQUEST, "Missing filename (X-Filename, Content-Disposition, or URI path)");
     }
 
-    std::string::size_type index = filename.rfind('.');
-    if (index != std::string::npos && index == filename.size() - 1) {
-        return UploadValidationResult::fail(BAD_REQUEST, "Invalid filename (trailing dot)");
-    }
-
+    // 3. Security & Validity Sanitization
+    // Prevent directory traversal
     if (filename.find('/') != std::string::npos || filename.find('\\') != std::string::npos ||
         filename.find("..") != std::string::npos) {
         return UploadValidationResult::fail(BAD_REQUEST,
                                             "Invalid filename: directory traversal attempt");
     }
 
+    // Prevent hidden files (optional, but safer) or trailing dots
+    if (filename[0] == '.') {
+        return UploadValidationResult::fail(BAD_REQUEST, "Invalid filename: cannot start with dot");
+    }
+
+    size_t dotPos = filename.rfind('.');
+    if (dotPos != std::string::npos && dotPos == filename.size() - 1) {
+        return UploadValidationResult::fail(BAD_REQUEST, "Invalid filename: trailing dot");
+    }
+
+    // 4. Content-Type check (Advisory)
+    // We don't strictly enforce mime-match here anymore as it prevents valid raw uploads
+    // from tools that don't know the mime type (like simple curl).
     std::string contentType = req.headers().get("Content-Type");
-    if (contentType.empty()) {
-        return UploadValidationResult::fail(BAD_REQUEST, "Missing Content-Type");
-    }
-
-    if (contentType == "application/octet-stream") {
-        return UploadValidationResult::ok(filename);
-    }
-
     if (contentType.find("multipart/form-data") != std::string::npos) {
-        return UploadValidationResult::fail(NOT_IMPLEMENTED, "multipart/form-data not implemented");
+        return UploadValidationResult::fail(NOT_IMPLEMENTED,
+                                            "multipart/form-data not yet supported");
     }
 
-    std::string ext;
-    if (index != std::string::npos) {
-        ext = filename.substr(index + 1);
-    }
-    std::string mimeType = mime.getMimeType(ext);
-    if (contentType != mimeType) {
-        return UploadValidationResult::fail(UNSUPPORTED_MEDIA_TYPE,
-                                            "Mismatched Content-Type and file extension");
-    }
     return UploadValidationResult::ok(filename);
 }
 

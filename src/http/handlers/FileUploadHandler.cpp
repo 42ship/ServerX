@@ -45,7 +45,7 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
         return (void)res.status(vup.status, vup.message);
     }
 
-    if (req.body() < 0) {
+    if (!req.body()) {
         return (void)res.status(BAD_REQUEST, "No body provided for upload");
     }
 
@@ -72,13 +72,13 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
     }
     path += pf.filename;
 
-    LOG_DEBUG("UPLOAD PATH:   " + path);
+    LOG_SDEBUG("UPLOAD PATH: " + path);
     if (access(path.c_str(), F_OK) == 0) {
         return (void)res.status(CONFLICT, "File already exists");
     }
-    int writeRes = utils::TempFile::moveOrCopyFile(req.bodyPath(), path);
-    if (writeRes != 0) {
-        LOG_DEBUG("utils::moveOrCopyFile(req.bodyPath(), path.c_str()) reported an error");
+    utils::TempFile::MoveStatus moveRes = req.moveBody(path);
+    if (moveRes != utils::TempFile::MOVE_SUCCESS) {
+        LOG_SERROR("req.moveBody(path) reported error status: " << moveRes);
         return (void)res.status(INTERNAL_SERVER_ERROR, "Failed to write uploaded file to disk");
     }
 

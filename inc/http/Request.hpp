@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/filesystem.hpp"
 #include "http/Headers.hpp"
 #include "http/HttpStatus.hpp"
 #include <aio.h>
@@ -12,6 +13,10 @@ class ServerBlock;
 namespace network {
 class ClientHandler;
 } // namespace network
+
+namespace utils {
+class TempFile;
+} // namespace utils
 
 namespace http {
 
@@ -131,11 +136,21 @@ public:
      */
     std::string const &version() const;
 
-    int body() const;
+    utils::TempFile const *body() const;
+    utils::TempFile *body();
+
     const std::string &bodyPath() const;
 
-    Request &body(int fd);
-    Request &body(int fd, const std::string &path);
+    /**
+     * @brief Relocates the request body to a permanent location.
+     *
+     * This transfers ownership of the file; it will NO LONGER be
+     * managed or deleted by the Request object upon destruction.
+     *
+     * @param destPath Absolute path to the destination file.
+     * @return MoveStatus indicating success or the specific type of failure.
+     */
+    utils::TempFile::MoveStatus moveBody(const std::string &destPath) const;
 
     /**
      * @brief Sets the response status and automatically syncs the reason phrase.
@@ -165,6 +180,8 @@ public:
      */
     std::string const &remoteAddr() const;
 
+    ~Request();
+
 protected:
     friend class RequestParser;
     friend class Router;
@@ -176,13 +193,14 @@ protected:
     Request &path(std::string const &);
     Request &version(std::string const &);
     Request &remoteAddr(std::string const &addr);
-    Request &bodyPath(std::string const &path);
 
 private:
+    Request(const Request &);
+    Request &operator=(const Request &);
+
     RequestStartLine requestLine_;
     Headers headers_;
-    int body_;
-    std::string bodyPath_;
+    utils::TempFile *body_;
     config::LocationBlock const *location_;
     config::ServerBlock const *server_;
     HttpStatus status_;
