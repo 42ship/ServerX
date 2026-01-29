@@ -56,17 +56,6 @@ public:
      */
     std::string get(const std::string &key) const;
 
-    /**
-     * @brief Convenience helper to retrieve a header value by key.
-     *
-     * This method returns the value of the header if it exists.
-     * If the header is not present, an empty string is returned.
-     * It is functionally equivalent to the C++11-style get(key) overload.
-     *
-     * @param key The header name to look up (case-insensitive).
-     * @return The header value if found, otherwise an empty string.
-     */
-    std::string getHeaderSafe(const std::string &key) const;
 
     /**
      * @brief A specialized accessor for the Content-Length header.
