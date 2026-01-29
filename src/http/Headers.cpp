@@ -38,13 +38,6 @@ std::string Headers::get(std::string const &key) const {
     return res;
 }
 
-std::string Headers::getHeaderSafe(const std::string &key) const {
-    if (has(key)) {
-        return get(key);
-    }
-    return "";
-}
-
 size_t Headers::getContentLength() const {
     static const std::string key = normalizeKey("content-length");
     HeaderMap::const_iterator it = map_.find(key);
