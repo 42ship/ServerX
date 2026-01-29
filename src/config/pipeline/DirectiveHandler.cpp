@@ -7,7 +7,6 @@
 #include "config/directives/RootDirective.hpp"
 #include "config/directives/UploadPathDirective.hpp"
 #include "config/pipeline/DirectiveHandler.hpp"
-#include <vector>
 
 namespace config {
 
