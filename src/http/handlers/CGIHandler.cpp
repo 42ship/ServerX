@@ -111,8 +111,8 @@ void CGIHandler::runChildProcess() {
     }
     close(pipeFd_[1]);
 
-    if (req_.body() >= 0) {
-        if (dup2(req_.body(), STDIN_FILENO) == -1) {
+    if (req_.body()) {
+        if (dup2(req_.body()->fd(), STDIN_FILENO) == -1) {
             print_errno_to_fd(errorFd_[1], errno);
             _exit(1);
         }

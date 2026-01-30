@@ -25,7 +25,6 @@ void RequestParser::reset() {
     maxContentSize_ = 0;
     isContentChunked_ = false;
     buffer_.clear();
-    bodyFile_.close();
     request_.clear();
 }
 
@@ -106,8 +105,11 @@ RequestParser::State RequestParser::parseHeaders() {
 }
 
 RequestParser::State RequestParser::parseBody() {
-    if (!bodyFile_.isOpen() && !bodyFile_.open()) {
-        LOG_ERROR("RequestParser::handleBody(): Failed to open TempFile. State=ERROR");
+    if (!request_.body_) {
+        request_.body_ = new utils::TempFile();
+    }
+    if (!request_.body_->isOpen() && !request_.body_->open()) {
+        LOG_SERROR("Failed to open TempFile. State=ERROR");
         return setError(INTERNAL_SERVER_ERROR);
     }
     if (isContentChunked_) {
@@ -127,10 +129,10 @@ void RequestParser::handleContentLengthBody() {
     size_t bytesToWrite = std::min(buffer_.length(), bytesLeftToWrite);
     if (!bytesToWrite)
         return;
-    ssize_t written = write(bodyFile_, buffer_.c_str(), bytesToWrite);
+    ssize_t written = write(request_.body_->fd(), buffer_.c_str(), bytesToWrite);
 
     if (written < 0) {
-        LOG_ERROR("RequestParser::handleContentLengthBody(): Write error to TempFile.");
+        LOG_SERROR("Write error to TempFile.");
         return (void)setError(INTERNAL_SERVER_ERROR);
     }
 
@@ -143,7 +145,9 @@ void RequestParser::handleContentLengthBody() {
 }
 
 bool RequestParser::writeToBodyFile(const std::string &data) {
-    ssize_t written = write(bodyFile_, data.c_str(), data.size());
+    if (!request_.body_)
+        return false;
+    ssize_t written = write(request_.body_->fd(), data.c_str(), data.size());
     if (written < 0) {
         LOG_ERROR("RequestParser::writeToBodyFile(): Write error to TempFile.");
         setError(INTERNAL_SERVER_ERROR);
@@ -182,10 +186,8 @@ void RequestParser::handleChunkedBody() {
 
 void RequestParser::setRequestReady() {
     state_ = REQUEST_READY;
-    if (bodyFile_.isOpen()) {
-        if (lseek(bodyFile_, 0, SEEK_SET) != (off_t)-1) {
-            request_.body(bodyFile_);
-        } else {
+    if (request_.body_ && request_.body_->isOpen()) {
+        if (lseek(request_.body_->fd(), 0, SEEK_SET) == (off_t)-1) {
             LOG_ERROR("RequestParser::setRequestReady(): lseek failed on TempFile. State=ERROR");
             setError(INTERNAL_SERVER_ERROR);
         }

@@ -111,7 +111,7 @@ public:
     Response &status(HttpStatus statusCode);
 
     /** @copydoc status(HttpStatus statusCode) */
-    Response &status(HttpStatus statusCode, std::string const &customError);
+    Response &status(HttpStatus statusCode, std::string const &customMessage);
 
     /**
      * @brief Gets the current status code.
@@ -127,6 +127,11 @@ public:
      * @brief Gets the current reason phrase (e.g., "Not Found").
      */
     std::string const &reasonPhrase() const;
+
+    /**
+     * @brief Gets the custom error message, if any.
+     */
+    std::string const &customMessage() const;
 
 private:
     Response(Response const &);

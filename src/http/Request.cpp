@@ -60,7 +60,9 @@ char const *RequestStartLine::methodToString(Method m) {
     }
 }
 
-Request::Request() : body_(-1), location_(NULL), server_(NULL), status_(OK), remoteAddr_("") {}
+Request::Request() : body_(NULL), location_(NULL), server_(NULL), status_(OK), remoteAddr_("") {}
+
+Request::~Request() { delete body_; }
 
 bool Request::wantsJson() const { return headers_.get("Accept") == "application/json"; }
 
@@ -73,7 +75,8 @@ void Request::clear() {
     location_ = NULL;
     server_ = NULL;
     status_ = OK;
-    body_ = -1;
+    delete body_;
+    body_ = NULL;
     remoteAddr_.clear();
 }
 
@@ -103,8 +106,25 @@ Request &Request::uri(std::string const &uri) {requestLine_.uri = uri;return *th
 Request &Request::version(std::string const &version) {requestLine_.version= version;return *this;}
 Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *this; }
 HttpStatus Request::status() const { return status_; }
-int Request::body() const { return body_; }
-Request &Request::body(int fd) { body_ = fd; return *this; }
+utils::TempFile const *Request::body() const { return body_; }
+utils::TempFile *Request::body() { return body_; }
+Request &Request::body(utils::TempFile *body) {
+    if (body_ != body) {
+        delete body_;
+        body_ = body;
+    }
+    return *this;
+}
+const std::string &Request::bodyPath() const {
+    static const std::string empty;
+    return body_ ? body_->path() : empty;
+}
+
+utils::TempFile::MoveStatus Request::moveBody(const std::string &destPath) const {
+    if (!body_)
+        return utils::TempFile::MOVE_INVALID_STATE;
+    return body_->moveTo(destPath);
+}
 std::string const &Request::remoteAddr() const { return remoteAddr_; }
 Request &Request::remoteAddr(std::string const &addr) { remoteAddr_ = addr; return *this; }
 // clang-format on

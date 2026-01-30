@@ -12,7 +12,7 @@ const std::string MaxBodySize::name_ = "max_body_size";
 void MaxBodySize::process(Block &b, ParsedDirectiveArgs const &args) const {
     if (args.size() != 1)
         throw ConfigError("'" + name_ + "' directive requires exactly one argument.");
-    size_t size = utils::fromString<unsigned int>(args[0].literal) * 1024;
+    size_t size = utils::fromString<unsigned int>(args[0].literal) * 1024 * 1024;
     b.add(name_, new Integer(size));
 }
 

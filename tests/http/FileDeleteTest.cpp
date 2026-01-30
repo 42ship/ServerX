@@ -55,17 +55,7 @@ static ServerBlock createMockServer() {
     return server;
 }
 
-static TestableRequest createDeleteRequest(const ServerBlock *server, const LocationBlock *location,
-                                           const string &reqPath) {
-    TestableRequest req;
-    req.server(server);
-    req.location(location);
-    req.method(RequestStartLine::DELETE);
-    req.path(reqPath);
-    return req;
-}
-
-// ----------------- tests -----------------
+// ============================= Tests ====================================
 
 TEST_CASE("DELETE - 204 No Content when deleting an existing file") {
     mkdir("test_www", 0777);
@@ -75,7 +65,8 @@ TEST_CASE("DELETE - 204 No Content when deleting an existing file") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/to-delete.bin");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/to-delete.bin");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -92,7 +83,8 @@ TEST_CASE("DELETE - 404 Not Found when resource does not exist") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/missing.bin");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/missing.bin");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -110,7 +102,8 @@ TEST_CASE("DELETE - 403 Forbidden when parent directory is not writable") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/locked.bin");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/locked.bin");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -129,7 +122,8 @@ TEST_CASE("DELETE - 409 Conflict when deleting non-empty directory") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/dir");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/dir");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -146,7 +140,8 @@ TEST_CASE("DELETE - 204 No Content when deleting empty directory") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/uploads/emptydir");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/emptydir");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -163,7 +158,8 @@ TEST_CASE("DELETE - 405 Method Not Allowed when location has no upload_path") {
     LocationBlock loc = createMockLocationWithoutUploadPath("test_www", "/");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, &loc, "/file.txt");
+    TestableRequest req(&server, &loc);
+    req.set(RequestStartLine::DELETE, "/file.txt");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -175,7 +171,8 @@ TEST_CASE("DELETE - 405 Method Not Allowed when location has no upload_path") {
 TEST_CASE("DELETE - 404 when server is NULL") {
     LocationBlock loc = createMockLocationWithUploadPath("test_www", "/", "uploads");
 
-    TestableRequest req = createDeleteRequest(nullptr, &loc, "/uploads/file.txt");
+    TestableRequest req(nullptr, &loc);
+    req.set(RequestStartLine::DELETE, "/uploads/file.txt");
     Response res;
 
     FileDeleteHandler::handle(req, res);
@@ -185,7 +182,8 @@ TEST_CASE("DELETE - 404 when server is NULL") {
 TEST_CASE("DELETE - 404 when location is NULL") {
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createDeleteRequest(&server, nullptr, "/uploads/file.txt");
+    TestableRequest req(&server, nullptr);
+    req.set(RequestStartLine::DELETE, "/uploads/file.txt");
     Response res;
 
     FileDeleteHandler::handle(req, res);
