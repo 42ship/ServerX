@@ -51,7 +51,7 @@ public:
     Block &add(std::string const &key, ParsedDirectiveArgs const &args);
     Block &add(std::string const &key, ArgumentVector const &values);
     Block &add(std::string const &key, ArgumentPtr value);
-    Block &add(std::string const &key, int value);
+    Block &add(std::string const &key, size_t value);
 
     std::vector<std::string> getRawValues(std::string const &key) const;
 

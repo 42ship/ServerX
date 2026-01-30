@@ -17,7 +17,7 @@ ArgumentPtr ArgumentFactory::get(Token const &t) {
     case STRING:
         return handleStringVariable(t.literal);
     case NUMBER:
-        return new Integer(utils::fromString<int>(t.literal));
+        return new Integer(utils::fromString<size_t>(t.literal));
     default:
         throw ConfigError("Internal error: unimplemented token in ArgumentFactory");
     }
