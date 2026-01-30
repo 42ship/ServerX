@@ -52,24 +52,13 @@ static ServerBlock createMockServer() {
     return server;
 }
 
-/**
- * @brief Helper to create a basic request with server and location set
- */
-static TestableRequest createRequestWithMocks(const ServerBlock *server,
-                                              const LocationBlock *location) {
-    TestableRequest req;
-    req.server(server);
-    req.location(location);
-    return req;
-}
-
 // ============================= Handler Tests ====================================
 
 TEST_CASE("ReturnHandler - Single argument (URL) defaults to 302") {
     LocationBlock loc = createMockLocationWithReturn(0, "http://example.com/new-location");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -83,7 +72,7 @@ TEST_CASE("ReturnHandler - 301 redirect with Location header") {
     LocationBlock loc = createMockLocationWithReturn(301, "http://example.com/moved");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -97,7 +86,7 @@ TEST_CASE("ReturnHandler - 302 redirect with Location header") {
     LocationBlock loc = createMockLocationWithReturn(302, "http://example.com/temp");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -111,7 +100,7 @@ TEST_CASE("ReturnHandler - 303 redirect with Location header") {
     LocationBlock loc = createMockLocationWithReturn(303, "http://example.com/other");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -125,7 +114,7 @@ TEST_CASE("ReturnHandler - 307 redirect with Location header") {
     LocationBlock loc = createMockLocationWithReturn(307, "http://example.com/temp307");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -139,7 +128,7 @@ TEST_CASE("ReturnHandler - 308 redirect with Location header") {
     LocationBlock loc = createMockLocationWithReturn(308, "http://example.com/perm308");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -153,7 +142,7 @@ TEST_CASE("ReturnHandler - 200 status with text body") {
     LocationBlock loc = createMockLocationWithReturn(200, "Success");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -167,7 +156,7 @@ TEST_CASE("ReturnHandler - 404 status with text body") {
     LocationBlock loc = createMockLocationWithReturn(404, "NotFound");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -181,7 +170,7 @@ TEST_CASE("ReturnHandler - 500 status with text body") {
     LocationBlock loc = createMockLocationWithReturn(500, "Error");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -196,7 +185,7 @@ TEST_CASE("ReturnHandler - Error when location has no return directive") {
     loc.path("/test");
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, &loc);
+    TestableRequest req(&server, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -208,7 +197,7 @@ TEST_CASE("ReturnHandler - Error when location has no return directive") {
 TEST_CASE("ReturnHandler - Error when server is NULL") {
     LocationBlock loc = createMockLocationWithReturn(301, "http://example.com");
 
-    TestableRequest req = createRequestWithMocks(nullptr, &loc);
+    TestableRequest req(nullptr, &loc);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -220,7 +209,7 @@ TEST_CASE("ReturnHandler - Error when server is NULL") {
 TEST_CASE("ReturnHandler - Error when location is NULL") {
     ServerBlock server = createMockServer();
 
-    TestableRequest req = createRequestWithMocks(&server, nullptr);
+    TestableRequest req(&server, nullptr);
     Response response;
 
     ReturnHandler::handle(req, response);
@@ -230,7 +219,7 @@ TEST_CASE("ReturnHandler - Error when location is NULL") {
 }
 
 TEST_CASE("ReturnHandler - Error when both server and location are NULL") {
-    TestableRequest req = createRequestWithMocks(nullptr, nullptr);
+    TestableRequest req(nullptr, nullptr);
     Response response;
 
     ReturnHandler::handle(req, response);

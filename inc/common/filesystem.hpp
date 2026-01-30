@@ -33,6 +33,28 @@ public:
     std::string const &path() const;
     bool isOpen() const;
 
+    enum MoveStatus {
+        MOVE_SUCCESS,      //!< File moved successfully (atomic or copy)
+        MOVE_IO_ERR,       //!< Disk Full, Permission on dest, or other IO error
+        MOVE_SYS_ERR,      //!< Permission on src, rename() failed for system reasons
+        MOVE_INVALID_STATE //!< File is not open or already moved
+    };
+
+    /**
+     * @brief Moves the temporary file to a new permanent location.
+     *
+     * Attempts an atomic rename(). If that fails (e.g. cross-device move), it
+     * falls back to a manual copy followed by unlinking the source.
+     *
+     * @note IMPORTANT: On success, this TempFile object is invalidated (FD closed,
+     * path cleared). Ownership of the physical file is transferred to @p destPath.
+     * The file will NOT be deleted when this object is destroyed.
+     *
+     * @param destPath Absolute path to the destination file.
+     * @return MoveStatus indicating success or the specific type of failure.
+     */
+    MoveStatus moveTo(const std::string &destPath);
+
 private:
     int fd_;
     std::string filePath_;

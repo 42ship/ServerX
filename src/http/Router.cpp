@@ -101,6 +101,9 @@ void Router::executeHandler(Request const &request, Response &response) const {
     } else if (request.method() == RequestStartLine::DELETE) {
         LOG_STRACE(ctx << "Dispatched to FileDeleteHandler");
         FileDeleteHandler::handle(request, response);
+    } else if (request.method() == RequestStartLine::POST) {
+        LOG_STRACE(ctx << "Dispatched to FileUploadHandler");
+        FileUploadHandler::handle(request, response, mimeTypes_);
     } else if (loc->autoIndex()) {
         LOG_STRACE(ctx << "Dispatched to DirectoryListingHandler");
         DirectoryListingHandler::handle(request, response, mimeTypes_);

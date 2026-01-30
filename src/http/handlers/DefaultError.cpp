@@ -14,7 +14,15 @@
 
 namespace http {
 
-typedef std::map<HttpStatus, std::string> ErrorPageCache;
+struct ErrorKey {
+    HttpStatus code;
+    std::string message;
+    bool operator<(ErrorKey const &o) const {
+        return (code < o.code) || (code == o.code && message < o.message);
+    }
+};
+
+typedef std::map<ErrorKey, std::string> ErrorPageCache;
 
 static std::string createErrorBody(HttpStatus code, char const *message) {
     std::ostringstream body;
@@ -65,18 +73,22 @@ static std::string createErrorBody(HttpStatus code, char const *message) {
 
 static std::string const &getCacherErrorBody(HttpStatus code, char const *message) {
     static ErrorPageCache cache;
+    ErrorKey key;
+    key.code = code;
+    key.message = message ? message : "";
 
-    ErrorPageCache::const_iterator it = cache.find(code);
+    ErrorPageCache::const_iterator it = cache.find(key);
     if (it != cache.end()) {
         return it->second;
     }
-    cache.insert(make_pair(code, createErrorBody(code, message)));
-    return cache[code];
+    return cache.insert(std::make_pair(key, createErrorBody(code, key.message.c_str())))
+        .first->second;
 }
 
 void DefaultErrorHandler::populateResponse(Response &response) {
-    std::string const &body =
-        getCacherErrorBody(response.status(), response.reasonPhrase().c_str());
+    std::string const &msg =
+        response.customMessage().empty() ? response.reasonPhrase() : response.customMessage();
+    std::string const &body = getCacherErrorBody(response.status(), msg.c_str());
     response.setBodyInMemory(body, "text/html");
 }
 

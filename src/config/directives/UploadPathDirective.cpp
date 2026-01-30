@@ -9,6 +9,13 @@ void UploadPathDirective::process(Block &b, ParsedDirectiveArgs const &args) con
     ValidatorUtils::checkContext(b, "location", name_);
     ValidatorUtils::checkArgs(args, 1, 1, name_);
 
+    std::string upload = args[0].literal;
+    if (!upload.empty() && upload[0] == '/') {
+        throw ConfigError("'" + name_ +
+                          "' directive requires a relative path; absolute paths (starting with "
+                          "'/') are not permitted.");
+    }
+
     b.add(name_, args);
 }
 

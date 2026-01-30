@@ -56,6 +56,7 @@ public:
      */
     std::string get(const std::string &key) const;
 
+
     /**
      * @brief A specialized accessor for the Content-Length header.
      * @return The value of Content-Length as a number, or 0 if not present or

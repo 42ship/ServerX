@@ -16,7 +16,6 @@
 namespace config {
 
 DirectiveHandler::DirectiveHandler() {
-    registerHandler(new AutoIndexDirective);
     registerHandler(new ListenDirective);
     registerHandler(new RootDirective);
     registerHandler(new ErrorPageDirective);
@@ -28,6 +27,7 @@ DirectiveHandler::DirectiveHandler() {
     registerHandler(new UploadPathDirective);
     registerHandler(new AllowMethodsDirective);
     registerHandler(new CgiPassDirective);
+    registerHandler(new AutoIndexDirective);
 }
 
 void DirectiveHandler::registerHandler(IDirective *h) {

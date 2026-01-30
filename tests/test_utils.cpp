@@ -40,11 +40,11 @@ bool removeDirectoryRecursive(const std::string &path) {
     return rmdir(path.c_str()) == 0;
 }
 
-// void writeFile(const std::string& content, const char* path) {
-//     std::ofstream out(path);
-//     out << content;
-//     out.close();
-// }
+void writeFile(const std::string& content, const char* path) {
+    std::ofstream out(path);
+    out << content;
+    out.close();
+}
 
 void writeFile(const std::string &content, const char *path, int mode) {
     std::ofstream out(path, std::ios_base::openmode(mode));
