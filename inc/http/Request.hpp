@@ -26,7 +26,7 @@ namespace http {
  */
 class RequestStartLine {
 public:
-    enum Method { GET, POST, PUT, DELETE, UNKNOWN };
+    enum Method { GET, HEAD, POST, PUT, DELETE, UNKNOWN };
 
     RequestStartLine();
 
