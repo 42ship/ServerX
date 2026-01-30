@@ -193,6 +193,7 @@ protected:
     Request &path(std::string const &);
     Request &version(std::string const &);
     Request &remoteAddr(std::string const &addr);
+    Request &body(utils::TempFile *body);
 
 private:
     Request(const Request &);

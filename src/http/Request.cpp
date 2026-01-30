@@ -108,6 +108,13 @@ Request &Request::status(HttpStatus statusCode) { status_ = statusCode; return *
 HttpStatus Request::status() const { return status_; }
 utils::TempFile const *Request::body() const { return body_; }
 utils::TempFile *Request::body() { return body_; }
+Request &Request::body(utils::TempFile *body) {
+    if (body_ != body) {
+        delete body_;
+        body_ = body;
+    }
+    return *this;
+}
 const std::string &Request::bodyPath() const {
     static const std::string empty;
     return body_ ? body_->path() : empty;
