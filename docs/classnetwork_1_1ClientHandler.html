@@ -134,6 +134,7 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a849e000f909ad43cdb359ec2c77294a9" id="r_a849e000f909ad43cdb359ec2c77294a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a849e000f909ad43cdb359ec2c77294a9">handleRead</a> ()</td></tr>
 <tr class="memdesc:a849e000f909ad43cdb359ec2c77294a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles incoming data on the socket.  <br /></td></tr>
+<tr class="memitem:a91b425dfb22aa5c1eeb01af1bcb6fd75" id="r_a91b425dfb22aa5c1eeb01af1bcb6fd75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91b425dfb22aa5c1eeb01af1bcb6fd75">handleDraining</a> ()</td></tr>
 <tr class="memitem:a8d3ac9c90db011f86d863fd3fb95ad89" id="r_a8d3ac9c90db011f86d863fd3fb95ad89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d3ac9c90db011f86d863fd3fb95ad89">handleStaticResponseWrite</a> ()</td></tr>
 <tr class="memdesc:a8d3ac9c90db011f86d863fd3fb95ad89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles outgoing data on the socket.  <br /></td></tr>
 <tr class="memitem:a02914e67929d0713058f2673a0b00f9c" id="r_a02914e67929d0713058f2673a0b00f9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02914e67929d0713058f2673a0b00f9c">handleCgiResponseWrite</a> ()</td></tr>
@@ -146,6 +147,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a3a882e9e37b1ca3bfe15ec610aedb433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the <a class="el" href="classnetwork_1_1ClientHandler.html" title="Manages the full lifecycle of a single client connection.">ClientHandler</a> state for a new request (keep-alive).  <br /></td></tr>
 <tr class="memitem:a961e11891537007a6597fdedef71f71e" id="r_a961e11891537007a6597fdedef71f71e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a961e11891537007a6597fdedef71f71e">closeConnection</a> ()</td></tr>
 <tr class="memdesc:a961e11891537007a6597fdedef71f71e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the connection and removes it from the dispatcher.  <br /></td></tr>
+<tr class="memitem:a538ac3b20554fe565c0a590e5ac2f7a3" id="r_a538ac3b20554fe565c0a590e5ac2f7a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a538ac3b20554fe565c0a590e5ac2f7a3">initiateDraining</a> ()</td></tr>
 <tr class="memitem:a94c8affb6e4221df6c40fadb0fecba83" id="r_a94c8affb6e4221df6c40fadb0fecba83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94c8affb6e4221df6c40fadb0fecba83">finalizeConnection</a> ()</td></tr>
 <tr class="memitem:a661752bc971bf0ac50b7226bd4f73b4b" id="r_a661752bc971bf0ac50b7226bd4f73b4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a661752bc971bf0ac50b7226bd4f73b4b">ClientHandler</a> (const <a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;)</td></tr>
 <tr class="memitem:af4d8fe92cdf68d21547b68bf880a1565" id="r_af4d8fe92cdf68d21547b68bf880a1565"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4d8fe92cdf68d21547b68bf880a1565">operator=</a> (const <a class="el" href="classnetwork_1_1ClientHandler.html">ClientHandler</a> &amp;)</td></tr>
@@ -162,6 +164,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a14c98bbdaab9ee3eb7ba46b86e55288a" id="r_a14c98bbdaab9ee3eb7ba46b86e55288a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Response.html">http::Response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14c98bbdaab9ee3eb7ba46b86e55288a">response_</a></td></tr>
 <tr class="memitem:a5cad2fbd296f255256776f902714c6cd" id="r_a5cad2fbd296f255256776f902714c6cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1RequestParser.html">http::RequestParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cad2fbd296f255256776f902714c6cd">reqParser_</a></td></tr>
 <tr class="memitem:a78f16ecd8e9b1c6a4a936ddd979166f5" id="r_a78f16ecd8e9b1c6a4a936ddd979166f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78f16ecd8e9b1c6a4a936ddd979166f5">isKeepAlive_</a></td></tr>
+<tr class="memitem:a9df22e94b09f96f47f242b072da56e3a" id="r_a9df22e94b09f96f47f242b072da56e3a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9df22e94b09f96f47f242b072da56e3a">isDraining_</a></td></tr>
+<tr class="memitem:a6c5fb8d469fbb897ab0ecf65dfa29329" id="r_a6c5fb8d469fbb897ab0ecf65dfa29329"><td class="memItemLeft" align="right" valign="top">std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c5fb8d469fbb897ab0ecf65dfa29329">drainStartTime_</a></td></tr>
 <tr class="memitem:a70da422f15d34c3898e875c64457ce55" id="r_a70da422f15d34c3898e875c64457ce55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork_1_1ClientHandler_1_1SendBuffer.html">SendBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70da422f15d34c3898e875c64457ce55">rspBuffer_</a></td></tr>
 <tr class="memitem:a437af067ebd43cbd5a5233cdfd6646b8" id="r_a437af067ebd43cbd5a5233cdfd6646b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork_1_1ClientHandler_1_1CgiState.html">CgiState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a437af067ebd43cbd5a5233cdfd6646b8">cgiState_</a></td></tr>
 </table><table class="memberdecls">
@@ -416,6 +420,31 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a91b425dfb22aa5c1eeb01af1bcb6fd75" name="a91b425dfb22aa5c1eeb01af1bcb6fd75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b425dfb22aa5c1eeb01af1bcb6fd75">&#9670;&#160;</a></span>handleDraining()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::ClientHandler::handleDraining </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac6e60e3010378b6b044e29269a339141" name="ac6e60e3010378b6b044e29269a339141"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6e60e3010378b6b044e29269a339141">&#9670;&#160;</a></span>handleError()</h2>
 
@@ -538,6 +567,31 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handles outgoing data on the socket. </p>
+
+</div>
+</div>
+<a id="a538ac3b20554fe565c0a590e5ac2f7a3" name="a538ac3b20554fe565c0a590e5ac2f7a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538ac3b20554fe565c0a590e5ac2f7a3">&#9670;&#160;</a></span>initiateDraining()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::ClientHandler::initiateDraining </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -790,6 +844,28 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a6c5fb8d469fbb897ab0ecf65dfa29329" name="a6c5fb8d469fbb897ab0ecf65dfa29329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c5fb8d469fbb897ab0ecf65dfa29329">&#9670;&#160;</a></span>drainStartTime_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::time_t network::ClientHandler::drainStartTime_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a37e3f7e5c42cf45c36a03dc96e356106" name="a37e3f7e5c42cf45c36a03dc96e356106"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37e3f7e5c42cf45c36a03dc96e356106">&#9670;&#160;</a></span>headersSent_</h2>
 
@@ -828,6 +904,28 @@ Additional Inherited Members</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9df22e94b09f96f47f242b072da56e3a" name="a9df22e94b09f96f47f242b072da56e3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df22e94b09f96f47f242b072da56e3a">&#9670;&#160;</a></span>isDraining_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool network::ClientHandler::isDraining_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

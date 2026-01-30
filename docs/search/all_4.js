@@ -18,5 +18,6 @@ var searchData=
   ['dispatch_15',['dispatch',['../classhttp_1_1Router.html#afeec6462abf61f2debfc94865b204ae0',1,'http::Router']]],
   ['dispatcher_5f_16',['dispatcher_',['../classcore_1_1Server.html#a4f77cffca29d16f0b9f41c8f279589e7',1,'core::Server']]],
   ['displaycurrenttoken_17',['displayCurrentToken',['../classconfig_1_1Parser.html#af5c88512d33330c718ea50a5729b9224',1,'config::Parser']]],
-  ['done_18',['DONE',['../classhttp_1_1ChunkedBodyParser.html#a9a9d01bedcba8dc7fc2badf0af87fc67a1a2f8aeabe67c3dc3ccd34a9796dda97',1,'http::ChunkedBodyParser']]]
+  ['done_18',['DONE',['../classhttp_1_1ChunkedBodyParser.html#a9a9d01bedcba8dc7fc2badf0af87fc67a1a2f8aeabe67c3dc3ccd34a9796dda97',1,'http::ChunkedBodyParser']]],
+  ['drainstarttime_5f_19',['drainStartTime_',['../classnetwork_1_1ClientHandler.html#a6c5fb8d469fbb897ab0ecf65dfa29329',1,'network::ClientHandler']]]
 ];
