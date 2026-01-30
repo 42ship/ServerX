@@ -12,7 +12,7 @@ template <typename T> std::string toString(T const &v) {
 
 template <typename T> T fromString(std::string const &str) {
     std::istringstream ss(str);
-    T ret;
+    T ret = T();
     ss >> ret;
     return ret;
 }

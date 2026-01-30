@@ -137,7 +137,7 @@ Block &Block::add(std::string const &key, std::string const &v1, std::string con
     return *this;
 }
 
-Block &Block::add(std::string const &key, int value) {
+Block &Block::add(std::string const &key, size_t value) {
     ArgumentVector v;
     v.push_back(new Integer(value));
     add(key, v);
@@ -168,7 +168,7 @@ Block &Block::root(std::string const &root) {
 }
 
 Block &Block::maxBodySize(size_t size) {
-    add("client_max_body_size", static_cast<int>(size));
+    add("client_max_body_size", size);
     return *this;
 }
 
