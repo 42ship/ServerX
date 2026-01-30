@@ -51,6 +51,7 @@ public:
     Block &add(std::string const &key, ParsedDirectiveArgs const &args);
     Block &add(std::string const &key, ArgumentVector const &values);
     Block &add(std::string const &key, ArgumentPtr value);
+    Block &add(std::string const &key, int value);
 
     std::vector<std::string> getRawValues(std::string const &key) const;
 
@@ -89,6 +90,7 @@ public:
     Block &root(std::string const &);
 
     size_t maxBodySize() const;
+    Block &maxBodySize(size_t);
 
 protected:
     std::string name_;        //!< The name of the block (e.g., "server", "location").

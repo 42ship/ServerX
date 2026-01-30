@@ -137,6 +137,13 @@ Block &Block::add(std::string const &key, std::string const &v1, std::string con
     return *this;
 }
 
+Block &Block::add(std::string const &key, int value) {
+    ArgumentVector v;
+    v.push_back(new Integer(value));
+    add(key, v);
+    return *this;
+}
+
 std::string Block::root() const { return has("root") ? getFirstRawValue("root") : ""; }
 
 std::string const &Block::name() const { return name_; }
@@ -157,6 +164,11 @@ Block &Block::root(std::string const &root) {
         }
     } else
         add("root", root);
+    return *this;
+}
+
+Block &Block::maxBodySize(size_t size) {
+    add("max_body_size", static_cast<int>(size));
     return *this;
 }
 

@@ -10,6 +10,7 @@
 #include "../test_utils.hpp"
 #include "config/LocationBlock.hpp"
 #include "config/ServerBlock.hpp"
+#include "config/arguments/Integer.hpp"
 #include "config/arguments/String.hpp"
 #include "http/Handler.hpp"
 #include "http/MimeTypes.hpp"
@@ -28,10 +29,7 @@ static LocationBlock createUploadLocation(const string &root, const string &path
     LocationBlock loc;
     loc.path(path);
     loc.add("root", root);
-
-    ArgumentVector args;
-    args.push_back(new String(uploadPath));
-    loc.add("upload_path", args);
+    loc.add("upload_path", uploadPath);
 
     return loc;
 }
@@ -47,8 +45,8 @@ static ServerBlock createServer(size_t max_body_size, const LocationBlock &locat
     ServerBlock server;
     server.port(8080);
     server.address("localhost");
-    server.add("max_body_size", toString(max_body_size));
-    server.maxBodySize();
+    server.maxBodySize(max_body_size);
+
     server.root("test_www");
     server.addLocation(location);
     return server;
