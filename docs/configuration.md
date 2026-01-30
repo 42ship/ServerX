@@ -37,9 +37,11 @@ which they can be used.
 | [`listen`](./directives/listen.md)           | `server`             | Specifies the port and address to listen on. |
 | [`server_name`](./directives/server_name.md) | `server`             | Sets the names of the virtual server.        |
 | [`root`](./directives/root.md)               | `server`, `location` | Sets the root directory for requests.        |
-| [`index`](./directives/index.md)             | `location`           | ---                                          |
+| [`index`](./directives/index.md)             | `location`, `server` | Sets the default file(s) to look for when a directory is requested. |
 | [`upload_path`](./directives/upload_path.md) | `location` | Sets the upload directory for incoming file requests. |
-| [`upload_file_size`](./directives/upload_file_size.md) | `server` | Defines the maximum allowed upload size in MiB. |
+| [`client_max_body_size`](./directives/client_max_body_size.md) | `server`, `location` | Defines the maximum allowed body size in bytes (default), or with k, m, g suffixes. |
+| [`allow_methods`](./directives/allow_methods.md) | `server`, `location` | Restricts allowed HTTP methods (GET, POST, DELETE). |
+| [`cgi_pass`](./directives/cgi_pass.md)       | `location` | Passes requests to a CGI script or interpreter. |
 | [`alias`](./directives/alias.md) | `location` | Replaces a location's path with a new filesystem path. |
 | [`error_page`](./directives/error_page.md) | `server`, `location` | Defines custom error pages for specific HTTP status codes. |
 | [`return`](./directives/return.md) | `location`, `server` | Returns the specified status to the client. |

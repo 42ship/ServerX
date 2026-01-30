@@ -4,7 +4,7 @@
 
 namespace config {
 
-class UploadPathDirective : public IDirective {
+class ServerNameDirective : public IDirective {
 public:
     void process(Block &b, ParsedDirectiveArgs const &args) const;
     std::string const &getName() const { return name_; }

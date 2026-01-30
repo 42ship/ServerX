@@ -168,7 +168,7 @@ Block &Block::root(std::string const &root) {
 }
 
 Block &Block::maxBodySize(size_t size) {
-    add("max_body_size", static_cast<int>(size));
+    add("client_max_body_size", static_cast<int>(size));
     return *this;
 }
 
@@ -200,7 +200,7 @@ std::ostream &operator<<(std::ostream &o, Block const &b) {
 }
 
 size_t Block::maxBodySize() const {
-    std::string const key = "max_body_size";
+    std::string const key = "client_max_body_size";
     if (!has(key))
         return 0;
     ArgumentVector const &argv = get(key);

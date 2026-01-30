@@ -180,12 +180,26 @@ void CGIHandler::fork() {
 void CGIHandler::buildArgv() {
     std::string script_path = req_.resolvePath();
     if (req_.location()->has("cgi_pass")) {
-        std::vector<std::string> const &cgi_pass = req_.location()->get("cgi_pass", req_);
-        if (!cgi_pass.empty()) {
-            argv_.push_back(cgi_pass[0]); // The interpreter (e.g., python)
-            argv_.push_back(script_path); // The script
-        } else {
+        std::vector<std::string> const &cgi_pass = req_.location()->getRawValues("cgi_pass");
+        if (cgi_pass.empty() || (cgi_pass.size() == 1 && cgi_pass[0] == "enabled")) {
+            // Case 0: enabled but no interpreter specified
             argv_.push_back(script_path);
+        } else if (cgi_pass.size() == 1) {
+            // Case 1: single interpreter specified for all files
+            argv_.push_back(cgi_pass[0]);
+            argv_.push_back(script_path);
+        } else {
+            // Case 2: extension mapping (extension, interpreter)
+            std::string ext = utils::getFileExtension(script_path);
+            if (!ext.empty() && ext[0] != '.') {
+                ext = "." + ext;
+            }
+            if (!ext.empty() && ext == cgi_pass[0]) {
+                argv_.push_back(cgi_pass[1]);
+                argv_.push_back(script_path);
+            } else {
+                argv_.push_back(script_path);
+            }
         }
     } else {
         argv_.push_back(script_path);

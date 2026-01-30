@@ -19,15 +19,13 @@ public:
 private:
     Validator();
     explicit Validator(bool perform_fs_checks = true);
-    void validateServer(ServerBlock &b) const;
-    void validateLocation(LocationBlock &b, ServerBlock const &server) const;
 
-    static void validateListen(ServerBlock const &b);
-    void validateRoot(Block &b) const;
-    static void validateServerNames(ServerBlock const &b);
+    static void validateServer(ServerBlock &b);
+    static void validateLocation(LocationBlock &b, ServerBlock const &server);
+    static void validateGlobalConstraints(ServerBlockVec const &servers);
+
+    static void validateRoot(Block &b);
     static void validateIndex(Block &b);
-
-    static void locationCompleteRoot(LocationBlock &l, ServerBlock const &s);
 
     bool perform_fs_checks_;
 };

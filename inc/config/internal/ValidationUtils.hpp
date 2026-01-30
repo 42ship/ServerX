@@ -1,35 +1,71 @@
 #pragma once
-
 #include "common/string.hpp"
+#include "config/Block.hpp"
 #include "config/internal/ConfigException.hpp"
 #include "config/internal/Token.hpp"
+#include "config/internal/types.hpp"
+#include <string>
+
+namespace config {
 
 /**
- * @def EXPECT_ARG_COUNT(args, expected, name)
- * @brief Validates the number of arguments for a directive.
+ * @class ValidatorUtils
+ * @brief Static utility class for common configuration validation tasks.
  */
-#define EXPECT_ARG_COUNT(args, expected, name)                                                     \
-    if ((args).size() != (expected)) {                                                             \
-        throw config::ConfigError("'" + (name) + "' directive requires exactly " +                 \
-                                  utils::toString(expected) + " argument(s).");                    \
+class ValidatorUtils {
+public:
+    /**
+     * @brief Verifies that the number of arguments is within the inclusive range [min, max].
+     * @throws ConfigError if the count is outside the range.
+     */
+    static void checkArgs(ParsedDirectiveArgs const &args, size_t min, size_t max,
+                          std::string const &name) {
+        if (args.size() < min || args.size() > max) {
+            std::string msg = "'" + name + "' directive requires ";
+            if (min == max) {
+                msg += "exactly " + utils::toString(min);
+            } else {
+                msg += "between " + utils::toString(min) + " and " + utils::toString(max);
+            }
+            msg += " argument(s).";
+            throw ConfigError(msg);
+        }
     }
 
-/**
- * @def EXPECT_ARG_TYPE(arg, expected_type, name)
- * @brief Validates the type of a specific argument.
- */
-/*
-#define EXPECT_ARG_TYPE(arg, expected_type, name) \
-    if ((arg)->getType() != (expected_type)) { \
-        throw config::ConfigError("Invalid argument type for '" + (name) + "': expected " + \
-                                  config::getArgumentTypeName(expected_type) + " but got " + \
-                                  config::getArgumentTypeName((arg)->getType()) + \
-                                  " with a value of '" + (arg)->getRawValue() + "'."); \
+    /**
+     * @brief Verifies that a specific argument matches the expected token type.
+     * @throws ConfigError if the type does not match.
+     */
+    static void checkType(Token const &arg, TokenType expectedType, std::string const &name) {
+        if (arg.type != expectedType) {
+            throw ConfigError("'" + name + "' expected " + getTokenTypeName(expectedType) + ".");
+        }
     }
 
-#define GET_ARG_AS(var_name, type, arg_ptr, directive_name) \
-    type *var_name = dynamic_cast<type *>((arg_ptr)); \
-    if (!(var_name)) { \
-        throw config::ConfigError("Internal error for '" + (directive_name) + \
-                                  "': expected argument to be of type " #type "."); \
-    }*/
+    /**
+     * @brief Verifies if the directive is being processed within an allowed context.
+     * @throws ConfigError if the block type is not in the allowed list.
+     */
+    static void checkContext(Block const &block, std::string const &allowedContexts,
+                             std::string const &name) {
+        if (allowedContexts.find(block.name()) == std::string::npos) {
+            throw ConfigError("'" + name + "' directive is not allowed in: " + block.name());
+        }
+    }
+
+private:
+    static std::string getTokenTypeName(TokenType type) {
+        switch (type) {
+        case NUMBER:
+            return "NUMBER";
+        case IDENTIFIER:
+            return "IDENTIFIER";
+        case STRING:
+            return "STRING";
+        default:
+            return "value";
+        }
+    }
+};
+
+} // namespace config

@@ -6,7 +6,7 @@ Specifies the default file(s) to serve when a directory is requested.
 | ----------- | --------------------------------- |
 | **Syntax**  | `index [file1] [file2] ...;`      |
 | **Default** | `---`                             |
-| **Context** | `location`                        |
+| **Context** | `server`, `location`              |
 
 ---
 
