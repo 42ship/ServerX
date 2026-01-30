@@ -7,7 +7,9 @@
 #include <sstream>
 #include <unistd.h>
 
-namespace http::upload {
+namespace http {
+
+namespace upload {
 
 UploadValidationResult UploadValidationResult::ok(const std::string &file) {
     UploadValidationResult res;
@@ -125,4 +127,5 @@ UploadValidationResult validateUploadPath(const std::string &path) {
     return UploadValidationResult::ok();
 }
 
-} // namespace http::upload
+} // namespace upload
+} // namespace http
