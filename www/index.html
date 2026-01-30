@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Control Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>🚀 Webserv Control Panel</h1>
+
+    <div class="grid">
+        <!-- CGI Section -->
+        <section>
+            <h2>🛠 CGI Tests</h2>
+            <div class="link-list">
+                <a href="/cgi-bin/env.sh">🔍 View Environment Variables (env.sh)</a>
+                <a href="/cgi-bin/gb.py">⬇️ Download 11GB Stream (gb.py)</a>
+            </div>
+            <hr>
+            <form action="/cgi-bin/echo.sh" method="POST">
+                <p><strong>POST Echo Test:</strong></p>
+                <input type="text" name="data" placeholder="Type something to echo via echo.sh...">
+                <button type="submit" class="btn">Send POST Request</button>
+            </form>
+        </section>
+
+        <!-- File Upload Section -->
+        <section>
+            <h2>📤 File Management</h2>
+            <p>Upload files to <code>www/uploads/</code></p>
+            <form action="/uploads/" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <button type="submit" class="btn">Upload File</button>
+            </form>
+            <p><a href="/uploads/" class="btn btn-secondary" style="margin-top: 1rem;">📂 Browse /uploads/
+                    (Autoindex)</a></p>
+        </section>
+    </div>
+
+    <section>
+        <h2>📄 Navigation & Debugging</h2>
+        <div class="link-list">
+            <a href="/docs/">📚 Documentation (Alias test)</a>
+            <a href="/img/">🖼 Image Directory (Root test)</a>
+            <a href="/non-existent">🚫 404 Error Page Test</a>
+        </div>
+    </section>
+
+    <footer style="text-align: center; color: #888; margin-top: 2rem;">
+        <p>Webserv v1.0 | <a href="https://github.com/42ship/ServerX" style="color: #888;">Project Source</a></p>
+    </footer>
+</body>
+
+</html>
