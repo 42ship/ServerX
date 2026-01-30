@@ -61,6 +61,19 @@ void Lexer::handlePunctuation() {
 bool Lexer::isPunctuation() const { return ch_ == '#' || ch_ == '{' || ch_ == '}' || ch_ == ';'; }
 
 bool Lexer::handleValue() {
+    if (ch_ == '"') {
+        readChar();
+        size_t start_pos = pos_ - 1;
+        while (ch_ && ch_ != '"') {
+            readChar();
+        }
+        if (!ch_)
+            return false;
+        pushToken(STRING, content_.substr(start_pos, (pos_ - 1) - start_pos));
+        readChar();
+        return true;
+    }
+
     size_t start_pos = pos_ - 1;
     while (ch_ && !isPunctuation() && !std::isspace(ch_)) {
         readChar();

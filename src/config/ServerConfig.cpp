@@ -42,12 +42,27 @@ void ServerConfig::build(std::string const &content, bool perform_fs_checks) {
 ServerBlockMap const &ServerConfig::getServersMap() const { return servers_; }
 
 ServerBlock const *ServerConfig::getServer(int port, http::Request const &req) const {
-    std::string const &host = req.headers().get("Host");
-    (void)host;
+    std::string host = req.headers().get("Host");
+    size_t colon_pos = host.find(':');
+    if (colon_pos != std::string::npos) {
+        host.resize(colon_pos);
+    }
+
     ServerBlockMap::const_iterator it = servers_.find(port);
     if (it == servers_.end())
         return NULL;
-    return &it->second[0];
+
+    ServerBlockVec const &blocks = it->second;
+    for (size_t i = 0; i < blocks.size(); ++i) {
+        if (blocks[i].has("server_name")) {
+            std::vector<std::string> names = blocks[i].getRawValues("server_name");
+            if (details::matchServerName(names, host)) {
+                return &blocks[i];
+            }
+        }
+    }
+
+    return &blocks[0];
 }
 
 void ServerConfig::addServer(ServerBlock const &server) {
