@@ -6,6 +6,7 @@
 #include "http/RequestParser.hpp"
 #include "http/Response.hpp"
 #include "http/Router.hpp"
+#include <ctime>
 
 namespace network {
 
@@ -103,6 +104,8 @@ private:
 
     // Response State
     bool isKeepAlive_;
+    bool isDraining_;
+    std::time_t drainStartTime_;
     SendBuffer rspBuffer_;
     CgiState cgiState_;
 
@@ -111,6 +114,7 @@ private:
 private:
     /// @brief Handles incoming data on the socket.
     void handleRead();
+    void handleDraining();
     /// @brief Handles outgoing data on the socket.
     void handleStaticResponseWrite();
     void handleCgiResponseWrite();
@@ -127,6 +131,7 @@ private:
     void resetForNewRequest();
     /// @brief Closes the connection and removes it from the dispatcher.
     void closeConnection();
+    void initiateDraining();
     void finalizeConnection();
 
     ClientHandler(const ClientHandler &);

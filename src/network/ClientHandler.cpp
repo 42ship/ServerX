@@ -9,6 +9,7 @@
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 #include <string>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -84,6 +85,8 @@ ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAd
       router_(router),
       reqParser_(request_, IO_BUFFER_SIZE),
       isKeepAlive_(false),
+      isDraining_(false),
+      drainStartTime_(0),
       rspBuffer_(IO_BUFFER_SIZE) {
 
     resetForNewRequest();
@@ -108,7 +111,10 @@ void ClientHandler::handleEvent(uint32_t events) {
         return;
     }
     if (events & EPOLLIN) {
-        handleRead();
+        if (isDraining_)
+            handleDraining();
+        else
+            handleRead();
     }
     if (events & EPOLLOUT) {
         if (cgiState_.handler)
@@ -134,7 +140,27 @@ void ClientHandler::handleRead() {
         return;
     }
 
+    if (reqParser_.state() == http::RequestParser::ERROR) {
+        return;
+    }
+
     handleRequestParsingState(reqParser_.feed(buffer, static_cast<size_t>(count)));
+}
+
+void ClientHandler::handleDraining() {
+    if (std::time(NULL) - drainStartTime_ > 5) {
+        LOG_SDEBUG("Draining timed out.");
+        closeConnection();
+        return;
+    }
+
+    char buffer[IO_BUFFER_SIZE];
+    ssize_t count = ::recv(clientFd_, buffer, IO_BUFFER_SIZE, 0);
+
+    if (count <= 0) {
+        closeConnection();
+        return;
+    }
 }
 
 void ClientHandler::handleRequestParsingState(http::RequestParser::State state) {
@@ -341,8 +367,9 @@ void ClientHandler::handleCgiResponseWrite() {
 void ClientHandler::handleError(http::HttpStatus status) {
     LOG_SWARN("Handling error: " << status);
     if (headersSent_) {
-        LOG_SWARN("Headers already sent, cannot send error page. Closing connection.");
-        closeConnection();
+        // If we already started sending a response, don't try to send another one.
+        // This prevents the RST issue when multiple chunks of a large payload trigger the same
+        // error.
         return;
     }
 
@@ -350,13 +377,14 @@ void ClientHandler::handleError(http::HttpStatus status) {
         cgiState_.remove();
     }
 
+    isKeepAlive_ = false;
     rspBuffer_.reset();
     response_.clear();
     response_.status(status);
 
     router_.handleError(request_, response_);
 
-    response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
+    response_.headers().add("Connection", "close");
     response_.buildHeaders(rspBuffer_.buffer);
     headersSent_ = true;
 
@@ -370,8 +398,19 @@ void ClientHandler::finalizeConnection() {
         EventDispatcher::getInstance().enableRead(this);
         EventDispatcher::getInstance().disableWrite(this);
     } else {
-        closeConnection();
+        initiateDraining();
     }
+}
+
+void ClientHandler::initiateDraining() {
+    if (isDraining_)
+        return;
+    LOG_SDEBUG("Slowing down for draining.");
+    isDraining_ = true;
+    drainStartTime_ = std::time(NULL);
+    ::shutdown(clientFd_, SHUT_WR);
+    EventDispatcher::getInstance().disableWrite(this);
+    EventDispatcher::getInstance().enableRead(this);
 }
 
 void ClientHandler::closeConnection() {
@@ -388,6 +427,8 @@ void ClientHandler::resetForNewRequest() {
     response_.clear();
     request_.clear();
     headersSent_ = false;
+    isDraining_ = false;
+    drainStartTime_ = 0;
 }
 
 std::string ClientHandler::getLogSignature() const {
