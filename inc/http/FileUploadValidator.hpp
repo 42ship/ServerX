@@ -7,7 +7,9 @@
 
 #include <string>
 
-namespace http::upload {
+namespace http {
+
+namespace upload {
 
 /**
  * @brief Represents the result of a validation or parsing operation.
@@ -49,4 +51,5 @@ UploadValidationResult parseFilename(Request const &req, MimeTypes const &mime);
 
 UploadValidationResult validateUploadPath(const std::string &path);
 
-} // namespace http::upload
+} // namespace upload
+} // namespace http
