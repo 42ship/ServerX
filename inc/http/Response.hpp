@@ -55,7 +55,7 @@ public:
      * Cleans up any existing body.
      * @return A reference to this object for chaining.
      */
-    Response &setNoBody();
+    Response &setNoBody(bool removeContentHeaders = true);
 
     /**
      * @brief Sets the response body from an in-memory string.

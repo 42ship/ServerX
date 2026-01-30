@@ -42,6 +42,8 @@ RequestStartLine::Method RequestStartLine::matchHttpMethod(std::string const &s)
         return PUT;
     if (s == "DELETE")
         return DELETE;
+    if (s == "HEAD")
+        return HEAD;
     return RequestStartLine::UNKNOWN;
 }
 
@@ -55,6 +57,8 @@ char const *RequestStartLine::methodToString(Method m) {
         return "PUT";
     case DELETE:
         return "DELETE";
+    case HEAD:
+        return "HEAD";
     default:
         return "UNKNOWN";
     }

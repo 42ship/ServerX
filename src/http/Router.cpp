@@ -57,11 +57,17 @@ void Router::dispatch(int port, Request const &request, Response &response) cons
 
     if (response.status() < 400) {
         LOG_TRACE("Router::dispatch: success (status=" << response.status() << ")");
+        if (request.method() == RequestStartLine::HEAD) {
+            response.setNoBody(false);
+        }
         return;
     }
 
     LOG_DEBUG("Router::dispatch: formatting error (status=" << response.status() << ")");
     handleError(request, response, this->mimeTypes_);
+    if (request.method() == RequestStartLine::HEAD) {
+        response.setNoBody(false);
+    }
 }
 
 void Router::handleError(Request const &request, Response &response, MimeTypes const &mimeTypes) {
@@ -104,6 +110,9 @@ void Router::executeHandler(Request const &request, Response &response) const {
     } else if (request.method() == RequestStartLine::POST) {
         LOG_STRACE(ctx << "Dispatched to FileUploadHandler");
         FileUploadHandler::handle(request, response, mimeTypes_);
+    } else if (request.method() == RequestStartLine::HEAD) {
+        LOG_STRACE(ctx << "Dispatched to HeadHeaderHandler");
+        HeadHeaderHandler::handle(request, response, mimeTypes_);
     } else if (loc->autoIndex()) {
         LOG_STRACE(ctx << "Dispatched to DirectoryListingHandler");
         DirectoryListingHandler::handle(request, response, mimeTypes_);

@@ -25,6 +25,13 @@ public:
     static void handle(Request const &, Response &, MimeTypes const &);
 };
 
+class HeadHeaderHandler : public IHandler
+{
+public:
+    static void handle(Request const &, Response &, MimeTypes const &);
+};
+
+
 class ReturnHandler : public IHandler {
 public:
     static void handle(Request const &, Response &);

@@ -11,11 +11,13 @@ Response::Response() : body_(NULL) {}
 Response::~Response() { delete body_; }
 
 IResponseBody *Response::body() const { return body_; }
-Response &Response::setNoBody() {
+Response &Response::setNoBody(bool removeContentHeaders) {
     delete body_;
     body_ = NULL;
-    headers_.erase("Content-Length");
-    headers_.erase("Content-Type");
+    if (removeContentHeaders) {
+        headers_.erase("Content-Length");
+        headers_.erase("Content-Type");
+    }
     return *this;
 }
 

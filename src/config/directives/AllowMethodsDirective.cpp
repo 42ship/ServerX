@@ -11,9 +11,9 @@ void AllowMethodsDirective::process(Block &b, ParsedDirectiveArgs const &args) c
 
     for (size_t i = 0; i < args.size(); i++) {
         std::string const &method = args[i].literal;
-        if (method != "GET" && method != "POST" && method != "DELETE") {
+        if (method != "GET" && method != "POST" && method != "DELETE" && method != "HEAD") {
             throw ConfigError("'" + name_ + "' invalid method: " + method +
-                              ". Allowed: GET, POST, DELETE.");
+                              ". Allowed: GET, POST, DELETE, HEAD.");
         }
     }
 
