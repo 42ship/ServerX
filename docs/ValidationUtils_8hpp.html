@@ -92,51 +92,23 @@ $(function(){initNavTree('ValidationUtils_8hpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="string_8hpp_source.html">common/string.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Block_8hpp_source.html">config/Block.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ConfigException_8hpp_source.html">config/internal/ConfigException.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Token_8hpp_source.html">config/internal/Token.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8hpp_source.html">config/internal/types.hpp</a>&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div>
 <p><a href="ValidationUtils_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a424e3a7a86c7b17aa4117ce670ab9e6e" id="r_a424e3a7a86c7b17aa4117ce670ab9e6e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a424e3a7a86c7b17aa4117ce670ab9e6e">EXPECT_ARG_COUNT</a>(args,  expected,  name)</td></tr>
-<tr class="memdesc:a424e3a7a86c7b17aa4117ce670ab9e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the number of arguments for a directive.  <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:config_3A_3AValidatorUtils" id="r_config_3A_3AValidatorUtils"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconfig_1_1ValidatorUtils.html">config::ValidatorUtils</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static utility class for common configuration validation tasks.  <a href="classconfig_1_1ValidatorUtils.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:config" id="r_config"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconfig.html">config</a></td></tr>
 </table>
-<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
-<a id="a424e3a7a86c7b17aa4117ce670ab9e6e" name="a424e3a7a86c7b17aa4117ce670ab9e6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a424e3a7a86c7b17aa4117ce670ab9e6e">&#9670;&#160;</a></span>EXPECT_ARG_COUNT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define EXPECT_ARG_COUNT</td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>args</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>expected</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> ((args).size() != (expected)) {                                                             \</div>
-<div class="line">        <span class="keywordflow">throw</span> <a class="code hl_class" href="classconfig_1_1ConfigError.html">config::ConfigError</a>(<span class="stringliteral">&quot;&#39;&quot;</span> + (name) + <span class="stringliteral">&quot;&#39; directive requires exactly &quot;</span> +                 \</div>
-<div class="line">                                  <a class="code hl_function" href="namespaceutils.html#aa829fef424a4463ddfc6488b969755a2">utils::toString</a>(expected) + <span class="stringliteral">&quot; argument(s).&quot;</span>);                    \</div>
-<div class="line">    }</div>
-<div class="ttc" id="aclassconfig_1_1ConfigError_html"><div class="ttname"><a href="classconfig_1_1ConfigError.html">config::ConfigError</a></div><div class="ttdef"><b>Definition</b> ConfigException.hpp:26</div></div>
-<div class="ttc" id="anamespaceutils_html_aa829fef424a4463ddfc6488b969755a2"><div class="ttname"><a href="namespaceutils.html#aa829fef424a4463ddfc6488b969755a2">utils::toString</a></div><div class="ttdeci">std::string toString(T const &amp;v)</div><div class="ttdef"><b>Definition</b> string.hpp:7</div></div>
-</div><!-- fragment -->
-<p>Validates the number of arguments for a directive. </p>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

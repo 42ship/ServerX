@@ -30,12 +30,17 @@ var hierarchy =
       [ "config::Variable", "classconfig_1_1Variable.html", null ]
     ] ],
     [ "config::IDirective", "classconfig_1_1IDirective.html", [
+      [ "config::AliasDirective", "classconfig_1_1AliasDirective.html", null ],
+      [ "config::AllowMethodsDirective", "classconfig_1_1AllowMethodsDirective.html", null ],
       [ "config::AutoIndexDirective", "classconfig_1_1AutoIndexDirective.html", null ],
+      [ "config::CgiPassDirective", "classconfig_1_1CgiPassDirective.html", null ],
+      [ "config::ClientMaxBodySize", "classconfig_1_1ClientMaxBodySize.html", null ],
       [ "config::ErrorPageDirective", "classconfig_1_1ErrorPageDirective.html", null ],
+      [ "config::IndexDirective", "classconfig_1_1IndexDirective.html", null ],
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
-      [ "config::MaxBodySize", "classconfig_1_1MaxBodySize.html", null ],
       [ "config::ReturnDirective", "classconfig_1_1ReturnDirective.html", null ],
       [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ],
+      [ "config::ServerNameDirective", "classconfig_1_1ServerNameDirective.html", null ],
       [ "config::UploadPathDirective", "classconfig_1_1UploadPathDirective.html", null ]
     ] ],
     [ "network::IEventHandler", "classnetwork_1_1IEventHandler.html", [
@@ -79,5 +84,6 @@ var hierarchy =
     [ "utils::TempFile", "classutils_1_1TempFile.html", null ],
     [ "config::Token", "structconfig_1_1Token.html", null ],
     [ "http::upload::UploadValidationResult", "structhttp_1_1upload_1_1UploadValidationResult.html", null ],
-    [ "config::Validator", "classconfig_1_1Validator.html", null ]
+    [ "config::Validator", "classconfig_1_1Validator.html", null ],
+    [ "config::ValidatorUtils", "classconfig_1_1ValidatorUtils.html", null ]
 ];

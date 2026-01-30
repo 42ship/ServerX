@@ -93,8 +93,8 @@ $(function(){initNavTree('MimeTypes_8hpp_source.html','',''); });
 <div class="contents">
 <a href="MimeTypes_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;time.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacehttp.html">http</a> {</div>
@@ -121,7 +121,7 @@ $(function(){initNavTree('MimeTypes_8hpp_source.html','',''); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">/*map&lt;extensoin, type&gt; mimeTypes_*/</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff">   83</a></span>    std::map&lt;std::string, std::string&gt; <a class="code hl_variable" href="classhttp_1_1MimeTypes.html#aa83501be3086303528b56d0a7436fcff">mimeTypes_</a>; <span class="comment">// Map of file extensions to MIME types</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classhttp_1_1MimeTypes.html#a0d9384e09a4ec6a6d49d26194d9092b5">   84</a></span>    std::map&lt;std::string, std::string&gt; <a class="code hl_variable" href="classhttp_1_1MimeTypes.html#a0d9384e09a4ec6a6d49d26194d9092b5">mimeExt_</a>; <span class="comment">// Map of file extensions to MIME types</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classhttp_1_1MimeTypes.html#a0d9384e09a4ec6a6d49d26194d9092b5">   84</a></span>    std::map&lt;std::string, std::string&gt; <a class="code hl_variable" href="classhttp_1_1MimeTypes.html#a0d9384e09a4ec6a6d49d26194d9092b5">mimeExt_</a>;   <span class="comment">// Map of file extensions to MIME types</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classhttp_1_1MimeTypes.html#a662260f92f72a7acd8f0946913ef475f">   85</a></span>    std::string <a class="code hl_variable" href="classhttp_1_1MimeTypes.html#a662260f92f72a7acd8f0946913ef475f">filePath_</a>;                         <span class="comment">// Path to the MIME types configuration file</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0">   86</a></span>    <span class="keyword">struct </span>timespec <a class="code hl_variable" href="classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0">rtime_</a>;                        <span class="comment">// last reload time</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>

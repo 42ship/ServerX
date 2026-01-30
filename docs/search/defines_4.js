@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['gray_0',['GRAY',['../Logger_8cpp.html#ae5f70677050eecd8909e0248e07b9e73',1,'Logger.cpp']]],
-  ['green_1',['GREEN',['../Logger_8cpp.html#acfbc006ea433ad708fdee3e82996e721',1,'Logger.cpp']]]
+  ['log_5fcdebug_0',['LOG_CDEBUG',['../Logger_8hpp.html#adf817098d083e446323540c5fda406dd',1,'Logger.hpp']]],
+  ['log_5fcerror_1',['LOG_CERROR',['../Logger_8hpp.html#ac11ddf6681849ec92f5a83dfbfdbcdef',1,'Logger.hpp']]],
+  ['log_5fcfatal_2',['LOG_CFATAL',['../Logger_8hpp.html#ab5dce19d2028affc998f6e0ad1237d80',1,'Logger.hpp']]],
+  ['log_5fcinfo_3',['LOG_CINFO',['../Logger_8hpp.html#ad5e00c6d2cce2b0ef3e926f0bfd817fa',1,'Logger.hpp']]],
+  ['log_5fcmsg_4',['LOG_CMSG',['../Logger_8hpp.html#a6616f6cb0878173f63eee07af9dc5fb2',1,'Logger.hpp']]],
+  ['log_5fctrace_5',['LOG_CTRACE',['../Logger_8hpp.html#a930d677993c4b1789ae12d6f653cb2f4',1,'Logger.hpp']]],
+  ['log_5fcwarn_6',['LOG_CWARN',['../Logger_8hpp.html#a5b7da626a9a6f8c52b106c6547d52d8a',1,'Logger.hpp']]],
+  ['log_5fdebug_7',['LOG_DEBUG',['../Logger_8hpp.html#a2332264037abe02c8041a498b2fa1627',1,'Logger.hpp']]],
+  ['log_5ferror_8',['LOG_ERROR',['../Logger_8hpp.html#a7ebf4c3b4fb05d6f9094089ded75cbdd',1,'Logger.hpp']]],
+  ['log_5ffatal_9',['LOG_FATAL',['../Logger_8hpp.html#a93798ef2c521b7b37d1e21db5b1fcf23',1,'Logger.hpp']]],
+  ['log_5finfo_10',['LOG_INFO',['../Logger_8hpp.html#ac8e803773221119947b55f6ae85a9c63',1,'Logger.hpp']]],
+  ['log_5fmsg_11',['LOG_MSG',['../Logger_8hpp.html#ab3cd2b163aa41c625f6a58f34087d495',1,'Logger.hpp']]],
+  ['log_5fsdebug_12',['LOG_SDEBUG',['../Logger_8hpp.html#a211a380d99d928e392953e1cc023e842',1,'Logger.hpp']]],
+  ['log_5fserror_13',['LOG_SERROR',['../Logger_8hpp.html#ae70f410c4e28730b30b66928533eb161',1,'Logger.hpp']]],
+  ['log_5fsfatal_14',['LOG_SFATAL',['../Logger_8hpp.html#a4fce0810ad2ca9780fe7fa206b8d1e30',1,'Logger.hpp']]],
+  ['log_5fsinfo_15',['LOG_SINFO',['../Logger_8hpp.html#a8dcf33af19f12d22bfa35089cb129c28',1,'Logger.hpp']]],
+  ['log_5fsmsg_16',['LOG_SMSG',['../Logger_8hpp.html#a1746c91f43f7898e1955b2e4ac9c5ff9',1,'Logger.hpp']]],
+  ['log_5fstrace_17',['LOG_STRACE',['../Logger_8hpp.html#a13335d9241f30f357306c5d086201375',1,'Logger.hpp']]],
+  ['log_5fswarn_18',['LOG_SWARN',['../Logger_8hpp.html#a47fab566b74f2db5c6a94220f5d1bec2',1,'Logger.hpp']]],
+  ['log_5ftrace_19',['LOG_TRACE',['../Logger_8hpp.html#a8868d1b203e1567a282d1b73fbd8d649',1,'Logger.hpp']]],
+  ['log_5fwarn_20',['LOG_WARN',['../Logger_8hpp.html#aeaf09e51c5a1f84078e5c6aa59dc48de',1,'Logger.hpp']]],
+  ['loglevel_21',['LOGLEVEL',['../Logger_8hpp.html#a6c6fd5e242df15a7a42e9b75d55d5d3c',1,'Logger.hpp']]]
 ];
