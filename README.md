@@ -63,16 +63,6 @@ Unit tests (if present) are in the `tests/` directory.
 make test
 ```
 
-## Project Structure
-
-- `src/` — Source files (.cpp)
-- `inc/` — Header files (.hpp)
-- `config/` — Example configuration files
-- `tests/` — Unit tests and test fixtures
-- `mk/` — Makefile modules
-- `docs/` — Additional documentation and directive guides
-- `www/` — Default document root
-
 ## Usage Examples
 
 ### Valid Configuration Directives
@@ -156,11 +146,12 @@ CGI execution is handled asynchronously to avoid blocking the main event loop. T
 
 ## Resources
 
-- **HTTP/1.1 Specification**: [RFC 2616](https://datatracker.ietf.org/doc/html/rfc2616) / [RFC 7230](https://tools.ietf.org/html/rfc7230)
-- **CGI Specification**: [RFC 3875](https://tools.ietf.org/html/rfc3875)
-- **Network Programming**: [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/)
-- **Linux Manuals**: [epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html)
-- **Design Inspiration**: [Nginx Documentation](https://nginx.org/en/docs/)
+- **HTTP/1.1 Specification**: [RFC 2616](https://datatracker.ietf.org/doc/html/rfc2616) / [RFC 7230](https://tools.ietf.org/html/rfc7230) — Defines the HTTP/1.1 protocol, including request/response structure and semantics.
+- **CGI Specification**: [RFC 3875](https://tools.ietf.org/html/rfc3875) — Outlines the Common Gateway Interface (CGI) standard for interfacing external applications with web servers.
+- **Network Programming**: [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/) — A beginner-friendly guide to socket programming and network fundamentals in C/C++.
+- **Linux Manuals**: [epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html) — Official Linux documentation for the epoll I/O multiplexing facility.
+- **Design Inspiration**: [Nginx Documentation](https://nginx.org/en/docs/) — Reference for server configuration, directives, and architecture ideas.
+- **Reactor Pattern**: https://www.dre.vanderbilt.edu/~schmidt/PDF/reactor-siemens.pdf — Academic paper describing the Reactor Pattern for event-driven programming.
 
 ### AI Usage
 Artificial Intelligence was utilized during development for:
