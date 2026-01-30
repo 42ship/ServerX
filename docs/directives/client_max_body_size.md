@@ -1,10 +1,4 @@
-# Directive: upload_file_size
-
-Sets the maximum allowed file size (in MiB) for uploaded files.
-
-|             |                                   |
-| ----------- | --------------------------------- |
-## client_max_body_size
+# Directive: client_max_body_size
 
 The `client_max_body_size` directive sets the maximum allowed size of the client request body.
 
@@ -50,14 +44,13 @@ server {
 }
 ```
 
-Any upload larger than 10 MiB will be rejected with `413 Request Entity Too Large`.
+Any request larger than 10 MiB will be rejected with `413 Request Entity Too Large`.
 
 ### Example 2: Combined with upload_path
 
 ```nginx
 server {
-
-    upload_file_size 5;
+    client_max_body_size 5M;
 
     location /img/ {
         upload_path img/uploads;
