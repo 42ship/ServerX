@@ -121,14 +121,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae1a7999d1b14299692a3df559463202e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the fully formatted start-line and headers to a buffer.  <br /></td></tr>
 <tr class="memitem:ad38cca72f10a441603cf0d035c2baf86" id="r_ad38cca72f10a441603cf0d035c2baf86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad38cca72f10a441603cf0d035c2baf86">status</a> (<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a> statusCode)</td></tr>
 <tr class="memdesc:ad38cca72f10a441603cf0d035c2baf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the response status and automatically syncs the reason phrase.  <br /></td></tr>
-<tr class="memitem:aeca713748b057c76dc87c1cbab6d8a0e" id="r_aeca713748b057c76dc87c1cbab6d8a0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeca713748b057c76dc87c1cbab6d8a0e">status</a> (<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a> statusCode, std::string const &amp;customError)</td></tr>
-<tr class="memdesc:aeca713748b057c76dc87c1cbab6d8a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the response status and automatically syncs the reason phrase.     <br /></td></tr>
+<tr class="memitem:a32177e926180e82e4fc962992c33d50d" id="r_a32177e926180e82e4fc962992c33d50d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32177e926180e82e4fc962992c33d50d">status</a> (<a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a> statusCode, std::string const &amp;<a class="el" href="#ac06f0783559045fa8e05a0ef2903331c">customMessage</a>)</td></tr>
+<tr class="memdesc:a32177e926180e82e4fc962992c33d50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the response status and automatically syncs the reason phrase.     <br /></td></tr>
 <tr class="memitem:a982e36b4a4f41327200b1c7c26f6f063" id="r_a982e36b4a4f41327200b1c7c26f6f063"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacehttp.html#a0efa96275274052910edb78dbb443d16">HttpStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a982e36b4a4f41327200b1c7c26f6f063">status</a> () const</td></tr>
 <tr class="memdesc:a982e36b4a4f41327200b1c7c26f6f063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status code.  <br /></td></tr>
 <tr class="memitem:af976d698c3b2f08322c7ee9710f7af2c" id="r_af976d698c3b2f08322c7ee9710f7af2c"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af976d698c3b2f08322c7ee9710f7af2c">protocol</a> () const</td></tr>
 <tr class="memdesc:af976d698c3b2f08322c7ee9710f7af2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current protocol string (e.g., "HTTP/1.1").  <br /></td></tr>
 <tr class="memitem:a93f59b06bdf565cf3324265a002b0d9d" id="r_a93f59b06bdf565cf3324265a002b0d9d"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93f59b06bdf565cf3324265a002b0d9d">reasonPhrase</a> () const</td></tr>
 <tr class="memdesc:a93f59b06bdf565cf3324265a002b0d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current reason phrase (e.g., "Not Found").  <br /></td></tr>
+<tr class="memitem:ac06f0783559045fa8e05a0ef2903331c" id="r_ac06f0783559045fa8e05a0ef2903331c"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac06f0783559045fa8e05a0ef2903331c">customMessage</a> () const</td></tr>
+<tr class="memdesc:ac06f0783559045fa8e05a0ef2903331c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the custom error message, if any.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -307,6 +309,25 @@ Private Attributes</h2></td></tr>
 
 <p>Resets the response to a default state, ready for reuse. Cleans up any existing body and resets headers and status. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to this object for chaining. </dd></dl>
+
+</div>
+</div>
+<a id="ac06f0783559045fa8e05a0ef2903331c" name="ac06f0783559045fa8e05a0ef2903331c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06f0783559045fa8e05a0ef2903331c">&#9670;&#160;</a></span>customMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string const  &amp; http::Response::customMessage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the custom error message, if any. </p>
 
 </div>
 </div>
@@ -596,8 +617,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aeca713748b057c76dc87c1cbab6d8a0e" name="aeca713748b057c76dc87c1cbab6d8a0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeca713748b057c76dc87c1cbab6d8a0e">&#9670;&#160;</a></span>status() <span class="overload">[3/3]</span></h2>
+<a id="a32177e926180e82e4fc962992c33d50d" name="a32177e926180e82e4fc962992c33d50d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32177e926180e82e4fc962992c33d50d">&#9670;&#160;</a></span>status() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -610,7 +631,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>customError</em></span>&#160;)</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>customMessage</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

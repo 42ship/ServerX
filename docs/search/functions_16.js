@@ -17,8 +17,9 @@ var searchData=
   ['_7eihandler_14',['~IHandler',['../classhttp_1_1IHandler.html#a4bfa964206e57bb84fce5cb93d7fa3a7',1,'http::IHandler']]],
   ['_7eiresponsebody_15',['~IResponseBody',['../classhttp_1_1IResponseBody.html#ae27a592d44cfbbb7d42b597efb32c617',1,'http::IResponseBody']]],
   ['_7emimetypes_16',['~MimeTypes',['../classhttp_1_1MimeTypes.html#aee7d7ceeb76fc7222194175b2a259a2c',1,'http::MimeTypes']]],
-  ['_7eresponse_17',['~Response',['../classhttp_1_1Response.html#a37e583fa3e6770c75df3e53acfcda236',1,'http::Response']]],
-  ['_7eserver_18',['~Server',['../classcore_1_1Server.html#a50cd925018015b98bd30e12f7e115ca0',1,'core::Server']]],
-  ['_7esocket_19',['~Socket',['../classnetwork_1_1Socket.html#a1038401f14d76bad02571a7458712aed',1,'network::Socket']]],
-  ['_7etempfile_20',['~TempFile',['../classutils_1_1TempFile.html#a7cb61e2d608e16607d34a80199dadc63',1,'utils::TempFile']]]
+  ['_7erequest_17',['~Request',['../classhttp_1_1Request.html#ad7a36836922ba4e911cef7e1862ec221',1,'http::Request']]],
+  ['_7eresponse_18',['~Response',['../classhttp_1_1Response.html#a37e583fa3e6770c75df3e53acfcda236',1,'http::Response']]],
+  ['_7eserver_19',['~Server',['../classcore_1_1Server.html#a50cd925018015b98bd30e12f7e115ca0',1,'core::Server']]],
+  ['_7esocket_20',['~Socket',['../classnetwork_1_1Socket.html#a1038401f14d76bad02571a7458712aed',1,'network::Socket']]],
+  ['_7etempfile_21',['~TempFile',['../classutils_1_1TempFile.html#a7cb61e2d608e16607d34a80199dadc63',1,'utils::TempFile']]]
 ];

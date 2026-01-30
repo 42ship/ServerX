@@ -20,5 +20,6 @@ var searchData=
   ['configwarning_17',['ConfigWarning',['../classconfig_1_1ConfigWarning.html#a399fe4b21f6c482bf85b756dfa7cc284',1,'config::ConfigWarning']]],
   ['consumetoken_18',['consumeToken',['../classconfig_1_1Parser.html#a6e24bf20a84988fa4e82ad7f5b0d5ad4',1,'config::Parser']]],
   ['createandbind_19',['createAndBind',['../classnetwork_1_1Socket.html#af77270f52cfd1363dd93ed706ee202cb',1,'network::Socket']]],
-  ['currenttoken_20',['currentToken',['../classconfig_1_1Parser.html#a26b8eee51030c67754c239d65a768cd5',1,'config::Parser']]]
+  ['currenttoken_20',['currentToken',['../classconfig_1_1Parser.html#a26b8eee51030c67754c239d65a768cd5',1,'config::Parser']]],
+  ['custommessage_21',['customMessage',['../classhttp_1_1Response.html#ac06f0783559045fa8e05a0ef2903331c',1,'http::Response']]]
 ];

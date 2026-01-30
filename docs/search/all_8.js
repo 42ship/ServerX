@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1ReturnHandler.html#ace7f5513bf77bb0332144406b5490588',1,'http::ReturnHandler::handle()'],['../classhttp_1_1FileDeleteHandler.html#a8b9b4f14336094e5538b9425ffe6ab82',1,'http::FileDeleteHandler::handle()'],['../classhttp_1_1DefaultErrorHandler.html#aba09c25a4448cd8d16c56e5830bf0d21',1,'http::DefaultErrorHandler::handle()'],['../classhttp_1_1CGIHandler.html#a414b7fae4eb9d361924a8c4ea5fb1197',1,'http::CGIHandler::handle(Request const &amp;, Response &amp;, MimeTypes const &amp;)'],['../classhttp_1_1CGIHandler.html#a898bbdc06fa627109a81e7fdcb4ba23a',1,'http::CGIHandler::handle()'],['../classhttp_1_1DirectoryListingHandler.html#a16a211694bef9bfb4b24c90a27a7d8de',1,'http::DirectoryListingHandler::handle()']]],
+  ['handle_0',['handle',['../classhttp_1_1StaticFileHandler.html#acf4210d95f808388da169ecd35a17851',1,'http::StaticFileHandler::handle()'],['../classhttp_1_1ReturnHandler.html#ace7f5513bf77bb0332144406b5490588',1,'http::ReturnHandler::handle()'],['../classhttp_1_1FileUploadHandler.html#a40efe59350a5dac1a057f48bbf6e40d6',1,'http::FileUploadHandler::handle()'],['../classhttp_1_1FileDeleteHandler.html#a8b9b4f14336094e5538b9425ffe6ab82',1,'http::FileDeleteHandler::handle()'],['../classhttp_1_1DefaultErrorHandler.html#aba09c25a4448cd8d16c56e5830bf0d21',1,'http::DefaultErrorHandler::handle()'],['../classhttp_1_1CGIHandler.html#a414b7fae4eb9d361924a8c4ea5fb1197',1,'http::CGIHandler::handle(Request const &amp;, Response &amp;, MimeTypes const &amp;)'],['../classhttp_1_1CGIHandler.html#a898bbdc06fa627109a81e7fdcb4ba23a',1,'http::CGIHandler::handle()'],['../classhttp_1_1DirectoryListingHandler.html#a16a211694bef9bfb4b24c90a27a7d8de',1,'http::DirectoryListingHandler::handle()']]],
   ['handlecgiresponsewrite_1',['handleCgiResponseWrite',['../classnetwork_1_1ClientHandler.html#a02914e67929d0713058f2673a0b00f9c',1,'network::ClientHandler']]],
   ['handlechunkedbody_2',['handleChunkedBody',['../classhttp_1_1RequestParser.html#a963b693664e3ee237b28371dbb63d84d',1,'http::RequestParser']]],
   ['handlecomment_3',['handleComment',['../classconfig_1_1Lexer.html#a699d9f478fb02fba854f1270ae04780e',1,'config::Lexer']]],
@@ -39,8 +39,9 @@ var searchData=
   ['headerssent_5f_36',['headersSent_',['../classnetwork_1_1ClientHandler.html#a37e3f7e5c42cf45c36a03dc96e356106',1,'network::ClientHandler']]],
   ['hostfunc_37',['HostFunc',['../namespaceconfig.html#a5e2221a44dab9b2996b40984ee12791e',1,'config']]],
   ['http_38',['http',['../namespacehttp.html',1,'']]],
-  ['httprequest_39',['HttpRequest',['../classHttpRequest.html',1,'']]],
-  ['httpstatus_40',['HttpStatus',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16',1,'http']]],
-  ['httpstatus_2ecpp_41',['HttpStatus.cpp',['../HttpStatus_8cpp.html',1,'']]],
-  ['httpstatus_2ehpp_42',['HttpStatus.hpp',['../HttpStatus_8hpp.html',1,'']]]
+  ['http_3a_3aupload_39',['upload',['../namespacehttp_1_1upload.html',1,'http']]],
+  ['httprequest_40',['HttpRequest',['../classHttpRequest.html',1,'']]],
+  ['httpstatus_41',['HttpStatus',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16',1,'http']]],
+  ['httpstatus_2ecpp_42',['HttpStatus.cpp',['../HttpStatus_8cpp.html',1,'']]],
+  ['httpstatus_2ehpp_43',['HttpStatus.hpp',['../HttpStatus_8hpp.html',1,'']]]
 ];

@@ -10,9 +10,11 @@ var searchData=
   ['matchserverandlocation_7',['matchServerAndLocation',['../classhttp_1_1Router.html#a41a149e90f58f2dfc79de7e75324ac2f',1,'http::Router']]],
   ['matchservername_8',['matchServerName',['../namespaceconfig_1_1details.html#a821cbbcacbb3ad8eda492144114f0d31',1,'config::details']]],
   ['matchtype_9',['matchType',['../classconfig_1_1LocationBlock.html#a04f4c81d267c44c45c0011c0cae224b2',1,'config::LocationBlock::matchType() const'],['../classconfig_1_1LocationBlock.html#aa479a0402404d0d89abbc13c8d5fb5f4',1,'config::LocationBlock::matchType(MatchType)']]],
-  ['maxbodysize_10',['maxBodySize',['../classconfig_1_1Block.html#a130948dac745eb56edf2584a8c1e3a02',1,'config::Block']]],
+  ['maxbodysize_10',['maxBodySize',['../classconfig_1_1Block.html#a130948dac745eb56edf2584a8c1e3a02',1,'config::Block::maxBodySize() const'],['../classconfig_1_1Block.html#a5c56200f727c42bfbe90d0a2e6620514',1,'config::Block::maxBodySize(size_t)']]],
   ['method_11',['method',['../classhttp_1_1Request.html#a4515704e7f49121829e62e48ec5172e1',1,'http::Request::method() const'],['../classhttp_1_1Request.html#a7d23a6abafa0ae233fd5d9a1152f13a0',1,'http::Request::method(RequestStartLine::Method method)']]],
   ['methodtostring_12',['methodToString',['../classhttp_1_1RequestStartLine.html#a3c63fca92beb8a62a296cde125f7726c',1,'http::RequestStartLine']]],
   ['mimetypes_13',['MimeTypes',['../classhttp_1_1MimeTypes.html#a01488b62b9cbfdf6fbb0104088285246',1,'http::MimeTypes::MimeTypes(const std::string &amp;path=MIME_TYPES_PATH)'],['../classhttp_1_1MimeTypes.html#abf3a59ac8702c823fea352858da13ac1',1,'http::MimeTypes::MimeTypes(const MimeTypes &amp;other)']]],
-  ['modifyhandler_14',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager']]]
+  ['modifyhandler_14',['modifyHandler',['../classnetwork_1_1EpollManager.html#ad82d294c9b2df17cf7491de3c7ffacff',1,'network::EpollManager']]],
+  ['movebody_15',['moveBody',['../classhttp_1_1Request.html#a13ca4134f8d40bb77f07b67cf4150be4',1,'http::Request']]],
+  ['moveto_16',['moveTo',['../classutils_1_1TempFile.html#acd3568ac6292a8f9a767733f85c0f7c6',1,'utils::TempFile']]]
 ];

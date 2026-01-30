@@ -9,7 +9,8 @@ var searchData=
   ['requestline_5f_6',['requestLine_',['../classhttp_1_1Request.html#aa2ffb91bde5ca21305fe9c757ff2d9ae',1,'http::Request']]],
   ['res_5f_7',['res_',['../classhttp_1_1CGIHandler.html#af8714cf4ceafa7655eadcddfa0267147',1,'http::CGIHandler']]],
   ['response_5f_8',['response_',['../classnetwork_1_1ClientHandler.html#a14c98bbdaab9ee3eb7ba46b86e55288a',1,'network::ClientHandler']]],
-  ['router_5f_9',['router_',['../classcore_1_1Server.html#a23616d5162237f17d26f3b994808fe06',1,'core::Server::router_'],['../classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772',1,'network::Acceptor::router_'],['../classnetwork_1_1ClientHandler.html#a74a199e40589ad93c56d1ca9d644b3aa',1,'network::ClientHandler::router_']]],
-  ['rspbuffer_5f_10',['rspBuffer_',['../classnetwork_1_1ClientHandler.html#a70da422f15d34c3898e875c64457ce55',1,'network::ClientHandler']]],
-  ['rtime_5f_11',['rtime_',['../classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0',1,'http::MimeTypes']]]
+  ['result_9',['result',['../structhttp_1_1upload_1_1UploadValidationResult.html#a796f8220d53a3bd00a004a082b69a3b1',1,'http::upload::UploadValidationResult']]],
+  ['router_5f_10',['router_',['../classcore_1_1Server.html#a23616d5162237f17d26f3b994808fe06',1,'core::Server::router_'],['../classnetwork_1_1Acceptor.html#a72369dcc00e5b3f4dda6abdd1e6ab772',1,'network::Acceptor::router_'],['../classnetwork_1_1ClientHandler.html#a74a199e40589ad93c56d1ca9d644b3aa',1,'network::ClientHandler::router_']]],
+  ['rspbuffer_5f_11',['rspBuffer_',['../classnetwork_1_1ClientHandler.html#a70da422f15d34c3898e875c64457ce55',1,'network::ClientHandler']]],
+  ['rtime_5f_12',['rtime_',['../classhttp_1_1MimeTypes.html#a8221f68aff924ff3c576aa4d56eab6d0',1,'http::MimeTypes']]]
 ];

@@ -11,6 +11,7 @@ var hierarchy =
     [ "http::DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
     [ "config::DirectiveHandler", "classconfig_1_1DirectiveHandler.html", null ],
     [ "network::EpollManager", "classnetwork_1_1EpollManager.html", null ],
+    [ "http::ErrorKey", "structhttp_1_1ErrorKey.html", null ],
     [ "network::EventDispatcher", "classnetwork_1_1EventDispatcher.html", null ],
     [ "std::exception", null, [
       [ "config::ConfigException", "classconfig_1_1ConfigException.html", [
@@ -34,7 +35,8 @@ var hierarchy =
       [ "config::ListenDirective", "classconfig_1_1ListenDirective.html", null ],
       [ "config::MaxBodySize", "classconfig_1_1MaxBodySize.html", null ],
       [ "config::ReturnDirective", "classconfig_1_1ReturnDirective.html", null ],
-      [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ]
+      [ "config::RootDirective", "classconfig_1_1RootDirective.html", null ],
+      [ "config::UploadPathDirective", "classconfig_1_1UploadPathDirective.html", null ]
     ] ],
     [ "network::IEventHandler", "classnetwork_1_1IEventHandler.html", [
       [ "network::Acceptor", "classnetwork_1_1Acceptor.html", null ],
@@ -45,6 +47,7 @@ var hierarchy =
       [ "http::CGIHandler", "classhttp_1_1CGIHandler.html", null ],
       [ "http::DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
       [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
+      [ "http::FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
       [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],
@@ -75,5 +78,6 @@ var hierarchy =
     [ "network::Socket", "classnetwork_1_1Socket.html", null ],
     [ "utils::TempFile", "classutils_1_1TempFile.html", null ],
     [ "config::Token", "structconfig_1_1Token.html", null ],
+    [ "http::upload::UploadValidationResult", "structhttp_1_1upload_1_1UploadValidationResult.html", null ],
     [ "config::Validator", "classconfig_1_1Validator.html", null ]
 ];

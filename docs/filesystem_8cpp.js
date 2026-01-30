@@ -1,5 +1,6 @@
 var filesystem_8cpp =
 [
+    [ "READ_BUFFER_SIZE", "filesystem_8cpp.html#a46167a977503a51eb6efe97e870568c3", null ],
     [ "utils::checkFileAccess", "namespaceutils.html#abd686a6904b528491f3fca83b46f26d7", null ],
     [ "utils::getDirectoryEntries", "namespaceutils.html#a9427975bd0b8847933056bc5e1ba3c52", null ],
     [ "utils::getFileExtension", "namespaceutils.html#ad66d7d2997cbd52649e7f6026f53dfb3", null ],

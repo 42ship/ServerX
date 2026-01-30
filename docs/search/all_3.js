@@ -29,7 +29,7 @@ var searchData=
   ['clone_26',['clone',['../classconfig_1_1Bool.html#a4de09b0f770a94c6e9a4a3be6ba0aee0',1,'config::Bool::clone()'],['../classconfig_1_1ConcatenatedValue.html#a6190ebfe4bfb2da88027c93dcca67dc7',1,'config::ConcatenatedValue::clone()'],['../classconfig_1_1IArgument.html#af1f6727389d62c75fb3c1b8dd46d3274',1,'config::IArgument::clone()'],['../classconfig_1_1Integer.html#a3107f5a46ccdbe72c490b4d0ab6a4abe',1,'config::Integer::clone()'],['../classconfig_1_1String.html#abf4de8711f4a7db5af120d28d7a9cb89',1,'config::String::clone()'],['../classconfig_1_1Variable.html#aaf51086e931833751fa0cc2c53bb96eb',1,'config::Variable::clone()']]],
   ['close_27',['close',['../classutils_1_1TempFile.html#a17e50e1e0c48fc2176d560b6d6a71913',1,'utils::TempFile']]],
   ['closeconnection_28',['closeConnection',['../classnetwork_1_1ClientHandler.html#a961e11891537007a6597fdedef71f71e',1,'network::ClientHandler']]],
-  ['code_29',['code',['../structhttp_1_1Key.html#a426fe7708eef5d18a48f08b9a785ba40',1,'http::Key']]],
+  ['code_29',['code',['../structhttp_1_1ErrorKey.html#aa7891935d1fab0fb9a5985abff629b07',1,'http::ErrorKey::code'],['../structhttp_1_1Key.html#a426fe7708eef5d18a48f08b9a785ba40',1,'http::Key::code']]],
   ['complete_30',['COMPLETE',['../classnetwork_1_1CGIHandler.html#a84f7ffd13a1e55e57bbd2c24f9eb0297a704dd54518b1c51c8131657a41d87d18',1,'network::CGIHandler']]],
   ['completelocationroot_31',['completeLocationRoot',['../namespaceconfig_1_1details.html#ae0316af89ff9339892a2084d7002b587',1,'config::details']]],
   ['concatenatedvalue_32',['ConcatenatedValue',['../classconfig_1_1ConcatenatedValue.html',1,'config::ConcatenatedValue'],['../classconfig_1_1ConcatenatedValue.html#a6d35df5f80d181cf9923b58a90496af2',1,'config::ConcatenatedValue::ConcatenatedValue()'],['../classconfig_1_1ConcatenatedValue.html#ae545623bf398df31de809de2474cf13c',1,'config::ConcatenatedValue::ConcatenatedValue(const ConcatenatedValue &amp;other)']]],
@@ -56,5 +56,6 @@ var searchData=
   ['createandbind_53',['createAndBind',['../classnetwork_1_1Socket.html#af77270f52cfd1363dd93ed706ee202cb',1,'network::Socket']]],
   ['created_54',['CREATED',['../namespacehttp.html#a0efa96275274052910edb78dbb443d16a55ec2403fcca929391dbb044ffed5e85',1,'http']]],
   ['currenttoken_55',['currentToken',['../classconfig_1_1Parser.html#a26b8eee51030c67754c239d65a768cd5',1,'config::Parser']]],
-  ['customerror_5f_56',['customError_',['../classhttp_1_1Response.html#ad7e1da27b0eda1f92cfb0c49dc0ba184',1,'http::Response']]]
+  ['customerror_5f_56',['customError_',['../classhttp_1_1Response.html#ad7e1da27b0eda1f92cfb0c49dc0ba184',1,'http::Response']]],
+  ['custommessage_57',['customMessage',['../classhttp_1_1Response.html#ac06f0783559045fa8e05a0ef2903331c',1,'http::Response']]]
 ];

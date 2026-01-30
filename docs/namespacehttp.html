@@ -92,6 +92,10 @@ $(function(){initNavTree('namespacehttp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:upload" id="r_upload"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehttp_1_1upload.html">upload</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:BodyFromCgi" id="r_BodyFromCgi"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1BodyFromCgi.html">BodyFromCgi</a></td></tr>
@@ -100,8 +104,10 @@ Classes</h2></td></tr>
 <tr class="memitem:ChunkedBodyParser" id="r_ChunkedBodyParser"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1ChunkedBodyParser.html">ChunkedBodyParser</a></td></tr>
 <tr class="memitem:DefaultErrorHandler" id="r_DefaultErrorHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1DefaultErrorHandler.html">DefaultErrorHandler</a></td></tr>
 <tr class="memitem:DirectoryListingHandler" id="r_DirectoryListingHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1DirectoryListingHandler.html">DirectoryListingHandler</a></td></tr>
+<tr class="memitem:ErrorKey" id="r_ErrorKey"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhttp_1_1ErrorKey.html">ErrorKey</a></td></tr>
 <tr class="memitem:FileBody" id="r_FileBody"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileBody.html">FileBody</a></td></tr>
 <tr class="memitem:FileDeleteHandler" id="r_FileDeleteHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileDeleteHandler.html">FileDeleteHandler</a></td></tr>
+<tr class="memitem:FileUploadHandler" id="r_FileUploadHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1FileUploadHandler.html">FileUploadHandler</a></td></tr>
 <tr class="memitem:Headers" id="r_Headers"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1Headers.html">Headers</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages a collection of HTTP headers.  <a href="classhttp_1_1Headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:IHandler" id="r_IHandler"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IHandler.html">IHandler</a></td></tr>
@@ -127,7 +133,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aec19d6964e2099b68366c0fc269757b0" id="r_aec19d6964e2099b68366c0fc269757b0"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; <a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec19d6964e2099b68366c0fc269757b0">ErrorPageCache</a></td></tr>
+<tr class="memitem:a911e47f7b148eaecf996c14b6f3ae1a9" id="r_a911e47f7b148eaecf996c14b6f3ae1a9"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; <a class="el" href="structhttp_1_1ErrorKey.html">ErrorKey</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a911e47f7b148eaecf996c14b6f3ae1a9">ErrorPageCache</a></td></tr>
 <tr class="memitem:aacc045ca66c5022a8f4bdaa024a03b75" id="r_aacc045ca66c5022a8f4bdaa024a03b75"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; <a class="el" href="structhttp_1_1Key.html">Key</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacc045ca66c5022a8f4bdaa024a03b75">JsonErrorPageCache</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -172,14 +178,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a2dfb5c8937dd3d9df0e3f8c0603b8788" id="r_a2dfb5c8937dd3d9df0e3f8c0603b8788"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dfb5c8937dd3d9df0e3f8c0603b8788">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classhttp_1_1RequestParser.html#acee2c6282a3dff470dfebac78ffeb763">RequestParser::State</a> st)</td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
-<a id="aec19d6964e2099b68366c0fc269757b0" name="aec19d6964e2099b68366c0fc269757b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec19d6964e2099b68366c0fc269757b0">&#9670;&#160;</a></span>ErrorPageCache</h2>
+<a id="a911e47f7b148eaecf996c14b6f3ae1a9" name="a911e47f7b148eaecf996c14b6f3ae1a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a911e47f7b148eaecf996c14b6f3ae1a9">&#9670;&#160;</a></span>ErrorPageCache</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::map&lt;<a class="el" href="#a0efa96275274052910edb78dbb443d16">HttpStatus</a>, std::string&gt; <a class="el" href="#aec19d6964e2099b68366c0fc269757b0">http::ErrorPageCache</a></td>
+          <td class="memname">typedef std::map&lt;<a class="el" href="structhttp_1_1ErrorKey.html">ErrorKey</a>, std::string&gt; <a class="el" href="#a911e47f7b148eaecf996c14b6f3ae1a9">http::ErrorPageCache</a></td>
         </tr>
       </table>
 </div><div class="memdoc">

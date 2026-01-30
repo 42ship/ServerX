@@ -1,4 +1,5 @@
 var DefaultError_8cpp =
 [
-    [ "http::ErrorPageCache", "namespacehttp.html#aec19d6964e2099b68366c0fc269757b0", null ]
+    [ "http::ErrorKey", "structhttp_1_1ErrorKey.html", "structhttp_1_1ErrorKey" ],
+    [ "http::ErrorPageCache", "namespacehttp.html#a911e47f7b148eaecf996c14b6f3ae1a9", null ]
 ];

@@ -20,7 +20,6 @@ var classhttp_1_1RequestParser =
     [ "setRequestReady", "classhttp_1_1RequestParser.html#af28b3cf7e890f7bc7a8186e51119d120", null ],
     [ "state", "classhttp_1_1RequestParser.html#ac776004e269c10366221906f649865cd", null ],
     [ "writeToBodyFile", "classhttp_1_1RequestParser.html#ae80dd86a3e78c7bcb75030f9522127e6", null ],
-    [ "bodyFile_", "classhttp_1_1RequestParser.html#a85ff7f5cd81f98e76b67d48a9c18eba7", null ],
     [ "buffer_", "classhttp_1_1RequestParser.html#aba16342655b79a808708d4bc3376e9cb", null ],
     [ "bytesWrittenToBody_", "classhttp_1_1RequestParser.html#a2153795c9caf307de29132e654eb6f41", null ],
     [ "chunkParser_", "classhttp_1_1RequestParser.html#a00f024c999d5e88317483ff7716f432a", null ],

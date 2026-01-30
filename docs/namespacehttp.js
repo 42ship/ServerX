@@ -1,13 +1,16 @@
 var namespacehttp =
 [
+    [ "upload", "namespacehttp_1_1upload.html", "namespacehttp_1_1upload" ],
     [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html", "classhttp_1_1BodyFromCgi" ],
     [ "BodyInMemory", "classhttp_1_1BodyInMemory.html", "classhttp_1_1BodyInMemory" ],
     [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
     [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
     [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
     [ "DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
+    [ "ErrorKey", "structhttp_1_1ErrorKey.html", "structhttp_1_1ErrorKey" ],
     [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
     [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
+    [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
     [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
     [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
     [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
@@ -22,7 +25,7 @@ var namespacehttp =
     [ "ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
     [ "Router", "classhttp_1_1Router.html", "classhttp_1_1Router" ],
     [ "StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ],
-    [ "ErrorPageCache", "namespacehttp.html#aec19d6964e2099b68366c0fc269757b0", null ],
+    [ "ErrorPageCache", "namespacehttp.html#a911e47f7b148eaecf996c14b6f3ae1a9", null ],
     [ "JsonErrorPageCache", "namespacehttp.html#aacc045ca66c5022a8f4bdaa024a03b75", null ],
     [ "HttpStatus", "namespacehttp.html#a0efa96275274052910edb78dbb443d16", [
       [ "UNKNOWN_STATUS", "namespacehttp.html#a0efa96275274052910edb78dbb443d16a502fc1756cc2b55c216c6dc8fa5b932b", null ],

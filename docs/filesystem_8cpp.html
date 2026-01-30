@@ -92,6 +92,7 @@ $(function(){initNavTree('filesystem_8cpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="filesystem_8hpp_source.html">common/filesystem.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Logger_8hpp_source.html">utils/Logger.hpp</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cerrno&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
@@ -107,6 +108,10 @@ $(function(){initNavTree('filesystem_8cpp.html','',''); });
 Namespaces</h2></td></tr>
 <tr class="memitem:utils" id="r_utils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a46167a977503a51eb6efe97e870568c3" id="r_a46167a977503a51eb6efe97e870568c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46167a977503a51eb6efe97e870568c3">READ_BUFFER_SIZE</a>&#160;&#160;&#160;16384</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a3d05e7b02679c837b285e83b5915eba6" id="r_a3d05e7b02679c837b285e83b5915eba6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a3d05e7b02679c837b285e83b5915eba6">utils::writeFile</a> (const std::string &amp;content, const char *path)</td></tr>
@@ -121,6 +126,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a9427975bd0b8847933056bc5e1ba3c52" id="r_a9427975bd0b8847933056bc5e1ba3c52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a9427975bd0b8847933056bc5e1ba3c52">utils::getDirectoryEntries</a> (std::string const &amp;path, std::vector&lt; <a class="el" href="structutils_1_1FileEntry.html">FileEntry</a> &gt; &amp;entries)</td></tr>
 <tr class="memdesc:a9427975bd0b8847933056bc5e1ba3c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a directory, stats all files, and returns them sorted by name. Uses only opendir/readdir/closedir/stat.  <br /></td></tr>
 </table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a46167a977503a51eb6efe97e870568c3" name="a46167a977503a51eb6efe97e870568c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46167a977503a51eb6efe97e870568c3">&#9670;&#160;</a></span>READ_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define READ_BUFFER_SIZE&#160;&#160;&#160;16384</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

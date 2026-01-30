@@ -94,6 +94,14 @@ $(function(){initNavTree('classutils_1_1TempFile.html','','classutils_1_1TempFil
 
 <p><code>#include &lt;<a class="el" href="filesystem_8hpp_source.html">filesystem.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a303e3119bbc2a52c066c840970e553e7" id="r_a303e3119bbc2a52c066c840970e553e7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a303e3119bbc2a52c066c840970e553e7">MoveStatus</a> { <a class="el" href="#a303e3119bbc2a52c066c840970e553e7a5be3fde9d49e22947f2caabd4bd48015">MOVE_SUCCESS</a>
+, <a class="el" href="#a303e3119bbc2a52c066c840970e553e7a32632b2655bf6fff80d62b2cc76207af">MOVE_IO_ERR</a>
+, <a class="el" href="#a303e3119bbc2a52c066c840970e553e7a80f59c7d2b3ce50f16b17e5589fb99be">MOVE_SYS_ERR</a>
+, <a class="el" href="#a303e3119bbc2a52c066c840970e553e7a84634ea4f9a2acaeefb0a8569da263fe">MOVE_INVALID_STATE</a>
+ }</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4fc830fc578daf88d60c2ef8a6cabff0" id="r_a4fc830fc578daf88d60c2ef8a6cabff0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc830fc578daf88d60c2ef8a6cabff0">TempFile</a> ()</td></tr>
@@ -104,6 +112,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6915e8a6798ca720923532724770030b" id="r_a6915e8a6798ca720923532724770030b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6915e8a6798ca720923532724770030b">fd</a> () const</td></tr>
 <tr class="memitem:aab7f4e0e0e36254e80d34be251759fc6" id="r_aab7f4e0e0e36254e80d34be251759fc6"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab7f4e0e0e36254e80d34be251759fc6">path</a> () const</td></tr>
 <tr class="memitem:a88874b4f483a8918197f6310913ed301" id="r_a88874b4f483a8918197f6310913ed301"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88874b4f483a8918197f6310913ed301">isOpen</a> () const</td></tr>
+<tr class="memitem:acd3568ac6292a8f9a767733f85c0f7c6" id="r_acd3568ac6292a8f9a767733f85c0f7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a303e3119bbc2a52c066c840970e553e7">MoveStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd3568ac6292a8f9a767733f85c0f7c6">moveTo</a> (const std::string &amp;destPath)</td></tr>
+<tr class="memdesc:acd3568ac6292a8f9a767733f85c0f7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the temporary file to a new permanent location.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -115,6 +125,31 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a91e0df9183394384a9a937874483aa0d" id="r_a91e0df9183394384a9a937874483aa0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91e0df9183394384a9a937874483aa0d">fd_</a></td></tr>
 <tr class="memitem:a4bd7d25474a158c3e07a5d8217d2077a" id="r_a4bd7d25474a158c3e07a5d8217d2077a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bd7d25474a158c3e07a5d8217d2077a">filePath_</a></td></tr>
 </table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a303e3119bbc2a52c066c840970e553e7" name="a303e3119bbc2a52c066c840970e553e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a303e3119bbc2a52c066c840970e553e7">&#9670;&#160;</a></span>MoveStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a303e3119bbc2a52c066c840970e553e7">utils::TempFile::MoveStatus</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a303e3119bbc2a52c066c840970e553e7a5be3fde9d49e22947f2caabd4bd48015" name="a303e3119bbc2a52c066c840970e553e7a5be3fde9d49e22947f2caabd4bd48015"></a>MOVE_SUCCESS&#160;</td><td class="fielddoc"><p>File moved successfully (atomic or copy) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a303e3119bbc2a52c066c840970e553e7a32632b2655bf6fff80d62b2cc76207af" name="a303e3119bbc2a52c066c840970e553e7a32632b2655bf6fff80d62b2cc76207af"></a>MOVE_IO_ERR&#160;</td><td class="fielddoc"><p>Disk Full, Permission on dest, or other IO error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a303e3119bbc2a52c066c840970e553e7a80f59c7d2b3ce50f16b17e5589fb99be" name="a303e3119bbc2a52c066c840970e553e7a80f59c7d2b3ce50f16b17e5589fb99be"></a>MOVE_SYS_ERR&#160;</td><td class="fielddoc"><p>Permission on src, rename() failed for system reasons. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a303e3119bbc2a52c066c840970e553e7a84634ea4f9a2acaeefb0a8569da263fe" name="a303e3119bbc2a52c066c840970e553e7a84634ea4f9a2acaeefb0a8569da263fe"></a>MOVE_INVALID_STATE&#160;</td><td class="fielddoc"><p>File is not open or already moved. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4fc830fc578daf88d60c2ef8a6cabff0" name="a4fc830fc578daf88d60c2ef8a6cabff0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4fc830fc578daf88d60c2ef8a6cabff0">&#9670;&#160;</a></span>TempFile() <span class="overload">[1/2]</span></h2>
@@ -224,6 +259,34 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd3568ac6292a8f9a767733f85c0f7c6" name="acd3568ac6292a8f9a767733f85c0f7c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd3568ac6292a8f9a767733f85c0f7c6">&#9670;&#160;</a></span>moveTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a303e3119bbc2a52c066c840970e553e7">TempFile::MoveStatus</a> utils::TempFile::moveTo </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>destPath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves the temporary file to a new permanent location. </p>
+<p>Attempts an atomic rename(). If that fails (e.g. cross-device move), it falls back to a manual copy followed by unlinking the source.</p>
+<dl class="section note"><dt>Note</dt><dd>IMPORTANT: On success, this <a class="el" href="classutils_1_1TempFile.html">TempFile</a> object is invalidated (FD closed, path cleared). Ownership of the physical file is transferred to <code class="param">destPath</code>. The file will NOT be deleted when this object is destroyed.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destPath</td><td>Absolute path to the destination file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="#a303e3119bbc2a52c066c840970e553e7">MoveStatus</a> indicating success or the specific type of failure. </dd></dl>
 
 </div>
 </div>

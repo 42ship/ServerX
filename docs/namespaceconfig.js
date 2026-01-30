@@ -32,6 +32,7 @@ var namespaceconfig =
     [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
     [ "String", "classconfig_1_1String.html", "classconfig_1_1String" ],
     [ "Token", "structconfig_1_1Token.html", "structconfig_1_1Token" ],
+    [ "UploadPathDirective", "classconfig_1_1UploadPathDirective.html", "classconfig_1_1UploadPathDirective" ],
     [ "Validator", "classconfig_1_1Validator.html", "classconfig_1_1Validator" ],
     [ "Variable", "classconfig_1_1Variable.html", "classconfig_1_1Variable" ],
     [ "ArgumentPtr", "namespaceconfig.html#a5cefa187d5be3cd6dccec7c656fe5db5", null ],

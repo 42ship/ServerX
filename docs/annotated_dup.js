@@ -27,6 +27,7 @@ var annotated_dup =
       [ "ServerConfig", "classconfig_1_1ServerConfig.html", "classconfig_1_1ServerConfig" ],
       [ "String", "classconfig_1_1String.html", "classconfig_1_1String" ],
       [ "Token", "structconfig_1_1Token.html", "structconfig_1_1Token" ],
+      [ "UploadPathDirective", "classconfig_1_1UploadPathDirective.html", "classconfig_1_1UploadPathDirective" ],
       [ "Validator", "classconfig_1_1Validator.html", "classconfig_1_1Validator" ],
       [ "Variable", "classconfig_1_1Variable.html", "classconfig_1_1Variable" ]
     ] ],
@@ -34,14 +35,19 @@ var annotated_dup =
       [ "Server", "classcore_1_1Server.html", "classcore_1_1Server" ]
     ] ],
     [ "http", "namespacehttp.html", [
+      [ "upload", "namespacehttp_1_1upload.html", [
+        [ "UploadValidationResult", "structhttp_1_1upload_1_1UploadValidationResult.html", "structhttp_1_1upload_1_1UploadValidationResult" ]
+      ] ],
       [ "BodyFromCgi", "classhttp_1_1BodyFromCgi.html", "classhttp_1_1BodyFromCgi" ],
       [ "BodyInMemory", "classhttp_1_1BodyInMemory.html", "classhttp_1_1BodyInMemory" ],
       [ "CGIHandler", "classhttp_1_1CGIHandler.html", "classhttp_1_1CGIHandler" ],
       [ "ChunkedBodyParser", "classhttp_1_1ChunkedBodyParser.html", "classhttp_1_1ChunkedBodyParser" ],
       [ "DefaultErrorHandler", "classhttp_1_1DefaultErrorHandler.html", null ],
       [ "DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
+      [ "ErrorKey", "structhttp_1_1ErrorKey.html", "structhttp_1_1ErrorKey" ],
       [ "FileBody", "classhttp_1_1FileBody.html", "classhttp_1_1FileBody" ],
       [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
+      [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
       [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
       [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
       [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],

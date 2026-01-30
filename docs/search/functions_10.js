@@ -12,7 +12,7 @@ var searchData=
   ['remoteaddr_9',['remoteAddr',['../classhttp_1_1Request.html#ad7be2c54b5dadb4635ac65558d2fb77a',1,'http::Request::remoteAddr() const'],['../classhttp_1_1Request.html#abcba07cc60e6387f465ffafc4d057370',1,'http::Request::remoteAddr(std::string const &amp;addr)']]],
   ['remove_10',['remove',['../structnetwork_1_1ClientHandler_1_1CgiState.html#a6f21be095f17643a9f08d7b1c4694bdf',1,'network::ClientHandler::CgiState']]],
   ['removehandler_11',['removeHandler',['../classnetwork_1_1EpollManager.html#a81d88cf64ef44dc74ac413cc11073f3c',1,'network::EpollManager::removeHandler()'],['../classnetwork_1_1EventDispatcher.html#ab10cf8206a533ee4aec32aa7c0dd8a8b',1,'network::EventDispatcher::removeHandler()']]],
-  ['request_12',['Request',['../classhttp_1_1Request.html#a20cb90fc8ee4461541ec901399af0a0e',1,'http::Request']]],
+  ['request_12',['Request',['../classhttp_1_1Request.html#a20cb90fc8ee4461541ec901399af0a0e',1,'http::Request::Request()'],['../classhttp_1_1Request.html#ade709441e13c53cd0a495620626febe4',1,'http::Request::Request(const Request &amp;)']]],
   ['requestparser_13',['RequestParser',['../classhttp_1_1RequestParser.html#a1581c6b9031911f8c9843032034a5e91',1,'http::RequestParser']]],
   ['requestshutdown_14',['requestShutDown',['../classcore_1_1Server.html#a826193f7ed14d1224b28ef285bdbcef9',1,'core::Server']]],
   ['requestshutdown_15',['requestShutdown',['../classnetwork_1_1EpollManager.html#a0adb965362d44abf55bb552d24cb588b',1,'network::EpollManager::requestShutdown()'],['../classnetwork_1_1EventDispatcher.html#a48f904b82f640ce6b20b9ca2df70476f',1,'network::EventDispatcher::requestShutdown()']]],

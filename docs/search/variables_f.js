@@ -12,7 +12,8 @@ var searchData=
   ['socket_5f_9',['socket_',['../classnetwork_1_1Acceptor.html#a58f5813572eab4f97ae1a4f83447711b',1,'network::Acceptor']]],
   ['startline_5f_10',['startLine_',['../classhttp_1_1Response.html#ab3de3e7c7bbfecc7778d20ad6fb236d0',1,'http::Response']]],
   ['state_5f_11',['state_',['../classhttp_1_1ChunkedBodyParser.html#ab28828c5d640ad668f38e1a4d2f98cc6',1,'http::ChunkedBodyParser::state_'],['../classhttp_1_1RequestParser.html#a90be6dfda873b7dcd47b7f067815d91b',1,'http::RequestParser::state_'],['../classnetwork_1_1CGIHandler.html#ae20dd1ce802a2dedcfbbb931e044f780',1,'network::CGIHandler::state_']]],
-  ['status_5f_12',['status_',['../classhttp_1_1Request.html#ae05477e3d526e61b4db903e098814bd7',1,'http::Request']]],
-  ['statuscode_13',['statusCode',['../classhttp_1_1ResponseStartLine.html#afb91b60b75f168f1284d312e3afe979d',1,'http::ResponseStartLine']]],
-  ['svalue_5f_14',['sValue_',['../classconfig_1_1Integer.html#ae3476c2692e7449fc5abbf0ef96b662f',1,'config::Integer']]]
+  ['status_12',['status',['../structhttp_1_1upload_1_1UploadValidationResult.html#a565e02b21a46ff13093ffddf9210e6ff',1,'http::upload::UploadValidationResult']]],
+  ['status_5f_13',['status_',['../classhttp_1_1Request.html#ae05477e3d526e61b4db903e098814bd7',1,'http::Request']]],
+  ['statuscode_14',['statusCode',['../classhttp_1_1ResponseStartLine.html#afb91b60b75f168f1284d312e3afe979d',1,'http::ResponseStartLine']]],
+  ['svalue_5f_15',['sValue_',['../classconfig_1_1Integer.html#ae3476c2692e7449fc5abbf0ef96b662f',1,'config::Integer']]]
 ];
