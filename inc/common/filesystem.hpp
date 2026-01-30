@@ -33,36 +33,27 @@ public:
     std::string const &path() const;
     bool isOpen() const;
 
+    enum MoveStatus {
+        MOVE_SUCCESS,      //!< File moved successfully (atomic or copy)
+        MOVE_IO_ERR,       //!< Disk Full, Permission on dest, or other IO error
+        MOVE_SYS_ERR,      //!< Permission on src, rename() failed for system reasons
+        MOVE_INVALID_STATE //!< File is not open or already moved
+    };
+
     /**
-     * @brief Moves a file atomically if possible, or copies it as a fallback.
+     * @brief Moves the temporary file to a new permanent location.
      *
-     * Attempts to move a file from @p srcPath to @p destPath using the POSIX
-     * rename() system call, which performs an atomic move when both paths
-     * reside on the same filesystem.
+     * Attempts an atomic rename(). If that fails (e.g. cross-device move), it
+     * falls back to a manual copy followed by unlinking the source.
      *
-     * If rename() fails (e.g. due to EXDEV when crossing filesystem boundaries,
-     * or insufficient permissions), the function falls back to copying the file
-     * contents in binary mode using buffered I/O.
+     * @note IMPORTANT: On success, this TempFile object is invalidated (FD closed,
+     * path cleared). Ownership of the physical file is transferred to @p destPath.
+     * The file will NOT be deleted when this object is destroyed.
      *
-     * The destination file is created or truncated as needed. On any write or
-     * read failure, the partially written file is removed to ensure filesystem
-     * consistency.
-     *
-     * This function is suitable for server-side use cases such as safe file uploads,
-     * CGI script output, and temporary file management.
-     *
-     * @param srcPath   Absolute path to the source file (must exist and be readable).
-     * @param destPath  Absolute path to the destination file.
-     *
-     * @return int Status code:
-     *         - 0 → success (file moved or copied)
-     *         - 1 → copy or write failure (partial file removed)
-     *         - 2 → invalid source file, access denied, or unrecoverable error
-     *
-     * @note This function does not remove the source file (@p srcPath).
-     *       Caller is responsible for cleanup after successful or failed operation.
+     * @param destPath Absolute path to the destination file.
+     * @return MoveStatus indicating success or the specific type of failure.
      */
-    static int moveOrCopyFile(const std::string &srcPath, const std::string &destPath);
+    MoveStatus moveTo(const std::string &destPath);
 
 private:
     int fd_;

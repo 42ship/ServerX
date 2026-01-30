@@ -1,3 +1,5 @@
+#pragma once
+
 #include "http/HttpStatus.hpp"
 
 #include "http/MimeTypes.hpp"
@@ -26,10 +28,10 @@ namespace http::upload {
  *                              and message.
  */
 struct UploadValidationResult {
-    bool result;              ///< True if validation succeeded.
-    std::string filename;     ///< Parsed or validated filename (empty if failed).
-    HttpStatus status;        ///< HTTP status code associated with the result.
-    std::string message;      ///< Detailed error message if validation failed.
+    bool result;          ///< True if validation succeeded.
+    std::string filename; ///< Parsed or validated filename (empty if failed).
+    HttpStatus status;    ///< HTTP status code associated with the result.
+    std::string message;  ///< Detailed error message if validation failed.
 
     /// @brief Creates a successful validation result with a filename.
     static UploadValidationResult ok(const std::string &file);
@@ -40,7 +42,6 @@ struct UploadValidationResult {
     /// @brief Creates a failed validation result.
     static UploadValidationResult fail(HttpStatus s, const std::string &msg);
 };
-
 
 std::string extractHeaderParam(const std::string &str, const std::string &toFind);
 

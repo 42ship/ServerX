@@ -68,7 +68,7 @@ private:
 
     void handleChunkedBody();
     void handleContentLengthBody();
-    bool writeToBodyFile(const std::string& data);
+    bool writeToBodyFile(const std::string &data);
 
     /**
      * @brief Sets the parser to an error state and updates the Request's status.
@@ -91,7 +91,6 @@ private:
 
     Request &request_;
 
-    utils::TempFile bodyFile_;
     ChunkedBodyParser chunkParser_;
 };
 

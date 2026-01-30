@@ -1,4 +1,5 @@
 #include "common/filesystem.hpp"
+#include "utils/Logger.hpp"
 #include <algorithm>
 #include <cerrno>
 #include <cstring>
@@ -124,18 +125,35 @@ int TempFile::fd() const { return fd_; }
 std::string const &TempFile::path() const { return filePath_; }
 bool TempFile::isOpen() const { return fd_ != -1 && !filePath_.empty(); }
 
-int TempFile::moveOrCopyFile(const std::string &srcPath, const std::string &destPath) {
-    // Fast path: try atomic move
-    if (::rename(srcPath.c_str(), destPath.c_str()) == 0)
-        return 0;
+TempFile::MoveStatus TempFile::moveTo(const std::string &destPath) {
+    if (!isOpen()) {
+        LOG_SERROR("Attempted to move a file that is not open.");
+        return MOVE_INVALID_STATE;
+    }
 
-    std::ifstream src(srcPath.c_str(), std::ios::binary);
+    // Fast path: try atomic move
+    if (::rename(filePath_.c_str(), destPath.c_str()) == 0) {
+        LOG_SDEBUG("Atomic rename successful: " << filePath_ << " -> " << destPath);
+        if (fd_ >= 0)
+            ::close(fd_);
+        fd_ = -1;
+        filePath_.clear();
+        return MOVE_SUCCESS;
+    }
+
+    LOG_SDEBUG("Atomic rename failed (" << strerror(errno) << "), falling back to copy.");
+
+    std::ifstream src(filePath_.c_str(), std::ios::binary);
     std::ofstream dest(destPath.c_str(), std::ios::binary | std::ios::trunc);
 
-    if (!src.is_open() || !dest.is_open()) {
-        if (dest.is_open())
-            ::unlink(destPath.c_str());
-        return 2;
+    if (!src.is_open()) {
+        LOG_SERROR("Failed to open source for copying: " << filePath_);
+        return MOVE_SYS_ERR;
+    }
+    if (!dest.is_open()) {
+        LOG_SERROR("Failed to open destination for copying: " << destPath << " (" << strerror(errno)
+                                                              << ")");
+        return MOVE_IO_ERR;
     }
 
     char buf[READ_BUFFER_SIZE];
@@ -145,26 +163,36 @@ int TempFile::moveOrCopyFile(const std::string &srcPath, const std::string &dest
         if (bytesRead > 0) {
             dest.write(buf, bytesRead);
             if (!dest.good()) {
+                LOG_SERROR("Write error to destination: " << destPath);
                 ::unlink(destPath.c_str());
-                return 1;
+                return MOVE_IO_ERR;
             }
         }
     }
 
     if (!src.eof()) {
-        // read error (not just EOF)
+        LOG_SERROR("Read error from source: " << filePath_);
         ::unlink(destPath.c_str());
-        return 1;
+        return MOVE_IO_ERR;
     }
 
     src.close();
     dest.close();
 
     if (!dest.good()) {
-        return 1;
+        LOG_SERROR("Final stream check failed for: " << destPath);
+        return MOVE_IO_ERR;
     }
 
-    return 0;
+    // After successfull copy, delete source and invalidate self
+    ::unlink(filePath_.c_str());
+    if (fd_ >= 0)
+        ::close(fd_);
+    fd_ = -1;
+    filePath_.clear();
+
+    LOG_SDEBUG("Manual copy successful and source unlinked.");
+    return MOVE_SUCCESS;
 }
 
 http::HttpStatus checkFileAccess(const std::string &path, int modeMask, bool allowDirectory) {
