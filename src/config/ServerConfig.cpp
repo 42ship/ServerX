@@ -45,7 +45,7 @@ ServerBlock const *ServerConfig::getServer(int port, http::Request const &req) c
     std::string host = req.headers().get("Host");
     size_t colon_pos = host.find(':');
     if (colon_pos != std::string::npos) {
-        host = host.substr(0, colon_pos);
+        host.resize(colon_pos);
     }
 
     ServerBlockMap::const_iterator it = servers_.find(port);
