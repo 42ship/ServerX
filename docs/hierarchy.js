@@ -53,6 +53,7 @@ var hierarchy =
       [ "http::DirectoryListingHandler", "classhttp_1_1DirectoryListingHandler.html", null ],
       [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
       [ "http::FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
+      [ "http::HeadHeaderHandler", "classhttp_1_1HeadHeaderHandler.html", null ],
       [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
       [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ]
     ] ],

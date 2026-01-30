@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Webserv: http::IHandler Class Reference</title>
+<title>Webserv: http::HeadHeaderHandler Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('classhttp_1_1IHandler.html','','classhttp_1_1IHandler-members'); });
+$(function(){initNavTree('classhttp_1_1HeadHeaderHandler.html','','classhttp_1_1HeadHeaderHandler-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,40 +88,33 @@ $(function(){initNavTree('classhttp_1_1IHandler.html','','classhttp_1_1IHandler-
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">http::IHandler Class Reference</div></div>
+  <div class="headertitle"><div class="title">http::HeadHeaderHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract interface for all request handlers (Strategy Pattern).  
- <a href="#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="Handler_8hpp_source.html">Handler.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for http::IHandler:</div>
+Inheritance diagram for http::HeadHeaderHandler:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classhttp_1_1IHandler.png" usemap="#http_3A_3AIHandler_map" alt=""/>
-  <map id="http_3A_3AIHandler_map" name="http_3A_3AIHandler_map">
-<area href="classhttp_1_1CGIHandler.html" alt="http::CGIHandler" shape="rect" coords="0,56,172,80"/>
-<area href="classhttp_1_1DirectoryListingHandler.html" alt="http::DirectoryListingHandler" shape="rect" coords="182,56,354,80"/>
-<area href="classhttp_1_1FileDeleteHandler.html" alt="http::FileDeleteHandler" shape="rect" coords="364,56,536,80"/>
-<area href="classhttp_1_1FileUploadHandler.html" alt="http::FileUploadHandler" shape="rect" coords="546,56,718,80"/>
-<area href="classhttp_1_1HeadHeaderHandler.html" alt="http::HeadHeaderHandler" shape="rect" coords="728,56,900,80"/>
-<area href="classhttp_1_1ReturnHandler.html" alt="http::ReturnHandler" shape="rect" coords="910,56,1082,80"/>
-<area href="classhttp_1_1StaticFileHandler.html" title="Handles serving static files from the filesystem." alt="http::StaticFileHandler" shape="rect" coords="1092,56,1264,80"/>
+  <img src="classhttp_1_1HeadHeaderHandler.png" usemap="#http_3A_3AHeadHeaderHandler_map" alt=""/>
+  <map id="http_3A_3AHeadHeaderHandler_map" name="http_3A_3AHeadHeaderHandler_map">
+<area href="classhttp_1_1IHandler.html" title="Abstract interface for all request handlers (Strategy Pattern)." alt="http::IHandler" shape="rect" coords="0,0,155,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a4bfa964206e57bb84fce5cb93d7fa3a7" id="r_a4bfa964206e57bb84fce5cb93d7fa3a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bfa964206e57bb84fce5cb93d7fa3a7">~IHandler</a> ()</td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3260e33a87707574e31a64422b75d1fa" id="r_a3260e33a87707574e31a64422b75d1fa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3260e33a87707574e31a64422b75d1fa">handle</a> (<a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;, <a class="el" href="classhttp_1_1Response.html">Response</a> &amp;, <a class="el" href="classhttp_1_1MimeTypes.html">MimeTypes</a> const &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_methods_classhttp_1_1IHandler"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classhttp_1_1IHandler')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classhttp_1_1IHandler.html">http::IHandler</a></td></tr>
+<tr class="memitem:a4bfa964206e57bb84fce5cb93d7fa3a7 inherit pub_methods_classhttp_1_1IHandler" id="r_a4bfa964206e57bb84fce5cb93d7fa3a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhttp_1_1IHandler.html#a4bfa964206e57bb84fce5cb93d7fa3a7">~IHandler</a> ()</td></tr>
 </table>
-<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract interface for all request handlers (Strategy Pattern). </p>
-<p>Defines the contract for stateless handler objects that process HTTP requests. </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4bfa964206e57bb84fce5cb93d7fa3a7" name="a4bfa964206e57bb84fce5cb93d7fa3a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bfa964206e57bb84fce5cb93d7fa3a7">&#9670;&#160;</a></span>~IHandler()</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a3260e33a87707574e31a64422b75d1fa" name="a3260e33a87707574e31a64422b75d1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3260e33a87707574e31a64422b75d1fa">&#9670;&#160;</a></span>handle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,23 +123,33 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual http::IHandler::~IHandler </td>
+          <td class="memname">void http::HeadHeaderHandler::handle </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Response.html">Response</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>res</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1MimeTypes.html">MimeTypes</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>mimeTypes</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/http/<a class="el" href="Handler_8hpp_source.html">Handler.hpp</a></li>
+<li>src/http/handlers/<a class="el" href="HeadHeader_8cpp.html">HeadHeader.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -161,7 +164,7 @@ Public Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacehttp.html">http</a></li><li class="navelem"><a href="classhttp_1_1IHandler.html">IHandler</a></li>
+    <li class="navelem"><a href="namespacehttp.html">http</a></li><li class="navelem"><a href="classhttp_1_1HeadHeaderHandler.html">HeadHeaderHandler</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

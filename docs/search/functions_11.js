@@ -12,7 +12,7 @@ var searchData=
   ['seterror_9',['setError',['../classhttp_1_1ChunkedBodyParser.html#a3c61e2f94b94119faea05abc11319734',1,'http::ChunkedBodyParser::setError()'],['../classhttp_1_1RequestParser.html#a1878387bcb1b13c7a2d8cce3fbe3abcc',1,'http::RequestParser::setError()']]],
   ['setlevel_10',['setLevel',['../classutils_1_1Logger.html#a9bcf51692bf5b8e317a740711f322b48',1,'utils::Logger']]],
   ['setmaxbodysize_11',['setMaxBodySize',['../classhttp_1_1ChunkedBodyParser.html#a54a64b17b8f5eaaa337740c8238b15f5',1,'http::ChunkedBodyParser']]],
-  ['setnobody_12',['setNoBody',['../classhttp_1_1Response.html#aee64ac6f72428eb4d41145d1d89ffe0b',1,'http::Response']]],
+  ['setnobody_12',['setNoBody',['../classhttp_1_1Response.html#a3693ba93c0b41b709bf9eeaacaee2dcc',1,'http::Response']]],
   ['setrequestready_13',['setRequestReady',['../classhttp_1_1RequestParser.html#af28b3cf7e890f7bc7a8186e51119d120',1,'http::RequestParser']]],
   ['setupacceptors_14',['setupAcceptors',['../classcore_1_1Server.html#a55aa0b8cd87298bdcf7ea8c8321efe5e',1,'core::Server']]],
   ['setupcgihandler_15',['setupCgiHandler',['../classnetwork_1_1ClientHandler.html#acc67573d841091d84e5443613f2f7da5',1,'network::ClientHandler']]],

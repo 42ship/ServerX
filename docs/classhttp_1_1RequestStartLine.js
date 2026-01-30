@@ -2,6 +2,7 @@ var classhttp_1_1RequestStartLine =
 [
     [ "Method", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55a", [
       [ "GET", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aa4cd282770fb247ff540ad42ddbf23dc1", null ],
+      [ "HEAD", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aa67201b97308b0cbb824b6638039787c7", null ],
       [ "POST", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aa5d640ca45ad4de1037596bb02399b8d2", null ],
       [ "PUT", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aad929cc65ae047640966d7c0e8af1fbd6", null ],
       [ "DELETE", "classhttp_1_1RequestStartLine.html#a7c34caccf60d02a43ce74cabe338a55aafeffc4bf8b9e1fe50863bebb6aa77844", null ],

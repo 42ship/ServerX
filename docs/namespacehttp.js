@@ -12,6 +12,7 @@ var namespacehttp =
     [ "FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],
     [ "FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
     [ "Headers", "classhttp_1_1Headers.html", "classhttp_1_1Headers" ],
+    [ "HeadHeaderHandler", "classhttp_1_1HeadHeaderHandler.html", null ],
     [ "IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
     [ "IResponseBody", "classhttp_1_1IResponseBody.html", "classhttp_1_1IResponseBody" ],
     [ "JsonErrorHandler", "classhttp_1_1JsonErrorHandler.html", null ],

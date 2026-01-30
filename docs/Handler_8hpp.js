@@ -2,6 +2,7 @@ var Handler_8hpp =
 [
     [ "http::IHandler", "classhttp_1_1IHandler.html", "classhttp_1_1IHandler" ],
     [ "http::StaticFileHandler", "classhttp_1_1StaticFileHandler.html", null ],
+    [ "http::HeadHeaderHandler", "classhttp_1_1HeadHeaderHandler.html", null ],
     [ "http::ReturnHandler", "classhttp_1_1ReturnHandler.html", null ],
     [ "http::FileUploadHandler", "classhttp_1_1FileUploadHandler.html", null ],
     [ "http::FileDeleteHandler", "classhttp_1_1FileDeleteHandler.html", null ],

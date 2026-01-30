@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classconfig_1_1LocationBlock.html#a636a009cd7843c903f143fe58bd3f3ff":[0,0,0,22,1],
 "classconfig_1_1LocationBlock.html#a636a009cd7843c903f143fe58bd3f3ff":[1,0,0,21,1],
 "classconfig_1_1LocationBlock.html#a756ab28320f86fe50ebc18b9ef266229":[0,0,0,22,0],
 "classconfig_1_1LocationBlock.html#a756ab28320f86fe50ebc18b9ef266229":[1,0,0,21,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classhttp_1_1BodyFromCgi.html#ad05380e1e00a7856bd966fd8cf584069":[1,0,2,1,0],
 "classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e":[0,0,2,1,3],
 "classhttp_1_1BodyFromCgi.html#af01f5e52606553175300560940c6a80e":[1,0,2,1,3],
-"classhttp_1_1BodyInMemory.html":[0,0,2,2],
-"classhttp_1_1BodyInMemory.html":[1,0,2,2]
+"classhttp_1_1BodyInMemory.html":[0,0,2,2]
 };

@@ -16,7 +16,7 @@ var classhttp_1_1Response =
     [ "setBodyFromCgi", "classhttp_1_1Response.html#ad53250d7ac5014bfff2c5fa4f004e8c6", null ],
     [ "setBodyFromFile", "classhttp_1_1Response.html#a43f25fad244c563728fab26ae10521b6", null ],
     [ "setBodyInMemory", "classhttp_1_1Response.html#ac1dfe56179dd769723f320095a261396", null ],
-    [ "setNoBody", "classhttp_1_1Response.html#aee64ac6f72428eb4d41145d1d89ffe0b", null ],
+    [ "setNoBody", "classhttp_1_1Response.html#a3693ba93c0b41b709bf9eeaacaee2dcc", null ],
     [ "status", "classhttp_1_1Response.html#a982e36b4a4f41327200b1c7c26f6f063", null ],
     [ "status", "classhttp_1_1Response.html#ad38cca72f10a441603cf0d035c2baf86", null ],
     [ "status", "classhttp_1_1Response.html#a32177e926180e82e4fc962992c33d50d", null ],
