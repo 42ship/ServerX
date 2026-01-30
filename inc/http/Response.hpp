@@ -128,6 +128,11 @@ public:
      */
     std::string const &reasonPhrase() const;
 
+    /**
+     * @brief Gets the custom error message, if any.
+     */
+    std::string const &customMessage() const;
+
 private:
     Response(Response const &);
     Response const &operator=(Response const &);

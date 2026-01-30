@@ -38,8 +38,9 @@ static const std::string &getCachedJsonErrorBody(HttpStatus code, const char *me
 }
 
 void JsonErrorHandler::populateResponse(Response &response) {
-    std::string const &body =
-        getCachedJsonErrorBody(response.status(), response.reasonPhrase().c_str());
+    std::string const &msg =
+        response.customMessage().empty() ? response.reasonPhrase() : response.customMessage();
+    std::string const &body = getCachedJsonErrorBody(response.status(), msg.c_str());
     response.setBodyInMemory(body, "application/json");
 }
 

@@ -59,6 +59,7 @@ void Response::buildHeaders(std::vector<char> &buffer, bool addBodyLine) const {
 Response &Response::status(HttpStatus statusCode) {
     startLine_.statusCode = statusCode;
     startLine_.reasonPhrase = getReasonPhrase(statusCode);
+    customError_ = "";
     return *this;
 }
 
@@ -74,11 +75,11 @@ Headers const &Response::headers() const { return headers_; }
 HttpStatus Response::status() const { return startLine_.statusCode; }
 std::string const &Response::protocol() const { return startLine_.protocol; }
 std::string const &Response::reasonPhrase() const { return startLine_.reasonPhrase; }
+std::string const &Response::customMessage() const { return customError_; }
 
-Response &Response::status(HttpStatus statusCode, std::string const &customError) {
+Response &Response::status(HttpStatus statusCode, std::string const &customMessage) {
     status(statusCode);
-    customError_ = customError;
-    startLine_.reasonPhrase = customError_;
+    customError_ = customMessage;
     return *this;
 }
 
