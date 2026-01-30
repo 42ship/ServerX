@@ -150,7 +150,9 @@ Block &Block::root(std::string const &root) {
         if (strArg) {
             strArg->setValue(root);
         } else {
-            delete it->second[0];
+            IArgument *old = it->second[0];
+            it->second[0] = NULL;
+            delete old;
             it->second[0] = new String(root);
         }
     } else
