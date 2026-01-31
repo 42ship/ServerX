@@ -88,7 +88,7 @@ ClientHandler::ClientHandler(int clientFd, int port, std::string const &clientAd
       rspBuffer_(IO_BUFFER_SIZE) {
 
     resetForNewRequest();
-    LOG_INFO("ClientHandler(" << clientFd_ << "): connected from " << clientAddr_);
+    LOG_DEBUG("ClientHandler(" << clientFd_ << "): connected from " << clientAddr_);
 }
 
 ClientHandler::~ClientHandler() {

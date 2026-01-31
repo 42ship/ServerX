@@ -65,9 +65,10 @@ void Validator::validateGlobalConstraints(ServerBlockVec const &servers) {
         for (size_t j = 0; j < names.size(); ++j) {
             if (!listenMap[listenKey].insert(names[j]).second) {
                 if (names[j].empty()) {
-                    LOG_WARN("Conflicting default/unnamed server for " << listenKey);
+                    throw ConfigError("Conflicting default/unnamed server for " + listenKey);
                 } else {
-                    LOG_WARN("Conflicting server name '" << names[j] << "' for " << listenKey);
+                    throw ConfigError("Conflicting server name '" + names[j] + "' for " +
+                                      listenKey);
                 }
             }
         }
