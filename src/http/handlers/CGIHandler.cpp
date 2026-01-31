@@ -155,8 +155,7 @@ void CGIHandler::runParentProcess() {
     char buf[257];
     ssize_t bytesRead = read(errorFd_[0], buf, sizeof(buf) - 1);
     if (bytesRead > 0) {
-        buf[bytesRead] = 0;
-        LOG_SERROR("execve: " << buf);
+        LOG_SERROR("execve: " << std::string(buf, bytesRead));
         res_.status(INTERNAL_SERVER_ERROR);
     } else {
         res_.setBodyFromCgi(pipeFd_[0], !isNPH(req_));
