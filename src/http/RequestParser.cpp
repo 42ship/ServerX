@@ -24,7 +24,7 @@ void RequestParser::reset() {
     bytesWrittenToBody_ = 0;
     maxContentSize_ = 0;
     isContentChunked_ = false;
-    buffer_.clear();
+    // buffer_.clear(); // Preserve buffer for pipelined requests
     request_.clear();
 }
 
@@ -32,6 +32,7 @@ RequestParser::State RequestParser::state() const { return state_; }
 HttpStatus RequestParser::errorStatus() const { return errorStatus_; }
 
 RequestParser::State RequestParser::setError(HttpStatus status) {
+    LOG_SDEBUG("Parser error status set to: " << status);
     reset();
     errorStatus_ = status;
     state_ = ERROR;
@@ -68,7 +69,19 @@ RequestParser::State RequestParser::proceedReadingBody() {
 }
 
 RequestParser::State RequestParser::parseHeaders() {
+    // RFC 7230: skip leading CRLFs
+    size_t start = buffer_.find_first_not_of("\r\n");
+    if (start != std::string::npos && start > 0) {
+        buffer_.erase(0, start);
+    } else if (start == std::string::npos && !buffer_.empty()) {
+        // Only CRLFs in buffer, keep them but maybe keep buffer small
+        if (buffer_.length() > 1024)
+            buffer_.clear();
+        return state_;
+    }
+
     if (buffer_.length() > maxHeaderSize_) {
+        LOG_SDEBUG("Header size limit exceeded: " << buffer_.length() << " > " << maxHeaderSize_);
         return setError(BAD_REQUEST);
     }
 
@@ -82,14 +95,23 @@ RequestParser::State RequestParser::parseHeaders() {
     state_ = HEADERS_READY;
     request_.requestLine_ = RequestStartLine::parse(buffer_);
     if (request_.method() == RequestStartLine::UNKNOWN) {
+        LOG_SDEBUG("Unknown method or failed to parse request line: "
+                   << buffer_.substr(0, buffer_.find('\n')));
         return setError(BAD_REQUEST);
     }
 
     // Only parse the header section, not the body
-    size_t headerSectionStart = buffer_.find('\n') + 1;
+    size_t headerSectionStart = buffer_.find('\n');
+    if (headerSectionStart == std::string::npos) {
+        LOG_SDEBUG("Failed to find end of request line even though delimiter was found");
+        return setError(BAD_REQUEST);
+    }
+    headerSectionStart += 1;
+
     std::string headerSection =
         buffer_.substr(headerSectionStart, headerEnd - headerSectionStart + (offset - 2));
     if (!http::Headers::parse(headerSection, request_.headers_)) {
+        LOG_SDEBUG("Failed to parse header section: " << headerSection);
         return setError(BAD_REQUEST);
     }
     contentLength_ = request_.headers_.getContentLength();
@@ -98,7 +120,7 @@ RequestParser::State RequestParser::parseHeaders() {
     if (isBodyExpected) {
         buffer_.erase(0, headerEnd + offset);
     } else {
-        buffer_.clear();
+        buffer_.erase(0, headerEnd + offset);
         setRequestReady();
     }
     return state_;

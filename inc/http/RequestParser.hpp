@@ -1,4 +1,4 @@
-#include "common/filesystem.hpp"
+#pragma once
 #include "http/HttpStatus.hpp"
 #include "http/Request.hpp"
 #include "http/internal/ChunkedBodyParser.hpp"
@@ -52,6 +52,7 @@ public:
 
     State state() const;
     HttpStatus errorStatus() const;
+    bool hasLeftoverData() const { return !buffer_.empty(); }
 
 private:
     /**

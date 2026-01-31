@@ -333,6 +333,11 @@ void ClientHandler::onCgiHeadersParsed(http::Headers const &headers) {
         response_.headers().erase("Status");
     }
 
+    if (!headers.has("Content-Length") && !headers.has("Transfer-Encoding")) {
+        LOG_DEBUG("CGI response has no Content-Length, forcing Connection: close");
+        isKeepAlive_ = false;
+    }
+
     response_.headers().add("Connection", isKeepAlive_ ? "keep-alive" : "close");
     response_.buildHeaders(rspBuffer_.buffer, true);
     headersSent_ = true;
@@ -397,6 +402,11 @@ void ClientHandler::finalizeConnection() {
         resetForNewRequest();
         EventDispatcher::getInstance().enableRead(this);
         EventDispatcher::getInstance().disableWrite(this);
+
+        if (reqParser_.hasLeftoverData()) {
+            LOG_DEBUG("Leftover data in buffer, processing next pipelined request");
+            handleRequestParsingState(reqParser_.feed(NULL, 0));
+        }
     } else {
         initiateDraining();
     }
