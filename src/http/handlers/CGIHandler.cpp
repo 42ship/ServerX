@@ -9,6 +9,7 @@
 #include "http/handlers/DirectoryListingHandler.hpp"
 #include "utils/Logger.hpp"
 #include <cerrno>
+#include <climits>
 #include <cstdlib>
 #include <cstring>
 #include <fcntl.h>
@@ -52,30 +53,49 @@ CGIHandler::CGIHandler(Request const &req, Response &res) : req_(req), res_(res)
     errorFd_[0] = -1;
     errorFd_[1] = -1;
     argv_.reserve(3);
-    envp_.reserve(30); // Increased reservation for more env vars
+    envp_.reserve(30);
 }
 
 void CGIHandler::handle(Request const &req, Response &res, MimeTypes const &mime) {
     CHECK_FOR_SERVER_AND_LOCATION(req, res);
 
     std::string path = req.resolvePath();
+    LOG_DEBUG("CGIHandler::handle: path=" << path);
     struct stat st;
 
-    if (!utils::getFileStatus(path, st)) {
-        res.status(NOT_FOUND);
-        return;
-    }
-
-    if (S_ISDIR(st.st_mode)) {
-        if (req.location()->autoIndex()) {
-            return DirectoryListingHandler::handle(req, res, mime);
+    // If cgi_pass specifies an interpreter, we don't necessarily need the script to be executable
+    // or even exist.
+    bool hasInterpreter = false;
+    if (req.location()->has("cgi_pass")) {
+        std::vector<std::string> const &cgi_pass = req.location()->getRawValues("cgi_pass");
+        if (cgi_pass.size() > 1 || (cgi_pass.size() == 1 && cgi_pass[0] != "enabled")) {
+            hasInterpreter = true;
         }
-        return StaticFileHandler::handle(req, res, mime);
     }
 
-    if (!(st.st_mode & S_IXUSR)) {
-        res.status(FORBIDDEN);
-        return;
+    if (!hasInterpreter) {
+        if (!utils::getFileStatus(path, st)) {
+            res.status(NOT_FOUND);
+            return;
+        }
+        if (S_ISDIR(st.st_mode)) {
+            if (req.location()->autoIndex()) {
+                return DirectoryListingHandler::handle(req, res, mime);
+            }
+            return StaticFileHandler::handle(req, res, mime);
+        }
+        if (!(st.st_mode & S_IXUSR)) {
+            res.status(FORBIDDEN);
+            return;
+        }
+    } else {
+        // Even with interpreter, if it's a directory, we handle it as such
+        if (utils::getFileStatus(path, st) && S_ISDIR(st.st_mode)) {
+            if (req.location()->autoIndex()) {
+                return DirectoryListingHandler::handle(req, res, mime);
+            }
+            return StaticFileHandler::handle(req, res, mime);
+        }
     }
 
     CGIHandler handler(req, res);
@@ -134,20 +154,14 @@ void CGIHandler::runParentProcess() {
     close(errorFd_[1]);
     char buf[257];
     ssize_t bytesRead = read(errorFd_[0], buf, sizeof(buf) - 1);
-    buf[bytesRead] = 0;
-    close(errorFd_[0]);
-
-    if (bytesRead < 0) {
-        close(pipeFd_[0]);
-        LOG_SERROR("read: " << strerror(errno));
-        return (void)res_.status(INTERNAL_SERVER_ERROR);
-    } else if (bytesRead > 0) {
-        close(pipeFd_[0]);
+    if (bytesRead > 0) {
+        buf[bytesRead] = 0;
         LOG_SERROR("execve: " << buf);
-        return (void)res_.status(INTERNAL_SERVER_ERROR);
+        res_.status(INTERNAL_SERVER_ERROR);
     } else {
         res_.setBodyFromCgi(pipeFd_[0], !isNPH(req_));
     }
+    close(errorFd_[0]);
 }
 
 bool CGIHandler::initPipes() {
@@ -182,20 +196,45 @@ void CGIHandler::buildArgv() {
     if (req_.location()->has("cgi_pass")) {
         std::vector<std::string> const &cgi_pass = req_.location()->getRawValues("cgi_pass");
         if (cgi_pass.empty() || (cgi_pass.size() == 1 && cgi_pass[0] == "enabled")) {
-            // Case 0: enabled but no interpreter specified
             argv_.push_back(script_path);
         } else if (cgi_pass.size() == 1) {
-            // Case 1: single interpreter specified for all files
-            argv_.push_back(cgi_pass[0]);
+            std::string interpreter = cgi_pass[0];
+            if (!interpreter.empty() && interpreter[0] != '/' &&
+                interpreter.compare(0, 2, "./") != 0) {
+                std::string rootPath;
+                if (req_.location()->has("alias")) {
+                    rootPath = req_.location()->get("alias", req_)[0];
+                } else {
+                    rootPath = req_.location()->root();
+                }
+                std::string possiblePath = utils::joinPaths(rootPath, interpreter);
+                if (access(possiblePath.c_str(), X_OK) == 0) {
+                    interpreter = possiblePath;
+                }
+            }
+            argv_.push_back(interpreter);
             argv_.push_back(script_path);
         } else {
-            // Case 2: extension mapping (extension, interpreter)
             std::string ext = utils::getFileExtension(script_path);
             if (!ext.empty() && ext[0] != '.') {
                 ext = "." + ext;
             }
             if (!ext.empty() && ext == cgi_pass[0]) {
-                argv_.push_back(cgi_pass[1]);
+                std::string interpreter = cgi_pass[1];
+                if (!interpreter.empty() && interpreter[0] != '/' &&
+                    interpreter.compare(0, 2, "./") != 0) {
+                    std::string rootPath;
+                    if (req_.location()->has("alias")) {
+                        rootPath = req_.location()->get("alias", req_)[0];
+                    } else {
+                        rootPath = req_.location()->root();
+                    }
+                    std::string possiblePath = utils::joinPaths(rootPath, interpreter);
+                    if (access(possiblePath.c_str(), X_OK) == 0) {
+                        interpreter = possiblePath;
+                    }
+                }
+                argv_.push_back(interpreter);
                 argv_.push_back(script_path);
             } else {
                 argv_.push_back(script_path);
@@ -207,34 +246,42 @@ void CGIHandler::buildArgv() {
 }
 
 void CGIHandler::buildEnvp() {
+    std::string script_path = req_.resolvePath();
+    char abs_path[PATH_MAX];
+    if (realpath(script_path.c_str(), abs_path)) {
+        script_path = abs_path;
+    }
+
     envp_.push_back("GATEWAY_INTERFACE=CGI/1.1");
     envp_.push_back("SERVER_SOFTWARE=ServerX/1.0");
     envp_.push_back("SERVER_PROTOCOL=" + req_.version());
-
     envp_.push_back("REQUEST_METHOD=" +
                     std::string(RequestStartLine::methodToString(req_.method())));
     envp_.push_back("SCRIPT_NAME=" + req_.path());
     envp_.push_back("QUERY_STRING=" + req_.queryString());
-
-    envp_.push_back("PATH_INFO=");
-    envp_.push_back("PATH_TRANSLATED=");
-
+    envp_.push_back("REMOTE_ADDR=" + req_.remoteAddr());
     envp_.push_back("SERVER_PORT=" + utils::toString(req_.server()->port()));
+    envp_.push_back("SERVER_NAME=localhost");
 
     if (req_.server()->has("server_name")) {
         std::vector<std::string> serverNames = req_.server()->get("server_name", req_);
         if (!serverNames.empty()) {
+            envp_.erase(envp_.end() - 1);
             envp_.push_back("SERVER_NAME=" + serverNames[0]);
         }
     }
 
-    envp_.push_back("REMOTE_ADDR=" + req_.remoteAddr());
+    // PATH_INFO: should be the virtual path from the request!
+    envp_.push_back("PATH_INFO=" + req_.path());
+    envp_.push_back("PATH_TRANSLATED=" + script_path);
+    envp_.push_back("SCRIPT_FILENAME=" + script_path);
+    envp_.push_back("REQUEST_URI=" + req_.uri());
+    envp_.push_back("REDIRECT_STATUS=200");
 
     std::string contentType = req_.headers().get("Content-Type");
     if (!contentType.empty()) {
         envp_.push_back("CONTENT_TYPE=" + contentType);
     }
-
     std::string contentLength = req_.headers().get("Content-Length");
     if (!contentLength.empty()) {
         envp_.push_back("CONTENT_LENGTH=" + contentLength);
@@ -242,15 +289,11 @@ void CGIHandler::buildEnvp() {
 
     for (Headers::HeaderMap::const_iterator it = req_.headers().begin(); it != req_.headers().end();
          ++it) {
-
         std::string headerName = it->first;
-
         if (!isValidCgiHeaderName(headerName))
             continue;
-
         if (headerName == "content-type" || headerName == "content-length")
             continue;
-
         envp_.push_back(formatHeaderName(headerName) + "=" + it->second);
     }
 }

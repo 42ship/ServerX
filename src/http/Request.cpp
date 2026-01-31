@@ -140,7 +140,17 @@ Request &Request::remoteAddr(std::string const &addr) { remoteAddr_ = addr; retu
 std::string Request::resolvePath() const {
     if (!location())
         return "";
+
     config::LocationBlock const *loc = location();
+
+    // If it's an extension match, try to find a prefix match for path resolution
+    if (loc->matchType() == config::LocationBlock::EXTENSION && server()) {
+        config::LocationBlock const *prefixLoc = server()->matchPrefixLocation(*this);
+        if (prefixLoc) {
+            loc = prefixLoc;
+        }
+    }
+
     std::string reqPath = path();
     if (loc->has("alias")) {
         std::string aliasPath = loc->get("alias", *this)[0];

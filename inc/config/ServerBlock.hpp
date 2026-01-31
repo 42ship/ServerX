@@ -44,6 +44,7 @@ public:
      * @return A const pointer to the matched LocationBlock, or NULL if no match is found.
      */
     LocationBlock const *matchLocation(http::Request const &req) const;
+    LocationBlock const *matchPrefixLocation(http::Request const &req) const;
 
     // ============================== Getters & Setters =============================
 
