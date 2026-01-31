@@ -130,13 +130,10 @@ void ClientHandler::handleRead() {
     char buffer[IO_BUFFER_SIZE];
     ssize_t count = ::recv(clientFd_, buffer, IO_BUFFER_SIZE, 0);
 
-    if (count < 0) {
+    if (count <= 0) {
         LOG_ERROR("ClientHandler::read(" << clientFd_ << "): error " << strerror(errno));
-        return;  // EAGAIN or error - epoll will re-trigger or raise EPOLLERR/EPOLLHUP
-    }
-    if (count == 0) {
         closeConnection();  // EOF - client closed connection
-        return;
+        return;  // EAGAIN or error - epoll will re-trigger or raise EPOLLERR/EPOLLHUP
     }
     if (reqParser_.state() == http::RequestParser::ERROR) {
         return;
