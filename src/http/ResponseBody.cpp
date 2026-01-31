@@ -90,6 +90,8 @@ ssize_t BodyFromCgi::read(char *buffer, size_t size) {
         return 0;
     }
     // bytesRead < 0: EAGAIN or error - return -1 and let caller/epoll handle it
+    LOG_ERROR("BodyFromCgi::read: " << strerror(errno));
+    isDone_ = true;
     return -1;
 }
 size_t BodyFromCgi::size() const { return 0; }

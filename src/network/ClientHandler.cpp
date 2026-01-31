@@ -41,8 +41,10 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
     ssize_t bytes_sent = ::send(clientFd, buffer.data() + sent, bytes_to_send, 0);
 
     if (bytes_sent < 0) {
+        LOG_SERROR(strerror(errno));
         return SEND_AGAIN;
     }
+
 
     sent += bytes_sent;
 
@@ -129,17 +131,16 @@ void ClientHandler::handleRead() {
     ssize_t count = ::recv(clientFd_, buffer, IO_BUFFER_SIZE, 0);
 
     if (count < 0) {
+        LOG_ERROR("ClientHandler::read(" << clientFd_ << "): error " << strerror(errno));
         return;  // EAGAIN or error - epoll will re-trigger or raise EPOLLERR/EPOLLHUP
     }
     if (count == 0) {
         closeConnection();  // EOF - client closed connection
         return;
     }
-
     if (reqParser_.state() == http::RequestParser::ERROR) {
         return;
     }
-
     handleRequestParsingState(reqParser_.feed(buffer, static_cast<size_t>(count)));
 }
 
