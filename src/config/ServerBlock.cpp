@@ -18,6 +18,9 @@ LocationBlock const *ServerBlock::matchLocation(http::Request const &req) const 
     }
     return bestPrefix;
 }
+LocationBlock const *ServerBlock::matchPrefixLocation(http::Request const &req) const {
+    return details::bestMatchLocation(locations_, req.uri());
+}
 
 bool ServerBlock::hasLocation(LocationBlock const &b) const {
     return !b.path().empty() && locations_.count(b.path());

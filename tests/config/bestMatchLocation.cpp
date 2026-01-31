@@ -104,11 +104,11 @@ TEST_CASE("LocationMatcher: Edge Cases") {
     }
 
     SUBCASE("Should correctly handle paths without a trailing slash") {
-        // A request for "/images" does NOT match "location /images/".
-        // It will be shortened to "/" and match the root location.
+        // A request for "/images" now matches "location /images/" due to "smart" matching.
+        // This improves UX by avoiding unnecessary 404s/redirects for directory prefixes.
         const LocationBlock *result = details::bestMatchLocation(locs, "/images");
         REQUIRE(result != NULL);
-        CHECK(result->path() == "/");
+        CHECK(result->path() == "/images/");
     }
 }
 
