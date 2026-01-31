@@ -5,6 +5,7 @@
 #include <cerrno>
 #include <cstring>
 #include <exception>
+#include <sys/wait.h>
 
 #define MAX_EVENTS 1024
 
@@ -110,6 +111,8 @@ void EventDispatcher::handleEvents() {
         struct epoll_event events[MAX_EVENTS];
         int nready = epollManager_.waitForEvents(events, MAX_EVENTS, 1000);
         if (nready < 0) {
+            while (waitpid(-1, NULL, WNOHANG) > 0)
+                ;
             cleanUpGarbage();
             if (errno == EINTR) {
                 LOG_DEBUG("epoll_wait interrupted by a signal, continuing...");
@@ -118,6 +121,8 @@ void EventDispatcher::handleEvents() {
             LOG_ERROR("epoll_wait failed: " << strerror(errno));
             break;
         } else if (nready == 0) {
+            while (waitpid(-1, NULL, WNOHANG) > 0)
+                ;
             cleanUpGarbage();
             if (was_printed)
                 continue;
@@ -143,6 +148,8 @@ void EventDispatcher::handleEvents() {
                 removeHandler(handler);
             }
         }
+        while (waitpid(-1, NULL, WNOHANG) > 0)
+            ;
         cleanUpGarbage();
     }
 }

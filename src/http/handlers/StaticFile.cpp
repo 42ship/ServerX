@@ -43,7 +43,7 @@ void StaticFileHandler::handle(Request const &req, Response &res, MimeTypes cons
         std::string indexPath = req.location()->resolveIndexFile(path);
 
         if (indexPath.empty()) {
-            res.status(FORBIDDEN);
+            res.status(NOT_FOUND);
             return;
         }
         path = indexPath;

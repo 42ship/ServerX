@@ -16,10 +16,27 @@ bool matchServerName(std::vector<std::string> const &names, std::string const &s
 }
 
 LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string const &path) {
-    std::string currentPath = path;
+    if (ls.empty())
+        return NULL;
 
+    // First, check for exact match
+    LocationBlockMap::const_iterator it = ls.find(path);
+    if (it != ls.end()) {
+        return &it->second;
+    }
+
+    // If no exact match, and it doesn't end in '/', try adding '/'
+    // This allows /directory to match location /directory/
+    if (!path.empty() && path[path.size() - 1] != '/') {
+        it = ls.find(path + "/");
+        if (it != ls.end()) {
+            return &it->second;
+        }
+    }
+
+    std::string currentPath = path;
     while (!currentPath.empty()) {
-        LocationBlockMap::const_iterator it = ls.find(currentPath);
+        it = ls.find(currentPath);
         if (it != ls.end()) {
             return &it->second;
         }
@@ -31,7 +48,7 @@ LocationBlock const *bestMatchLocation(LocationBlockMap const &ls, std::string c
         } else
             break;
     }
-    LocationBlockMap::const_iterator it = ls.find("/");
+    it = ls.find("/");
     if (it != ls.end())
         return &it->second;
     return NULL;
