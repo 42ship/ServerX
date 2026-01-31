@@ -88,14 +88,25 @@ void FileUploadHandler::handle(Request const &req, Response &res, MimeTypes cons
     std::string lp = req.location()->path(); // e.g. "/img/"
     std::string up = getUploadPath(req);     // e.g. "upload" or "/upload"
 
-    std::string toFind = lp[0] == '/' ? lp.substr(1) : lp;
+    // Normalize: remove leading/trailing slashes for a robust prefix compare
+    std::string toFind = lp.empty() ? lp : (lp[0] == '/' ? lp.substr(1) : lp);
+    if (!toFind.empty() && toFind[toFind.size() - 1] == '/')
+        toFind.resize(toFind.size() - 1);
+
+    std::string upNorm = up.empty() ? up : (up[0] == '/' ? up.substr(1) : up);
+
     // TODO(root):
     // This logic exists because root & location path are merged too early.
     // Remove after root/url separation is implemented.
-    if (up.compare(0, toFind.size(), toFind) == 0 && (lRoot == req.server()->root())) {
-        up.erase(0, toFind.size());
+    if (!toFind.empty() && upNorm.compare(0, toFind.size(), toFind) == 0 &&
+        (lRoot == req.server()->root())) {
+        upNorm.erase(0, toFind.size());
+        // remove an accidental leading slash if present after erase
+        if (!upNorm.empty() && upNorm[0] == '/')
+            upNorm.erase(0, 1);
     }
-    std::string url = utils::joinPaths(lp, utils::joinPaths(up, pf.filename));
+
+    std::string url = utils::joinPaths(lp, utils::joinPaths(upNorm, pf.filename));
 
     res.headers().add("Location", url);
 }
