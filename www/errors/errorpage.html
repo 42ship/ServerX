@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Error</title>
+  <style>
+    /* === Dark theme variables (default) === */
+    :root {
+      --bg: #0b1020;
+      --text: #e9edf5;
+      --muted: #9aa3b2;
+      --primary: #5b8cff;
+      --primary-press: #3d6cf0;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    /* === Light theme overrides === */
+    body[data-theme="light"] {
+      --bg: #f8f9fb;
+      --text: #111827;
+      --muted: #4b5563;
+      --primary: #2563eb;
+      --primary-press: #1d4ed8;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    /* === Base styles === */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .error-container {
+      max-width: 500px;
+      padding: 2rem;
+      background: transparent;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      color: var(--muted);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.4rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    a:hover {
+      background: var(--primary-press);
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 14px;
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle">Light Mode</button>
+
+  <div class="error-container">
+    <h1>{ERROR_CODE}</h1>
+    <p>{ERROR_MESSAGE}</p>
+    <a href="file:///home/ogrativ/projects/ServerX/index.html">Go Back Home</a>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Load saved theme
+    if (localStorage.getItem('theme')) {
+      body.setAttribute('data-theme', localStorage.getItem('theme'));
+      toggleBtn.textContent = body.dataset.theme === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      toggleBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    });
+  </script>
+</body>
+</html>
