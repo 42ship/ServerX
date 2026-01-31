@@ -23,8 +23,9 @@ var searchData=
   ['has_20',['has',['../classconfig_1_1Block.html#afe28262e97bce1adf4e8178f3ef2b7f0',1,'config::Block::has()'],['../classhttp_1_1Headers.html#acdd23769262a418bb594f722a40f1b54',1,'http::Headers::has()']]],
   ['hascgipass_21',['hasCgiPass',['../classconfig_1_1LocationBlock.html#afc07c99290008d65485524a23cca16a7',1,'config::LocationBlock']]],
   ['hasheaderparsing_22',['hasHeaderParsing',['../classhttp_1_1IResponseBody.html#ad7110f463b8f30e388cbf02831cb40c9',1,'http::IResponseBody::hasHeaderParsing()'],['../classhttp_1_1BodyFromCgi.html#a2f1500979be89bec7628d65587c47663',1,'http::BodyFromCgi::hasHeaderParsing()']]],
-  ['haslocation_23',['hasLocation',['../classconfig_1_1ServerBlock.html#a25f88d04ae73e26e1dcdff2323bfad3d',1,'config::ServerBlock']]],
-  ['headers_24',['Headers',['../classhttp_1_1Headers.html#ae15f1ccc6179c9281ac0fdd723f82d7f',1,'http::Headers']]],
-  ['headers_25',['headers',['../classhttp_1_1Request.html#a2115bc1106edad17af3557b17556b0ab',1,'http::Request::headers()'],['../classhttp_1_1Request.html#a568f9cebe7d64ccfedc7cb54416f05c3',1,'http::Request::headers() const'],['../classhttp_1_1Response.html#a1cc8d54370b42c6c0a8a2367be569913',1,'http::Response::headers()'],['../classhttp_1_1Response.html#a87f6de9dfb7a9191241f709fd034e661',1,'http::Response::headers() const']]],
-  ['hostfunc_26',['HostFunc',['../namespaceconfig.html#a5e2221a44dab9b2996b40984ee12791e',1,'config']]]
+  ['hasleftoverdata_23',['hasLeftoverData',['../classhttp_1_1RequestParser.html#ae0c7cd465cbd4d1a610ffaf664016ebc',1,'http::RequestParser']]],
+  ['haslocation_24',['hasLocation',['../classconfig_1_1ServerBlock.html#a25f88d04ae73e26e1dcdff2323bfad3d',1,'config::ServerBlock']]],
+  ['headers_25',['Headers',['../classhttp_1_1Headers.html#ae15f1ccc6179c9281ac0fdd723f82d7f',1,'http::Headers']]],
+  ['headers_26',['headers',['../classhttp_1_1Request.html#a2115bc1106edad17af3557b17556b0ab',1,'http::Request::headers()'],['../classhttp_1_1Request.html#a568f9cebe7d64ccfedc7cb54416f05c3',1,'http::Request::headers() const'],['../classhttp_1_1Response.html#a1cc8d54370b42c6c0a8a2367be569913',1,'http::Response::headers()'],['../classhttp_1_1Response.html#a87f6de9dfb7a9191241f709fd034e661',1,'http::Response::headers() const']]],
+  ['hostfunc_27',['HostFunc',['../namespaceconfig.html#a5e2221a44dab9b2996b40984ee12791e',1,'config']]]
 ];

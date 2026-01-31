@@ -115,6 +115,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab3f55c45b06ad4cdd20990a509656ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a> to this server configuration.  <br /></td></tr>
 <tr class="memitem:acd3bb4d925dd4e6e7ed0c27509822f89" id="r_acd3bb4d925dd4e6e7ed0c27509822f89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd3bb4d925dd4e6e7ed0c27509822f89">matchLocation</a> (<a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req) const</td></tr>
 <tr class="memdesc:acd3bb4d925dd4e6e7ed0c27509822f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the best-matching location block for a given request URI.  <br /></td></tr>
+<tr class="memitem:a5a995831715f8817d180e96f02ab8571" id="r_a5a995831715f8817d180e96f02ab8571"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a995831715f8817d180e96f02ab8571">matchPrefixLocation</a> (<a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;req) const</td></tr>
 <tr class="memitem:a1dbb6445fbe3305c6028d7fa23f07cb7" id="r_a1dbb6445fbe3305c6028d7fa23f07cb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dbb6445fbe3305c6028d7fa23f07cb7">port</a> () const</td></tr>
 <tr class="memdesc:a1dbb6445fbe3305c6028d7fa23f07cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the port number this server listens on.  <br /></td></tr>
 <tr class="memitem:abdd6a3baaaab8fb4d9a8aa0a1b04c759" id="r_abdd6a3baaaab8fb4d9a8aa0a1b04c759"><td class="memItemLeft" align="right" valign="top">std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdd6a3baaaab8fb4d9a8aa0a1b04c759">address</a> () const</td></tr>
@@ -321,6 +322,23 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A const pointer to the matched <a class="el" href="classconfig_1_1LocationBlock.html" title="Represents a single &#39;location&#39; block from the configuration file.">LocationBlock</a>, or NULL if no match is found. </dd></dl>
+
+</div>
+</div>
+<a id="a5a995831715f8817d180e96f02ab8571" name="a5a995831715f8817d180e96f02ab8571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a995831715f8817d180e96f02ab8571">&#9670;&#160;</a></span>matchPrefixLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classconfig_1_1LocationBlock.html">LocationBlock</a> const  * config::ServerBlock::matchPrefixLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhttp_1_1Request.html">http::Request</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>req</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

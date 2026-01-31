@@ -12,6 +12,7 @@ var classhttp_1_1RequestParser =
     [ "feed", "classhttp_1_1RequestParser.html#a55ec3cbf2f42c926b07698d2945bedc8", null ],
     [ "handleChunkedBody", "classhttp_1_1RequestParser.html#a963b693664e3ee237b28371dbb63d84d", null ],
     [ "handleContentLengthBody", "classhttp_1_1RequestParser.html#aeb59fd00d27f41b96a8047f76b9d51fc", null ],
+    [ "hasLeftoverData", "classhttp_1_1RequestParser.html#ae0c7cd465cbd4d1a610ffaf664016ebc", null ],
     [ "parseBody", "classhttp_1_1RequestParser.html#a2f4880b46e2e3d08b60fd40e2dd08876", null ],
     [ "parseHeaders", "classhttp_1_1RequestParser.html#a0527adef936421ad11246163b29fa56e", null ],
     [ "proceedReadingBody", "classhttp_1_1RequestParser.html#a6b1b4b0cc711e75f03a0d96f345b1e8d", null ],

@@ -1,5 +1,9 @@
 var NAVTREEINDEX7 =
 {
+"structhttp_1_1ChunkedBodyParser_1_1ParseResult.html#a3c4aca2cf5c95a0729089f270e83d332":[0,0,2,4,0,0],
+"structhttp_1_1ChunkedBodyParser_1_1ParseResult.html#a3c4aca2cf5c95a0729089f270e83d332":[1,0,2,4,0,0],
+"structhttp_1_1ChunkedBodyParser_1_1ParseResult.html#a8ce4b8b0ff04f5754b68f1652842c09f":[0,0,2,4,0,1],
+"structhttp_1_1ChunkedBodyParser_1_1ParseResult.html#a8ce4b8b0ff04f5754b68f1652842c09f":[1,0,2,4,0,1],
 "structhttp_1_1ErrorKey.html":[0,0,2,7],
 "structhttp_1_1ErrorKey.html":[1,0,2,7],
 "structhttp_1_1ErrorKey.html#a12304e860b58b3528cd5523f5448e825":[0,0,2,7,2],

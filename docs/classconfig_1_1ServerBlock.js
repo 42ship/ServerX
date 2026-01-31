@@ -6,6 +6,7 @@ var classconfig_1_1ServerBlock =
     [ "address", "classconfig_1_1ServerBlock.html#a2e5253d9f64f76781b29dd1c4260c2ca", null ],
     [ "hasLocation", "classconfig_1_1ServerBlock.html#a25f88d04ae73e26e1dcdff2323bfad3d", null ],
     [ "matchLocation", "classconfig_1_1ServerBlock.html#acd3bb4d925dd4e6e7ed0c27509822f89", null ],
+    [ "matchPrefixLocation", "classconfig_1_1ServerBlock.html#a5a995831715f8817d180e96f02ab8571", null ],
     [ "port", "classconfig_1_1ServerBlock.html#a1dbb6445fbe3305c6028d7fa23f07cb7", null ],
     [ "port", "classconfig_1_1ServerBlock.html#a2c8a67221fda51c948d5babf651b79aa", null ],
     [ "operator<<", "classconfig_1_1ServerBlock.html#a70f016b42c502e6722b8657766ce25e9", null ],
