@@ -41,11 +41,7 @@ ClientHandler::SendBuffer::SendStatus ClientHandler::SendBuffer::send(int client
     ssize_t bytes_sent = ::send(clientFd, buffer.data() + sent, bytes_to_send, 0);
 
     if (bytes_sent < 0) {
-        if (errno == EAGAIN || errno == EWOULDBLOCK) {
-            return SEND_AGAIN;
-        }
-        LOG_SERROR(strerror(errno));
-        return SEND_ERROR;
+        return SEND_AGAIN;
     }
 
     sent += bytes_sent;
@@ -132,11 +128,11 @@ void ClientHandler::handleRead() {
     char buffer[IO_BUFFER_SIZE];
     ssize_t count = ::recv(clientFd_, buffer, IO_BUFFER_SIZE, 0);
 
-    if (count <= 0) {
-        if (count < 0 && errno != EAGAIN && errno != EWOULDBLOCK) {
-            LOG_ERROR("ClientHandler::read(" << clientFd_ << "): error " << strerror(errno));
-        }
-        closeConnection();
+    if (count < 0) {
+        return;  // EAGAIN or error - epoll will re-trigger or raise EPOLLERR/EPOLLHUP
+    }
+    if (count == 0) {
+        closeConnection();  // EOF - client closed connection
         return;
     }
 
