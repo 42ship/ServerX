@@ -89,9 +89,7 @@ ssize_t BodyFromCgi::read(char *buffer, size_t size) {
         isDone_ = true;
         return 0;
     }
-    if (errno == EAGAIN || errno == EWOULDBLOCK) {
-        return -1;
-    }
+    // bytesRead < 0: EAGAIN or error - return -1 and let caller/epoll handle it
     LOG_ERROR("BodyFromCgi::read: " << strerror(errno));
     isDone_ = true;
     return -1;
